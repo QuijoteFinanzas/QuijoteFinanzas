@@ -264,6 +264,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   flex-shrink:0;
 }
 </style>
+<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </head>
 <body>
 
@@ -304,7 +305,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os invirtiendo</span></div>
       <div class="contact-box" id="contacto">
         <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:donquijotedelasfinanzas@gmail.com" id="contact-email-link">donquijotedelasfinanzas@gmail.com</a> y responder&eacute; lo antes posible.
+        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="/cdn-cgi/l/email-protection#24404b4a55514d4e4b50414041484557424d4a454a5e4557644349454d480a474b49" id="contact-email-link"><span class="__cf_email__" data-cfemail="f5919a9b84809c9f9a81909190999486939c9b949b8f9486b59298949c99db969a98">[email&#160;protected]</span></a> y responder&eacute; lo antes posible.
       </div>
     </div>
   </section>
@@ -331,17 +332,18 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
         <span class="tag dim">Pr&oacute;ximamente</span>
       </div>
     </div>
-    <div class="suscripcion-box">
-      <h4>&#128276; Alertas r&aacute;pidas cuando publique un nuevo recurso</h4>
-      <p>Sin spam. Solo avisos de nuevas plantillas, gu&iacute;as y recursos &uacute;tiles. Baja cuando quieras.</p>
-      <div class="suscripcion-row">
-        
-        <button onclick="submitEmail('email-recursos')">Avisadme</button>
-      </div>
-      <p class="legal">Tus datos no se comparten con terceros.</p>
-    </div>
-    <div class="note"><strong>&iquest;Quieres recibir los nuevos recursos?</strong> S&iacute;gueme en X y activa notificaciones &mdash; publico recursos nuevos regularmente y aviso por all&iacute; primero.</div>
-  </section>
+    
+    
+  <div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
+  <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+    <button type="submit" style="background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
+    <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+  </form>
+</div>
+</section>
 
 <section class="section" id="glosario">
   <div class="section-head">
@@ -349,7 +351,15 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <p class="muted">Términos financieros explicados con definiciones y ejemplos. Al pulsar, se abre la imagen del término.</p>
   </div>
   <div class="grid-cards" id="glosarioGrid"></div>
-  <p class="muted" style="margin-top:16px;font-size:12px;">Nota: ahora mismo hay ejemplos de prueba. Sustituye las rutas de imagen por las tuyas (2 imágenes por término).</p>
+<div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
+  <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+    <button type="submit" style="background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
+    <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+  </form>
+</div>
 </section>
 
 <section class="section" id="teca">
@@ -365,20 +375,20 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <button class="cat-btn" data-cat="pelicula">🎬 Películas</button>
   </div>
   <div class="teca-list" id="tecaList"></div>
-  <p class="muted" style="margin-top:16px;font-size:12px;">Nota: ahora mismo hay ejemplos de prueba. Sustituye títulos/descripciones/enlaces por los tuyos.</p>
+<div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
+  <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+    <button type="submit" style="background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
+    <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+  </form>
+</div>
 </section>
 
   <section id="calculadoras" class="section">
     <div class="section-header"><h2>Calculadoras</h2><p>Pulsa en las disponibles para usarlas directamente aqu&iacute;.</p><div class="divider"></div></div>
-    <div class="suscripcion-box" style="margin-bottom:28px">
-      <h4>&#128276; Av&iacute;same cuando salga una nueva calculadora</h4>
-      <p>Sin spam. Solo un email cuando lance herramientas nuevas.</p>
-      <div class="suscripcion-row">
-        
-        <button onclick="submitEmail('email-calcs')">Avisadme</button>
-      </div>
-      <p class="legal">Tus datos no se comparten con terceros.</p>
-    </div>
+    
     <div class="filter-row" id="calc-filter">
       <button class="cat-btn active" data-cat="todos">Todas</button>
       <button class="cat-btn" data-cat="salario">Salario</button>
@@ -409,7 +419,16 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div id="votos-list"></div>
     </div>
     <div class="note"><strong>Las marcadas como &ldquo;Disponible&rdquo; se abren directamente aqu&iacute;.</strong> Las dem&aacute;s se ir&aacute;n a&ntilde;adiendo progresivamente &mdash; s&iacute;gueme en X para enterarte.</div>
-  </section>
+  <div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
+  <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+    <button type="submit" style="background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
+    <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+  </form>
+</div>
+</section>
 
   <section id="referidos" class="section">
     <div class="section-header"><h2>Links referidos</h2><p>Solo recomiendo lo que uso yo. Si te registras con mi enlace, ambos ganamos.</p><div class="divider"></div></div>
@@ -473,23 +492,18 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       </a>
     </div>
     <div class="note"><strong>Transparencia:</strong> Estos enlaces son de afiliado &mdash; si te registras puedo recibir una compensaci&oacute;n. Solo listo productos que uso o he probado personalmente. Los bonos pueden variar seg&uacute;n campa&ntilde;a.</div>
-  </section>
-
-<section class="newsletter-section" aria-labelledby="newsletter-title">
-  <div class="newsletter-card">
-    <div class="newsletter-copy">
-      <div class="newsletter-kicker">📩 ALERTAS DEL LABORATORIO</div>
-      <h2 id="newsletter-title">Recibe novedades y nuevas calculadoras</h2>
-      <p>Te aviso cuando publique herramientas nuevas y análisis prácticos sobre inversión, ahorro y fiscalidad en España. Sin ruido. Solo números.</p>
-      </div>
-    <div class="newsletter-cta">
-      <a class="btn btn-gold" id="kit-cta" href="https://don-quijote-de-las-finanzas.kit.com/38b963dce6?utm_source=hub&utm_medium=cta&utm_campaign=alertas_laboratorio" target="_blank" rel="noopener"
-         aria-label="Abrir formulario de suscripción en Kit (nueva pestaña)">Avisadme</a>
-      <div class="newsletter-feedback" id="kit-feedback" aria-live="polite"></div>
-      <div class="newsletter-privacy">Se abrirá el formulario de suscripción en una nueva pestaña.</div>
-    </div>
-  </div>
+  <div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
+  <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+    <button type="submit" style="background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
+    <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+  </form>
+</div>
 </section>
+
+
 
 </main>
 
@@ -611,7 +625,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
 
@@ -1149,14 +1163,4 @@ document.addEventListener('DOMContentLoaded', function(){
       </div>
       <div class="media-nav">
         <button class="btn btn-ghost" id="mediaPrev" aria-label="Anterior">◀</button>
-        <button class="btn btn-ghost" id="mediaNext" aria-label="Siguiente">▶</button>
-      </div>
-    </div>
-    <div class="media-body">
-      <img id="mediaImg" alt="" />
-      <div class="media-desc" id="mediaDesc"></div>
-    </div>
-  </div>
-</div>
-</body>
-</html>
+ 
