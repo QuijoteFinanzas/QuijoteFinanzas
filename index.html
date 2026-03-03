@@ -350,7 +350,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <h2>📖 QuijoGlosario</h2>
     <p class="muted">Términos financieros explicados con definiciones y ejemplos. Al pulsar, se abre la imagen del término.</p>
   </div>
-  <div class="glos-list" id="glosarioGrid"></div>
+  <div class="referidos-list" id="glosarioGrid"></div>
 <div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
   <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
   <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
@@ -1017,8 +1017,10 @@ document.addEventListener('DOMContentLoaded', function(){
       div.className = "card-item";
       div.setAttribute("tabindex","0");
       if (type === "glosario") {
-        div.className = "glos-row";
-        div.innerHTML = `<div class="glos-title">${it.title}</div><div class="glos-desc">${it.desc || ""}</div><div class="glos-cta">Ver →</div>`;
+        div.className = "ref-card";
+        div.style.cursor = "pointer";
+        var abbr = it.title.substring(0,3).toUpperCase();
+        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--silver2);font-family:'Playfair Display',serif;letter-spacing:0;">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;">${it.title}</h3><p>${it.desc || ""}</p></div><div style="font-size:12px;color:var(--muted);white-space:nowrap;flex-shrink:0;">Ver imágenes →</div>`;
       } else {
         div.innerHTML = `<div class="card-kicker">${it.badge || ""}</div><div class="card-title-row"><div class="card-icon">${it.icon || ""}</div><h3 class="card-title">${it.title}</h3></div><p class="card-desc">${it.desc || ""}</p><div class="card-meta">${it.link ? "Abrir recurso" : "Ver detalle"}</div>`;
       }
