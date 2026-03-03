@@ -180,6 +180,89 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .suscripcion-row button{background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .suscripcion-row button:hover{background:rgba(184,200,216,.18)}
 .suscripcion-box .legal{font-size:11px;color:var(--muted);margin-top:8px;opacity:.7;margin-bottom:0}
+
+/* Newsletter (Kit CTA) */
+.newsletter-section{margin-top:40px}
+.newsletter-card{display:grid;grid-template-columns:1.4fr .6fr;gap:18px;padding:22px;border-radius:16px;border:1px solid rgba(168,196,224,.18);background:rgba(22,40,64,.55);backdrop-filter:blur(8px)}
+.newsletter-kicker{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(168,196,224,.85);margin-bottom:10px}
+.newsletter-copy h2{margin:0 0 10px 0}
+.newsletter-copy p{margin:0;color:rgba(220,232,245,.9);line-height:1.6}
+.newsletter-note{margin-top:10px;font-size:12px;color:rgba(168,196,224,.75)}
+.newsletter-cta{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:10px}
+.newsletter-feedback{min-height:18px;font-size:12px;color:rgba(168,196,224,.9)}
+.newsletter-privacy{font-size:12px;color:rgba(168,196,224,.75);text-align:center}
+.btn.btn-gold{display:block;text-align:center;padding:12px 14px;border-radius:12px;background:rgba(201,168,76,.92);color:#0f2035;font-weight:700;text-decoration:none;transition:transform .15s ease,filter .15s ease}
+.btn.btn-gold:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.btn.btn-ghost{background:transparent;border:1px solid rgba(168,196,224,.25);color:rgba(220,232,245,.85);padding:10px 12px;border-radius:12px;cursor:pointer}
+.btn.btn-ghost:hover{border-color:rgba(201,168,76,.55);color:var(--text)}
+
+/* Cards grid for Glosario / Teca */
+.section-head{margin-bottom:18px}
+.grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card-item{background:rgba(26,51,88,.55);border:1px solid rgba(168,196,224,.12);border-radius:14px;padding:16px;cursor:pointer;transition:transform .15s ease,border-color .15s ease}
+.card-item:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.35)}
+.card-kicker{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(168,196,224,.85);margin-bottom:8px}
+.card-title{font-weight:700;margin:0 0 8px 0}
+.card-desc{margin:0;color:rgba(220,232,245,.85);line-height:1.55;font-size:14px}
+.card-meta{margin-top:10px;font-size:12px;color:rgba(168,196,224,.75)}
+@media (max-width: 900px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width: 560px){.newsletter-card{grid-template-columns:1fr}.grid-cards{grid-template-columns:1fr}}
+
+/* Media overlay */
+.media-overlay{display:none;position:fixed;inset:0;background:rgba(8,15,26,.92);z-index:120;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.media-overlay.open{display:flex}
+.media-modal{background:var(--bg2);border:1px solid rgba(184,200,216,.15);border-radius:14px;width:100%;max-width:900px;max-height:92vh;overflow:auto;padding:22px 22px 18px 22px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.media-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(168,196,224,.85);font-size:28px;cursor:pointer}
+.media-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.media-body{display:flex;flex-direction:column;gap:12px}
+.media-body img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(168,196,224,.12);background:rgba(0,0,0,.1)}
+.media-desc{color:rgba(220,232,245,.88);font-size:14px;line-height:1.6}
+.media-nav{display:flex;gap:8px;align-items:center}
+.badge{display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:rgba(201,168,76,.95);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;padding:3px 10px;border-radius:20px}
+
+
+/* Filters (QuijoTeca) */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 18px 0}
+.filter-chip{background:rgba(22,40,64,.55);border:1px solid rgba(168,196,224,.18);color:rgba(220,232,245,.88);padding:8px 12px;border-radius:999px;cursor:pointer;font-size:13px}
+.filter-chip:hover{border-color:rgba(201,168,76,.35)}
+.filter-chip.active{border-color:rgba(201,168,76,.55);background:rgba(201,168,76,.10);color:rgba(201,168,76,.95)}
+.card-title-row{display:flex;align-items:center;gap:10px}
+.card-icon{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);font-size:15px;flex-shrink:0}
+
+
+/* QuijoTeca list (similar to referidos) */
+.teca-list{display:flex;flex-direction:column;gap:12px}
+.teca-card{
+  display:flex;align-items:flex-start;gap:14px;
+  background:rgba(26,51,88,.55);
+  border:1px solid rgba(168,196,224,.12);
+  border-radius:14px;
+  padding:14px 16px;
+  cursor:pointer;
+  transition:transform .15s ease,border-color .15s ease;
+}
+.teca-card:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.35)}
+.teca-icon{
+  width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(201,168,76,.12);
+  border:1px solid rgba(201,168,76,.25);
+  font-size:18px;flex-shrink:0;
+}
+.teca-info h3{margin:0 0 6px 0}
+.teca-info p{margin:0;color:rgba(220,232,245,.85);line-height:1.55;font-size:14px}
+.teca-meta{margin-top:8px;font-size:12px;color:rgba(168,196,224,.75)}
+.teca-badge{
+  margin-left:auto;
+  font-family:"DM Mono",monospace;
+  font-size:11px;
+  color:rgba(201,168,76,.95);
+  border:1px solid rgba(201,168,76,.25);
+  background:rgba(201,168,76,.08);
+  padding:6px 10px;
+  border-radius:999px;
+  flex-shrink:0;
+}
 </style>
 </head>
 <body>
@@ -201,8 +284,10 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     </a>
   </div>
   <nav id="main-nav">
-    <button class="nav-btn active" data-section="sobre">Sobre m&iacute;</button>
+    <button class="nav-btn active" data-section="sobre">Sobre mí</button>
     <button class="nav-btn" data-section="recursos">Recursos</button>
+    <button class="nav-btn" data-section="glosario">QuijoGlosario</button>
+    <button class="nav-btn" data-section="teca">QuijoTeca</button>
     <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
     <button class="nav-btn" data-section="referidos">Referidos</button>
   </nav>
@@ -257,6 +342,31 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     </div>
     <div class="note"><strong>&iquest;Quieres recibir los nuevos recursos?</strong> S&iacute;gueme en X y activa notificaciones &mdash; publico recursos nuevos regularmente y aviso por all&iacute; primero.</div>
   </section>
+
+<section class="section" id="glosario">
+  <div class="section-head">
+    <h2>📖 QuijoGlosario</h2>
+    <p class="muted">Términos financieros explicados con definiciones y ejemplos. Al pulsar, se abre la imagen del término.</p>
+  </div>
+  <div class="grid-cards" id="glosarioGrid"></div>
+  <p class="muted" style="margin-top:16px;font-size:12px;">Nota: ahora mismo hay ejemplos de prueba. Sustituye las rutas de imagen por las tuyas (2 imágenes por término).</p>
+</section>
+
+<section class="section" id="teca">
+  <div class="section-head">
+    <h2>📚 QuijoTeca</h2>
+    <p class="muted">Películas, libros y podcasts recomendados para seguir aprendiendo. Pulsa para ver detalles.</p>
+  </div>
+  
+  <div class="filter-row teca-filter" id="teca-filter">
+    <button class="cat-btn active" data-cat="todos">Todos</button>
+    <button class="cat-btn" data-cat="libro">📚 Libros</button>
+    <button class="cat-btn" data-cat="podcast">🎧 Podcasts</button>
+    <button class="cat-btn" data-cat="pelicula">🎬 Películas</button>
+  </div>
+  <div class="teca-list" id="tecaList"></div>
+  <p class="muted" style="margin-top:16px;font-size:12px;">Nota: ahora mismo hay ejemplos de prueba. Sustituye títulos/descripciones/enlaces por los tuyos.</p>
+</section>
 
   <section id="calculadoras" class="section">
     <div class="section-header"><h2>Calculadoras</h2><p>Pulsa en las disponibles para usarlas directamente aqu&iacute;.</p><div class="divider"></div></div>
@@ -365,20 +475,19 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <div class="note"><strong>Transparencia:</strong> Estos enlaces son de afiliado &mdash; si te registras puedo recibir una compensaci&oacute;n. Solo listo productos que uso o he probado personalmente. Los bonos pueden variar seg&uacute;n campa&ntilde;a.</div>
   </section>
 
-<section class="newsletter-section" style="margin-top:40px;text-align:center;">
-  <h2 style="margin-bottom:15px;">📩 Alertas del Laboratorio</h2>
-  <p style="max-width:600px;margin:0 auto 20px auto;line-height:1.6;">
-    Recibe aviso cuando publique nuevas calculadoras y análisis prácticos sobre inversión,
-    ahorro y fiscalidad en España. Sin ruido. Solo números.
-  </p>
-  <a href="https://don-quijote-de-las-finanzas.kit.com/38b963dce6" target="_blank" rel="noopener"
-     style="display:inline-block;padding:14px 28px;border-radius:12px;
-     background:#c9a84c;color:#0f2035;font-weight:700;text-decoration:none;
-     transition:all .2s ease;">
-     Avisadme
-  </a>
-  <div style="margin-top:12px;font-size:12px;opacity:0.7;">
-    Se abrirá el formulario de suscripción en una nueva pestaña.
+<section class="newsletter-section" aria-labelledby="newsletter-title">
+  <div class="newsletter-card">
+    <div class="newsletter-copy">
+      <div class="newsletter-kicker">📩 ALERTAS DEL LABORATORIO</div>
+      <h2 id="newsletter-title">Recibe novedades y nuevas calculadoras</h2>
+      <p>Te aviso cuando publique herramientas nuevas y análisis prácticos sobre inversión, ahorro y fiscalidad en España. Sin ruido. Solo números.</p>
+      </div>
+    <div class="newsletter-cta">
+      <a class="btn btn-gold" id="kit-cta" href="https://don-quijote-de-las-finanzas.kit.com/38b963dce6?utm_source=hub&utm_medium=cta&utm_campaign=alertas_laboratorio" target="_blank" rel="noopener"
+         aria-label="Abrir formulario de suscripción en Kit (nueva pestaña)">Avisadme</a>
+      <div class="newsletter-feedback" id="kit-feedback" aria-live="polite"></div>
+      <div class="newsletter-privacy">Se abrirá el formulario de suscripción en una nueva pestaña.</div>
+    </div>
   </div>
 </section>
 
@@ -503,10 +612,12 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function(){
 (function() {
 
   // ── NAV ──────────────────────────────────────────────────────────────────
-  document.getElementById('main-nav').addEventListener('click', function(e) {
+  var __el_main_nav = document.getElementById('main-nav');
+  if (__el_main_nav) __el_main_nav.addEventListener('click', function(e) {
     var btn = e.target.closest('[data-section]');
     if (!btn) return;
     var id = btn.getAttribute('data-section');
@@ -518,7 +629,8 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   });
 
   // ── CALC FILTERS ─────────────────────────────────────────────────────────
-  document.getElementById('calc-filter').addEventListener('click', function(e) {
+  var __el_calc_filter = document.getElementById('calc-filter');
+  if (__el_calc_filter) __el_calc_filter.addEventListener('click', function(e) {
     var btn = e.target.closest('[data-cat]');
     if (!btn) return;
     var cat = btn.getAttribute('data-cat');
@@ -817,7 +929,234 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   })();
 
 })();  // end IIFE
+
+  // Kit CTA feedback
+  (function(){
+    var cta = document.getElementById('kit-cta');
+    var fb  = document.getElementById('kit-feedback');
+    if (cta && fb) {
+      cta.addEventListener('click', function(){
+        fb.textContent = "Abriendo formulario…";
+        setTimeout(function(){ fb.textContent = ""; }, 2500);
+      });
+    }
+  })();
+
+  // QuijoGlosario + QuijoTeca (ejemplos de prueba)
+  var glosarioItems = [
+    {
+      badge: "QuijoGlosario",
+      title: "Horizonte temporal",
+      desc: "El tiempo que planeas mantener una inversión antes de necesitar el dinero.",
+      images: ["assets/glosario/horizonte-1.png", "assets/glosario/horizonte-2.png"]
+    },
+    {
+      badge: "QuijoGlosario",
+      title: "TAE",
+      desc: "Rentabilidad anual equivalente que incluye el efecto de comisiones y periodicidad.",
+      images: ["assets/glosario/tae-1.png", "assets/glosario/tae-2.png"]
+    },
+    {
+      badge: "QuijoGlosario",
+      title: "Diversificación",
+      desc: "Repartir el riesgo entre distintos activos para reducir la dependencia de uno solo.",
+      images: ["assets/glosario/diversificacion-1.png", "assets/glosario/diversificacion-2.png"]
+    }
+  ];
+
+  var tecaItems = [
+    {
+      type: "libro",
+      icon: "📚",
+      badge: "QuijoTeca · Libro",
+      title: "Padre Rico Padre Pobre",
+      desc: "Clásico para entender cómo funcionan el dinero y las inversiones.",
+      image: "assets/teca/padre-rico-padre-pobre.png",
+      link: ""
+    },
+    {
+      type: "podcast",
+      icon: "🎧",
+      badge: "QuijoTeca · Podcast",
+      title: "Finect Talks",
+      desc: "Conversaciones sobre finanzas personales e inversión con invitados expertos.",
+      image: "",
+      link: ""
+    },
+    {
+      type: "pelicula",
+      icon: "🎬",
+      badge: "QuijoTeca · Película",
+      title: "The Big Short",
+      desc: "La crisis financiera explicada de forma accesible.",
+      image: "",
+      link: ""
+    }
+  ];
+
+  function renderCards(targetId, items, type){
+    var grid = document.getElementById(targetId);
+    if (!grid) return;
+    grid.innerHTML = "";
+    items.forEach(function(it, idx){
+      var div = document.createElement('div');
+      div.className = "card-item";
+      div.setAttribute("tabindex","0");
+      div.innerHTML = `
+        <div class="card-kicker">${it.badge || ""}</div>
+        <div class="card-title-row"><div class="card-icon">${it.icon || ""}</div><h3 class="card-title">${it.title}</h3></div>
+        <p class="card-desc">${it.desc || ""}</p>
+        <div class="card-meta">${type === "glosario" ? "Ver imágenes" : (it.link ? "Abrir recurso" : "Ver detalle")}</div>
+      `;
+      div.addEventListener('click', function(){ onCardClick(type, idx); });
+      div.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') onCardClick(type, idx); });
+      grid.appendChild(div);
+    });
+  }
+
+  var mediaState = { type:null, index:0, imageIndex:0 };
+
+  function openMedia(payload){
+    var overlay = document.getElementById('mediaOverlay');
+    var img = document.getElementById('mediaImg');
+    var title = document.getElementById('mediaTitle');
+    var badge = document.getElementById('mediaBadge');
+    var desc = document.getElementById('mediaDesc');
+    if (!overlay || !img || !title || !badge || !desc) return;
+
+    badge.textContent = payload.badge || "";
+    title.textContent = payload.title || "";
+    desc.textContent = payload.desc || "";
+
+    var src = payload.images && payload.images[payload.imageIndex] ? payload.images[payload.imageIndex] : "";
+    img.src = src;
+    img.alt = payload.title || "";
+
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden","false");
+  }
+
+  function closeMedia(){
+    var overlay = document.getElementById('mediaOverlay');
+    if (!overlay) return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden","true");
+  }
+
+  function onCardClick(type, idx){
+    if (type === "glosario") {
+      mediaState.type = "glosario";
+      mediaState.index = idx;
+      mediaState.imageIndex = 0;
+      var it = glosarioItems[idx];
+      openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images, imageIndex: mediaState.imageIndex});
+    } else if (type === "teca") {
+      mediaState.type = "teca";
+      mediaState.index = idx;
+      mediaState.imageIndex = 0;
+      var it2 = tecaItems[idx];
+      var images = it2.image ? [it2.image] : [];
+      openMedia({badge: it2.badge, title: it2.title, desc: it2.desc + (it2.link ? "\n\nEnlace: " + it2.link : ""), images: images, imageIndex: 0});
+    }
+  }
+
+  function showPrevNext(delta){
+    if (mediaState.type !== "glosario") return;
+    var it = glosarioItems[mediaState.index];
+    if (!it || !it.images || it.images.length === 0) return;
+    mediaState.imageIndex = (mediaState.imageIndex + delta + it.images.length) % it.images.length;
+    openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images, imageIndex: mediaState.imageIndex});
+  }
+
+  (function bindMedia(){
+    var overlay = document.getElementById('mediaOverlay');
+    var closeBtn = document.getElementById('mediaClose');
+    var prevBtn = document.getElementById('mediaPrev');
+    var nextBtn = document.getElementById('mediaNext');
+    if (closeBtn) closeBtn.addEventListener('click', closeMedia);
+    if (overlay) overlay.addEventListener('click', function(e){ if (e.target === overlay) closeMedia(); });
+    if (prevBtn) prevBtn.addEventListener('click', function(){ showPrevNext(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function(){ showPrevNext(1); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMedia(); });
+  })();
+
+  renderCards("glosarioGrid", glosarioItems, "glosario");
+  bindTecaFilters();
+  renderTeca();
+// QuijoTeca render + filtros (lista estilo referidos)
+  var tecaFilter = "todos";
+  function getFilteredTecaItems(){
+    if (tecaFilter === "todos") return tecaItems;
+    return tecaItems.filter(function(x){ return x.type === tecaFilter; });
+  }
+  function renderTeca(){
+    var list = document.getElementById("tecaList");
+    if (!list) return;
+    var items = getFilteredTecaItems();
+    list.innerHTML = "";
+    items.forEach(function(it){
+      // We keep a stable index reference to tecaItems by storing original position
+      var originalIndex = tecaItems.indexOf(it);
+      var card = document.createElement("div");
+      card.className = "teca-card";
+      card.setAttribute("tabindex","0");
+      card.setAttribute("data-idx", String(originalIndex));
+      card.innerHTML = `
+        <div class="teca-icon">${it.icon || ""}</div>
+        <div class="teca-info">
+          <h3>${it.title}</h3>
+          <p>${it.desc || ""}</p>
+          <div class="teca-meta">Pulsa para ver la ficha</div>
+        </div>
+        <div class="teca-badge">${it.type || ""}</div>
+      `;
+      card.addEventListener("click", function(){
+        var idx = parseInt(card.getAttribute("data-idx") || "0", 10);
+        onCardClick("teca", idx);
+      });
+      card.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          var idx = parseInt(card.getAttribute("data-idx") || "0", 10);
+          onCardClick("teca", idx);
+        }
+      });
+      list.appendChild(card);
+    });
+  }
+  function bindTecaFilters(){
+    var row = document.getElementById("teca-filter");
+    if (!row) return;
+    row.querySelectorAll(".cat-btn").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        row.querySelectorAll(".cat-btn").forEach(function(b){ b.classList.remove("active"); });
+        btn.classList.add("active");
+        tecaFilter = btn.getAttribute("data-cat") || "todos";
+        renderTeca();
+      });
+    });
+  }
+});
 </script>
 
+<div class="media-overlay" id="mediaOverlay" aria-hidden="true">
+  <div class="media-modal" role="dialog" aria-modal="true" aria-labelledby="mediaTitle">
+    <button class="media-close" id="mediaClose" aria-label="Cerrar">×</button>
+    <div class="media-head">
+      <div>
+        <div class="badge" id="mediaBadge">QuijoGlosario</div>
+        <h3 id="mediaTitle" style="margin:6px 0 0 0;">—</h3>
+      </div>
+      <div class="media-nav">
+        <button class="btn btn-ghost" id="mediaPrev" aria-label="Anterior">◀</button>
+        <button class="btn btn-ghost" id="mediaNext" aria-label="Siguiente">▶</button>
+      </div>
+    </div>
+    <div class="media-body">
+      <img id="mediaImg" alt="" />
+      <div class="media-desc" id="mediaDesc"></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
