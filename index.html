@@ -213,15 +213,13 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <div class="section-header"><h2>Hola, soy Don Quijote de las Finanzas</h2><div class="divider"></div></div>
     <div class="about-grid">
       <div class="about-bio">
-        Trabajo en banca de inversi&oacute;n y llevo <strong>m&aacute;s de 8 a&ntilde;os invirtiendo</strong> de forma activa. Soy graduado en ADE, con M&aacute;ster en Auditor&iacute;a Financiera y experiencia previa en <strong>BBVA y PwC</strong>.<br><br>
-        Pero no estoy aqu&iacute; para impresionar con t&iacute;tulos. Estoy aqu&iacute; porque la mayor&iacute;a de la gente nunca recibe una <strong>educaci&oacute;n financiera real</strong> &mdash; y eso tiene un coste enorme a lo largo de la vida.<br><br>
-        Lo que comparto son las mismas herramientas, conceptos y decisiones que aplico yo mismo: <strong>sin humos, sin productos que vender, sin conflictos de inter&eacute;s</strong>. Solo lo que funciona.
+        Trabajo en el sector financiero y llevo <strong>más de 8 años invirtiendo</strong> de forma activa.<br><br>No estoy aquí para impresionar con cargos. Estoy aquí porque la mayoría de la gente nunca recibe una <strong>educación financiera real</strong> — y eso tiene un coste enorme a lo largo de la vida.<br><br>Lo que comparto son herramientas, conceptos y decisiones que aplico yo mismo: <strong>sin humos, sin promesas</strong> y con foco en números y procesos. Si algo no lo sé o depende de tu caso, lo diré.
       </div>
       <div class="stat-card"><span class="stat-num">1.8K+</span><span class="stat-label">Seguidores en X</span></div>
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os invirtiendo</span></div>
-      <div class="contact-box">
+      <div class="contact-box" id="contacto">
         <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="/cdn-cgi/l/email-protection#24404b4a55514d4e4b50414041484557424d4a454a5e4557644349454d480a474b49"><span class="__cf_email__" data-cfemail="fb9f94958a8e9291948f9e9f9e979a889d92959a95819a88bb9c969a9297d5989496">[email&#160;protected]</span></a> y responder&eacute; lo antes posible.
+        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:donquijotedelasfinanzas@gmail.com" id="contact-email-link">donquijotedelasfinanzas@gmail.com</a> y responder&eacute; lo antes posible.
       </div>
     </div>
   </section>
@@ -373,7 +371,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <div class="footer-top">
       <span class="footer-copy">&copy; 2026 Don Quijote de las Finanzas</span>
       <div class="footer-links">
-        <a href="/cdn-cgi/l/email-protection#a3c7cccdd2d6cac9ccd7c6c7c6cfc2d0c5cacdc2cdd9c2d0e3c4cec2cacf8dc0ccce">Contacto</a>
+        <a href="#contacto" id="footer-contact-link">Contacto</a>
         <a href="https://x.com/quijotefinanzas" target="_blank">X / Twitter</a>
         <a href="https://instagram.com/quijotefinanzas" target="_blank">Instagram</a>
       </div>
@@ -486,7 +484,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function() {
 
   // ── NAV ──────────────────────────────────────────────────────────────────
@@ -747,19 +745,61 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   ['salario','interes','hipoteca','coste'].forEach(function(id){ renderUses(id); });
   renderVotos();
 
-  // Deep link
-  var h = location.hash;
-  if (h) {
+  // Deep link / hash routing
+  function activateSection(secId) {
+    var secEl = document.getElementById(secId);
+    var secBtn = document.querySelector('#main-nav [data-section="'+secId+'"]');
+    if (!secEl || !secBtn) return false;
+
+    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('#main-nav [data-section]').forEach(function(b){ b.classList.remove('active'); });
+
+    secEl.classList.add('active');
+    secBtn.classList.add('active');
+    return true;
+  }
+
+  function bindNav() {
+    document.querySelectorAll('#main-nav .nav-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var secId = btn.getAttribute('data-section');
+        if (!activateSection(secId)) return;
+        try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Footer contact scroll
+    var contactLinks = document.querySelectorAll('a[href="#contacto"]');
+    contactLinks.forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        if (!activateSection('sobre')) activateSection('sobre');
+        var el = document.getElementById('contacto');
+        if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  }
+
+  bindNav();
+
+  (function handleHashOnLoad(){
+    var h = location.hash || '';
+    if (!h) return;
+
     if (h.indexOf('#calc-') === 0) {
       var calcId = h.replace('#calc-', '');
-      document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
-      document.querySelectorAll('#main-nav [data-section]').forEach(function(b){ b.classList.remove('active'); });
-      document.getElementById('calculadoras').classList.add('active');
-      document.querySelector('[data-section="calculadoras"]').classList.add('active');
-      setTimeout(function(){ openCalc(calcId); }, 200);
-    } else {
-      var secId = h.replace('#', '');
-      var secEl = document.getElementById(secId);
-      var secBtn = document.querySelector('[data-section="'+secId+'"]');
-      if (secEl && secBtn) {
-        document.que
+      activateSection('calculadoras');
+      setTimeout(function(){ if (typeof openCalc === 'function') openCalc(calcId); }, 200);
+      return;
+    }
+
+    var secId = h.replace('#','');
+    if (secId) activateSection(secId);
+  })();
+
+})();  // end IIFE
+</script>
+
+</body>
+</html>
