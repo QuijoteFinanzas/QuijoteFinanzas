@@ -38,6 +38,16 @@ h1 span{color:var(--silver2)}
 .social-btn:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
 .social-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 nav{display:flex;justify-content:center;gap:4px;padding:20px 24px 0;flex-wrap:wrap}
+.ql-logo{width:44px!important;min-width:44px!important;height:44px!important;display:flex;align-items:center;justify-content:center;border-radius:8px!important;font-size:12px;font-weight:800;letter-spacing:.5px;font-family:'DM Mono',monospace;border:none!important;}
+.ql-card[data-cat="rv"]          .ql-logo{background:rgba(56,189,130,.15)!important;color:#38bd82!important;}
+.ql-card[data-cat="rf"]          .ql-logo{background:rgba(96,165,250,.15)!important;color:#60a5fa!important;}
+.ql-card[data-cat="monetario"]   .ql-logo{background:rgba(251,191,36,.15)!important;color:#fbbf24!important;}
+.ql-card[data-cat="alternativo"] .ql-logo{background:rgba(167,139,250,.15)!important;color:#a78bfa!important;}
+.ql-card[data-cat="nicho"]       .ql-logo{background:rgba(251,113,133,.15)!important;color:#fb7185!important;}
+.ql-tipo-badge{margin-left:auto;font-family:"DM Mono",monospace;font-size:11px;color:rgba(201,168,76,.95);border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.08);padding:5px 10px;border-radius:999px;flex-shrink:0;white-space:nowrap;}
+.ql-isin{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3px;}
+.ql-myi{display:inline-block;margin-top:6px;font-size:11px;font-weight:600;color:#1677be;text-decoration:none;border:1px solid rgba(22,119,190,.3);padding:2px 8px;border-radius:4px;transition:all .2s;}
+.ql-myi:hover{background:rgba(22,119,190,.12);border-color:#1677be;}
 .nav-btn{background:none;border:1px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 18px;border-radius:4px;cursor:pointer;transition:all .2s}
 .nav-btn:hover{color:var(--cream);border-color:var(--border)}
 .nav-btn.active{color:var(--silver2);border-color:rgba(184,200,216,.35);background:rgba(184,200,216,.06)}
@@ -309,6 +319,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <button class="nav-btn" data-section="recursos">Recursos</button>
     <button class="nav-btn" data-section="glosario">QuijoGlosario</button>
     <button class="nav-btn" data-section="teca">QuijoTeca</button>
+    <button class="nav-btn" data-section="quijolista">QuijoLista</button>
     <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
     <button class="nav-btn" data-section="referidos">Referidos</button>
   </nav>
@@ -424,6 +435,23 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
   </form>
 </div>
+</section>
+
+  <section id="quijolista" class="section">
+  <div class="section-head">
+    <h2>📋 QuijoLista</h2>
+    <p class="muted">Fondos e ETFs que sigo y me parecen interesantes. No es una recomendación de inversión — investiga siempre antes de decidir.</p>
+  </div>
+  <div class="filter-row" id="ql-filter">
+    <button class="cat-btn active" data-cat="todos">Todos</button>
+    <button class="cat-btn" data-cat="rv">Renta Variable</button>
+    <button class="cat-btn" data-cat="rf">Renta Fija</button>
+    <button class="cat-btn" data-cat="monetario">Monetario</button>
+    <button class="cat-btn" data-cat="alternativo">Alternativo</button>
+    <button class="cat-btn" data-cat="nicho">Nicho</button>
+  </div>
+  <div class="referidos-list" id="quijolistaGrid"></div>
+  <p class="note" style="margin-top:20px;">Los ISINs mostrados corresponden a la clase indicada. Puede haber otras clases disponibles. Verifica siempre en tu plataforma de inversión.</p>
 </section>
 
   <section id="calculadoras" class="section">
@@ -1165,7 +1193,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <p>${it.desc || ""}</p>
           <div class="teca-meta">Pulsa para ver la ficha</div>
         </div>
-        <div class="teca-badge">${it.type || ""}</div>
+        <div class="teca-badge">${it.type ? it.type.charAt(0).toUpperCase() + it.type.slice(1) : ""}</div>
       `;
       card.addEventListener("click", function(){
         var idx = parseInt(card.getAttribute("data-idx") || "0", 10);
@@ -1181,6 +1209,79 @@ document.addEventListener('DOMContentLoaded', function(){
       list.appendChild(card);
     });
   }
+  // ── QuijoLista ──────────────────────────────────────────────
+  var quijolistaItems = [
+    // MONETARIO / RF CORTO PLAZO
+    { cat:"monetario", tipo:"Fondo", nombre:"Ostrum Credit Ultra Short Plus N-C EUR", isin:"FR0014002LE9", gestora:"Natixis / Ostrum AM", myi:false },
+    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"AXA IM", myi:false },
+    { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:false },
+    // RENTA FIJA
+    { cat:"rf", tipo:"Fondo", nombre:"Storm Fund II - Storm Bond Fund RC EUR", isin:"LU0840158819", gestora:"Storm Capital", myi:false },
+    { cat:"rf", tipo:"Fondo", nombre:"Carmignac Sécurité AW EUR Acc", isin:"FR0010149120", gestora:"Carmignac", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"Carmignac Portfolio Credit A EUR Acc", isin:"LU1623762843", gestora:"Carmignac", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:false },
+    { cat:"rf", tipo:"Fondo", nombre:"DNCA Invest Alpha Bonds A EUR", isin:"LU1694789451", gestora:"DNCA Finance", myi:false },
+    { cat:"rf", tipo:"Fondo", nombre:"Amundi SF Diversified Short-Term Bond Select A EUR ND", isin:"LU1706854152", gestora:"Amundi", myi:true },
+    // ALTERNATIVO / MIXTO
+    { cat:"alternativo", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Welzia", myi:true },
+    { cat:"alternativo", tipo:"Fondo", nombre:"JPMorgan Funds - Europe Equity Absolute Alpha I (perf) EUR", isin:"LU1001747408", gestora:"J.P. Morgan AM", myi:false },
+    { cat:"alternativo", tipo:"Fondo", nombre:"Man Dynamic Income D H EUR", isin:"IE00008TZ2E8", gestora:"Man Investments", myi:false },
+    // RENTA VARIABLE — GLOBAL / INDEXADOS
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Stock Index Fund EUR Acc", isin:"IE00B03HD191", gestora:"Vanguard", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true },
+    // RENTA VARIABLE — SMALL & EMERGING
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Small-Cap Index Fund Investor EUR Acc", isin:"IE00B42W4L06", gestora:"Vanguard", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Investor EUR Acc", isin:"IE0031786142", gestora:"Vanguard", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Robeco QI Emerging Markets Active Equities D EUR", isin:"LU0329355670", gestora:"Robeco", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"GAM Sustainable Emerging Equity Institutional USD Acc", isin:"IE00B5BQSK71", gestora:"GAM Investments", myi:false },
+    { cat:"rv", tipo:"Fondo", nombre:"Janus Henderson Horizon Global Smaller Companies A2 EUR", isin:"LU1984712320", gestora:"Janus Henderson", myi:false },
+    // RENTA VARIABLE — GESTIÓN ACTIVA / VALUE
+    { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección C FI", isin:"ES0124037005", gestora:"Cobas AM", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"MyInvestor Value A FI", isin:"ES0165243009", gestora:"MyInvestor", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Cinvest Tercio Capital B FI", isin:"ES0174115057", gestora:"Cinvest", myi:false },
+    // SECTOR
+    { cat:"nicho", tipo:"Fondo", nombre:"Franklin Natural Resources Fund A(acc) EUR", isin:"LU0300741732", gestora:"Franklin Templeton", myi:false },
+    { cat:"nicho", tipo:"Fondo", nombre:"DWS Invest Gold and Precious Metals Equities LC", isin:"LU0273159177", gestora:"DWS", myi:false },
+    { cat:"nicho", tipo:"Fondo", nombre:"Robeco Smart Energy D-EUR Capitalisation", isin:"LU2145461757", gestora:"Robeco", myi:true },
+    { cat:"nicho", tipo:"Fondo", nombre:"Jupiter Gold & Silver Fund L EUR Acc", isin:"IE00BYVJR916", gestora:"Jupiter AM", myi:false },
+  ];
+
+  var qlSiglas = {rv:"RV", rf:"RF", monetario:"M", alternativo:"A", nicho:"N"};
+
+  var qlFilter = "todos";
+  function renderQuijoLista(){
+    var filtered = qlFilter === "todos" ? quijolistaItems : quijolistaItems.filter(function(x){ return x.cat === qlFilter; });
+    var grid = document.getElementById("quijolistaGrid");
+    if(!grid) return;
+    grid.innerHTML = filtered.map(function(f){
+      var sigla = qlSiglas[f.cat] || "";
+      var myiHtml = f.myi ? '<a class="ql-myi" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" target="_blank" rel="noopener">Disponible en MyInvestor ↗</a>' : '';
+      return '<div class="ref-card ql-card" data-cat="'+f.cat+'">'
+        +'<div class="ref-logo ql-logo">'+sigla+'</div>'
+        +'<div class="ref-info">'
+          +'<h3>'+f.nombre+'</h3>'
+          +'<p>'+f.gestora+'</p>'
+          +'<p class="ref-meta"><span class="ql-isin">ISIN: '+f.isin+'</span></p>'
+          +myiHtml
+        +'</div>'
+        +'<div class="ql-tipo-badge">'+f.tipo+'</div>'
+      +'</div>';
+    }).join('');
+  }
+  function bindQLFilters(){
+    document.querySelectorAll('#ql-filter .cat-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('#ql-filter .cat-btn').forEach(function(b){ b.classList.remove('active'); });
+        this.classList.add('active');
+        qlFilter = this.dataset.cat;
+        renderQuijoLista();
+      });
+    });
+  }
+  renderQuijoLista();
+  bindQLFilters();
+
   function bindTecaFilters(){
     var row = document.getElementById("teca-filter");
     if (!row) return;
