@@ -474,11 +474,14 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="calc-item" data-cat="salario"><span class="ci">&#128200;</span><span class="calc-name">&iquest;Cu&aacute;nto me sube el sueldo neto?</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="salario"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="inversion"><span class="ci">&#127919;</span><span class="calc-name">&iquest;Cu&aacute;nto ahorrar para X en Y a&ntilde;os?</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="inversion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n: valor futuro</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="inversion"><span class="ci">&#128293;</span><span class="calc-name">FIRE: &iquest;cu&aacute;ndo puedo retirarme?</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#128202;</span><span class="calc-name">ROI piso en alquiler</span><span class="coming">Pronto</span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="inflacion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n: valor futuro<span class="use-count" id="uses-inflacion"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="jubilacion"><span class="ci">&#128293;</span><span class="calc-name">Ahorro jubilaci&oacute;n / FIRE<span class="use-count" id="uses-jubilacion"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="deposito"><span class="ci">&#127987;&#65039;</span><span class="calc-name">Dep&oacute;sito a plazo fijo<span class="use-count" id="uses-deposito"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">IRPF N&oacute;mina 2026<span class="use-count" id="uses-irpf"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Desgravaci&oacute;n plan de pensiones<span class="use-count" id="uses-pension"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra<span class="use-count" id="uses-alquilervs"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada<span class="use-count" id="uses-amortizacion"></span></span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler<span class="use-count" id="uses-alquiler"></span></span><span class="live">Disponible</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste real de un pr&eacute;stamo</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Tiempo para liquidar deuda</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Pronto</span></div>
@@ -695,6 +698,205 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   </div>
 </div>
 
+<!-- MODAL: INFLACIÓN -->
+<div class="calc-overlay" id="modal-inflacion">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128201; Inflaci&oacute;n: Valor Futuro</h2><div class="calc-uses-badge" id="badge-uses-inflacion"></div></div><button class="calc-close" data-close="inflacion">&#215;</button></div>
+    <button class="share-btn" data-share="inflacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-inflacion">&#10003; Enlace copiado</span>
+    <p class="subtitle">Descubre cu&aacute;nto valdr&aacute; tu dinero en el futuro con la inflaci&oacute;n, y cu&aacute;nto necesitas invertir para mantener tu poder adquisitivo.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Capital actual (&euro;)</label><input type="number" id="inf-capital" value="10000" min="0"></div>
+        <div class="field"><label>Inflaci&oacute;n anual estimada (%)</label><input type="number" id="inf-ipc" value="3" step="0.1" min="0" max="30"></div>
+        <div class="field"><label>A&ntilde;os</label><input type="number" id="inf-anos" value="10" min="1" max="50"></div>
+        <div class="field"><label>Rentabilidad inversi&oacute;n anual (%)</label><input type="number" id="inf-rent" value="7" step="0.1" min="0" max="30"></div>
+        <button class="calc-btn" data-run="inflacion">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="inf-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="inf-chart-wrap" style="display:none"><h4>Poder adquisitivo vs inversi&oacute;n</h4><div class="chart-container"><canvas id="inf-chart"></canvas></div></div>
+    <div class="calc-cta" id="inf-cta" style="display:none">
+      <div><p><strong>&#128161; La inflaci&oacute;n es el impuesto silencioso.</strong>Te explico c&oacute;mo proteger tu dinero en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: JUBILACIÓN / FIRE -->
+<div class="calc-overlay" id="modal-jubilacion">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2><div class="calc-uses-badge" id="badge-uses-jubilacion"></div></div><button class="calc-close" data-close="jubilacion">&#215;</button></div>
+    <button class="share-btn" data-share="jubilacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-jubilacion">&#10003; Enlace copiado</span>
+    <p class="subtitle">Calcula cu&aacute;nto necesitas ahorrar para jubilarte o alcanzar la independencia financiera (FIRE). Basado en la regla del 4%.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
+        <div class="field"><label>Aportaci&oacute;n mensual (&euro;)</label><input type="number" id="jub-aport" value="500" min="0"></div>
+        <div class="field"><label>Rentabilidad anual estimada (%)</label><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"></div>
+        <div class="field"><label>Gastos mensuales en la retirada (&euro;)</label><input type="number" id="jub-gastos" value="2000" min="0"></div>
+        <div class="field"><label>Edad actual</label><input type="number" id="jub-edad" value="35" min="18" max="70"></div>
+        <button class="calc-btn" data-run="jubilacion">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="jub-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="jub-chart-wrap" style="display:none"><h4>Evoluci&oacute;n hacia la independencia financiera</h4><div class="chart-container"><canvas id="jub-chart"></canvas></div></div>
+    <div class="calc-cta" id="jub-cta" style="display:none">
+      <div><p><strong>&#128161; La independencia financiera es un proceso, no un destino.</strong>Estrategias cada semana en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DEPÓSITO A PLAZO FIJO -->
+<div class="calc-overlay" id="modal-deposito">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2><div class="calc-uses-badge" id="badge-uses-deposito"></div></div><button class="calc-close" data-close="deposito">&#215;</button></div>
+    <button class="share-btn" data-share="deposito"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-deposito">&#10003; Enlace copiado</span>
+    <p class="subtitle">Calcula los intereses netos de tu dep&oacute;sito descontando la retenci&oacute;n fiscal del 19%.</p>
+    <p class="disclaimer">La retenci&oacute;n fiscal sobre intereses es del 19% en Espa&ntilde;a (2026). Los intereses tributan en la base del ahorro del IRPF.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
+        <div class="field"><label>TIN anual (%)</label><input type="number" id="dep-tin" value="3" step="0.1" min="0" max="20"></div>
+        <div class="field"><label>Plazo (meses)</label><input type="number" id="dep-meses" value="12" min="1" max="120"></div>
+        <button class="calc-btn" data-run="deposito">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="dep-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="dep-chart-wrap" style="display:none"><h4>Desglose de tu dep&oacute;sito</h4><div class="chart-container"><canvas id="dep-chart"></canvas></div></div>
+    <div class="calc-cta" id="dep-cta" style="display:none">
+      <div><p><strong>&#128161; &iquest;Hay alternativas mejores al dep&oacute;sito?</strong>Analizo productos de ahorro en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: IRPF NÓMINA 2026 -->
+<div class="calc-overlay" id="modal-irpf">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128203; IRPF N&oacute;mina 2026</h2><div class="calc-uses-badge" id="badge-uses-irpf"></div></div><button class="calc-close" data-close="irpf">&#215;</button></div>
+    <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
+    <p class="subtitle">Calcula el porcentaje de retenci&oacute;n de IRPF en tu n&oacute;mina y cu&aacute;nto te descontarán cada mes en 2026.</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa. No contempla deducciones auton&oacute;micas ni circunstancias espec&iacute;ficas.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
+        <div class="field"><label>N&uacute;mero de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field"><label>Situaci&oacute;n personal</label><select id="irpf-sit"><option value="0">Soltero/a sin hijos</option><option value="2400">Casado/a sin hijos</option><option value="2400">Con 1 hijo</option><option value="5100">Con 2 hijos o m&aacute;s</option></select></div>
+        <div class="field"><label>Aportaci&oacute;n plan de pensiones/a&ntilde;o (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0" max="10000"></div>
+        <button class="calc-btn" data-run="irpf">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="irpf-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="irpf-chart-wrap" style="display:none"><h4>Desglose de tu n&oacute;mina</h4><div class="chart-container"><canvas id="irpf-chart"></canvas></div></div>
+    <div class="calc-cta" id="irpf-cta" style="display:none">
+      <div><p><strong>&#128161; Optimiza tu carga fiscal legalmente.</strong>Consejos sobre fiscalidad personal en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PLAN DE PENSIONES -->
+<div class="calc-overlay" id="modal-pension">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2><div class="calc-uses-badge" id="badge-uses-pension"></div></div><button class="calc-close" data-close="pension">&#215;</button></div>
+    <button class="share-btn" data-share="pension"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-pension">&#10003; Enlace copiado</span>
+    <p class="subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. L&iacute;mite: 1.500 &euro;/a&ntilde;o (hasta 10.000 &euro; con aportaci&oacute;n empresarial).</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa. El ahorro real depende de tu tipo marginal y CCAA. Consulta con un asesor fiscal.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
+        <div class="field"><label>Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="10000"></div>
+        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="pp-ccaa"><option value="1.00">Media nacional</option><option value="0.87">Madrid</option><option value="1.12">Catalu&ntilde;a</option><option value="0.95">Andaluc&iacute;a</option><option value="1.08">C. Valenciana</option><option value="0.90">Pa&iacute;s Vasco</option><option value="0.98">Galicia</option><option value="1.02">Castilla y Le&oacute;n</option></select></div>
+        <button class="calc-btn" data-run="pension">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="pp-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="pp-chart-wrap" style="display:none"><h4>Comparativa: con y sin plan de pensiones</h4><div class="chart-container"><canvas id="pp-chart"></canvas></div></div>
+    <div class="calc-cta" id="pp-cta" style="display:none">
+      <div><p><strong>&#128161; &iquest;Vale la pena un plan de pensiones?</strong>Analizo pros, contras y alternativas en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ALQUILER VS COMPRA -->
+<div class="calc-overlay" id="modal-alquilervs">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128273; Alquiler vs Compra</h2><div class="calc-uses-badge" id="badge-uses-alquilervs"></div></div><button class="calc-close" data-close="alquilervs">&#215;</button></div>
+    <button class="share-btn" data-share="alquilervs"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquilervs">&#10003; Enlace copiado</span>
+    <p class="subtitle">Compara el coste real de alquilar frente a comprar. Incluye coste de oportunidad del capital invertido en la entrada.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Precio del piso (&euro;)</label><input type="number" id="avs-precio" value="250000" min="0"></div>
+        <div class="field"><label>Entrada disponible (&euro;)</label><input type="number" id="avs-entrada" value="50000" min="0"></div>
+        <div class="field"><label>Tipo hipoteca (%)</label><input type="number" id="avs-tipo" value="3.5" step="0.1" min="0" max="15"></div>
+        <div class="field"><label>Plazo hipoteca (a&ntilde;os)</label><input type="number" id="avs-plazo" value="25" min="5" max="40"></div>
+        <div class="field"><label>Alquiler mensual equivalente (&euro;)</label><input type="number" id="avs-alquiler" value="1000" min="0"></div>
+        <div class="field"><label>Revalorizaci&oacute;n anual piso (%)</label><input type="number" id="avs-revalor" value="3" step="0.1" min="-5" max="15"></div>
+        <div class="field"><label>A&ntilde;os de comparaci&oacute;n</label><input type="number" id="avs-anos" value="15" min="1" max="40"></div>
+        <button class="calc-btn" data-run="alquilervs">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="avs-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="avs-chart-wrap" style="display:none"><h4>Coste acumulado: alquiler vs compra</h4><div class="chart-container"><canvas id="avs-chart"></canvas></div></div>
+    <div class="calc-cta" id="avs-cta" style="display:none">
+      <div><p><strong>&#128161; &iquest;Comprar o alquilar? No hay respuesta &uacute;nica.</strong>Te ayudo a analizarlo en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: AMORTIZACIÓN ANTICIPADA -->
+<div class="calc-overlay" id="modal-amortizacion">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#9889; Amortizaci&oacute;n Anticipada</h2><div class="calc-uses-badge" id="badge-uses-amortizacion"></div></div><button class="calc-close" data-close="amortizacion">&#215;</button></div>
+    <button class="share-btn" data-share="amortizacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-amortizacion">&#10003; Enlace copiado</span>
+    <p class="subtitle">Calcula cu&aacute;nto ahorras en intereses y tiempo amortizando anticipadamente. Compara reducir cuota vs reducir plazo.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Capital pendiente (&euro;)</label><input type="number" id="am-capital" value="150000" min="0"></div>
+        <div class="field"><label>Tipo de inter&eacute;s (%)</label><input type="number" id="am-tipo" value="3.5" step="0.1" min="0" max="15"></div>
+        <div class="field"><label>A&ntilde;os restantes</label><input type="number" id="am-anos" value="20" min="1" max="40"></div>
+        <div class="field"><label>Importe a amortizar (&euro;)</label><input type="number" id="am-extra" value="10000" min="0"></div>
+        <div class="field"><label>Objetivo</label><select id="am-tipo-amort"><option value="plazo">Reducir plazo (misma cuota)</option><option value="cuota">Reducir cuota (mismo plazo)</option></select></div>
+        <button class="calc-btn" data-run="amortizacion">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="am-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="am-chart-wrap" style="display:none"><h4>Intereses totales: con vs sin amortizaci&oacute;n</h4><div class="chart-container"><canvas id="am-chart"></canvas></div></div>
+    <div class="calc-cta" id="am-cta" style="display:none">
+      <div><p><strong>&#128161; Amortizar o invertir: el gran debate.</strong>Mi an&aacute;lisis en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ROI ALQUILER -->
+<div class="calc-overlay" id="modal-alquiler">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128202; ROI / Rentabilidad Alquiler</h2><div class="calc-uses-badge" id="badge-uses-alquiler"></div></div><button class="calc-close" data-close="alquiler">&#215;</button></div>
+    <button class="share-btn" data-share="alquiler"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquiler">&#10003; Enlace copiado</span>
+    <p class="subtitle">Calcula la rentabilidad bruta y neta de un piso en alquiler incluyendo gastos de comunidad, IBI, seguro y meses de vacante.</p>
+    <div class="calc-grid">
+      <div class="field-group">
+        <div class="field"><label>Precio de compra (&euro;)</label><input type="number" id="alq-precio" value="200000" min="0"></div>
+        <div class="field"><label>Gastos compra (ITP/IVA+notar&iacute;a, %)</label><input type="number" id="alq-gastos" value="10" step="0.5" min="0" max="20"></div>
+        <div class="field"><label>Renta mensual (&euro;)</label><input type="number" id="alq-renta" value="900" min="0"></div>
+        <div class="field"><label>Gastos anuales (IBI + comunidad + seguro, &euro;)</label><input type="number" id="alq-gastos-anuales" value="1500" min="0"></div>
+        <div class="field"><label>Meses de vacante al a&ntilde;o</label><input type="number" id="alq-vacante" value="1" min="0" max="12" step="0.5"></div>
+        <button class="calc-btn" data-run="alquiler">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="alq-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="alq-chart-wrap" style="display:none"><h4>Ingresos vs gastos anuales</h4><div class="chart-container"><canvas id="alq-chart"></canvas></div></div>
+    <div class="calc-cta" id="alq-cta" style="display:none">
+      <div><p><strong>&#128161; El ladrillo no siempre es la mejor inversi&oacute;n.</strong>Comparo alternativas en X.</p></div>
+      <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
+    </div>
+  </div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
@@ -762,6 +964,14 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='salario') calcSalario();
       else if (id==='hipoteca') calcHipoteca();
       else if (id==='coste') calcCoste();
+      else if (id==='inflacion') calcInflacion();
+      else if (id==='jubilacion') calcJubilacion();
+      else if (id==='deposito') calcDeposito();
+      else if (id==='irpf') calcIrpf();
+      else if (id==='pension') calcPension();
+      else if (id==='alquilervs') calcAlquilervs();
+      else if (id==='amortizacion') calcAmortizacion();
+      else if (id==='alquiler') calcAlquiler();
     });
   });
 
@@ -956,7 +1166,152 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   // ── INIT ─────────────────────────────────────────────────────────────────
-  ['salario','interes','hipoteca','coste'].forEach(function(id){ renderUses(id); });
+  window.calcInflacion = function() {
+    var C=parseFloat(document.getElementById('inf-capital').value)||0;
+    var ipc=parseFloat(document.getElementById('inf-ipc').value)||0;
+    var n=parseInt(document.getElementById('inf-anos').value)||1;
+    var r=parseFloat(document.getElementById('inf-rent').value)||0;
+    var valorFuturo=C*Math.pow(1+ipc/100,n);
+    var poderReal=C/Math.pow(1+ipc/100,n);
+    var conInversion=C*Math.pow(1+r/100,n);
+    var conInvReal=conInversion/Math.pow(1+ipc/100,n);
+    document.getElementById('inf-results').innerHTML=
+      rr('Capital hoy',fmtEUR(C))+
+      rr('Necesitar\u00e1s en '+n+' a\u00f1os (mismo poder)',fmtEUR(valorFuturo),'o')+
+      rr('Poder adquisitivo sin invertir',fmtEUR(poderReal),'o')+
+      rr('Capital con inversi\u00f3n al '+r+'%',fmtEUR(conInversion),'g')+
+      rr('Poder adquisitivo real con inversi\u00f3n',fmtEUR(conInvReal),'g')+
+      rr('Diferencia vs sin invertir',fmtEUR(conInvReal-poderReal),'g');
+    document.getElementById('inf-chart-wrap').style.display='block';
+    document.getElementById('inf-cta').style.display='flex';
+    if(window._infChart) window._infChart.destroy();
+    var labels=[],dPoder=[],dInv=[];
+    for(var y=0;y<=n;y++){labels.push('A\u00f1o '+y);dPoder.push(+(C/Math.pow(1+ipc/100,y)).toFixed(2));dInv.push(+(C*Math.pow(1+r/100,y)/Math.pow(1+ipc/100,y)).toFixed(2));}
+    window._infChart=new Chart(document.getElementById('inf-chart').getContext('2d'),{type:'line',data:{labels:labels,datasets:[{label:'Poder adquisitivo',data:dPoder,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2},{label:'Con inversi\u00f3n (real)',data:dInv,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+  };
+  window.calcJubilacion = function() {
+    var C=parseFloat(document.getElementById('jub-actual').value)||0;
+    var A=parseFloat(document.getElementById('jub-aport').value)||0;
+    var r=parseFloat(document.getElementById('jub-rent').value)||0;
+    var gastos=parseFloat(document.getElementById('jub-gastos').value)||0;
+    var edad=parseInt(document.getElementById('jub-edad').value)||35;
+    var fire=gastos*12*25;
+    var rm=r/100/12,capital=C,labels=[],dataC=[],anoFire=null;
+    for(var y=0;y<=50;y++){labels.push('A\u00f1o '+(edad+y));dataC.push(+capital.toFixed(2));if(anoFire===null&&capital>=fire)anoFire=y;for(var m=0;m<12;m++)capital=capital*(1+rm)+A;}
+    var ef=anoFire!==null?anoFire+' a\u00f1os':'> 50 a\u00f1os';
+    document.getElementById('jub-results').innerHTML=
+      rr('Capital FIRE necesario (regla 4%)',fmtEUR(fire))+
+      rr('Capital actual',fmtEUR(C))+
+      rr('A\u00f1os hasta FIRE',ef,'g')+
+      rr('Edad de retirada',anoFire!==null?(edad+anoFire)+' a\u00f1os':'> '+(edad+50)+' a\u00f1os','g')+
+      rr('Retiro mensual sostenible (4%)',fmtEUR(fire*0.04/12))+
+      rr('Capital en 30 a\u00f1os',fmtEUR(dataC[Math.min(30,dataC.length-1)]),'g');
+    document.getElementById('jub-chart-wrap').style.display='block';
+    document.getElementById('jub-cta').style.display='flex';
+    if(window._jubChart) window._jubChart.destroy();
+    var fireArr=labels.map(function(){return fire;});
+    window._jubChart=new Chart(document.getElementById('jub-chart').getContext('2d'),{type:'line',data:{labels:labels,datasets:[{label:'Capital acumulado',data:dataC,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.12)',fill:true,tension:.4,pointRadius:0,borderWidth:2},{label:'Objetivo FIRE',data:fireArr,borderColor:'#f0a070',backgroundColor:'transparent',fill:false,tension:0,pointRadius:0,borderWidth:1.5,borderDash:[6,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa',font:{size:9},maxTicksLimit:10},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+  };
+  window.calcDeposito = function() {
+    var C=parseFloat(document.getElementById('dep-capital').value)||0;
+    var tin=parseFloat(document.getElementById('dep-tin').value)||0;
+    var meses=parseInt(document.getElementById('dep-meses').value)||12;
+    var ib=C*(tin/100)*(meses/12),ret=ib*0.19,inet=ib-ret;
+    var tae=Math.pow(1+tin/100/12,12)-1;
+    document.getElementById('dep-results').innerHTML=
+      rr('Capital inicial',fmtEUR(C))+rr('Intereses brutos',fmtEUR(ib),'g')+rr('Retenci\u00f3n IRPF (19%)',fmtEUR(ret),'o')+rr('Intereses netos',fmtEUR(inet),'g')+rr('Capital final neto',fmtEUR(C+inet),'g')+rr('TAE equivalente',fmtPct(tae*100));
+    document.getElementById('dep-chart-wrap').style.display='block';document.getElementById('dep-cta').style.display='flex';
+    if(window._depChart) window._depChart.destroy();
+    window._depChart=new Chart(document.getElementById('dep-chart').getContext('2d'),{type:'doughnut',data:{labels:['Capital inicial','Intereses netos','Retenci\u00f3n IRPF'],datasets:[{data:[+C.toFixed(2),+inet.toFixed(2),+ret.toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(100,180,255,.75)','rgba(240,160,112,.75)'],borderColor:['#7dd3a8','#64b4ff','#f0a070'],borderWidth:1.5,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11},padding:14,boxWidth:12}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmtEUR(c.raw);}}}}}});
+  };
+  window.calcIrpf = function() {
+    var bruto=parseFloat(document.getElementById('irpf-bruto').value)||0;
+    var pagas=parseInt(document.getElementById('irpf-pagas').value)||14;
+    var minExtra=parseFloat(document.getElementById('irpf-sit').value)||0;
+    var pp=parseFloat(document.getElementById('irpf-pp').value)||0;
+    var ss=bruto*0.0647,red=0;
+    if(bruto<=13115) red=5565; else if(bruto<=16825) red=Math.max(0,5565-1.5*(bruto-13115));
+    var bl=Math.max(0,(bruto-ss)-red-(5550+minExtra)-pp);
+    var irpfE=0,tramos=[[12450,.095],[7750,.12],[15000,.15],[24800,.185],[1e12,.225]],resto=bl;
+    for(var i=0;i<tramos.length;i++){var bx=Math.min(resto,tramos[i][0]);irpfE+=bx*tramos[i][1];resto-=bx;if(resto<=0)break;}
+    var neto=bruto-ss-irpfE;
+    document.getElementById('irpf-results').innerHTML=
+      rr('Salario bruto anual',fmtEUR(bruto))+rr('Seguridad Social trabajador',fmtEUR(ss),'o')+rr('Base liquidable IRPF',fmtEUR(bl))+rr('IRPF anual',fmtEUR(irpfE),'o')+rr('% retenci\u00f3n IRPF',fmtPct(irpfE/Math.max(bruto,1)*100),'o')+rr('Neto anual',fmtEUR(neto),'g')+rr('Neto por paga ('+pagas+')',fmtEUR(neto/pagas),'g');
+    document.getElementById('irpf-chart-wrap').style.display='block';document.getElementById('irpf-cta').style.display='flex';
+    if(window._irpfChart) window._irpfChart.destroy();
+    window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',data:{labels:['Salario neto','IRPF','Seguridad Social'],datasets:[{data:[+neto.toFixed(2),+irpfE.toFixed(2),+(ss).toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},options:doughnutOpts(bruto)});
+  };
+  window.calcPension = function() {
+    var bruto=parseFloat(document.getElementById('pp-bruto').value)||0;
+    var aport=Math.min(parseFloat(document.getElementById('pp-aport').value)||0,10000);
+    var coef=parseFloat(document.getElementById('pp-ccaa').value)||1;
+    function cn(b,er){var ss=b*0.0647,red=0;if(b<=13115)red=5565;else if(b<=16825)red=Math.max(0,5565-1.5*(b-13115));var bl=Math.max(0,(b-ss)-red-5550-er);var ie=0,tr=[[12450,.095],[7750,.12],[15000,.15],[24800,.185],[1e12,.225]],res=bl;for(var i=0;i<tr.length;i++){var bx=Math.min(res,tr[i][0]);ie+=bx*tr[i][1];res-=bx;if(res<=0)break;}return b-ss-ie*coef;}
+    var ns=cn(bruto,0),nc=cn(bruto,aport),ahorro=nc-ns,coste=aport-ahorro;
+    document.getElementById('pp-results').innerHTML=
+      rr('Aportaci\u00f3n anual al plan',fmtEUR(aport))+rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportaci\u00f3n',fmtEUR(coste),'g')+rr('Ahorro por cada 100\u20ac aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
+    document.getElementById('pp-chart-wrap').style.display='block';document.getElementById('pp-cta').style.display='flex';
+    if(window._ppChart) window._ppChart.destroy();
+    window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin plan','Con plan'],datasets:[{label:'Neto anual',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+  };
+  window.calcAlquilervs = function() {
+    var precio=parseFloat(document.getElementById('avs-precio').value)||0;
+    var entrada=parseFloat(document.getElementById('avs-entrada').value)||0;
+    var tipo=parseFloat(document.getElementById('avs-tipo').value)||0;
+    var plazo=parseInt(document.getElementById('avs-plazo').value)||25;
+    var alqMes=parseFloat(document.getElementById('avs-alquiler').value)||0;
+    var revalor=parseFloat(document.getElementById('avs-revalor').value)||0;
+    var anos=parseInt(document.getElementById('avs-anos').value)||15;
+    var capital=precio-entrada;
+    if(capital<=0){document.getElementById('avs-results').innerHTML='<div class="empty-state">La entrada cubre el precio total.</div>';return;}
+    var r=tipo/100/12,n=plazo*12;
+    var cuota=(r===0)?capital/n:capital*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+    var mC=Math.min(anos*12,n);
+    var gastosComp=precio*0.10;
+    var valorPiso=precio*Math.pow(1+revalor/100,anos);
+    var labelsA=[],dComp=[],dAlq=[],acC=entrada+gastosComp,acA=0,alqAnual=alqMes*12;
+    for(var y=1;y<=anos;y++){acC+=cuota*12+2000;acA+=alqAnual*Math.pow(1.03,y-1);labelsA.push('A\u00f1o '+y);dComp.push(+acC.toFixed(2));dAlq.push(+acA.toFixed(2));}
+    document.getElementById('avs-results').innerHTML=
+      rr('Cuota hipotecaria mensual',fmtEUR(cuota))+rr('Coste total compra ('+anos+' a\u00f1os)',fmtEUR(acC),'o')+rr('Coste total alquiler ('+anos+' a\u00f1os)',fmtEUR(acA),'o')+rr('Valor estimado piso en '+anos+' a\u00f1os',fmtEUR(valorPiso),'g')+rr('Coste oportunidad entrada (7%/a)',fmtEUR(entrada*(Math.pow(1.07,anos)-1)),'o');
+    document.getElementById('avs-chart-wrap').style.display='block';document.getElementById('avs-cta').style.display='flex';
+    if(window._avsChart) window._avsChart.destroy();
+    window._avsChart=new Chart(document.getElementById('avs-chart').getContext('2d'),{type:'line',data:{labels:labelsA,datasets:[{label:'Coste compra acumulado',data:dComp,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2},{label:'Coste alquiler acumulado',data:dAlq,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+  };
+  window.calcAmortizacion = function() {
+    var capital=parseFloat(document.getElementById('am-capital').value)||0;
+    var tipo=parseFloat(document.getElementById('am-tipo').value)||0;
+    var anos=parseInt(document.getElementById('am-anos').value)||1;
+    var extra=parseFloat(document.getElementById('am-extra').value)||0;
+    var obj=document.getElementById('am-tipo-amort').value;
+    var r=tipo/100/12,n=anos*12;
+    var cuota=(r===0)?capital/n:capital*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+    var intSin=cuota*n-capital,capN=capital-extra;
+    if(capN<0){document.getElementById('am-results').innerHTML='<div class="empty-state">El importe supera el capital pendiente.</div>';return;}
+    var intCon,cuotaN=cuota,mM=0;
+    if(obj==='plazo'){var nN=(capN>0&&r>0)?Math.log(cuota/(cuota-r*capN))/Math.log(1+r):capN/cuota;mM=n-nN;intCon=cuota*nN-capN;}
+    else{cuotaN=(r===0)?capN/n:capN*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);intCon=cuotaN*n-capN;}
+    document.getElementById('am-results').innerHTML=
+      rr('Capital pendiente',fmtEUR(capital))+rr('Importe amortizado',fmtEUR(extra))+rr('Intereses sin amortizar',fmtEUR(intSin),'o')+rr('Intereses tras amortizar',fmtEUR(intCon),'g')+rr('Ahorro en intereses',fmtEUR(intSin-intCon),'g')+(obj==='plazo'?rr('Tiempo ahorrado',Math.round(mM/12*10)/10+' a\u00f1os ('+Math.round(mM)+' meses)','g'):rr('Nueva cuota mensual',fmtEUR(cuotaN),'g'));
+    document.getElementById('am-chart-wrap').style.display='block';document.getElementById('am-cta').style.display='flex';
+    if(window._amChart) window._amChart.destroy();
+    window._amChart=new Chart(document.getElementById('am-chart').getContext('2d'),{type:'bar',data:{labels:['Sin amortizar','Con amortizaci\u00f3n'],datasets:[{label:'Capital',data:[+capital.toFixed(2),+capN.toFixed(2)],backgroundColor:['rgba(184,200,216,.4)','rgba(184,200,216,.4)'],borderColor:['#b8c8d8','#b8c8d8'],borderWidth:1.5},{label:'Intereses',data:[+intSin.toFixed(2),+intCon.toFixed(2)],backgroundColor:['rgba(240,160,112,.7)','rgba(125,211,168,.75)'],borderColor:['#f0a070','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{stacked:true,ticks:{color:'#6a8aaa'},grid:{display:false}},y:{stacked:true,ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+  };
+  window.calcAlquiler = function() {
+    var precio=parseFloat(document.getElementById('alq-precio').value)||0;
+    var pctG=parseFloat(document.getElementById('alq-gastos').value)||0;
+    var renta=parseFloat(document.getElementById('alq-renta').value)||0;
+    var gA=parseFloat(document.getElementById('alq-gastos-anuales').value)||0;
+    var vac=parseFloat(document.getElementById('alq-vacante').value)||0;
+    var inv=precio*(1+pctG/100);
+    var ingB=renta*12,ingE=renta*(12-vac),benN=ingE-gA;
+    var rB=ingB/inv*100,rN=benN/inv*100,ptr=precio/(renta*12);
+    document.getElementById('alq-results').innerHTML=
+      rr('Inversi\u00f3n total (precio+gastos)',fmtEUR(inv))+rr('Ingresos brutos anuales',fmtEUR(ingB))+rr('Ingresos efectivos (con vacante)',fmtEUR(ingE),'g')+rr('Gastos anuales',fmtEUR(gA),'o')+rr('Beneficio neto anual',fmtEUR(benN),'g')+rr('Rentabilidad bruta',fmtPct(rB))+rr('Rentabilidad neta',fmtPct(rN),'g')+rr('Price-to-Rent ratio',Math.round(ptr*10)/10+'x');
+    document.getElementById('alq-chart-wrap').style.display='block';document.getElementById('alq-cta').style.display='flex';
+    if(window._alqChart) window._alqChart.destroy();
+    window._alqChart=new Chart(document.getElementById('alq-chart').getContext('2d'),{type:'doughnut',data:{labels:['Beneficio neto','Gastos anuales','Vacante'],datasets:[{data:[+Math.max(benN,0).toFixed(2),+gA.toFixed(2),+(renta*vac).toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11},padding:14,boxWidth:12}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmtEUR(c.raw);}}}}}});
+  };
+
+    ['salario','interes','hipoteca','coste','inflacion','jubilacion','deposito','irpf','pension','alquilervs','amortizacion','alquiler'].forEach(function(id){ renderUses(id); });
   renderVotos();
 
   // Deep link / hash routing
