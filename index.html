@@ -337,7 +337,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os invirtiendo</span></div>
       <div class="contact-box" id="contacto">
         <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:donquijotedelasfinanzas@gmail.com">donquijotedelasfinanzas@gmail.com</a> y responder&eacute; lo antes posible.
+        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="/cdn-cgi/l/email-protection#d8bcb7b6a9adb1b2b7acbdbcbdb4b9abbeb1b6b9b6a2b9ab98bfb5b9b1b4f6bbb7b5"><span class="__cf_email__" data-cfemail="60040f0e1115090a0f140504050c011306090e010e1a011320070d01090c4e030f0d">[email&#160;protected]</span></a> y responder&eacute; lo antes posible.
       </div>
     </div>
 
@@ -454,6 +454,15 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   </div>
   <div class="referidos-list" id="quijolistaGrid"></div>
   <p class="note" style="margin-top:20px;">Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS). Verifica siempre en tu plataforma de inversión.</p>
+<div class="kit-compact" style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center">
+  <p style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete a la Comunidad Don Quijote</p>
+  <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Recibe avisos cuando publique nuevas calculadoras, recursos y análisis aplicables a tu situación financiera.</p>
+  <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+    <button type="submit" style="background:#1677be;border:1px solid #1677be;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
+    <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+  </form>
+</div>
 </section>
 
   <section id="calculadoras" class="section">
@@ -782,7 +791,29 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="field-group">
         <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
         <div class="field"><label>N&uacute;mero de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-        <div class="field"><label>Situaci&oacute;n personal</label><select id="irpf-sit"><option value="0">Soltero/a sin hijos</option><option value="2400">Casado/a sin hijos</option><option value="2400">Con 1 hijo</option><option value="5100">Con 2 hijos o m&aacute;s</option></select></div>
+        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="irpf-ccaa">
+          <option value="andalucia">Andaluc&iacute;a</option>
+          <option value="aragon">Arag&oacute;n</option>
+          <option value="asturias">Asturias</option>
+          <option value="baleares">Baleares</option>
+          <option value="canarias">Canarias</option>
+          <option value="cantabria">Cantabria</option>
+          <option value="clm">Castilla-La Mancha</option>
+          <option value="cyl">Castilla y Le&oacute;n</option>
+          <option value="cataluna">Catalu&ntilde;a</option>
+          <option value="extremadura">Extremadura</option>
+          <option value="galicia">Galicia</option>
+          <option value="madrid" selected>Madrid</option>
+          <option value="murcia">Murcia</option>
+          <option value="rioja">La Rioja</option>
+          <option value="valencia">C. Valenciana</option>
+        </select></div>
+        <div class="field"><label>Situaci&oacute;n personal</label><select id="irpf-sit">
+          <option value="0">Soltero/a sin hijos</option>
+          <option value="2400">Casado/a sin hijos</option>
+          <option value="2400">Con 1 hijo</option>
+          <option value="5100">Con 2 hijos o m&aacute;s</option>
+        </select></div>
         <div class="field"><label>Aportaci&oacute;n plan de pensiones/a&ntilde;o (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0" max="10000"></div>
         <button class="calc-btn" data-run="irpf">Calcular &rarr;</button>
       </div>
@@ -897,7 +928,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
 
@@ -1019,12 +1050,12 @@ document.addEventListener('DOMContentLoaded', function(){
   // ── VOTOS ────────────────────────────────────────────────────────────────
   var VOTOS_OPT = [
     {id:'subida',    label:'Subida de sueldo real'},
-    {id:'fire',      label:'FIRE: retirada anticipada'},
-    {id:'alquiler',  label:'Alquiler vs compra'},
     {id:'prestamo',  label:'Coste real préstamo'},
-    {id:'inflacion', label:'Inflación: valor futuro'}
+    {id:'promedio',  label:'Promedio de acciones (DCA)'},
+    {id:'dividendos',label:'Dividendos de acciones'},
+    {id:'independencia', label:'Independencia financiera'}
   ];
-  function getVotos(){ return gS('votos_data', {subida:0,fire:0,alquiler:0,prestamo:0,inflacion:0}); }
+  function getVotos(){ return gS('votos_data', {subida:0,prestamo:0,promedio:0,dividendos:0,independencia:0}); }
   function renderVotos() {
     var votos=getVotos(), votado=gS('ya_vote',null);
     var vals=Object.values(votos);
@@ -1224,22 +1255,86 @@ document.addEventListener('DOMContentLoaded', function(){
     if(window._depChart) window._depChart.destroy();
     window._depChart=new Chart(document.getElementById('dep-chart').getContext('2d'),{type:'doughnut',data:{labels:['Capital inicial','Intereses netos','Retenci\u00f3n IRPF'],datasets:[{data:[+C.toFixed(2),+inet.toFixed(2),+ret.toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(100,180,255,.75)','rgba(240,160,112,.75)'],borderColor:['#7dd3a8','#64b4ff','#f0a070'],borderWidth:1.5,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11},padding:14,boxWidth:12}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmtEUR(c.raw);}}}}}});
   };
+  // Escalas autonómicas IRPF 2024 (declaración 2025) — fuente AEAT
+  var CCAA_TRAMOS = {
+    // [hasta_euros, tipo_%] — último tramo con 1e12 como infinito
+    andalucia:   [[13000,9.5],[21000,12],[35200,15],[50000,18.5],[1e12,22.5]],
+    aragon:      [[12450,10],[17707.2,12.5],[33007.2,15.5],[53407.2,19],[90000,21.5],[130000,23.5],[1e12,25.5]],
+    asturias:    [[12450,10],[17707.2,12],[33007.2,14],[53407.2,18.5],[70000,21.5],[90000,22.5],[175000,25],[1e12,25.5]],
+    baleares:    [[10000,9],[18000,11.75],[30000,14.75],[48000,17.75],[70000,19.25],[90000,21.25],[120000,23],[175000,24],[1e12,24.75]],
+    canarias:    [[12450,9],[17707,11.5],[33007,14],[53407,18.5],[90000,23.5],[120000,24.5],[1e12,26]],
+    cantabria:   [[12450,8.5],[20200,11.2],[35200,14.3],[60000,18.5],[90000,21],[1e12,24.5]],
+    clm:         [[12450,9.5],[20200,12],[35200,15],[60000,18.5],[1e12,22.5]],
+    cyl:         [[12450,9],[20200,11.5],[35200,14],[60000,18.5],[1e12,21.5]],
+    cataluna:    [[12450,10.5],[17707,12],[21000,14],[33007,15.5],[53407,18.5],[90000,21.5],[120000,23.5],[175000,24.5],[1e12,25.5]],
+    extremadura: [[12450,8],[20200,10.5],[35200,12.5],[60000,18.5],[80000,21],[120000,23],[175000,24],[1e12,25]],
+    galicia:     [[12450,9],[17707,11.65],[35200,13.65],[60000,18.5],[90000,21.5],[1e12,22.5]],
+    madrid:      [[13362.22,8.5],[22430,10.7],[36677,12.8],[54237.74,17.4],[1e12,20.5]],
+    murcia:      [[12450,9.5],[20200,12],[35200,15],[60000,18.5],[1e12,22.5]],
+    rioja:       [[12450,9],[17707,11.5],[33007,14],[53407,18.5],[90000,21],[120000,23],[1e12,25]],
+    valencia:    [[12450,9],[17707,12],[30000,14],[60000,17.5],[80000,19.5],[120000,21.5],[140000,22.5],[175000,25],[200000,27.5],[1e12,29.5]]
+  };
+  function calcIRPFTramos(bl, ccaaKey) {
+    var tramos = CCAA_TRAMOS[ccaaKey] || CCAA_TRAMOS['madrid'];
+    // Estatal: [[12450,9.5],[7750,12],[15000,15],[24800,18.5],[1e12,22.5]]
+    var estatal = [[12450,9.5],[7750,12],[15000,15],[24800,18.5],[1e12,22.5]];
+    function applyScale(base, scale) {
+      var cuota=0, prev=0;
+      for(var i=0;i<scale.length;i++){
+        var hasta = scale[i][0], tipo = scale[i][1]/100;
+        var tramo = Math.min(base, hasta) - prev;
+        if(tramo <= 0) break;
+        cuota += tramo * tipo;
+        prev = hasta;
+        if(base <= hasta) break;
+      }
+      return cuota;
+    }
+    // Autonómica: tramos absolutos (hasta X)
+    function applyAuto(base, scale) {
+      var cuota=0, prev=0;
+      for(var i=0;i<scale.length;i++){
+        var hasta=scale[i][0], tipo=scale[i][1]/100;
+        var tramo=Math.min(base,hasta)-prev;
+        if(tramo<=0) break;
+        cuota+=tramo*tipo;
+        prev=hasta;
+        if(base<=hasta) break;
+      }
+      return cuota;
+    }
+    return applyScale(bl, estatal) + applyAuto(bl, tramos);
+  }
+
   window.calcIrpf = function() {
     var bruto=parseFloat(document.getElementById('irpf-bruto').value)||0;
     var pagas=parseInt(document.getElementById('irpf-pagas').value)||14;
     var minExtra=parseFloat(document.getElementById('irpf-sit').value)||0;
     var pp=parseFloat(document.getElementById('irpf-pp').value)||0;
-    var ss=bruto*0.0647,red=0;
+    var ccaa=document.getElementById('irpf-ccaa').value;
+    var ss=bruto*0.0647, red=0;
     if(bruto<=13115) red=5565; else if(bruto<=16825) red=Math.max(0,5565-1.5*(bruto-13115));
     var bl=Math.max(0,(bruto-ss)-red-(5550+minExtra)-pp);
-    var irpfE=0,tramos=[[12450,.095],[7750,.12],[15000,.15],[24800,.185],[1e12,.225]],resto=bl;
-    for(var i=0;i<tramos.length;i++){var bx=Math.min(resto,tramos[i][0]);irpfE+=bx*tramos[i][1];resto-=bx;if(resto<=0)break;}
-    var neto=bruto-ss-irpfE;
+    var irpfTotal=calcIRPFTramos(bl, ccaa);
+    var neto=bruto-ss-irpfTotal;
+    var pct=irpfTotal/Math.max(bruto,1)*100;
     document.getElementById('irpf-results').innerHTML=
-      rr('Salario bruto anual',fmtEUR(bruto))+rr('Seguridad Social trabajador',fmtEUR(ss),'o')+rr('Base liquidable IRPF',fmtEUR(bl))+rr('IRPF anual',fmtEUR(irpfE),'o')+rr('% retenci\u00f3n IRPF',fmtPct(irpfE/Math.max(bruto,1)*100),'o')+rr('Neto anual',fmtEUR(neto),'g')+rr('Neto por paga ('+pagas+')',fmtEUR(neto/pagas),'g');
-    document.getElementById('irpf-chart-wrap').style.display='block';document.getElementById('irpf-cta').style.display='flex';
+      rr('Salario bruto anual',fmtEUR(bruto))+
+      rr('Seguridad Social trabajador (6,47%)',fmtEUR(ss),'o')+
+      rr('Base liquidable IRPF',fmtEUR(bl))+
+      rr('IRPF anual (estatal + autonómico)',fmtEUR(irpfTotal),'o')+
+      rr('Tipo efectivo IRPF',fmtPct(pct),'o')+
+      rr('Neto anual',fmtEUR(neto),'g')+
+      rr('Neto por paga ('+pagas+')',fmtEUR(neto/pagas),'g');
+    document.getElementById('irpf-chart-wrap').style.display='block';
+    document.getElementById('irpf-cta').style.display='flex';
     if(window._irpfChart) window._irpfChart.destroy();
-    window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',data:{labels:['Salario neto','IRPF','Seguridad Social'],datasets:[{data:[+neto.toFixed(2),+irpfE.toFixed(2),+(ss).toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},options:doughnutOpts(bruto)});
+    window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',
+      data:{labels:['Salario neto','IRPF','Seguridad Social'],
+        datasets:[{data:[+neto.toFixed(2),+irpfTotal.toFixed(2),+ss.toFixed(2)],
+          backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],
+          borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},
+      options:doughnutOpts(bruto)});
   };
   window.calcPension = function() {
     var bruto=parseFloat(document.getElementById('pp-bruto').value)||0;
@@ -1325,6 +1420,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     secEl.classList.add('active');
     secBtn.classList.add('active');
+
+    // Re-render lazy sections when activated
+    if (secId === 'teca') { setTimeout(function(){ renderTeca(); }, 0); }
+    if (secId === 'quijolista') { setTimeout(function(){ renderQuijoLista(); }, 0); }
+
     return true;
   }
 
@@ -1685,10 +1785,3 @@ document.addEventListener('DOMContentLoaded', function(){
   <div class="media-modal" role="dialog" aria-modal="true" aria-labelledby="mediaTitle">
     <button class="media-close" id="mediaClose" aria-label="Cerrar">×</button>
     <div class="media-head">
-      <div>
-        <div class="badge" id="mediaBadge">QuijoGlosario</div>
-        <h3 id="mediaTitle" style="margin:6px 0 0 0;">—</h3>
-      </div>
-      <div class="media-nav">
-        <button class="btn btn-ghost" id="mediaPrev" aria-label="Anterior">◀</button>
- 
