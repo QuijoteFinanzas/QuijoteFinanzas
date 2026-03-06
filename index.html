@@ -434,7 +434,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os invirtiendo</span></div>
       <div class="contact-box" id="contacto">
         <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:donquijotedelasfinanzas@gmail.com" style="color:#ffffff;font-weight:700;">donquijotedelasfinanzas@gmail.com</a> y responder&eacute; lo antes posible.
+        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mail&#116;o:donquijotedelasfinanzas&#64;gmail&#46;com" style="color:var(--cream);font-weight:700;">donquijotedelasfinanzas&#64;gmail&#46;com</a> y responder&eacute; lo antes posible.
       </div>
     </div>
 
@@ -1070,7 +1070,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
     </div>
   </div>
-</div><script>
+</div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
 
@@ -1832,9 +1832,9 @@ document.addEventListener('DOMContentLoaded', function(){
     if (prevBtn) prevBtn.addEventListener('click', function(){ showPrevNext(-1); });
     if (nextBtn) nextBtn.addEventListener('click', function(){ showPrevNext(1); });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMedia(); });
-  })();
+  
 
-  glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
+glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   renderCards("glosarioGrid", glosarioItems, "glosario");
   tecaItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   bindTecaFilters();
@@ -1982,6 +1982,8 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 });
+
+})();
 </script>
 
 <!-- ============================================================ -->
@@ -2609,9 +2611,4 @@ $('tm-share').addEventListener('click', function(){
 
 // ── REPETIR ───────────────────────────────────────────────────────────────
 $('tm-retry').addEventListener('click', function(){
-  hideEl('tm-result-screen');
-  openTest(state.testId);
-});
-
-// ── CERRAR ────────────────────────────────────────────────────────────────
-$('tm-close').add
+  hideEl('tm-resu
