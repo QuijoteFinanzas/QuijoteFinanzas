@@ -432,7 +432,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os invirtiendo</span></div>
       <div class="contact-box" id="contacto">
         <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="/cdn-cgi/l/email-protection#84e0ebeaf5f1edeeebf0e1e0e1e8e5f7e2edeae5eafee5f7c4e3e9e5ede8aae7ebe9"><span class="__cf_email__" data-cfemail="1d7972736c6874777269787978717c6e7b74737c73677c6e5d7a707c7471337e7270">[email&#160;protected]</span></a> y responder&eacute; lo antes posible.
+        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:donquijotedelasfinanzas@gmail.com" style="color:var(--accent);">donquijotedelasfinanzas@gmail.com</a> y responder&eacute; lo antes posible.
       </div>
     </div>
 
@@ -1723,7 +1723,7 @@ document.addEventListener('DOMContentLoaded', function(){
         div.className = "ref-card";
         div.style.cursor = "pointer";
         var abbr = it.title.substring(0,3).toUpperCase();
-        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--silver2);font-family:'Playfair Display',serif;letter-spacing:0;">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;">${it.title}</h3><p>${it.desc || ""}</p></div><div style="font-size:12px;color:var(--muted);white-space:nowrap;flex-shrink:0;">Ver imágenes →</div>`;
+        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--silver2);font-family:'Playfair Display',serif;letter-spacing:0;">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;">${it.title}</h3><p>${it.desc || ""}</p></div><div style="font-size:12px;color:var(--muted);white-space:nowrap;flex-shrink:0;">Ver imagen →</div>`;
       } else {
         div.innerHTML = `<div class="card-kicker">${it.badge || ""}</div><div class="card-title-row"><div class="card-icon">${it.icon || ""}</div><h3 class="card-title">${it.title}</h3></div><p class="card-desc">${it.desc || ""}</p><div class="card-meta">${it.link ? "Abrir recurso" : "Ver detalle"}</div>`;
       }
@@ -1849,29 +1849,19 @@ document.addEventListener('DOMContentLoaded', function(){
   var quijolistaItems = [
     { cat:"rv", tipo:"Fondo", nombre:"Alken Fund Small Cap Europe Class A", isin:"LU0524465548", gestora:"Alken AM", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Amundi Index MSCI Emerging Markets IE-C", isin:"LU0996175948", gestora:"Amundi", myi:true },
-    { cat:"mixto", tipo:"Fondo", nombre:"Atmos Global FI", isin:"ES0111089001", gestora:"Atmos AM", myi:false },
-    { cat:"mixto", tipo:"Fondo", nombre:"Avantage Fund B FI", isin:"ES0112231016", gestora:"Avantage Capital", myi:false },
     { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"AXA IM", myi:false },
     { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116", gestora:"Azvalor AM", myi:false },
     { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"BlackRock Systematic Asia Pacific Equity Absolute Return A2 EUR Hedged", isin:"LU1508158430", gestora:"BlackRock", myi:false },
     { cat:"rf", tipo:"Fondo", nombre:"BrightGate Global Income Fund F EUR Acc", isin:"LU1984948874", gestora:"BrightGate Capital", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"Buy & Hold Luxembourg B&H Bond Class 1", isin:"LU1988110927", gestora:"Buy & Hold", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"Candriam Bonds Credit Alpha C EUR", isin:"LU2098772366", gestora:"Candriam", myi:false },
     { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Cinvest Tercio Capital B FI", isin:"ES0174115057", gestora:"Cinvest", myi:false },
     { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219", gestora:"Cobas AM", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección C FI", isin:"ES0124037005", gestora:"Cobas AM", myi:true },
-    { cat:"nicho", tipo:"Fondo", nombre:"DNB Fund Technology Retail A EUR", isin:"LU0302296495", gestora:"DNB AM", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"DNCA Invest Alpha Bonds A EUR", isin:"LU1694789451", gestora:"DNCA Finance", myi:false },
     { cat:"nicho", tipo:"Fondo", nombre:"DWS Invest Gold and Precious Metals Equities LC", isin:"LU0273159177", gestora:"DWS", myi:false },
-    { cat:"nicho", tipo:"Fondo", nombre:"Fidelity Global Technology Fund A-Acc-EUR", isin:"LU1213836080", gestora:"Fidelity", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity S&P 500 Index Fund EUR P Acc", isin:"IE00BYX5MX67", gestora:"Fidelity", myi:true },
     { cat:"nicho", tipo:"Fondo", nombre:"Franklin Natural Resources Fund A(acc) EUR", isin:"LU0300741732", gestora:"Franklin Templeton", myi:false },
     { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Welzia", myi:true },
-    { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Guinness Global Equity Income D EUR Accumulation", isin:"IE00BDGV0290", gestora:"Guinness AM", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Hamco Global Value Fund R FI", isin:"ES0141116030", gestora:"Hamco Financial", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Heptagon Kopernik Global All-Cap Equity Fund AE EUR Acc", isin:"IE00BH6XSF26", gestora:"Heptagon / Kopernik", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true },
@@ -1886,7 +1876,6 @@ document.addEventListener('DOMContentLoaded', function(){
     { cat:"rv", tipo:"Fondo", nombre:"Magallanes Microcaps Europe B FI", isin:"ES0159202011", gestora:"Magallanes Value Investors", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Magna New Frontiers Fund R Acc", isin:"IE00B68FF474", gestora:"Magna", myi:false },
     { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income D H EUR", isin:"IE00008TZ2E8", gestora:"Man Investments", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"Man Global Investment Grade Opportunities D H EUR", isin:"IE000MI53C66", gestora:"Man Investments", myi:false },
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396", gestora:"MyInvestor", myi:true },
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394", gestora:"MyInvestor", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:false },
@@ -2138,6 +2127,26 @@ document.addEventListener('DOMContentLoaded', function(){
 </style>
 
 <!-- ── JS TESTS ────────────────────────────────────────────────── -->
+
+<!-- Media overlay for glosario + teca -->
+<div class="media-overlay" id="mediaOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="media-modal">
+    <div class="media-header">
+      <span class="media-badge" id="mediaBadge"></span>
+      <button class="media-close" id="mediaClose" aria-label="Cerrar">&times;</button>
+    </div>
+    <h2 class="media-title" id="mediaTitle"></h2>
+    <p class="media-desc" id="mediaDesc"></p>
+    <div class="media-img-wrap">
+      <img id="mediaImg" src="" alt="" style="max-width:100%;border-radius:8px;display:block;margin:0 auto;">
+    </div>
+    <div class="media-nav" id="mediaNav" style="display:none;">
+      <button class="media-btn" id="mediaPrev">&#8592;</button>
+      <span id="mediaCounter"></span>
+      <button class="media-btn" id="mediaNext">&#8594;</button>
+    </div>
+  </div>
+</div>
 <script>
 (function(){
 
