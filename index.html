@@ -1644,54 +1644,71 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // QuijoGlosario + QuijoTeca (ejemplos de prueba)
   var glosarioItems = [
-    {
-      badge: "QuijoGlosario",
-      title: "Horizonte temporal",
-      desc: "El tiempo que planeas mantener una inversión antes de necesitar el dinero.",
-      images: ["assets/glosario/horizonte-1.png", "assets/glosario/horizonte-2.png"]
-    },
-    {
-      badge: "QuijoGlosario",
-      title: "TAE",
-      desc: "Rentabilidad anual equivalente que incluye el efecto de comisiones y periodicidad.",
-      images: ["assets/glosario/tae-1.png", "assets/glosario/tae-2.png"]
-    },
-    {
-      badge: "QuijoGlosario",
-      title: "Diversificación",
-      desc: "Repartir el riesgo entre distintos activos para reducir la dependencia de uno solo.",
-      images: ["assets/glosario/diversificacion-1.png", "assets/glosario/diversificacion-2.png"]
-    }
+    { badge:"QuijoGlosario", title:"Acción", desc:"Parte del capital social de una empresa. Al comprarla te conviertes en propietario de una pequeña parte de esa compañía.", images:["assets/accion.png"] },
+    { badge:"QuijoGlosario", title:"Ahorro", desc:"La parte del dinero que no gastas: lo que reservas hoy para usar en el futuro.", images:["assets/ahorro.png"] },
+    { badge:"QuijoGlosario", title:"Bono", desc:"Préstamo que haces a un Estado o empresa, que se compromete a devolverte el capital más un interés en un plazo determinado.", images:["assets/bono.png"] },
+    { badge:"QuijoGlosario", title:"Capitalización bursátil", desc:"Valor total de una empresa en bolsa: precio de la acción multiplicado por el número total en circulación.", images:["assets/capitalizacion-bursatil.png"] },
+    { badge:"QuijoGlosario", title:"Coste de oportunidad", desc:"El valor de lo que dejas de ganar por elegir una opción en lugar de otra.", images:["assets/coste-de-oportunidad.png"] },
+    { badge:"QuijoGlosario", title:"Cuenta corriente", desc:"Cuenta bancaria para el día a día: cobrar nómina, pagar facturas o hacer transferencias. Suele tener poca o ninguna rentabilidad.", images:["assets/cuenta-corriente.png"] },
+    { badge:"QuijoGlosario", title:"Cuenta de ahorro", desc:"Cuenta bancaria para guardar dinero a corto o medio plazo. Suele ofrecer una pequeña rentabilidad.", images:["assets/cuenta-de-ahorro.png"] },
+    { badge:"QuijoGlosario", title:"DCA (Dollar Cost Average)", desc:"Estrategia de inversión en la que aportas una cantidad fija periódicamente, sin importar si el mercado sube o baja.", images:["assets/dca.png"] },
+    { badge:"QuijoGlosario", title:"Depósito bancario", desc:"Operación en la que una entidad financiera custodia tu dinero y a cambio te da una remuneración pactada.", images:["assets/deposito-bancario.png"] },
+    { badge:"QuijoGlosario", title:"Diversificación", desc:"Repartir tu dinero entre diferentes inversiones para reducir el riesgo. Si una parte falla, las demás pueden compensar.", images:["assets/diversificacion.png"] },
+    { badge:"QuijoGlosario", title:"Diversificación geográfica", desc:"Invertir en distintos países o regiones para reducir riesgos específicos de un solo mercado.", images:["assets/diversificacion-geografica.png"] },
+    { badge:"QuijoGlosario", title:"Dividendos", desc:"Parte del beneficio de una empresa que reparte entre sus accionistas como recompensa por invertir en ella.", images:["assets/dividendos.png"] },
+    { badge:"QuijoGlosario", title:"Drawdown", desc:"Caída máxima que sufre una inversión desde su punto más alto hasta su punto más bajo. Mide el riesgo real en mercado bajista.", images:["assets/drawdown.png"] },
+    { badge:"QuijoGlosario", title:"ETF", desc:"Fondo cotizado que replica un índice (como el S&P 500) y se compra y vende en bolsa como una acción.", images:["assets/etf.png"] },
+    { badge:"QuijoGlosario", title:"Euribor", desc:"Interés promedio al que los bancos europeos se prestan dinero entre sí. Si tienes hipoteca variable, afecta a tu cuota mensual.", images:["assets/euribor.png"] },
+    { badge:"QuijoGlosario", title:"Fondo de emergencia", desc:"Ahorro reservado para imprevistos. Se recomienda tener entre 3 y 9 meses de gastos básicos cubiertos.", images:["assets/fondo-de-emergencia.png"] },
+    { badge:"QuijoGlosario", title:"Fondo de inversión", desc:"Producto que agrupa el dinero de muchos inversores para invertirlo conjuntamente. Puede ser de gestión activa o pasiva.", images:["assets/fondo-de-inversion.png"] },
+    { badge:"QuijoGlosario", title:"Fondo indexado", desc:"Fondo que replica un índice como el IBEX 35 o el S&P 500. Bajas comisiones y gestión pasiva diversificada.", images:["assets/fondo-indexado.png"] },
+    { badge:"QuijoGlosario", title:"Gastos fijos y variables", desc:"Gastos fijos: pagos recurrentes que no cambian (alquiler, hipoteca). Gastos variables: cambian según tu consumo (ocio, comida).", images:["assets/gastos-fijos-variables.png"] },
+    { badge:"QuijoGlosario", title:"Horizonte temporal", desc:"Tiempo que planeas mantener una inversión antes de necesitar el dinero. Determina qué productos son más adecuados para ti.", images:["assets/horizonte-temporal-inversion.png"] },
+    { badge:"QuijoGlosario", title:"Inflación", desc:"Crecimiento general de los precios de bienes y servicios en una economía, que provoca la pérdida del valor del dinero.", images:["assets/inflacion.png"] },
+    { badge:"QuijoGlosario", title:"Ingreso pasivo", desc:"Dinero que recibes sin trabajar activamente todo el tiempo para generarlo. Requiere una inversión inicial de tiempo o dinero.", images:["assets/ingreso-pasivo.png"] },
+    { badge:"QuijoGlosario", title:"Interés compuesto", desc:"Interés que se va sumando al capital inicial y sobre el que se generan nuevos intereses. La magia de invertir a largo plazo.", images:["assets/interes-compuesto.png"] },
+    { badge:"QuijoGlosario", title:"Interés real", desc:"Rentabilidad de una inversión después de descontar la inflación. Muestra el poder adquisitivo real de tu dinero.", images:["assets/interes-real.png"] },
+    { badge:"QuijoGlosario", title:"Libertad financiera", desc:"Punto en el que tus ingresos pasivos cubren todos tus gastos, permitiéndote vivir sin depender de un salario.", images:["assets/libertad-financiera.png"] },
+    { badge:"QuijoGlosario", title:"Liquidez", desc:"Facilidad con la que puedes convertir un activo en dinero sin perder valor. Más liquidez = más rapidez para disponer del dinero.", images:["assets/liquidez.png"] },
+    { badge:"QuijoGlosario", title:"PER (Price Earnings Ratio)", desc:"Número de veces que el precio de una acción recoge su beneficio anual. Sirve para saber si una empresa está cara o barata.", images:["assets/per.png"] },
+    { badge:"QuijoGlosario", title:"Presupuesto personal", desc:"Plan para saber cuánto ganas, cuánto gastas y cuánto puedes ahorrar. Te ayuda a tomar decisiones y evitar sorpresas.", images:["assets/presupuesto-personal.png"] },
+    { badge:"QuijoGlosario", title:"Ratio de ahorro", desc:"Porcentaje de tus ingresos que logras guardar cada mes. Te ayuda a medir tu progreso financiero.", images:["assets/ratio-de-ahorro.png"] },
+    { badge:"QuijoGlosario", title:"Rebalanceo de cartera", desc:"Ajustar periódicamente tus inversiones para volver a la distribución de riesgo inicial que habías establecido.", images:["assets/rebalanceo-de-cartera.png"] },
+    { badge:"QuijoGlosario", title:"Renta fija", desc:"Inversiones en las que prestas dinero a un Estado, banco o empresa y recibes intereses en un plazo pactado.", images:["assets/renta-fija.png"] },
+    { badge:"QuijoGlosario", title:"Renta variable", desc:"Inversiones en las que la rentabilidad no está garantizada, pues depende de la evolución de la empresa o mercado.", images:["assets/renta-variable.png"] },
+    { badge:"QuijoGlosario", title:"Rentabilidad", desc:"Beneficio que obtienes de una inversión en relación a lo que invertiste. Puede medirse en porcentaje y ser positiva o negativa.", images:["assets/rentabilidad.png"] },
+    { badge:"QuijoGlosario", title:"Riesgo financiero", desc:"Posibilidad de perder parte o la totalidad del dinero invertido. No todas las inversiones tienen el mismo nivel de riesgo.", images:["assets/riesgo-financiero.png"] },
+    { badge:"QuijoGlosario", title:"Roboadvisor", desc:"Plataforma digital que invierte por ti de forma automatizada según tu perfil de riesgo. Suele usar fondos indexados y ETFs.", images:["assets/roboadvisor.png"] },
+    { badge:"QuijoGlosario", title:"Sesgo del inversor", desc:"Errores comunes al invertir por emociones o creencias, no por lógica. Ejemplos: miedo, avaricia o exceso de confianza.", images:["assets/sesgo-del-inversor.png"] },
+    { badge:"QuijoGlosario", title:"TAE (Tasa Anual Equivalente)", desc:"Muestra el coste o rentabilidad real anual de un producto en porcentaje, incluyendo intereses y gastos.", images:["assets/tae.png"] },
+    { badge:"QuijoGlosario", title:"TIN (Tasa Interés Nominal)", desc:"Interés fijo anual sin incluir gastos o comisiones. Representa el coste del préstamo sin el efecto de comisiones.", images:["assets/tin.png"] },
+
+    { badge:"QuijoGlosario", title:"Volatilidad", desc:"Medida de cuánto varía el precio de una inversión. A más volatilidad, más subidas y bajadas experimenta la inversión.", images:["assets/volatilidad.png"] },
   ];
 
   var tecaItems = [
-    {
-      type: "libro",
-      icon: "📚",
-      badge: "QuijoTeca · Libro",
-      title: "Padre Rico Padre Pobre",
-      desc: "Clásico para entender cómo funcionan el dinero y las inversiones.",
-      image: "assets/teca/padre-rico-padre-pobre.png",
-      link: ""
-    },
-    {
-      type: "podcast",
-      icon: "🎧",
-      badge: "QuijoTeca · Podcast",
-      title: "Finect Talks",
-      desc: "Conversaciones sobre finanzas personales e inversión con invitados expertos.",
-      image: "",
-      link: ""
-    },
-    {
-      type: "pelicula",
-      icon: "🎬",
-      badge: "QuijoTeca · Película",
-      title: "The Big Short",
-      desc: "La crisis financiera explicada de forma accesible.",
-      image: "",
-      link: ""
-    }
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"Padre Rico Padre Pobre",                      desc:"Clásico imprescindible para entender cómo funcionan realmente el dinero y las inversiones.",                                                image:"assets/teca/padre-rico-padre-pobre.png",                      link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"La psicología del dinero",                    desc:"Por qué nuestras emociones son más importantes que el Excel a la hora de invertir. Fácil de leer y muy revelador.",                         image:"assets/teca/la-psicologia-del-dinero.png",                    link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"El inversor inteligente",                     desc:"Un clásico imprescindible de Benjamin Graham que enseña a invertir con sentido común y proteger tu dinero en el largo plazo.",              image:"assets/teca/el-inversor-inteligente.png",                     link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"Un paseo aleatorio por Wall Street",          desc:"Burton Malkiel explica por qué es casi imposible batir al mercado de forma consistente. Una defensa clara de la inversión pasiva.",           image:"assets/teca/un-paseo-aleatorio-por-wall-street.png",          link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"El hombre más rico de Babilonia",             desc:"Clásico con lecciones sobre ahorro e inversión para acumular riqueza. Ideal para iniciarse en finanzas personales.",                          image:"assets/teca/el-hombre-mas-rico-de-babilonia.png",             link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"Los cuatro pilares de la inversión",          desc:"Guía completa sobre cómo construir tu cartera, gestionar el riesgo y entender tu comportamiento como inversor.",                              image:"assets/teca/los-cuatro-pilares-de-la-inversion.png",          link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"El pequeño libro que bate al mercado",        desc:"Un clásico breve y claro que explica una fórmula sencilla para invertir con cabeza.",                                                        image:"assets/teca/el-pequeno-libro-que-bate-al-mercado.png",        link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"El código del dinero",                        desc:"Raimon Samsó invita a cambiar nuestra mentalidad sobre el dinero. No es solo finanzas, también crecimiento personal y libertad financiera.", image:"assets/teca/el-codigo-del-dinero.png",                        link:"" },
+    { type:"libro",    icon:"📚", badge:"QuijoTeca · Libro",     title:"El monje que vendió su Ferrari",              desc:"Una fábula inspiradora sobre cómo redefinir el éxito. Más allá del dinero, trata de equilibrio, valores y propósito de vida.",               image:"assets/teca/el-monje-que-vendio-su-ferrari.png",              link:"" },
+    { type:"podcast",  icon:"🎧", badge:"QuijoTeca · Podcast",   title:"Finect Talks",                                desc:"Podcast español que habla de economía y finanzas. Entrevistas con inversores y gestores españoles.",                                          image:"assets/teca/finect-talks.png",                                link:"" },
+    { type:"podcast",  icon:"🎧", badge:"QuijoTeca · Podcast",   title:"Tengo un Plan",                               desc:"Podcast práctico y cercano para aprender a organizar tus finanzas. Ahorro, inversión y hábitos financieros contados sin tecnicismos.",        image:"assets/teca/tengo-un-plan.png",                               link:"" },
+    { type:"podcast",  icon:"🎧", badge:"QuijoTeca · Podcast",   title:"Value School",                                desc:"Charlas y entrevistas con referentes de la inversión en valor. Imprescindible si quieres aprender de los mejores con ejemplos reales.",       image:"assets/teca/value-school.png",                                link:"" },
+    { type:"podcast",  icon:"🎧", badge:"QuijoTeca · Podcast",   title:"Tu dinero nunca duerme",                      desc:"El programa de radio que acerca la inversión al día a día. Ideas claras, invitados expertos y consejos prácticos para gestionar tu dinero.", image:"assets/teca/tu-dinero-nunca-duerme.png",                      link:"" },
+    { type:"podcast",  icon:"🎧", badge:"QuijoTeca · Podcast",   title:"Nudismo Financiero",                          desc:"Podcast español de finanzas personales con enfoque directo y sin filtros. Dinero, inversión y libertad financiera al descubierto.",            image:"assets/teca/nudismo-financiero.png",                          link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"La Gran Apuesta",                             desc:"Basada en hechos reales, explica con humor e ingenio el origen de la crisis financiera de 2008. Aprenderás sobre hipotecas subprime y riesgo.", image:"assets/teca/la-gran-apuesta.png",                             link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"El lobo de Wall Street",                      desc:"Narra la historia real de un corredor de bolsa que vivió el exceso y la caída, con lecciones sobre riesgos y ética financiera.",             image:"assets/teca/el-lobo-de-wall-street.png",                      link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"Inside Job",                                  desc:"Documental ganador del Oscar que explica las causas de la crisis financiera de 2008. Una radiografía del sistema financiero y sus excesos.", image:"assets/teca/inside-job.png",                                  link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"Margin Call",                                 desc:"Una noche en una gran firma de inversión antes del colapso de 2008. Un retrato crudo del sistema financiero y las decisiones éticas en crisis.", image:"assets/teca/margin-call.png",                                link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"Becoming Warren Buffet",                      desc:"Documental (HBO) sobre la vida del mítico inversor de Omaha. Muestra su disciplina, frugalidad y visión a largo plazo.",                       image:"assets/teca/becoming-warren-buffet.png",                      link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"En busca de la felicidad",                    desc:"Basada en hechos reales, la historia de Chris Gardner. Perseverancia, esfuerzo y fe en uno mismo para alcanzar el éxito.",                    image:"assets/teca/en-busca-de-la-felicidad.png",                    link:"" },
+    { type:"pelicula", icon:"🎬", badge:"QuijoTeca · Película",  title:"El Fundador",                                 desc:"La historia de cómo Ray Kroc transformó McDonald's en un imperio. Un caso de ambición, visión empresarial y controversia.",                   image:"assets/teca/el-fundador.png",                                 link:"" },
+    { type:"podcast",  icon:"🎧", badge:"QuijoTeca · Podcast",   title:"Value Investing FM",                          desc:"Conversaciones con gestores, analistas e inversores españoles que comparten su experiencia real.",                                                     image:"assets/teca/value-investing-fm.png",                          link:"" },
   ];
 
   function renderCards(targetId, items, type){
@@ -1784,6 +1801,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   renderCards("glosarioGrid", glosarioItems, "glosario");
+  tecaItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   bindTecaFilters();
   renderTeca();
 // QuijoTeca render + filtros (lista estilo referidos)
