@@ -255,10 +255,10 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .ref-bonus{font-size:12px;color:var(--silver2);background:rgba(184,200,216,.08);border:1px solid rgba(184,200,216,.2);padding:4px 12px;border-radius:3px;white-space:nowrap;flex-shrink:0;font-weight:500}
 footer{border-top:1px solid var(--border);padding:28px 24px}
 .footer-inner{max-width:900px;margin:0 auto}
-.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
 .footer-copy{font-size:12px;color:var(--muted)}
-.footer-links{display:flex;gap:16px}
-.footer-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.footer-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;white-space:nowrap}
 .footer-links a:hover{color:var(--silver)}
 .footer-disclaimer{font-size:11px;color:var(--muted);opacity:.6;line-height:1.6;border-top:1px solid var(--border);padding-top:16px}
 /* TOAST suscripcion */
@@ -389,22 +389,83 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 }
 </style>
 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vxocnf2p5q");
+<!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{
+    analytics_storage:    'denied',
+    ad_storage:           'denied',
+    ad_user_data:         'denied',
+    ad_personalization:   'denied',
+    wait_for_update:      500
+  });
 </script>
 
-    <!-- Google Analytics GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4VBMV5WPN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-S4VBMV5WPN');
-    </script>
+<!-- ── Google Analytics GA4 (carga siempre, respeta Consent Mode) ───── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S4VBMV5WPN"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-S4VBMV5WPN', {anonymize_ip: true});
+</script>
+
+<!-- ── Cookie consent logic ─────────────────────────────────────────── -->
+<script>
+(function(){
+  var CONSENT_KEY = 'cookie_consent';
+
+  function loadClarity(){
+    if(window._clarityLoaded) return;
+    window._clarityLoaded = true;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","vxocnf2p5q");
+  }
+
+  function grantAnalytics(){
+    gtag('consent','update',{analytics_storage:'granted'});
+  }
+
+  function applyConsent(val){
+    if(val === 'accepted'){
+      grantAnalytics();
+      loadClarity();
+    }
+    // 'essential' → keep everything denied, no Clarity
+  }
+
+  function hideBanner(){
+    var b = document.getElementById('cookie-banner');
+    if(b) b.style.display = 'none';
+  }
+
+  // On load — check saved preference
+  var saved = localStorage.getItem(CONSENT_KEY);
+  if(saved){
+    applyConsent(saved);
+  }
+
+  window.cookieAccept = function(){
+    localStorage.setItem(CONSENT_KEY,'accepted');
+    applyConsent('accepted');
+    hideBanner();
+  };
+  window.cookieEssential = function(){
+    localStorage.setItem(CONSENT_KEY,'essential');
+    hideBanner();
+  };
+
+  // Show banner only if no preference saved
+  document.addEventListener('DOMContentLoaded', function(){
+    if(!localStorage.getItem(CONSENT_KEY)){
+      var b = document.getElementById('cookie-banner');
+      if(b) b.style.display = 'flex';
+    }
+  });
+})();
+</script>
 </head>
 <body>
 
@@ -697,14 +758,41 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <div class="footer-top">
       <span class="footer-copy">&copy; 2026 Don Quijote de las Finanzas</span>
       <div class="footer-links">
-        <a href="#contacto" id="footer-contact-link">Contacto</a>
-        <a href="https://x.com/quijotefinanzas" target="_blank">X / Twitter</a>
-        <a href="https://instagram.com/quijotefinanzas" target="_blank">Instagram</a>
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="cookies.html">Política de cookies</a>
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="mailto:contacto@quijotefinanzas.com">Contacto</a>
       </div>
     </div>
     <p class="footer-disclaimer">Contenido de car&aacute;cter informativo y educativo. No constituye asesoramiento financiero, fiscal ni de inversi&oacute;n. Consulta con un profesional antes de tomar decisiones financieras.</p>
   </div>
 </footer>
+
+<!-- ── Cookie Banner ─────────────────────────────────────────────────── -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:#0f2035;border-top:2px solid #c9a84c;
+  padding:16px 24px;gap:16px;align-items:center;flex-wrap:wrap;
+  box-shadow:0 -4px 24px rgba(0,0,0,.4);font-family:inherit;">
+  <p style="margin:0;flex:1;min-width:220px;font-size:13px;color:#d1dae6;line-height:1.6;">
+    Usamos cookies de terceros (Google Analytics y Microsoft Clarity) para analizar el uso de la web y mejorar la experiencia.
+    Puedes aceptar todas o solo las esenciales.
+    <a href="cookies.html" style="color:#c9a84c;text-decoration:underline;">Más información</a>.
+  </p>
+  <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+    <button onclick="cookieEssential()" style="
+      background:transparent;border:1px solid #4a6080;color:#9ab0c8;
+      padding:8px 18px;border-radius:6px;font-size:13px;cursor:pointer;
+      font-family:inherit;transition:all .2s;">
+      Solo esenciales
+    </button>
+    <button onclick="cookieAccept()" style="
+      background:#c9a84c;border:none;color:#0f2035;
+      padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;
+      cursor:pointer;font-family:inherit;transition:all .2s;">
+      Aceptar
+    </button>
+  </div>
+</div>
 
 <!-- TOAST suscripción -->
 <div id="sub-toast">
