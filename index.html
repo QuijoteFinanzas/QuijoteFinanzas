@@ -502,7 +502,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <p style="font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);margin:0 0 6px 0;">📩 Comunidad Don Quijote</p>
     <p style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--cream);margin:0 0 6px 0;">Únete para recibir avisos y nuevos recursos</p>
     <p style="font-size:13px;color:var(--muted);margin:0 0 16px 0;line-height:1.5;">Te avisar&eacute; cuando publique nuevas calculadoras, recursos y an&aacute;lisis pr&aacute;cticos sobre inversi&oacute;n, ahorro y fiscalidad en Espa&ntilde;a.</p>
-    <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" onsubmit="kitSubmit(this);return false;">
+    <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center" >
       <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
       <button type="submit" style="background:rgba(201,168,76,.92);border:1px solid rgba(201,168,76,.6);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">Avisadme</button>
       <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
@@ -521,7 +521,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os invirtiendo</span></div>
       <div class="contact-box" id="contacto">
         <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="/cdn-cgi/l/email-protection#73101c1d071210071c3302061a191c0716151a1d121d0912005d101c1e" style="color:var(--silver);font-weight:700;"><span class="__cf_email__" data-cfemail="7a1915140e1b190e153a0b0f1310150e1f1c13141b14001b0954191517">[email&#160;protected]</span></a> y responder&eacute; lo antes posible.
+        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:contacto@quijotefinanzas.com" style="color:var(--silver);font-weight:700;">contacto@quijotefinanzas.com</a> y responder&eacute; lo antes posible.
       </div>
     </div>
 
@@ -1158,7 +1158,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
       <div class="calc-cta-links"><a class="cta-link" href="https://x.com/quijotefinanzas" target="_blank">Seguir en X</a></div>
     </div>
   </div>
-</div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+</div><script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
 
@@ -2702,9 +2702,4 @@ $('tm-share').addEventListener('click', function(){
   var t = TESTS[state.testId];
   var res = t.resultado(state.pts, state.nivel);
   var txt = '🎯 He hecho el test "' + t.titulo + '" en QuijoFinanzas y he sacado ' + res.score + ' — ' + res.label + '. ¿Y tú? https://quijotefinanzas.com/';
-  if(navigator.clipboard){ navigator.clipboard.writeText(txt); }
-  $('tm-share').textContent = '✓ Copiado';
-  setTimeout(function(){ $('tm-share').textContent = '🔗 Compartir resultado'; }, 2000);
-});
-
-// ── REPETI
+  if(navigator.clipboard){ navigator.clipboard.writeText(txt); 
