@@ -761,7 +761,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
         <a href="privacidad.html">Política de privacidad</a>
         <a href="cookies.html">Política de cookies</a>
         <a href="aviso-legal.html">Aviso legal</a>
-        <a href="mailto:contacto@quijotefinanzas.com">Contacto</a>
+        <a href="/cdn-cgi/l/email-protection#a8cbc7c6dcc9cbdcc7e8d9ddc1c2c7dccdcec1c6c9c6d2c9db86cbc7c5">Contacto</a>
       </div>
     </div>
     <p class="footer-disclaimer">Contenido de car&aacute;cter informativo y educativo. No constituye asesoramiento financiero, fiscal ni de inversi&oacute;n. Consulta con un profesional antes de tomar decisiones financieras.</p>
@@ -1178,6 +1178,8 @@ document.addEventListener('DOMContentLoaded', function(){
       if (secId === 'quijolista') { setTimeout(function(){ if(window.renderQuijoLista) window.renderQuijoLista(); }, 0); }
       try { history.replaceState(null, '', '#' + secId); } catch(e) {}
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // GA4 event
+      try { gtag('event', 'seccion_visitada', { seccion: secId }); } catch(e) {}
     });
   });
 
@@ -1262,11 +1264,28 @@ document.addEventListener('DOMContentLoaded', function(){
   function sS(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 
   // ── USOS ─────────────────────────────────────────────────────────────────
-  window.openCalc = function(id) {
+  // ── Nombres legibles para GA4 ─────────────────────────────────────────
+  var calcNames = {
+    'irpf':       'Salario bruto → neto',
+    'salario':    'Salario neto → bruto',
+    'interes':    'Interés compuesto',
+    'hipoteca':   'Cuota hipotecaria',
+    'coste':      'Coste real empresa',
+    'inflacion':  'Inflación valor futuro',
+    'jubilacion': 'Ahorro jubilación FIRE',
+    'deposito':   'Depósito a plazo fijo',
+    'pension':    'Desgravación pensiones',
+    'alquilervs': 'Alquiler vs compra',
+    'amortizacion':'Amortización anticipada',
+    'alquiler':   'ROI rentabilidad alquiler'
+  };
 
+  window.openCalc = function(id) {
     document.getElementById('modal-'+id).classList.add('open');
     document.body.style.overflow = 'hidden';
     try { history.replaceState(null, '', '#calc-'+id); } catch(e) {}
+    // GA4 event
+    try { gtag('event', 'calculadora_abierta', { calculadora: calcNames[id] || id }); } catch(e) {}
   };
   window.closeCalc = function(id) {
     document.getElementById('modal-'+id).classList.remove('open');
@@ -2080,6 +2099,47 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   window.bindTecaFilters && window.bindTecaFilters();
   window.renderTeca && window.renderTeca();
   window.renderQuijoLista && window.renderQuijoLista();
+
+  // ── GA4: Referidos clicks ─────────────────────────────────────────────
+  document.querySelectorAll('#refList .ref-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var name = card.querySelector('h3');
+      try { gtag('event', 'referido_click', {
+        referido: name ? name.textContent.trim() : card.href
+      }); } catch(e) {}
+    });
+  });
+
+  // ── GA4: Botones Avisadme ─────────────────────────────────────────────
+  document.querySelectorAll('a[href="#kit-main-cta"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var sec = btn.closest('.section');
+      var secId = sec ? sec.id : 'desconocida';
+      try { gtag('event', 'cta_avisadme_click', { seccion: secId }); } catch(e) {}
+    });
+  });
+
+  // ── GA4: Envío formulario suscripción ─────────────────────────────────
+  var kitForm = document.querySelector('form[action*="kit.com"]');
+  if (kitForm) {
+    kitForm.addEventListener('submit', function() {
+      try { gtag('event', 'formulario_enviado', { formulario: 'newsletter_kit' }); } catch(e) {}
+    });
+  }
+
+  // ── GA4: Scroll depth 50% y 90% ──────────────────────────────────────
+  var scrollMarks = { 50: false, 90: false };
+  window.addEventListener('scroll', function() {
+    var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    if (!scrollMarks[50] && pct >= 50) {
+      scrollMarks[50] = true;
+      try { gtag('event', 'scroll_profundidad', { porcentaje: 50 }); } catch(e) {}
+    }
+    if (!scrollMarks[90] && pct >= 90) {
+      scrollMarks[90] = true;
+      try { gtag('event', 'scroll_profundidad', { porcentaje: 90 }); } catch(e) {}
+    }
+  }, { passive: true });
 
 });
 </script>
