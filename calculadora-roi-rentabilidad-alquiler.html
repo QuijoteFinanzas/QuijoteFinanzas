@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora ROI y Rentabilidad de un Piso en Alquiler | QuijoteFinanzas</title>
+<meta name="description" content="Calcula la rentabilidad bruta y neta de una vivienda en alquiler. Incluye IBI, comunidad, seguro y meses de vacante. ¿Es un buen negocio?">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quijotefinanzas.com/calculadora-roi-rentabilidad-alquiler.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quijotefinanzas.com/calculadora-roi-rentabilidad-alquiler.html">
+<meta property="og:title" content="Calculadora ROI y Rentabilidad de un Piso en Alquiler">
+<meta property="og:description" content="Calcula la rentabilidad bruta y neta de una vivienda en alquiler. Incluye IBI, comunidad, seguro y meses de vacante. ¿Es un buen negocio?">
+<meta property="og:image" content="https://quijotefinanzas.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora ROI y Rentabilidad de un Piso en Alquiler">
+<meta name="twitter:description" content="Calcula la rentabilidad bruta y neta de una vivienda en alquiler. Incluye IBI, comunidad, seguro y meses de vacante. ¿Es un buen negocio?">
+<meta name="twitter:image" content="https://quijotefinanzas.com/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora ROI Rentabilidad Alquiler","description":"Calcula la rentabilidad bruta y neta de una inversión en vivienda para alquiler.","url":"https://quijotefinanzas.com/calculadora-roi-rentabilidad-alquiler.html","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Don Quijote de las Finanzas"}}</script>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f2035;--navy2:#1a3358;--gold:#c9a84c;--silver:#c8d8e8;--silver2:#9ab0c8;--muted:#6a8aaa;--bg:#0d1a2e;--bg2:#132035;--border:rgba(184,200,216,.15);--cream:#e8f0f8}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--silver);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--navy);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px}
+header h1{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--cream);font-weight:700}
+header span{font-size:12px;color:var(--muted)}
+.breadcrumb{padding:12px 24px;font-size:12px;color:var(--muted)}.breadcrumb a{color:var(--muted)}
+main{max-width:860px;margin:0 auto;padding:32px 24px}
+h2{font-family:'Playfair Display',Georgia,serif;font-size:26px;color:var(--cream);margin-bottom:10px;line-height:1.3}
+.subtitle{color:var(--silver2);font-size:15px;margin-bottom:28px;max-width:620px}
+.calc-box{background:var(--navy);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:32px}
+.field{margin-bottom:14px}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px;font-weight:500}
+input,select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--silver);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+input:focus,select:focus{border-color:rgba(201,168,76,.5)}
+select option{background:var(--navy)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.btn{width:100%;padding:13px;background:var(--gold);color:var(--navy);border:none;border-radius:7px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .2s;margin-top:6px}
+.btn:hover{opacity:.88}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px}
+.result-row:last-child{border-bottom:none;font-weight:700;font-size:15px;padding-top:10px}
+.result-value.g{color:#7dd3a8}.result-value.o{color:#f0a070}
+.results-panel{margin-top:20px;border-top:1px solid var(--border);padding-top:20px}
+.empty-state{color:var(--muted);font-size:13px;padding:20px 0}
+.chart-wrap{margin-top:24px}
+.chart-container{position:relative;height:220px}
+.note-sm{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6}
+.faq{margin-top:48px}.faq h3{font-family:'Playfair Display',Georgia,serif;font-size:20px;color:var(--cream);margin-bottom:18px}
+details{border:1px solid var(--border);border-radius:8px;margin-bottom:10px;background:var(--navy)}
+summary{padding:14px 16px;cursor:pointer;font-size:14px;font-weight:600;color:var(--silver);list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"＋";color:var(--gold);font-size:16px}
+details[open] summary::after{content:"－"}
+.faq-body{padding:4px 16px 16px;font-size:14px;color:var(--silver2);line-height:1.7}
+footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);margin-top:48px}
+footer a{color:var(--muted)}
+.back-btn{display:inline-block;margin-bottom:24px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600}
+.cta-box{margin-top:40px;padding:20px;background:var(--navy);border:1px solid var(--border);border-radius:8px;text-align:center}
+.cta-box p{font-size:14px;color:var(--silver2);margin-bottom:12px}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;padding:10px 22px;border-radius:6px;font-size:13px}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header>
+  <div style="width:36px;height:36px;border-radius:50%;background:var(--navy2);border:1px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;font-size:18px">🗡️</div>
+  <div><h1>Don Quijote de las Finanzas</h1><span>Con números, no con opiniones</span></div>
+</header>
+<div class="breadcrumb"><a href="https://quijotefinanzas.com">Inicio</a> &rsaquo; ROI y rentabilidad del alquiler</div>
+<main>
+  <a class="back-btn" href="https://quijotefinanzas.com#calculadoras">← Todas las calculadoras</a>
+  <h2>ROI y rentabilidad del alquiler</h2>
+  <p class="subtitle">Antes de comprar un piso para alquilar, calcula la rentabilidad real. Incluye todos los gastos que los anuncios no te cuentan.</p>
+  <div class="calc-box">
+    <div class="grid">
+      <div>
+    <div class="field"><label>Precio de compra (€)</label><input type="number" id="alq-precio" value="200000" min="0" step="5000"></div>
+    <div class="field"><label>Gastos compra (ITP/IVA+notaría, %)</label><input type="number" id="alq-gastos" value="10" step="0.5" min="0" max="20"></div>
+    <div class="field"><label>Renta mensual (€)</label><input type="number" id="alq-renta" value="900" min="0"></div>
+    <div class="field"><label>Gastos anuales (IBI+comunidad+seguro, €)</label><input type="number" id="alq-gastos-anuales" value="1500" min="0"></div>
+    <div class="field"><label>Meses de vacante al año</label><input type="number" id="alq-vacante" value="1" min="0" max="12" step="0.5"></div>
+    <button class="btn" onclick="calcAlquiler(); document.getElementById('results-panel').innerHTML=document.getElementById('alq-results').innerHTML">Calcular rentabilidad →</button>
+    <div id="alq-results" style="display:none"></div>
+    <div id="alq-chart-wrap" style="display:none"><div class="chart-container"><canvas id="alq-chart"></canvas></div></div>
+    <div id="alq-cta" style="display:none"></div>
+  </div>
+      <div id="results-panel" class="results-panel"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+    </div>
+  </div>
+  <div class="faq"><h3>Preguntas frecuentes</h3><details><summary>¿Qué rentabilidad bruta es buena para un alquiler?</summary><div class='faq-body'>En España, la rentabilidad bruta media ronda el 5-7%. Por encima del 6% se considera razonable para compensar el riesgo y los gastos. Las ciudades grandes suelen tener menor rentabilidad pero más liquidez si vendes.</div></details>
+<details><summary>¿Qué diferencia hay entre rentabilidad bruta y neta?</summary><div class='faq-body'>La rentabilidad bruta divide los ingresos anuales entre el precio de compra. La neta descuenta todos los gastos: IBI, comunidad, seguro, mantenimiento, vacantes e impuestos. La neta real puede ser 2-3 puntos menos que la bruta.</div></details>
+<details><summary>¿Cómo tributa el alquiler?</summary><div class='faq-body'>El alquiler de vivienda habitual tiene una reducción del 60% en el IRPF (solo tributa el 40% del beneficio neto, es decir ingresos menos gastos deducibles). Para alquileres no habituales (turístico) la tributación es diferente.</div></details>
+<details><summary>¿Qué gastos son deducibles en el alquiler?</summary><div class='faq-body'>Son deducibles: IBI, comunidad de vecinos, seguro del hogar, intereses hipotecarios, amortización del inmueble (3% del valor de construcción), reparaciones y suministros pagados por el propietario. No es deducible el principal de la hipoteca.</div></details></div>
+  <div class="cta-box"><p>¿Quieres avisos de nuevas herramientas y análisis?</p><a class="cta-btn" href="https://quijotefinanzas.com#kit-main-cta">Avisadme</a></div>
+</main>
+<footer>
+  <p>© 2026 Don Quijote de las Finanzas · <a href="https://quijotefinanzas.com/privacidad.html">Privacidad</a> · <a href="https://quijotefinanzas.com">Inicio</a></p>
+  <p style="margin-top:8px">Estimación orientativa. Consulta con un profesional antes de tomar decisiones financieras.</p>
+</footer>
+<script>
+    'comparador': 'Comparador de ofertas'
+  };
+
+
+  window.calcComparador = function() {
+    function netoAnual(bruto, ccaa) {
+      var ss=bruto*0.0647, red=0;
+      if(bruto<=13115) red=5565; else if(bruto<=16825) red=Math.max(0,5565-1.5*(bruto-13115));
+      var bl=Math.max(0,(bruto-ss)-red-5550);
+      return bruto - ss - calcIRPFTramos(bl, ccaa);
+    }
+    function valorOferta(pfx) {
+      var bruto   = parseFloat(document.getElementById('cmp-'+pfx+'-bruto').value)||0;
+      var bonus   = parseFloat(document.getElementById('cmp-'+pfx+'-bonus').value)||0;
+      var tw      = parseInt(document.getElementById('cmp-'+pfx+'-tw').value)||0;
+      var transp  = parseFloat(document.getElementById('cmp-'+pfx+'-transp').value)||0;
+      var seguro  = parseFloat(document.getElementById('cmp-'+pfx+'-seguro').value)||0;
+      var ticket  = parseFloat(document.getElementById('cmp-'+pfx+'-ticket').value)||0;
+      var ccaa    = document.getElementById('cmp-'+pfx+'-ccaa').value;
+      var neto    = netoAnual(bruto, ccaa);
+      // Bonus: aplicamos IRPF marginal estimado del 25%
+      var netoBonus = bonus * 0.75;
+      // Transporte real (5 días/semana, ~48 semanas) ajustado por TW
+      var diasPres = (5 - tw) * 48;
+      var costeTrans = tw === 5 ? 0 : transp * 12 * (diasPres / 240);
+      // Ticket (exento hasta 11€/día × días presenciales, max 2640/año)
+      var valorTicket = Math.min(ticket * 12, 2640);
+      var total = neto + netoBonus + seguro + valorTicket - costeTrans;
+      return { bruto, neto, netoBonus, seguro, valorTicket, costeTrans, total, tw };
+    }
+    var A = valorOferta('a'), B = valorOferta('b');
+    var winner = A.total >= B.total ? 'A' : 'B';
+    var diff = Math.abs(A.total - B.total);
+
+    function row(label, vA, vB, fmt) {
+      fmt = fmt || fmtEUR;
+      var better = vA > vB ? 'g' : (vA < vB ? '' : '');
+      var betterB = vA < vB ? 'g' : (vA > vB ? '' : '');
+      return '<tr><td style="color:var(--muted);font-size:12px;padding:6px 0">'+label+'</td>'
+        +'<td style="text-align:right;color:'+(better==='g'?'#7dd3a8':'var(--silver)')+'">'+fmt(vA)+'</td>'
+        +'<td style="text-align:right;color:'+(betterB==='g'?'#7dd3a8':'var(--silver)')+'">'+fmt(vB)+'</td></tr>';
+    }
+
+    var html = '<div style="margin-bottom:16px;padding:14px 18px;background:'+(winner==='A'?'rgba(201,168,76,.08)':'rgba(125,211,168,.08)')+';border-radius:8px;border-left:3px solid '+(winner==='A'?'#c9a84c':'#7dd3a8')+'">'
+      +'<strong style="color:'+(winner==='A'?'#c9a84c':'#7dd3a8')+'">&#127942; Oferta '+winner+' es mejor en '+ fmtEUR(diff)+' al año</strong>'
+      +' <span style="color:var(--muted);font-size:12px">(considerando neto, teletrabajo, beneficios y desplazamiento)</span></div>'
+      +'<table style="width:100%;border-collapse:collapse">'
+      +'<thead><tr>'
+      +'<th style="text-align:left;font-size:11px;color:var(--muted);padding-bottom:6px"></th>'
+      +'<th style="text-align:right;font-size:12px;color:#c9a84c;padding-bottom:6px">Oferta A</th>'
+      +'<th style="text-align:right;font-size:12px;color:#7dd3a8;padding-bottom:6px">Oferta B</th>'
+      +'</tr></thead><tbody>'
+      + row('Salario bruto', A.bruto, B.bruto)
+      + row('Neto salarial', A.neto, B.neto)
+      + row('Bonus neto estimado', A.netoBonus, B.netoBonus)
+      + row('Valor seguro médico', A.seguro, B.seguro)
+      + row('Valor tickets restaurante', A.valorTicket, B.valorTicket)
+      + row('(-) Coste transporte real', -A.costeTrans, -B.costeTrans)
+      + row('Días teletrabajo / semana', A.tw, B.tw, function(v){ return v+' días'; })
+      +'<tr style="border-top:1px solid var(--border)"><td style="font-size:13px;font-weight:700;padding-top:8px">Valor total anual</td>'
+      +'<td style="text-align:right;font-weight:700;color:'+(winner==='A'?'#c9a84c':'var(--silver)')+';padding-top:8px">'+fmtEUR(A.total)+'</td>'
+      +'<td style="text-align:right;font-weight:700;color:'+(winner==='B'?'#7dd3a8':'var(--silver)')+';padding-top:8px">'+fmtEUR(B.total)+'</td>'
+      +'</tr></tbody></table>';
+    document.getElementById('cmp-results').innerHTML = html;
+    document.getElementById('cmp-chart-wrap').style.display = 'block';
+    document.getElementById('cmp-cta').style.display = 'flex';
+    if (window._cmpChart) window._cmpChart.destroy();
+    window._cmpChart = new Chart(document.getElementById('cmp-chart').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['Oferta A', 'Oferta B'],
+        datasets: [{
+          label: 'Valor total', data: [+A.total.toFixed(2), +B.total.toFixed(2)],
+          backgroundColor: ['rgba(201,168,76,.65)', 'rgba(125,211,168,.65)'],
+          borderColor: ['#c9a84c', '#7dd3a8'], borderWidth: 1.5
+        }]
+      },
+      options: {responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
+        scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}
+    });
+  };
+
+  window.openCalc = function(id) {
+    document.getElementById('modal-'+id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+    try { history.replaceState(null, '', '#calc-'+id); } catch(e) {}
+    // GA4 event
+    try { gtag('event', 'calculadora_abierta', { calculadora: calcNames[id] || id }); } catch(e) {}
+  };
+  window.closeCalc = function(id) {
+    document.getElementById('modal-'+id).classList.remove('open');
+    document.body.style.overflow = '';
+    try { history.replaceState(null, '', '#calculadoras'); } catch(e) {}
+  };
+
+  // ── VOTOS ────────────────────────────────────────────────────────────────
+  var VOTOS_OPT = [
+    {id:'subida',    label:'Subida de sueldo real'},
+    {id:'prestamo',  label:'Coste real préstamo'},
+    {id:'promedio',  label:'Promedio de acciones (DCA)'},
+    {id:'dividendos',label:'Dividendos de acciones'},
+    {id:'independencia', label:'Independencia financiera'}
+  ];
+  // ── VOTOS — Cloudflare Worker API ────────────────────────────────────────
+  var VOTOS_WORKER = 'WORKER_URL_PLACEHOLDER';
+
+  function renderVotosUI(votos, votado) {
+    var vals = Object.values(votos);
+    var maxV  = Math.max.apply(null, [1].concat(vals));
+    var total = Math.max(1, vals.reduce(function(a,b){return a+b;},0));
+    var html  = VOTOS_OPT.map(function(op) {
+      var n = votos[op.id]||0, pct = Math.round(n/total*100), isV = (votado===op.id);
+      return '<div class="voto-item"><div class="voto-header">'
+        +'<span class="voto-nombre">'+op.label+'</span>'
+        +'<span class="voto-count">'+n+' voto'+(n===1?'':'s')+' · '+pct+'%</span>'
+        +'<button class="voto-btn'+(isV?' voted':'')+'" data-vote="'+op.id+'"'+(votado?' disabled':'')+'>'+( isV?'Votado':'Votar')+'</button>'
+        +'</div><div class="voto-bar-wrap"><div class="voto-bar" style="width:'+Math.round(n/maxV*100)+'%"></div></div></div>';
+    }).join('');
+    document.getElementById('votos-list').innerHTML = html;
+    document.querySelectorAll('[data-vote]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.getAttribute('data-vote');
+        if (gS('ya_vote',null)) return;
+        sS('ya_vote', id);
+        document.querySelectorAll('[data-vote]').forEach(function(b){ b.disabled=true; });
+        fetch(VOTOS_WORKER, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({id: id})
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(data){ renderVotosUI(data, id); })
+        .catch(function(){ });
+      });
+    });
+  }
+
+  function renderVotos() {
+    var votado = gS('ya_vote', null);
+    fetch(VOTOS_WORKER)
+      .then(function(r){ return r.json(); })
+      .then(function(data){ renderVotosUI(data, votado); })
+      .catch(function(){
+        renderVotosUI({subida:0,prestamo:0,promedio:0,dividendos:0,independencia:0}, votado);
+      });
+  }
+
+  // ── FORMATO EUR ──────────────────────────────────────────────────────────
+  var fmtEUR = function(n){ return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2}).format(n); };
+  var fmtNum = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n); };
+  var fmtPct = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+'%'; };
+  function rr(label,value,cls){ return '<div class="result-row"><span class="result-label">'+label+'</span><span class="result-value'+(cls?' '+cls:'')+'">'+value+'</span></div>'; }
+
+  var icChart=null, salChart=null, hipChart=null, ceChart=null;
+  function doughnutOpts(bruto) {
+    return {responsive:true,maintainAspectRatio:false,cutout:'65%',
+      plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11},padding:14,boxWidth:12}},
+      tooltip:{callbacks:{label:function(c){return c.label+': '+fmtEUR(c.raw)+' ('+fmtPct(c.raw/Math.max(bruto,1)*100)+')';}}}}}; 
+  }
+
+
+  window.calcHipoteca = function() {
+    var precio=parseFloat(document.getElementById('hip-precio').value)||0;
+    var entrada=parseFloat(document.getElementById('hip-entrada').value)||0;
+    var tipo=parseFloat(document.getElementById('hip-tipo').value)||0;
+    var plazo=parseInt(document.getElementById('hip-plazo').value)||30;
+    var capital=precio-entrada;
+    var rm=tipo/100/12, n=plazo*12;
+    var cuota=(rm===0)?capital/n:capital*rm*Math.pow(1+rm,n)/(Math.pow(1+rm,n)-1);
+    var totalPagado=cuota*n, totalIntereses=totalPagado-capital;
+    document.getElementById('hip-results').innerHTML=
+      rr('Capital prestado',fmtEUR(capital))+
+      rr('Cuota mensual',fmtEUR(cuota),'g')+
+      rr('Total pagado',fmtEUR(totalPagado))+
+      rr('Total intereses',fmtEUR(totalIntereses),'o')+
+      rr('% sobre capital',fmtPct(totalIntereses/Math.max(capital,1)*100),'o')+
+      rr('Entrada',fmtEUR(entrada))+
+      rr('Plazo',plazo+' años');
+    document.getElementById('hip-chart-wrap').style.display='block';
+    document.getElementById('hip-cta').style.display='flex';
+    if(window._hipChart) window._hipChart.destroy();
+    window._hipChart=new Chart(document.getElementById('hip-chart').getContext('2d'),{type:'doughnut',
+      data:{labels:['Capital','Intereses','Entrada'],
+        datasets:[{data:[+capital.toFixed(2),+totalIntereses.toFixed(2),+entrada.toFixed(2)],
+          backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],
+          borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},
+      options:doughnutOpts(totalPagado+entrada)});
+  };
+
+  window.calcCoste = function() {
+    var bruto=parseFloat(document.getElementById('ce-bruto').value)||0;
+    var ssEmpresa=bruto*0.3048, costeTotal=bruto+ssEmpresa;
+    document.getElementById('ce-results').innerHTML=
+      rr('Tu salario bruto',fmtEUR(bruto))+
+      rr('SS a cargo empresa (30,48%)',fmtEUR(ssEmpresa),'o')+
+      rr('Coste total anual',fmtEUR(costeTotal),'g')+
+      rr('Coste mensual',fmtEUR(costeTotal/12))+
+      rr('Coste por hora (~1.800h)',fmtEUR(costeTotal/1800))+
+      rr('Multiplicador sobre tu bruto','x'+fmtNum(costeTotal/Math.max(bruto,1)),'g');
+    document.getElementById('ce-chart-wrap').style.display='block';
+    document.getElementById('ce-cta').style.display='flex';
+    if(window._ceChart) window._ceChart.destroy();
+    window._ceChart=new Chart(document.getElementById('ce-chart').getContext('2d'),{type:'doughnut',
+      data:{labels:['Salario bruto','SS empresa'],
+        datasets:[{data:[+bruto.toFixed(2),+ssEmpresa.toFixed(2)],
+          backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)'],
+          borderColor:['#7dd3a8','#f0a070'],borderWidth:1.5,hoverOffset:6}]},
+      options:doughnutOpts(costeTotal)});
+  };
+
+  window.calcInflacion = function() {
+    var cap=parseFloat(document.getElementById('inf-capital').value)||0;
+    var ipc=parseFloat(document.getElementById('inf-ipc').value)||0;
+    var anos=parseInt(document.getElementById('inf-anos').value)||1;
+    var rent=parseFloat(document.getElementById('inf-rent').value)||0;
+    var futuro=cap*Math.pow(1+rent/100,anos);
+    var poder=cap/Math.pow(1+ipc/100,anos);
+    var sinInv=cap; // kept in cash
+    document.getElementById('inf-results').innerHTML=
+      rr('Capital inicial',fmtEUR(cap))+
+      rr('Valor futuro (invertido)',fmtEUR(futuro),'g')+
+      rr('Poder adquisitivo real',fmtEUR(poder),'o')+
+      rr('Ganancia real (vs inflación)',fmtEUR(futuro-poder),'g')+
+      rr('Pérdida guardando en efectivo',fmtEUR(cap-poder),'o')+
+      rr('Inflación acumulada',fmtPct((Math.pow(1+ipc/100,anos)-1)*100),'o');
+    document.getElementById('inf-chart-wrap').style.display='block';
+    document.getElementById('inf-cta').style.display='flex';
+    if(window._infChart) window._infChart.destroy();
+    var labels=[],dataF=[],dataP=[],dataC=[];
+    for(var y=1;y<=Math.min(anos,30);y++){
+      labels.push('Año '+y);
+      dataF.push(+(cap*Math.pow(1+rent/100,y)).toFixed(2));
+      dataP.push(+(cap/Math.pow(1+ipc/100,y)).toFixed(2));
+      dataC.push(+cap.toFixed(2));
+    }
+    window._infChart=new Chart(document.getElementById('inf-chart').getContext('2d'),{type:'line',
+      data:{labels:labels,datasets:[
+        {label:'Invertido',data:dataF,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.1)',tension:.3,fill:true,pointRadius:2},
+        {label:'Poder adquisitivo',data:dataP,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.1)',tension:.3,fill:true,pointRadius:2},
+        {label:'En efectivo',data:dataC,borderColor:'#b8c8d8',backgroundColor:'transparent',borderDash:[4,4],tension:0,pointRadius:0}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},
+        scales:{x:{ticks:{color:'#6a8aaa',maxTicksLimit:10}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}}}}}});
+  };
+
+  window.calcJubilacion = function() {
+    var actual=parseFloat(document.getElementById('jub-actual').value)||0;
+    var aport=parseFloat(document.getElementById('jub-aport').value)||0;
+    var rent=parseFloat(document.getElementById('jub-rent').value)||7;
+    var gastos=parseFloat(document.getElementById('jub-gastos').value)||2000;
+    var edad=parseInt(document.getElementById('jub-edad').value)||35;
+    var fire=gastos*12/0.04; // regla del 4%
+    var rm=rent/100/12, capital=actual, anos=0;
+    var labels=[],dataK=[];
+    while(capital<fire && anos<80){
+      for(var m=0;m<12;m++) capital=capital*(1+rm)+aport;
+      anos++;
+      labels.push('Año '+(anos));
+      dataK.push(+capital.toFixed(2));
+    }
+    var edadFire=edad+anos;
+    document.getElementById('jub-results').innerHTML=
+      rr('Capital FIRE necesario (regla 4%)',fmtEUR(fire))+
+      rr('Capital actual',fmtEUR(actual))+
+      rr('Aportación mensual',fmtEUR(aport))+
+      rr('Años hasta FIRE',anos<80?anos+' años':'> 80 años (revisa datos)','g')+
+      rr('Edad de retirada estimada',edadFire<120?edadFire+' años':'> 80 (revisa datos)','g')+
+      rr('Capital alcanzado',fmtEUR(capital));
+    document.getElementById('jub-chart-wrap').style.display='block';
+    document.getElementById('jub-cta').style.display='flex';
+    if(window._jubChart) window._jubChart.destroy();
+    var fireArr=labels.map(function(){return +fire.toFixed(2);});
+    window._jubChart=new Chart(document.getElementById('jub-chart').getContext('2d'),{type:'line',
+      data:{labels:labels,datasets:[
+        {label:'Capital acumulado',data:dataK,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.1)',tension:.3,fill:true,pointRadius:1},
+        {label:'Objetivo FIRE',data:fireArr,borderColor:'#f0a070',backgroundColor:'transparent',borderDash:[5,5],tension:0,pointRadius:0}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},
+        scales:{x:{ticks:{color:'#6a8aaa',maxTicksLimit:10}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}}}}}});
+  };
+
+  window.calcDeposito = function() {
+    var cap=parseFloat(document.getElementById('dep-capital').value)||0;
+    var tin=parseFloat(document.getElementById('dep-tin').value)||0;
+    var meses=parseInt(document.getElementById('dep-meses').value)||12;
+    var intBruto=cap*tin/100*meses/12;
+    var retencion=intBruto*0.19;
+    var intNeto=intBruto-retencion;
+    var tae=Math.pow(1+tin/100/12,12)-1;
+    document.getElementById('dep-results').innerHTML=
+      rr('Capital depositado',fmtEUR(cap))+
+      rr('TIN anual',fmtPct(tin))+
+      rr('Plazo',meses+' meses')+
+      rr('Intereses brutos',fmtEUR(intBruto))+
+      rr('Retención Hacienda (19%)',fmtEUR(retencion),'o')+
+      rr('Intereses netos',fmtEUR(intNeto),'g')+
+      rr('Capital total al vencimiento',fmtEUR(cap+intNeto),'g')+
+      rr('TAE equivalente',fmtPct(tae*100));
+    document.getElementById('dep-chart-wrap').style.display='block';
+    document.getElementById('dep-cta').style.display='flex';
+    if(window._depChart) window._depChart.destroy();
+    window._depChart=new Chart(document.getElementById('dep-chart').getContext('2d'),{type:'doughnut',
+      data:{labels:['Capital','Intereses netos','Retención Hacienda'],
+        datasets:[{data:[+cap.toFixed(2),+intNeto.toFixed(2),+retencion.toFixed(2)],
+          backgroundColor:['rgba(125,211,168,.75)','rgba(125,180,255,.75)','rgba(240,160,112,.75)'],
+          borderColor:['#7dd3a8','#7db4ff','#f0a070'],borderWidth:1.5,hoverOffset:6}]},
+      options:doughnutOpts(cap+intBruto)});
+  };
+
+    window.calcInteres = function() {
+    var C=parseFloat(document.getElementById('ic-capital').value)||0;
+    var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
+    var r=parseFloat(document.getElementById('ic-rent').value)||0;
+    var n=parseInt(document.getElementById('ic-anos').value)||1;
+    var rm=r/100/12, capital=C, totalAportado=C, labels=[], dataC=[], dataA=[];
+    for(var y=1;y<=n;y++){
+      for(var m=0;m<12;m++){ capital=capital*(1+rm)+A; totalAportado+=A; }
+      labels.push('Año '+y); dataC.push(+capital.toFixed(2)); dataA.push(+totalAportado.toFixed(2));
+    }
+    var ti=C+A*12*n, ben=capital-ti;
+    document.getElementById('ic-results').innerHTML=
+      rr('Capital final',fmtEUR(capital),'g')+rr('Total aportado',fmtEUR(ti))+
+      rr('Intereses generados',fmtEUR(ben),'g')+rr('Multiplicador','x'+fmtNum(capital/Math.max(ti,1)))+
+      rr('% son intereses',fmtPct(ben/capital*100),'g');
+    document.getElementById('ic-chart-wrap').style.display='block';
+    document.getElementById('ic-cta').style.display='flex';
+    if(icChart) icChart.destroy();
+    icChart=new Chart(document.getElementById('ic-chart').getContext('2d'),{type:'line',
+      data:{labels:labels,datasets:[
+        {label:'Capital total',data:dataC,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.12)',fill:true,tension:.4,pointRadius:1,borderWidth:2},
+        {label:'Lo aportado',data:dataA,borderColor:'#b8c8d8',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:1,borderWidth:1.5,borderDash:[5,5]}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
+        scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},
+                y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}
+      }});
+  };
+
+
+  // ── IRPF TRAMOS 2026 ─────────────────────────────────────────────────────
+  function calcIRPFTramos(bl, ccaa) {
+    // Estatal
+    var estatal = (function(b){
+      var t=0;
+      if(b<=12450)  t=b*0.095;
+      else if(b<=20200) t=1182.75+(b-12450)*0.12;
+      else if(b<=35200) t=2112.75+(b-20200)*0.15;
+      else if(b<=60000) t=4362.75+(b-35200)*0.185;
+      else if(b<=300000) t=8950.75+(b-60000)*0.225;
+      else              t=62950.75+(b-300000)*0.245;
+      return t;
+    })(bl);
+    // Autonómico (tramos simplificados 2024-25 por CCAA)
+    var auto = (function(b){
+      var r={
+        andalucia:    [[12450,.09],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]],
+        aragon:       [[12450,.10],[20200,.1225],[35200,.1575],[60000,.20],[300000,.235],[Infinity,.255]],
+        asturias:     [[12450,.10],[20200,.125],[35200,.17],[60000,.21],[90000,.235],[175000,.245],[300000,.26],[Infinity,.27]],
+        baleares:     [[12450,.09],[20200,.1175],[35200,.155],[60000,.195],[100000,.23],[200000,.245],[Infinity,.26]],
+        canarias:     [[12450,.09],[20200,.1175],[35200,.155],[60000,.195],[90000,.215],[Infinity,.245]],
+        cantabria:    [[12450,.10],[20200,.1275],[35200,.17],[60000,.21],[90000,.235],[Infinity,.255]],
+        clm:          [[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],
+        cyl:          [[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],
+        cataluna:     [[12450,.1050],[20200,.1250],[35200,.1650],[60000,.2050],[90000,.2250],[175000,.2550],[300000,.2650],[Infinity,.2750]],
+        extremadura:  [[12450,.10],[20200,.125],[35200,.175],[60000,.215],[Infinity,.255]],
+        galicia:      [[12450,.095],[20200,.1175],[35200,.155],[60000,.195],[Infinity,.225]],
+        madrid:       [[12450,.09],[20200,.1175],[35200,.155],[60000,.185],[Infinity,.21]],
+        murcia:       [[12450,.095],[20200,.12],[35200,.155],[60000,.195],[Infinity,.225]],
+        rioja:        [[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],
+        valencia:     [[12450,.10],[20200,.13],[35200,.18],[60000,.215],[150000,.235],[Infinity,.255]]
+      };
+      var tramos = r[ccaa] || r['madrid'];
+      var t=0, prev=0;
+      for(var i=0;i<tramos.length;i++){
+        var lim=tramos[i][0], tipo=tramos[i][1];
+        if(b<=lim){ t+=( b-prev)*tipo; break; }
+        t+=(lim-prev)*tipo; prev=lim;
+      }
+      return t;
+    })(bl);
+    return estatal + auto;
+  }
+  window.calcSalario = function() {
+    // Neto -> Bruto via binary search using exact CCAA tramos
+    var netoObj = parseFloat(document.getElementById('sal-neto').value)||0;
+    var ccaa = document.getElementById('sal-ccaa').value;
+    var minExtra = parseFloat(document.getElementById('sal-sit').value)||0;
+    var pagas = parseInt(document.getElementById('sal-pagas').value)||14;
+
+    function netoFromBruto(bruto) {
+      var ss=bruto*0.0647, red=0;
+      if(bruto<=13115) red=5565; else if(bruto<=16825) red=Math.max(0,5565-1.5*(bruto-13115));
+      var bl=Math.max(0,(bruto-ss)-red-(5550+minExtra));
+      var irpf=calcIRPFTramos(bl, ccaa);
+      return bruto-ss-irpf;
+    }
+
+    // Binary search: find bruto such that netoFromBruto(bruto) ≈ netoObj
+    var lo=netoObj, hi=netoObj*3, bruto=netoObj*1.5;
+    for(var i=0;i<60;i++){
+      var mid=(lo+hi)/2;
+      if(netoFromBruto(mid)<netoObj) lo=mid; else hi=mid;
+    }
+    bruto=(lo+hi)/2;
+    var ss=bruto*0.0647, red=0;
+    if(bruto<=13115) red=5565; else if(bruto<=16825) red=Math.max(0,5565-1.5*(bruto-13115));
+    var bl=Math.max(0,(bruto-ss)-red-(5550+minExtra));
+    var irpf=calcIRPFTramos(bl, ccaa);
+    var netoReal=bruto-ss-irpf;
+    var pct=irpf/Math.max(bruto,1)*100;
+
+    document.getElementById('sal-results').innerHTML=
+      rr('Neto objetivo',fmtEUR(netoObj))+
+      rr('Salario bruto necesario',fmtEUR(bruto),'g')+
+      rr('Seguridad Social (6,47%)',fmtEUR(ss),'o')+
+      rr('IRPF estimado',fmtEUR(irpf),'o')+
+      rr('Tipo efectivo IRPF',fmtPct(pct),'o')+
+      rr('Neto real resultante',fmtEUR(netoReal),'g')+
+      rr('Neto por paga ('+pagas+')',fmtEUR(netoReal/pagas),'g');
+    document.getElementById('sal-chart-wrap').style.display='block';
+    document.getElementById('sal-cta').style.display='flex';
+    if(window._salChart) window._salChart.destroy();
+    window._salChart=new Chart(document.getElementById('sal-chart').getContext('2d'),{type:'doughnut',
+      data:{labels:['Neto','IRPF','Seguridad Social'],
+        datasets:[{data:[+netoReal.toFixed(2),+irpf.toFixed(2),+ss.toFixed(2)],
+          backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],
+          borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},
+      options:doughnutOpts(bruto)});
+  };
+
+    window.calcIrpf = function() {
+    var bruto=parseFloat(document.getElementById('irpf-bruto').value)||0;
+    var pagas=parseInt(document.getElementById('irpf-pagas').value)||14;
+    var minExtra=parseFloat(document.getElementById('irpf-sit').value)||0;
+    var pp=parseFloat(document.getElementById('irpf-pp').value)||0;
+    var ccaa=document.getElementById('irpf-ccaa').value;
+    var ss=bruto*0.0647, red=0;
+    if(bruto<=13115) red=5565; else if(bruto<=16825) red=Math.max(0,5565-1.5*(bruto-13115));
+    var bl=Math.max(0,(bruto-ss)-red-(5550+minExtra)-pp);
+    var irpfTotal=calcIRPFTramos(bl, ccaa);
+    var neto=bruto-ss-irpfTotal;
+    var pct=irpfTotal/Math.max(bruto,1)*100;
+    document.getElementById('irpf-results').innerHTML=
+      rr('Salario bruto anual',fmtEUR(bruto))+
+      rr('Seguridad Social trabajador (6,47%)',fmtEUR(ss),'o')+
+      rr('Base liquidable IRPF',fmtEUR(bl))+
+      rr('IRPF anual (estatal + autonómico)',fmtEUR(irpfTotal),'o')+
+      rr('Tipo efectivo IRPF',fmtPct(pct),'o')+
+      rr('Neto anual',fmtEUR(neto),'g')+
+      rr('Neto por paga ('+pagas+')',fmtEUR(neto/pagas),'g');
+    document.getElementById('irpf-chart-wrap').style.display='block';
+    document.getElementById('irpf-cta').style.display='flex';
+    if(window._irpfChart) window._irpfChart.destroy();
+    window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',
+      data:{labels:['Salario neto','IRPF','Seguridad Social'],
+        datasets:[{data:[+neto.toFixed(2),+irpfTotal.toFixed(2),+ss.toFixed(2)],
+          backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],
+          borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},
+      options:doughnutOpts(bruto)});
+  };
+  window.calcPension = function() {
+    var bruto=parseFloat(document.getElementById('pp-bruto').value)||0;
+    var aport=Math.min(parseFloat(document.getElementById('pp-aport').value)||0,10000);
+    var ccaa=document.getElementById('pp-ccaa').value;
+    function cn(b,er){
+      var ss=b*0.0647,red=0;
+      if(b<=13115)red=5565;else if(b<=16825)red=Math.max(0,5565-1.5*(b-13115));
+      var bl=Math.max(0,(b-ss)-red-5550-er);
+      return b-ss-calcIRPFTramos(bl,ccaa);
+    }
+    var ns=cn(bruto,0),nc=cn(bruto,aport),ahorro=nc-ns,coste=aport-ahorro;
+    document.getElementById('pp-results').innerHTML=
+      rr('Aportaci\u00f3n anual al plan',fmtEUR(aport))+rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportaci\u00f3n',fmtEUR(coste),'g')+rr('Ahorro por cada 100\u20ac aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
+    document.getElementById('pp-chart-wrap').style.display='block';document.getElementById('pp-cta').style.display='flex';
+    if(window._ppChart) window._ppChart.destroy();
+    window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin plan','Con plan'],datasets:[{label:'Neto anual',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+  };
+  window.calcAlquilervs = function() {
+    var precio=parseFloat(document.getElementById('avs-precio').value)||0;
+    var entrada=parseFloat(document.getElementById('avs-entrada').value)||0;
+    var tipo=parseFloat(document.getElementById('avs-tipo').value)||0;
+    var plazo=parseInt(document.getElementById('avs-plazo').value)||25;
+    var alqMes=parseFloat(document.getElementById('avs-alquiler').value)||0;
+    var revalor=parseFloat(document.getElementById('avs-revalor').value)||0;
+    var anos=parseInt(document.getElementById('avs-anos').value)||15;
+    var capital=precio-entrada;
+    if(capital<=0){document.getElementById('avs-results').innerHTML='<div class="empty-state">La entrada cubre el precio total.</div>';return;}
+    var r=tipo/100/12,n=plazo*12;
+    var cuota=(r===0)?capital/n:capital*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+    var mC=Math.min(anos*12,n);
+    var gastosComp=precio*0.10;
+    var valorPiso=precio*Math.pow(1+revalor/100,anos);
+    var labelsA=[],dComp=[],dAlq=[],acC=entrada+gastosComp,acA=0,alqAnual=alqMes*12;
+    for(var y=1;y<=anos;y++){acC+=cuota*12+2000;acA+=alqAnual*Math.pow(1.03,y-1);labelsA.push('A\u00f1o '+y);dComp.push(+acC.toFixed(2));dAlq.push(+acA.toFixed(2));}
+    document.getElementById('avs-results').innerHTML=
+      rr('Cuota hipotecaria mensual',fmtEUR(cuota))+rr('Coste total compra ('+anos+' a\u00f1os)',fmtEUR(acC),'o')+rr('Coste total alquiler ('+anos+' a\u00f1os)',fmtEUR(acA),'o')+rr('Valor estimado piso en '+anos+' a\u00f1os',fmtEUR(valorPiso),'g')+rr('Coste oportunidad entrada (7%/a)',fmtEUR(entrada*(Math.pow(1.07,anos)-1)),'o');
+    document.getElementById('avs-chart-wrap').style.display='block';document.getElementById('avs-cta').style.display='flex';
+    if(window._avsChart) window._avsChart.destroy();
+    window._avsChart=new Chart(document.getElementById('avs-chart').getContext('2d'),{type:'line',data:{labels:labelsA,datasets:[{label:'Coste compra acumulado',data:dComp,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2},{label:'Coste alquiler acumulado',data:dAlq,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+</script>
+</body>
+</html>

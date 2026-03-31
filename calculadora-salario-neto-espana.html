@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Salario Neto 2025 España — IRPF por Comunidad Autónoma | QuijoteFinanzas</title>
+<meta name="description" content="Calcula tu salario neto en España en 2025. IRPF real por comunidad autónoma, Seguridad Social y tipo efectivo. Gratis, sin registro, sin publicidad.">
+<meta name="keywords" content="calculadora salario neto 2025, salario bruto neto España, calculadora IRPF 2025, cuánto cobro en mano, retención nómina España">
+<meta name="author" content="Don Quijote de las Finanzas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quijotefinanzas.com/calculadora-salario-neto-espana.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quijotefinanzas.com/calculadora-salario-neto-espana.html">
+<meta property="og:title" content="Calculadora Salario Neto 2025 — IRPF por Comunidad Autónoma">
+<meta property="og:description" content="Calcula cuánto cobras en mano en 2025 con IRPF real según tu comunidad autónoma. Sin publicidad, sin registro.">
+<meta property="og:image" content="https://quijotefinanzas.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora Salario Neto 2025 España">
+<meta name="twitter:description" content="IRPF real por comunidad autónoma, SS y tipo efectivo. Gratis y sin registro.">
+<meta name="twitter:image" content="https://quijotefinanzas.com/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora Salario Neto 2025 España",
+  "description": "Calcula tu salario neto en 2025 con IRPF real por comunidad autónoma y cotizaciones a la Seguridad Social.",
+  "url": "https://quijotefinanzas.com/calculadora-salario-neto-espana.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "author": { "@type": "Person", "name": "Don Quijote de las Finanzas" }
+}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#0f2035;--navy2:#1a3358;--gold:#c9a84c;--silver:#c8d8e8;--silver2:#9ab0c8;--muted:#6a8aaa;--bg:#0d1a2e;--bg2:#132035;--border:rgba(184,200,216,.15);--cream:#e8f0f8}
+  body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--silver);min-height:100vh;line-height:1.6}
+  a{color:var(--gold);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{background:var(--navy);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:14px}
+  header img{height:36px;width:36px;border-radius:50%;border:1px solid rgba(201,168,76,.4)}
+  header h1{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--cream);font-weight:700}
+  header span{font-size:12px;color:var(--muted)}
+  .breadcrumb{padding:12px 24px;font-size:12px;color:var(--muted)}
+  .breadcrumb a{color:var(--muted)}
+  main{max-width:860px;margin:0 auto;padding:32px 24px}
+  h2{font-family:'Playfair Display',Georgia,serif;font-size:28px;color:var(--cream);margin-bottom:10px;line-height:1.3}
+  .subtitle{color:var(--silver2);font-size:15px;margin-bottom:28px;max-width:600px}
+  .calc-box{background:var(--navy);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:32px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:500}
+  input,select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--silver);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+  input:focus,select:focus{border-color:rgba(201,168,76,.5)}
+  select option{background:var(--navy)}
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:600px){.calc-grid{grid-template-columns:1fr}}
+  .btn{width:100%;padding:13px;background:var(--gold);color:var(--navy);border:none;border-radius:7px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .2s;margin-top:4px}
+  .btn:hover{opacity:.88}
+  .results{margin-top:20px;border-top:1px solid var(--border);padding-top:20px}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px}
+  .row:last-child{border-bottom:none;font-weight:700;font-size:15px;padding-top:12px}
+  .val.g{color:#7dd3a8}
+  .val.o{color:#f0a070}
+  .note{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6}
+  .faq{margin-top:48px}
+  .faq h3{font-family:'Playfair Display',Georgia,serif;font-size:20px;color:var(--cream);margin-bottom:20px}
+  details{border:1px solid var(--border);border-radius:8px;margin-bottom:10px;background:var(--navy)}
+  summary{padding:14px 16px;cursor:pointer;font-size:14px;font-weight:600;color:var(--silver);list-style:none;display:flex;justify-content:space-between}
+  summary::after{content:"＋";color:var(--gold);font-size:16px}
+  details[open] summary::after{content:"－"}
+  .faq-body{padding:4px 16px 16px;font-size:14px;color:var(--silver2);line-height:1.7}
+  footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);margin-top:48px}
+  footer a{color:var(--muted)}
+  .back-btn{display:inline-block;margin-bottom:24px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header>
+  <div style="width:36px;height:36px;border-radius:50%;background:var(--navy2);border:1px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;font-size:18px">🗡️</div>
+  <div>
+    <h1>Don Quijote de las Finanzas</h1>
+    <span>Con números, no con opiniones</span>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="https://quijotefinanzas.com">Inicio</a> &rsaquo; Calculadora salario neto
+</div>
+
+<main>
+  <a class="back-btn" href="https://quijotefinanzas.com#calculadoras">← Volver a calculadoras</a>
+
+  <h2>Calculadora de salario neto 2025</h2>
+  <p class="subtitle">Calcula cuánto cobras en mano con el IRPF real de tu comunidad autónoma y las cotizaciones a la Seguridad Social. Actualizado para 2025.</p>
+
+  <div class="calc-box">
+    <div class="calc-grid">
+      <div>
+        <div class="field"><label>Salario bruto anual (€)</label><input type="number" id="bruto" value="35000" min="0" step="500"></div>
+        <div class="field"><label>Número de pagas</label><select id="pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field"><label>Comunidad Autónoma</label><select id="ccaa">
+          <option value="andalucia">Andalucía</option><option value="aragon">Aragón</option>
+          <option value="asturias">Asturias</option><option value="baleares">Baleares</option>
+          <option value="canarias">Canarias</option><option value="cantabria">Cantabria</option>
+          <option value="clm">Castilla-La Mancha</option><option value="cyl">Castilla y León</option>
+          <option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option>
+          <option value="galicia">Galicia</option><option value="madrid" selected>Madrid</option>
+          <option value="murcia">Murcia</option><option value="rioja">La Rioja</option>
+          <option value="valencia">C. Valenciana</option>
+        </select></div>
+        <div class="field"><label>Situación personal</label><select id="sit">
+          <option value="0">Soltero/a sin hijos</option>
+          <option value="2400">Casado/a sin hijos</option>
+          <option value="2400">Con 1 hijo</option>
+          <option value="5100">Con 2 hijos o más</option>
+        </select></div>
+        <div class="field"><label>Aportación plan de pensiones/año (€)</label><input type="number" id="pp" value="0" min="0" max="10000"></div>
+        <button class="btn" onclick="calcular()">Calcular salario neto →</button>
+      </div>
+      <div id="results" style="display:none" class="results">
+        <div id="rows"></div>
+        <p class="note">Estimación orientativa 2025. No contempla deducciones autonómicas específicas ni circunstancias especiales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h3>Preguntas frecuentes sobre el salario neto</h3>
+    <details>
+      <summary>¿Qué descuentos tiene mi nómina?</summary>
+      <div class="faq-body">Tu nómina tiene dos descuentos principales: la cotización a la Seguridad Social (en 2025, un 6,47% del bruto para contingencias comunes) y la retención de IRPF. Esta última varía según tu salario, comunidad autónoma y situación personal.</div>
+    </details>
+    <details>
+      <summary>¿Por qué varía el IRPF según la comunidad autónoma?</summary>
+      <div class="faq-body">El IRPF tiene dos partes: la estatal (igual en toda España) y la autonómica (fijada por cada comunidad). Por eso, con el mismo salario bruto, en Madrid pagas menos IRPF que en Cataluña o Asturias. La diferencia puede ser de cientos o miles de euros al año.</div>
+    </details>
+    <details>
+      <summary>¿Qué es el tipo efectivo de IRPF?</summary>
+      <div class="faq-body">El tipo efectivo es el porcentaje real de IRPF que pagas sobre tu salario bruto. Es siempre menor que el tipo marginal (el tramo más alto al que tributas) porque los primeros tramos de renta tributan a tipos más bajos.</div>
+    </details>
+    <details>
+      <summary>¿Cómo afecta un plan de pensiones a mi nómina?</summary>
+      <div class="faq-body">Las aportaciones a planes de pensiones reducen tu base imponible del IRPF, lo que significa que pagas menos impuestos y cobras más neto. El límite es 1.500 €/año (o hasta 10.000 € si también aporta la empresa).</div>
+    </details>
+    <details>
+      <summary>¿Es lo mismo salario bruto y coste para la empresa?</summary>
+      <div class="faq-body">No. El coste para la empresa incluye además de tu salario bruto las cotizaciones empresariales a la Seguridad Social, que suponen aproximadamente un 32-33% adicional sobre tu bruto. Para calcular el coste real, usa nuestra calculadora de coste para la empresa.</div>
+    </details>
+  </div>
+
+  <div style="margin-top:40px;padding:20px;background:var(--navy);border:1px solid var(--border);border-radius:8px;text-align:center">
+    <p style="font-size:14px;color:var(--silver2);margin-bottom:12px">¿Quieres recibir avisos de nuevas calculadoras y recursos?</p>
+    <a href="https://quijotefinanzas.com#kit-main-cta" style="display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;padding:10px 22px;border-radius:6px;font-size:13px">Avisadme</a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Don Quijote de las Finanzas · <a href="https://quijotefinanzas.com/privacidad.html">Privacidad</a> · <a href="https://quijotefinanzas.com">Inicio</a></p>
+  <p style="margin-top:8px">Contenido educativo e informativo. No constituye asesoramiento fiscal ni financiero.</p>
+</footer>
+
+<script>
+function calcIRPFTramos(bl, ccaa) {
+  var est=(function(b){var t=0;if(b<=12450)t=b*0.095;else if(b<=20200)t=1182.75+(b-12450)*0.12;else if(b<=35200)t=2112.75+(b-20200)*0.15;else if(b<=60000)t=4362.75+(b-35200)*0.185;else if(b<=300000)t=8950.75+(b-60000)*0.225;else t=62950.75+(b-300000)*0.245;return t;})(bl);
+  var aut=(function(b){var r={andalucia:[[12450,.09],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]],aragon:[[12450,.10],[20200,.1225],[35200,.1575],[60000,.20],[300000,.235],[Infinity,.255]],asturias:[[12450,.10],[20200,.125],[35200,.17],[60000,.21],[90000,.235],[175000,.245],[300000,.26],[Infinity,.27]],baleares:[[12450,.09],[20200,.1175],[35200,.155],[60000,.195],[100000,.23],[200000,.245],[Infinity,.26]],canarias:[[12450,.09],[20200,.1175],[35200,.155],[60000,.195],[90000,.215],[Infinity,.245]],cantabria:[[12450,.10],[20200,.1275],[35200,.17],[60000,.21],[90000,.235],[Infinity,.255]],clm:[[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],cyl:[[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],cataluna:[[12450,.1050],[20200,.1250],[35200,.1650],[60000,.2050],[90000,.2250],[175000,.2550],[300000,.2650],[Infinity,.2750]],extremadura:[[12450,.10],[20200,.125],[35200,.175],[60000,.215],[Infinity,.255]],galicia:[[12450,.095],[20200,.1175],[35200,.155],[60000,.195],[Infinity,.225]],madrid:[[12450,.09],[20200,.1175],[35200,.155],[60000,.185],[Infinity,.21]],murcia:[[12450,.095],[20200,.12],[35200,.155],[60000,.195],[Infinity,.225]],rioja:[[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],valencia:[[12450,.10],[20200,.13],[35200,.18],[60000,.215],[150000,.235],[Infinity,.255]]};var tr=r[ccaa]||r['madrid'];var t=0,p=0;for(var i=0;i<tr.length;i++){var l=tr[i][0],ti=tr[i][1];if(b<=l){t+=(b-p)*ti;break;}t+=(l-p)*ti;p=l;}return t;})(bl);
+  return est+aut;
+}
+function fmt(n){return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2}).format(n);}
+function fmtP(n){return n.toFixed(2).replace('.',',')+'%';}
+function row(label,val,cls){return '<div class="row"><span>'+label+'</span><span class="val'+(cls?' '+cls:'')+'">' +val+'</span></div>';}
+function calcular(){
+  var b=parseFloat(document.getElementById('bruto').value)||0;
+  var pagas=parseInt(document.getElementById('pagas').value)||14;
+  var minExtra=parseFloat(document.getElementById('sit').value)||0;
+  var pp=parseFloat(document.getElementById('pp').value)||0;
+  var ccaa=document.getElementById('ccaa').value;
+  var ss=b*0.0647,red=0;
+  if(b<=13115)red=5565;else if(b<=16825)red=Math.max(0,5565-1.5*(b-13115));
+  var bl=Math.max(0,(b-ss)-red-(5550+minExtra)-pp);
+  var irpf=calcIRPFTramos(bl,ccaa);
+  var neto=b-ss-irpf;
+  var pct=irpf/Math.max(b,1)*100;
+  document.getElementById('rows').innerHTML=
+    row('Salario bruto anual',fmt(b))+
+    row('Seguridad Social (6,47%)',fmt(ss),'o')+
+    row('Base liquidable IRPF',fmt(bl))+
+    row('IRPF anual',fmt(irpf),'o')+
+    row('Tipo efectivo IRPF',fmtP(pct),'o')+
+    row('Neto anual',fmt(neto),'g')+
+    row('Neto por paga ('+pagas+')',fmt(neto/pagas),'g');
+  document.getElementById('results').style.display='block';
+}
+</script>
+</body>
+</html>
