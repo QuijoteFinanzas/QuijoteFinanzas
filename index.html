@@ -247,6 +247,27 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .referidos-list{display:flex;flex-direction:column;gap:10px}
 .ref-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .2s,transform .15s;text-decoration:none;position:relative}
 .ref-card:hover{border-color:rgba(184,200,216,.4);transform:translateX(3px)}
+/* ── QuijoCuentas ─────────────────────────────────────────────────────── */
+.cuentas-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.cuentas-badge{font-size:11px;color:var(--muted);background:rgba(184,200,216,.08);border:1px solid var(--border);padding:4px 10px;border-radius:4px;font-family:'DM Mono',monospace}
+.cuentas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:16px}
+.cuenta-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .15s;position:relative}
+.cuenta-card:hover{border-color:rgba(184,200,216,.35);transform:translateY(-2px)}
+.cuenta-card.top{border-color:rgba(201,168,76,.3)}
+.cuenta-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cuenta-banco{font-size:15px;font-weight:700;color:var(--cream);font-family:'Playfair Display',serif}
+.cuenta-tae{font-size:26px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace;line-height:1}
+.cuenta-tae span{font-size:13px;color:var(--muted);font-weight:400}
+.cuenta-meta-row{display:flex;gap:8px;flex-wrap:wrap}
+.cuenta-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(184,200,216,.08);color:var(--silver2);border:1px solid rgba(184,200,216,.12);white-space:nowrap}
+.cuenta-chip.fgd-es{background:rgba(201,168,76,.08);color:rgba(201,168,76,.8);border-color:rgba(201,168,76,.2)}
+.cuenta-chip.fgd-fr{background:rgba(125,170,211,.08);color:#7daad3;border-color:rgba(125,170,211,.2)}
+.cuenta-chip.fgd-de{background:rgba(200,140,255,.08);color:#c88cff;border-color:rgba(200,140,255,.2)}
+.cuenta-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px;font-size:12px}
+.cuenta-pro{color:#7dd3a8}.cuenta-pro::before{content:"✓ "}
+.cuenta-con{color:#f0a070}.cuenta-con::before{content:"△ "}
+.cuentas-disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6}
+.cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:8px;margin-top:16px}
 .ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:.75}
 .ref-cat-badge.banco{background:rgba(125,170,211,.2);color:#7daad3}
 .ref-cat-badge.inversion{background:rgba(125,211,168,.2);color:#7dd3a8}
@@ -502,6 +523,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <button class="nav-btn" data-section="teca">QuijoTeca</button>
     <button class="nav-btn" data-section="quijolista">QuijoLista</button>
     <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
+    <button class="nav-btn" data-section="cuentas">Cuentas</button>
     <button class="nav-btn" data-section="referidos">Referidos</button>
   </nav>
   <div id="kit-main-cta" style="margin:28px auto 0;max-width:520px;text-align:center;padding:24px 28px;background:var(--bg2);border:1px solid rgba(201,168,76,.45);border-radius:12px;">
@@ -681,6 +703,29 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   <a href="#kit-main-cta" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;text-decoration:none;">Avisadme</a>
 </div>
 </section>
+
+<section id="cuentas" class="section">
+  <div class="section-head">
+    <h2>🏦 QuijoCuentas</h2>
+    <p class="muted">Comparativa de cuentas remuneradas y depósitos actualizados cada mes. Sin publicidad, sin afiliados.</p>
+  </div>
+
+  <div class="filter-row" id="cuentas-filter">
+    <button class="cat-btn active" data-tab="sin">Sin condiciones</button>
+    <button class="cat-btn" data-tab="con">Con condiciones</button>
+    <button class="cat-btn" data-tab="depositos">Depósitos</button>
+  </div>
+
+  <div id="cuentas-content">
+    <!-- rendered by JS -->
+  </div>
+
+  <div class="kit-compact" style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);text-align:center">
+    <p style="font-size:13px;color:var(--muted);margin:0 0 10px 0;">¿Quieres recibir la actualización mensual cuando cambie el ranking?</p>
+    <a href="#kit-main-cta" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;text-decoration:none;">Avisadme</a>
+  </div>
+</section>
+
 
   <section id="referidos" class="section">
     <div class="section-header"><h2>Links referidos</h2><p>Solo recomiendo lo que uso yo. Si te registras con mi enlace, ambos ganamos.</p><div class="divider"></div></div>
@@ -1242,6 +1287,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if (secId === 'glosario') { setTimeout(function(){ if(window.renderCards) window.renderCards('glosarioGrid', window.glosarioItems||[], 'glosario'); }, 0); }
       if (secId === 'teca') { setTimeout(function(){ if(window.renderTeca) window.renderTeca(); }, 0); }
       if (secId === 'quijolista') { setTimeout(function(){ if(window.renderQuijoLista) window.renderQuijoLista(); }, 0); }
+      if (secId === 'cuentas') { setTimeout(function(){ if(window.renderCuentas) window.renderCuentas(); bindCuentasTabs && bindCuentasTabs(); }, 0); }
       try { history.replaceState(null, '', '#' + secId); } catch(e) {}
       window.scrollTo({ top: 0, behavior: 'smooth' });
       // GA4 event
@@ -1427,6 +1473,78 @@ document.addEventListener('DOMContentLoaded', function(){
         scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}
     });
   };
+
+  // ── QuijoCuentas ─────────────────────────────────────────────────────────
+  var cuentasData = [
+    // ── Sin condiciones ──
+    { tab:"sin", rank:1, banco:"Trade Republic", emoji:"🟢", tae:2.02, limite:"Sin límite", duracion:"Ligada al BCE", fgd:"🇩🇪 Alemania", fgdClass:"fgd-de", pro:"Muy flexible y competitiva", con:"No es banca tradicional" },
+    { tab:"sin", rank:2, banco:"Renault Bank", emoji:"🔵", tae:2.02, limite:"Sin límite", duracion:"Indefinida", fgd:"🇫🇷 Francia", fgdClass:"fgd-fr", pro:"Equilibrio rentabilidad/simplicidad", con:"Sin operativa diaria" },
+    { tab:"sin", rank:3, banco:"Cajamar", emoji:"🟡", tae:1.76, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"🇪🇸 España", fgdClass:"fgd-es", pro:"FGD español, sencilla", con:"Baja rentabilidad >50k" },
+    { tab:"sin", rank:4, banco:"B100 (ABANCA)", emoji:"🟡", tae:1.75, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"🇪🇸 España", fgdClass:"fgd-es", pro:"Clara y sin fricciones", con:"Límite de saldo bajo" },
+    { tab:"sin", rank:5, banco:"Pibank / Banco BiG", emoji:"⚪", tae:1.51, limite:"Sin límite", duracion:"Indefinida", fgd:"🇪🇸🇵🇹 ES/PT", fgdClass:"fgd-es", pro:"Sin fricciones ni vinculaciones", con:"Menor rentabilidad" },
+  ];
+
+  var cuentasTab = "sin";
+
+  window.renderCuentas = function() {
+    var filtered = cuentasData.filter(function(c){ return c.tab === cuentasTab; });
+    var container = document.getElementById('cuentas-content');
+    if (!container) return;
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="cuentas-pronto">📋 Esta sección está en preparación.<br><span style="font-size:12px;opacity:.6">La publicaremos en la próxima actualización.</span></div>';
+      return;
+    }
+
+    var mes = "marzo 2026";
+    var html = '<div class="cuentas-header">'
+      + '<p style="font-size:13px;color:var(--silver2)">Ordenadas de mayor a menor TAE &middot; <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>'
+      + '<span class="cuentas-badge">Actualizado: ' + mes + '</span>'
+      + '</div>';
+
+    html += '<div class="cuentas-grid">'
+      + filtered.map(function(c) {
+        var isTop = c.rank <= 2;
+        return '<div class="cuenta-card' + (isTop ? ' top' : '') + '">'
+          + '<div class="cuenta-top">'
+            + '<div>'
+              + (isTop ? '<div style="font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px">'
+                + (c.rank === 1 ? '🥇 Mejor opción' : '🥈 2ª opción') + '</div>' : '')
+              + '<div class="cuenta-banco">' + c.banco + '</div>'
+            + '</div>'
+            + '<div style="text-align:right">'
+              + '<div class="cuenta-tae">' + c.tae.toFixed(2).replace('.',',') + '<span>% TAE</span></div>'
+            + '</div>'
+          + '</div>'
+          + '<div class="cuenta-meta-row">'
+            + '<span class="cuenta-chip">💰 ' + c.limite + '</span>'
+            + '<span class="cuenta-chip">⏱ ' + c.duracion + '</span>'
+            + '<span class="cuenta-chip ' + c.fgdClass + '">🔐 FGD ' + c.fgd + '</span>'
+          + '</div>'
+          + '<div class="cuenta-pros-cons">'
+            + '<span class="cuenta-pro">' + c.pro + '</span>'
+            + '<span class="cuenta-con">' + c.con + '</span>'
+          + '</div>'
+        + '</div>';
+      }).join('')
+      + '</div>'
+      + '<p class="cuentas-disclaimer">⚠️ Los tipos y condiciones pueden cambiar. Verifica siempre en la web del banco antes de contratar. Contenido informativo, no asesoramiento financiero. FGD cubre hasta 100.000€ por titular y entidad.</p>';
+
+    container.innerHTML = html;
+  };
+
+  function bindCuentasTabs() {
+    var row = document.getElementById('cuentas-filter');
+    if (!row) return;
+    row.querySelectorAll('.cat-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        row.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        cuentasTab = btn.getAttribute('data-tab');
+        renderCuentas();
+      });
+    });
+  }
 
   window.openCalc = function(id) {
     document.getElementById('modal-'+id).classList.add('open');
@@ -2270,6 +2388,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   window.bindTecaFilters && window.bindTecaFilters();
   window.renderTeca && window.renderTeca();
   window.renderQuijoLista && window.renderQuijoLista();
+  window.renderCuentas && window.renderCuentas();
+  bindCuentasTabs && bindCuentasTabs();
 
   // ── GA4: Referidos clicks ─────────────────────────────────────────────
   document.querySelectorAll('#refList .ref-card').forEach(function(card) {
@@ -2961,6 +3081,7 @@ $('tm-share').addEventListener('click', function(){
     <button class="nav-btn" data-section="teca">QuijoTeca</button>
     <button class="nav-btn" data-section="quijolista">QuijoLista</button>
     <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
+    <button class="nav-btn" data-section="cuentas">Cuentas</button>
     <button class="nav-btn" data-section="referidos">Referidos</button>
   </nav>
   <div id="kit-main-cta" style="margin:28px auto 0;max-width:520px;text-align:center;padding:24px 28px;background:var(--bg2);border:1px solid rgba(201,168,76,.45);border-radius:12px;">
@@ -3140,6 +3261,29 @@ $('tm-share').addEventListener('click', function(){
   <a href="#kit-main-cta" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;text-decoration:none;">Avisadme</a>
 </div>
 </section>
+
+<section id="cuentas" class="section">
+  <div class="section-head">
+    <h2>🏦 QuijoCuentas</h2>
+    <p class="muted">Comparativa de cuentas remuneradas y depósitos actualizados cada mes. Sin publicidad, sin afiliados.</p>
+  </div>
+
+  <div class="filter-row" id="cuentas-filter">
+    <button class="cat-btn active" data-tab="sin">Sin condiciones</button>
+    <button class="cat-btn" data-tab="con">Con condiciones</button>
+    <button class="cat-btn" data-tab="depositos">Depósitos</button>
+  </div>
+
+  <div id="cuentas-content">
+    <!-- rendered by JS -->
+  </div>
+
+  <div class="kit-compact" style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);text-align:center">
+    <p style="font-size:13px;color:var(--muted);margin:0 0 10px 0;">¿Quieres recibir la actualización mensual cuando cambie el ranking?</p>
+    <a href="#kit-main-cta" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 20px;border-radius:6px;text-decoration:none;">Avisadme</a>
+  </div>
+</section>
+
 
   <section id="referidos" class="section">
     <div class="section-header"><h2>Links referidos</h2><p>Solo recomiendo lo que uso yo. Si te registras con mi enlace, ambos ganamos.</p><div class="divider"></div></div>
@@ -3642,6 +3786,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if (secId === 'glosario') { setTimeout(function(){ if(window.renderCards) window.renderCards('glosarioGrid', window.glosarioItems||[], 'glosario'); }, 0); }
       if (secId === 'teca') { setTimeout(function(){ if(window.renderTeca) window.renderTeca(); }, 0); }
       if (secId === 'quijolista') { setTimeout(function(){ if(window.renderQuijoLista) window.renderQuijoLista(); }, 0); }
+      if (secId === 'cuentas') { setTimeout(function(){ if(window.renderCuentas) window.renderCuentas(); bindCuentasTabs && bindCuentasTabs(); }, 0); }
       try { history.replaceState(null, '', '#' + secId); } catch(e) {}
       window.scrollTo({ top: 0, behavior: 'smooth' });
       // GA4 event
@@ -3827,6 +3972,78 @@ document.addEventListener('DOMContentLoaded', function(){
         scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}
     });
   };
+
+  // ── QuijoCuentas ─────────────────────────────────────────────────────────
+  var cuentasData = [
+    // ── Sin condiciones ──
+    { tab:"sin", rank:1, banco:"Trade Republic", emoji:"🟢", tae:2.02, limite:"Sin límite", duracion:"Ligada al BCE", fgd:"🇩🇪 Alemania", fgdClass:"fgd-de", pro:"Muy flexible y competitiva", con:"No es banca tradicional" },
+    { tab:"sin", rank:2, banco:"Renault Bank", emoji:"🔵", tae:2.02, limite:"Sin límite", duracion:"Indefinida", fgd:"🇫🇷 Francia", fgdClass:"fgd-fr", pro:"Equilibrio rentabilidad/simplicidad", con:"Sin operativa diaria" },
+    { tab:"sin", rank:3, banco:"Cajamar", emoji:"🟡", tae:1.76, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"🇪🇸 España", fgdClass:"fgd-es", pro:"FGD español, sencilla", con:"Baja rentabilidad >50k" },
+    { tab:"sin", rank:4, banco:"B100 (ABANCA)", emoji:"🟡", tae:1.75, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"🇪🇸 España", fgdClass:"fgd-es", pro:"Clara y sin fricciones", con:"Límite de saldo bajo" },
+    { tab:"sin", rank:5, banco:"Pibank / Banco BiG", emoji:"⚪", tae:1.51, limite:"Sin límite", duracion:"Indefinida", fgd:"🇪🇸🇵🇹 ES/PT", fgdClass:"fgd-es", pro:"Sin fricciones ni vinculaciones", con:"Menor rentabilidad" },
+  ];
+
+  var cuentasTab = "sin";
+
+  window.renderCuentas = function() {
+    var filtered = cuentasData.filter(function(c){ return c.tab === cuentasTab; });
+    var container = document.getElementById('cuentas-content');
+    if (!container) return;
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="cuentas-pronto">📋 Esta sección está en preparación.<br><span style="font-size:12px;opacity:.6">La publicaremos en la próxima actualización.</span></div>';
+      return;
+    }
+
+    var mes = "marzo 2026";
+    var html = '<div class="cuentas-header">'
+      + '<p style="font-size:13px;color:var(--silver2)">Ordenadas de mayor a menor TAE &middot; <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>'
+      + '<span class="cuentas-badge">Actualizado: ' + mes + '</span>'
+      + '</div>';
+
+    html += '<div class="cuentas-grid">'
+      + filtered.map(function(c) {
+        var isTop = c.rank <= 2;
+        return '<div class="cuenta-card' + (isTop ? ' top' : '') + '">'
+          + '<div class="cuenta-top">'
+            + '<div>'
+              + (isTop ? '<div style="font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px">'
+                + (c.rank === 1 ? '🥇 Mejor opción' : '🥈 2ª opción') + '</div>' : '')
+              + '<div class="cuenta-banco">' + c.banco + '</div>'
+            + '</div>'
+            + '<div style="text-align:right">'
+              + '<div class="cuenta-tae">' + c.tae.toFixed(2).replace('.',',') + '<span>% TAE</span></div>'
+            + '</div>'
+          + '</div>'
+          + '<div class="cuenta-meta-row">'
+            + '<span class="cuenta-chip">💰 ' + c.limite + '</span>'
+            + '<span class="cuenta-chip">⏱ ' + c.duracion + '</span>'
+            + '<span class="cuenta-chip ' + c.fgdClass + '">🔐 FGD ' + c.fgd + '</span>'
+          + '</div>'
+          + '<div class="cuenta-pros-cons">'
+            + '<span class="cuenta-pro">' + c.pro + '</span>'
+            + '<span class="cuenta-con">' + c.con + '</span>'
+          + '</div>'
+        + '</div>';
+      }).join('')
+      + '</div>'
+      + '<p class="cuentas-disclaimer">⚠️ Los tipos y condiciones pueden cambiar. Verifica siempre en la web del banco antes de contratar. Contenido informativo, no asesoramiento financiero. FGD cubre hasta 100.000€ por titular y entidad.</p>';
+
+    container.innerHTML = html;
+  };
+
+  function bindCuentasTabs() {
+    var row = document.getElementById('cuentas-filter');
+    if (!row) return;
+    row.querySelectorAll('.cat-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        row.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        cuentasTab = btn.getAttribute('data-tab');
+        renderCuentas();
+      });
+    });
+  }
 
   window.openCalc = function(id) {
     document.getElementById('modal-'+id).classList.add('open');
@@ -4670,6 +4887,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   window.bindTecaFilters && window.bindTecaFilters();
   window.renderTeca && window.renderTeca();
   window.renderQuijoLista && window.renderQuijoLista();
+  window.renderCuentas && window.renderCuentas();
+  bindCuentasTabs && bindCuentasTabs();
 
   // ── GA4: Referidos clicks ─────────────────────────────────────────────
   document.querySelectorAll('#refList .ref-card').forEach(function(card) {
