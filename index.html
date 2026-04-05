@@ -162,7 +162,15 @@ body.show-home-intro .compact-brand{display:none}
 .ql-tipo-badge{margin-left:auto;font-family:"DM Mono",monospace;font-size:11px;color:rgba(201,168,76,.95);border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.08);padding:5px 10px;border-radius:999px;flex-shrink:0;white-space:nowrap;}
 .ql-isin{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3px;}
 .ql-myi{display:inline-block;margin-top:6px;font-size:11px;font-weight:600;color:#1677be;text-decoration:none;border:1px solid rgba(22,119,190,.3);padding:2px 8px;border-radius:4px;transition:all .2s;}
+
 .ql-myi:hover{background:rgba(22,119,190,.12);border-color:#1677be;}
+.ql-helper-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ql-helper-chip{display:inline-flex;align-items:center;font-size:10px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);background:rgba(184,200,216,.04);padding:3px 8px;border-radius:999px}
+.ql-next{margin-top:18px}
+.ql-next-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.ql-next-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);border:1px solid var(--border);padding:6px 12px;border-radius:4px;text-decoration:none;transition:all .2s;background:var(--tag-bg)}
+.ql-next-link:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
+
 .nav-btn{background:none;border:1px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 18px;border-radius:4px;cursor:pointer;transition:all .2s}
 .nav-btn:hover{color:var(--cream);border-color:var(--border)}
 .nav-btn.active{color:var(--silver2);border-color:rgba(184,200,216,.35);background:rgba(184,200,216,.06)}
@@ -811,7 +819,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   <section id="quijolista" class="section">
   <div class="section-head">
     <h2>📋 QuijoLista</h2>
-    <p class="muted">Fondos, ETFs, ETCs y Planes de Pensiones que sigo y me parecen interesantes. No es una recomendación de inversión — investiga siempre antes de decidir. Complementa con la <a href="calculadora-interes-compuesto.html" style="color:var(--gold)">calculadora de interés compuesto</a>.</p>
+    <p class="muted">Fondos, ETFs, ETCs, Planes de Pensiones y Roboadvisors que sigo y me parecen interesantes. No es una recomendación de inversión: investiga siempre antes de decidir. Puedes complementarlo con la <a href="calculadora-interes-compuesto.html" style="color:var(--gold)">calculadora de interés compuesto</a>.</p>
   </div>
   <div class="filter-row" id="ql-filter">
     <button class="cat-btn active" data-cat="todos">Todos</button>
@@ -823,8 +831,9 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     <button class="cat-btn" data-cat="nicho">Nicho</button>
     <button class="cat-btn" data-cat="roboadvisor">Roboadvisors</button>
   </div>
+  <div id="ql-context" class="note" style="margin-top:0;margin-bottom:18px;padding:12px 16px;font-size:12px;line-height:1.6"><strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto y comprueba siempre disponibilidad y condiciones en tu plataforma.</div>
   <div class="referidos-list" id="quijolistaGrid"></div>
-  <p class="note" style="margin-top:20px;">Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS). Los Roboadvisors no tienen ISIN. Verifica siempre en tu plataforma de inversión.</p>
+  <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS) y los Roboadvisors no tienen ISIN. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
 </section>
 
   <section id="calculadoras" class="section">
@@ -869,26 +878,31 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 <section id="cuentas" class="section">
   <div class="section-head">
     <h2>🏦 QuijoCuentas</h2>
-    <p class="muted">Comparativa mensual de cuentas y depósitos en España. Sin publicidad, sin afiliados. Solo datos. <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>
+    <p class="muted">Comparativa mensual de cuentas y depósitos en España. Ordenado por tipo de producto y nivel de vinculación. Sin publicidad, sin afiliados. Solo datos. <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;font-size:12px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:20px;font-size:12px">
     <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--gold);font-weight:700;margin-bottom:4px">Sin condiciones</div>
+      <div style="color:var(--gold);font-weight:700;margin-bottom:4px">Cuentas sin condiciones</div>
       <div style="color:var(--muted);line-height:1.5">Para dinero líquido. Sin nómina ni recibos. Entra y sal cuando quieras.</div>
     </div>
     <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Con condiciones</div>
-      <div style="color:var(--muted);line-height:1.5">Mayor rentabilidad a cambio de domiciliar nómina o recibos.</div>
+      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Cuentas con condiciones</div>
+      <div style="color:var(--muted);line-height:1.5">Mayor rentabilidad a cambio de cierta vinculación: nómina, recibos o uso de tarjeta.</div>
     </div>
     <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Depósitos</div>
-      <div style="color:var(--muted);line-height:1.5">Dinero inmovilizado a un plazo fijo. Mayor interés, menor liquidez.</div>
+      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Depósitos sin condiciones</div>
+      <div style="color:var(--muted);line-height:1.5">Plazo fijo sin apenas requisitos adicionales. Más interés a cambio de menor liquidez.</div>
+    </div>
+    <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
+      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Depósitos con condiciones</div>
+      <div style="color:var(--muted);line-height:1.5">Rentabilidad sujeta a importes, plazos, vinculación o promociones concretas.</div>
     </div>
   </div>
   <div class="filter-row" id="cuentas-filter">
-    <button class="cat-btn active" data-tab="sin">Sin condiciones</button>
-    <button class="cat-btn" data-tab="con">Con condiciones</button>
-    <button class="cat-btn" data-tab="depositos">Depósitos</button>
+    <button class="cat-btn active" data-tab="sin">Cuentas sin condiciones</button>
+    <button class="cat-btn" data-tab="con">Cuentas con condiciones</button>
+    <button class="cat-btn" data-tab="dep-sin">Depósitos sin condiciones</button>
+    <button class="cat-btn" data-tab="dep-con">Depósitos con condiciones</button>
   </div>
 
   <div id="cuentas-content">
@@ -2068,7 +2082,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!container) return;
 
     if (filtered.length === 0) {
-      container.innerHTML = '<div class="cuentas-pronto">📋 Esta sección está en preparación.<br><span style="font-size:12px;opacity:.6">La publicaremos en la próxima actualización.</span></div>';
+      container.innerHTML = '<div class="cuentas-pronto">📋 Esta categoría está en preparación.<br><span style="font-size:12px;opacity:.6">La completaremos en una próxima actualización.</span></div>';
       return;
     }
 
@@ -3060,7 +3074,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   var quijolistaItems = [
     { cat:"rv", tipo:"Fondo", nombre:"Alken Fund Small Cap Europe Class A", isin:"LU0524465548", gestora:"Alken AM", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Amundi Index MSCI Emerging Markets IE-C", isin:"LU0996175948", gestora:"Amundi", myi:true },
-    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"AXA IM", myi:false },
+    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"AXA IM", myi:true },
     { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116", gestora:"Azvalor AM", myi:false },
     { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:false },
     { cat:"rf", tipo:"Fondo", nombre:"BrightGate Global Income Fund F EUR Acc", isin:"LU1984948874", gestora:"BrightGate Capital", myi:false },
@@ -3091,6 +3105,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394", gestora:"MyInvestor", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:false },
     { cat:"monetario", tipo:"Fondo", nombre:"Ostrum SRI Credit Ultra Short Plus R/C EUR", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:false },
+    { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Robeco QI Emerging Markets Active Equities D EUR", isin:"LU0329355670", gestora:"Robeco", myi:true },
     { cat:"nicho", tipo:"Fondo", nombre:"Robeco Smart Energy D-EUR Capitalisation", isin:"LU2145461757", gestora:"Robeco", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI", isin:"ES0175902008", gestora:"Welzia", myi:false },
@@ -3110,25 +3125,53 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     { cat:"nicho", tipo:"ETC",  nombre:"Xetra-Gold", isin:"DE000A0S9GB0", gestora:"Deutsche Börse", myi:false },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Finizens", gestora:"Finizens SGIIC", myi:false },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Indexa Capital", gestora:"Indexa Capital AV", myi:false },
-    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"MyInvestor Cartera Indexada", gestora:"MyInvestor", myi:true },
+    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Carteras automatizadas MyInvestor", gestora:"MyInvestor", myi:true },
   ];
 
   var qlSiglas = {rv:"RV", rf:"RF", monetario:"M", mixto:"MX", pp:"PP", nicho:"N", roboadvisor:"RA"};
 
   var qlFilter = "todos";
   window.renderQuijoLista = function(){
-    var filtered = qlFilter === "todos" ? quijolistaItems : quijolistaItems.filter(function(x){ return x.cat === qlFilter; });
+    var filtered = qlFilter === "todos" ? quijolistaItems.slice() : quijolistaItems.filter(function(x){ return x.cat === qlFilter; });
+    filtered.sort(function(a,b){ return a.nombre.localeCompare(b.nombre, 'es'); });
     var grid = document.getElementById("quijolistaGrid");
+    var ctx = document.getElementById("ql-context");
     if(!grid) return;
+
+    var contextMap = {
+      'todos': '<strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto, entiende primero qué papel tendría cada opción en tu cartera y comprueba siempre disponibilidad y condiciones en tu plataforma.',
+      'rv': '<strong>Renta variable:</strong> Ideas para exposición a bolsa global, regional o temática. Útil para horizontes largos y perfiles que aceptan volatilidad.',
+      'rf': '<strong>Renta fija:</strong> Productos más orientados a estabilidad y diversificación defensiva. Mira duración, calidad crediticia y divisa antes de decidir.',
+      'monetario': '<strong>Monetario:</strong> Pensado para liquidez e inversión muy conservadora a corto plazo. Tiene sentido compararlo con cuentas remuneradas y depósitos.',
+      'mixto': '<strong>Mixto:</strong> Mezclan renta variable y renta fija en un mismo producto. Suelen ser útiles para quien quiere una solución intermedia.',
+      'pp': '<strong>Planes de pensiones:</strong> Tienen sentido sobre todo por fiscalidad y planificación de largo plazo. No conviene mirarlos solo por rentabilidad.',
+      'nicho': '<strong>Nicho:</strong> Productos más específicos o temáticos. Mejor entender bien qué papel tendrían en cartera antes de incorporarlos.',
+      'roboadvisor': '<strong>Roboadvisors:</strong> Para quien quiere invertir de forma automatizada y sencilla. Conviene comparar costes, filosofía y fondos subyacentes.'
+    };
+    if(ctx){ ctx.innerHTML = contextMap[qlFilter] || contextMap['todos']; }
+
     grid.innerHTML = filtered.map(function(f){
       var sigla = qlSiglas[f.cat] || "";
       var myiHtml = f.myi ? '<a class="ql-myi" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" target="_blank" rel="noopener">Disponible en MyInvestor ↗</a>' : '';
+      var helperMap = {
+        monetario: ['Liquidez conservadora'],
+        roboadvisor: ['Gestión automatizada'],
+        nicho: ['Exposición temática o específica'],
+        rv: [f.tipo === 'ETF' ? 'Indexado' : 'Fondo'],
+        rf: ['Diversificación defensiva'],
+        mixto: ['Solución intermedia'],
+        pp: ['Enfoque fiscal']
+      };
+      var helperChips = (helperMap[f.cat] || []).map(function(label){
+        return '<span class="ql-helper-chip">'+label+'</span>';
+      }).join('');
       return '<div class="ref-card ql-card" data-cat="'+f.cat+'">'
         +'<div class="ref-logo ql-logo">'+sigla+'</div>'
         +'<div class="ref-info">'
           +'<h3>'+f.nombre+'</h3>'
           +'<p>'+f.gestora+'</p>'
           +(f.cat !== 'roboadvisor' ? '<p class="ref-meta"><span class="ql-isin">ISIN: '+f.isin+'</span></p>' : '')
+          +(helperChips ? '<div class="ql-helper-row">'+helperChips+'</div>' : '')
           +myiHtml
         +'</div>'
         +'<div class="ql-tipo-badge">'+f.tipo+'</div>'
