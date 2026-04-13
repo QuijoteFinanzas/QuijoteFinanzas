@@ -903,11 +903,11 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
     </div>
   </div>
   <div class="filter-row" id="cuentas-filter">
-    <button class="cat-btn active" data-tab="sin">Cuentas sin condiciones</button>
-    <button class="cat-btn" data-tab="con">Cuentas con condiciones</button>
-    <button class="cat-btn" data-tab="nomina">Cuentas nómina</button>
-    <button class="cat-btn" data-tab="dep-sin">Depósitos sin condiciones</button>
-    <button class="cat-btn" data-tab="dep-con">Depósitos con condiciones</button>
+    <button type="button" class="cat-btn active" data-tab="sin" onclick="setCuentasTab('sin');return false;">Cuentas sin condiciones</button>
+    <button type="button" class="cat-btn" data-tab="con" onclick="setCuentasTab('con');return false;">Cuentas con condiciones</button>
+    <button type="button" class="cat-btn" data-tab="nomina" onclick="setCuentasTab('nomina');return false;">Cuentas nómina</button>
+    <button type="button" class="cat-btn" data-tab="dep-sin" onclick="setCuentasTab('dep-sin');return false;">Depósitos sin condiciones</button>
+    <button type="button" class="cat-btn" data-tab="dep-con" onclick="setCuentasTab('dep-con');return false;">Depósitos con condiciones</button>
   </div>
 
   <div id="cuentas-content">
@@ -2155,15 +2155,25 @@ document.addEventListener('DOMContentLoaded', function(){
     container.innerHTML = html;
   };
 
+  window.setCuentasTab = function(tab) {
+    var row = document.getElementById('cuentas-filter');
+    cuentasTab = tab;
+    if (row) {
+      row.querySelectorAll('.cat-btn').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-tab') === tab);
+      });
+    }
+    if (window.renderCuentas) window.renderCuentas();
+  };
+
   function bindCuentasTabs() {
     var row = document.getElementById('cuentas-filter');
-    if (!row) return;
+    if (!row || row.dataset.bound === '1') return;
+    row.dataset.bound = '1';
     row.querySelectorAll('.cat-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        row.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.remove('active'); });
-        btn.classList.add('active');
-        cuentasTab = btn.getAttribute('data-tab');
-        renderCuentas();
+      btn.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        setCuentasTab(btn.getAttribute('data-tab'));
       });
     });
   }
