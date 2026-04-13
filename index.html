@@ -117,7 +117,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0d1a2e;--bg2:#132240;--bg3:#1a2d50;--silver:#b8c8d8;--silver2:#d4e2ec;--cream:#e8f0f7;--muted:#6a8aaa;--border:#1e3355;--tag-bg:#0f1f35;--green:#7dd3a8;--orange:#f0a070}
+:root{--bg:#0d1a2e;--bg2:#132240;--bg3:#1a2d50;--silver:#b8c8d8;--silver2:#d4e2ec;--cream:#e8f0f7;--muted:#6a8aaa;--border:#1e3355;--tag-bg:#0f1f35;--green:#7dd3a8;--orange:#f0a070;--gold:#c9a84c}
 html,body{background:#0d1a2e}
 *{margin:0;padding:0;box-sizing:border-box}
 body{color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
@@ -675,7 +675,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   <nav id="main-nav">
     <button class="nav-btn active" data-section="sobre">Sobre m&iacute;</button>
     <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
-    <button class="nav-btn" data-section="cuentas">QuijoCuentas</button>
+    <button class="nav-btn" data-section="cuentas">Cuentas</button>
     <button class="nav-btn" data-section="quijolista">QuijoLista</button>
     <button class="nav-btn" data-section="recursos">Recursos</button>
     <button class="nav-btn" data-section="teca">QuijoTeca</button>
@@ -2066,34 +2066,39 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ── QuijoCuentas ─────────────────────────────────────────────────────────
   var cuentasData = [
-    { tab:"sin", rank:1, banco:"Trade Republic", tae:"2,02% TAE", limite:"Sin límite", duracion:"Ligado a tipos BCE", condiciones:"Sin condiciones", fgd:"Bancos asociados (FGD)", fgdClass:"fgd-de", pro:"Muy flexible y competitiva", con:"Estructura distinta a banca tradicional" },
-    { tab:"sin", rank:2, banco:"Renault Bank – Cuenta Contigo", tae:"2,02% TAE", limite:"Sin límite", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"Francia", fgdClass:"fgd-fr", pro:"Buen equilibrio rentabilidad-simplicidad", con:"Sin operativa completa" },
-    { tab:"sin", rank:3, banco:"Pibank / Banco BiG", tae:"1,51% TAE", limite:"Sin límite (Pibank)", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"España / Portugal", fgdClass:"fgd-es", pro:"Opciones simples y sin fricción", con:"Menor rentabilidad frente a líderes" },
-    { tab:"sin", rank:4, banco:"B100 (ABANCA)", tae:"1,75% TAE", limite:"Hasta 50.000€", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"España", fgdClass:"fgd-es", pro:"Cuenta clara y sencilla", con:"Límite de saldo" },
-    { tab:"sin", rank:5, banco:"Cajamar – Cuenta Ahorro", tae:"1,76% TAE", limite:"Hasta 50.000€ / 1,00% después", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"España", fgdClass:"fgd-es", pro:"Útil para importes medios", con:"Pierde atractivo en saldos altos" },
+    // ── Cuentas sin condiciones ──
+    { tab:"sin", rank:1, banco:"Trade Republic – Cuenta remunerada", tae:2.02, limite:"Sin límite", duracion:"Ligada a tipos BCE", condiciones:"Sin condiciones", fgd:"bancos asociados", fgdClass:"fgd-de", pro:"Muy flexible y competitiva", con:"Estructura distinta a banca tradicional" },
+    { tab:"sin", rank:2, banco:"Renault Bank – Cuenta Contigo", tae:2.02, limite:"Sin límite", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"francés", fgdClass:"fgd-fr", pro:"Muy buen equilibrio rentabilidad–simplicidad", con:"Sin operativa completa" },
+    { tab:"sin", rank:3, banco:"Pibank / Banco BiG", tae:1.51, limite:"Sin límite (Pibank)", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"español / portugués", fgdClass:"fgd-es", pro:"Opciones simples y sin fricción", con:"Menor rentabilidad frente a líderes" },
+    { tab:"sin", rank:4, banco:"B100 (ABANCA)", tae:1.75, limite:"Hasta 50.000€", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"español", fgdClass:"fgd-es", pro:"Cuenta clara y sencilla", con:"Límite de saldo" },
+    { tab:"sin", rank:5, banco:"Cajamar – Cuenta Ahorro", tae:1.76, limite:"Hasta 50.000€", duracion:"Indefinida", condiciones:"Sin condiciones", fgd:"español", fgdClass:"fgd-es", pro:"Útil para importes medios", con:"Pierde atractivo en saldos altos" },
 
-    { tab:"con", rank:1, banco:"Bankinter – Cuenta No Nómina", tae:"5,00% TAE 1er año · 2,00% 2º año", limite:"Hasta 10.000€", duracion:"2 años", condiciones:"Recibos, gasto o ingresos", fgd:"España", fgdClass:"fgd-es", pro:"La mayor rentabilidad total", con:"Limitada a 10.000€" },
-    { tab:"con", rank:2, banco:"Cajamar – Cuenta Online", tae:"3,04% TAE", limite:"Hasta 50.000€", duracion:"6 meses", condiciones:"Bizum activo · nuevos clientes", fgd:"España", fgdClass:"fgd-es", pro:"Muy alta rentabilidad a corto plazo", con:"Tras 6 meses deja de remunerar" },
-    { tab:"con", rank:3, banco:"Openbank – Cuenta Ahorro", tae:"2,02% TAE", limite:"Hasta 1.000.000€", duracion:"12 meses", condiciones:"Nuevos clientes · hasta 200€ por recibos", fgd:"España", fgdClass:"fgd-es", pro:"Buena combinación de % y volumen", con:"Baja tras el primer año" },
-    { tab:"con", rank:4, banco:"Bankinter – Cuenta Digital", tae:"2,00% TAE · 1,62% sin nómina", limite:"Hasta 50.000€", duracion:"12 meses", condiciones:"Nómina y Bizum", fgd:"España", fgdClass:"fgd-es", pro:"Interesante para saldos altos", con:"Parte del dinero pasa por cuenta al 0%" },
-    { tab:"con", rank:5, banco:"Cetelem – Cuenta Ahorro", tae:"2,10% TAE", limite:"—", duracion:"12 meses", condiciones:"Solo nuevos clientes", fgd:"Francia", fgdClass:"fgd-fr", pro:"Sencilla y sin fricciones", con:"Baja tras el primer año" },
+    // ── Cuentas con condiciones ──
+    { tab:"con", rank:1, banco:"Bankinter – Cuenta No Nómina", tae:5.00, limite:"Hasta 10.000€", duracion:"5,00% 1er año · 2,00% 2º año", condiciones:"Recibos, gasto o ingresos", fgd:"español", fgdClass:"fgd-es", pro:"La mayor rentabilidad total", con:"Limitada a 10.000€" },
+    { tab:"con", rank:2, banco:"Cajamar – Cuenta Online", tae:3.04, limite:"Hasta 50.000€", duracion:"6 meses", condiciones:"Bizum activo · nuevos clientes", fgd:"español", fgdClass:"fgd-es", pro:"Muy alta rentabilidad a corto plazo", con:"Tras 6 meses deja de remunerar" },
+    { tab:"con", rank:3, banco:"Openbank – Cuenta Ahorro", tae:2.02, limite:"Hasta 1.000.000€", duracion:"12 meses", condiciones:"Nuevos clientes · hasta 200€ por recibos", fgd:"español", fgdClass:"fgd-es", pro:"Buena combinación de % y volumen", con:"Baja tras el primer año" },
+    { tab:"con", rank:4, banco:"Bankinter – Cuenta Digital", tae:2.00, limite:"Hasta 50.000€", duracion:"12 meses", condiciones:"Nómina y Bizum", fgd:"español", fgdClass:"fgd-es", pro:"Interesante para saldos altos", con:"Parte del dinero pasa por cuenta al 0%" },
+    { tab:"con", rank:5, banco:"Cetelem – Cuenta Ahorro", tae:2.10, limite:"—", duracion:"12 meses", condiciones:"Solo nuevos clientes", fgd:"francés", fgdClass:"fgd-fr", pro:"Sencilla y sin fricciones", con:"Baja tras el primer año" },
 
-    { tab:"nomina", rank:1, banco:"Banco Sabadell – Cuenta Online", tae:"Hasta >900€ potencial", limite:"400€ + 1,00% hasta 20k€", duracion:"Según permanencia", condiciones:"Bizum, recibos y actividad", fgd:"España", fgdClass:"fgd-es", pro:"Mejor combinación global", con:"Requiere actividad" },
-    { tab:"nomina", rank:2, banco:"BBVA – Cuenta Nómina", tae:"Hasta ~760€", limite:"Nómina ≥ 800€", duracion:"Según promo", condiciones:"Recibos, tarjeta y Bizum", fgd:"España", fgdClass:"fgd-es", pro:"Incentivos flexibles", con:"Varias condiciones" },
-    { tab:"nomina", rank:3, banco:"Bankinter – Cuenta Nómina", tae:"5,00% 1er año · 2,00% 2º año", limite:"Hasta ~680€ total · 10.000€", duracion:"2 años", condiciones:"Nómina, recibos y tarjeta", fgd:"España", fgdClass:"fgd-es", pro:"De las mejores en %", con:"Importe limitado" },
-    { tab:"nomina", rank:4, banco:"Ibercaja – Cuenta Vamos", tae:"5,09% 1er año · 2,01% 2º año", limite:"Hasta ~840€ total · 12.000€", duracion:"2 años", condiciones:"Nómina, recibos y tarjeta", fgd:"España", fgdClass:"fgd-es", pro:"Muy buen rendimiento en %", con:"Limitado a 12k€" },
-    { tab:"nomina", rank:5, banco:"Abanca – Cuenta Nómina", tae:"Hasta 500€", limite:"Nómina ≥ 1.200€", duracion:"24 meses", condiciones:"Permanencia", fgd:"España", fgdClass:"fgd-es", pro:"Incentivo directo sencillo", con:"Permanencia larga" },
+    // ── Cuentas nómina ──
+    { tab:"nomina", rank:1, banco:"Banco Sabadell – Cuenta Online", tae:1.00, limite:"Hasta 20.000€", duracion:"Bienvenida + remuneración", condiciones:"Bizum y recibos · nómina", fgd:"español", fgdClass:"fgd-es", pro:"Mejor combinación global (>900€ potencial)", con:"Requiere actividad" },
+    { tab:"nomina", rank:2, banco:"BBVA – Cuenta Nómina", tae:0.00, limite:"Hasta ~760€", duracion:"Promoción e incentivos", condiciones:"Nómina ≥ 800€ · recibos · tarjeta · Bizum", fgd:"español", fgdClass:"fgd-es", pro:"Incentivos flexibles", con:"Varias condiciones" },
+    { tab:"nomina", rank:3, banco:"Bankinter – Cuenta Nómina", tae:5.00, limite:"Hasta 10.000€", duracion:"5,00% 1er año · 2,00% 2º año", condiciones:"Nómina + recibos + uso de tarjeta", fgd:"español", fgdClass:"fgd-es", pro:"De las mejores en %", con:"Importe limitado" },
+    { tab:"nomina", rank:4, banco:"Ibercaja – Cuenta Vamos", tae:5.09, limite:"Hasta 12.000€", duracion:"5,09% 1er año · 2,01% 2º año", condiciones:"Nómina + recibos + tarjeta", fgd:"español", fgdClass:"fgd-es", pro:"Muy buen rendimiento en %", con:"Limitado a 12k€" },
+    { tab:"nomina", rank:5, banco:"Abanca – Cuenta Nómina", tae:0.00, limite:"Hasta 500€", duracion:"24 meses permanencia", condiciones:"Nómina ≥ 1.200€", fgd:"español", fgdClass:"fgd-es", pro:"Incentivo directo sencillo", con:"Permanencia relativamente larga" },
 
-    { tab:"dep-sin", rank:1, banco:"Renault Bank – Depósitos", tae:"2,42% (12m) · 2,73% (24m) · 2,83% (36m)", limite:"Desde 500€", duracion:"12, 24 y 36 meses", condiciones:"Sin condiciones", fgd:"Francia", fgdClass:"fgd-fr", pro:"Mejor equilibrio global", con:"Cancelación no siempre disponible" },
-    { tab:"dep-sin", rank:2, banco:"Banco Finantia", tae:"Hasta 2,75% TAE · 2,65% (12m)", limite:"Desde 50.000€", duracion:"12 y 36 meses", condiciones:"Sin condiciones", fgd:"Portugal", fgdClass:"fgd-es", pro:"De las TAE más altas del mercado", con:"Requiere capital elevado" },
-    { tab:"dep-sin", rank:3, banco:"Volkswagen Bank – Depósitos", tae:"2,55% (12m) · 1,90% (6m)", limite:"—", duracion:"6 y 12 meses", condiciones:"Cancelables", fgd:"Alemania", fgdClass:"fgd-de", pro:"Muy competitivo a 12 meses", con:"Menos atractivo en plazos cortos" },
-    { tab:"dep-sin", rank:4, banco:"Banco BiG – Depósitos", tae:"2,00% TAE", limite:"Desde 1.000€", duracion:"3, 6 y 12 meses", condiciones:"Versiones cancelables", fgd:"Portugal", fgdClass:"fgd-es", pro:"Muy accesible", con:"Rentabilidad por debajo de la media" },
+    // ── Depósitos sin condiciones ──
+    { tab:"dep-sin", rank:1, banco:"Renault Bank – Depósitos", tae:2.83, limite:"Desde 500€", duracion:"12m 2,42% · 24m 2,73% · 36m 2,83%", condiciones:"Sin condiciones", fgd:"francés", fgdClass:"fgd-fr", pro:"Mejor equilibrio global", con:"Cancelación no siempre disponible" },
+    { tab:"dep-sin", rank:2, banco:"Banco Finantia", tae:2.75, limite:"Desde 50.000€", duracion:"Hasta 36 meses", condiciones:"Mejor en no cancelables", fgd:"portugués", fgdClass:"fgd-es", pro:"De las TAE más altas del mercado", con:"Requiere capital elevado" },
+    { tab:"dep-sin", rank:3, banco:"Volkswagen Bank – Depósitos", tae:2.55, limite:"—", duracion:"12m 2,55% · 6m 1,90%", condiciones:"Cancelables", fgd:"alemán", fgdClass:"fgd-de", pro:"Muy competitivo a 12 meses", con:"Menos atractivo en plazos cortos" },
+    { tab:"dep-sin", rank:4, banco:"Banco BiG – Depósitos", tae:2.00, limite:"Desde 1.000€", duracion:"3, 6 y 12 meses", condiciones:"Versiones cancelables", fgd:"portugués", fgdClass:"fgd-es", pro:"Muy accesible", con:"Rentabilidad por debajo de la media" },
 
-    { tab:"dep-con", rank:1, banco:"Banco BiG – Depósitos", tae:"4,00% (1m) · 3,00% (3m) · 2,50% (6m)", limite:"—", duracion:"1, 3 y 6 meses", condiciones:"Solo nuevos clientes", fgd:"Portugal", fgdClass:"fgd-es", pro:"De los más agresivos del mercado", con:"Requiere rotación constante de liquidez" },
-    { tab:"dep-con", rank:2, banco:"Openbank – Depósitos promocionales", tae:"3,03% (3m) · 2,78% (4m)", limite:"—", duracion:"3 y 4 meses", condiciones:"Nómina o ingresos ≥ 900€ · nuevos clientes", fgd:"España", fgdClass:"fgd-es", pro:"Muy buen % a corto plazo", con:"Baja bastante sin condiciones" },
-    { tab:"dep-con", rank:3, banco:"Deutsche Bank – Depósito Confianza", tae:"Hasta 3,00% TAE", limite:"Base 2,00%", duracion:"12 meses", condiciones:"Nómina, tarjeta y fondos", fgd:"Alemania", fgdClass:"fgd-de", pro:"Buena rentabilidad si cumples todo", con:"Bastante vinculación" },
-    { tab:"dep-con", rank:4, banco:"Banca March – Depósitos", tae:"2,30% (12m) · 2,01% (6m)", limite:"Desde 30.000€", duracion:"6 y 12 meses", condiciones:"Solo nuevos clientes", fgd:"España", fgdClass:"fgd-es", pro:"Interesante para importes altos", con:"Mínimo elevado" },
-    { tab:"dep-con", rank:5, banco:"CBNK – Depósito Nómina", tae:"2,50% TAE", limite:"Desde 10.000€", duracion:"12 meses", condiciones:"Nómina > 2.000€ o pensión", fgd:"España", fgdClass:"fgd-es", pro:"Rentabilidad estable a 1 año", con:"Condiciones exigentes" }
+    // ── Depósitos con condiciones ──
+    { tab:"dep-con", rank:1, banco:"Banco BiG – Depósitos", tae:4.00, limite:"—", duracion:"1m 4,00% · 3m 3,00% · 6m 2,50%", condiciones:"Solo nuevos clientes", fgd:"portugués", fgdClass:"fgd-es", pro:"De los más agresivos del mercado", con:"Requiere rotación constante de liquidez" },
+    { tab:"dep-con", rank:2, banco:"Openbank – Depósitos promocionales", tae:3.03, limite:"—", duracion:"3m 3,03% · 4m 2,78%", condiciones:"Nómina o ingresos ≥ 900€ · nuevos clientes", fgd:"español", fgdClass:"fgd-es", pro:"Muy buen % a corto plazo", con:"Baja bastante sin condiciones" },
+    { tab:"dep-con", rank:3, banco:"Deutsche Bank – Depósito Confianza", tae:3.00, limite:"—", duracion:"12 meses", condiciones:"Mejora con nómina, tarjeta y fondos", fgd:"alemán", fgdClass:"fgd-de", pro:"Buena rentabilidad si cumples todo", con:"Requiere bastante vinculación" },
+    { tab:"dep-con", rank:4, banco:"Banca March – Depósitos", tae:2.30, limite:"Desde 30.000€", duracion:"12m 2,30% · 6m 2,01%", condiciones:"Solo nuevos clientes", fgd:"español", fgdClass:"fgd-es", pro:"Interesante para importes altos", con:"Acceso limitado por mínimo elevado" },
+    { tab:"dep-con", rank:5, banco:"CBNK – Depósito Nómina", tae:2.50, limite:"Desde 10.000€", duracion:"12 meses", condiciones:"Nómina >2.000€ o pensión", fgd:"español", fgdClass:"fgd-es", pro:"Rentabilidad estable a 1 año", con:"Condiciones exigentes" }
   ];
 
   var cuentasTab = "sin";
@@ -2103,20 +2108,20 @@ document.addEventListener('DOMContentLoaded', function(){
     var container = document.getElementById('cuentas-content');
     if (!container) return;
 
-    var html = '<div class="cuentas-header">'
-      + '<p style="font-size:13px;color:var(--silver2)">Comparativa divulgativa por tipo de producto y nivel de vinculación &middot; <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>'
-      + '<span class="cuentas-badge">Actualizado: abril 2026</span>'
-      + '</div>';
-
-    if (!filtered.length) {
-      container.innerHTML = html + '<div class="cuentas-pronto">📋 Esta categoría está en preparación.</div>';
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="cuentas-pronto">📋 Esta categoría está en preparación.<br><span style="font-size:12px;opacity:.6">La completaremos en una próxima actualización.</span></div>';
       return;
     }
+
+    var mes = "abril 2026";
+    var html = '<div class="cuentas-header">'
+      + '<p style="font-size:13px;color:var(--silver2)">Comparativa divulgativa · prioriza rentabilidad real, condiciones y protección del ahorro</p>'
+      + '<span class="cuentas-badge">Actualizado: ' + mes + '</span>'
+      + '</div>';
 
     html += '<div class="cuentas-grid">'
       + filtered.map(function(c) {
         var isTop = c.rank <= 2;
-        var conditionsChip = c.condiciones ? '<span class="cuenta-chip">📌 ' + c.condiciones + '</span>' : '';
         return '<div class="cuenta-card' + (isTop ? ' top' : '') + '">'
           + '<div class="cuenta-top">'
             + '<div>'
@@ -2125,13 +2130,13 @@ document.addEventListener('DOMContentLoaded', function(){
               + '<div class="cuenta-banco">' + c.banco + '</div>'
             + '</div>'
             + '<div style="text-align:right">'
-              + '<div class="cuenta-tae">' + c.tae + '</div>'
+              + '<div class="cuenta-tae">' + c.tae.toFixed(2).replace('.',',') + '<span>% TAE</span></div>'
             + '</div>'
           + '</div>'
           + '<div class="cuenta-meta-row">'
             + '<span class="cuenta-chip">💰 ' + c.limite + '</span>'
             + '<span class="cuenta-chip">⏱ ' + c.duracion + '</span>'
-            + conditionsChip
+            + '<span class="cuenta-chip">📌 ' + c.condiciones + '</span>'
             + '<span class="cuenta-chip ' + c.fgdClass + '">🔐 FGD ' + c.fgd + '</span>'
           + '</div>'
           + '<div class="cuenta-pros-cons">'
@@ -2141,16 +2146,12 @@ document.addEventListener('DOMContentLoaded', function(){
         + '</div>';
       }).join('')
       + '</div>'
-      + '<p class="cuentas-disclaimer">⚠️ Los tipos, promociones y condiciones pueden cambiar. Verifica siempre en la web de la entidad antes de contratar. Contenido informativo, no asesoramiento financiero.</p>';
+      + '<p class="cuentas-disclaimer">⚠️ Los tipos y condiciones pueden cambiar. Verifica siempre en la web de la entidad antes de contratar. Contenido informativo, no asesoramiento financiero. El FGD suele cubrir hasta 100.000€ por titular y entidad, según esquema aplicable.</p>';
 
     container.innerHTML = html;
   };
 
-  window.setCuentasTab = function(tab, ev) {
-    if (ev) {
-      if (typeof ev.preventDefault === 'function') ev.preventDefault();
-      if (typeof ev.stopPropagation === 'function') ev.stopPropagation();
-    }
+  window.setCuentasTab = function(tab) {
     cuentasTab = tab;
     var row = document.getElementById('cuentas-filter');
     if (row) {
@@ -2164,16 +2165,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function bindCuentasTabs() {
     var row = document.getElementById('cuentas-filter');
-    if (!row || row.dataset.bound === '1') return;
-    row.dataset.bound = '1';
-    row.addEventListener('click', function(e) {
-      var btn = e.target.closest('[data-tab]');
-      if (!btn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      window.setCuentasTab(btn.getAttribute('data-tab'));
+    if (!row) return;
+    row.querySelectorAll('.cat-btn').forEach(function(btn) {
+      btn.onclick = function(e) {
+        if (e) e.preventDefault();
+        return window.setCuentasTab(btn.getAttribute('data-tab'));
+      };
     });
   }
+  window.bindCuentasTabs = bindCuentasTabs;
 
   // ── Declaración de la Renta — Wizard ─────────────────────────────────────
   var rentaState = { tipo: null, pagadores: null, segundoSuperior1500: null, ingresos: 0, ayudas: null };
@@ -2877,8 +2877,6 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   bindNav();
-  if (window.renderCuentas) window.renderCuentas();
-  if (window.bindCuentasTabs) window.bindCuentasTabs();
   updateHomeIntroVisibility('sobre');
 
   (function handleHashOnLoad(){
@@ -3253,6 +3251,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   window.bindTecaFilters && window.bindTecaFilters();
   window.renderTeca && window.renderTeca();
   window.renderQuijoLista && window.renderQuijoLista();
+  window.renderCuentas && window.renderCuentas();
   window.renderCuentas && window.renderCuentas();
   bindCuentasTabs && bindCuentasTabs();
 
