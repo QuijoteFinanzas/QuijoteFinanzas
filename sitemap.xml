@@ -4,109 +4,126 @@
   <!-- Página principal -->
   <url>
     <loc>https://quijotefinanzas.com/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Calculadoras SEO -->
+  <!-- Calculadoras con página standalone -->
   <url>
     <loc>https://quijotefinanzas.com/calculadora-salario-neto-espana.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://quijotefinanzas.com/calculadora-salario-neto-bruto.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-hipoteca-espana.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-interes-compuesto.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://quijotefinanzas.com/calculadora-coste-empresa.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quijotefinanzas.com/calculadora-inflacion-valor-futuro.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://quijotefinanzas.com/calculadora-jubilacion-fire.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-deposito-plazo-fijo.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-plan-pensiones-desgravacion.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://quijotefinanzas.com/calculadora-alquiler-vs-compra.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://quijotefinanzas.com/calculadora-salario-neto-bruto.html</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quijotefinanzas.com/calculadora-coste-empresa.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quijotefinanzas.com/calculadora-inflacion-valor-futuro.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-amortizacion-anticipada.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quijotefinanzas.com/calculadora-alquiler-vs-compra.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-roi-rentabilidad-alquiler.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/calculadora-comparador-ofertas-salariales.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- Páginas legales -->
+
+  <!-- Sobre el proyecto -->
+  <url>
+    <loc>https://quijotefinanzas.com/sobre-el-proyecto.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Comparativas -->
+  <url>
+    <loc>https://quijotefinanzas.com/mejores-cuentas-remuneradas.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Legal -->
   <url>
     <loc>https://quijotefinanzas.com/privacidad.html</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/cookies.html</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://quijotefinanzas.com/aviso-legal.html</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
 
 </urlset>
