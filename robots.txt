@@ -1,10 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://quijotefinanzas.github.io/QuijoteFinanzas/sitemap.xml
-
-# Googlebot specific
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
+Sitemap: https://quijotefinanzas.com/sitemap.xml
