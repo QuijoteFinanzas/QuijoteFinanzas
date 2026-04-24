@@ -699,15 +699,34 @@ function qfTrack(eventName, params) {
 })();
 </script>
 <script>
-// ── Shim global: evita errores si goTo/openExcelModal se llaman antes del JS principal ──
+// ── Shim global: funciones disponibles desde el primer momento ───────────────
 (function() {
+  // goTo: queue hasta que DOMContentLoaded registre la función real
   var _queue = [];
   window.goTo = function(s) { _queue.push(s); };
   window.kitsubmit = function() {};
-  window._goToQueue = _queue;
   window._resolveGoTo = function(realFn) {
     window.goTo = realFn;
     _queue.forEach(function(s) { realFn(s); });
+  };
+
+  // openExcelModal: abre el modal directamente — no depende de DOMContentLoaded
+  window.openExcelModal = function() {
+    var overlay = document.getElementById('excel-modal-overlay');
+    if (!overlay) return;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+      var inp = document.getElementById('excel-email-input');
+      if (inp) inp.focus();
+    }, 100);
+    try { gtag('event', 'excel_modal_abierto'); } catch(e) {}
+  };
+
+  window.closeExcelModal = function() {
+    var overlay = document.getElementById('excel-modal-overlay');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
   };
 })();
 </script>
@@ -2266,7 +2285,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (window.renderCuentas) window.renderCuentas();
   };
 
-  function bindCuentasTabs() {
+  window.bindCuentasTabs = function() {
     var row = document.getElementById('cuentas-filter');
     if (!row || row.dataset.bound === '1') return;
     row.dataset.bound = '1';
