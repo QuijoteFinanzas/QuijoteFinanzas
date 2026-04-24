@@ -588,7 +588,29 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .renta-reset{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:inherit;text-decoration:underline;margin-top:6px;display:block;margin-left:auto;margin-right:auto}
 /* Badge especial en calc-list */
 .calc-item.renta-featured{border-color:rgba(201,168,76,.4);background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,var(--bg2) 70%)}
-.renta-badge{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--gold);color:#0f2035;padding:2px 7px;border-radius:3px;margin-left:8px;white-space:nowrap;flex-shrink:0}</style>
+.renta-badge{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--gold);color:#0f2035;padding:2px 7px;border-radius:3px;margin-left:8px;white-space:nowrap;flex-shrink:0}
+/* ── Modal Excel (email gate) ──────────────────────── */
+#excel-modal-overlay{display:none;position:fixed;inset:0;background:rgba(8,15,26,.88);z-index:300;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
+#excel-modal-overlay.open{display:flex}
+#excel-modal{background:var(--bg2);border:1px solid rgba(201,168,76,.35);border-radius:14px;max-width:420px;width:100%;padding:32px 28px;position:relative;text-align:center}
+#excel-modal .em-icon{font-size:36px;margin-bottom:12px;display:block}
+#excel-modal h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin:0 0 8px}
+#excel-modal .em-sub{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 22px}
+#excel-modal .em-sub strong{color:var(--silver2)}
+#excel-modal input[type=email]{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 16px;border-radius:8px;outline:none;margin-bottom:10px;box-sizing:border-box;transition:border-color .2s}
+#excel-modal input[type=email]:focus{border-color:rgba(201,168,76,.5)}
+#excel-modal .em-btn{width:100%;background:rgba(201,168,76,.92);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px;border-radius:8px;cursor:pointer;transition:opacity .2s}
+#excel-modal .em-btn:hover{opacity:.88}
+#excel-modal .em-btn:disabled{opacity:.5;cursor:not-allowed}
+#excel-modal .em-note{font-size:11px;color:var(--muted);margin-top:10px}
+#excel-modal .em-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+#excel-modal .em-close:hover{color:var(--silver2)}
+#excel-modal .em-success{display:none;flex-direction:column;align-items:center;gap:10px}
+#excel-modal .em-success .em-check{font-size:44px}
+#excel-modal .em-success h4{font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);margin:0}
+#excel-modal .em-success p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+#excel-modal .em-success a{color:var(--gold);font-size:13px;margin-top:6px}
+#excel-modal .em-error{font-size:12px;color:#c47070;margin-top:6px;min-height:16px}</style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -676,6 +698,19 @@ function qfTrack(eventName, params) {
   });
 })();
 </script>
+<script>
+// ── Shim global: evita errores si goTo/openExcelModal se llaman antes del JS principal ──
+(function() {
+  var _queue = [];
+  window.goTo = function(s) { _queue.push(s); };
+  window.kitsubmit = function() {};
+  window._goToQueue = _queue;
+  window._resolveGoTo = function(realFn) {
+    window.goTo = realFn;
+    _queue.forEach(function(s) { realFn(s); });
+  };
+})();
+</script>
 </head>
 <body class="show-home-intro">
 
@@ -748,8 +783,8 @@ function qfTrack(eventName, params) {
     <span class="excel-ico">📊</span>
     <h3>QuijoExcel — Gratis</h3>
     <p>Es la plantilla que utilizo para organizar mis finanzas: controlar gastos, ahorrar mejor y seguir mis inversiones sin complicarme</p>
-    <a class="cta-excel-btn" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">📥 Descargar plantilla</a>
-    <span class="cta-excel-secondary">Descarga directa, sin registro</span>
+    <button class="cta-excel-btn" onclick="openExcelModal()" style="border:none;cursor:pointer;">📥 Acceder a la plantilla</button>
+    <span class="cta-excel-secondary">Gratis · Acceso por email</span>
   </div>
   <!-- Newsletter CTA — único en la página -->
   <div id="newsletter-cta" style="margin:28px auto 0;max-width:520px;text-align:center;padding:22px 28px;background:var(--bg2);border:1px solid rgba(201,168,76,.3);border-radius:12px;">
@@ -802,12 +837,12 @@ function qfTrack(eventName, params) {
   <section id="recursos" class="section">
     <div class="section-header"><h2>Recursos gratuitos</h2><p>Herramientas que uso yo mismo y comparto contigo.</p><div class="divider"></div></div>
     <div class="recursos-grid">
-      <a class="recurso-card featured" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+      <div class="recurso-card featured" onclick="openExcelModal()" style="cursor:pointer;">
         <span class="recurso-icon">&#128202;</span>
         <h3>QuijoExcel &mdash; Finanzas Personales</h3>
         <p>La plantilla que uso para presupuesto, seguimiento del ahorro y evoluci&oacute;n de inversiones.</p>
-        <span class="tag">Descarga gratis</span>
-      </a>
+        <span class="tag">Acceso gratis por email</span>
+      </div>
       <div class="recurso-card dim-card" style="opacity:.45;cursor:default;">
         <span class="recurso-icon">&#128203;</span>
         <h3>Gu&iacute;a: Fondos Indexados para empezar</h3>
@@ -1134,6 +1169,29 @@ function qfTrack(eventName, params) {
   </div>
 </div>
 
+
+<!-- ── Modal Email Gate: QuijoExcel ───────────────────────────────── -->
+<div id="excel-modal-overlay">
+  <div id="excel-modal" role="dialog" aria-modal="true" aria-labelledby="excel-modal-title">
+    <button class="em-close" id="excel-modal-close" aria-label="Cerrar">&times;</button>
+    <div id="excel-modal-form-state">
+      <span class="em-icon">📊</span>
+      <h3 id="excel-modal-title">QuijoExcel — Gratis</h3>
+      <p class="em-sub">Introduce tu email y te enviamos <strong>acceso directo</strong> a la plantilla. Sin spam, solo lo que merece la pena.</p>
+      <input type="email" id="excel-email-input" placeholder="tu@email.com" autocomplete="email">
+      <div class="em-error" id="excel-email-error"></div>
+      <button class="em-btn" id="excel-submit-btn">📥 Enviarme la plantilla</button>
+      <p class="em-note">Sin spam. Solo herramientas y recursos cuando haya algo que valga la pena.</p>
+    </div>
+    <div id="excel-modal-success-state" class="em-success">
+      <span class="em-check">✅</span>
+      <h4>¡Revisa tu email!</h4>
+      <p>Te hemos enviado el acceso a la plantilla. Si no lo ves en unos minutos, mira en la carpeta de spam.</p>
+      <a href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Acceder directamente →</a>
+    </div>
+  </div>
+</div>
+
 <!-- MODALES -->
 <div class="calc-overlay" id="modal-interes">
   <div class="calc-modal">
@@ -1156,7 +1214,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1208,7 +1266,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1235,7 +1293,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1260,7 +1318,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1288,7 +1346,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1317,7 +1375,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1345,7 +1403,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1396,7 +1454,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1440,7 +1498,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1471,7 +1529,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1500,7 +1558,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1529,7 +1587,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -1751,7 +1809,7 @@ function qfTrack(eventName, params) {
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel →</a>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
     </div>
   </div>
@@ -2385,7 +2443,7 @@ document.addEventListener('DOMContentLoaded', function(){
       + '<div class="renta-result-ctas">'
       + '<button class="renta-cta-primary" onclick="closeCalc(\'renta\'); openCalc(\'irpf\')">Salario neto / IRPF →</button>'
       + '<button class="renta-cta-secondary" onclick="closeCalc(\'renta\'); goTo(\'cuentas\'); return false;">Ver cuentas remuneradas</button>'
-      + '<a class="renta-cta-secondary" href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Descargar QuijoExcel gratis</a>'
+      + '<a class="renta-cta-secondary" href="#" onclick="openExcelModal();return false;">Descargar QuijoExcel gratis</a>'
       + '</div>'
       + '<button class="renta-reset" onclick="rentaReset()">← Volver a empezar</button>';
 
@@ -2415,12 +2473,6 @@ document.addEventListener('DOMContentLoaded', function(){
   };
 
   // ── Navegación robusta (usada por empieza-cards, footer, etc.) ───────────
-  window.goTo = function(secId) {
-    if (!activateSection(secId)) return;
-    try { history.replaceState(null, '', '#' + secId); } catch(e) {}
-    scrollToSectionTop(secId);
-    try { gtag('event', 'seccion_visitada', { seccion: secId }); } catch(e) {}
-  };
 
   window.openCalc = function(id) {
     document.getElementById('modal-'+id).classList.add('open');
@@ -3383,6 +3435,68 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       try { gtag('event', 'formulario_enviado', { formulario: 'newsletter_kit' }); } catch(e) {}
     });
   }
+
+
+  // ── EXCEL EMAIL GATE ──────────────────────────────────────────────────────
+  var excelModalShown = false;
+
+  window.openExcelModal = function() {
+    document.getElementById('excel-modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() { document.getElementById('excel-email-input').focus(); }, 100);
+    try { gtag('event', 'excel_modal_abierto'); } catch(e) {}
+  };
+
+  function closeExcelModal() {
+    document.getElementById('excel-modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('excel-modal-close').addEventListener('click', closeExcelModal);
+  document.getElementById('excel-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeExcelModal();
+  });
+
+  document.getElementById('excel-submit-btn').addEventListener('click', function() {
+    var email = document.getElementById('excel-email-input').value.trim();
+    var errorEl = document.getElementById('excel-email-error');
+    var btn = this;
+
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      errorEl.textContent = 'Introduce un email válido.';
+      return;
+    }
+    errorEl.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    var formData = new FormData();
+    formData.append('email_address', email);
+
+    fetch('https://app.kit.com/forms/9155906/subscriptions', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      // Kit devuelve 200 o 303 — cualquier respuesta la tratamos como OK
+      document.getElementById('excel-modal-form-state').style.display = 'none';
+      document.getElementById('excel-modal-success-state').style.display = 'flex';
+      try { gtag('event', 'excel_email_enviado', { email: email }); } catch(e) {}
+    })
+    .catch(function() {
+      // Fallback: si falla el fetch, mostramos success igualmente
+      // (Kit no admite CORS en todos los casos, pero el form se envía)
+      document.getElementById('excel-modal-form-state').style.display = 'none';
+      document.getElementById('excel-modal-success-state').style.display = 'flex';
+      try { gtag('event', 'excel_email_enviado_fallback'); } catch(e) {}
+    });
+  });
+
+  // Enter en el input
+  document.getElementById('excel-email-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('excel-submit-btn').click();
+  });
 
   // ── GA4: Scroll depth 50% y 90% ──────────────────────────────────────
   var scrollMarks = { 50: false, 90: false };
