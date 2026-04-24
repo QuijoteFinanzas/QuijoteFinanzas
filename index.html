@@ -750,13 +750,6 @@ function qfTrack(eventName, params) {
     <a href="#" onclick="goTo('calculadoras');return false;" style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 22px;border-radius:7px;text-decoration:none;transition:opacity .2s">📊 Ver calculadoras</a>
     <a href="#" onclick="goTo('cuentas');return false;" style="display:inline-flex;align-items:center;gap:7px;background:transparent;border:1.5px solid rgba(184,200,216,.4);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:11px 20px;border-radius:7px;text-decoration:none;transition:all .2s">🏦 Comparar cuentas</a>
   </div>
-  <div class="problema-block">
-    <p class="problema-titulo">El problema muchas veces no es cu&aacute;nto ganas, sino no tener claro qu&eacute; hacer con ese dinero</p>
-    <p class="problema-texto">Entre opiniones, productos y recomendaciones, es f&aacute;cil perderse.<br><br>Aqu&iacute; todo est&aacute; pensado para que tomes decisiones con n&uacute;meros y no con ruido.</p>
-  </div>
-  <div style="margin:20px auto 0;max-width:520px;text-align:center;padding:14px 20px;border-radius:8px;background:rgba(184,200,216,.04);border:1px solid rgba(184,200,216,.1)">
-    <p style="font-size:13px;color:var(--silver2);line-height:1.7;margin:0">Aqu&iacute; no vas a encontrar productos porque s&iacute;.<br>Solo lo que tiene sentido con n&uacute;meros.</p>
-  </div>
   <div class="social-links">
     <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">
       <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -3027,6 +3020,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
     return true;
   }
+
+  // Registrar goTo real y resolver queue de clicks tempranos
+  var _realGoTo = function(secId) {
+    if (!activateSection(secId)) return;
+    try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
+    scrollToSectionTop(secId);
+  };
+  if (window._resolveGoTo) window._resolveGoTo(_realGoTo);
+  else window.goTo = _realGoTo;
 
   function bindNav() {
     document.querySelectorAll('#main-nav .nav-btn').forEach(function(btn) {
