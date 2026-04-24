@@ -161,7 +161,9 @@
   ]
 }
 </script>
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -605,6 +607,16 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 <script>
   gtag('js', new Date());
   gtag('config', 'G-S4VBMV5WPN', {anonymize_ip: true});
+</script>
+
+<!-- ── Eventos custom GA4 + Clarity ─────────────────────────────────── -->
+<script>
+function qfTrack(eventName, params) {
+  try {
+    if (typeof gtag === 'function') gtag('event', eventName, params || {});
+    if (typeof clarity === 'function') clarity('set', eventName, (params && params.label) || eventName);
+  } catch(e) {}
+}
 </script>
 
 <!-- ── Cookie consent logic ─────────────────────────────────────────── -->
