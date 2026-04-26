@@ -167,13 +167,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-Ot7O5cEQMxDaHJlQkr5OTh0SBbmzXfJaGlnBrfIJMp5Cj9O0YD08c7o0t+/VxP" crossorigin="anonymous" defer></script>
 <style>
-:root{--bg:#0d1a2e;--bg2:#132240;--bg3:#1a2d50;--silver:#b8c8d8;--silver2:#d4e2ec;--cream:#e8f0f7;--muted:#6a8aaa;--border:#1e3355;--tag-bg:#0f1f35;--green:#7dd3a8;--orange:#f0a070}
-html,body{background:#0d1a2e}
+:root{
+  /* Fondos */
+  --bg:#f4f6f9;--bg2:#f8f9fb;--bg3:#eef1f6;--tag-bg:#eef1f6;
+  /* Textos */
+  --cream:#0f2035;--silver2:#2d4a6b;--silver:#2d4a6b;
+  /* Acentos */
+  --muted:#6a8aaa;--border:#dde4ed;--tag-bg:#f0f3f8;
+  /* Marca */
+  --gold:#c9a84c;--navy:#0f2035;--navy2:#1a3358;
+  /* Extras */
+  --green:#2d8a5e;--orange:#c06030;
+  /* Secciones alternas */
+  --sec-a:#ffffff;--sec-b:#f4f6f9;--sec-navy:#0f2035;--sec-navy2:#1a3358;
+}
+html,body{background:#ffffff}
 *{margin:0;padding:0;box-sizing:border-box}
-body{color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh}
-header{border-bottom:1px solid var(--border);padding:40px 0 28px;text-align:center;position:relative;overflow:hidden;background:#0d1a2e}
+body{color:var(--navy);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;background:#ffffff}
+header{border-bottom:1px solid var(--border);padding:40px 0 28px;text-align:center;position:relative;overflow:hidden;background:var(--sec-a)}
 header::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:250px;background:radial-gradient(ellipse,rgba(30,58,95,.6) 0%,transparent 70%);pointer-events:none}
 .logo-wrap{margin:0 auto 16px;width:88px;height:88px;border-radius:50%;border:2px solid rgba(184,200,216,.35);overflow:hidden;box-shadow:0 0 40px rgba(13,26,46,.9)}
 .logo-wrap img{width:100%;height:100%;object-fit:cover}
@@ -183,14 +196,14 @@ h1 span{color:var(--silver2)}
 .tagline{margin:10px auto 0;color:var(--muted);font-size:14px;max-width:500px;line-height:1.6}
 .positioning{margin:12px auto 0;color:var(--silver);font-size:14px;max-width:560px;line-height:1.5;}
 .social-links{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
-.social-btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--silver);border:1px solid var(--border);padding:6px 16px;border-radius:4px;text-decoration:none;transition:all .2s;background:var(--tag-bg)}
-.social-btn:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
+.social-btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--navy2);border:1px solid var(--border);padding:6px 16px;border-radius:4px;text-decoration:none;transition:all .2s;background:#fff}
+.social-btn:hover{border-color:var(--navy);color:var(--navy)}
 .social-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 nav{display:flex;justify-content:center;gap:4px;padding:20px 24px 0;flex-wrap:wrap}
 
 body.show-home-intro header{padding:40px 0 28px;border-bottom:1px solid var(--border)}
 body:not(.show-home-intro) header{padding:18px 0 12px;border-bottom:1px solid var(--border)}
-body:not(.show-home-intro) header::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:520px;height:180px;background:radial-gradient(ellipse,rgba(30,58,95,.45) 0%,transparent 72%);pointer-events:none}
+body:not(.show-home-intro) header::before{display:none}
 body:not(.show-home-intro) header > :not(#main-nav):not(.compact-brand){display:none !important}
 body:not(.show-home-intro) header{padding:30px 0 18px}
 .compact-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;max-width:760px;margin:0 auto;padding:0 24px 10px;text-align:center}
@@ -211,8 +224,9 @@ body.show-home-intro .compact-brand{display:none}
 .ql-card[data-cat="mixto"]       .ql-logo{background:rgba(167,139,250,.15)!important;color:#a78bfa!important;}
 .ql-card[data-cat="pp"]          .ql-logo{background:rgba(52,211,153,.15)!important;color:#34d399!important;}
 .ql-card[data-cat="nicho"]       .ql-logo{background:rgba(251,113,133,.15)!important;color:#fb7185!important;}
+.ql-card[data-cat="roboadvisor"]  .ql-logo{background:rgba(99,179,237,.2)!important;color:#63b3ed!important;font-weight:800!important;}
 .ql-tipo-badge{margin-left:auto;font-family:"DM Mono",monospace;font-size:11px;color:rgba(201,168,76,.95);border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.08);padding:5px 10px;border-radius:999px;flex-shrink:0;white-space:nowrap;}
-.ql-isin{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3px;}
+.ql-isin{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.3px;color:rgba(184,200,216,.6)}
 .ql-myi{display:inline-block;margin-top:6px;font-size:11px;font-weight:600;color:#1677be;text-decoration:none;border:1px solid rgba(22,119,190,.3);padding:2px 8px;border-radius:4px;transition:all .2s;}
 
 .ql-myi:hover{background:rgba(22,119,190,.12);border-color:#1677be;}
@@ -223,52 +237,53 @@ body.show-home-intro .compact-brand{display:none}
 .ql-next-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);border:1px solid var(--border);padding:6px 12px;border-radius:4px;text-decoration:none;transition:all .2s;background:var(--tag-bg)}
 .ql-next-link:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
 
-.nav-btn{background:none;border:1px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 18px;border-radius:4px;cursor:pointer;transition:all .2s}
-.nav-btn:hover{color:var(--cream);border-color:var(--border)}
-.nav-btn.active{color:var(--silver2);border-color:rgba(184,200,216,.35);background:rgba(184,200,216,.06)}
+.nav-btn{background:var(--navy);border:1px solid var(--navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;transition:all .2s;font-weight:400}
+.nav-btn:hover{background:var(--navy2);border-color:var(--navy2)}
+.nav-btn.active{background:var(--navy2);border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);font-weight:600}
 main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
-.section{display:none}.section.active{display:block}
+.section{display:none;background:#fff}.section.active{display:block}
 .section-header{margin-bottom:28px}
 .section-header h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--cream);margin-bottom:6px}
 .section-header p{font-size:14px;color:var(--muted)}
 .divider{width:40px;height:2px;background:var(--silver);margin:12px 0 0;border-radius:1px;opacity:.4}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
 @media(max-width:600px){.about-grid{grid-template-columns:1fr}}
-.about-bio{grid-column:1/-1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:28px 32px;line-height:1.8;font-size:15px;color:var(--silver)}
+.about-bio{grid-column:1/-1;background:#f8f9fb;border:1px solid #e8ecf2;border-radius:8px;padding:28px 32px;line-height:1.8;font-size:15px;color:var(--navy2)}
 .about-bio strong{color:var(--silver2);font-weight:500}
-.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px 28px;display:flex;flex-direction:column;gap:6px}
+.stat-card{background:#f8f9fb;border:1px solid #e8ecf2;border-radius:8px;padding:24px 28px;display:flex;flex-direction:column;gap:6px}
 .stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--silver2);line-height:1}
 .stat-label{font-size:13px;color:var(--muted)}
 .contact-box{grid-column:1/-1;background:var(--bg2);border:1px solid var(--border);border-left:3px solid rgba(184,200,216,.4);border-radius:8px;padding:18px 24px;font-size:13px;color:var(--muted);line-height:1.7}
 .contact-box strong{color:var(--silver);display:block;margin-bottom:4px}
 .contact-box a{color:var(--silver2);text-decoration:none}
 .recursos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.recurso-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px;transition:border-color .2s,transform .2s;text-decoration:none;display:block}
-.recurso-card:hover{border-color:rgba(184,200,216,.4);transform:translateY(-2px)}
+.recurso-card{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:24px;transition:border-color .2s,transform .2s;text-decoration:none;display:block}
+.recurso-card:hover{border-color:rgba(201,168,76,.55);transform:translateY(-2px);box-shadow:0 4px 16px rgba(15,32,53,.2)}
 .recurso-icon{font-size:28px;margin-bottom:14px;display:block}
-.recurso-card h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--cream);margin-bottom:8px;line-height:1.3}
-.recurso-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.recurso-card h3{font-family:'Playfair Display',serif;font-size:16px;color:#e8f0f7;margin-bottom:8px;line-height:1.3}
+.recurso-card p{font-size:13px;color:rgba(184,200,216,.8);line-height:1.6}
 .tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--silver2);background:var(--tag-bg);border:1px solid rgba(184,200,216,.2);padding:3px 10px;border-radius:2px}
 .tag.dim{color:var(--muted);border-color:var(--border)}
 .note{margin-top:24px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid rgba(184,200,216,.4);border-radius:4px;padding:14px 20px;font-size:13px;color:var(--muted);line-height:1.6}
 .note strong{color:var(--silver)}
 .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.cat-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:12px;padding:5px 14px;border-radius:3px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.cat-btn:hover,.cat-btn.active{border-color:rgba(184,200,216,.35);color:var(--silver2);background:rgba(184,200,216,.06)}
+.cat-btn{background:#fff;border:1.5px solid var(--navy);color:var(--navy);font-size:12px;padding:5px 14px;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;font-weight:500}
+.cat-btn:hover{border-color:var(--navy2);background:#f4f6f9;color:var(--navy)}
+.cat-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:500}
 .calc-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:600px){.calc-list{grid-template-columns:1fr}}
-.calc-item{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--silver)}
+.calc-item{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:13px;color:#e8f0f7}
 .calc-item.clickable{cursor:pointer;transition:border-color .2s,background .2s}
-.calc-item.clickable:hover{border-color:rgba(184,200,216,.4);background:rgba(184,200,216,.04)}
+.calc-item.clickable:hover{border-color:rgba(201,168,76,.55);background:var(--navy2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(15,32,53,.2)}
 .ci{font-size:18px;flex-shrink:0}
 .calc-name{flex:1;display:flex;flex-direction:column;gap:2px}
 .use-count{font-size:10px;color:var(--muted)}
-.live{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--silver2);background:rgba(184,200,216,.08);border:1px solid rgba(184,200,216,.25);padding:2px 8px;border-radius:2px;white-space:nowrap}
+.live{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--navy);background:var(--gold);border:1px solid var(--gold);padding:3px 10px;border-radius:3px;white-space:nowrap;font-weight:700}
 .coming{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);background:var(--tag-bg);border:1px solid var(--border);padding:2px 8px;border-radius:2px;white-space:nowrap}
 .votos-section{margin-top:36px}
 .votos-section h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);margin-bottom:6px}
 .votos-section .sub{font-size:13px;color:var(--muted);margin-bottom:20px}
-.voto-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:10px}
+.voto-item{background:#f8f9fb;border:1px solid #e8ecf2;border-radius:8px;padding:16px 20px;margin-bottom:10px}
 .voto-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .voto-nombre{flex:1;font-size:14px;color:var(--cream);font-weight:500}
 .voto-count{font-size:12px;color:var(--muted);white-space:nowrap}
@@ -277,9 +292,9 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .voto-btn.voted{border-color:var(--green);color:var(--green);background:rgba(125,211,168,.08);cursor:default}
 .voto-bar-wrap{background:var(--bg3);border-radius:4px;height:5px;overflow:hidden}
 .voto-bar{height:100%;background:linear-gradient(90deg,rgba(125,211,168,.7),rgba(125,211,168,.25));border-radius:4px;transition:width .6s ease}
-.calc-overlay{display:none;position:fixed;inset:0;background:rgba(8,15,26,.9);z-index:100;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.calc-overlay{display:none;position:fixed;inset:0;background:rgba(8,15,26,.85);z-index:100;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
 .calc-overlay.open{display:flex}
-.calc-modal{background:var(--bg2);border:1px solid rgba(184,200,216,.15);border-radius:14px;width:100%;max-width:820px;max-height:92vh;overflow-y:auto;padding:32px 36px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.calc-modal{background:#fff;border:1px solid #dde4ed;border-radius:14px;width:100%;max-width:820px;max-height:92vh;overflow-y:auto;padding:32px 36px;position:relative;box-shadow:0 24px 80px rgba(15,32,53,.25)}
 .modal-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;gap:12px}
 .modal-header-left{flex:1}
 .modal-logo{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;opacity:.65;margin-top:2px}
@@ -287,18 +302,18 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .calc-close{background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;line-height:1;transition:color .2s;padding:0;margin-left:8px;flex-shrink:0}
 
 .calc-close:hover{color:var(--cream)}
-.calc-help{margin:14px 0 18px;background:rgba(184,200,216,.04);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
-.calc-help p{font-size:12px;color:var(--muted);line-height:1.55;margin:0 0 10px 0}
-.calc-help p strong{color:var(--silver);display:block;font-size:13px;margin-bottom:2px}
+.calc-help{margin:14px 0 18px;background:#f4f6f9;border:1px solid #dde4ed;border-radius:8px;padding:14px 16px}
+.calc-help p{font-size:12px;color:var(--text2);line-height:1.55;margin:0 0 10px 0}
+.calc-help p strong{color:var(--navy);display:block;font-size:13px;margin-bottom:2px}
 .calc-help-links{display:flex;gap:8px;flex-wrap:wrap}
-.calc-help-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);border:1px solid var(--border);padding:6px 12px;border-radius:4px;text-decoration:none;transition:all .2s;background:var(--tag-bg);cursor:pointer}
-.calc-help-link:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
+.calc-help-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--navy);border:1px solid #dde4ed;padding:6px 12px;border-radius:4px;text-decoration:none;transition:all .2s;background:#fff;cursor:pointer}
+.calc-help-link:hover{border-color:var(--navy);background:#f4f6f9;color:var(--navy)}
 
-.calc-modal h2{font-family:'Playfair Display',serif;font-size:21px;color:var(--cream);margin-bottom:4px}
-.calc-uses-badge{display:inline-block;font-size:11px;color:var(--muted);background:var(--tag-bg);border:1px solid var(--border);padding:2px 10px;border-radius:2px;margin-bottom:10px}
-.calc-modal .subtitle{font-size:13px;color:var(--muted);margin-bottom:8px;line-height:1.6}
-.calc-modal .disclaimer{font-size:11px;color:var(--muted);opacity:.6;font-style:italic;margin-bottom:18px}
-.share-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;padding:4px 12px;border-radius:3px;cursor:pointer;transition:all .2s;margin-bottom:18px}
+.calc-modal h2{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy);margin-bottom:4px}
+.calc-uses-badge{display:inline-block;font-size:11px;color:var(--muted);background:#eef1f6;border:1px solid #e0e6ef;padding:2px 10px;border-radius:2px;margin-bottom:10px}
+.calc-modal .subtitle{font-size:13px;color:var(--text2);margin-bottom:8px;line-height:1.6}
+.calc-modal .disclaimer{font-size:11px;color:var(--muted);opacity:.7;font-style:italic;margin-bottom:18px}
+.share-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid #dde4ed;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;padding:4px 12px;border-radius:3px;cursor:pointer;transition:all .2s;margin-bottom:18px}
 .share-btn:hover{border-color:rgba(184,200,216,.4);color:var(--silver2)}
 .share-btn svg{width:11px;height:11px;fill:currentColor}
 .share-toast{display:none;font-size:11px;color:var(--green);margin-left:8px}
@@ -307,64 +322,64 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .calc-cta p{font-size:12px;color:var(--muted);line-height:1.5}
 .calc-cta p strong{color:var(--silver);display:block;font-size:13px;margin-bottom:2px}
 .calc-cta-links{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
-.cta-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);border:1px solid var(--border);padding:6px 14px;border-radius:4px;text-decoration:none;transition:all .2s;background:var(--tag-bg);white-space:nowrap}
-.cta-link:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
+.cta-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--navy);border:1px solid #dde4ed;padding:6px 14px;border-radius:4px;text-decoration:none;transition:all .2s;background:#f4f6f9;white-space:nowrap}
+.cta-link:hover{border-color:var(--navy);background:#fff;color:var(--navy)}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 @media(max-width:580px){.calc-grid{grid-template-columns:1fr}}
 .field-group{display:flex;flex-direction:column;gap:12px}
 .field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);font-weight:500}
-.field input,.field select{background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:6px;outline:none;transition:border-color .2s;-webkit-appearance:none}
-.field input:focus,.field select:focus{border-color:rgba(184,200,216,.4)}
-.field input::placeholder{color:var(--muted)}
-.field select option{background:var(--bg2)}
+.field label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);font-weight:600;opacity:.7}
+.field input,.field select{background:#f8f9fb;border:1px solid #dde4ed;color:var(--navy);font-family:'DM Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:6px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.field input:focus,.field select:focus{border-color:var(--navy);box-shadow:0 0 0 2px rgba(15,32,53,.08)}
+.field input::placeholder{color:#aab8c8}
+.field select option{background:#fff;color:var(--navy)}
 .calc-btn{margin-top:4px;width:100%;padding:12px;background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:6px;cursor:pointer;transition:all .2s}
 .calc-btn:hover{background:rgba(184,200,216,.18);border-color:rgba(184,200,216,.5)}
 .results-panel{display:flex;flex-direction:column;gap:9px}
-.result-row{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:11px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.result-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.result-value{font-family:'Playfair Display',serif;font-size:17px;color:var(--silver2);text-align:right}
-.result-value.g{color:var(--green)}.result-value.o{color:var(--orange)}
+.result-row{background:#f4f6f9;border:1px solid #e8ecf2;border-radius:6px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.result-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.result-value{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);text-align:right;font-weight:700}
+.result-value.g{color:#1a7a4a}.result-value.o{color:#c06030}
 .empty-state{color:var(--muted);font-size:13px;text-align:center;padding:36px 16px;line-height:1.8}
-.chart-wrap{margin-top:22px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:18px}
+.chart-wrap{margin-top:22px;background:#fff;border:1px solid #e8ecf2;border-radius:8px;padding:18px}
 .chart-wrap h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 .chart-container{position:relative;height:190px}
 .referidos-list{display:flex;flex-direction:column;gap:10px}
-.ref-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .2s,transform .15s;text-decoration:none;position:relative}
-.ref-card:hover{border-color:rgba(184,200,216,.4);transform:translateX(3px)}
+.ref-card{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .2s,transform .15s;text-decoration:none;position:relative}
+.ref-card:hover{border-color:rgba(201,168,76,.55);transform:translateY(-2px);box-shadow:0 4px 16px rgba(15,32,53,.2)}
 /* ── QuijoCuentas ─────────────────────────────────────────────────────── */
 .cuentas-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px}
 .cuentas-badge{font-size:11px;color:var(--muted);background:rgba(184,200,216,.08);border:1px solid var(--border);padding:4px 10px;border-radius:4px;font-family:'DM Mono',monospace}
 .cuentas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:16px}
-.cuenta-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .15s;position:relative}
-.cuenta-card:hover{border-color:rgba(184,200,216,.35);transform:translateY(-2px)}
-.cuenta-card.top{border-color:rgba(201,168,76,.3)}
+.cuenta-card{background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .15s;position:relative}
+.cuenta-card:hover{border-color:rgba(201,168,76,.5);transform:translateY(-2px);box-shadow:0 4px 16px rgba(15,32,53,.2)}
+.cuenta-card.top{border-color:var(--gold);border-width:2px}
 .cuenta-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.cuenta-banco{font-size:15px;font-weight:700;color:var(--cream);font-family:'Playfair Display',serif}
+.cuenta-banco{font-size:15px;font-weight:700;color:#e8f0f7;font-family:'Playfair Display',serif}
 .cuenta-tae{font-size:26px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace;line-height:1}
-.cuenta-tae span{font-size:13px;color:var(--muted);font-weight:400}
+.cuenta-tae span{font-size:13px;color:rgba(184,200,216,.7);font-weight:400}
 .cuenta-meta-row{display:flex;gap:8px;flex-wrap:wrap}
-.cuenta-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(184,200,216,.08);color:var(--silver2);border:1px solid rgba(184,200,216,.12);white-space:nowrap}
-.cuenta-chip.fgd-es{background:rgba(201,168,76,.08);color:rgba(201,168,76,.8);border-color:rgba(201,168,76,.2)}
-.cuenta-chip.fgd-fr{background:rgba(125,170,211,.08);color:#7daad3;border-color:rgba(125,170,211,.2)}
-.cuenta-chip.fgd-de{background:rgba(200,140,255,.08);color:#c88cff;border-color:rgba(200,140,255,.2)}
+.cuenta-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.08);color:rgba(184,200,216,.9);border:1px solid rgba(184,200,216,.2);white-space:nowrap}
+.cuenta-chip.fgd-es{background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.3)}
+.cuenta-chip.fgd-fr{background:rgba(125,170,211,.15);color:#a8c8e8;border-color:rgba(125,170,211,.3)}
+.cuenta-chip.fgd-de{background:rgba(200,140,255,.15);color:#d4a8ff;border-color:rgba(200,140,255,.3)}
 .cuenta-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px;font-size:12px}
-.cuenta-pro{color:#7dd3a8}.cuenta-pro::before{content:"✓ "}
-.cuenta-con{color:#f0a070}.cuenta-con::before{content:"△ "}
+.cuenta-pro{color:#6dd8a4;font-weight:500}.cuenta-pro::before{content:"✓ "}
+.cuenta-con{color:#f0b080;font-weight:500}.cuenta-con::before{content:"△ "}
 .cuentas-disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6}
 .cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:8px;margin-top:16px}
-.ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:.75}
+.ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:1}
 .ref-cat-badge.banco{background:rgba(125,170,211,.2);color:#7daad3}
 .ref-cat-badge.inversion{background:rgba(125,211,168,.2);color:#7dd3a8}
 .ref-cat-badge.energia{background:rgba(255,210,100,.2);color:#ffd264}
 .ref-cat-badge.seguro{background:rgba(200,140,255,.2);color:#c88cff}
 .ref-cat-badge.otros{background:rgba(184,200,216,.15);color:#b8c8d8}
-.ref-logo{width:42px;height:42px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.ref-logo{width:42px;height:42px;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(184,200,216,.2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .ref-info{flex:1;min-width:0}
-.ref-info h3{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:3px;display:flex;align-items:center;gap:8px}
-.ref-info p{font-size:12px;color:var(--muted);line-height:1.4}
+.ref-info h3{font-size:14px;font-weight:700;color:#ffffff!important;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.ref-info p{font-size:12px;color:rgba(184,200,216,.85)!important;line-height:1.4}
 .ref-meta{font-size:11px;color:var(--muted);margin-top:3px;opacity:.7}
-.ref-bonus{font-size:12px;color:var(--silver2);background:rgba(184,200,216,.08);border:1px solid rgba(184,200,216,.2);padding:4px 12px;border-radius:3px;white-space:nowrap;flex-shrink:0;font-weight:500}
+.ref-bonus{font-size:12px;color:var(--navy);background:var(--gold);border:1px solid var(--gold);padding:5px 14px;border-radius:4px;white-space:nowrap;flex-shrink:0;font-weight:700}
 footer{border-top:1px solid var(--border);padding:28px 24px}
 .footer-inner{max-width:900px;margin:0 auto}
 .footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
@@ -390,7 +405,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .section.active>*{animation:fadeUp .3s ease both}
 @media(max-width:480px){.calc-modal{padding:22px 18px}#sub-toast{flex-wrap:wrap}}
 
-.suscripcion-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:22px 28px;margin-top:20px}
+.suscripcion-box{background:#f8f9fb;border:1px solid #e8ecf2;border-radius:8px;padding:22px 28px;margin-top:20px}
 .suscripcion-box h4{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:4px}
 .suscripcion-box p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5}
 .suscripcion-row{display:flex;gap:8px;flex-wrap:wrap}
@@ -458,26 +473,26 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 /* ── Bloque para ti / no para ti ─────────────────────────────────────────── */
 .parati-block{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
 @media(max-width:600px){.parati-block{grid-template-columns:1fr;}}
-.parati-col{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.parati-col{background:#f8f9fb;border:1px solid #e8ecf2;border-radius:10px;padding:20px 22px;}
 .parati-si{border-color:rgba(80,180,120,.25);}
 .parati-no{border-color:rgba(200,80,80,.2);}
 .parati-header{font-size:13px;font-weight:600;margin-bottom:14px;letter-spacing:.3px;}
 .parati-si .parati-header{color:#6bbf8e;}
 .parati-no .parati-header{color:#c47070;}
 .parati-col ul{margin:0;padding:0 0 0 4px;list-style:none;display:flex;flex-direction:column;gap:10px;}
-.parati-col li{font-size:13px;color:var(--muted);line-height:1.5;padding-left:14px;position:relative;}
+.parati-col li{font-size:13px;color:var(--silver2);line-height:1.5;padding-left:14px;position:relative;}
 .parati-col li::before{content:'—';position:absolute;left:0;color:var(--border);}
 .teca-list{display:flex;flex-direction:column;gap:12px}
 .teca-card{
   display:flex;align-items:flex-start;gap:14px;
-  background:rgba(26,51,88,.55);
-  border:1px solid rgba(168,196,224,.12);
+  background:var(--navy);
+  border:1px solid rgba(201,168,76,.15);
   border-radius:14px;
   padding:14px 16px;
   cursor:pointer;
   transition:transform .15s ease,border-color .15s ease;
 }
-.teca-card:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.35)}
+.teca-card:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.55);box-shadow:0 4px 16px rgba(15,32,53,.2)}
 .teca-icon{
   width:40px;height:40px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
@@ -485,8 +500,8 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
   border:1px solid rgba(201,168,76,.25);
   font-size:18px;flex-shrink:0;
 }
-.teca-info h3{margin:0 0 6px 0}
-.teca-info p{margin:0;color:rgba(220,232,245,.85);line-height:1.55;font-size:14px}
+.teca-info h3{margin:0 0 6px 0;color:#e8f0f7;font-size:15px;font-weight:600}
+.teca-info p{margin:0;color:rgba(184,200,216,.85);line-height:1.55;font-size:13px}
 .teca-meta{margin-top:8px;font-size:12px;color:rgba(168,196,224,.75)}
 .teca-badge{
   margin-left:auto;
@@ -503,11 +518,11 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 /* ── Empieza aquí ─────────────────────────────────────────────────── */
 .empieza-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 auto;max-width:680px}
 @media(max-width:580px){.empieza-grid{grid-template-columns:1fr}}
-.empieza-card{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;transition:border-color .2s,transform .15s;text-decoration:none;color:inherit}
-.empieza-card:hover{border-color:rgba(201,168,76,.5);transform:translateY(-2px);color:inherit;text-decoration:none}
+.empieza-card{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;transition:border-color .2s,transform .15s;text-decoration:none;color:inherit}
+.empieza-card:hover{border-color:var(--gold);transform:translateY(-2px);color:inherit;text-decoration:none;box-shadow:0 4px 16px rgba(15,32,53,.2)}
 .empieza-icon{font-size:26px;line-height:1}
-.empieza-label{font-size:13px;font-weight:700;color:var(--cream)}
-.empieza-sub{font-size:11px;color:var(--muted);line-height:1.4}
+.empieza-label{font-size:13px;font-weight:700;color:#e8f0f7}
+.empieza-sub{font-size:11px;color:rgba(184,200,216,.7);line-height:1.4}
 .empieza-block{margin:20px auto 0;max-width:680px;text-align:center}
 .empieza-pretitle{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 /* ── Hero pills ───────────────────────────────────────────────────── */
@@ -515,16 +530,17 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .hero-pill{font-size:11px;padding:4px 10px;border-radius:20px;background:rgba(184,200,216,.08);border:1px solid rgba(184,200,216,.15);color:var(--silver2);white-space:nowrap}
 .hero-pill.gold{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.25);color:rgba(201,168,76,.9)}
 /* ── CTA Excel ────────────────────────────────────────────────────── */
-.cta-excel-block{margin:24px auto 0;max-width:520px;text-align:center;padding:20px 24px;background:linear-gradient(135deg,rgba(201,168,76,.1) 0%,rgba(201,168,76,.04) 100%);border:1px solid rgba(201,168,76,.4);border-radius:12px}
+.cta-excel-block{margin:24px auto 0;max-width:520px;text-align:center;padding:20px 24px;background:var(--navy);border:1px solid rgba(201,168,76,.35);border-radius:12px}
 .cta-excel-block .excel-ico{font-size:28px;display:block;margin-bottom:8px}
-.cta-excel-block h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--cream);margin-bottom:6px}
-.cta-excel-block p{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.cta-excel-block h3{font-family:'Playfair Display',serif;font-size:17px;color:#e8f0f7;margin-bottom:6px}
+.cta-excel-block p{font-size:13px;color:rgba(184,200,216,.85);margin-bottom:14px;line-height:1.55}
 .cta-excel-btn{display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-size:13px;font-weight:700;padding:10px 22px;border-radius:6px;text-decoration:none;transition:opacity .2s}
 .cta-excel-btn:hover{opacity:.85;color:#0f2035;text-decoration:none}
-.cta-excel-secondary{display:block;margin-top:10px;font-size:12px;color:var(--muted)}
+.cta-excel-secondary{display:block;margin-top:10px;font-size:12px;color:rgba(184,200,216,.5)}
 .cta-excel-secondary a{color:var(--muted)}
 /* ── Recurso featured ─────────────────────────────────────────────── */
-.recurso-card.featured{border-color:rgba(201,168,76,.5)!important;background:linear-gradient(135deg,rgba(201,168,76,.07) 0%,var(--bg2) 70%)!important;position:relative;overflow:hidden}
+.recurso-card.coming{opacity:.5;cursor:default;filter:grayscale(30%)}
+.recurso-card.featured{border-color:var(--gold)!important;border-width:2px!important;background:var(--navy)!important;position:relative;overflow:hidden}
 .recurso-card.featured::before{content:"★ Disponible ahora";position:absolute;top:10px;right:-28px;background:var(--gold);color:#0f2035;font-size:9px;font-weight:700;padding:3px 36px;transform:rotate(45deg);letter-spacing:.4px}
 /* ── Calc micro-desc ──────────────────────────────────────────────── */
 .calc-desc{font-size:11px;color:var(--muted);margin:2px 0 0 30px;line-height:1.4;display:block}
@@ -587,8 +603,25 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .renta-cta-secondary:hover{border-color:rgba(184,200,216,.4);color:var(--cream)}
 .renta-reset{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:inherit;text-decoration:underline;margin-top:6px;display:block;margin-left:auto;margin-right:auto}
 /* Badge especial en calc-list */
-.calc-item.renta-featured{border-color:rgba(201,168,76,.4);background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,var(--bg2) 70%)}
+.calc-item.renta-featured{border-color:rgba(201,168,76,.3)}
 .renta-badge{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--gold);color:#0f2035;padding:2px 7px;border-radius:3px;margin-left:8px;white-space:nowrap;flex-shrink:0}
+/* ── Glosario navy override ──────────────────────────── */
+.referidos-list .glosario-card,
+.glosario-card{background:var(--navy)!important;border:1px solid rgba(201,168,76,.15)!important;border-radius:10px!important;}
+.glosario-card:hover{border-color:rgba(201,168,76,.5)!important;transform:translateY(-1px)!important;box-shadow:0 4px 16px rgba(15,32,53,.2)!important}
+.glosario-card .glosario-abbr{color:var(--gold)!important}
+.glosario-card .glosario-term{color:#e8f0f7!important}
+.glosario-card .glosario-def{color:rgba(184,200,216,.8)!important}
+.glosario-card .glosario-link{color:rgba(201,168,76,.7)!important}
+/* ── Testimonios ──────────────────────────────────────── */
+.testimonios-block{margin-top:32px}
+.testimonios-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:16px}
+.testimonios-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:580px){.testimonios-grid{grid-template-columns:1fr}}
+.testimonio-card{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s}
+.testimonio-card:hover{border-color:rgba(184,200,216,.3)}
+.testimonio-texto{font-size:13px;color:rgba(184,200,216,.9);line-height:1.7;margin:0;font-style:italic}
+.testimonio-autor{font-size:12px;color:rgba(201,168,76,.8);font-weight:600;letter-spacing:.3px}
 /* ── Modal Excel (email gate) ──────────────────────── */
 #excel-modal-overlay{display:none;position:fixed;inset:0;background:rgba(8,15,26,.88);z-index:300;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
 #excel-modal-overlay.open{display:flex}
@@ -687,6 +720,7 @@ function qfTrack(eventName, params) {
   window.cookieEssential = function(){
     localStorage.setItem(CONSENT_KEY,'essential');
     hideBanner();
+    var cb=document.getElementById('cookie-ball');if(cb)cb.style.display='flex';
   };
 
   // Show banner only if no preference saved
@@ -706,7 +740,7 @@ function qfTrack(eventName, params) {
   window.goTo = function(s) { _queue.push(s); };
   window.kitsubmit = function() {};
   window._resolveGoTo = function(realFn) {
-    window.goTo = realFn;
+    window.goTo = function(s) { window.scrollTo({top:0,behavior:"smooth"}); realFn(s); };
     _queue.forEach(function(s) { realFn(s); });
   };
 
@@ -733,6 +767,39 @@ function qfTrack(eventName, params) {
 </head>
 <body class="show-home-intro">
 
+<!-- ── Sticky Top Bar ──────────────────────────────────────────────── -->
+<div id="top-bar" style="position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid #dde4ed;box-shadow:0 1px 4px rgba(15,32,53,.05)">
+  <div style="display:flex;align-items:center;padding:6px 16px;gap:10px">
+    <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0" title="Inicio">
+      <img src="logo.png" alt="Don Quijote de las Finanzas" style="width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(201,168,76,.4);object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">
+      <span class="topbar-name" style="font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:#0f2035;white-space:nowrap"><strong style="font-weight:700">Don Quijote</strong> <span style="font-weight:400;color:#2d4a6b">de las Finanzas</span></span>
+    </a>
+  </div>
+  <nav id="main-nav" style="display:flex;gap:3px;overflow-x:auto;padding:4px 16px 6px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch">
+    <button class="nav-btn active" data-section="sobre" style="white-space:nowrap;flex-shrink:0">Sobre mí</button>
+    <button class="nav-btn" data-section="calculadoras" style="white-space:nowrap;flex-shrink:0">Calculadoras</button>
+    <button class="nav-btn" data-section="cuentas" style="white-space:nowrap;flex-shrink:0">QuijoCuentas</button>
+    <button class="nav-btn" data-section="quijolista" style="white-space:nowrap;flex-shrink:0">QuijoLista</button>
+    <button class="nav-btn" data-section="recursos" style="white-space:nowrap;flex-shrink:0">Recursos</button>
+    <button class="nav-btn" data-section="teca" style="white-space:nowrap;flex-shrink:0">QuijoTeca</button>
+    <button class="nav-btn" data-section="glosario" style="white-space:nowrap;flex-shrink:0">QuijoGlosario</button>
+    <button class="nav-btn" data-section="referidos" style="white-space:nowrap;flex-shrink:0">Referidos</button>
+  </nav>
+</div>
+<style>
+  #main-nav::-webkit-scrollbar{display:none}
+  @media(min-width:700px){
+    #top-bar>div:first-child{padding-bottom:0}
+    #top-bar{display:flex;align-items:center;padding:0}
+    #top-bar>div:first-child{padding:6px 16px;flex-shrink:0}
+    #top-bar nav#main-nav{padding:6px 16px;margin-left:auto;overflow-x:visible;flex-wrap:wrap;border-top:none}
+    .topbar-name{display:inline!important}
+  }
+  @media(max-width:699px){
+    .topbar-name{display:none!important}
+  }
+</style>
+
 <header>
   <div class="compact-brand" aria-hidden="true">
     <div class="compact-brand-logo"><img src="logo.png" alt="Logo Don Quijote de las Finanzas"></div>
@@ -748,7 +815,7 @@ function qfTrack(eventName, params) {
   <p class="positioning">Herramientas y comparativas claras para saber qu&eacute; hacer con tu dinero en cada momento</p>
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 0">
     <a href="#" onclick="goTo('calculadoras');return false;" style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 22px;border-radius:7px;text-decoration:none;transition:opacity .2s">📊 Ver calculadoras</a>
-    <a href="#" onclick="goTo('cuentas');return false;" style="display:inline-flex;align-items:center;gap:7px;background:transparent;border:1.5px solid rgba(184,200,216,.4);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:11px 20px;border-radius:7px;text-decoration:none;transition:all .2s">🏦 Comparar cuentas</a>
+    <a href="#" onclick="goTo('cuentas');return false;" style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 22px;border-radius:7px;text-decoration:none;transition:opacity .2s">🏦 Comparar cuentas</a>
   </div>
   <div class="social-links">
     <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">
@@ -780,16 +847,6 @@ function qfTrack(eventName, params) {
       </a>
     </div>
   </div>
-  <nav id="main-nav">
-    <button class="nav-btn active" data-section="sobre">Sobre m&iacute;</button>
-    <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
-    <button class="nav-btn" data-section="cuentas">QuijoCuentas</button>
-    <button class="nav-btn" data-section="quijolista">QuijoLista</button>
-    <button class="nav-btn" data-section="recursos">Recursos</button>
-    <button class="nav-btn" data-section="teca">QuijoTeca</button>
-    <button class="nav-btn" data-section="glosario">QuijoGlosario</button>
-    <button class="nav-btn" data-section="referidos">Referidos</button>
-  </nav>
   <!-- CTA Principal: Excel -->
   <div class="cta-excel-block" id="kit-main-cta">
     <span class="excel-ico">📊</span>
@@ -799,55 +856,72 @@ function qfTrack(eventName, params) {
     <span class="cta-excel-secondary">Gratis · Acceso por email</span>
   </div>
   <!-- Newsletter CTA — único en la página -->
-  <div id="newsletter-cta" style="margin:28px auto 0;max-width:520px;text-align:center;padding:22px 28px;background:var(--bg2);border:1px solid rgba(201,168,76,.3);border-radius:12px;">
-    <p style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--cream);margin:0 0 8px 0;">Si quieres estar al d&iacute;a de lo que realmente merece la pena</p>
-    <p style="font-size:13px;color:var(--muted);margin:0 0 14px 0;line-height:1.5;">Te aviso cuando publique nuevas herramientas, comparativas o cualquier cosa que pueda ayudarte con tu dinero</p>
+
+  <!-- Testimonios en hero -->
+  <div style="max-width:680px;margin:28px auto 0">
+    <p style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center;margin-bottom:14px">Lo que dicen quienes lo usan</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="testimonio-card"><p class="testimonio-texto">"La web me ha ayudado a tener un repositorio más que útil para mis primeros pasos en la inversión."</p><span class="testimonio-autor">— Jesús</span></div>
+      <div class="testimonio-card"><p class="testimonio-texto">"Enhorabuena por aportar más que el 90% de X."</p><span class="testimonio-autor">— Vicente</span></div>
+      <div class="testimonio-card"><p class="testimonio-texto">"¡Menudo trabajazo compañero! Súper completo, espero que tengas todo el reconocimiento que mereces."</p><span class="testimonio-autor">— David</span></div>
+      <div class="testimonio-card"><p class="testimonio-texto">"Está genial tío. ¡Menudo trabajazo!"</p><span class="testimonio-autor">— Iván</span></div>
+    </div>
+  </div>
+
+  <div id="newsletter-cta" style="margin:28px auto 0;max-width:520px;text-align:center;padding:22px 28px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;">
+    <p style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#e8f0f7;margin:0 0 8px 0;">Si quieres estar al d&iacute;a de lo que realmente merece la pena</p>
+    <p style="font-size:13px;color:rgba(184,200,216,.85);margin:0 0 14px 0;line-height:1.5;">Te aviso cuando publique nuevas herramientas, comparativas o cualquier cosa que pueda ayudarte con tu dinero</p>
     <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center">
-      <input type="email" name="email_address" placeholder="tu@email.com" required style="background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
+      <input type="email" name="email_address" placeholder="tu@email.com" required style="background:rgba(255,255,255,.1);border:1px solid rgba(184,200,216,.25);color:#e8f0f7;font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
       <button type="submit" style="background:rgba(201,168,76,.92);border:1px solid rgba(201,168,76,.6);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">🔔 Quiero recibirlo</button>
-      <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+      <span class="kit-msg" style="display:none;font-size:12px;color:rgba(184,200,216,.8);width:100%;text-align:center;"></span>
     </form>
-    <p style="font-size:11px;color:var(--muted);margin:10px 0 0">Te aviso solo cuando haya algo que merezca la pena</p>
+    <p style="font-size:11px;color:rgba(184,200,216,.55);margin:10px 0 0">Te aviso solo cuando haya algo que merezca la pena</p>
   </div>
 </header>
 
-<main>
-  <section id="sobre" class="section active">
+<main style="background:#fff;min-height:100vh">
+  <section id="sobre" class="section active" >
     <div class="section-header">
       <h2>Hola, soy Don Quijote de las Finanzas</h2>
       <p>Más de 8 años en el sector financiero. Herramientas y criterio, sin promesas.</p>
       <div class="divider"></div>
     </div>
     <div class="about-grid">
-      <div class="about-bio">
-        <p style="margin-bottom:14px">Llevo más de 8 años en el sector financiero, trabajando en algunas de las empresas más importantes a nivel nacional e internacional. La mayoría de la gente nunca recibe una <strong>educación financiera real</strong> — yo estoy aquí para cambiar eso.</p>
-        <p style="margin-bottom:14px">Lo que encontrarás aquí son <strong>herramientas concretas, datos reales y análisis prácticos</strong> sobre lo que realmente importa: cuánto cobras, cómo crece tu dinero, cuánto te cuesta una hipoteca y dónde poner tus ahorros.</p>
-        <p style="margin-bottom:14px">Todo lo que comparto lo aplico yo mismo. <strong>Sin humos, sin promesas de rentabilidades imposibles</strong> y con foco en los números. Si algo depende de tu situación personal, lo digo.</p>
-        <div style="margin-top:16px;padding:14px 16px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:13px;color:var(--silver2);line-height:1.6">
-          <strong style="color:var(--cream);display:block;margin-bottom:4px">¿Para quién es esto?</strong>
+      <div class="about-bio" style="background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:22px 24px;color:#e8f0f7">
+        <p style="margin-bottom:14px;color:#e8f0f7">Llevo más de 8 años en el sector financiero, trabajando en algunas de las empresas más importantes a nivel nacional e internacional. La mayoría de la gente nunca recibe una <strong style="color:#e8f0f7">educación financiera real</strong> — yo estoy aquí para cambiar eso.</p>
+        <p style="margin-bottom:14px">Lo que encontrarás aquí son <strong style="color:#e8f0f7">herramientas concretas, datos reales y análisis prácticos</strong> sobre lo que realmente importa: cuánto cobras, cómo crece tu dinero, cuánto te cuesta una hipoteca y dónde poner tus ahorros.</p>
+        <p style="margin-bottom:14px">Todo lo que comparto lo aplico yo mismo. <strong style="color:#e8f0f7">Sin humos, sin promesas de rentabilidades imposibles</strong> y con foco en los números. Si algo depende de tu situación personal, lo digo.</p>
+        <div style="margin-top:16px;padding:14px 16px;background:rgba(255,255,255,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:13px;color:rgba(184,200,216,.9);line-height:1.6">
+          <strong style="color:#ffffff;display:block;margin-bottom:4px">¿Para quién es esto?</strong>
           Para alguien que quiere entender sus finanzas sin necesitar un máster en economía. Para quien prefiere los datos a las opiniones. Para quien ya sabe que el tiempo es lo más valioso que tiene.
         </div>
-        <div style="margin-top:12px;padding:14px 16px;background:rgba(184,200,216,.04);border-left:3px solid rgba(184,200,216,.2);border-radius:0 6px 6px 0;font-size:12px;color:var(--muted);line-height:1.6">
-          ⚠️ <strong>Aviso legal:</strong> Este sitio es educativo e informativo. No es asesoramiento financiero personalizado. Consulta siempre con un profesional antes de tomar decisiones de inversión importantes.
+        <div style="margin-top:12px;padding:14px 16px;background:rgba(255,255,255,.05);border-left:3px solid rgba(184,200,216,.25);border-radius:0 6px 6px 0;font-size:12px;color:rgba(184,200,216,.8);line-height:1.6">
+          ⚠️ <strong style="color:#e8f0f7">Aviso legal:</strong> Este sitio es educativo e informativo. No es asesoramiento financiero personalizado. Consulta siempre con un profesional antes de tomar decisiones de inversión importantes.
         </div>
       </div>
-      <div class="stat-card"><span class="stat-num">2K+</span><span class="stat-label">Seguidores en X</span></div>
-      <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">A&ntilde;os en el sector financiero</span></div>
-      <div class="contact-box" id="contacto">
-        <strong>Contacto directo</strong>
-        &iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:contacto@quijotefinanzas.com" style="color:var(--silver);font-weight:700;">contacto@quijotefinanzas.com</a> y responder&eacute; lo antes posible.
+      <div class="stat-card" style="background:var(--navy);border-color:rgba(201,168,76,.2)"><span class="stat-num" style="color:#e8f0f7">2K+</span><span class="stat-label" style="color:rgba(184,200,216,.7)">Seguidores en X</span></div>
+      <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">Años en el sector financiero</span></div>
+      <div class="stat-card" style="background:var(--navy);border-color:rgba(201,168,76,.2)"><span class="stat-num" style="color:#e8f0f7">500+</span><span class="stat-label" style="color:rgba(184,200,216,.7)">Visitas mensuales</span></div>
+      <div class="contact-box" id="contacto" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px">
+        <strong style="color:var(--navy);display:block;margin-bottom:6px;font-size:14px">Contacto directo</strong>
+        <span style="font-size:13px;color:var(--navy2);line-height:1.6">&iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:contacto@quijotefinanzas.com" style="color:var(--gold);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3)">contacto@quijotefinanzas.com</a> y responder&eacute; lo antes posible.</span>
       </div>
     </div>
 
-    <div style="margin-top:20px;padding:14px 16px;background:rgba(201,168,76,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:13px;color:var(--silver2);line-height:1.6">
-      <strong style="color:var(--cream);display:block;margin-bottom:6px">¿Buscas más detalle sobre el proyecto?</strong>
-      Herramientas prácticas, criterio claro y números reales. Sin atajos ni promesas. Para quien prefiere los datos a las opiniones.
-      <a href="sobre-el-proyecto.html" style="display:inline-block;margin-top:10px;font-size:12px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3)">Leer más sobre el proyecto →</a>
+
     </div>
+
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
   </section>
 
-  <section id="recursos" class="section">
-    <div class="section-header"><h2>Recursos gratuitos</h2><p>Herramientas que uso yo mismo y comparto contigo.</p><div class="divider"></div></div>
+  <section id="recursos" class="section" >
+    <div class="section-header"><h2>Recursos</h2><p>Herramientas que uso yo mismo y comparto contigo.</p><div class="divider"></div></div>
     <div class="recursos-grid">
       <div class="recurso-card featured" onclick="openExcelModal()" style="cursor:pointer;">
         <span class="recurso-icon">&#128202;</span>
@@ -877,6 +951,12 @@ function qfTrack(eventName, params) {
         <a href="mejores-cuentas-remuneradas.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Cuentas remuneradas →</a>
       </div>
     </div>
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
 </section>
 
 <section class="section" id="glosario">
@@ -885,7 +965,14 @@ function qfTrack(eventName, params) {
     <p class="muted">Términos financieros explicados con definiciones y ejemplos. Al pulsar, se abre la imagen del término.</p>
   </div>
   <div class="referidos-list" id="glosarioGrid"></div>
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
 </section>
+
 
 <section class="section" id="teca">
   <div class="section-head">
@@ -900,9 +987,15 @@ function qfTrack(eventName, params) {
     <button class="cat-btn" data-cat="pelicula">🎬 Películas</button>
   </div>
   <div class="teca-list" id="tecaList"></div>
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
 </section>
 
-  <section id="quijolista" class="section">
+  <section id="quijolista" class="section" >
   <div class="section-head">
     <h2>📋 QuijoLista</h2>
     <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Fondos, ETFs y más — para empezar a invertir con criterio, no con ruido</p>
@@ -921,9 +1014,15 @@ function qfTrack(eventName, params) {
   <div id="ql-context" class="note" style="margin-top:0;margin-bottom:18px;padding:12px 16px;font-size:12px;line-height:1.6"><strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto y comprueba siempre disponibilidad y condiciones en tu plataforma.</div>
   <div class="referidos-list" id="quijolistaGrid"></div>
   <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS) y los Roboadvisors no tienen ISIN. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
 </section>
 
-  <section id="calculadoras" class="section">
+  <section id="calculadoras" class="section" >
     <div class="section-header"><h2>Calculadoras</h2><p>Pulsa en cualquier calculadora disponible para abrirla. Cada una tiene también su propia p&aacute;gina con m&aacute;s contexto y preguntas frecuentes.</p><div class="divider"></div></div>
     
     <div class="filter-row" id="calc-filter">
@@ -960,37 +1059,23 @@ function qfTrack(eventName, params) {
       <div id="votos-list"></div>
     </div>
     <div class="note"><strong>Las marcadas como &ldquo;Disponible&rdquo; se abren directamente aquí.</strong> Cada calculadora tiene también su <a href="calculadora-salario-neto-espana.html" style="color:var(--gold)">propia página con más contexto y FAQ</a>. Las &ldquo;Pronto&rdquo; se irán añadiendo — s&iacute;gueme en X para enterarte.</div>
+
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
 </section>
 
-<section id="cuentas" class="section">
+<section id="cuentas" class="section" >
   <div class="section-head">
     <h2>🏦 QuijoCuentas</h2>
     <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Para que tu liquidez no pierda poder adquisitivo</p>
     <p class="muted">Comparativa mensual de cuentas y depósitos en España. Ordenado por tipo de producto y nivel de vinculación. Sin publicidad, sin afiliados. Solo datos. <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:20px;font-size:12px">
-    <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--gold);font-weight:700;margin-bottom:4px">Cuentas sin condiciones</div>
-      <div style="color:var(--muted);line-height:1.5">Para dinero líquido. Sin nómina ni recibos. Entra y sal cuando quieras.</div>
-    </div>
-    <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Cuentas con condiciones</div>
-      <div style="color:var(--muted);line-height:1.5">Mayor rentabilidad a cambio de cierta vinculación: nómina, recibos o uso de tarjeta.</div>
-    </div>
-    <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Cuentas nómina</div>
-      <div style="color:var(--muted);line-height:1.5">Aquí importa más el dinero total que puedes ganar que el % aislado.</div>
-    </div>
-    <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Depósitos sin condiciones</div>
-      <div style="color:var(--muted);line-height:1.5">Plazo fijo sin apenas requisitos adicionales. Más interés a cambio de menor liquidez.</div>
-    </div>
-    <div style="background:rgba(184,200,216,.05);border:1px solid var(--border);border-radius:7px;padding:12px">
-      <div style="color:var(--silver2);font-weight:700;margin-bottom:4px">Depósitos con condiciones</div>
-      <div style="color:var(--muted);line-height:1.5">Rentabilidad sujeta a importes, plazos, vinculación o promociones concretas.</div>
-    </div>
-  </div>
-  <div class="filter-row" id="cuentas-filter">
+    <div class="filter-row" id="cuentas-filter">
     <button type="button" class="cat-btn active" data-tab="sin" onclick="setCuentasTab('sin');return false;">Cuentas sin condiciones</button>
     <button type="button" class="cat-btn" data-tab="con" onclick="setCuentasTab('con');return false;">Cuentas con condiciones</button>
     <button type="button" class="cat-btn" data-tab="nomina" onclick="setCuentasTab('nomina');return false;">Cuentas nómina</button>
@@ -1002,11 +1087,18 @@ function qfTrack(eventName, params) {
     <!-- rendered by JS -->
   </div>
 
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
+
 </section>
 
 
-  <section id="referidos" class="section">
-    <div class="section-header"><h2>Links referidos</h2><p>Solo recomiendo lo que uso yo. Si te registras con mi enlace, ambos ganamos.</p><div class="divider"></div></div>
+  
+<section id="referidos" class="section" >
+    <div class="section-header"><h2>Referidos</h2><p>Solo recomiendo lo que uso o he usado. Si te registras con mi enlace, ambos ganamos algo.</p><div class="divider"></div></div>
     <div class="filter-row" id="ref-filter">
       <button class="cat-btn active" data-cat="todos">Todos</button>
       <button class="cat-btn" data-cat="energia">Energ&iacute;a</button>
@@ -1016,63 +1108,69 @@ function qfTrack(eventName, params) {
       <button class="cat-btn" data-cat="otros">Otros</button>
     </div>
     <div class="referidos-list" id="refList">
-      <a class="ref-card" href="https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing?P5=CN&P2=MGMG5YN9BD5QH" data-cat="banco" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
-        <div class="ref-logo">&#127974;</div>
+      <a class="ref-card" href="https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing?P5=CN&P2=MGMG5YN9BD5QH" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/bankinter.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🏦'" alt="Bankinter"></div>
         <div class="ref-info"><h3>Bankinter</h3><p>Cuenta bancaria de alta remuneraci&oacute;n &middot; c&oacute;digo: MGMG5YN9BD5QH</p><p class="ref-meta">Bono al domiciliar n&oacute;mina</p></div>
         <span class="ref-bonus">150&euro; bono</span>
       </a>
-      <a class="ref-card" href="https://esim.holafly.com/?sref_id=n9w1mer&utm_campaign=referral_program&utm_source=loyalty" data-cat="otros" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div class="ref-logo">&#9992;&#65039;</div>
+      <a class="ref-card" href="https://esim.holafly.com/?sref_id=n9w1mer&utm_campaign=referral_program&utm_source=loyalty" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/holafly.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='✈️'" alt="Holafly"></div>
         <div class="ref-info"><h3>Holafly</h3><p>eSIM para viajar sin preocuparte por el roaming</p><p class="ref-meta">Compatible con la mayor&iacute;a de smartphones modernos</p></div>
         <span class="ref-bonus">5% descuento</span>
       </a>
-      <a class="ref-card" href="https://www.hsnstore.com/customer/account/create/referral/1690019/" data-cat="otros" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div class="ref-logo">&#128170;</div>
+      <a class="ref-card" href="https://www.hsnstore.com/customer/account/create/referral/1690019/" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/hsnstore.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='💪'" alt="HSN"></div>
         <div class="ref-info"><h3>HSN</h3><p>Suplementaci&oacute;n deportiva y nutrici&oacute;n de calidad</p><p class="ref-meta">Descuento en tu primer pedido</p></div>
         <span class="ref-bonus">5&euro; descuento</span>
       </a>
-      <a class="ref-card" href="https://es.igraal.com/padrinazgo?padrino=AG_67a5df416b087" data-cat="otros" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div class="ref-logo">&#128717;&#65039;</div>
+      <a class="ref-card" href="https://es.igraal.com/padrinazgo?padrino=AG_67a5df416b087" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/igraal.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🛍️'" alt="iGraal"></div>
         <div class="ref-info"><h3>iGraal</h3><p>Cashback en compras online &mdash; ahorra en lo que ya gastas</p><p class="ref-meta">Cashback autom&aacute;tico en cientos de tiendas</p></div>
         <span class="ref-bonus">3&euro; + cashback</span>
       </a>
-      <a class="ref-card" href="https://seguro.lineadirecta.com/fidelizacion-amigo?AMIGO00007570" data-cat="seguro" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge seguro">Seguro</span>
-        <div class="ref-logo">&#128663;</div>
+      <a class="ref-card" href="https://seguro.lineadirecta.com/fidelizacion-amigo?AMIGO00007570" data-cat="seguro" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge seguro">Seguro</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/lineadirecta.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🚗'" alt="Línea Directa"></div>
         <div class="ref-info"><h3>L&iacute;nea Directa</h3><p>Seguro de coche y moto &mdash; contrata usando mi enlace de recomendaci&oacute;n</p><p class="ref-meta">Descuento aplicado al contratar &middot; sin permanencia</p></div>
         <span class="ref-bonus">30&euro; descuento</span>
       </a>
-      <a class="ref-card" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" data-cat="inversion" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge inversion">Inversión</span>
-        <div class="ref-logo">&#128200;</div>
+      <a class="ref-card" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" data-cat="inversion" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge inversion">Inversión</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/myinvestor.es" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='📈'" alt="MyInvestor"></div>
         <div class="ref-info"><h3>MyInvestor</h3><p>Fondos indexados, ETFs y carteras automatizadas &middot; c&oacute;digo: xpKDn</p><p class="ref-meta">Bono al abrir cuenta y depositar</p></div>
         <span class="ref-bonus">25&euro; bono</span>
       </a>
-      <a class="ref-card" href="https://n26.com/es-es/referral/albertoc42158c" data-cat="banco" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
-        <div class="ref-logo">&#127efe;</div>
+      <a class="ref-card" href="https://n26.com/es-es/referral/albertoc42158c" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#1a1a2e;border:1px solid #333;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-family:'DM Mono',monospace;font-size:11px;font-weight:800;letter-spacing:-0.5px">N26</div>
         <div class="ref-info"><h3>N26</h3><p>Banco digital &mdash; cuenta sin comisiones, tarjeta gratuita</p><p class="ref-meta">Bono al activar la tarjeta y hacer primer pago</p></div>
         <span class="ref-bonus">15&euro; al activar</span>
       </a>
-      <a class="ref-card" href="https://octopusenergy.es/referidos?referralCode=mellow-owl-104" data-cat="energia" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge energia">Energía</span>
-        <div class="ref-logo">&#128025;</div>
+      <a class="ref-card" href="https://octopusenergy.es/referidos?referralCode=mellow-owl-104" data-cat="energia" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge energia">Energía</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/octopusenergy.es" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🐙'" alt="Octopus Energy"></div>
         <div class="ref-info"><h3>Octopus Energy</h3><p>Compa&ntilde;&iacute;a de luz 100% renovable</p><p class="ref-meta">Bono aplicado al registrarte &middot; sin permanencia</p></div>
         <span class="ref-bonus">50&euro; descuento</span>
       </a>
-      <a class="ref-card" href="https://www.paypal.com/es/campaign/invite/terms?referral_context=006JFX5NokqilVpcfjeykEJgOVvCpujYmq0Lcc4zEiUeOJ-DwzaT_o9wfXDJQ4BA-InV6za-_J2SoxnoqGCEBfJUJc74XZZjMX3RNZ4W6lqN" data-cat="otros" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div class="ref-logo">&#127359;</div>
+      <a class="ref-card" href="https://www.paypal.com/es/campaign/invite/terms?referral_context=006JFX5NokqilVpcfjeykEJgOVvCpujYmq0Lcc4zEiUeOJ-DwzaT_o9wfXDJQ4BA-InV6za-_J2SoxnoqGCEBfJUJc74XZZjMX3RNZ4W6lqN" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/paypal.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='💳'" alt="PayPal"></div>
         <div class="ref-info"><h3>PayPal</h3><p>Plataforma de pagos &mdash; &uacute;til para compras internacionales</p><p class="ref-meta">Bono al registrarte y realizar tu primer pago</p></div>
         <span class="ref-bonus">10&euro; bono</span>
       </a>
-      <a class="ref-card" href="https://es.privalia.com/gr/registration?mgmcode=892465E6" data-cat="otros" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div class="ref-logo">&#129529;</div>
+      <a class="ref-card" href="https://es.privalia.com/gr/registration?mgmcode=892465E6" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/privalia.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🛍'" alt="Privalia"></div>
         <div class="ref-info"><h3>Privalia</h3><p>Outlet de moda online con descuentos permanentes</p><p class="ref-meta">Descuento en tu primera compra</p></div>
         <span class="ref-bonus">10&euro; primera cuenta</span>
       </a>
-      <a class="ref-card" href="https://www.revolut.com/es-ES/referral/?referral-code=alberteqkd%21AUG1-25-AR-H1" data-cat="banco" target="_blank" rel="nofollow noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
-        <div class="ref-logo">&#128308;</div>
+      <a class="ref-card" href="https://www.revolut.com/es-ES/referral/?referral-code=alberteqkd%21AUG1-25-AR-H1" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
+        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/revolut.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='💳'" alt="Revolut"></div>
         <div class="ref-info"><h3>Revolut</h3><p>Tarjeta multimoneda &mdash; ideal para viajes y d&iacute;a a d&iacute;a</p><p class="ref-meta">Bono al completar el registro y hacer primer pago</p></div>
         <span class="ref-bonus">50&euro; al unirte</span>
       </a>
     </div>
     <div class="note"><strong>Transparencia:</strong> Estos enlaces son de afiliado &mdash; si te registras puedo recibir una compensaci&oacute;n. Solo listo productos que uso o he probado personalmente. Los bonos pueden variar seg&uacute;n campa&ntilde;a.</div>
+
+  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
+    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
+    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
+    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  </div>
 </section>
 
 
@@ -1101,44 +1199,34 @@ function qfTrack(eventName, params) {
 </div>
 
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-cols">
-      <div class="footer-col">
-        <h4>Herramientas</h4>
-        <a href="calculadora-salario-neto-espana.html">Salario neto</a>
-        <a href="calculadora-hipoteca-espana.html">Hipoteca</a>
-        <a href="calculadora-interes-compuesto.html">Interés compuesto</a>
-        <a href="calculadora-jubilacion-fire.html">Jubilación / FIRE</a>
-        <a href="calculadora-plan-pensiones-desgravacion.html">Plan de pensiones</a>
-        <a href="#" onclick="goTo('calculadoras');return false;">Ver todas →</a>
+<footer style="background:#fff;border-top:1px solid #dde4ed;padding:28px 32px 20px">
+  <!-- Top: logo + links -->
+  <div style="display:flex;align-items:center;gap:32px;margin-bottom:20px;flex-wrap:wrap">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0">
+      <img src="logo.png" alt="Don Quijote de las Finanzas" style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(201,168,76,.35);object-fit:cover">
+      <div style="font-family:'DM Sans',sans-serif;line-height:1.2">
+        <div style="font-size:13px;font-weight:600;color:#0f2035">Don Quijote</div>
+        <div style="font-size:11px;color:#6a8aaa;font-weight:300">de las Finanzas</div>
       </div>
-      <div class="footer-col">
-        <h4>Cuentas y ahorro</h4>
-        <a href="mejores-cuentas-remuneradas.html">Cuentas sin condiciones</a>
-        <a href="calculadora-deposito-plazo-fijo.html">Depósitos</a>
-        <a href="#" onclick="goTo('cuentas');return false;">Ver comparativa →</a>
-      </div>
-      <div class="footer-col">
-        <h4>Aprende</h4>
-        <a href="#" onclick="goTo('glosario');return false;">QuijoGlosario</a>
-        <a href="#" onclick="goTo('teca');return false;">QuijoTeca</a>
-        <a href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">QuijoExcel</a>
-        <a href="sobre-el-proyecto.html">Sobre el proyecto</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="privacidad.html">Privacidad</a>
-        <a href="cookies.html">Cookies</a>
-        <a href="aviso-legal.html">Aviso legal</a>
-        <a href="mailto:contacto@quijotefinanzas.com">Contacto</a>
-        <a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">@QuijoteFinanzas</a>
-      </div>
+    </a>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-left:auto;align-items:center">
+      <a href="#" onclick="goTo('calculadoras');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">Calculadoras</a>
+      <a href="#" onclick="goTo('cuentas');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoCuentas</a>
+      <a href="#" onclick="goTo('quijolista');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoLista</a>
+      <a href="#" onclick="goTo('recursos');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">Recursos</a>
+      <a href="sobre-el-proyecto.html" style="font-size:12px;color:#6a8aaa;text-decoration:none">Sobre el proyecto</a>
+      <a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#6a8aaa;text-decoration:none">@QuijoteFinanzas</a>
     </div>
-    <div class="footer-top" style="border-top:1px solid var(--border);padding-top:16px">
-      <span class="footer-copy">&copy; 2026 Don Quijote de las Finanzas</span>
+  </div>
+  <!-- Bottom: legal -->
+  <div style="border-top:1px solid #dde4ed;padding-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <span style="font-size:11px;color:#6a8aaa">&copy; 2026 Don Quijote de las Finanzas &nbsp;·&nbsp; Contenido informativo y educativo. No constituye asesoramiento financiero.</span>
+    <div style="display:flex;gap:14px">
+      <a href="privacidad.html" style="font-size:11px;color:#6a8aaa;text-decoration:none">Privacidad</a>
+      <a href="aviso-legal.html" style="font-size:11px;color:#6a8aaa;text-decoration:none">Aviso legal</a>
+      <a href="cookies.html" style="font-size:11px;color:#6a8aaa;text-decoration:none">Cookies</a>
+      <a href="mailto:contacto@quijotefinanzas.com" style="font-size:11px;color:#6a8aaa;text-decoration:none">Contacto</a>
     </div>
-    <p class="footer-disclaimer">Contenido de car&aacute;cter informativo y educativo. No constituye asesoramiento financiero, fiscal ni de inversi&oacute;n. Consulta con un profesional antes de tomar decisiones financieras.</p>
   </div>
 </footer>
 
@@ -1189,7 +1277,14 @@ function qfTrack(eventName, params) {
     <div id="excel-modal-form-state">
       <span class="em-icon">📊</span>
       <h3 id="excel-modal-title">QuijoExcel — Gratis</h3>
-      <p class="em-sub">Introduce tu email y te enviamos <strong>acceso directo</strong> a la plantilla. Sin spam, solo lo que merece la pena.</p>
+      <p class="em-sub">Introduce tu email y recibes el acceso al momento. Y si en algún momento publico algo que valga la pena, también te llegará.</p>
+      <div style="text-align:left;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--silver2);line-height:1.8">
+        <strong style="color:var(--cream);font-size:11px;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:8px">Lo que recibes</strong>
+        <div>📊 <strong>QuijoExcel</strong> — plantilla de finanzas personales</div>
+        <div>🧮 <strong>13 calculadoras gratuitas</strong> — salario, hipoteca, inversión…</div>
+        <div>📊 <strong>QuijoCuentas</strong> — comparativa mensual de cuentas y depósitos</div>
+        <div>🔔 <strong>Avisos puntuales</strong> — solo cuando haya algo que merezca la pena</div>
+      </div>
       <input type="email" id="excel-email-input" placeholder="tu@email.com" autocomplete="email">
       <div class="em-error" id="excel-email-error"></div>
       <button class="em-btn" id="excel-submit-btn">📥 Enviarme la plantilla</button>
@@ -2789,10 +2884,11 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function calcRendTrabajoReduction(rendNetoTrabajo){
+    // Reducción rendimientos del trabajo Art. 20 LIRPF — valores 2026
     var r=Math.max(0,+rendNetoTrabajo||0);
-    if(r<=14852) return 7302;
-    if(r<=17673.52) return Math.max(0,7302 - 1.75*(r-14852));
-    if(r<19747.5) return Math.max(0,2364.34 - 1.14*(r-17673.52));
+    if(r<=13115) return 5565;
+    if(r<=16825) return Math.max(0,5565 - 1.5*(r-13115));
+    if(r<21177) return Math.max(0,0);
     return 0;
   }
 
@@ -3166,7 +3262,7 @@ document.addEventListener('DOMContentLoaded', function(){
         div.className = "ref-card";
         div.style.cursor = "pointer";
         var abbr = it.title.substring(0,3).toUpperCase();
-        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--silver2);font-family:'Playfair Display',serif;letter-spacing:0;">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;">${it.title}</h3><p>${it.desc || ""}</p></div><div style="font-size:12px;color:var(--muted);white-space:nowrap;flex-shrink:0;">Ver imagen →</div>`;
+        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:0;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;color:#e8f0f7;">${it.title}</h3><p style="color:rgba(184,200,216,.8);">${it.desc || ""}</p></div><div style="font-size:12px;color:rgba(201,168,76,.7);white-space:nowrap;flex-shrink:0;">Ver imagen →</div>`;
       } else {
         div.innerHTML = `<div class="card-kicker">${it.badge || ""}</div><div class="card-title-row"><div class="card-icon">${it.icon || ""}</div><h3 class="card-title">${it.title}</h3></div><p class="card-desc">${it.desc || ""}</p><div class="card-meta">${it.link ? "Abrir recurso" : "Ver detalle"}</div>`;
       }
@@ -3267,7 +3363,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
         <div class="teca-info">
           <h3>${it.title}</h3>
           <p>${it.desc || ""}</p>
-          <div class="teca-meta">Pulsa para ver la ficha</div>
+          <div class="teca-meta">Ver ficha →</div>
         </div>
         <div class="teca-badge">${it.type ? it.type.charAt(0).toUpperCase() + it.type.slice(1) : ""}</div>
       `;
@@ -3534,6 +3630,20 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }, { passive: true });
 
 });
+</script>
+
+<!-- ── Cookie Ball ──────────────────────────────────────────────────── -->
+<div id="cookie-ball" onclick="document.getElementById('cookie-banner').style.display='flex'" title="Configuración de cookies"
+  style="position:fixed;bottom:20px;left:20px;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #dde4ed;box-shadow:0 2px 10px rgba(15,32,53,.12);display:none;align-items:center;justify-content:center;cursor:pointer;font-size:17px;z-index:150;transition:box-shadow .2s"
+  aria-label="Configuración de cookies">🍪</div>
+<script>
+  // Mostrar la bolita solo si ya aceptó/rechazó cookies (banner ya no visible)
+  (function(){
+    if(localStorage.getItem('cookie_consent')){
+      var ball = document.getElementById('cookie-ball');
+      if(ball) ball.style.display = 'flex';
+    }
+  })();
 </script>
 </body>
 </html>
