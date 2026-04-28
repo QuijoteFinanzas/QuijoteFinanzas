@@ -167,7 +167,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-Ot7O5cEQMxDaHJlQkr5OTh0SBbmzXfJaGlnBrfIJMp5Cj9O0YD08c7o0t+/VxP" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-Ot7O5cEQMxDaHJlQkr5OTh0SBbmzXfJaGlnBrfIJMp5Cj9O0YD08c7o0t+/VxP" crossorigin="anonymous"></script>
 <style>
 :root{
   /* Fondos */
@@ -341,8 +341,8 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .result-value{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);text-align:right;font-weight:700}
 .result-value.g{color:#1a7a4a}.result-value.o{color:#c06030}
 .empty-state{color:var(--muted);font-size:13px;text-align:center;padding:36px 16px;line-height:1.8}
-.chart-wrap{margin-top:22px;background:#fff;border:1px solid #e8ecf2;border-radius:8px;padding:18px}
-.chart-wrap h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.chart-wrap{margin-top:22px;background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:18px}
+.chart-wrap h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(184,200,216,.7);margin-bottom:14px}
 .chart-container{position:relative;height:190px}
 .referidos-list{display:flex;flex-direction:column;gap:10px}
 .ref-card{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .2s,transform .15s;text-decoration:none;position:relative}
@@ -446,11 +446,11 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 /* Media overlay */
 .media-overlay{display:none;position:fixed;inset:0;background:rgba(8,15,26,.92);z-index:120;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);overflow:hidden}
 .media-overlay.open{display:flex}
-.media-modal{background:var(--bg2);border:1px solid rgba(184,200,216,.15);border-radius:14px;width:100%;max-width:900px;max-height:92vh;overflow-y:auto;overflow-x:hidden;padding:22px 22px 18px 22px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.7);display:flex;flex-direction:column}
+.media-modal{background:#fff;border:1px solid #dde4ed;border-radius:14px;width:100%;max-width:820px;max-height:88vh;overflow-y:auto;overflow-x:hidden;padding:20px 22px 16px;position:relative;box-shadow:0 16px 60px rgba(15,32,53,.2);display:flex;flex-direction:column}
 .media-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(168,196,224,.85);font-size:28px;cursor:pointer}
 .media-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
-.media-body{display:flex;flex-direction:column;gap:12px}
-.media-body img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(168,196,224,.12);background:rgba(0,0,0,.1)}
+.media-body{display:flex;flex-direction:column;gap:10px}
+.media-body img{width:100%;max-height:calc(88vh - 120px);object-fit:contain;border-radius:8px;border:1px solid #e8ecf2}
 .media-desc{color:rgba(220,232,245,.88);font-size:14px;line-height:1.6;white-space:pre-line}
 .media-nav{display:flex;gap:8px;align-items:center}
 .badge{display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:rgba(201,168,76,.95);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;padding:3px 10px;border-radius:20px}
@@ -2266,7 +2266,7 @@ document.addEventListener('DOMContentLoaded', function(){
       },
       options: {responsive:true,maintainAspectRatio:false,
         plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
-        scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}
+        scales:{x:{ticks:{color:'rgba(184,200,216,.7)'},grid:{display:false}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}
     });
   };
 
@@ -2738,7 +2738,7 @@ document.addEventListener('DOMContentLoaded', function(){
         {label:'En efectivo',data:dataC,borderColor:'#b8c8d8',backgroundColor:'transparent',borderDash:[4,4],tension:0,pointRadius:0}
       ]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},
-        scales:{x:{ticks:{color:'#6a8aaa',maxTicksLimit:10}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}}}}}});
+        scales:{x:{ticks:{color:'rgba(184,200,216,.7)',maxTicksLimit:10}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}}}}}});
   };
 
   window.calcJubilacion = function() {
@@ -2774,7 +2774,7 @@ document.addEventListener('DOMContentLoaded', function(){
         {label:'Objetivo FIRE',data:fireArr,borderColor:'#f0a070',backgroundColor:'transparent',borderDash:[5,5],tension:0,pointRadius:0}
       ]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},
-        scales:{x:{ticks:{color:'#6a8aaa',maxTicksLimit:10}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}}}}}});
+        scales:{x:{ticks:{color:'rgba(184,200,216,.7)',maxTicksLimit:10}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}}}}}});
   };
 
   window.calcDeposito = function() {
@@ -2829,9 +2829,9 @@ document.addEventListener('DOMContentLoaded', function(){
         {label:'Lo aportado',data:dataA,borderColor:'#b8c8d8',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:1,borderWidth:1.5,borderDash:[5,5]}
       ]},
       options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
-        scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},
-                y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}
+        plugins:{legend:{labels:{color:'rgba(184,200,216,.8)',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
+        scales:{x:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.07)'}},
+                y:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}
       }});
   };
 
@@ -3031,7 +3031,7 @@ document.addEventListener('DOMContentLoaded', function(){
       rr('Aportaci\u00f3n anual al plan',fmtEUR(aport))+rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportaci\u00f3n',fmtEUR(coste),'g')+rr('Ahorro por cada 100\u20ac aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
     document.getElementById('pp-chart-wrap').style.display='block';document.getElementById('pp-cta').style.display='flex';
     if(window._ppChart) window._ppChart.destroy();
-    window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin plan','Con plan'],datasets:[{label:'Neto anual',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+    window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin plan','Con plan'],datasets:[{label:'Neto anual',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)'},grid:{display:false}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}});
   };
   window.calcAlquilervs = function() {
     var precio=parseFloat(document.getElementById('avs-precio').value)||0;
@@ -3054,7 +3054,7 @@ document.addEventListener('DOMContentLoaded', function(){
       rr('Cuota hipotecaria mensual',fmtEUR(cuota))+rr('Coste total compra ('+anos+' a\u00f1os)',fmtEUR(acC),'o')+rr('Coste total alquiler ('+anos+' a\u00f1os)',fmtEUR(acA),'o')+rr('Valor estimado piso en '+anos+' a\u00f1os',fmtEUR(valorPiso),'g')+rr('Coste oportunidad entrada (7%/a)',fmtEUR(entrada*(Math.pow(1.07,anos)-1)),'o');
     document.getElementById('avs-chart-wrap').style.display='block';document.getElementById('avs-cta').style.display='flex';
     if(window._avsChart) window._avsChart.destroy();
-    window._avsChart=new Chart(document.getElementById('avs-chart').getContext('2d'),{type:'line',data:{labels:labelsA,datasets:[{label:'Coste compra acumulado',data:dComp,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2},{label:'Coste alquiler acumulado',data:dAlq,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+    window._avsChart=new Chart(document.getElementById('avs-chart').getContext('2d'),{type:'line',data:{labels:labelsA,datasets:[{label:'Coste compra acumulado',data:dComp,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2},{label:'Coste alquiler acumulado',data:dAlq,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'rgba(184,200,216,.8)',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.07)'}},y:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}});
   };
   window.calcAmortizacion = function() {
     var capital=parseFloat(document.getElementById('am-capital').value)||0;
@@ -3073,7 +3073,7 @@ document.addEventListener('DOMContentLoaded', function(){
       rr('Capital pendiente',fmtEUR(capital))+rr('Importe amortizado',fmtEUR(extra))+rr('Intereses sin amortizar',fmtEUR(intSin),'o')+rr('Intereses tras amortizar',fmtEUR(intCon),'g')+rr('Ahorro en intereses',fmtEUR(intSin-intCon),'g')+(obj==='plazo'?rr('Tiempo ahorrado',Math.round(mM/12*10)/10+' a\u00f1os ('+Math.round(mM)+' meses)','g'):rr('Nueva cuota mensual',fmtEUR(cuotaN),'g'));
     document.getElementById('am-chart-wrap').style.display='block';document.getElementById('am-cta').style.display='flex';
     if(window._amChart) window._amChart.destroy();
-    window._amChart=new Chart(document.getElementById('am-chart').getContext('2d'),{type:'bar',data:{labels:['Sin amortizar','Con amortizaci\u00f3n'],datasets:[{label:'Capital',data:[+capital.toFixed(2),+capN.toFixed(2)],backgroundColor:['rgba(184,200,216,.4)','rgba(184,200,216,.4)'],borderColor:['#b8c8d8','#b8c8d8'],borderWidth:1.5},{label:'Intereses',data:[+intSin.toFixed(2),+intCon.toFixed(2)],backgroundColor:['rgba(240,160,112,.7)','rgba(125,211,168,.75)'],borderColor:['#f0a070','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{stacked:true,ticks:{color:'#6a8aaa'},grid:{display:false}},y:{stacked:true,ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+    window._amChart=new Chart(document.getElementById('am-chart').getContext('2d'),{type:'bar',data:{labels:['Sin amortizar','Con amortizaci\u00f3n'],datasets:[{label:'Capital',data:[+capital.toFixed(2),+capN.toFixed(2)],backgroundColor:['rgba(184,200,216,.4)','rgba(184,200,216,.4)'],borderColor:['#b8c8d8','#b8c8d8'],borderWidth:1.5},{label:'Intereses',data:[+intSin.toFixed(2),+intCon.toFixed(2)],backgroundColor:['rgba(240,160,112,.7)','rgba(125,211,168,.75)'],borderColor:['#f0a070','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'rgba(184,200,216,.8)',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{stacked:true,ticks:{color:'rgba(184,200,216,.7)'},grid:{display:false}},y:{stacked:true,ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}});
   };
   window.calcAlquiler = function() {
     var precio=parseFloat(document.getElementById('alq-precio').value)||0;
