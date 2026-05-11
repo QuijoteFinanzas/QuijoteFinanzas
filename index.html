@@ -643,7 +643,15 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 #excel-modal .em-success h4{font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);margin:0}
 #excel-modal .em-success p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
 #excel-modal .em-success a{color:var(--gold);font-size:13px;margin-top:6px}
-#excel-modal .em-error{font-size:12px;color:#c47070;margin-top:6px;min-height:16px}</style>
+#excel-modal .em-error{font-size:12px;color:#c47070;margin-top:6px;min-height:16px}
+/* ── CAGR row inputs ─────────────────────────────────────────────────────── */
+.cagr-row{display:grid;grid-template-columns:90px 1fr auto auto;gap:8px;align-items:center}
+.cagr-row input[type=number]{padding:8px 10px;border:1px solid rgba(15,32,53,.2);border-radius:6px;font-size:14px;width:100%;background:#fff;color:var(--navy)}
+.cagr-row label{font-size:12px;color:var(--navy2);white-space:nowrap;display:flex;align-items:center;gap:4px;cursor:pointer}
+.cagr-row label input[type=checkbox]{width:14px;height:14px;cursor:pointer}
+.cagr-del{background:none;border:none;color:#c06030;font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
+.cagr-ytd-badge{background:rgba(201,168,76,.18);color:var(--navy);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.05em}
+</style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1047,6 +1055,8 @@ function qfTrack(eventName, params) {
       <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><span class="live">Disponible</span></div>
       <div class="calc-item clickable" data-cat="salario" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Salario bruto a neto</span><span class="live">Disponible</span></div>
       <div class="calc-item clickable" data-cat="salario" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Salario neto a bruto</span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="cagr-salario"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n salarial (CAGR)</span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Disponible</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste de un pr&eacute;stamo</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Liquidar deuda</span><span class="coming">Pronto</span></div>
@@ -1918,6 +1928,58 @@ function qfTrack(eventName, params) {
     </div>
   </div>
 </div>
+
+<!-- MODAL: EVOLUCIÓN SALARIAL CAGR -->
+<div class="calc-overlay" id="modal-cagr-salario">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n Salarial</h2></div><div class="modal-logo"><img src="logo.png" alt="logo"></div><button class="calc-close" data-close="cagr-salario">&#215;</button></div>
+    <button class="share-btn" data-share="cagr-salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-cagr-salario">&#10003; Enlace copiado</span>
+    <p class="subtitle">Registra tu salario bruto anual por a&ntilde;o y calcula tu crecimiento compuesto (CAGR).</p>
+    <div class="calc-grid" style="grid-template-columns:1fr">
+      <div id="cags-rows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        <button class="calc-btn" style="width:auto;padding:9px 18px" onclick="cagsAddRow()">+ A&ntilde;adir a&ntilde;o</button>
+        <button class="calc-btn" data-run="cagr-salario" style="flex:1">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="cags-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="cags-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del salario bruto anual</h4><div class="chart-container" style="height:260px"><canvas id="cags-chart"></canvas></div></div>
+    <div class="calc-cta" id="cags-cta" style="display:none">
+      <div><p><strong>&#128161; &iquest;Tu salario crece como deber&iacute;a?</strong> Comparto an&aacute;lisis de mercado y estrategias de negociaci&oacute;n en X.</p></div>
+      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: EVOLUCIÓN PATRIMONIO CAGR -->
+<div class="calc-overlay" id="modal-cagr-patrimonio">
+  <div class="calc-modal">
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Evoluci&oacute;n del Patrimonio</h2></div><div class="modal-logo"><img src="logo.png" alt="logo"></div><button class="calc-close" data-close="cagr-patrimonio">&#215;</button></div>
+    <button class="share-btn" data-share="cagr-patrimonio"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-cagr-patrimonio">&#10003; Enlace copiado</span>
+    <p class="subtitle">Registra tu patrimonio neto por a&ntilde;o y calcula tu crecimiento compuesto (CAGR). Marca YTD si el a&ntilde;o actual no ha terminado.</p>
+    <div class="calc-grid" style="grid-template-columns:1fr">
+      <div id="cagp-rows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+        <button class="calc-btn" style="width:auto;padding:9px 18px" onclick="cagpAddRow()">+ A&ntilde;adir a&ntilde;o</button>
+        <button class="calc-btn" data-run="cagr-patrimonio" style="flex:1">Calcular &rarr;</button>
+      </div>
+      <div class="results-panel" id="cagp-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
+    </div>
+    <div class="chart-wrap" id="cagp-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del patrimonio neto</h4><div class="chart-container" style="height:260px"><canvas id="cagp-chart"></canvas></div></div>
+    <div class="calc-cta" id="cagp-cta" style="display:none">
+      <div><p><strong>&#128161; El patrimonio crece con tiempo y disciplina.</strong> Estrategias de ahorro e inversi&oacute;n cada semana en X.</p></div>
+      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
+      </div></div>
+    </div>
+  </div>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
@@ -2152,6 +2214,8 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='amortizacion') calcAmortizacion();
       else if (id==='alquiler') calcAlquiler();
       else if (id==='comparador') calcComparador();
+      else if (id==='cagr-salario') calcCagrSalario();
+      else if (id==='cagr-patrimonio') calcCagrPatrimonio();
     });
   });
 
@@ -3120,6 +3184,260 @@ document.addEventListener('DOMContentLoaded', function(){
     try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
     scrollToSectionTop(secId);
   };
+
+  // ── EVOLUCIÓN SALARIAL / PATRIMONIO (CAGR) ───────────────────────────────
+
+  // ─ helpers compartidos ─
+  function fmt(n){ return n.toLocaleString('es-ES', {maximumFractionDigits:0}); }
+
+  function cagrValue(n, years){
+    // CAGR = (end/start)^(1/years) - 1
+    return years > 0 ? (Math.pow(n, 1/years) - 1) * 100 : 0;
+  }
+
+  function cagrResultsHTML(rows, unit){
+    var sorted = rows.slice().sort(function(a,b){ return a.year - b.year; });
+    var first = sorted[0], last = sorted[sorted.length-1];
+    var years = last.year - first.year + (last.ytd ? 0 : 0); // cierre a cierre
+    // Para YTD: años = (last.year - first.year) como fracción no la tenemos, usamos enteros
+    var yearsExact = last.year - first.year;
+    var cagr = yearsExact > 0 ? cagrValue(last.val / first.val, yearsExact) : 0;
+    var totalChange = ((last.val - first.val) / first.val) * 100;
+    var ytdLabel = last.ytd ? ' <span class="cagr-ytd-badge">YTD</span>' : '';
+
+    var html = '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">';
+    html += '<div class="res-item"><span class="res-label">Inicio ('+first.year+')</span><span class="res-val">'+fmt(first.val)+' '+unit+'</span></div>';
+    html += '<div class="res-item"><span class="res-label">Final ('+last.year+')'+ytdLabel+'</span><span class="res-val">'+fmt(last.val)+' '+unit+'</span></div>';
+    html += '<div class="res-item"><span class="res-label">CAGR '+first.year+'–'+last.year+'</span><span class="res-val" style="color:#c9a84c">+'+cagr.toFixed(1)+'%</span></div>';
+    html += '</div>';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">';
+    html += '<div class="res-item"><span class="res-label">Variaci&oacute;n total</span><span class="res-val">'+(totalChange>=0?'+':'')+totalChange.toFixed(1)+'%</span></div>';
+    html += '<div class="res-item"><span class="res-label">Periodo</span><span class="res-val">'+yearsExact+' a&ntilde;os</span></div>';
+    html += '</div>';
+    return html;
+  }
+
+  function cagrDrawChart(canvasId, rows, color1, color2, unit){
+    var sorted = rows.slice().sort(function(a,b){ return a.year - b.year; });
+    var labels = sorted.map(function(r){ return r.ytd ? r.year+' YTD' : String(r.year); });
+    var vals   = sorted.map(function(r){ return r.val; });
+
+    // Crear gradiente de colores barra a barra
+    var colors = vals.map(function(_,i){ 
+      var t = vals.length > 1 ? i/(vals.length-1) : 1;
+      return lerpColor(color1, color2, t);
+    });
+
+    var ctx = document.getElementById(canvasId).getContext('2d');
+    if(Chart.getChart(ctx)) Chart.getChart(ctx).destroy();
+
+    // Línea de tendencia CAGR
+    var first = vals[0], last = vals[vals.length-1];
+    var n = vals.length - 1;
+    var trendData = vals.map(function(_,i){
+      return n > 0 ? first * Math.pow(last/first, i/n) : first;
+    });
+
+    // Plugin para dibujar la flecha y texto CAGR sobre el canvas
+    var cagrAnnotationPlugin = {
+      id: 'cagrAnnotation',
+      afterDraw: function(chart) {
+        var ctx2 = chart.ctx;
+        var chartArea = chart.chartArea;
+        var first = vals[0], last2 = vals[vals.length-1];
+        var yearsN = sorted[sorted.length-1].year - sorted[0].year;
+        var cagrPct = yearsN > 0 ? ((Math.pow(last2/first, 1/yearsN) - 1)*100) : 0;
+        var cagrLabel = 'CAGR ' + sorted[0].year + '–' + sorted[sorted.length-1].year + ': +' + cagrPct.toFixed(1) + '%';
+
+        // Coordenadas: desde primera barra hasta última, a 80% de altura del chart
+        var xScale = chart.scales.x;
+        var yScale = chart.scales.y;
+        var x1 = chartArea.left + (chartArea.right - chartArea.left) * 0.04;
+        var x2 = chartArea.right - (chartArea.right - chartArea.left) * 0.04;
+        // y: desde ~70% del máximo valor al inicio hasta el top del último valor
+        var yMax = yScale.max;
+        var y1 = yScale.getPixelForValue(yMax * 0.55);
+        var y2 = yScale.getPixelForValue(yMax * 0.88);
+
+        // Ángulo de la línea
+        var angle = Math.atan2(y2 - y1, x2 - x1);
+
+        ctx2.save();
+
+        // Línea de tendencia diagonal
+        ctx2.beginPath();
+        ctx2.moveTo(x1, y1);
+        ctx2.lineTo(x2, y2);
+        ctx2.strokeStyle = 'rgba(255,255,255,0.9)';
+        ctx2.lineWidth = 2;
+        ctx2.setLineDash([]);
+        ctx2.stroke();
+
+        // Punta de flecha al final
+        var arrowLen = 10;
+        ctx2.beginPath();
+        ctx2.moveTo(x2, y2);
+        ctx2.lineTo(x2 - arrowLen * Math.cos(angle - 0.4), y2 - arrowLen * Math.sin(angle - 0.4));
+        ctx2.moveTo(x2, y2);
+        ctx2.lineTo(x2 - arrowLen * Math.cos(angle + 0.4), y2 - arrowLen * Math.sin(angle + 0.4));
+        ctx2.strokeStyle = 'rgba(255,255,255,0.9)';
+        ctx2.lineWidth = 2;
+        ctx2.stroke();
+
+        // Texto CAGR rotado sobre la línea
+        var midX = (x1 + x2) / 2 - 20;
+        var midY = (y1 + y2) / 2 - 10;
+        ctx2.translate(midX, midY);
+        ctx2.rotate(angle);
+        ctx2.font = 'bold 12px DM Sans, sans-serif';
+        ctx2.fillStyle = '#c9a84c';
+        ctx2.textAlign = 'center';
+        ctx2.fillText(cagrLabel, 0, -6);
+
+        ctx2.restore();
+      }
+    };
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            type: 'bar',
+            label: unit === '€' ? 'Salario bruto' : 'Patrimonio neto',
+            data: vals,
+            backgroundColor: colors,
+            borderRadius: 6,
+            borderSkipped: false,
+            order: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(ctx){
+                return ' ' + fmt(ctx.parsed.y) + ' ' + unit;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: 'rgba(184,200,216,.85)', font:{size:12} },
+            grid: { color: 'rgba(184,200,216,.08)' }
+          },
+          y: {
+            ticks: {
+              color: 'rgba(184,200,216,.85)',
+              font:{size:11},
+              callback: function(v){ return fmt(v)+' '+unit; }
+            },
+            grid: { color: 'rgba(184,200,216,.12)' }
+          }
+        }
+      },
+      plugins: [cagrAnnotationPlugin]
+    });
+  }
+
+  function lerpColor(a, b, t){
+    // a,b = [r,g,b]
+    var r = Math.round(a[0] + (b[0]-a[0])*t);
+    var g = Math.round(a[1] + (b[1]-a[1])*t);
+    var bl = Math.round(a[2] + (b[2]-a[2])*t);
+    return 'rgba('+r+','+g+','+bl+',.85)';
+  }
+
+  function getRows(containerId){
+    var rows = [];
+    var container = document.getElementById(containerId);
+    if(!container) return rows;
+    container.querySelectorAll('.cagr-row').forEach(function(row){
+      var year = parseInt(row.querySelector('.cagr-year').value);
+      var val  = parseFloat(row.querySelector('.cagr-val').value.replace(',','.'));
+      var ytd  = row.querySelector('.cagr-ytd') ? row.querySelector('.cagr-ytd').checked : false;
+      if(!isNaN(year) && !isNaN(val) && val > 0) rows.push({year:year, val:val, ytd:ytd});
+    });
+    return rows;
+  }
+
+  function buildRow(containerId, year, showYtd, placeholder){
+    var container = document.getElementById(containerId);
+    var div = document.createElement('div');
+    div.className = 'cagr-row';
+    var curYear = new Date().getFullYear();
+    var isCurrentYear = (year === curYear);
+    div.innerHTML = '<input class="cagr-year" type="number" value="'+year+'" min="1950" max="2100" style="text-align:center">'
+      +'<input class="cagr-val" type="number" placeholder="'+placeholder+'" min="0" step="100">'
+      +(showYtd ? '<label><input class="cagr-ytd" type="checkbox"'+(isCurrentYear?' checked':'')+'>YTD</label>' : '<span></span>')
+      +'<button class="cagr-del" onclick="this.closest(\'.cagr-row\').remove()" title="Eliminar">&times;</button>';
+    container.appendChild(div);
+  }
+
+  window.cagsAddRow = function(){
+    var container = document.getElementById('cags-rows');
+    var rows = container.querySelectorAll('.cagr-row');
+    var lastYear = rows.length > 0 ? parseInt(rows[rows.length-1].querySelector('.cagr-year').value) + 1 : new Date().getFullYear();
+    buildRow('cags-rows', lastYear, false, 'Salario bruto €');
+  };
+
+  window.cagpAddRow = function(){
+    var container = document.getElementById('cagp-rows');
+    var rows = container.querySelectorAll('.cagr-row');
+    var lastYear = rows.length > 0 ? parseInt(rows[rows.length-1].querySelector('.cagr-year').value) + 1 : new Date().getFullYear();
+    buildRow('cagp-rows', lastYear, true, 'Patrimonio neto €');
+  };
+
+  // Init filas por defecto al abrir
+  function initCagsRows(){
+    var c = document.getElementById('cags-rows');
+    if(c && c.children.length === 0){
+      var y = new Date().getFullYear();
+      [y-3, y-2, y-1, y].forEach(function(yr){ buildRow('cags-rows', yr, false, 'Salario bruto €'); });
+    }
+  }
+  function initCagpRows(){
+    var c = document.getElementById('cagp-rows');
+    if(c && c.children.length === 0){
+      var y = new Date().getFullYear();
+      [y-3, y-2, y-1, y].forEach(function(yr){ buildRow('cagp-rows', yr, true, 'Patrimonio neto €'); });
+    }
+  }
+
+  // Hook en openCalc
+  var _origOpenCalc = window.openCalc;
+  window.openCalc = function(id){
+    if(id === 'cagr-salario') initCagsRows();
+    if(id === 'cagr-patrimonio') initCagpRows();
+    if(_origOpenCalc) _origOpenCalc(id);
+  };
+
+  window.calcCagrSalario = function(){
+    var rows = getRows('cags-rows');
+    var res = document.getElementById('cags-results');
+    if(rows.length < 2){ res.innerHTML = '<div class="empty-state">Necesitas al menos 2 a&ntilde;os con datos</div>'; return; }
+    res.innerHTML = cagrResultsHTML(rows, '€');
+    document.getElementById('cags-chart-wrap').style.display = 'block';
+    document.getElementById('cags-cta').style.display = 'flex';
+    setTimeout(function(){ cagrDrawChart('cags-chart', rows, [60,100,200], [100,180,255], '€'); }, 50);
+  };
+
+  window.calcCagrPatrimonio = function(){
+    var rows = getRows('cagp-rows');
+    var res = document.getElementById('cagp-results');
+    if(rows.length < 2){ res.innerHTML = '<div class="empty-state">Necesitas al menos 2 a&ntilde;os con datos</div>'; return; }
+    res.innerHTML = cagrResultsHTML(rows, '€');
+    document.getElementById('cagp-chart-wrap').style.display = 'block';
+    document.getElementById('cagp-cta').style.display = 'flex';
+    setTimeout(function(){ cagrDrawChart('cagp-chart', rows, [26,90,150], [100,160,240], '€'); }, 50);
+  };
+
   if (window._resolveGoTo) window._resolveGoTo(_realGoTo);
   else window.goTo = _realGoTo;
 
