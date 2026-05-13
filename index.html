@@ -651,6 +651,17 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .cagr-row label input[type=checkbox]{width:14px;height:14px;cursor:pointer}
 .cagr-del{background:none;border:none;color:#c06030;font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
 .cagr-ytd-badge{background:rgba(201,168,76,.18);color:var(--navy);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.05em}
+
+/* ── CAGR results panel ─────────────────────────────────────────────────── */
+.res-item{background:rgba(15,32,53,.06);border:1px solid rgba(15,32,53,.1);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.res-label{font-size:11px;color:#4a6a8a;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.res-val{font-size:18px;font-weight:600;color:var(--navy);font-family:'DM Mono',monospace}
+.results-panel{padding:4px 0}
+.empty-state{font-size:13px;color:#4a6a8a;text-align:center;padding:16px 0}
+
+/* ── CTA contextual relacionado (gold) ───────────────────────────────────── */
+.cta-link-related{border-color:rgba(201,168,76,.5)!important;background:rgba(201,168,76,.06)!important;}
+.cta-link-related:hover{background:rgba(201,168,76,.15)!important;border-color:var(--gold)!important;}
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -910,7 +921,6 @@ function qfTrack(eventName, params) {
       </div>
       <div class="stat-card" style="background:var(--navy);border-color:rgba(201,168,76,.2)"><span class="stat-num" style="color:#e8f0f7">2K+</span><span class="stat-label" style="color:rgba(184,200,216,.7)">Seguidores en X</span></div>
       <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">Años en el sector financiero</span></div>
-      <div class="stat-card" style="background:var(--navy);border-color:rgba(201,168,76,.2)"><span class="stat-num" style="color:#e8f0f7">500+</span><span class="stat-label" style="color:rgba(184,200,216,.7)">Visitas mensuales</span></div>
       <div class="contact-box" id="contacto" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px">
         <strong style="color:var(--navy);display:block;margin-bottom:6px;font-size:14px">Contacto directo</strong>
         <span style="font-size:13px;color:var(--navy2);line-height:1.6">&iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:contacto@quijotefinanzas.com" style="color:var(--gold);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3)">contacto@quijotefinanzas.com</a> y responder&eacute; lo antes posible.</span>
@@ -1326,7 +1336,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="ic-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Quieres mejorar este n&uacute;mero?</strong>Comparto estrategias de inversi&oacute;n cada semana en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilación →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1378,7 +1389,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="sal-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Quieres negociar mejor tu salario?</strong> Publico an&aacute;lisis y consejos sobre finanzas personales en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1405,7 +1417,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="hip-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Te compensa comprar vs alquilar?</strong>Analizo este tipo de decisiones con datos reales en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('amortizacion');return false;">Amortización anticipada →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1430,7 +1443,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="ce-cta" style="display:none">
       <div><p><strong>&#128161; Negocia con datos, no con intuici&oacute;n.</strong>Consejos sobre c&oacute;mo mejorar tu situaci&oacute;n laboral y financiera en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1458,7 +1472,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="inf-cta" style="display:none">
       <div><p><strong>&#128161; La inflaci&oacute;n es el impuesto silencioso.</strong>Te explico c&oacute;mo proteger tu dinero en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1487,7 +1502,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="jub-cta" style="display:none">
       <div><p><strong>&#128161; La independencia financiera es un proceso, no un destino.</strong>Estrategias cada semana en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1515,7 +1531,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="dep-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Hay alternativas mejores al dep&oacute;sito?</strong>Analizo productos de ahorro en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas');return false;">QuijoCuentas →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1566,7 +1583,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="irpf-cta" style="display:none">
       <div><p><strong>&#128161; Optimiza tu carga fiscal legalmente.</strong>Consejos sobre fiscalidad personal en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('comparador');return false;">Comparador de ofertas →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1610,7 +1628,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="pp-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Vale la pena un plan de pensiones?</strong>Analizo pros, contras y alternativas en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilación →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1641,7 +1660,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="avs-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Comprar o alquilar? No hay respuesta &uacute;nica.</strong>Te ayudo a analizarlo en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1670,7 +1690,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="am-cta" style="display:none">
       <div><p><strong>&#128161; Amortizar o invertir: el gran debate.</strong>Mi an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1699,7 +1720,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="alq-cta" style="display:none">
       <div><p><strong>&#128161; El ladrillo no siempre es la mejor inversi&oacute;n.</strong>Comparo alternativas en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('alquilervs');return false;">Alquiler vs Compra →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1921,7 +1943,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="cmp-cta" style="display:none">
       <div><p><strong>&#128161; El sueldo bruto es solo la mitad de la ecuaci&oacute;n.</strong>M&aacute;s an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
+        Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1947,6 +1970,7 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="cags-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Tu salario crece como deber&iacute;a?</strong> Comparto an&aacute;lisis de mercado y estrategias de negociaci&oacute;n en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
@@ -1973,6 +1997,7 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="cagp-cta" style="display:none">
       <div><p><strong>&#128161; El patrimonio crece con tiempo y disciplina.</strong> Estrategias de ahorro e inversi&oacute;n cada semana en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
@@ -3198,21 +3223,20 @@ document.addEventListener('DOMContentLoaded', function(){
   function cagrResultsHTML(rows, unit){
     var sorted = rows.slice().sort(function(a,b){ return a.year - b.year; });
     var first = sorted[0], last = sorted[sorted.length-1];
-    var years = last.year - first.year + (last.ytd ? 0 : 0); // cierre a cierre
-    // Para YTD: años = (last.year - first.year) como fracción no la tenemos, usamos enteros
     var yearsExact = last.year - first.year;
     var cagr = yearsExact > 0 ? cagrValue(last.val / first.val, yearsExact) : 0;
     var totalChange = ((last.val - first.val) / first.val) * 100;
     var ytdLabel = last.ytd ? ' <span class="cagr-ytd-badge">YTD</span>' : '';
+    function pct(n){ return n.toFixed(1).replace('.',',') + '%'; }
 
     var html = '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">';
-    html += '<div class="res-item"><span class="res-label">Inicio ('+first.year+')</span><span class="res-val">'+fmt(first.val)+' '+unit+'</span></div>';
-    html += '<div class="res-item"><span class="res-label">Final ('+last.year+')'+ytdLabel+'</span><span class="res-val">'+fmt(last.val)+' '+unit+'</span></div>';
-    html += '<div class="res-item"><span class="res-label">CAGR '+first.year+'–'+last.year+'</span><span class="res-val" style="color:#c9a84c">+'+cagr.toFixed(1)+'%</span></div>';
+    html += '<div class="res-item"><span class="res-label">Inicio ('+first.year+')</span><span class="res-val">'+fmt(first.val)+' '+unit+'</span></div>';
+    html += '<div class="res-item"><span class="res-label">Final ('+last.year+')'+ytdLabel+'</span><span class="res-val">'+fmt(last.val)+' '+unit+'</span></div>';
+    html += '<div class="res-item"><span class="res-label">CAGR '+first.year+'–'+last.year+'</span><span class="res-val" style="color:#c9a84c">+'+ pct(cagr) +'</span></div>';
     html += '</div>';
     html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">';
-    html += '<div class="res-item"><span class="res-label">Variaci&oacute;n total</span><span class="res-val">'+(totalChange>=0?'+':'')+totalChange.toFixed(1)+'%</span></div>';
-    html += '<div class="res-item"><span class="res-label">Periodo</span><span class="res-val">'+yearsExact+' a&ntilde;os</span></div>';
+    html += '<div class="res-item"><span class="res-label">Variación total</span><span class="res-val">'+(totalChange>=0?'+':'')+pct(totalChange)+'</span></div>';
+    html += '<div class="res-item"><span class="res-label">Periodo</span><span class="res-val">'+yearsExact+' años</span></div>';
     html += '</div>';
     return html;
   }
@@ -3765,14 +3789,14 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if(!grid) return;
 
     var contextMap = {
-      'todos': '<strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto, entiende primero qué papel tendría cada opción en tu cartera y comprueba siempre disponibilidad y condiciones en tu plataforma.',
-      'rv': '<strong>Renta variable:</strong> Ideas para exposición a bolsa global, regional o temática. Útil para horizontes largos y perfiles que aceptan volatilidad.',
-      'rf': '<strong>Renta fija:</strong> Productos más orientados a estabilidad y diversificación defensiva. Mira duración, calidad crediticia y divisa antes de decidir.',
-      'monetario': '<strong>Monetario:</strong> Pensado para liquidez e inversión muy conservadora a corto plazo. Tiene sentido compararlo con cuentas remuneradas y depósitos.',
-      'mixto': '<strong>Mixto:</strong> Mezclan renta variable y renta fija en un mismo producto. Suelen ser útiles para quien quiere una solución intermedia.',
-      'pp': '<strong>Planes de pensiones:</strong> Tienen sentido sobre todo por fiscalidad y planificación de largo plazo. No conviene mirarlos solo por rentabilidad.',
-      'nicho': '<strong>Nicho:</strong> Productos más específicos o temáticos. Mejor entender bien qué papel tendrían en cartera antes de incorporarlos.',
-      'roboadvisor': '<strong>Roboadvisors:</strong> Para quien quiere invertir de forma automatizada y sencilla. Conviene comparar costes, filosofía y fondos subyacentes.'
+      'todos': '<strong>Criterios de selección:</strong> Cada producto incluido cumple al menos uno de estos criterios: comisiones bajas respecto a su categoría, track record contrastable, disponibilidad en plataformas españolas accesibles o valor diferencial claro para el inversor particular. No es un ranking ni una recomendación personalizada — es un punto de partida para que compares con criterio.',
+      'rv': '<strong>Renta variable:</strong> Fondos e ETFs seleccionados por coste, diversificación y accesibilidad. Útil para horizontes largos y perfiles que aceptan volatilidad. Comprueba siempre la disponibilidad en tu plataforma y el papel que tendrían en tu cartera antes de entrar.',
+      'rf': '<strong>Renta fija:</strong> Seleccionados por calidad crediticia, duración y coste. Orientados a estabilidad y diversificación defensiva. Fíjate en la duración y la divisa — son los factores que más condicionan el riesgo real del producto.',
+      'monetario': '<strong>Monetario:</strong> Pensado para liquidez e inversión muy conservadora a corto plazo. Criterio de selección: fondos con histórico de seguimiento del tipo de interés a corto y comisiones contenidas. Tiene sentido compararlo con las cuentas remuneradas de QuijoCuentas.',
+      'mixto': '<strong>Mixtos:</strong> Mezclan renta variable y renta fija. Seleccionados por consistencia de gestión y claridad en la política de inversión. Útiles para perfiles que quieren una solución intermedia sin gestionar la asignación de activos ellos mismos.',
+      'pp': '<strong>Planes de pensiones:</strong> Seleccionados por costes, política de inversión y solidez de la gestora. Tienen sentido principalmente por la ventaja fiscal y la planificación a largo plazo — no conviene elegirlos solo por rentabilidad reciente. Recuerda que el dinero queda ilíquido hasta la jubilación (salvo supuestos excepcionales).',
+      'nicho': '<strong>Nicho:</strong> Productos más específicos o temáticos (materias primas, inmobiliario, energía, metales). Criterio de inclusión: que tengan un caso de uso claro como diversificador o cobertura, no como núcleo de cartera. Entiende bien qué papel tendrían antes de incorporarlos.',
+      'roboadvisor': '<strong>Roboadvisors:</strong> Seleccionados por transparencia en costes totales, filosofía de inversión indexada y facilidad de uso. Para quien quiere invertir de forma automatizada y sencilla. Compara el coste total (gestión + fondos subyacentes) antes de decidir.'
     };
     if(ctx){ ctx.innerHTML = contextMap[qlFilter] || contextMap['todos']; }
 
