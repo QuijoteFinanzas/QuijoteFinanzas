@@ -1067,6 +1067,7 @@ function qfTrack(eventName, params) {
       <div class="calc-item clickable" data-cat="salario" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Salario neto a bruto</span><span class="live">Disponible</span></div>
       <div class="calc-item clickable" data-cat="salario" data-calc="cagr-salario"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n salarial (CAGR)</span><span class="live">Disponible</span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Disponible</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste de un pr&eacute;stamo</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Liquidar deuda</span><span class="coming">Pronto</span></div>
@@ -2005,6 +2006,55 @@ function qfTrack(eventName, params) {
     </div>
   </div>
 </div>
+
+<!-- MODAL: EL COSTE DEL TIEMPO -->
+<div class="calc-overlay" id="modal-tiempo">
+  <div class="calc-modal" style="max-width:680px">
+    <div class="modal-header">
+      <div class="modal-header-left"><h2>&#8987; El coste del tiempo</h2></div>
+      <div class="modal-logo"><img src="logo.png" alt="logo"></div>
+      <button class="calc-close" data-close="tiempo">&#215;</button>
+    </div>
+    <button class="share-btn" data-share="tiempo"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
+    <span class="share-toast" id="toast-tiempo">&#10003; Enlace copiado</span>
+    <p class="subtitle">Cu&aacute;nto vale cada euro seg&uacute;n cu&aacute;ndo lo inviertes — y qu&eacute; pasa si paras de aportar antes de llegar.</p>
+
+    <div class="calc-grid">
+      <div class="field"><label>Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
+      <div class="field"><label>Edad actual</label><input type="number" id="t-edad" value="30" min="18" max="64"></div>
+      <div class="field"><label>Aportaci&oacute;n mensual (&euro;)</label><input type="number" id="t-aport" value="300" min="0" step="50"></div>
+      <div class="field"><label>Rentabilidad anual estimada (%)</label><input type="number" id="t-rent" value="8" min="1" max="20" step="0.5"></div>
+      <div class="field"><label>Edad objetivo (retirada)</label><input type="number" id="t-objetivo" value="65" min="40" max="80"></div>
+    </div>
+    <button class="calc-btn" data-run="tiempo">Calcular &rarr;</button>
+    <p class="disclaimer">Proyecci&oacute;n orientativa. Rentabilidad constante asumida. No tiene en cuenta inflaci&oacute;n ni impuestos.</p>
+
+    <!-- BLOQUE 1: Coste del tiempo -->
+    <div id="t-multiplicador-wrap" style="display:none">
+      <h4 style="margin:20px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">&#128308; Cu&aacute;nto vale 1&euro; seg&uacute;n cu&aacute;ndo empezaste</h4>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Con aportaci&oacute;n de <span id="t-aport-label">300</span>&euro;/mes hasta los <span id="t-objetivo-label">65</span> a&ntilde;os al <span id="t-rent-label">8</span>% anual</p>
+      <div id="t-mult-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px"></div>
+    </div>
+
+    <!-- BLOQUE 2: ¿Cuándo parar? -->
+    <div id="t-parar-wrap" style="display:none">
+      <h4 style="margin:22px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">&#128200; &iquest;Qu&eacute; pasa si paras de aportar?</h4>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Patrimonio proyectado a los <span id="t-obj2-label">65</span> seg&uacute;n cu&aacute;ndo dejas de aportar</p>
+      <div class="chart-wrap" id="t-chart-wrap"><h4>Evoluci&oacute;n del patrimonio por escenario</h4><div class="chart-container" style="height:260px"><canvas id="t-chart"></canvas></div></div>
+      <div id="t-escenarios-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:14px"></div>
+    </div>
+
+    <div class="calc-cta" id="t-cta" style="display:none">
+      <div><p><strong>&#128161; El tiempo es el activo m&aacute;s valioso.</strong> An&aacute;lisis y estrategias de inversi&oacute;n en X.</p></div>
+      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilaci&oacute;n &rarr;</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
+      </div></div>
+    </div>
+  </div>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
 (function() {
@@ -2241,6 +2291,7 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='comparador') calcComparador();
       else if (id==='cagr-salario') calcCagrSalario();
       else if (id==='cagr-patrimonio') calcCagrPatrimonio();
+      else if (id==='tiempo') calcTiempo();
     });
   });
 
@@ -3460,6 +3511,216 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('cagp-chart-wrap').style.display = 'block';
     document.getElementById('cagp-cta').style.display = 'flex';
     setTimeout(function(){ cagrDrawChart('cagp-chart', rows, [26,90,150], [100,160,240], '€'); }, 50);
+  };
+
+
+  // ── EL COSTE DEL TIEMPO ──────────────────────────────────────────────────
+
+  window.calcTiempo = function() {
+    var patrimonio = parseFloat(document.getElementById('t-patrimonio').value) || 0;
+    var edadActual = parseInt(document.getElementById('t-edad').value) || 30;
+    var aportMes   = parseFloat(document.getElementById('t-aport').value) || 0;
+    var rentAnual  = parseFloat(document.getElementById('t-rent').value) / 100 || 0.08;
+    var objetivo   = parseInt(document.getElementById('t-objetivo').value) || 65;
+
+    if (edadActual >= objetivo) return;
+
+    var rentMes = Math.pow(1 + rentAnual, 1/12) - 1;
+
+    // ── Helper: proyectar patrimonio desde edadInicio hasta objetivo
+    // aportando 'aportMes' desde edadStart hasta edadStop, luego solo crece
+    function proyectar(patrimonioInicial, edadStart, edadStop, edadFin, aportMes, rentMes) {
+      var meses = (edadFin - edadStart) * 12;
+      var val = patrimonioInicial;
+      for (var m = 0; m < meses; m++) {
+        var edadM = edadStart + m / 12;
+        if (edadM < edadStop) val = val * (1 + rentMes) + aportMes;
+        else val = val * (1 + rentMes);
+      }
+      return val;
+    }
+
+    // ── Proyección año a año para el gráfico
+    function proyectarSerie(patrimonioInicial, edadStart, edadStop, edadFin, aportMes, rentMes) {
+      var puntos = [];
+      var val = patrimonioInicial;
+      for (var edad = edadStart; edad <= edadFin; edad++) {
+        puntos.push({ edad: edad, val: val });
+        for (var m = 0; m < 12; m++) {
+          if (edad + m/12 < edadStop) val = val * (1 + rentMes) + aportMes;
+          else val = val * (1 + rentMes);
+        }
+      }
+      return puntos;
+    }
+
+    function fmtM(n) {
+      if (Math.abs(n) >= 1e6) return (n/1e6).toFixed(2).replace('.',',') + 'M€';
+      if (Math.abs(n) >= 1e3) return Math.round(n/1000) + 'K€';
+      return Math.round(n) + '€';
+    }
+    function fmtMult(n) { return '×' + n.toFixed(1); }
+
+    // ── BLOQUE 1: multiplicador del tiempo ────────────────────────────────
+    // Para cada edad de inicio desde 20 hasta edadActual (cada 5 años + edad actual)
+    // Todas las edades de 20 hasta objetivo-5 cada 5 años
+    var edadesInicio = [];
+    for (var e = 20; e <= objetivo - 5; e += 5) edadesInicio.push(e);
+    // Asegurar que edadActual aparece si no es múltiplo de 5
+    if (edadActual % 5 !== 0 && edadActual < objetivo) {
+      edadesInicio.push(edadActual);
+      edadesInicio.sort(function(a,b){return a-b;});
+    }
+
+    var multGrid = document.getElementById('t-mult-grid');
+    multGrid.innerHTML = '';
+
+    // Colores de más tiempo (verde) a menos (rojo)
+    var colorScale = ['#4ade80','#86efac','#bef264','#fde047','#fb923c','#f87171','#ef4444'];
+
+    edadesInicio.forEach(function(ei, idx) {
+      var anos = objetivo - ei;
+      var mult = Math.pow(1 + rentAnual, anos);
+      var aportAnual = aportMes * 12;
+      var resultadoAport = anos > 0 ? aportAnual * ((Math.pow(1+rentAnual, anos)-1)/rentAnual) : 0;
+      var t = edadesInicio.length > 1 ? idx/(edadesInicio.length-1) : 0;
+      var colorIdx = Math.round(t * (colorScale.length-1));
+      var color = colorScale[colorIdx];
+
+      var isPasado = ei < edadActual;
+      var isActual = ei === edadActual;
+      var isFuturo = ei > edadActual;
+
+      // Opacidad reducida para pasado y futuro
+      var opacity = isActual ? '1' : (isPasado ? '0.95' : '0.65');
+      var borderColor = isActual ? 'rgba(201,168,76,.6)' : (isFuturo ? 'rgba(184,200,216,.08)' : 'rgba(184,200,216,.12)');
+      var borderW = isActual ? '2px' : '1px';
+
+      var badge = isActual
+        ? ' <span style="background:var(--gold);color:var(--navy);font-size:8px;padding:1px 5px;border-radius:3px;font-weight:700;vertical-align:middle">HOY</span>'
+        : (isFuturo ? ' <span style="font-size:8px;color:rgba(184,200,216,.4);font-weight:400">si esperas</span>' : '');
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--navy);border:'+borderW+' solid '+borderColor+';border-radius:8px;padding:10px 10px 14px;position:relative;overflow:hidden;opacity:'+opacity;
+
+      card.innerHTML = '<div style="font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(184,200,216,.55);margin-bottom:2px">A los '+ei+' años'+badge+'</div>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.4);margin-bottom:5px">'+anos+' años para crecer</div>'
+        + '<div style="font-size:22px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace;line-height:1">'+fmtMult(mult)+'</div>'
+        + '<div style="font-size:9px;color:rgba(184,200,216,.45);margin:3px 0 6px">por cada €1 invertido</div>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.65)">'+Math.round(aportMes)+'€/mes → <strong style="color:'+color+'">'+fmtM(resultadoAport)+'</strong></div>'
+        + '<div style="position:absolute;bottom:0;left:0;height:3px;width:'+Math.min(100,mult/Math.pow(1+rentAnual,45)*100)+'%;background:'+color+'"></div>';
+      multGrid.appendChild(card);
+    });
+
+    document.getElementById('t-aport-label').textContent = Math.round(aportMes);
+    document.getElementById('t-objetivo-label').textContent = objetivo;
+    document.getElementById('t-rent-label').textContent = (rentAnual*100).toFixed(1).replace('.',',');
+    document.getElementById('t-multiplicador-wrap').style.display = 'block';
+
+    // ── BLOQUE 2: ¿Cuándo parar? ─────────────────────────────────────────
+    // Escenarios: parar a edadActual+5, +10, +15... hasta objetivo-1, y nunca parar
+    var edadesStop = [];
+    for (var es = edadActual + 5; es < objetivo; es += 5) edadesStop.push(es);
+    edadesStop.push(objetivo); // nunca parar = aportar hasta el objetivo
+
+    var coloresLinea = ['#f87171','#fb923c','#fde047','#86efac','#4ade80'];
+
+    // Series para el gráfico
+    var datasets = edadesStop.map(function(stop, idx) {
+      var serie = proyectarSerie(patrimonio, edadActual, stop, objetivo, aportMes, rentMes);
+      var t = edadesStop.length > 1 ? idx/(edadesStop.length-1) : 1;
+      var cIdx = Math.round(t*(coloresLinea.length-1));
+      var label = stop >= objetivo ? 'Nunca parar' : 'Parar a los ' + stop;
+      return {
+        label: label,
+        data: serie.map(function(p){ return { x: p.edad, y: Math.round(p.val) }; }),
+        borderColor: coloresLinea[cIdx],
+        backgroundColor: 'transparent',
+        borderWidth: stop >= objetivo ? 2.5 : 1.5,
+        pointRadius: 0,
+        tension: 0.3
+      };
+    });
+
+    // Labels eje X: desde edadActual hasta objetivo
+    var xLabels = [];
+    for (var xe = edadActual; xe <= objetivo; xe += 5) xLabels.push(xe + 'a');
+
+    // Escenarios cards resumen
+    var escenariosGrid = document.getElementById('t-escenarios-grid');
+    escenariosGrid.innerHTML = '';
+    edadesStop.forEach(function(stop, idx) {
+      var final = proyectar(patrimonio, edadActual, stop, objetivo, aportMes, rentMes);
+      var anosAport = stop >= objetivo ? (objetivo - edadActual) : (stop - edadActual);
+      var t = edadesStop.length > 1 ? idx/(edadesStop.length-1) : 1;
+      var cIdx = Math.round(t*(coloresLinea.length-1));
+      var color = coloresLinea[cIdx];
+      var label = stop >= objetivo ? 'Nunca parar' : 'Parar a los ' + stop;
+      var sub = anosAport + ' años aportando';
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--navy);border:1px solid rgba(184,200,216,.12);border-radius:8px;padding:12px;text-align:center';
+      card.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:'+color+';margin-bottom:4px">' + label + '</div>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.5);margin-bottom:8px">' + sub + '</div>'
+        + '<div style="font-size:20px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace">' + fmtM(final) + '</div>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.5);margin-top:4px">a los ' + objetivo + ' años</div>';
+      escenariosGrid.appendChild(card);
+    });
+
+    document.getElementById('t-obj2-label').textContent = objetivo;
+    document.getElementById('t-parar-wrap').style.display = 'block';
+    document.getElementById('t-cta').style.display = 'flex';
+
+    // Dibujar gráfico
+    setTimeout(function() {
+      document.getElementById('t-chart-wrap').style.display = 'block';
+      setTimeout(function() {
+        var ctx = document.getElementById('t-chart').getContext('2d');
+        if (Chart.getChart(ctx)) Chart.getChart(ctx).destroy();
+        new Chart(ctx, {
+          type: 'line',
+          data: { datasets: datasets },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                display: true,
+                labels: { color: 'rgba(184,200,216,.8)', font: { size: 11 }, boxWidth: 20, padding: 10 }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(ctx) { return ' ' + ctx.dataset.label + ': ' + fmtM(ctx.parsed.y); }
+                }
+              }
+            },
+            scales: {
+              x: {
+                type: 'linear',
+                min: edadActual,
+                max: objetivo,
+                ticks: {
+                  color: 'rgba(184,200,216,.7)',
+                  font: { size: 11 },
+                  stepSize: 5,
+                  callback: function(v) { return v + 'a'; }
+                },
+                grid: { color: 'rgba(184,200,216,.08)' }
+              },
+              y: {
+                ticks: {
+                  color: 'rgba(184,200,216,.7)',
+                  font: { size: 10 },
+                  callback: function(v) { return fmtM(v); }
+                },
+                grid: { color: 'rgba(184,200,216,.1)' }
+              }
+            }
+          }
+        });
+      }, 50);
+    }, 0);
   };
 
   if (window._resolveGoTo) window._resolveGoTo(_realGoTo);
