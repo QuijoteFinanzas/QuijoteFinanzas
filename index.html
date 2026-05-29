@@ -662,6 +662,16 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 /* ── CTA contextual relacionado (gold) ───────────────────────────────────── */
 .cta-link-related{border-color:rgba(201,168,76,.5)!important;background:rgba(201,168,76,.06)!important;}
 .cta-link-related:hover{background:rgba(201,168,76,.15)!important;border-color:var(--gold)!important;}
+
+/* ── Toggle inflación ────────────────────────────────────────────────────── */
+.infl-toggle{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;margin:10px 0 4px;cursor:pointer;user-select:none}
+.infl-toggle input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:var(--gold)}
+.infl-toggle label{font-size:13px;color:var(--navy);font-weight:500;cursor:pointer;flex:1}
+.infl-toggle .infl-input{display:none;align-items:center;gap:6px}
+.infl-toggle.active .infl-input{display:flex}
+.infl-input input{width:60px;padding:4px 8px;border:1px solid rgba(201,168,76,.4);border-radius:5px;font-size:13px;text-align:center;background:#fff;color:var(--navy)}
+.infl-input span{font-size:12px;color:var(--navy2)}
+.infl-real-badge{display:inline-block;font-size:10px;background:rgba(201,168,76,.15);color:#7a5800;border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:1px 6px;margin-left:6px;font-weight:600;vertical-align:middle}
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -1092,7 +1102,7 @@ function qfTrack(eventName, params) {
 <section id="cuentas" class="section" >
   <div class="section-head">
     <h2>🏦 QuijoCuentas</h2>
-    <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Para que tu liquidez no pierda poder adquisitivo &nbsp;<span style="font-size:11px;background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:4px;padding:2px 8px;font-weight:600;letter-spacing:.03em">Actualizado junio 2026</span></p>
+    <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Para que tu liquidez no pierda poder adquisitivo</p>
     <p class="muted">Comparativa mensual de cuentas y depósitos en España. Ordenado por tipo de producto y nivel de vinculación. Sin publicidad, sin afiliados. Solo datos. <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>
   </div>
   <div class="filter-row" id="cuentas-filter">
@@ -1329,7 +1339,15 @@ function qfTrack(eventName, params) {
         <div class="field"><label>Aportaci&oacute;n mensual (&euro;)</label><input type="number" id="ic-aportacion" value="200" min="0"></div>
         <div class="field"><label>Rentabilidad anual (%)</label><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"></div>
         <div class="field"><label>A&ntilde;os de inversi&oacute;n</label><input type="number" id="ic-anos" value="20" min="1" max="50"></div>
-        <button class="calc-btn" data-run="interes">Calcular &rarr;</button>
+  <div class="infl-toggle" id="ic-infl-wrap">
+      <input type="checkbox" id="ic-infl-check" onchange="document.getElementById('ic-infl-wrap').classList.toggle('active',this.checked)">
+      <label for="ic-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
+      <div class="infl-input">
+        <input type="number" id="ic-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <span>% anual estimado</span>
+      </div>
+    </div>
+      <button class="calc-btn" data-run="interes">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="ic-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
@@ -1495,7 +1513,15 @@ function qfTrack(eventName, params) {
         <div class="field"><label>Rentabilidad anual estimada (%)</label><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"></div>
         <div class="field"><label>Gastos mensuales en la retirada (&euro;)</label><input type="number" id="jub-gastos" value="2000" min="0"></div>
         <div class="field"><label>Edad actual</label><input type="number" id="jub-edad" value="35" min="18" max="70"></div>
-        <button class="calc-btn" data-run="jubilacion">Calcular &rarr;</button>
+  <div class="infl-toggle" id="jub-infl-wrap">
+      <input type="checkbox" id="jub-infl-check" onchange="document.getElementById('jub-infl-wrap').classList.toggle('active',this.checked)">
+      <label for="jub-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
+      <div class="infl-input">
+        <input type="number" id="jub-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <span>% anual estimado</span>
+      </div>
+    </div>
+      <button class="calc-btn" data-run="jubilacion">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="jub-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
@@ -1524,7 +1550,15 @@ function qfTrack(eventName, params) {
         <div class="field"><label>Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
         <div class="field"><label>TIN anual (%)</label><input type="number" id="dep-tin" value="3" step="0.1" min="0" max="20"></div>
         <div class="field"><label>Plazo (meses)</label><input type="number" id="dep-meses" value="12" min="1" max="120"></div>
-        <button class="calc-btn" data-run="deposito">Calcular &rarr;</button>
+  <div class="infl-toggle" id="dep-infl-wrap">
+      <input type="checkbox" id="dep-infl-check" onchange="document.getElementById('dep-infl-wrap').classList.toggle('active',this.checked)">
+      <label for="dep-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
+      <div class="infl-input">
+        <input type="number" id="dep-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <span>% anual estimado</span>
+      </div>
+    </div>
+      <button class="calc-btn" data-run="deposito">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="dep-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
@@ -2026,6 +2060,14 @@ function qfTrack(eventName, params) {
       <div class="field"><label>Rentabilidad anual estimada (%)</label><input type="number" id="t-rent" value="8" min="1" max="20" step="0.5"></div>
       <div class="field"><label>Edad objetivo (retirada)</label><input type="number" id="t-objetivo" value="65" min="40" max="80"></div>
     </div>
+<div class="infl-toggle" id="t-infl-wrap">
+      <input type="checkbox" id="t-infl-check" onchange="document.getElementById('t-infl-wrap').classList.toggle('active',this.checked)">
+      <label for="t-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
+      <div class="infl-input">
+        <input type="number" id="t-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <span>% anual estimado</span>
+      </div>
+    </div>
     <button class="calc-btn" data-run="tiempo">Calcular &rarr;</button>
     <p class="disclaimer">Proyecci&oacute;n orientativa. Rentabilidad constante asumida. No tiene en cuenta inflaci&oacute;n ni impuestos.</p>
 
@@ -2458,7 +2500,7 @@ document.addEventListener('DOMContentLoaded', function(){
       return;
     }
 
-    var mes = "abril 2026";
+    var mes = "junio 2026";
     var esNomina = cuentasTab === "nomina";
     var html = '<div class="cuentas-header">'
       + '<p style="font-size:13px;color:var(--silver2)">' + (esNomina ? 'Ordenadas por dinero total potencial &middot; ' : 'Ordenadas de mayor a menor TAE &middot; ') + '<a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>'
@@ -2881,38 +2923,61 @@ document.addEventListener('DOMContentLoaded', function(){
         scales:{x:{ticks:{color:'rgba(184,200,216,.7)',maxTicksLimit:10}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}}}}}});
   };
 
+
+  // ── Helper inflación ─────────────────────────────────────────────────────
+  function getInfl(prefix) {
+    var chk = document.getElementById(prefix+'-infl-check');
+    if (!chk || !chk.checked) return 0;
+    return (parseFloat(document.getElementById(prefix+'-infl-val').value) || 0) / 100;
+  }
+  function valorReal(nominal, inflAnual, anos) {
+    if (inflAnual <= 0) return nominal;
+    return nominal / Math.pow(1 + inflAnual, anos);
+  }
+  function inflBadge(txt) {
+    return '<span class="infl-real-badge">real</span> ' + txt;
+  }
+
   window.calcJubilacion = function() {
     var actual=parseFloat(document.getElementById('jub-actual').value)||0;
     var aport=parseFloat(document.getElementById('jub-aport').value)||0;
     var rent=parseFloat(document.getElementById('jub-rent').value)||7;
     var gastos=parseFloat(document.getElementById('jub-gastos').value)||2000;
     var edad=parseInt(document.getElementById('jub-edad').value)||35;
-    var fire=gastos*12/0.04; // regla del 4%
+    var infl=getInfl('jub');
+    var fire=gastos*12/0.04;
     var rm=rent/100/12, capital=actual, anos=0;
-    var labels=[],dataK=[];
+    var labels=[],dataK=[],dataReal=[];
     while(capital<fire && anos<80){
       for(var m=0;m<12;m++) capital=capital*(1+rm)+aport;
       anos++;
       labels.push('Año '+(anos));
       dataK.push(+capital.toFixed(2));
+      dataReal.push(+(valorReal(capital, infl, anos).toFixed(2)));
     }
     var edadFire=edad+anos;
-    document.getElementById('jub-results').innerHTML=
-      rr('Capital FIRE necesario (regla 4%)',fmtEUR(fire))+
+    var capitalReal=valorReal(capital, infl, anos);
+    var fireReal=valorReal(fire, infl, anos);
+    var html=rr('Capital FIRE necesario (regla 4%)',fmtEUR(fire))+
       rr('Capital actual',fmtEUR(actual))+
       rr('Aportación mensual',fmtEUR(aport))+
       rr('Años hasta FIRE',anos<80?anos+' años':'> 80 años (revisa datos)','g')+
       rr('Edad de retirada estimada',edadFire<120?edadFire+' años':'> 80 (revisa datos)','g')+
-      rr('Capital alcanzado',fmtEUR(capital));
+      rr('Capital alcanzado (nominal)',fmtEUR(capital));
+    if(infl>0) html+=rr(inflBadge('Capital en euros de hoy'),fmtEUR(capitalReal),'g')+
+      rr(inflBadge('Objetivo FIRE en euros de hoy'),fmtEUR(fireReal));
+    document.getElementById('jub-results').innerHTML=html;
     document.getElementById('jub-chart-wrap').style.display='block';
     document.getElementById('jub-cta').style.display='flex';
     if(window._jubChart) window._jubChart.destroy();
     var fireArr=labels.map(function(){return +fire.toFixed(2);});
+    var datasets=[
+      {label:'Capital acumulado',data:dataK,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.1)',tension:.3,fill:true,pointRadius:1},
+      {label:'Objetivo FIRE',data:fireArr,borderColor:'#f0a070',backgroundColor:'transparent',borderDash:[5,5],tension:0,pointRadius:0}
+    ];
+    if(infl>0) datasets.push({label:'Capital real (euros hoy)',data:dataReal,borderColor:'#c9a84c',backgroundColor:'transparent',borderDash:[3,3],tension:.3,pointRadius:0,borderWidth:1.5});
     window._jubChart=new Chart(document.getElementById('jub-chart').getContext('2d'),{type:'line',
-      data:{labels:labels,datasets:[
-        {label:'Capital acumulado',data:dataK,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.1)',tension:.3,fill:true,pointRadius:1},
-        {label:'Objetivo FIRE',data:fireArr,borderColor:'#f0a070',backgroundColor:'transparent',borderDash:[5,5],tension:0,pointRadius:0}
-      ]},
+      data:{labels:labels,datasets:datasets},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},
         scales:{x:{ticks:{color:'rgba(184,200,216,.7)',maxTicksLimit:10}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}}}}}});
   };
@@ -2921,27 +2986,43 @@ document.addEventListener('DOMContentLoaded', function(){
     var cap=parseFloat(document.getElementById('dep-capital').value)||0;
     var tin=parseFloat(document.getElementById('dep-tin').value)||0;
     var meses=parseInt(document.getElementById('dep-meses').value)||12;
+    var infl=getInfl('dep');
+    var anos=meses/12;
     var intBruto=cap*tin/100*meses/12;
     var retencion=intBruto*0.19;
     var intNeto=intBruto-retencion;
     var tae=Math.pow(1+tin/100/12,12)-1;
-    document.getElementById('dep-results').innerHTML=
-      rr('Capital depositado',fmtEUR(cap))+
+    var totalNeto=cap+intNeto;
+    var totalReal=valorReal(totalNeto, infl, anos);
+    var perdidaReal=totalNeto-totalReal;
+    // Rentabilidad real = (1+tae_neto)/(1+infl) - 1
+    var taeNeto=Math.pow(1+tin/100*(1-0.19)/12,12)-1; // aprox neta
+    var taeReal=infl>0?((1+taeNeto)/(1+infl)-1):taeNeto;
+    var html=rr('Capital depositado',fmtEUR(cap))+
       rr('TIN anual',fmtPct(tin))+
       rr('Plazo',meses+' meses')+
       rr('Intereses brutos',fmtEUR(intBruto))+
       rr('Retención Hacienda (19%)',fmtEUR(retencion),'o')+
       rr('Intereses netos',fmtEUR(intNeto),'g')+
-      rr('Capital total al vencimiento',fmtEUR(cap+intNeto),'g')+
+      rr('Capital total al vencimiento',fmtEUR(totalNeto),'g')+
       rr('TAE equivalente',fmtPct(tae*100));
+    if(infl>0){
+      html+=rr(inflBadge('Capital en euros de hoy'),fmtEUR(totalReal), taeReal>=0?'g':'o')+
+        rr(inflBadge('Pérdida de poder adquisitivo'),fmtEUR(perdidaReal),'o')+
+        rr(inflBadge('Rentabilidad real neta'),fmtPct(taeReal*100),taeReal>=0?'g':'o');
+    }
+    document.getElementById('dep-results').innerHTML=html;
     document.getElementById('dep-chart-wrap').style.display='block';
     document.getElementById('dep-cta').style.display='flex';
     if(window._depChart) window._depChart.destroy();
+    var doughLabels=['Capital','Intereses netos','Retención Hacienda'];
+    var doughData=[+cap.toFixed(2),+intNeto.toFixed(2),+retencion.toFixed(2)];
+    if(infl>0){ doughLabels.push('Pérdida inflación'); doughData.push(+perdidaReal.toFixed(2)); }
     window._depChart=new Chart(document.getElementById('dep-chart').getContext('2d'),{type:'doughnut',
-      data:{labels:['Capital','Intereses netos','Retención Hacienda'],
-        datasets:[{data:[+cap.toFixed(2),+intNeto.toFixed(2),+retencion.toFixed(2)],
-          backgroundColor:['rgba(125,211,168,.75)','rgba(125,180,255,.75)','rgba(240,160,112,.75)'],
-          borderColor:['#7dd3a8','#7db4ff','#f0a070'],borderWidth:1.5,hoverOffset:6}]},
+      data:{labels:doughLabels,
+        datasets:[{data:doughData,
+          backgroundColor:['rgba(125,211,168,.75)','rgba(125,180,255,.75)','rgba(240,160,112,.75)','rgba(201,168,76,.5)'],
+          borderColor:['#7dd3a8','#7db4ff','#f0a070','#c9a84c'],borderWidth:1.5,hoverOffset:6}]},
       options:doughnutOpts(cap+intBruto)});
   };
 
@@ -2950,29 +3031,40 @@ document.addEventListener('DOMContentLoaded', function(){
     var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
     var r=parseFloat(document.getElementById('ic-rent').value)||0;
     var n=parseInt(document.getElementById('ic-anos').value)||1;
-    var rm=r/100/12, capital=C, totalAportado=C, labels=[], dataC=[], dataA=[];
+    var infl=getInfl('ic');
+    var rm=r/100/12, capital=C, totalAportado=C, labels=[], dataC=[], dataA=[], dataReal=[];
     for(var y=1;y<=n;y++){
       for(var m=0;m<12;m++){ capital=capital*(1+rm)+A; totalAportado+=A; }
-      labels.push('Año '+y); dataC.push(+capital.toFixed(2)); dataA.push(+totalAportado.toFixed(2));
+      labels.push('Año '+y);
+      dataC.push(+capital.toFixed(2));
+      dataA.push(+totalAportado.toFixed(2));
+      dataReal.push(+(valorReal(capital, infl, y).toFixed(2)));
     }
     var ti=C+A*12*n, ben=capital-ti;
-    document.getElementById('ic-results').innerHTML=
-      rr('Capital final',fmtEUR(capital),'g')+rr('Total aportado',fmtEUR(ti))+
-      rr('Intereses generados',fmtEUR(ben),'g')+rr('Multiplicador','x'+fmtNum(capital/Math.max(ti,1)))+
+    var capitalReal=valorReal(capital, infl, n);
+    var html=rr('Capital final (nominal)',fmtEUR(capital),'g')+
+      rr('Total aportado',fmtEUR(ti))+
+      rr('Intereses generados',fmtEUR(ben),'g')+
+      rr('Multiplicador','x'+fmtNum(capital/Math.max(ti,1)))+
       rr('% son intereses',fmtPct(ben/capital*100),'g');
+    if(infl>0) html+=rr(inflBadge('Capital en euros de hoy'),fmtEUR(capitalReal),'g')+
+      rr(inflBadge('Pérdida poder adquisitivo'),fmtEUR(capital-capitalReal),'o');
+    document.getElementById('ic-results').innerHTML=html;
     document.getElementById('ic-chart-wrap').style.display='block';
     document.getElementById('ic-cta').style.display='flex';
     if(icChart) icChart.destroy();
+    var datasets=[
+      {label:'Capital total (nominal)',data:dataC,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.12)',fill:true,tension:.4,pointRadius:1,borderWidth:2},
+      {label:'Lo aportado',data:dataA,borderColor:'#b8c8d8',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:1,borderWidth:1.5,borderDash:[5,5]}
+    ];
+    if(infl>0) datasets.push({label:'Capital real (euros hoy)',data:dataReal,borderColor:'#c9a84c',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:0,borderWidth:1.5,borderDash:[3,3]});
     icChart=new Chart(document.getElementById('ic-chart').getContext('2d'),{type:'line',
-      data:{labels:labels,datasets:[
-        {label:'Capital total',data:dataC,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.12)',fill:true,tension:.4,pointRadius:1,borderWidth:2},
-        {label:'Lo aportado',data:dataA,borderColor:'#b8c8d8',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:1,borderWidth:1.5,borderDash:[5,5]}
-      ]},
+      data:{labels:labels,datasets:datasets},
       options:{responsive:true,maintainAspectRatio:false,
         plugins:{legend:{labels:{color:'rgba(184,200,216,.8)',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
         scales:{x:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.07)'}},
-                y:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}
-      }});
+                y:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}
+      }}});
   };
 
 
@@ -3563,6 +3655,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // ── BLOQUE 1: multiplicador del tiempo ────────────────────────────────
     // Para cada edad de inicio desde 20 hasta edadActual (cada 5 años + edad actual)
+    var infl=getInfl('t');
+
     // Todas las edades de 20 hasta objetivo-5 cada 5 años
     var edadesInicio = [];
     for (var e = 20; e <= objetivo - 5; e += 5) edadesInicio.push(e);
@@ -3603,11 +3697,13 @@ document.addEventListener('DOMContentLoaded', function(){
       var card = document.createElement('div');
       card.style.cssText = 'background:var(--navy);border:'+borderW+' solid '+borderColor+';border-radius:8px;padding:10px 10px 14px;position:relative;overflow:hidden;opacity:'+opacity;
 
+      var resultadoReal = infl>0 ? valorReal(resultadoAport, infl, anos) : resultadoAport;
       card.innerHTML = '<div style="font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(184,200,216,.55);margin-bottom:2px">A los '+ei+' años'+badge+'</div>'
         + '<div style="font-size:10px;color:rgba(184,200,216,.4);margin-bottom:5px">'+anos+' años para crecer</div>'
         + '<div style="font-size:22px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace;line-height:1">'+fmtMult(mult)+'</div>'
         + '<div style="font-size:9px;color:rgba(184,200,216,.45);margin:3px 0 6px">por cada €1 invertido</div>'
-        + '<div style="font-size:10px;color:rgba(184,200,216,.65)">'+Math.round(aportMes)+'€/mes → <strong style="color:'+color+'">'+fmtM(resultadoAport)+'</strong></div>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.65)">'+Math.round(aportMes)+'€/mes → <strong style="color:'+color+'">'+fmtM(resultadoAport)+'</strong>'
+        + (infl>0 ? ' <span style="font-size:9px;color:rgba(201,168,76,.8)">('+fmtM(resultadoReal)+' real)</span>' : '')+'</div>'
         + '<div style="position:absolute;bottom:0;left:0;height:3px;width:'+Math.min(100,mult/Math.pow(1+rentAnual,45)*100)+'%;background:'+color+'"></div>';
       multGrid.appendChild(card);
     });
@@ -3626,6 +3722,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var coloresLinea = ['#f87171','#fb923c','#fde047','#86efac','#4ade80'];
 
     // Series para el gráfico
+    var inflT = infl;
     var datasets = edadesStop.map(function(stop, idx) {
       var serie = proyectarSerie(patrimonio, edadActual, stop, objetivo, aportMes, rentMes);
       var t = edadesStop.length > 1 ? idx/(edadesStop.length-1) : 1;
@@ -3660,9 +3757,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
       var card = document.createElement('div');
       card.style.cssText = 'background:var(--navy);border:1px solid rgba(184,200,216,.12);border-radius:8px;padding:12px;text-align:center';
+      var finalReal = inflT>0 ? valorReal(final, inflT, objetivo-edadActual) : final;
       card.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:'+color+';margin-bottom:4px">' + label + '</div>'
         + '<div style="font-size:10px;color:rgba(184,200,216,.5);margin-bottom:8px">' + sub + '</div>'
         + '<div style="font-size:20px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace">' + fmtM(final) + '</div>'
+        + (inflT>0 ? '<div style="font-size:10px;color:rgba(201,168,76,.8);margin-top:2px">' + fmtM(finalReal) + ' real</div>' : '')
         + '<div style="font-size:10px;color:rgba(184,200,216,.5);margin-top:4px">a los ' + objetivo + ' años</div>';
       escenariosGrid.appendChild(card);
     });
