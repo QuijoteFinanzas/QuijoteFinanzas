@@ -231,7 +231,7 @@ body.show-home-intro .compact-brand{display:none}
 
 .ql-myi:hover{background:rgba(22,119,190,.12);border-color:#1677be;}
 .ql-helper-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.ql-helper-chip{display:inline-flex;align-items:center;font-size:10px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);background:rgba(184,200,216,.04);padding:3px 8px;border-radius:999px}
+.ql-helper-chip{display:inline-flex;align-items:center;font-size:10px;letter-spacing:.3px;text-transform:uppercase;color:rgba(184,200,216,.85);border:1px solid rgba(184,200,216,.3);background:rgba(184,200,216,.06);padding:3px 8px;border-radius:999px}
 .ql-next{margin-top:18px}
 .ql-next-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .ql-next-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--silver);border:1px solid var(--border);padding:6px 12px;border-radius:4px;text-decoration:none;transition:all .2s;background:var(--tag-bg)}
@@ -378,7 +378,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .ref-info{flex:1;min-width:0}
 .ref-info h3{font-size:14px;font-weight:700;color:#ffffff!important;margin-bottom:3px;display:flex;align-items:center;gap:8px}
 .ref-info p{font-size:12px;color:rgba(184,200,216,.85)!important;line-height:1.4}
-.ref-meta{font-size:11px;color:var(--muted);margin-top:3px;opacity:.7}
+.ref-meta{font-size:11px;color:rgba(184,200,216,.65);margin-top:3px}
 .ref-bonus{font-size:12px;color:var(--navy);background:var(--gold);border:1px solid var(--gold);padding:5px 14px;border-radius:4px;white-space:nowrap;flex-shrink:0;font-weight:700}
 footer{border-top:1px solid var(--border);padding:28px 24px}
 .footer-inner{max-width:900px;margin:0 auto}
@@ -672,6 +672,48 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .infl-input input{width:60px;padding:4px 8px;border:1px solid rgba(201,168,76,.4);border-radius:5px;font-size:13px;text-align:center;background:#fff;color:var(--navy)}
 .infl-input span{font-size:12px;color:var(--navy2)}
 .infl-real-badge{display:inline-block;font-size:10px;background:rgba(201,168,76,.15);color:#7a5800;border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:1px 6px;margin-left:6px;font-weight:600;vertical-align:middle}
+
+/* ── Test de perfil inversor ─────────────────────────────────────────────── */
+.test-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,35,.85);z-index:1100;overflow-y:auto;padding:20px 16px}
+.test-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+.test-modal{background:#fff;border-radius:14px;width:100%;max-width:600px;overflow:hidden;margin:auto}
+.test-header{background:var(--navy);padding:20px 24px 16px;position:relative}
+.test-header h2{color:#fff;font-family:'Playfair Display',serif;font-size:20px;margin:0 0 4px}
+.test-header p{color:rgba(184,200,216,.7);font-size:12px;margin:0}
+.test-close{position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(184,200,216,.6);font-size:22px;cursor:pointer;line-height:1}
+.test-progress-bar{height:4px;background:rgba(255,255,255,.1)}
+.test-progress-fill{height:4px;background:var(--gold);transition:width .4s ease}
+.test-body{padding:24px}
+.test-q-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.test-question{font-size:17px;font-weight:600;color:var(--navy);line-height:1.4;margin-bottom:20px;font-family:'Source Serif 4',serif}
+.test-options{display:flex;flex-direction:column;gap:10px}
+.test-option{padding:12px 16px;border:1.5px solid rgba(15,32,53,.15);border-radius:8px;cursor:pointer;transition:all .15s;font-size:14px;color:var(--navy);background:#fff;text-align:left;line-height:1.4}
+.test-option:hover{border-color:var(--navy);background:rgba(15,32,53,.03)}
+.test-option.selected{border-color:var(--navy);background:var(--navy);color:#fff}
+.test-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:16px;border-top:1px solid rgba(15,32,53,.08)}
+.test-btn{padding:10px 22px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+.test-btn-back{background:rgba(15,32,53,.07);color:var(--navy)}
+.test-btn-next{background:var(--navy);color:#fff}
+.test-btn-next:disabled{opacity:.4;cursor:not-allowed}
+.test-btn-next.gold{background:var(--gold);color:var(--navy)}
+/* Resultado */
+.test-result{padding:24px}
+.test-result-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.test-result h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy);margin:0 0 8px}
+.test-result-desc{font-size:14px;color:#4a6a8a;line-height:1.6;margin-bottom:20px}
+.test-result-bars{margin-bottom:20px}
+.test-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;color:var(--navy)}
+.test-bar-row span:first-child{width:90px;flex-shrink:0;font-weight:500}
+.test-bar-track{flex:1;height:6px;background:rgba(15,32,53,.08);border-radius:3px;overflow:hidden}
+.test-bar-fill{height:6px;border-radius:3px;transition:width .8s ease}
+.test-cartera-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2);margin-bottom:10px}
+.test-cartera-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.test-cartera-item{background:var(--navy);border-radius:8px;padding:10px 12px}
+.test-cartera-item .tc-pct{font-size:20px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace}
+.test-cartera-item .tc-label{font-size:11px;color:rgba(184,200,216,.7);margin-top:2px}
+.test-cartera-item .tc-example{font-size:10px;color:rgba(184,200,216,.45);margin-top:4px}
+.test-disclaimer{font-size:11px;color:#7a8a9a;background:rgba(15,32,53,.04);border-radius:6px;padding:10px 12px;line-height:1.5;margin-top:16px}
+.test-result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -956,6 +998,12 @@ function qfTrack(eventName, params) {
         <h3>QuijoExcel &mdash; Finanzas Personales</h3>
         <p>La plantilla que uso para presupuesto, seguimiento del ahorro y evoluci&oacute;n de inversiones.</p>
         <span class="tag">Acceso gratis por email</span>
+      </div>
+      <div class="recurso-card featured" onclick="openTest()" style="cursor:pointer;">
+        <span class="recurso-icon">&#127919;</span>
+        <h3>Test: &iquest;Cu&aacute;l es tu perfil inversor?</h3>
+        <p>10 preguntas para descubrir si eres conservador, moderado o din&aacute;mico — y qu&eacute; cartera encaja contigo.</p>
+        <span class="tag">Gratis &middot; 3 minutos</span>
       </div>
       <div class="recurso-card dim-card" style="opacity:.45;cursor:default;">
         <span class="recurso-icon">&#128203;</span>
@@ -1324,6 +1372,22 @@ function qfTrack(eventName, params) {
       <p>Te hemos enviado el acceso a la plantilla. Si no lo ves en unos minutos, mira en la carpeta de spam.</p>
       <a href="https://docs.google.com/spreadsheets/d/1LLrYVnFSH7qPjWN68FcBjYpOePOZFVy2HafxGWqCvJ4/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Acceder directamente →</a>
     </div>
+  </div>
+</div>
+
+
+<!-- TEST: PERFIL INVERSOR -->
+<div class="test-overlay" id="test-overlay">
+  <div class="test-modal">
+    <div class="test-header">
+      <button class="test-close" onclick="closeTest()">&#215;</button>
+      <h2>&#127919; &iquest;Cu&aacute;l es tu perfil inversor?</h2>
+      <p>10 preguntas &middot; ~3 minutos &middot; Sin registro</p>
+      <div class="test-progress-bar" style="margin-top:14px;border-radius:2px">
+        <div class="test-progress-fill" id="test-progress" style="width:0%"></div>
+      </div>
+    </div>
+    <div id="test-content"></div>
   </div>
 </div>
 
@@ -3822,6 +3886,296 @@ document.addEventListener('DOMContentLoaded', function(){
     }, 0);
   };
 
+
+  // ── TEST DE PERFIL INVERSOR ───────────────────────────────────────────────
+
+  var testPreguntas = [
+    // 1. HORIZONTE TEMPORAL
+    { id:'h1', dim:'horizonte', peso:3,
+      texto:'¿Cuándo crees que necesitarás usar la mayor parte del dinero que vas a invertir?',
+      opciones:[
+        { txt:'En menos de 2 años', pts:1 },
+        { txt:'Entre 2 y 5 años', pts:2 },
+        { txt:'Entre 5 y 10 años', pts:3 },
+        { txt:'En más de 10 años', pts:4 }
+      ]
+    },
+    // 2. OBJETIVO
+    { id:'h2', dim:'horizonte', peso:2,
+      texto:'¿Cuál es tu objetivo principal al invertir?',
+      opciones:[
+        { txt:'Proteger mis ahorros de la inflación sin grandes riesgos', pts:1 },
+        { txt:'Obtener una rentabilidad moderada asumiendo algo de riesgo', pts:2 },
+        { txt:'Hacer crecer mi patrimonio a largo plazo aunque haya oscilaciones', pts:3 },
+        { txt:'Maximizar la rentabilidad. Entiendo y acepto la volatilidad', pts:4 }
+      ]
+    },
+    // 3. TOLERANCIA - CAÍDA
+    { id:'t1', dim:'tolerancia', peso:3,
+      texto:'Tu cartera vale 20.000€. En 3 meses cae a 14.000€ (–30%). ¿Qué harías?',
+      opciones:[
+        { txt:'Vendería todo para no perder más', pts:1 },
+        { txt:'Vendería una parte para reducir el riesgo', pts:2 },
+        { txt:'No haría nada. Esperaría a que se recuperara', pts:3 },
+        { txt:'Aprovecharía para comprar más, las caídas son oportunidades', pts:4 }
+      ]
+    },
+    // 4. TOLERANCIA - EMOCIONAL
+    { id:'t2', dim:'tolerancia', peso:2,
+      texto:'¿Cómo describirías tu relación emocional con el dinero en juego?',
+      opciones:[
+        { txt:'Muy mal. Perder dinero me genera mucho estrés aunque sea temporal', pts:1 },
+        { txt:'Regular. Lo intento llevar bien pero me cuesta ver caídas', pts:2 },
+        { txt:'Bien. Entiendo que la volatilidad es parte del proceso', pts:3 },
+        { txt:'Sin problema. Pienso en el largo plazo y las bajadas no me alteran', pts:4 }
+      ]
+    },
+    // 5. TOLERANCIA - PÉRDIDA MÁXIMA ACEPTABLE
+    { id:'t3', dim:'tolerancia', peso:2,
+      texto:'¿Cuánto estarías dispuesto a perder en un año antes de reconsiderar tu estrategia?',
+      opciones:[
+        { txt:'Nada. No quiero perder capital en ningún caso', pts:1 },
+        { txt:'Hasta un 10%', pts:2 },
+        { txt:'Entre un 10% y un 25%', pts:3 },
+        { txt:'Más de un 25%. El largo plazo compensa', pts:4 }
+      ]
+    },
+    // 6. SITUACIÓN FINANCIERA
+    { id:'s1', dim:'situacion', peso:2,
+      texto:'¿Tienes un fondo de emergencia que cubre al menos 3-6 meses de gastos?',
+      opciones:[
+        { txt:'No, y tampoco tengo mucho margen de ahorro mensual', pts:1 },
+        { txt:'No del todo, pero estoy construyéndolo', pts:2 },
+        { txt:'Sí, tengo ese colchón separado de lo que voy a invertir', pts:3 },
+        { txt:'Sí, y además tengo ingresos estables y sin deudas relevantes', pts:4 }
+      ]
+    },
+    // 7. SITUACIÓN - DEPENDENCIA DEL DINERO
+    { id:'s2', dim:'situacion', peso:1,
+      texto:'¿Cuánto de tu patrimonio total representaría esta inversión?',
+      opciones:[
+        { txt:'Casi todo lo que tengo ahorrado', pts:1 },
+        { txt:'Más de la mitad', pts:2 },
+        { txt:'Alrededor de la mitad', pts:3 },
+        { txt:'Una parte minoritaria, tengo otros activos o ahorros', pts:4 }
+      ]
+    },
+    // 8. CONOCIMIENTO
+    { id:'k1', dim:'conocimiento', peso:2,
+      texto:'¿Cuál es tu nivel de experiencia invirtiendo?',
+      opciones:[
+        { txt:'Ninguna. Nunca he invertido o solo tengo depósitos/cuentas', pts:1 },
+        { txt:'Básica. Tengo algún fondo o plan de pensiones pero no lo sigo mucho', pts:2 },
+        { txt:'Media. Invierto en fondos o ETFs y entiendo los conceptos básicos', pts:3 },
+        { txt:'Alta. Sigo activamente mi cartera y conozco bien los mercados', pts:4 }
+      ]
+    },
+    // 9. CONOCIMIENTO - CONCEPTO
+    { id:'k2', dim:'conocimiento', peso:1,
+      texto:'Si un fondo tiene una volatilidad anual del 20%, ¿qué significa?',
+      opciones:[
+        { txt:'Que pierde un 20% al año', pts:1 },
+        { txt:'No estoy seguro/a', pts:2 },
+        { txt:'Que su valor puede oscilar ±20% respecto a la media en un año', pts:3 },
+        { txt:'Que su rentabilidad anual oscila en una banda de aproximadamente ±20%', pts:4 }
+      ]
+    },
+    // 10. HORIZONTE - COMPROMISOS
+    { id:'h3', dim:'horizonte', peso:2,
+      texto:'¿Tienes compromisos financieros importantes en los próximos años (hipoteca, hijos, estudios...)?',
+      opciones:[
+        { txt:'Sí, varios y son relevantes en mi presupuesto', pts:1 },
+        { txt:'Sí, alguno pero lo tengo controlado', pts:2 },
+        { txt:'Pocos o ninguno relevante', pts:3 },
+        { txt:'Ninguno. Mis finanzas son estables y tengo margen', pts:4 }
+      ]
+    }
+  ];
+
+  var testRespuestas = {};
+  var testActual = 0;
+
+  var testPerfiles = {
+    conservador: {
+      nombre: 'Conservador',
+      color: '#185fa5',
+      bg: '#e6f1fb',
+      emoji: '🛡️',
+      desc: 'Priorizas proteger lo que tienes. Prefieres rentabilidades modestas pero predecibles, y las caídas del mercado te generan incomodidad. Tiene todo el sentido: no todo el mundo tiene el mismo horizonte ni la misma capacidad de asumir pérdidas temporales.',
+      cartera: [
+        { pct:'70%', label:'Renta fija', ejemplo:'Vanguard Euro Gov. Bond, monetarios' },
+        { pct:'20%', label:'Renta variable', ejemplo:'Fidelity World Index, Vanguard Global' },
+        { pct:'10%', label:'Liquidez', ejemplo:'Cuenta remunerada, depósito' }
+      ],
+      nota: 'Con inflación al 3%, una cartera muy conservadora puede perder poder adquisitivo. Considera al menos un 20-30% en renta variable si tu horizonte es mayor de 5 años.'
+    },
+    moderado: {
+      nombre: 'Moderado',
+      color: '#854f0b',
+      bg: '#faeeda',
+      emoji: '⚖️',
+      desc: 'Buscas un equilibrio entre crecimiento y estabilidad. Aceptas que habrá años malos, pero quieres que el conjunto crezca a medio-largo plazo. Es el perfil más común — y también el que más se adapta al inversor indexado clásico.',
+      cartera: [
+        { pct:'60%', label:'Renta variable global', ejemplo:'Vanguard Global, iShares World' },
+        { pct:'30%', label:'Renta fija', ejemplo:'Vanguard Global Bond, Gov. Bond' },
+        { pct:'10%', label:'Liquidez / emergencia', ejemplo:'Cuenta remunerada' }
+      ],
+      nota: 'Una cartera 60/40 clásica ha dado históricamente rentabilidades del 6-7% anual a largo plazo, con caídas máximas más suaves que la renta variable pura.'
+    },
+    dinamico: {
+      nombre: 'Dinámico',
+      color: '#3b6d11',
+      bg: '#eaf3de',
+      emoji: '🚀',
+      desc: 'Tienes horizonte largo, tolerancia alta a la volatilidad y conocimientos suficientes para mantener la calma en caídas. Las correcciones no te asustan — las ves como parte del proceso o incluso como oportunidades.',
+      cartera: [
+        { pct:'90%', label:'Renta variable global', ejemplo:'Vanguard Global, MSCI World, S&P 500' },
+        { pct:'5%', label:'Renta variable emergente', ejemplo:'Vanguard Emerging Markets' },
+        { pct:'5%', label:'Liquidez mínima', ejemplo:'Cuenta remunerada' }
+      ],
+      nota: 'La renta variable global ha dado ~10% anual histórico (nominal). A cambio, es normal ver caídas del 30-50% en crisis. El tiempo en el mercado suele compensar, pero requiere disciplina.'
+    }
+  };
+
+  function openTest() {
+    testRespuestas = {};
+    testActual = 0;
+    document.getElementById('test-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    renderTestPregunta();
+  }
+
+  function closeTest() {
+    document.getElementById('test-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderTestPregunta() {
+    var q = testPreguntas[testActual];
+    var n = testPreguntas.length;
+    var pct = Math.round((testActual / n) * 100);
+    document.getElementById('test-progress').style.width = pct + '%';
+
+    var selVal = testRespuestas[q.id] !== undefined ? testRespuestas[q.id] : -1;
+
+    var optsHTML = q.opciones.map(function(op, i) {
+      return '<button class="test-option' + (selVal === i ? ' selected' : '') + '" onclick="selectTestOption(' + i + ')">' + op.txt + '</button>';
+    }).join('');
+
+    document.getElementById('test-content').innerHTML =
+      '<div class="test-body">' +
+      '<div class="test-q-label">Pregunta ' + (testActual+1) + ' de ' + n + '</div>' +
+      '<div class="test-question">' + q.texto + '</div>' +
+      '<div class="test-options">' + optsHTML + '</div>' +
+      '<div class="test-nav">' +
+      (testActual > 0 ? '<button class="test-btn test-btn-back" onclick="testBack()">← Anterior</button>' : '<span></span>') +
+      '<button class="test-btn test-btn-next' + (testActual === n-1 ? ' gold' : '') + '" id="test-next-btn" onclick="testNext()" ' + (selVal < 0 ? 'disabled' : '') + '>' +
+      (testActual === n-1 ? 'Ver mi perfil →' : 'Siguiente →') +
+      '</button>' +
+      '</div>' +
+      '</div>';
+  }
+
+  function selectTestOption(i) {
+    var q = testPreguntas[testActual];
+    testRespuestas[q.id] = i;
+    document.querySelectorAll('.test-option').forEach(function(el, idx) {
+      el.classList.toggle('selected', idx === i);
+    });
+    document.getElementById('test-next-btn').disabled = false;
+  }
+
+  function testNext() {
+    if (testActual < testPreguntas.length - 1) {
+      testActual++;
+      renderTestPregunta();
+    } else {
+      renderTestResultado();
+    }
+  }
+
+  function testBack() {
+    if (testActual > 0) {
+      testActual--;
+      renderTestPregunta();
+    }
+  }
+
+  function calcularPerfil() {
+    var totalPts = 0, totalPeso = 0;
+    testPreguntas.forEach(function(q) {
+      if (testRespuestas[q.id] !== undefined) {
+        totalPts += q.opciones[testRespuestas[q.id]].pts * q.peso;
+        totalPeso += 4 * q.peso; // máximo posible
+      }
+    });
+    var pct = totalPts / totalPeso; // 0-1
+    // Dimensiones
+    var dims = { horizonte:0, tolerancia:0, situacion:0, conocimiento:0 };
+    var dimPeso = { horizonte:0, tolerancia:0, situacion:0, conocimiento:0 };
+    testPreguntas.forEach(function(q) {
+      if (testRespuestas[q.id] !== undefined) {
+        dims[q.dim] += q.opciones[testRespuestas[q.id]].pts * q.peso;
+        dimPeso[q.dim] += 4 * q.peso;
+      }
+    });
+    var dimPct = {};
+    Object.keys(dims).forEach(function(d){ dimPct[d] = dims[d] / (dimPeso[d] || 1); });
+
+    if (pct < 0.42) return { perfil:'conservador', pct:pct, dims:dimPct };
+    if (pct < 0.68) return { perfil:'moderado', pct:pct, dims:dimPct };
+    return { perfil:'dinamico', pct:pct, dims:dimPct };
+  }
+
+  function renderTestResultado() {
+    document.getElementById('test-progress').style.width = '100%';
+    var resultado = calcularPerfil();
+    var p = testPerfiles[resultado.perfil];
+
+    var dimLabels = { horizonte:'Horizonte temporal', tolerancia:'Tolerancia al riesgo', situacion:'Situación financiera', conocimiento:'Conocimiento' };
+    var dimColors = { horizonte:'#185fa5', tolerancia:'#3b6d11', situacion:'#854f0b', conocimiento:'#c9a84c' };
+
+    var barsHTML = Object.keys(resultado.dims).map(function(d) {
+      var pct = Math.round(resultado.dims[d] * 100);
+      return '<div class="test-bar-row"><span>' + dimLabels[d] + '</span><div class="test-bar-track"><div class="test-bar-fill" style="width:' + pct + '%;background:' + dimColors[d] + '"></div></div><span style="width:32px;text-align:right;color:#4a6a8a">' + pct + '%</span></div>';
+    }).join('');
+
+    var carteraHTML = p.cartera.map(function(c) {
+      return '<div class="test-cartera-item"><div class="tc-pct">' + c.pct + '</div><div class="tc-label">' + c.label + '</div><div class="tc-example">' + c.ejemplo + '</div></div>';
+    }).join('');
+
+    document.getElementById('test-content').innerHTML =
+      '<div class="test-result">' +
+      '<span class="test-result-badge" style="background:' + p.bg + ';color:' + p.color + '">' + p.emoji + ' ' + p.nombre + '</span>' +
+      '<h3>Perfil ' + p.nombre + '</h3>' +
+      '<p class="test-result-desc">' + p.desc + '</p>' +
+      '<div class="test-result-bars">' + barsHTML + '</div>' +
+      '<div class="test-cartera-title">Cartera orientativa para tu perfil</div>' +
+      '<div class="test-cartera-grid">' + carteraHTML + '</div>' +
+      '<div style="font-size:12px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:10px 12px;color:#7a5800;line-height:1.5;margin-bottom:16px"><strong>💡 Nota:</strong> ' + p.nota + '</div>' +
+      '<div class="test-result-actions">' +
+      '<button class="calc-btn" style="width:auto;padding:10px 18px" onclick="closeTest(); goTo(\'quijolista\');">Ver QuijoLista →</button>' +
+      '<button class="calc-btn" style="width:auto;padding:10px 18px;background:rgba(15,32,53,.08);color:var(--navy)" onclick="openTest()">Repetir test</button>' +
+      '</div>' +
+      '<div class="test-disclaimer">⚠️ Este test es orientativo y educativo. No constituye asesoramiento financiero personalizado (CNMV). Las carteras mostradas son ejemplos genéricos — consulta siempre tu situación personal antes de invertir.</div>' +
+      '</div>';
+  }
+
+  window.openTest = openTest;
+  window.closeTest = closeTest;
+  window.selectTestOption = selectTestOption;
+  window.testNext = testNext;
+  window.testBack = testBack;
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTest();
+  });
+  // Cerrar al click fuera del modal
+  document.getElementById('test-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeTest();
+  });
+
   if (window._resolveGoTo) window._resolveGoTo(_realGoTo);
   else window.goTo = _realGoTo;
 
@@ -4082,45 +4436,45 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }
   // ── QuijoLista ──────────────────────────────────────────────
   var quijolistaItems = [
-    { cat:"rv", tipo:"Fondo", nombre:"Alken Fund Small Cap Europe Class A", isin:"LU0524465548", gestora:"Alken AM", myi:false },
+    { cat:"rv", tipo:"Fondo", nombre:"Alken Fund Small Cap Europe Class A", isin:"LU0524465548", gestora:"Alken AM", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Amundi Index MSCI Emerging Markets IE-C", isin:"LU0996175948", gestora:"Amundi", myi:true },
     { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"AXA IM", myi:true },
     { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116", gestora:"Azvalor AM", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"BrightGate Global Income Fund F EUR Acc", isin:"LU1984948874", gestora:"BrightGate Capital", myi:false },
-    { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Cinvest Tercio Capital B FI", isin:"ES0174115057", gestora:"Cinvest", myi:false },
+    { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"BrightGate Global Income Fund F EUR Acc", isin:"LU1984948874", gestora:"BrightGate Capital", myi:true },
+    { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Cinvest Tercio Capital B FI", isin:"ES0174115057", gestora:"Cinvest", myi:true },
     { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219", gestora:"Cobas AM", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección C FI", isin:"ES0124037005", gestora:"Cobas AM", myi:true },
-    { cat:"nicho", tipo:"Fondo", nombre:"DWS Invest Gold and Precious Metals Equities LC", isin:"LU0273159177", gestora:"DWS", myi:false },
+    { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección C FI", isin:"ES0124037005", gestora:"Cobas AM", myi:false },
+    { cat:"nicho", tipo:"Fondo", nombre:"DWS Invest Gold and Precious Metals Equities LC", isin:"LU0273159177", gestora:"DWS", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity S&P 500 Index Fund EUR P Acc", isin:"IE00BYX5MX67", gestora:"Fidelity", myi:true },
-    { cat:"nicho", tipo:"Fondo", nombre:"Franklin Natural Resources Fund A(acc) EUR", isin:"LU0300741732", gestora:"Franklin Templeton", myi:false },
+    { cat:"nicho", tipo:"Fondo", nombre:"Franklin Natural Resources Fund A(acc) EUR", isin:"LU0300741732", gestora:"Franklin Templeton", myi:true },
     { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Welzia", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Hamco Global Value Fund R FI", isin:"ES0141116030", gestora:"Hamco Financial", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Heptagon Kopernik Global All-Cap Equity Fund AE EUR Acc", isin:"IE00BH6XSF26", gestora:"Heptagon / Kopernik", myi:false },
+    { cat:"rv", tipo:"Fondo", nombre:"Heptagon Kopernik Global All-Cap Equity Fund AE EUR Acc", isin:"IE00BH6XSF26", gestora:"Heptagon / Kopernik", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true },
     { cat:"nicho", tipo:"ETC",  nombre:"Invesco Physical Gold ETC", isin:"IE00B579F325", gestora:"Invesco", myi:false },
     { cat:"rv", tipo:"ETF",  nombre:"iShares Core MSCI World UCITS ETF USD (Acc)", isin:"IE00B4L5Y983", gestora:"BlackRock / iShares", myi:false },
     { cat:"rv", tipo:"ETF",  nombre:"iShares Core S&P 500 UCITS ETF USD (Acc)", isin:"IE00B5BMR087", gestora:"BlackRock / iShares", myi:false },
-    { cat:"nicho", tipo:"Fondo", nombre:"iShares Developed Real Estate Index Fund Institutional Acc EUR", isin:"IE00B83YJG36", gestora:"BlackRock / iShares", myi:false },
+    { cat:"nicho", tipo:"Fondo", nombre:"iShares Developed Real Estate Index Fund Institutional Acc EUR", isin:"IE00B83YJG36", gestora:"BlackRock / iShares", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"iShares Developed World Index Fund (IE) D Acc EUR", isin:"IE00BD0NCM55", gestora:"BlackRock / iShares", myi:true },
     { cat:"nicho", tipo:"ETC",  nombre:"iShares Physical Gold ETC", isin:"IE00B4ND3602", gestora:"BlackRock / iShares", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Janus Henderson Horizon Global Smaller Companies A2 EUR", isin:"LU1984712320", gestora:"Janus Henderson", myi:false },
-    { cat:"nicho", tipo:"Fondo", nombre:"Jupiter Gold & Silver Fund L EUR Acc", isin:"IE00BYVJR916", gestora:"Jupiter AM", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Magallanes Microcaps Europe B FI", isin:"ES0159202011", gestora:"Magallanes Value Investors", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Magna New Frontiers Fund R Acc", isin:"IE00B68FF474", gestora:"Magna", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income D H EUR", isin:"IE00008TZ2E8", gestora:"Man Investments", myi:false },
+    { cat:"rv", tipo:"Fondo", nombre:"Janus Henderson Horizon Global Smaller Companies A2 EUR", isin:"LU1984712320", gestora:"Janus Henderson", myi:true },
+    { cat:"nicho", tipo:"Fondo", nombre:"Jupiter Gold & Silver Fund L EUR Acc", isin:"IE00BYVJR916", gestora:"Jupiter AM", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Magallanes Microcaps Europe B FI", isin:"ES0159202011", gestora:"Magallanes Value Investors", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Magna New Frontiers Fund R Acc", isin:"IE00B68FF474", gestora:"Magna", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income D H EUR", isin:"IE00008TZ2E8", gestora:"Man Investments", myi:true },
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396", gestora:"MyInvestor", myi:true },
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394", gestora:"MyInvestor", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:false },
-    { cat:"monetario", tipo:"Fondo", nombre:"Ostrum SRI Credit Ultra Short Plus R/C EUR", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:false },
+    { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:true },
+    { cat:"monetario", tipo:"Fondo", nombre:"Ostrum SRI Credit Ultra Short Plus R/C EUR", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:true },
     { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Robeco QI Emerging Markets Active Equities D EUR", isin:"LU0329355670", gestora:"Robeco", myi:true },
     { cat:"nicho", tipo:"Fondo", nombre:"Robeco Smart Energy D-EUR Capitalisation", isin:"LU2145461757", gestora:"Robeco", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI", isin:"ES0175902008", gestora:"Welzia", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"Storm Fund II - Storm Bond Fund RC EUR", isin:"LU0840158819", gestora:"Storm Capital", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"UBS Renta Fija 0-5 B FI", isin:"ES0124880032", gestora:"UBS AM", myi:false },
+    { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI", isin:"ES0175902008", gestora:"Welzia", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"Storm Fund II - Storm Bond Fund RC EUR", isin:"LU0840158819", gestora:"Storm Capital", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"UBS Renta Fija 0-5 B FI", isin:"ES0124880032", gestora:"UBS AM", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard 20+ Year Euro Treasury Index Fund EUR Acc", isin:"IE00B246KL88", gestora:"Vanguard", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Investor EUR Acc", isin:"IE0031786142", gestora:"Vanguard", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Euro Government Bond Index Fund EUR Acc", isin:"IE0007472990", gestora:"Vanguard", myi:true },
@@ -4131,7 +4485,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Small-Cap Index Fund EUR Acc", isin:"IE00B42W4L06", gestora:"Vanguard", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Stock Index Fund EUR Acc", isin:"IE00B03HD191", gestora:"Vanguard", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard U.S. Government Bond Index Fund EUR Hedged Acc", isin:"IE0007471471", gestora:"Vanguard", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Vontobel Fund Credit Opportunities HI EUR Cap", isin:"LU2416422751", gestora:"Vontobel", myi:false },
+    { cat:"rf", tipo:"Fondo", nombre:"Vontobel Fund Credit Opportunities HI EUR Cap", isin:"LU2416422751", gestora:"Vontobel", myi:true },
     { cat:"nicho", tipo:"ETC",  nombre:"Xetra-Gold", isin:"DE000A0S9GB0", gestora:"Deutsche Börse", myi:false },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Finizens", gestora:"Finizens SGIIC", myi:false },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Indexa Capital", gestora:"Indexa Capital AV", myi:false },
