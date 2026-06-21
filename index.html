@@ -516,7 +516,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 }
 
 /* ── Empieza aquí ─────────────────────────────────────────────────── */
-.empieza-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 auto;max-width:680px}
+.empieza-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 auto;max-width:560px}
 @media(max-width:580px){.empieza-grid{grid-template-columns:1fr}}
 .empieza-card{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;transition:border-color .2s,transform .15s;text-decoration:none;color:inherit}
 .empieza-card:hover{border-color:var(--gold);transform:translateY(-2px);color:inherit;text-decoration:none;box-shadow:0 4px 16px rgba(15,32,53,.2)}
@@ -889,11 +889,11 @@ function qfTrack(eventName, params) {
     <a href="#" onclick="goTo('cuentas');return false;" style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 22px;border-radius:7px;text-decoration:none;transition:opacity .2s">🏦 Comparar cuentas</a>
   </div>
   <div class="social-links">
-    <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">
+    <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{gtag('event','home_social_x_click',{destination_url:'https://x.com/quijotefinanzas'});}catch(e){}">
       <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       @quijotefinanzas
     </a>
-    <a class="social-btn" href="https://instagram.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">
+    <a class="social-btn" href="https://instagram.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{gtag('event','home_social_instagram_click',{destination_url:'https://instagram.com/quijotefinanzas'});}catch(e){}">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       @quijotefinanzas
     </a>
@@ -901,20 +901,25 @@ function qfTrack(eventName, params) {
   <div class="empieza-block">
     <p class="empieza-pretitle">¿Por dónde empiezo?</p>
     <div class="empieza-grid">
+      <a class="empieza-card" href="#" onclick="try{gtag('event','home_quijoexcel_click',{section_name:'empieza_aqui'});}catch(e){}; openExcelModal();return false;">
+        <span class="empieza-icon">📊</span>
+        <span class="empieza-label">Descarga el QuijoExcel</span>
+        <span class="empieza-sub">Plantilla gratis para tus finanzas</span>
+      </a>
       <a class="empieza-card" href="#" onclick="goTo('calculadoras');return false;">
         <span class="empieza-icon">🧮</span>
         <span class="empieza-label">Calcula tu situación</span>
         <span class="empieza-sub">Salario neto, hipoteca, inversión…</span>
       </a>
-      <a class="empieza-card" href="#" onclick="goTo('glosario');return false;">
-        <span class="empieza-icon">📖</span>
-        <span class="empieza-label">Aprende lo básico</span>
-        <span class="empieza-sub">Términos financieros claros</span>
-      </a>
       <a class="empieza-card" href="#" onclick="goTo('cuentas');return false;">
         <span class="empieza-icon">🏦</span>
         <span class="empieza-label">Encuentra opciones</span>
         <span class="empieza-sub">Cuentas y depósitos comparados</span>
+      </a>
+      <a class="empieza-card" href="#" onclick="openTest();return false;">
+        <span class="empieza-icon">🎯</span>
+        <span class="empieza-label">Haz el test de perfil</span>
+        <span class="empieza-sub">Descubre tu perfil inversor</span>
       </a>
     </div>
   </div>
@@ -923,7 +928,7 @@ function qfTrack(eventName, params) {
     <span class="excel-ico">📊</span>
     <h3>QuijoExcel — Gratis</h3>
     <p>Es la plantilla que utilizo para organizar mis finanzas: controlar gastos, ahorrar mejor y seguir mis inversiones sin complicarme</p>
-    <button class="cta-excel-btn" onclick="openExcelModal()" style="border:none;cursor:pointer;">📥 Acceder a la plantilla</button>
+    <button class="cta-excel-btn" onclick="try{gtag('event','home_quijoexcel_click',{section_name:'hero'});}catch(e){}; openExcelModal()" style="border:none;cursor:pointer;">📥 Acceder a la plantilla</button>
     <span class="cta-excel-secondary">Gratis · Acceso por email</span>
   </div>
   <!-- Newsletter CTA — único en la página -->
@@ -2398,6 +2403,16 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='cagr-salario') calcCagrSalario();
       else if (id==='cagr-patrimonio') calcCagrPatrimonio();
       else if (id==='tiempo') calcTiempo();
+
+      // ── Fase 2: evento clave genérico + específicos (no sustituye nada existente) ──
+      try {
+        var calcLabel = (typeof calcNames !== 'undefined' && calcNames[id]) || id;
+        gtag('event', 'calculator_completed', { tool_name: id, resource_name: calcLabel });
+        if (id === 'deposito')   gtag('event', 'deposit_calculator_completed',  { tool_name: id });
+        if (id === 'interes')    gtag('event', 'compound_calculator_completed', { tool_name: id });
+        if (id === 'jubilacion') gtag('event', 'fire_calculator_completed',     { tool_name: id });
+        if (id === 'hipoteca')   gtag('event', 'mortgage_calculator_completed',{ tool_name: id });
+      } catch(e) {}
     });
   });
 
@@ -2828,6 +2843,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('modal-'+id).classList.add('open');
     document.body.style.overflow = 'hidden';
     try { history.replaceState(null, '', '#calc-'+id); } catch(e) {}
+    trackVirtualPageView('/calc-'+id, (calcNames[id] || id) + ' · QuijoteFinanzas');
     // GA4 event
     try { gtag('event', 'calculadora_abierta', { calculadora: calcNames[id] || id }); } catch(e) {}
   };
@@ -3410,10 +3426,34 @@ document.addEventListener('DOMContentLoaded', function(){
     return true;
   }
 
+  // ── Tracking virtual de rutas SPA (GA4) ──────────────────────────────────
+  // No cambia nada del comportamiento existente: solo informa a GA4 del
+  // cambio de URL que la app ya hace internamente con history.replaceState.
+  function trackVirtualPageView(path, title) {
+    try {
+      gtag('event', 'page_view', {
+        page_path: path,
+        page_location: window.location.origin + '/' + path.replace(/^\//,''),
+        page_title: title || document.title
+      });
+    } catch(e) {}
+    // Clarity: diferenciar "páginas" dentro de la SPA con un custom tag.
+    // No existe un "page_view" nativo en Clarity para SPA, así que usamos
+    // 'set' con una clave fija — esto permite filtrar sesiones/heatmaps por
+    // page_path desde el dashboard de Clarity (Filtros > Custom tags).
+    try {
+      if (typeof clarity === 'function') {
+        clarity('set', 'page_path', path);
+        clarity('set', 'page_title', title || document.title);
+      }
+    } catch(e) {}
+  }
+
   // Registrar goTo real y resolver queue de clicks tempranos
   var _realGoTo = function(secId) {
     if (!activateSection(secId)) return;
     try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
+    trackVirtualPageView('/'+secId, document.title);
     scrollToSectionTop(secId);
   };
 
@@ -4042,6 +4082,7 @@ document.addEventListener('DOMContentLoaded', function(){
     testActual = 0;
     document.getElementById('test-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+    try { gtag('event', 'investor_test_started'); } catch(e) {}
     renderTestPregunta();
   }
 
@@ -4131,6 +4172,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('test-progress').style.width = '100%';
     var resultado = calcularPerfil();
     var p = testPerfiles[resultado.perfil];
+    try { gtag('event', 'investor_test_completed', { resource_name: resultado.perfil }); } catch(e) {}
 
     var dimLabels = { horizonte:'Horizonte temporal', tolerancia:'Tolerancia al riesgo', situacion:'Situación financiera', conocimiento:'Conocimiento' };
     var dimColors = { horizonte:'#185fa5', tolerancia:'#3b6d11', situacion:'#854f0b', conocimiento:'#c9a84c' };
@@ -4154,7 +4196,7 @@ document.addEventListener('DOMContentLoaded', function(){
       '<div class="test-cartera-grid">' + carteraHTML + '</div>' +
       '<div style="font-size:12px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:10px 12px;color:#7a5800;line-height:1.5;margin-bottom:16px"><strong>💡 Nota:</strong> ' + p.nota + '</div>' +
       '<div class="test-result-actions">' +
-      '<button class="calc-btn" style="width:auto;padding:10px 18px" onclick="closeTest(); goTo(\'quijolista\');">Ver QuijoLista →</button>' +
+      '<button class="calc-btn" style="width:auto;padding:10px 18px" onclick="try{gtag(&quot;event&quot;,&quot;investor_test_cta_click&quot;,{destination_url:&quot;quijolista&quot;});}catch(e){}; closeTest(); goTo(\'quijolista\');">Ver QuijoLista →</button>' +
       '<button class="calc-btn" style="width:auto;padding:10px 18px;background:rgba(15,32,53,.08);color:var(--navy)" onclick="openTest()">Repetir test</button>' +
       '</div>' +
       '<div class="test-disclaimer">⚠️ Este test es orientativo y educativo. No constituye asesoramiento financiero personalizado (CNMV). Las carteras mostradas son ejemplos genéricos — consulta siempre tu situación personal antes de invertir.</div>' +
@@ -4179,12 +4221,27 @@ document.addEventListener('DOMContentLoaded', function(){
   if (window._resolveGoTo) window._resolveGoTo(_realGoTo);
   else window.goTo = _realGoTo;
 
+  // Fase 3: mapa sección → nombre de evento de la botonera principal (home)
+  var homeNavEvents = {
+    'recursos':    'home_resources_click',
+    'calculadoras':'home_calculators_click',
+    'glosario':    'home_glossary_click',
+    'teca':        'home_tips_click',
+    'cuentas':     'home_news_click',
+    'referidos':   'home_referrals_click'
+  };
+
   function bindNav() {
     document.querySelectorAll('#main-nav .nav-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var secId = btn.getAttribute('data-section');
         if (!activateSection(secId)) return;
         try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
+        trackVirtualPageView('/'+secId, document.title);
+        try {
+          var evName = homeNavEvents[secId];
+          if (evName) gtag('event', evName, { button_text: btn.textContent.trim(), destination_url: '/'+secId, section_name: 'main_nav' });
+        } catch(e) {}
         scrollToSectionTop(secId);
       });
     });
@@ -4603,6 +4660,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   if (kitForm) {
     kitForm.addEventListener('submit', function() {
       try { gtag('event', 'formulario_enviado', { formulario: 'newsletter_kit' }); } catch(e) {}
+      try { gtag('event', 'newsletter_signup', { source_component: 'newsletter_kit' }); } catch(e) {}
     });
   }
 
