@@ -714,6 +714,8 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .test-cartera-item .tc-example{font-size:10px;color:rgba(184,200,216,.45);margin-top:4px}
 .test-disclaimer{font-size:11px;color:#7a8a9a;background:rgba(15,32,53,.04);border-radius:6px;padding:10px 12px;line-height:1.5;margin-top:16px}
 .test-result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+.infl-explain{font-size:11px;color:var(--muted);margin:2px 0 8px 2px;line-height:1.4}
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -1131,6 +1133,7 @@ function qfTrack(eventName, params) {
       <div class="calc-item clickable" data-cat="salario" data-calc="cagr-salario"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n salarial (CAGR)</span><span class="live">Disponible</span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Disponible</span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Disponible</span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Disponible</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste de un pr&eacute;stamo</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Pronto</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Liquidar deuda</span><span class="coming">Pronto</span></div>
@@ -1396,6 +1399,58 @@ function qfTrack(eventName, params) {
   </div>
 </div>
 
+
+<!-- MODAL: SIMULADOR AUTÓNOMOS -->
+<div class="calc-overlay" id="modal-autonomos">
+  <div class="calc-modal" style="max-width:680px">
+    <div class="modal-header">
+      <div class="modal-header-left"><h2>&#128188; Simulador para aut&oacute;nomos</h2></div>
+      <div class="modal-logo"><img src="logo.png" alt="logo"></div>
+      <button class="calc-close" data-close="autonomos">&#215;</button>
+    </div>
+    <button class="share-btn" data-share="autonomos"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
+    <span class="share-toast" id="toast-autonomos">&#10003; Enlace copiado</span>
+    <p class="subtitle">Cuota RETA, pago fraccionado de IRPF (Modelo 130) e IVA trimestral estimado. Introduce los datos de un trimestre.</p>
+
+    <div class="calc-grid">
+      <div class="field"><label>Ingresos del trimestre, sin IVA (&euro;)</label><input type="number" id="au-ingresos" value="9000" min="0" step="100"></div>
+      <div class="field"><label>Gastos deducibles del trimestre, sin IVA (&euro;)</label><input type="number" id="au-gastos" value="1500" min="0" step="100"></div>
+      <div class="field"><label>Tipo de IVA de tu actividad</label><select id="au-iva">
+        <option value="21">21% (general)</option>
+        <option value="10">10% (reducido)</option>
+        <option value="4">4% (superreducido)</option>
+        <option value="0">Exenta de IVA</option>
+      </select></div>
+      <div class="field"><label>Retenci&oacute;n IRPF en tus facturas</label><select id="au-retencion">
+        <option value="15">15% (general)</option>
+        <option value="7">7% (nuevos aut&oacute;nomos, primeros 3 a&ntilde;os)</option>
+        <option value="0">0% (sin retenci&oacute;n / clientes particulares)</option>
+      </select></div>
+      <div class="field" style="grid-column:1/-1"><label>Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
+        <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
+        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 80&euro;/mes, sin condiciones</option>
+        <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana 80&euro;/mes solo si tu rendimiento neto anual no supera el SMI (17.094&euro;)</option>
+      </select></div>
+    </div>
+    <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
+    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; Ley 35/2006 IRPF arts. 99-109 para Modelo 130). La tarifa plana del segundo a&ntilde;o se calcula extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se calcula por trimestre independiente, no acumulado con trimestres anteriores del mismo a&ntilde;o &mdash; el c&aacute;lculo real es acumulativo y se regulariza en la declaraci&oacute;n anual. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
+
+    <div class="results-panel" id="au-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
+
+    <div class="chart-wrap" id="au-chart-wrap" style="display:none"><h4>D&oacute;nde va tu facturaci&oacute;n del trimestre</h4><div class="chart-container"><canvas id="au-chart"></canvas></div></div>
+
+    <div class="calc-cta" id="au-cta" style="display:none">
+      <div><p><strong>&#128161; &iquest;Sabes si tu tramo de cotizaci&oacute;n es el correcto?</strong> Comparto gesti&oacute;n fiscal para aut&oacute;nomos en X.</p></div>
+      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
+        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
+      </div></div>
+    </div>
+  </div>
+</div>
+
 <!-- MODALES -->
 <div class="calc-overlay" id="modal-interes">
   <div class="calc-modal">
@@ -1416,6 +1471,7 @@ function qfTrack(eventName, params) {
         <span>% anual estimado</span>
       </div>
     </div>
+    <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
       <button class="calc-btn" data-run="interes">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="ic-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -1424,8 +1480,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="ic-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Quieres mejorar este n&uacute;mero?</strong>Comparto estrategias de inversi&oacute;n cada semana en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilación →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilación →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1438,7 +1494,7 @@ function qfTrack(eventName, params) {
     <div class="modal-header"><div class="modal-header-left"><h2>&#127987; Salario neto a bruto</h2></div><div class="modal-logo"><img src="logo.png" alt="logo"></div><button class="calc-close" data-close="salario">&#215;</button></div>
     <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">&#10003; Enlace copiado</span>
     <p class="subtitle">&iquest;Cu&aacute;nto bruto necesitas para cobrar lo que quieres? Calcula el bruto necesario dado un neto objetivo.</p>
-    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa general 2026. Incluye gasto deducible general de 2.000&euro;, reducci&oacute;n del art&iacute;culo 20, m&iacute;nimo personal/familiar b&aacute;sico y cotizaci&oacute;n general del trabajador.</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa general 2026. Incluye gasto deducible general de 2.000&euro;, reducci&oacute;n del art&iacute;culo 20, m&iacute;nimo personal/familiar seg&uacute;n tu CCAA, deducci&oacute;n estatal para rentas bajas (SMI 2026) y cotizaci&oacute;n general del trabajador. No incluye deducciones auton&oacute;micas propias por hijos, alquiler, vivienda o donaciones, ya que estas se aplican en la declaraci&oacute;n anual y no en la retenci&oacute;n mensual de n&oacute;mina.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Neto deseado al a&ntilde;o (&euro;)</label><input type="number" id="sal-neto" value="25000" min="0"></div>
@@ -1477,8 +1533,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="sal-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Quieres negociar mejor tu salario?</strong> Publico an&aacute;lisis y consejos sobre finanzas personales en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1505,8 +1561,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="hip-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Te compensa comprar vs alquilar?</strong>Analizo este tipo de decisiones con datos reales en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('amortizacion');return false;">Amortización anticipada →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('amortizacion');return false;">Amortización anticipada →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1531,8 +1587,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="ce-cta" style="display:none">
       <div><p><strong>&#128161; Negocia con datos, no con intuici&oacute;n.</strong>Consejos sobre c&oacute;mo mejorar tu situaci&oacute;n laboral y financiera en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1560,8 +1616,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="inf-cta" style="display:none">
       <div><p><strong>&#128161; La inflaci&oacute;n es el impuesto silencioso.</strong>Te explico c&oacute;mo proteger tu dinero en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1590,6 +1646,7 @@ function qfTrack(eventName, params) {
         <span>% anual estimado</span>
       </div>
     </div>
+    <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
       <button class="calc-btn" data-run="jubilacion">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="jub-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -1598,8 +1655,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="jub-cta" style="display:none">
       <div><p><strong>&#128161; La independencia financiera es un proceso, no un destino.</strong>Estrategias cada semana en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1627,6 +1684,7 @@ function qfTrack(eventName, params) {
         <span>% anual estimado</span>
       </div>
     </div>
+    <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
       <button class="calc-btn" data-run="deposito">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="dep-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -1635,8 +1693,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="dep-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Hay alternativas mejores al dep&oacute;sito?</strong>Analizo productos de ahorro en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas');return false;">QuijoCuentas →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas');return false;">QuijoCuentas →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1650,7 +1708,7 @@ function qfTrack(eventName, params) {
     <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Salario bruto a neto</h2></div><button class="calc-close" data-close="irpf">&#215;</button></div>
     <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula el porcentaje de retenci&oacute;n de IRPF en tu n&oacute;mina y cu&aacute;nto te descontarán cada mes en 2026.</p>
-    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa general 2026. Incluye gasto deducible general, reducci&oacute;n del art&iacute;culo 20 y m&iacute;nimo personal/familiar b&aacute;sico, pero no todas las deducciones o circunstancias especiales.</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa general 2026. Incluye gasto deducible general, reducci&oacute;n del art&iacute;culo 20, m&iacute;nimo personal/familiar seg&uacute;n tu CCAA y la deducci&oacute;n estatal para rentas bajas vinculada al SMI 2026 (hasta 590,89&euro;, decreciente hasta ~20.048&euro;). No incluye deducciones auton&oacute;micas propias por hijos, alquiler, vivienda o donaciones, ya que estas se aplican en la declaraci&oacute;n anual, no en la retenci&oacute;n mensual de n&oacute;mina.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
@@ -1687,8 +1745,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="irpf-cta" style="display:none">
       <div><p><strong>&#128161; Optimiza tu carga fiscal legalmente.</strong>Consejos sobre fiscalidad personal en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('comparador');return false;">Comparador de ofertas →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('comparador');return false;">Comparador de ofertas →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1701,12 +1759,16 @@ function qfTrack(eventName, params) {
   <div class="calc-modal">
     <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2></div><button class="calc-close" data-close="pension">&#215;</button></div>
     <button class="share-btn" data-share="pension"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-pension">&#10003; Enlace copiado</span>
-    <p class="subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. L&iacute;mite: 1.500 &euro;/a&ntilde;o (hasta 10.000 &euro; con aportaci&oacute;n empresarial).</p>
+    <p class="subtitle" id="pp-subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. L&iacute;mite: 1.500 &euro;/a&ntilde;o (hasta 10.000 &euro; con aportaci&oacute;n empresarial).</p>
     <p class="disclaimer">Estimaci&oacute;n orientativa. El ahorro real depende de tu tipo marginal y CCAA. Consulta con un asesor fiscal.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
-        <div class="field"><label>Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="10000"></div>
+        <div class="field"><label>Eres...</label><select id="pp-tipo" onchange="ppUpdateFields()">
+          <option value="empleado">Empleado por cuenta ajena</option>
+          <option value="autonomo">Aut&oacute;nomo</option>
+        </select></div>
+        <div class="field"><label id="pp-bruto-label">Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
+        <div class="field"><label>Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="10000"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite individual deducible: 1.500&euro;/a&ntilde;o. Hasta 10.000&euro; solo si 8.500&euro; proceden de aportaciones de tu empresa a un plan de empleo.</span></div>
         <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="pp-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option>
           <option value="aragon">Arag&oacute;n</option>
@@ -1732,8 +1794,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="pp-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Vale la pena un plan de pensiones?</strong>Analizo pros, contras y alternativas en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilación →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilación →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1764,8 +1826,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="avs-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Comprar o alquilar? No hay respuesta &uacute;nica.</strong>Te ayudo a analizarlo en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1794,8 +1856,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="am-cta" style="display:none">
       <div><p><strong>&#128161; Amortizar o invertir: el gran debate.</strong>Mi an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('hipoteca');return false;">Calculadora hipoteca →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -1824,8 +1886,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="alq-cta" style="display:none">
       <div><p><strong>&#128161; El ladrillo no siempre es la mejor inversi&oacute;n.</strong>Comparo alternativas en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('alquilervs');return false;">Alquiler vs Compra →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('alquilervs');return false;">Alquiler vs Compra →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -2047,8 +2109,8 @@ function qfTrack(eventName, params) {
     <div class="calc-cta" id="cmp-cta" style="display:none">
       <div><p><strong>&#128161; El sueldo bruto es solo la mitad de la ecuaci&oacute;n.</strong>M&aacute;s an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;"><button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
-        Otras calculadoras →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
+        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
       </div></div>
@@ -2137,6 +2199,7 @@ function qfTrack(eventName, params) {
         <span>% anual estimado</span>
       </div>
     </div>
+    <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
     <button class="calc-btn" data-run="tiempo">Calcular &rarr;</button>
     <p class="disclaimer">Proyecci&oacute;n orientativa. Rentabilidad constante asumida. No tiene en cuenta inflaci&oacute;n ni impuestos.</p>
 
@@ -2403,6 +2466,7 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='cagr-salario') calcCagrSalario();
       else if (id==='cagr-patrimonio') calcCagrPatrimonio();
       else if (id==='tiempo') calcTiempo();
+      else if (id==='autonomos') calcAutonomos();
 
       // ── Fase 2: evento clave genérico + específicos (no sustituye nada existente) ──
       try {
@@ -3014,10 +3078,6 @@ document.addEventListener('DOMContentLoaded', function(){
     if (inflAnual <= 0) return nominal;
     return nominal / Math.pow(1 + inflAnual, anos);
   }
-  function inflBadge(txt) {
-    return '<span class="infl-real-badge">real</span> ' + txt;
-  }
-
   window.calcJubilacion = function() {
     var actual=parseFloat(document.getElementById('jub-actual').value)||0;
     var aport=parseFloat(document.getElementById('jub-aport').value)||0;
@@ -3044,8 +3104,8 @@ document.addEventListener('DOMContentLoaded', function(){
       rr('Años hasta FIRE',anos<80?anos+' años':'> 80 años (revisa datos)','g')+
       rr('Edad de retirada estimada',edadFire<120?edadFire+' años':'> 80 (revisa datos)','g')+
       rr('Capital alcanzado (nominal)',fmtEUR(capital));
-    if(infl>0) html+=rr(inflBadge('Capital en euros de hoy'),fmtEUR(capitalReal),'g')+
-      rr(inflBadge('Objetivo FIRE en euros de hoy'),fmtEUR(fireReal));
+    if(infl>0) html+=rr('Capital alcanzado (real)',fmtEUR(capitalReal),'g')+
+      rr('Objetivo FIRE (real)',fmtEUR(fireReal));
     document.getElementById('jub-results').innerHTML=html;
     document.getElementById('jub-chart-wrap').style.display='block';
     document.getElementById('jub-cta').style.display='flex';
@@ -3087,9 +3147,9 @@ document.addEventListener('DOMContentLoaded', function(){
       rr('Capital total al vencimiento',fmtEUR(totalNeto),'g')+
       rr('TAE equivalente',fmtPct(tae*100));
     if(infl>0){
-      html+=rr(inflBadge('Capital en euros de hoy'),fmtEUR(totalReal), taeReal>=0?'g':'o')+
-        rr(inflBadge('Pérdida de poder adquisitivo'),fmtEUR(perdidaReal),'o')+
-        rr(inflBadge('Rentabilidad real neta'),fmtPct(taeReal*100),taeReal>=0?'g':'o');
+      html+=rr('Capital total al vencimiento (real)',fmtEUR(totalReal), taeReal>=0?'g':'o')+
+        rr('Pérdida de poder adquisitivo',fmtEUR(perdidaReal),'o')+
+        rr('Rentabilidad neta (real)',fmtPct(taeReal*100),taeReal>=0?'g':'o');
     }
     document.getElementById('dep-results').innerHTML=html;
     document.getElementById('dep-chart-wrap').style.display='block';
@@ -3127,8 +3187,8 @@ document.addEventListener('DOMContentLoaded', function(){
       rr('Intereses generados',fmtEUR(ben),'g')+
       rr('Multiplicador','x'+fmtNum(capital/Math.max(ti,1)))+
       rr('% son intereses',fmtPct(ben/capital*100),'g');
-    if(infl>0) html+=rr(inflBadge('Capital en euros de hoy'),fmtEUR(capitalReal),'g')+
-      rr(inflBadge('Pérdida poder adquisitivo'),fmtEUR(capital-capitalReal),'o');
+    if(infl>0) html+=rr('Capital final (real)',fmtEUR(capitalReal),'g')+
+      rr('Pérdida de poder adquisitivo',fmtEUR(capital-capitalReal),'o');
     document.getElementById('ic-results').innerHTML=html;
     document.getElementById('ic-chart-wrap').style.display='block';
     document.getElementById('ic-cta').style.display='flex';
@@ -3182,6 +3242,30 @@ document.addEventListener('DOMContentLoaded', function(){
     return r[ccaa] || r['madrid'];
   }
 
+  // Mínimo del contribuyente (base, sin edad/hijos/discapacidad) aprobado por
+  // cada CCAA para el cálculo de la CUOTA AUTONÓMICA. Fuente: AEAT, "Importes
+  // del mínimo personal y familiar aprobados por las CCAA" (actualizado 2026).
+  // Las CCAA no listadas explícitamente igualan el mínimo estatal (5.550€).
+  function getAutonomicMinimo(ccaa){
+    var m = {
+      andalucia: 5790, asturias: 6105, canarias: 5606, galicia: 5789,
+      madrid: 5956.65, valencia: 6105
+    };
+    return m[ccaa] || 5550;
+  }
+
+  // Deducción estatal por obtención de rendimientos del trabajo (SMI) 2026.
+  // Disposición adicional 61ª LIRPF: hasta 590,89€ para rendimientos íntegros
+  // del trabajo ≤ SMI (17.094€/año), decreciente linealmente hasta 0€ en
+  // ~20.048,45€. Se aplica sobre la cuota total (estatal+autonómica).
+  // Fuente: Ministerio de Hacienda, nota de prensa 17/02/2026.
+  function calcDeduccionSMI(bruto){
+    var MAX = 590.89, UMBRAL1 = 17094, UMBRAL2 = 20048.45;
+    if (bruto <= UMBRAL1) return MAX;
+    if (bruto >= UMBRAL2) return 0;
+    return MAX * (UMBRAL2 - bruto) / (UMBRAL2 - UMBRAL1);
+  }
+
   function progressiveTax(base, scales){
     var b=Math.max(0,+base||0), t=0, prev=0;
     for(var i=0;i<scales.length;i++){
@@ -3193,11 +3277,12 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function calcRendTrabajoReduction(rendNetoTrabajo){
-    // Reducción rendimientos del trabajo Art. 20 LIRPF — valores 2026
+    // Reducción rendimientos del trabajo Art. 20 LIRPF (redacc. RDL 4/2024)
+    // Valores oficiales vigentes 2025/2026 según AEAT.
     var r=Math.max(0,+rendNetoTrabajo||0);
-    if(r<=13115) return 5565;
-    if(r<=16825) return Math.max(0,5565 - 1.5*(r-13115));
-    if(r<21177) return Math.max(0,0);
+    if(r<=14852) return 7302;
+    if(r<=17673.52) return Math.max(0, 7302 - 1.75*(r-14852));
+    if(r<19747.5) return Math.max(0, 2364.34 - 1.14*(r-17673.52));
     return 0;
   }
 
@@ -3235,12 +3320,22 @@ document.addEventListener('DOMContentLoaded', function(){
     var estatalScales = [[12450,.095],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]];
     var autonomicScales = getAutonomicScales(ccaa);
 
-    var minimoPersonalFamiliar = 5550 + minExtra;
-    var minimoAplicable = Math.min(baseGeneral, minimoPersonalFamiliar);
+    // Mínimo personal/familiar: la parte ESTATAL usa siempre 5.550€ + extra;
+    // la parte AUTONÓMICA usa el mínimo propio de cada CCAA + extra (algunas
+    // CCAA, como Canarias, Madrid o Valencia, tienen un importe superior).
+    var minimoEstatal = 5550 + minExtra;
+    var minimoAuto = getAutonomicMinimo(ccaa) + minExtra;
+    var minimoAplicableEstatal = Math.min(baseGeneral, minimoEstatal);
+    var minimoAplicableAuto = Math.min(baseGeneral, minimoAuto);
 
-    var cuotaState = progressiveTax(baseGeneral, estatalScales) - progressiveTax(minimoAplicable, estatalScales);
-    var cuotaAuto  = progressiveTax(baseGeneral, autonomicScales) - progressiveTax(minimoAplicable, autonomicScales);
-    var irpf = Math.max(0, cuotaState + cuotaAuto);
+    var cuotaState = progressiveTax(baseGeneral, estatalScales) - progressiveTax(minimoAplicableEstatal, estatalScales);
+    var cuotaAuto  = progressiveTax(baseGeneral, autonomicScales) - progressiveTax(minimoAplicableAuto, autonomicScales);
+    var cuotaBruta = Math.max(0, cuotaState + cuotaAuto);
+
+    // Deducción SMI 2026 (rentas bajas), se resta de la cuota total ya combinada.
+    var deduccionSMI = calcDeduccionSMI(bruto);
+    var irpf = Math.max(0, cuotaBruta - deduccionSMI);
+
     var neto = bruto - ss - irpf;
     return {
       bruto: bruto,
@@ -3248,7 +3343,9 @@ document.addEventListener('DOMContentLoaded', function(){
       gastoGeneral: gastoGeneral,
       rendimientoNetoTrabajo: rendimientoNetoTrabajo,
       reduccionTrabajo: redTrabajo,
-      minimoPersonalFamiliar: minimoPersonalFamiliar,
+      minimoPersonalFamiliar: minimoEstatal,
+      minimoAutonomico: minimoAuto,
+      deduccionSMI: deduccionSMI,
       baseLiquidableGeneral: baseGeneral,
       irpf: irpf,
       neto: neto,
@@ -3310,17 +3407,21 @@ document.addEventListener('DOMContentLoaded', function(){
     var ccaa=document.getElementById('irpf-ccaa').value;
     var r = calcSalaryTax2026(bruto, ccaa, minExtra, pp);
 
-    document.getElementById('irpf-results').innerHTML=
-      rr('Salario bruto anual',fmtEUR(r.bruto))+
+    var htmlIrpf = rr('Salario bruto anual',fmtEUR(r.bruto))+
       rr('Seguridad Social trabajador (6,50% + topes)',fmtEUR(r.ss),'o')+
       rr('Gasto deducible general',fmtEUR(r.gastoGeneral))+
       rr('Reducción art. 20',fmtEUR(r.reduccionTrabajo))+
-      rr('Mínimo personal / familiar usado',fmtEUR(Math.min(r.baseLiquidableGeneral, r.minimoPersonalFamiliar)))+
-      rr('Base liquidable general',fmtEUR(r.baseLiquidableGeneral))+
-      rr('IRPF anual (estatal + autonómico)',fmtEUR(r.irpf),'o')+
+      rr('Mínimo personal/familiar (estatal)',fmtEUR(Math.min(r.baseLiquidableGeneral, r.minimoPersonalFamiliar)))+
+      rr('Mínimo personal/familiar (autonómico)',fmtEUR(Math.min(r.baseLiquidableGeneral, r.minimoAutonomico)))+
+      rr('Base liquidable general',fmtEUR(r.baseLiquidableGeneral));
+    if (r.deduccionSMI > 0) {
+      htmlIrpf += rr('Deducción rentas bajas (SMI 2026)',fmtEUR(r.deduccionSMI),'g');
+    }
+    htmlIrpf += rr('IRPF anual (estatal + autonómico)',fmtEUR(r.irpf),'o')+
       rr('Tipo efectivo IRPF',fmtPct(r.tipoEfectivo),'o')+
       rr('Neto anual',fmtEUR(r.neto),'g')+
       rr('Neto por paga ('+pagas+')',fmtEUR(r.neto/pagas),'g');
+    document.getElementById('irpf-results').innerHTML = htmlIrpf;
     document.getElementById('irpf-chart-wrap').style.display='block';
     document.getElementById('irpf-cta').style.display='flex';
     if(window._irpfChart) window._irpfChart.destroy();
@@ -3331,16 +3432,69 @@ document.addEventListener('DOMContentLoaded', function(){
           borderColor:['#7dd3a8','#f0a070','#b8c8d8'],borderWidth:1.5,hoverOffset:6}]},
       options:doughnutOpts(r.bruto)});
   };
-  window.calcPension = function() {
-    var bruto=parseFloat(document.getElementById('pp-bruto').value)||0;
-    var aport=Math.min(parseFloat(document.getElementById('pp-aport').value)||0,10000);
-    var ccaa=document.getElementById('pp-ccaa').value;
-    function cn(b,er){
-      return calcSalaryTax2026(b, ccaa, er, 0).neto;
+  // Actualiza labels/límites/ayuda al cambiar entre Empleado y Autónomo
+  window.ppUpdateFields = function(){
+    var tipo = document.getElementById('pp-tipo').value;
+    var brutoLabel = document.getElementById('pp-bruto-label');
+    var aportInput = document.getElementById('pp-aport');
+    var aportHelp = document.getElementById('pp-aport-help');
+    var subtitle = document.getElementById('pp-subtitle');
+    if (tipo === 'autonomo') {
+      brutoLabel.innerHTML = 'Rendimiento neto anual de la actividad (€)';
+      aportInput.max = 5750;
+      aportHelp.innerHTML = 'Límite individual: 1.500€/año. Hasta 5.750€ si aportas también a un Plan de Empleo Simplificado para Autónomos (PPES, máx. 4.250€ adicionales). Nunca puede superar el 30% de tu rendimiento neto.';
+      subtitle.innerHTML = 'Calcula cuánto te ahorra en la declaración de la renta aportar a un plan de pensiones como autónomo. Límite: 1.500€/año (hasta 5.750€ con Plan de Empleo Simplificado, PPES).';
+    } else {
+      brutoLabel.innerHTML = 'Salario bruto anual (€)';
+      aportInput.max = 10000;
+      aportHelp.innerHTML = 'Límite individual deducible: 1.500€/año. Hasta 10.000€ solo si 8.500€ proceden de aportaciones de tu empresa a un plan de empleo.';
+      subtitle.innerHTML = 'Calcula cuánto te ahorra en la declaración de la renta aportar a un plan de pensiones. Límite: 1.500€/año (hasta 10.000€ con aportación empresarial).';
     }
-    var ns=cn(bruto,0),nc=cn(bruto,aport),ahorro=nc-ns,coste=aport-ahorro;
-    document.getElementById('pp-results').innerHTML=
-      rr('Aportaci\u00f3n anual al plan',fmtEUR(aport))+rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportaci\u00f3n',fmtEUR(coste),'g')+rr('Ahorro por cada 100\u20ac aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
+  };
+
+  // Cuota IRPF (estatal+autónómica) sobre una base general, con mínimo por CCAA
+  function calcCuotaIRPFBase(baseGeneral, ccaa){
+    baseGeneral = Math.max(0, baseGeneral);
+    var estatalScales = [[12450,.095],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]];
+    var autonomicScales = getAutonomicScales(ccaa);
+    var minAplEstatal = Math.min(baseGeneral, 5550);
+    var minAplAuto = Math.min(baseGeneral, getAutonomicMinimo(ccaa));
+    var cuotaEstatal = progressiveTax(baseGeneral, estatalScales) - progressiveTax(minAplEstatal, estatalScales);
+    var cuotaAuto = progressiveTax(baseGeneral, autonomicScales) - progressiveTax(minAplAuto, autonomicScales);
+    return Math.max(0, cuotaEstatal + cuotaAuto);
+  }
+
+  window.calcPension = function() {
+    var tipo = document.getElementById('pp-tipo').value;
+    var bruto = parseFloat(document.getElementById('pp-bruto').value) || 0;
+    var aportInput = parseFloat(document.getElementById('pp-aport').value) || 0;
+    var ccaa = document.getElementById('pp-ccaa').value;
+    var ns, nc, ahorro, coste, aport, avisoLimite;
+
+    if (tipo === 'autonomo') {
+      var limiteNormativo = Math.min(5750, bruto * 0.30);
+      aport = Math.min(aportInput, limiteNormativo);
+      var cuotaSin = calcCuotaIRPFBase(bruto, ccaa);
+      var cuotaCon = calcCuotaIRPFBase(bruto - aport, ccaa);
+      ahorro = cuotaSin - cuotaCon;
+      ns = bruto - cuotaSin;
+      nc = ns + ahorro;
+      coste = aport - ahorro;
+      avisoLimite = aport < aportInput ? 'Tu aportación se ha limitado a '+fmtEUR(limiteNormativo)+' (máximo normativo: 5.750€ o 30% de tu rendimiento neto, lo que sea menor).' : null;
+    } else {
+      aport = Math.min(aportInput, 10000);
+      var cn = function(b, ppAport){ return calcSalaryTax2026(b, ccaa, 0, ppAport).neto; };
+      ns = cn(bruto, 0);
+      nc = cn(bruto, aport);
+      ahorro = nc - ns;
+      coste = aport - ahorro;
+      avisoLimite = null;
+    }
+
+    var html = rr('Aportación anual al plan', fmtEUR(aport));
+    if (avisoLimite) html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">⚠️ '+avisoLimite+'</div>';
+    html += rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100€ aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
+    document.getElementById('pp-results').innerHTML = html;
     document.getElementById('pp-chart-wrap').style.display='block';document.getElementById('pp-cta').style.display='flex';
     if(window._ppChart) window._ppChart.destroy();
     window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin plan','Con plan'],datasets:[{label:'Neto anual',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)'},grid:{display:false}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}});
@@ -3455,6 +3609,141 @@ document.addEventListener('DOMContentLoaded', function(){
     try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
     trackVirtualPageView('/'+secId, document.title);
     scrollToSectionTop(secId);
+  };
+
+
+  // ── SIMULADOR AUTÓNOMOS ───────────────────────────────────────────────────
+  // Fuentes: Orden PJC/297/2026 (BOE 31-mar-2026) para tramos RETA;
+  // Ley 35/2006 IRPF arts. 99-109 y RD 439/2007 arts. 109-112 para Modelo 130.
+
+  var RETA_TRAMOS_2026 = [
+    // [rendNetoMensualMax, baseMin, baseMax, label]
+    [670,      653.59,  718.94,  'Tramo R1'],
+    [900,      718.95,  900.00,  'Tramo R2'],
+    [1166.70,  849.67,  1166.70, 'Tramo R3'],
+    [1300,     950.98,  1300.00, 'Tramo 1'],
+    [1500,     960.78,  1500.00, 'Tramo 2'],
+    [1700,     960.78,  1700.00, 'Tramo 3'],
+    [1850,     1143.79, 1850.00, 'Tramo 4'],
+    [2030,     1209.15, 2030.00, 'Tramo 5'],
+    [2330,     1274.51, 2330.00, 'Tramo 6'],
+    [2760,     1356.21, 2760.00, 'Tramo 7'],
+    [3190,     1437.91, 3190.00, 'Tramo 8'],
+    [3620,     1519.61, 3620.00, 'Tramo 9'],
+    [4050,     1601.31, 4050.00, 'Tramo 10'],
+    [6000,     1732.03, 5101.20, 'Tramo 11'],
+    [Infinity, 1928.10, 5101.20, 'Tramo 12']
+  ];
+  var RETA_TIPO = 0.314; // 30,50% base + 0,90% cese de actividad (obligatorio)
+
+  function getRetaTramo(rendNetoMensual){
+    for (var i = 0; i < RETA_TRAMOS_2026.length; i++){
+      if (rendNetoMensual <= RETA_TRAMOS_2026[i][0]) return RETA_TRAMOS_2026[i];
+    }
+    return RETA_TRAMOS_2026[RETA_TRAMOS_2026.length - 1];
+  }
+
+  function calcCuotaReta(rendNetoMensual, tarifaPlana){
+    if (tarifaPlana) return { cuota: 80, tramo: null, base: null };
+    var t = getRetaTramo(Math.max(0, rendNetoMensual));
+    var cuota = t[1] * RETA_TIPO;
+    return { cuota: cuota, tramo: t[3], base: t[1] };
+  }
+
+  window.calcAutonomos = function(){
+    var ingT = parseFloat(document.getElementById('au-ingresos').value) || 0;
+    var gasT = parseFloat(document.getElementById('au-gastos').value) || 0;
+    var tipoIva = parseFloat(document.getElementById('au-iva').value) || 0;
+    var retencion = parseFloat(document.getElementById('au-retencion').value) || 0;
+    var antiguedad = document.getElementById('au-antiguedad').value; // 'normal' | 'ano1' | 'ano2'
+
+    // 1. Rendimiento neto del trimestre (para IRPF): -5% gastos difícil justif., máx 500€/trimestre (2.000€/año)
+    var difJustif = Math.min((ingT - gasT) * 0.05, 500);
+    var rendNetoTrim = Math.max(0, ingT - gasT - difJustif);
+
+    // 2. Cuota RETA: se basa en el rendimiento MENSUAL, con -7% adicional de gastos genéricos (persona física)
+    var rendNetoMensualReta = Math.max(0, (ingT - gasT) / 3 * (1 - 0.07));
+    var SMI_ANUAL = 17094;
+    var rendNetoAnualEstimado = rendNetoTrim * 4; // extrapolación simple del trimestre a un año
+
+    // Año 1: tarifa plana SIEMPRE, sin condición de ingresos.
+    // Año 2: tarifa plana SOLO SI el rendimiento neto anual estimado no supera el SMI.
+    var tarifaPlanaAplica = (antiguedad === 'ano1') || (antiguedad === 'ano2' && rendNetoAnualEstimado <= SMI_ANUAL);
+    var reta = calcCuotaReta(rendNetoMensualReta, tarifaPlanaAplica);
+    var retaTrimestral = reta.cuota * 3;
+
+    // 3. Modelo 130 (pago fraccionado IRPF) — trimestre independiente, sin acumulado
+    // Tipo reducido del 15% en el primer periodo con rendimiento positivo y el siguiente (simplificado a año 1 y 2)
+    var esNuevoIRPF = (antiguedad === 'ano1' || antiguedad === 'ano2');
+    var tipoIrpf = esNuevoIRPF ? 0.15 : 0.20;
+    var cuotaIrpfBruta = rendNetoTrim * tipoIrpf;
+    var retencionesSoportadas = ingT * (retencion / 100);
+    var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas);
+
+    // 4. IVA trimestral (Modelo 303) — repercutido menos soportado, aproximado
+    var ivaRepercutido = ingT * (tipoIva / 100);
+    var ivaSoportado = gasT * (tipoIva / 100);
+    var ivaAIngresar = Math.max(0, ivaRepercutido - ivaSoportado);
+
+    // 5. Neto real del trimestre (el IVA no se resta: no es ingreso propio)
+    var netoReal = ingT - gasT - retaTrimestral - modelo130;
+
+    var html = rr('Ingresos del trimestre', fmtEUR(ingT)) +
+      rr('Gastos deducibles', fmtEUR(gasT), 'o') +
+      rr('Rendimiento neto (base IRPF)', fmtEUR(rendNetoTrim));
+
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Cuota RETA (Seguridad Social)</div>';
+    if (tarifaPlanaAplica) {
+      var labelTarifa = antiguedad === 'ano1' ? 'Tarifa plana (primer a&ntilde;o)' : 'Tarifa plana (segundo a&ntilde;o, bajo el SMI)';
+      html += rr(labelTarifa, fmtEUR(reta.cuota) + '/mes', 'g');
+    } else {
+      if (antiguedad === 'ano2') {
+        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado supera el SMI (17.094&euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
+      }
+      html += rr('Tu tramo estimado', reta.tramo, 'g') +
+        rr('Cuota mensual (base m&iacute;nima del tramo)', fmtEUR(reta.cuota), 'g');
+    }
+    html += rr('Cuota RETA del trimestre (3 meses)', fmtEUR(retaTrimestral), 'o');
+
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130</div>';
+    html += rr('Tipo aplicado', fmtPct(tipoIrpf*100)) +
+      rr('Retenciones ya soportadas en factura', fmtEUR(retencionesSoportadas)) +
+      rr('A ingresar en el Modelo 130', fmtEUR(modelo130), 'o');
+
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IVA &mdash; Modelo 303 (informativo)</div>';
+    if (tipoIva === 0) {
+      html += rr('Actividad exenta de IVA', '&mdash;');
+    } else {
+      html += rr('IVA repercutido (cobrado)', fmtEUR(ivaRepercutido)) +
+        rr('IVA soportado (pagado en gastos)', fmtEUR(ivaSoportado)) +
+        rr('A ingresar en el Modelo 303', fmtEUR(ivaAIngresar), 'o');
+    }
+
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Resumen</div>';
+    html += rr('Neto real del trimestre', fmtEUR(netoReal), 'g') +
+      rr('Neto real mensual (aprox.)', fmtEUR(netoReal/3), 'g');
+
+    document.getElementById('au-results').innerHTML = html;
+    document.getElementById('au-chart-wrap').style.display = 'block';
+    document.getElementById('au-cta').style.display = 'flex';
+
+    setTimeout(function(){
+      var ctx = document.getElementById('au-chart').getContext('2d');
+      if (Chart.getChart(ctx)) Chart.getChart(ctx).destroy();
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Neto real', 'Gastos', 'Cuota RETA', 'Modelo 130 (IRPF)'],
+          datasets: [{
+            data: [+Math.max(netoReal,0).toFixed(2), +gasT.toFixed(2), +retaTrimestral.toFixed(2), +modelo130.toFixed(2)],
+            backgroundColor: ['rgba(125,211,168,.75)','rgba(184,200,216,.4)','rgba(240,160,112,.75)','rgba(201,168,76,.6)'],
+            borderColor: ['#7dd3a8','#b8c8d8','#f0a070','#c9a84c'],
+            borderWidth: 1.5, hoverOffset: 6
+          }]
+        },
+        options: doughnutOpts(ingT)
+      });
+    }, 50);
   };
 
   // ── EVOLUCIÓN SALARIAL / PATRIMONIO (CAGR) ───────────────────────────────
@@ -4429,12 +4718,31 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
+  // Navega entre TÉRMINOS/ENTRADAS (no entre imágenes de la misma ficha,
+  // ya que ningún item tiene más de una imagen). Respeta el filtro activo
+  // de QuijoTeca para no saltar a items ocultos por el filtro.
   window.showPrevNext = function(delta){
-    if (mediaState.type !== "glosario") return;
-    var it = glosarioItems[mediaState.index];
-    if (!it || !it.images || it.images.length === 0) return;
-    mediaState.imageIndex = (mediaState.imageIndex + delta + it.images.length) % it.images.length;
-    openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images, imageIndex: mediaState.imageIndex});
+    if (mediaState.type === "glosario") {
+      var list = glosarioItems;
+      if (!list || list.length === 0) return;
+      var newIndex = (mediaState.index + delta + list.length) % list.length;
+      mediaState.index = newIndex;
+      mediaState.imageIndex = 0;
+      var it = list[newIndex];
+      openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images, imageIndex: 0});
+    } else if (mediaState.type === "teca") {
+      var filtered = getFilteredTecaItems();
+      if (!filtered || filtered.length === 0) return;
+      var currentItem = tecaItems[mediaState.index];
+      var posInFiltered = filtered.indexOf(currentItem);
+      if (posInFiltered === -1) posInFiltered = 0;
+      var newPos = (posInFiltered + delta + filtered.length) % filtered.length;
+      var it2 = filtered[newPos];
+      mediaState.index = tecaItems.indexOf(it2);
+      mediaState.imageIndex = 0;
+      var images = it2.image ? [it2.image] : [];
+      openMedia({badge: it2.badge, title: it2.title, desc: it2.desc + (it2.link ? "\n\nEnlace: " + it2.link : ""), images: images, imageIndex: 0});
+    }
   }
 
   (window.bindMedia = function(){
