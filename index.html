@@ -1426,6 +1426,23 @@ function qfTrack(eventName, params) {
         <option value="7">7% (nuevos aut&oacute;nomos, primeros 3 a&ntilde;os)</option>
         <option value="0">0% (sin retenci&oacute;n / clientes particulares)</option>
       </select></div>
+      <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="au-ccaa">
+        <option value="andalucia">Andaluc&iacute;a</option>
+        <option value="aragon">Arag&oacute;n</option>
+        <option value="asturias">Asturias</option>
+        <option value="baleares">Baleares</option>
+        <option value="canarias">Canarias</option>
+        <option value="cantabria">Cantabria</option>
+        <option value="clm">Castilla-La Mancha</option>
+        <option value="cyl">Castilla y Le&oacute;n</option>
+        <option value="cataluna">Catalu&ntilde;a</option>
+        <option value="extremadura">Extremadura</option>
+        <option value="galicia">Galicia</option>
+        <option value="madrid" selected>Madrid</option>
+        <option value="murcia">Murcia</option>
+        <option value="rioja">La Rioja</option>
+        <option value="valencia">C. Valenciana</option>
+      </select></div>
       <div class="field" style="grid-column:1/-1"><label>Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
         <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
         <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 80&euro;/mes, sin condiciones</option>
@@ -1433,7 +1450,7 @@ function qfTrack(eventName, params) {
       </select></div>
     </div>
     <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
-    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; Ley 35/2006 IRPF arts. 99-109 para Modelo 130). La tarifa plana del segundo a&ntilde;o se calcula extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se calcula por trimestre independiente, no acumulado con trimestres anteriores del mismo a&ntilde;o &mdash; el c&aacute;lculo real es acumulativo y se regulariza en la declaraci&oacute;n anual. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; Ley 35/2006 IRPF arts. 99-109 para Modelo 130). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 es un pago a cuenta (20% o 15% plano); el IRPF real se calcula con las escalas progresivas estatal y auton&oacute;mica sobre tu rendimiento neto anual, como se liquida realmente al presentar la Renta. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
 
     <div class="results-panel" id="au-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
 
@@ -3655,6 +3672,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var gasT = parseFloat(document.getElementById('au-gastos').value) || 0;
     var tipoIva = parseFloat(document.getElementById('au-iva').value) || 0;
     var retencion = parseFloat(document.getElementById('au-retencion').value) || 0;
+    var ccaa = document.getElementById('au-ccaa').value;
     var antiguedad = document.getElementById('au-antiguedad').value; // 'normal' | 'ano1' | 'ano2'
 
     // 1. Rendimiento neto del trimestre (para IRPF): -5% gastos difícil justif., máx 500€/trimestre (2.000€/año)
@@ -3666,27 +3684,32 @@ document.addEventListener('DOMContentLoaded', function(){
     var SMI_ANUAL = 17094;
     var rendNetoAnualEstimado = rendNetoTrim * 4; // extrapolación simple del trimestre a un año
 
-    // Año 1: tarifa plana SIEMPRE, sin condición de ingresos.
-    // Año 2: tarifa plana SOLO SI el rendimiento neto anual estimado no supera el SMI.
     var tarifaPlanaAplica = (antiguedad === 'ano1') || (antiguedad === 'ano2' && rendNetoAnualEstimado <= SMI_ANUAL);
     var reta = calcCuotaReta(rendNetoMensualReta, tarifaPlanaAplica);
     var retaTrimestral = reta.cuota * 3;
 
-    // 3. Modelo 130 (pago fraccionado IRPF) — trimestre independiente, sin acumulado
-    // Tipo reducido del 15% en el primer periodo con rendimiento positivo y el siguiente (simplificado a año 1 y 2)
-    var esNuevoIRPF = (antiguedad === 'ano1' || antiguedad === 'ano2');
-    var tipoIrpf = esNuevoIRPF ? 0.15 : 0.20;
+    // 3. Modelo 130 (pago A CUENTA del IRPF) — trimestre independiente, sin acumulado
+    var tipoIrpf = (antiguedad === 'ano1' || antiguedad === 'ano2') ? 0.15 : 0.20;
     var cuotaIrpfBruta = rendNetoTrim * tipoIrpf;
     var retencionesSoportadas = ingT * (retencion / 100);
     var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas);
+
+    // 3b. IRPF REAL estimado (escalas progresivas estatal+autonómica sobre el rendimiento ANUAL) —
+    // esto es lo que de verdad se liquida al presentar la Renta, no el 20%/15% plano del Modelo 130.
+    var irpfAnualReal = calcCuotaIRPFBase(rendNetoAnualEstimado, ccaa);
+    var irpfTrimestralReal = irpfAnualReal / 4;
+    var yaPagadoEnElAno = (modelo130 + retencionesSoportadas) * 4; // proyección a 4 trimestres iguales
+    var regularizacion = irpfAnualReal - yaPagadoEnElAno; // positivo = te falta pagar, negativo = te devuelven
 
     // 4. IVA trimestral (Modelo 303) — repercutido menos soportado, aproximado
     var ivaRepercutido = ingT * (tipoIva / 100);
     var ivaSoportado = gasT * (tipoIva / 100);
     var ivaAIngresar = Math.max(0, ivaRepercutido - ivaSoportado);
 
-    // 5. Neto real del trimestre (el IVA no se resta: no es ingreso propio)
-    var netoReal = ingT - gasT - retaTrimestral - modelo130;
+    // 5. Neto disponible AHORA (lo que te queda tras pagar RETA + Modelo 130 este trimestre)
+    var netoDisponibleAhora = ingT - gasT - retaTrimestral - modelo130;
+    // Neto real estimado TRAS la Renta (restando/sumando la regularización prorrateada al trimestre)
+    var netoRealTrasRenta = netoDisponibleAhora - (regularizacion / 4);
 
     var html = rr('Ingresos del trimestre', fmtEUR(ingT)) +
       rr('Gastos deducibles', fmtEUR(gasT), 'o') +
@@ -3705,10 +3728,20 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     html += rr('Cuota RETA del trimestre (3 meses)', fmtEUR(retaTrimestral), 'o');
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130</div>';
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130 (pago a cuenta)</div>';
     html += rr('Tipo aplicado', fmtPct(tipoIrpf*100)) +
       rr('Retenciones ya soportadas en factura', fmtEUR(retencionesSoportadas)) +
       rr('A ingresar en el Modelo 130', fmtEUR(modelo130), 'o');
+
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF real estimado (al presentar la Renta)</div>';
+    html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">El Modelo 130 es solo un pago a cuenta. El IRPF real se calcula con las escalas estatal y auton&oacute;mica sobre tu rendimiento neto anual.</div>';
+    html += rr('IRPF anual real estimado (escalas progresivas)', fmtEUR(irpfAnualReal)) +
+      rr('Ya pagado en el a&ntilde;o (Modelo 130 + retenciones, x4)', fmtEUR(yaPagadoEnElAno));
+    if (regularizacion > 0) {
+      html += rr('Te faltar&aacute; pagar al presentar la Renta', fmtEUR(regularizacion), 'o');
+    } else {
+      html += rr('Hacienda te devolver&aacute; al presentar la Renta', fmtEUR(Math.abs(regularizacion)), 'g');
+    }
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IVA &mdash; Modelo 303 (informativo)</div>';
     if (tipoIva === 0) {
@@ -3720,8 +3753,9 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Resumen</div>';
-    html += rr('Neto real del trimestre', fmtEUR(netoReal), 'g') +
-      rr('Neto real mensual (aprox.)', fmtEUR(netoReal/3), 'g');
+    html += rr('Neto disponible este trimestre', fmtEUR(netoDisponibleAhora), 'g') +
+      rr('Neto real estimado (tras regularizar la Renta)', fmtEUR(netoRealTrasRenta), regularizacion>0?'o':'g') +
+      rr('Neto real mensual (aprox., tras Renta)', fmtEUR(netoRealTrasRenta/3), 'g');
 
     document.getElementById('au-results').innerHTML = html;
     document.getElementById('au-chart-wrap').style.display = 'block';
@@ -3733,9 +3767,9 @@ document.addEventListener('DOMContentLoaded', function(){
       new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ['Neto real', 'Gastos', 'Cuota RETA', 'Modelo 130 (IRPF)'],
+          labels: ['Neto real (tras Renta)', 'Gastos', 'Cuota RETA', 'IRPF real anual (prorrateado)'],
           datasets: [{
-            data: [+Math.max(netoReal,0).toFixed(2), +gasT.toFixed(2), +retaTrimestral.toFixed(2), +modelo130.toFixed(2)],
+            data: [+Math.max(netoRealTrasRenta,0).toFixed(2), +gasT.toFixed(2), +retaTrimestral.toFixed(2), +irpfTrimestralReal.toFixed(2)],
             backgroundColor: ['rgba(125,211,168,.75)','rgba(184,200,216,.4)','rgba(240,160,112,.75)','rgba(201,168,76,.6)'],
             borderColor: ['#7dd3a8','#b8c8d8','#f0a070','#c9a84c'],
             borderWidth: 1.5, hoverOffset: 6
