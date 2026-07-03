@@ -3691,25 +3691,27 @@ document.addEventListener('DOMContentLoaded', function(){
     // 3. Modelo 130 (pago A CUENTA del IRPF) — trimestre independiente, sin acumulado
     var tipoIrpf = (antiguedad === 'ano1' || antiguedad === 'ano2') ? 0.15 : 0.20;
     var cuotaIrpfBruta = rendNetoTrim * tipoIrpf;
-    var retencionesSoportadas = ingT * (retencion / 100);
+    var retencionesSoportadas = ingT * (retencion / 100); // dinero que el cliente retiene y NO llega a tu cuenta
     var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas);
 
     // 3b. IRPF REAL estimado (escalas progresivas estatal+autonómica sobre el rendimiento ANUAL) —
     // esto es lo que de verdad se liquida al presentar la Renta, no el 20%/15% plano del Modelo 130.
     var irpfAnualReal = calcCuotaIRPFBase(rendNetoAnualEstimado, ccaa);
-    var irpfTrimestralReal = irpfAnualReal / 4;
-    var yaPagadoEnElAno = (modelo130 + retencionesSoportadas) * 4; // proyección a 4 trimestres iguales
+    var yaPagadoEnElAno = (modelo130 + retencionesSoportadas) * 4; // Modelo 130 + retenciones, proyectado a 4 trimestres iguales
     var regularizacion = irpfAnualReal - yaPagadoEnElAno; // positivo = te falta pagar, negativo = te devuelven
+    var provisionTrimestral = regularizacion / 4;
 
-    // 4. IVA trimestral (Modelo 303) — repercutido menos soportado, aproximado
+    // 4. IVA trimestral (Modelo 303) — repercutido menos soportado, aproximado. El IVA no es tuyo, es de paso.
     var ivaRepercutido = ingT * (tipoIva / 100);
     var ivaSoportado = gasT * (tipoIva / 100);
     var ivaAIngresar = Math.max(0, ivaRepercutido - ivaSoportado);
 
-    // 5. Neto disponible AHORA (lo que te queda tras pagar RETA + Modelo 130 este trimestre)
-    var netoDisponibleAhora = ingT - gasT - retaTrimestral - modelo130;
-    // Neto real estimado TRAS la Renta (restando/sumando la regularización prorrateada al trimestre)
-    var netoRealTrasRenta = netoDisponibleAhora - (regularizacion / 4);
+    // 5. Dinero que REALMENTE entra en tu cuenta este trimestre.
+    // OJO: la retención en factura NUNCA llega a tu cuenta (el cliente la ingresa directamente en Hacienda),
+    // así que hay que restarla aquí, además de gastos, RETA y el Modelo 130 que pagas tú mismo.
+    var dineroEnCuenta = (ingT - retencionesSoportadas) - gasT - retaTrimestral - modelo130;
+    // Neto "con colchón": descontando también la provisión para la futura regularización de la Renta
+    var netoConProvision = dineroEnCuenta - provisionTrimestral;
 
     var html = rr('Ingresos del trimestre', fmtEUR(ingT)) +
       rr('Gastos deducibles', fmtEUR(gasT), 'o') +
@@ -3752,10 +3754,17 @@ document.addEventListener('DOMContentLoaded', function(){
         rr('A ingresar en el Modelo 303', fmtEUR(ivaAIngresar), 'o');
     }
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Resumen</div>';
-    html += rr('Neto disponible este trimestre', fmtEUR(netoDisponibleAhora), 'g') +
-      rr('Neto real estimado (tras regularizar la Renta)', fmtEUR(netoRealTrasRenta), regularizacion>0?'o':'g') +
-      rr('Neto real mensual (aprox., tras Renta)', fmtEUR(netoRealTrasRenta/3), 'g');
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Resumen: tu dinero, paso a paso</div>';
+    html += rr('Dinero que entra en tu cuenta este trimestre', fmtEUR(dineroEnCuenta), 'g') +
+      '<div style="grid-column:1/-1;font-size:10px;color:#7a8a9a;margin:-4px 0 4px">ya descontados: gastos, retenci&oacute;n en factura, RETA y Modelo 130</div>';
+    if (regularizacion > 0) {
+      html += rr('Provisi&oacute;n recomendada para la Renta (aparta esto)', fmtEUR(provisionTrimestral), 'o') +
+        rr('Neto real con colch&oacute;n para la Renta', fmtEUR(netoConProvision), 'g') +
+        rr('Neto real mensual (con colch&oacute;n)', fmtEUR(netoConProvision/3), 'g');
+    } else {
+      html += rr('Hacienda te devolver&aacute; esto en la Renta (extra, no lo cuentes ya)', fmtEUR(Math.abs(provisionTrimestral)), 'g') +
+        rr('Neto real mensual (sin contar la devoluci&oacute;n futura)', fmtEUR(dineroEnCuenta/3), 'g');
+    }
 
     document.getElementById('au-results').innerHTML = html;
     document.getElementById('au-chart-wrap').style.display = 'block';
@@ -3764,14 +3773,16 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(function(){
       var ctx = document.getElementById('au-chart').getContext('2d');
       if (Chart.getChart(ctx)) Chart.getChart(ctx).destroy();
+      var netoParaGrafico = regularizacion > 0 ? netoConProvision : dineroEnCuenta;
+      var provisionParaGrafico = Math.max(0, provisionTrimestral);
       new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ['Neto real (tras Renta)', 'Gastos', 'Cuota RETA', 'IRPF real anual (prorrateado)'],
+          labels: ['Neto disponible', 'Gastos', 'Cuota RETA', 'Retenci&oacute;n + Modelo 130', 'Provisi&oacute;n Renta pendiente'],
           datasets: [{
-            data: [+Math.max(netoRealTrasRenta,0).toFixed(2), +gasT.toFixed(2), +retaTrimestral.toFixed(2), +irpfTrimestralReal.toFixed(2)],
-            backgroundColor: ['rgba(125,211,168,.75)','rgba(184,200,216,.4)','rgba(240,160,112,.75)','rgba(201,168,76,.6)'],
-            borderColor: ['#7dd3a8','#b8c8d8','#f0a070','#c9a84c'],
+            data: [+Math.max(netoParaGrafico,0).toFixed(2), +gasT.toFixed(2), +retaTrimestral.toFixed(2), +(retencionesSoportadas+modelo130).toFixed(2), +provisionParaGrafico.toFixed(2)],
+            backgroundColor: ['rgba(125,211,168,.75)','rgba(184,200,216,.4)','rgba(240,160,112,.75)','rgba(125,180,255,.6)','rgba(201,168,76,.6)'],
+            borderColor: ['#7dd3a8','#b8c8d8','#f0a070','#7db4ff','#c9a84c'],
             borderWidth: 1.5, hoverOffset: 6
           }]
         },
