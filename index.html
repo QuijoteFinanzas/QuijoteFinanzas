@@ -2614,39 +2614,40 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ── QuijoCuentas ─────────────────────────────────────────────────────────
   var cuentasData = [
-    // ── Cuentas sin condiciones (junio 2026) ──
-    { tab:"sin", rank:1, banco:"Trade Republic", tae:2.02, limite:"Sin límite", duracion:"Ligada a tipos BCE", fgd:"Bancos asociados", fgdClass:"fgd-de", pro:"Muy flexible y competitiva", con:"Estructura distinta a banca tradicional", extra:"Sin condiciones" },
-    { tab:"sin", rank:2, banco:"Renault Bank – Cuenta Contigo", tae:2.02, limite:"Sin límite", duracion:"Indefinida", fgd:"Francia", fgdClass:"fgd-fr", pro:"Buen equilibrio rentabilidad–simplicidad", con:"Sin operativa completa", extra:"Sin condiciones" },
-    { tab:"sin", rank:3, banco:"Pibank / Banco BiG", tae:1.51, limite:"Sin límite (Pibank)", duracion:"Indefinida", fgd:"ES/PT", fgdClass:"fgd-es", pro:"Opciones simples y sin fricción", con:"Menor rentabilidad frente a líderes", extra:"Sin condiciones" },
-    { tab:"sin", rank:4, banco:"B100 (ABANCA)", tae:1.75, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"España", fgdClass:"fgd-es", pro:"Cuenta clara y sencilla", con:"Límite de saldo", extra:"Sin condiciones" },
-    { tab:"sin", rank:5, banco:"Grupo Cooperativo Cajamar", tae:1.76, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"España", fgdClass:"fgd-es", pro:"Útil para importes medios", con:"Pierde atractivo en saldos altos", extra:"Sin condiciones" },
+    // ── Cuentas sin condiciones (julio 2026) ──
+    { tab:"sin", rank:1, banco:"Renault Bank", tae:2.17, limite:"Sin límite", duracion:"Indefinida", fgd:"Francia", fgdClass:"fgd-fr", pro:"Mejor opción general", con:"Estructura distinta a banca tradicional", extra:"Sin condiciones" },
+    { tab:"sin", rank:2, banco:"Pibank", tae:1.76, limite:"Sin límite de saldo", duracion:"Indefinida", fgd:"España", fgdClass:"fgd-es", pro:"Sin límite de saldo", con:"Menor rentabilidad frente al líder", extra:"Sin condiciones" },
+    { tab:"sin", rank:3, banco:"Grupo Cooperativo Cajamar", tae:1.76, limite:"Hasta 50.000€", duracion:"Indefinida", fgd:"España", fgdClass:"fgd-es", pro:"Rentabilidad competitiva", con:"La remuneración se reduce en tramos superiores de saldo", extra:"Sin condiciones" },
+    { tab:"sin", rank:4, banco:"Indexa Capital", tae:1.75, limite:"—", duracion:"Indefinida", fgd:"España", fgdClass:"fgd-es", pro:"Alternativa sencilla para la liquidez", con:"Rentabilidad algo por debajo del líder", extra:"Sin condiciones" },
+    { tab:"sin", rank:5, banco:"Banco BiG", tae:1.51, limite:"—", duracion:"Indefinida", fgd:"Portugal", fgdClass:"fgd-es", pro:"Cuenta sin vinculación relevante", con:"Menor rentabilidad frente a líderes", extra:"Sin condiciones" },
 
-    // ── Cuentas con condiciones (junio 2026) ──
-    { tab:"con", rank:1, banco:"Bankinter – Cuenta Nómina", tae:5.00, limite:"Hasta 10.000€", duracion:"5,00% 1er año · 2,00% 2º año", fgd:"España", fgdClass:"fgd-es", pro:"Mayor rentabilidad total", con:"Limitada a 10.000€", extra:"Nómina + recibos + uso tarjeta" },
-    { tab:"con", rank:2, banco:"Trade Republic", tae:3.04, limite:"Sin límite", duracion:"Ligada BCE", fgd:"Bancos asociados", fgdClass:"fgd-de", pro:"Muy competitiva y flexible", con:"Estructura distinta a banca tradicional", extra:"Solo nuevos clientes" },
-    { tab:"con", rank:3, banco:"Grupo Cooperativo Cajamar", tae:3.04, limite:"Hasta 50.000€", duracion:"6 meses", fgd:"España", fgdClass:"fgd-es", pro:"Muy potente a corto plazo", con:"Tras 6 meses deja de remunerar", extra:"Bizum activo + nuevo cliente" },
-    { tab:"con", rank:4, banco:"Bankinter – Cuenta Remunerada", tae:2.50, limite:"Hasta 100.000€", duracion:"12 meses", fgd:"España", fgdClass:"fgd-es", pro:"Muy competitiva para importes altos", con:"Promoción temporal", extra:"Nuevo cliente" },
-    { tab:"con", rank:5, banco:"Cetelem – Cuenta Ahorro", tae:2.10, limite:"—", duracion:"12 meses", fgd:"Francia", fgdClass:"fgd-fr", pro:"Sencilla y sin demasiadas condiciones", con:"Baja tras el primer año", extra:"Solo nuevos clientes" },
+    // ── Cuentas con condiciones (julio 2026) ──
+    { tab:"con", rank:1, banco:"Bankinter", tae:5.00, limite:"Hasta 10.000€", duracion:"5,00% TAE 1er año · 2,00% TAE 2º año", fgd:"España", fgdClass:"fgd-es", pro:"Mejor rentabilidad a dos años", con:"Limitada a 10.000€", extra:"Nuevo cliente + nómina ≥ 800€/mes + 3 recibos/trimestre + 3 pagos con tarjeta/trimestre" },
+    { tab:"con", rank:2, banco:"Revolut", tae:3.51, limite:"Hasta 25.000€", duracion:"Promoción temporal, vigente hasta 16/10/2026", fgd:"España", fgdClass:"fgd-es", pro:"Alta TAE promocional", con:"Rentabilidad no indefinida, sujeta a fecha límite", extra:"Promoción temporal" },
+    { tab:"con", rank:3, banco:"B100", tae:3.00, limite:"Hasta 50.000€", duracion:"Hasta 3,00% TAE", fgd:"España", fgdClass:"fgd-es", pro:"Buen límite de saldo remunerado", con:"Requiere cumplir objetivos o condiciones de actividad", extra:"Objetivos de actividad" },
+    { tab:"con", rank:4, banco:"Trade Republic", tae:3.04, limite:"Sin límite", duracion:"Ligada BCE", fgd:"Bancos asociados", fgdClass:"fgd-de", pro:"Muy competitiva y flexible", con:"Promoción condicionada, no es cuenta sin condiciones", extra:"Solo nuevos clientes" },
+    { tab:"con", rank:5, banco:"Grupo Cooperativo Cajamar", tae:3.04, limite:"Hasta 50.000€", duracion:"6 meses", fgd:"España", fgdClass:"fgd-es", pro:"Muy potente a corto plazo", con:"Tras 6 meses deja de remunerar", extra:"Bizum activo" },
 
-    // ── Cuentas nómina (junio 2026) ──
-    { tab:"nomina", rank:1, banco:"Deutsche Bank – Cuenta Nómina Más DB", total:"Hasta ~2.600€", tae:null, limite:"—", duracion:"500€ bienvenida + 1,50% remunerado", fgd:"Alemania", fgdClass:"fgd-de", pro:"Mayor remuneración potencial", con:"Requiere bastante capital", extra:"Nómina ≥ 2.000€ + saldo medio ≥ 3.000€" },
-    { tab:"nomina", rank:2, banco:"Banco Sabadell – Cuenta Online", total:"Hasta ~1.400€", tae:2.00, limite:"Hasta 50.000€", duracion:"400€ bienvenida + 2,00% TAE + recibos", fgd:"España", fgdClass:"fgd-es", pro:"Mejor equilibrio general", con:"Requiere operativa activa", extra:"Nómina + Bizum" },
-    { tab:"nomina", rank:3, banco:"BBVA – Cuenta Nómina", total:"Hasta ~1.200€", tae:null, limite:"—", duracion:"Hasta ~1.200€ en incentivos", fgd:"España", fgdClass:"fgd-es", pro:"Muy potente si mantienes liquidez", con:"Varias condiciones", extra:"Nómina + recibos + tarjeta" },
-    { tab:"nomina", rank:4, banco:"Ibercaja – Cuenta Vamos", total:"Hasta ~840€", tae:5.09, limite:"Hasta 12.000€", duracion:"5,09% 1er año · 2,01% 2º año", fgd:"España", fgdClass:"fgd-es", pro:"Muy buena combinación de % y rentabilidad", con:"Limitada a 12.000€", extra:"Nómina + recibos + tarjeta" },
-    { tab:"nomina", rank:5, banco:"Abanca – Cuenta Nómina", total:"Hasta 500€", tae:null, limite:"—", duracion:"Hasta 500€ de incentivo", fgd:"España", fgdClass:"fgd-es", pro:"Incentivo sencillo y directo", con:"Permanencia larga", extra:"Nómina ≥ 1.200€ · 24 meses" },
+    // ── Cuentas nómina (julio 2026) — Top 5 ──
+    { tab:"nomina", rank:1, banco:"Banco Sabadell", total:"Hasta 2.580€", tae:2.00, limite:"Hasta 100.000€", duracion:"400€ nómina+Bizum + hasta 2.000€ intereses (2,00% TAE hasta 100.000€) + hasta 180€ Bizum", fgd:"España", fgdClass:"fgd-es", pro:"Mejor opción con liquidez", con:"El máximo de intereses exige mantener 100.000€", extra:"Nómina ≥ 1.000€ + Bizum · permanencia 12 meses" },
+    { tab:"nomina", rank:2, banco:"BBVA", total:"Hasta 1.060€", tae:null, limite:"—", duracion:"400€ nómina + hasta 120€ recibos + hasta 120€ tarjeta + hasta 120€ Bizum + hasta 300€ por saldo (10.000€ = 25€/mes)", fgd:"España", fgdClass:"fgd-es", pro:"Promoción más completa", con:"El máximo requiere cumplir todas las acciones", extra:"Nómina o pensión ≥ 800€" },
+    { tab:"nomina", rank:3, banco:"Ibercaja – Cuenta Vamos", total:"Hasta 840€", tae:5.09, limite:"Hasta 12.000€", duracion:"5,09% TAE 1er año (hasta 600€) · 2,01% TAE 2º año (hasta 240€)", fgd:"España", fgdClass:"fgd-es", pro:"Buena remuneración a dos años", con:"Limitada a 12.000€", extra:"Nuevo cliente + nómina ≥ 600€/mes + 6 recibos/semestre + 6 pagos con tarjeta/semestre" },
+    { tab:"nomina", rank:4, banco:"Cajamar Caja Rural", total:"Hasta 750€", tae:null, limite:"—", duracion:"300€ (nómina 1.200-1.999,99€) · 500€ (2.000-3.999,99€) · 750€ (desde 4.000€)", fgd:"España", fgdClass:"fgd-es", pro:"Incentivo escalado por nómina", con:"El incentivo máximo exige una nómina muy elevada · permanencia 36 meses", extra:"Primera domiciliación de nómina" },
+    { tab:"nomina", rank:5, banco:"Kutxabank", total:"Hasta 600€", tae:null, limite:"—", duracion:"600€ (nómina ≥ 2.500€, o ≥ 1.800€ para menores de 30) · 300€ (nómina ≥ 800€)", fgd:"España", fgdClass:"fgd-es", pro:"Incentivo directo por domiciliar nómina", con:"Permanencia general de 36 meses", extra:"Primera domiciliación + saldo mínimo 250€ + Bizum asociado" },
 
-    // ── Depósitos sin condiciones ──
-    { tab:"dep-sin", rank:1, banco:"Renault Bank – Depósitos", tae:2.83, limite:"Desde 500€", duracion:"12m 2,42% · 24m 2,73% · 36m 2,83%", fgd:"Francia", fgdClass:"fgd-fr", pro:"Mejor equilibrio global", con:"Cancelación no siempre disponible", extra:"Sin condiciones" },
-    { tab:"dep-sin", rank:2, banco:"Banco Finantia", tae:2.75, limite:"Desde 50.000€", duracion:"Hasta 2,75% (36m) · 2,65% (12m)", fgd:"Portugal", fgdClass:"fgd-es", pro:"De las TAE más altas del mercado", con:"Requiere capital elevado", extra:"Mejor en no cancelables" },
-    { tab:"dep-sin", rank:3, banco:"Volkswagen Bank – Depósitos", tae:2.55, limite:"—", duracion:"12m 2,55% · 6m 1,90%", fgd:"Alemania", fgdClass:"fgd-de", pro:"Muy competitivo a 12 meses", con:"Menos atractivo en plazos cortos", extra:"Cancelables" },
-    { tab:"dep-sin", rank:4, banco:"Banco BiG – Depósitos", tae:2.00, limite:"Desde 1.000€", duracion:"3, 6 y 12 meses", fgd:"Portugal", fgdClass:"fgd-es", pro:"Muy accesible", con:"Rentabilidad por debajo de la media", extra:"Versiones cancelables" },
+    // ── Depósitos sin condiciones (julio 2026) ──
+    { tab:"dep-sin", rank:1, banco:"Renault Bank – Depósitos", tae:3.19, limite:"Desde 500€", duracion:"Hasta 3,19% TAE según plazo", fgd:"Francia", fgdClass:"fgd-fr", pro:"Mejor equilibrio", con:"Cancelación no siempre disponible", extra:"Sin condiciones" },
+    { tab:"dep-sin", rank:2, banco:"Cetelem", tae:3.00, limite:"Desde 1€", duracion:"Hasta 3,00% TAE", fgd:"Francia", fgdClass:"fgd-fr", pro:"Muy accesible, desde 1€", con:"—", extra:"Sin condiciones" },
+    { tab:"dep-sin", rank:3, banco:"Banco Finantia", tae:3.00, limite:"Desde 50.000€", duracion:"Hasta 3,00% TAE", fgd:"Portugal", fgdClass:"fgd-es", pro:"De las TAE más altas del mercado", con:"Requiere capital elevado (mínimo 50.000€)", extra:"Sin condiciones" },
+    { tab:"dep-sin", rank:4, banco:"EBN Banco", tae:3.00, limite:"—", duracion:"Varios plazos disponibles", fgd:"España", fgdClass:"fgd-es", pro:"Variedad de plazos", con:"—", extra:"Sin condiciones" },
+    { tab:"dep-sin", rank:5, banco:"Volkswagen Bank – Depósitos", tae:2.80, limite:"—", duracion:"12 meses", fgd:"Alemania", fgdClass:"fgd-de", pro:"Opción sencilla a un año", con:"Menos atractivo en otros plazos", extra:"Sin condiciones" },
 
-    // ── Depósitos con condiciones ──
-    { tab:"dep-con", rank:1, banco:"Banco BiG – Depósitos", tae:4.00, limite:"—", duracion:"1m 4,00% · 3m 3,00% · 6m 2,50%", fgd:"Portugal", fgdClass:"fgd-es", pro:"De los más agresivos del mercado", con:"Requiere rotación constante de liquidez", extra:"Solo nuevos clientes" },
-    { tab:"dep-con", rank:2, banco:"Openbank – Depósitos promocionales", tae:3.03, limite:"—", duracion:"3m 3,03% · 4m 2,78%", fgd:"España", fgdClass:"fgd-es", pro:"Muy buen % a corto plazo", con:"Baja bastante sin condiciones", extra:"Nómina o ingresos ≥ 900€ · nuevo cliente" },
-    { tab:"dep-con", rank:3, banco:"Deutsche Bank – Depósito Confianza", tae:3.00, limite:"—", duracion:"12 meses", fgd:"Alemania", fgdClass:"fgd-de", pro:"Buena rentabilidad si cumples todo", con:"Requiere bastante vinculación", extra:"Base 2,00% + mejora con nómina, tarjeta y fondos" },
-    { tab:"dep-con", rank:4, banco:"Banca March – Depósitos", tae:2.30, limite:"Desde 30.000€", duracion:"12m 2,30% · 6m 2,01%", fgd:"España", fgdClass:"fgd-es", pro:"Interesante para importes altos", con:"Mínimo elevado", extra:"Solo nuevos clientes" },
-    { tab:"dep-con", rank:5, banco:"CBNK – Depósito Nómina", tae:2.50, limite:"Desde 10.000€", duracion:"12 meses", fgd:"España", fgdClass:"fgd-es", pro:"Rentabilidad estable a 1 año", con:"Condiciones exigentes", extra:"Nómina > 2.000€ o pensión" }
+    // ── Depósitos con condiciones (julio 2026) — Top 5 ──
+    { tab:"dep-con", rank:1, banco:"Banco BiG – Depósitos", tae:4.00, limite:"—", duracion:"Nuevos clientes: 4,00% (1m) · 3,25% (3m) · 2,75% (6m). Dinero nuevo, no cancelable: 2,25% (3m) · 2,25% (6m) · 2,50% (9m)", fgd:"Portugal", fgdClass:"fgd-es", pro:"Mayor TAE promocional", con:"El 4,00% solo se aplica durante un mes", extra:"Nuevos clientes / dinero nuevo" },
+    { tab:"dep-con", rank:2, banco:"Deutsche Bank – Depósito Confianza", tae:3.25, limite:"—", duracion:"Base 2,25% TAE · hasta 3,25% TAE con vinculación · 12 meses, cancelable", fgd:"Alemania", fgdClass:"fgd-de", pro:"Buena rentabilidad con vinculación", con:"Para alcanzar el 3,25% exige vinculación elevada (nómina + tarjeta + 15.000€ en fondos)", extra:"+0,20 nómina ≥2.000€ · +0,20 tarjeta 6.000€/año · +0,60 fondo 15.000€" },
+    { tab:"dep-con", rank:3, banco:"ING", tae:3.00, limite:"—", duracion:"3 meses", fgd:"Países Bajos", fgdClass:"fgd-es", pro:"Requisito sencillo", con:"Duración reducida (3 meses)", extra:"Solo nuevos clientes" },
+    { tab:"dep-con", rank:4, banco:"Wizink", tae:2.85, limite:"Desde 5.000€", duracion:"2,85% (18 meses) · 2,60% (36 meses)", fgd:"España", fgdClass:"fgd-es", pro:"Cancelable", con:"Requiere dinero nuevo", extra:"Dinero nuevo · mínimo 5.000€" },
+    { tab:"dep-con", rank:5, banco:"Openbank", tae:2.50, limite:"—", duracion:"6 meses · 1,25% TAE si no se cumple la condición de ingresos", fgd:"España", fgdClass:"fgd-es", pro:"Cancelable", con:"Requiere ingresos mensuales ≥ 900€ para el TAE completo", extra:"Ingresos ≥ 900€/mes" }
   ];
   var cuentasTab = "sin";
 
@@ -2660,7 +2661,7 @@ document.addEventListener('DOMContentLoaded', function(){
       return;
     }
 
-    var mes = "junio 2026";
+    var mes = "julio 2026";
     var esNomina = cuentasTab === "nomina";
     var html = '<div class="cuentas-header">'
       + '<p style="font-size:13px;color:var(--silver2)">' + (esNomina ? 'Ordenadas por dinero total potencial &middot; ' : 'Ordenadas de mayor a menor TAE &middot; ') + '<a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>'
