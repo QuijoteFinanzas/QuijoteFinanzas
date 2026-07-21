@@ -360,6 +360,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuenta-tae span{font-size:13px;color:rgba(184,200,216,.7);font-weight:400}
 .cuenta-meta-row{display:flex;gap:8px;flex-wrap:wrap}
 .cuenta-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.08);color:rgba(184,200,216,.9);border:1px solid rgba(184,200,216,.2);white-space:nowrap}
+.cuenta-detail{font-size:12px;line-height:1.5;color:rgba(184,200,216,.85);margin-top:4px;white-space:normal;word-wrap:break-word}
 .cuenta-chip.fgd-es{background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.3)}
 .cuenta-chip.fgd-fr{background:rgba(125,170,211,.15);color:#a8c8e8;border-color:rgba(125,170,211,.3)}
 .cuenta-chip.fgd-de{background:rgba(200,140,255,.15);color:#d4a8ff;border-color:rgba(200,140,255,.3)}
@@ -2684,15 +2685,15 @@ document.addEventListener('DOMContentLoaded', function(){
             + '</div>'
           + '</div>'
           + '<div class="cuenta-meta-row">'
-            + '<span class="cuenta-chip">💰 ' + c.limite + '</span>'
-            + '<span class="cuenta-chip">⏱ ' + c.duracion + '</span>'
-            + '<span class="cuenta-chip">📌 ' + c.extra + '</span>'
+            + (c.limite && c.limite !== '—' ? '<span class="cuenta-chip">💰 ' + c.limite + '</span>' : '')
             + '<span class="cuenta-chip ' + c.fgdClass + '">🔐 FGD ' + c.fgd + '</span>'
           + '</div>'
+          + (c.duracion && c.duracion !== '—' ? '<div class="cuenta-detail">⏱ ' + c.duracion + '</div>' : '')
+          + (c.extra && c.extra !== '—' ? '<div class="cuenta-detail">📌 ' + c.extra + '</div>' : '')
           + (esNomina && c.tae != null ? '<div style="font-size:12px;color:var(--muted);margin-top:2px">TAE máxima de referencia: ' + c.tae.toFixed(2).replace('.',',') + '%</div>' : '')
           + '<div class="cuenta-pros-cons">'
             + '<span class="cuenta-pro">' + c.pro + '</span>'
-            + '<span class="cuenta-con">' + c.con + '</span>'
+            + (c.con && c.con !== '—' ? '<span class="cuenta-con">' + c.con + '</span>' : '')
           + '</div>'
         + '</div>';
       }).join('')
