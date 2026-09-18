@@ -821,6 +821,28 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
   .home-newsletter input{width:min(100%,260px)}
 }
 
+
+/* ── Fase 3.5: navegación media más visible ───────────────────────── */
+.media-nav{display:flex;gap:10px;align-items:center}
+.media-nav .btn.btn-ghost{width:38px;height:38px;padding:0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(15,32,53,.18);color:var(--navy);font-size:18px;font-weight:700;box-shadow:0 4px 14px rgba(15,32,53,.08);transition:all .18s ease}
+.media-nav .btn.btn-ghost:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-1px);box-shadow:0 6px 18px rgba(15,32,53,.14)}
+.media-nav .btn.btn-ghost:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(max-width:560px){.media-nav .btn.btn-ghost{width:42px;height:42px;font-size:20px}}
+
+/* ── Fase 4: flujo contextual entre secciones ─────────────────────── */
+.section-flow{margin-top:34px;padding-top:22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.section-flow-copy{max-width:520px}
+.section-flow-kicker{font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.section-flow-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--navy);line-height:1.35;margin:0 0 4px}
+.section-flow-text{font-size:12px;color:var(--muted);line-height:1.55;margin:0}
+.section-flow-links{display:flex;gap:8px;flex-wrap:wrap}
+.section-flow-btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all var(--transition);white-space:nowrap}
+.section-flow-btn.primary{background:var(--navy);border:1px solid var(--navy);color:#fff}
+.section-flow-btn.primary:hover{background:var(--navy2);border-color:var(--navy2);transform:translateY(-1px)}
+.section-flow-btn.secondary{background:#fff;border:1px solid var(--border);color:var(--navy)}
+.section-flow-btn.secondary:hover{border-color:rgba(15,32,53,.35);background:var(--surface-soft);transform:translateY(-1px)}
+@media(max-width:640px){.section-flow{align-items:stretch}.section-flow-copy{max-width:none}.section-flow-links{width:100%}.section-flow-btn{flex:1;min-width:140px}}
+
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -1153,11 +1175,9 @@ function qfTrack(eventName, params) {
     </form>
     <div class="home-newsletter-note">Sin spam. Solo cuando haya algo que merezca la pena.</div>
   </div>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Siguiente paso</div><h3 class="section-flow-title">Empieza por entender tus números</h3><p class="section-flow-text">Calcula tu situación y después compara dónde optimizar tu liquidez.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('calculadoras')">Ver calculadoras →</button><button class="section-flow-btn secondary" onclick="goTo('cuentas')">Ir a QuijoCuentas</button></div>
   </div>
   </section>
 
@@ -1198,11 +1218,9 @@ function qfTrack(eventName, params) {
         <a href="mejores-cuentas-remuneradas.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Cuentas remuneradas →</a>
       </div>
     </div>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Para seguir</div><h3 class="section-flow-title">Aprende antes de complicarlo</h3><p class="section-flow-text">Repasa conceptos clave o encuentra libros, podcasts y películas para seguir aprendiendo.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('glosario')">QuijoGlosario →</button><button class="section-flow-btn secondary" onclick="goTo('teca')">Ver QuijoTeca</button></div>
   </div>
 </section>
 
@@ -1212,11 +1230,9 @@ function qfTrack(eventName, params) {
     <p class="muted">Términos financieros explicados con definiciones y ejemplos. Al pulsar, se abre la imagen del término.</p>
   </div>
   <div class="referidos-list" id="glosarioGrid"></div>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Ponlo en práctica</div><h3 class="section-flow-title">De la teoría a tus números</h3><p class="section-flow-text">Usa las calculadoras para aplicar los conceptos o compara alternativas para tu liquidez.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('calculadoras')">Calculadoras →</button><button class="section-flow-btn secondary" onclick="goTo('cuentas')">QuijoCuentas</button></div>
   </div>
 </section>
 
@@ -1234,11 +1250,9 @@ function qfTrack(eventName, params) {
     <button class="cat-btn" data-cat="pelicula">🎬 Películas</button>
   </div>
   <div class="teca-list" id="tecaList"></div>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Sigue aprendiendo</div><h3 class="section-flow-title">Convierte ideas en conceptos claros</h3><p class="section-flow-text">Si algo de un libro, podcast o película te genera dudas, repásalo en el glosario o vuelve a los recursos.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('glosario')">QuijoGlosario →</button><button class="section-flow-btn secondary" onclick="goTo('recursos')">Recursos</button></div>
   </div>
 </section>
 
@@ -1246,7 +1260,7 @@ function qfTrack(eventName, params) {
   <div class="section-head">
     <h2>📋 QuijoLista</h2>
     <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Fondos, ETFs y más — para empezar a invertir con criterio, no con ruido</p>
-    <p class="muted">Fondos, ETFs, ETCs, Planes de Pensiones y Roboadvisors que sigo y me parecen interesantes. No es una recomendación de inversión: investiga siempre antes de decidir. Puedes complementarlo con la <a href="calculadora-interes-compuesto.html" style="color:var(--gold)">calculadora de interés compuesto</a>.</p>
+    <p class="muted">Fondos, ETFs, ETCs, Planes de Pensiones y Roboadvisors que sigo y me parecen interesantes. No es una recomendación de inversión: investiga siempre antes de decidir. Puedes complementarlo con la <a href="#" style="color:var(--gold)" onclick="goTo('calculadoras'); setTimeout(function(){ openCalc('interes'); }, 50); return false;">calculadora de interés compuesto</a>.</p>
   </div>
   <div class="filter-row" id="ql-filter">
     <button class="cat-btn active" data-cat="todos">Todos</button>
@@ -1261,11 +1275,9 @@ function qfTrack(eventName, params) {
   <div id="ql-context" class="note" style="margin-top:0;margin-bottom:18px;padding:12px 16px;font-size:12px;line-height:1.6"><strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto y comprueba siempre disponibilidad y condiciones en tu plataforma.</div>
   <div class="referidos-list" id="quijolistaGrid"></div>
   <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS) y los Roboadvisors no tienen ISIN. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Antes de elegir</div><h3 class="section-flow-title">Define primero qué encaja contigo</h3><p class="section-flow-text">La lista sirve para estudiar opciones, no para comprarlo todo. Empieza por tu perfil y por entender el horizonte.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="openTest()">Hacer test de perfil →</button><button class="section-flow-btn secondary" onclick="openCalc('interes')">Interés compuesto</button></div>
   </div>
 </section>
 
@@ -1310,12 +1322,9 @@ function qfTrack(eventName, params) {
       <div id="votos-list"></div>
     </div>
     <div class="note"><strong>Las marcadas como &ldquo;Disponible&rdquo; se abren directamente aquí.</strong> Cada calculadora tiene también su <a href="calculadora-salario-neto-espana.html" style="color:var(--gold)">propia página con más contexto y FAQ</a>. Las &ldquo;Pronto&rdquo; se irán añadiendo — s&iacute;gueme en X para enterarte.</div>
-
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Con tus números claros</div><h3 class="section-flow-title">Optimiza después, no antes</h3><p class="section-flow-text">Si ya sabes dónde estás, compara opciones para tu liquidez o estudia productos de inversión con más criterio.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('cuentas')">QuijoCuentas →</button><button class="section-flow-btn secondary" onclick="goTo('quijolista')">QuijoLista</button></div>
   </div>
 </section>
 
@@ -1323,7 +1332,7 @@ function qfTrack(eventName, params) {
   <div class="section-head">
     <h2>🏦 QuijoCuentas</h2>
     <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Para que tu liquidez no pierda poder adquisitivo</p>
-    <p class="muted">Comparativa mensual de cuentas y depósitos en España. Ordenado por tipo de producto y nivel de vinculación. Sin publicidad, sin afiliados. Solo datos. <a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>
+    <p class="muted">Comparativa mensual de cuentas y depósitos en España. Ordenado por tipo de producto y nivel de vinculación. Sin publicidad, sin afiliados. Solo datos.</p>
   </div>
   <div class="filter-row" id="cuentas-filter">
     <button type="button" class="cat-btn active" data-tab="sin" onclick="setCuentasTab('sin');return false;">Cuentas sin condiciones</button>
@@ -1336,11 +1345,9 @@ function qfTrack(eventName, params) {
   <div id="cuentas-content">
     <!-- rendered by JS -->
   </div>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Después de la liquidez</div><h3 class="section-flow-title">Da el siguiente paso con criterio</h3><p class="section-flow-text">Una vez ordenado el dinero de corto plazo, puedes estudiar alternativas de inversión según tu perfil y horizonte.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('quijolista')">Explorar QuijoLista →</button><button class="section-flow-btn secondary" onclick="openTest()">Test de perfil</button></div>
   </div>
 
 </section>
@@ -1415,11 +1422,9 @@ function qfTrack(eventName, params) {
       </a>
     </div>
     <div class="note"><strong>Transparencia:</strong> Estos enlaces son de afiliado &mdash; si te registras puedo recibir una compensaci&oacute;n. Solo listo productos que uso o he probado personalmente. Los bonos pueden variar seg&uacute;n campa&ntilde;a.</div>
-
-  <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
-    <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
-    <div style="font-size:11px;color:rgba(184,200,216,.65);margin-bottom:14px">La plantilla QuijoExcel te ayuda a organizarlo todo. Gratis.</div>
-    <button onclick="openExcelModal()" style="background:var(--gold);border:none;color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;border-radius:6px;cursor:pointer">📥 Acceder al QuijoExcel</button>
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">Más herramientas</div><h3 class="section-flow-title">Vuelve al contenido útil del proyecto</h3><p class="section-flow-text">Los referidos son secundarios. Las herramientas, comparativas y recursos gratuitos siguen siendo el núcleo de la web.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('recursos')">Ver recursos →</button><button class="section-flow-btn secondary" onclick="goTo('calculadoras')">Calculadoras</button></div>
   </div>
 </section>
 
@@ -1437,8 +1442,8 @@ function qfTrack(eventName, params) {
         <h3 id="mediaTitle" style="font-family:'Playfair Display',serif;font-size:24px;color:var(--cream);margin:10px 0 0 0;"></h3>
       </div>
       <div class="media-nav">
-        <button id="mediaPrev" class="btn btn-ghost" type="button">←</button>
-        <button id="mediaNext" class="btn btn-ghost" type="button">→</button>
+        <button id="mediaPrev" class="btn btn-ghost" type="button" aria-label="Anterior" title="Anterior">←</button>
+        <button id="mediaNext" class="btn btn-ghost" type="button" aria-label="Siguiente" title="Siguiente">→</button>
       </div>
     </div>
     <div class="media-body">
@@ -2829,7 +2834,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var mes = "julio 2026";
     var esNomina = cuentasTab === "nomina";
     var html = '<div class="cuentas-header">'
-      + '<p style="font-size:13px;color:var(--silver2)">' + (esNomina ? 'Ordenadas por dinero total potencial &middot; ' : 'Ordenadas de mayor a menor TAE &middot; ') + '<a href="mejores-cuentas-remuneradas.html" style="color:var(--gold)">Ver comparativa completa →</a></p>'
+      + '<p style="font-size:13px;color:var(--silver2)">' + (esNomina ? 'Ordenadas por dinero total potencial &middot; ' : 'Ordenadas de mayor a menor TAE &middot; ') + '</p>'
       + '<span class="cuentas-badge">Actualizado: ' + mes + '</span>'
       + '</div>';
 
