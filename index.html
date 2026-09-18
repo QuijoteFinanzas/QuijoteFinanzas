@@ -182,6 +182,13 @@
   --green:#2d8a5e;--orange:#c06030;
   /* Secciones alternas */
   --sec-a:#ffffff;--sec-b:#f4f6f9;--sec-navy:#0f2035;--sec-navy2:#1a3358;
+  /* Design system */
+  --surface:#ffffff;--surface-soft:#f8f9fb;--surface-navy:#0f2035;
+  --radius-sm:6px;--radius-md:10px;--radius-lg:14px;
+  --shadow-soft:0 8px 28px rgba(15,32,53,.08);
+  --shadow-hover:0 10px 30px rgba(15,32,53,.14);
+  --space-section:48px;
+  --transition-fast:160ms ease;
 }
 html,body{background:#ffffff}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -190,7 +197,7 @@ header{border-bottom:1px solid var(--border);padding:40px 0 28px;text-align:cent
 header::before{display:none}
 .logo-wrap{margin:0 auto 16px;width:88px;height:88px;border-radius:50%;border:2px solid rgba(184,200,216,.35);overflow:hidden;box-shadow:0 0 40px rgba(13,26,46,.9)}
 .logo-wrap img{width:100%;height:100%;object-fit:cover}
-.badge{display:inline-block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.9);border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);padding:5px 16px;border-radius:999px;margin-bottom:14px;font-weight:500}
+.badge-hero{display:inline-block;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#9a7830;border:1px solid rgba(201,168,76,.32);background:rgba(201,168,76,.07);padding:6px 16px;border-radius:999px;margin-bottom:14px;font-weight:600}
 h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);font-weight:700;color:var(--cream);line-height:1.1}
 h1 span{color:var(--navy);font-weight:700}
 .tagline{margin:10px auto 0;color:var(--muted);font-size:14px;max-width:500px;line-height:1.6}
@@ -335,12 +342,12 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .field select option{background:#fff;color:var(--navy)}
 .calc-btn{margin-top:4px;width:100%;padding:12px;background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:6px;cursor:pointer;transition:all .2s}
 .calc-btn:hover{background:rgba(184,200,216,.18);border-color:rgba(184,200,216,.5)}
-.results-panel{display:flex;flex-direction:column;gap:9px}
+.results-panel{display:flex;flex-direction:column;gap:9px;padding:4px 0}
 .result-row{background:#f4f6f9;border:1px solid #e8ecf2;border-radius:6px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .result-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
 .result-value{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);text-align:right;font-weight:700}
 .result-value.g{color:#1a7a4a}.result-value.o{color:#c06030}
-.empty-state{color:var(--muted);font-size:13px;text-align:center;padding:36px 16px;line-height:1.8}
+.empty-state{color:#4a6a8a;font-size:13px;text-align:center;padding:16px 0;line-height:1.8}
 .chart-wrap{margin-top:22px;background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:18px}
 .chart-wrap h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(184,200,216,.7);margin-bottom:14px}
 .chart-container{position:relative;height:190px}
@@ -454,7 +461,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .media-body img{width:100%;max-height:calc(88vh - 120px);object-fit:contain;border-radius:8px;border:1px solid #e8ecf2}
 .media-desc{color:rgba(220,232,245,.88);font-size:14px;line-height:1.6;white-space:pre-line}
 .media-nav{display:flex;gap:8px;align-items:center}
-.badge{display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:rgba(201,168,76,.95);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;padding:3px 10px;border-radius:20px}
+.badge-media{display:inline-block;background:rgba(201,168,76,.10);border:1px solid rgba(201,168,76,.26);color:#8d6e24;font-family:"DM Sans",sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;font-weight:600}
 
 
 /* Filters (QuijoTeca) */
@@ -657,8 +664,6 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .res-item{background:rgba(15,32,53,.06);border:1px solid rgba(15,32,53,.1);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
 .res-label{font-size:11px;color:#4a6a8a;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
 .res-val{font-size:18px;font-weight:600;color:var(--navy);font-family:'DM Mono',monospace}
-.results-panel{padding:4px 0}
-.empty-state{font-size:13px;color:#4a6a8a;text-align:center;padding:16px 0}
 
 /* ── CTA contextual relacionado (gold) ───────────────────────────────────── */
 .cta-link-related{border-color:rgba(201,168,76,.5)!important;background:rgba(201,168,76,.06)!important;}
@@ -717,6 +722,105 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .test-result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 
 .infl-explain{font-size:11px;color:var(--muted);margin:2px 0 8px 2px;line-height:1.4}
+
+
+/* ── FASE 1 · Design System Premium ─────────────────────────────────── */
+body{font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+main{max-width:940px;padding:var(--space-section) 24px 84px}
+.section-header,.section-head{margin-bottom:30px}
+.section-header h2,.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,30px);font-weight:600;letter-spacing:-.015em;color:var(--navy);line-height:1.18}
+.section-header p,.section-head p{max-width:720px;line-height:1.7}
+.divider{width:34px;height:1px;background:var(--gold);opacity:.65;margin-top:14px}
+
+/* Superficies */
+.about-bio,.stat-card,.contact-box,.note,.suscripcion-box,.calc-help,.result-row,.voto-item{border-radius:var(--radius-md)}
+.recurso-card,.calc-item,.cuenta-card,.ref-card,.teca-card,.glosario-card,.testimonio-card,.empieza-card,.cta-excel-block{border-radius:var(--radius-md)}
+.recurso-card,.calc-item,.cuenta-card,.ref-card,.teca-card,.glosario-card,.testimonio-card,.empieza-card{box-shadow:none;transition:border-color var(--transition-fast),transform var(--transition-fast),box-shadow var(--transition-fast),background var(--transition-fast)}
+.recurso-card:hover,.calc-item.clickable:hover,.cuenta-card:hover,.ref-card:hover,.teca-card:hover,.glosario-card:hover,.empieza-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+
+/* Botones y controles */
+.social-btn,.cat-btn,.calc-btn,.cta-link,.ql-next-link,.voto-btn,.share-btn,.renta-back,.renta-next,.test-btn,.cta-excel-btn{border-radius:var(--radius-sm)}
+.social-btn,.cat-btn,.cta-link,.ql-next-link,.voto-btn,.share-btn{transition:all var(--transition-fast)}
+.cat-btn{padding:7px 13px;border-width:1px}
+.cat-btn.active{box-shadow:none}
+
+/* Tipografía y microjerarquía */
+.tagline,.positioning{font-size:14px;line-height:1.7}
+.recurso-card h3,.cuenta-banco,.teca-info h3,.glosario-card .glosario-term{letter-spacing:-.005em}
+.note{line-height:1.7}
+
+/* Dorado: acento, no relleno dominante */
+.live,.ref-bonus,.renta-badge{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.cuenta-card.top{border-width:1px;box-shadow:inset 0 0 0 1px rgba(201,168,76,.65)}
+
+/* Modales */
+.calc-modal,.media-modal,#excel-modal,.test-modal{border-radius:var(--radius-lg);box-shadow:0 24px 70px rgba(15,32,53,.20)}
+.field input,.field select,.cagr-row input[type=number],.renta-input{border-radius:var(--radius-sm)}
+
+/* Responsive: un poco más de aire sin crecer en exceso */
+@media(max-width:600px){
+  main{padding:36px 18px 64px}
+  .section-header,.section-head{margin-bottom:24px}
+  .recurso-card{padding:20px}
+  .cuenta-card{padding:17px 18px}
+}
+
+
+/* ── FASE 2 · Hero / primer pantallazo ─────────────────────────────── */
+header{padding:48px 24px 42px;background:#fff}
+.logo-wrap{width:92px;height:92px;margin-bottom:18px;box-shadow:0 12px 32px rgba(15,32,53,.10);border-color:rgba(201,168,76,.35)}
+.logo-wrap img,.compact-brand-logo img{object-fit:contain;background:#fff}
+.badge-hero{display:inline-flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8a6b1f;border:1px solid rgba(201,168,76,.34);background:rgba(201,168,76,.08);padding:6px 13px;border-radius:999px;margin-bottom:16px;font-weight:700}
+header h1{font-size:clamp(38px,6vw,58px);letter-spacing:-.025em;line-height:1.02;max-width:760px;margin:0 auto}
+header .positioning{max-width:650px;margin-top:16px;font-size:16px;line-height:1.7;color:#536f8c}
+.hero-proof{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin:15px auto 0;color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.02em}
+.hero-proof span+span::before{content:'·';margin-right:9px;color:rgba(201,168,76,.75)}
+header .social-links{margin-top:18px}
+header .social-btn{background:transparent;border-color:#e6ebf1;padding:6px 12px;color:#536f8c}
+header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);background:#fff}
+.empieza-block{margin:34px auto 0;max-width:780px;padding-top:28px;border-top:1px solid #edf0f4}
+.empieza-pretitle{margin-bottom:16px;color:#6d8298;letter-spacing:.12em}
+.empieza-grid{grid-template-columns:repeat(3,1fr);max-width:780px;gap:12px}
+.empieza-card{align-items:flex-start;text-align:left;padding:20px 18px;min-height:132px;background:#fff;border:1px solid #e4e9ef;color:var(--navy);box-shadow:0 8px 22px rgba(15,32,53,.04)}
+.empieza-card:hover{border-color:rgba(201,168,76,.55);background:#fff;box-shadow:0 12px 28px rgba(15,32,53,.08)}
+.empieza-step{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9a7b28;font-weight:700}
+.empieza-icon{font-size:22px;margin-top:2px}
+.empieza-label{font-size:14px;color:var(--navy);font-weight:700}
+.empieza-sub{font-size:12px;color:#6c8197;line-height:1.55}
+.cta-excel-block{max-width:780px;margin-top:18px;padding:18px 20px;background:var(--navy);border-color:rgba(201,168,76,.28);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;text-align:left}
+.cta-excel-block .excel-ico{font-size:24px;margin:0}
+.cta-excel-block h3{margin:0 0 3px;font-size:16px}
+.cta-excel-block p{margin:0;font-size:12px;line-height:1.55}
+.cta-excel-block .cta-excel-secondary{display:none}
+.cta-excel-btn{white-space:nowrap;padding:9px 16px;background:var(--gold);color:var(--navy)}
+.home-proof-section{max-width:760px;margin:34px auto 0;padding-top:28px;border-top:1px solid #edf0f4}
+.home-proof-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:center;margin-bottom:14px}
+.home-proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.home-newsletter{max-width:760px;margin:18px auto 0;padding:20px 22px;background:#f8fafc;border:1px solid #e4e9ef;border-radius:var(--radius-md);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;text-align:left}
+.home-newsletter-copy h3{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:0 0 5px}
+.home-newsletter-copy p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+.home-newsletter form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.home-newsletter input{background:#fff;border:1px solid #dfe6ee;color:var(--navy);font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 12px;border-radius:var(--radius-sm);outline:none;width:205px}
+.home-newsletter input:focus{border-color:rgba(201,168,76,.65);box-shadow:0 0 0 2px rgba(201,168,76,.10)}
+.home-newsletter button{background:var(--navy);border:1px solid var(--navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;padding:9px 14px;border-radius:var(--radius-sm);cursor:pointer;white-space:nowrap}
+.home-newsletter-note{grid-column:1/-1;font-size:10px;color:#8394a6;margin-top:-8px}
+@media(max-width:700px){
+  header{padding:38px 18px 34px}
+  header h1{font-size:clamp(34px,11vw,48px)}
+  header .positioning{font-size:15px}
+  .empieza-grid{grid-template-columns:1fr}
+  .empieza-card{min-height:auto;display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:3px;align-items:center}
+  .empieza-step{grid-column:2}
+  .empieza-icon{grid-column:1;grid-row:1/4}
+  .empieza-label,.empieza-sub{grid-column:2}
+  .cta-excel-block{grid-template-columns:auto 1fr;gap:12px}
+  .cta-excel-block .cta-excel-btn{grid-column:1/-1;width:100%;text-align:center}
+  .home-proof-grid{grid-template-columns:1fr}
+  .home-newsletter{grid-template-columns:1fr;text-align:center}
+  .home-newsletter form{justify-content:center}
+  .home-newsletter input{width:min(100%,260px)}
+}
+
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -880,16 +984,15 @@ function qfTrack(eventName, params) {
     <div class="compact-brand-badge">Finanzas Personales</div>
     <div class="compact-brand-title">Don Quijote<br><span>de las Finanzas</span></div>
     <div class="compact-brand-copy">
-      <span>Herramientas y comparativas claras para saber qué hacer con tu dinero en cada momento</span>
+      <span>Educación financiera para entender tu dinero, tomar mejores decisiones y empezar a invertir con criterio</span>
     </div>
   </div>
   <div class="logo-wrap"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
-  <div class="badge">Finanzas Personales</div>
+  <div class="badge-hero">Finanzas Personales</div>
   <h1>Don Quijote<br><span>de las Finanzas</span></h1>
-  <p class="positioning">Herramientas y comparativas claras para saber qu&eacute; hacer con tu dinero en cada momento</p>
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 0">
-    <a href="#" onclick="goTo('calculadoras');return false;" style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 22px;border-radius:7px;text-decoration:none;transition:opacity .2s">📊 Ver calculadoras</a>
-    <a href="#" onclick="goTo('cuentas');return false;" style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.92);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 22px;border-radius:7px;text-decoration:none;transition:opacity .2s">🏦 Comparar cuentas</a>
+  <p class="positioning">Educaci&oacute;n financiera para entender tu dinero, tomar mejores decisiones y empezar a invertir con criterio</p>
+  <div class="hero-proof" aria-label="Credenciales del proyecto">
+    <span>8+ años en el sector financiero</span><span>Herramientas gratuitas</span><span>Sin promesas ni humo</span>
   </div>
   <div class="social-links">
     <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{gtag('event','home_social_x_click',{destination_url:'https://x.com/quijotefinanzas'});}catch(e){}">
@@ -904,59 +1007,37 @@ function qfTrack(eventName, params) {
   <div class="empieza-block">
     <p class="empieza-pretitle">¿Por dónde empiezo?</p>
     <div class="empieza-grid">
-      <a class="empieza-card" href="#" onclick="try{gtag('event','home_quijoexcel_click',{section_name:'empieza_aqui'});}catch(e){}; openExcelModal();return false;">
-        <span class="empieza-icon">📊</span>
-        <span class="empieza-label">Descarga el QuijoExcel</span>
-        <span class="empieza-sub">Plantilla gratis para tus finanzas</span>
-      </a>
       <a class="empieza-card" href="#" onclick="goTo('calculadoras');return false;">
         <span class="empieza-icon">🧮</span>
-        <span class="empieza-label">Calcula tu situación</span>
-        <span class="empieza-sub">Salario neto, hipoteca, inversión…</span>
+        <span class="empieza-step">1 · Entiende</span>
+        <span class="empieza-label">Pon números a tu situación</span>
+        <span class="empieza-sub">Salario, hipoteca, inversión, inflación y más.</span>
       </a>
       <a class="empieza-card" href="#" onclick="goTo('cuentas');return false;">
         <span class="empieza-icon">🏦</span>
-        <span class="empieza-label">Encuentra opciones</span>
-        <span class="empieza-sub">Cuentas y depósitos comparados</span>
+        <span class="empieza-step">2 · Optimiza</span>
+        <span class="empieza-label">Haz trabajar mejor tu liquidez</span>
+        <span class="empieza-sub">Compara cuentas y depósitos con datos actualizados.</span>
       </a>
       <a class="empieza-card" href="#" onclick="openTest();return false;">
         <span class="empieza-icon">🎯</span>
-        <span class="empieza-label">Haz el test de perfil</span>
-        <span class="empieza-sub">Descubre tu perfil inversor</span>
+        <span class="empieza-step">3 · Invierte</span>
+        <span class="empieza-label">Empieza con criterio</span>
+        <span class="empieza-sub">Descubre tu perfil y explora opciones sin ruido.</span>
       </a>
     </div>
   </div>
   <!-- CTA Principal: Excel -->
   <div class="cta-excel-block" id="kit-main-cta">
     <span class="excel-ico">📊</span>
-    <h3>QuijoExcel — Gratis</h3>
-    <p>Es la plantilla que utilizo para organizar mis finanzas: controlar gastos, ahorrar mejor y seguir mis inversiones sin complicarme</p>
-    <button class="cta-excel-btn" onclick="try{gtag('event','home_quijoexcel_click',{section_name:'hero'});}catch(e){}; openExcelModal()" style="border:none;cursor:pointer;">📥 Acceder a la plantilla</button>
-    <span class="cta-excel-secondary">Gratis · Acceso por email</span>
+    <div>
+      <h3>QuijoExcel — organiza tus finanzas en un solo sitio</h3>
+      <p>La plantilla que utilizo para controlar gastos, ahorro e inversiones. Gratis y editable.</p>
+    </div>
+    <button class="cta-excel-btn" onclick="try{gtag('event','home_quijoexcel_click',{section_name:'hero'});}catch(e){}; openExcelModal()" style="border:none;cursor:pointer;">Acceder gratis →</button>
   </div>
   <!-- Newsletter CTA — único en la página -->
 
-  <!-- Testimonios en hero -->
-  <div style="max-width:680px;margin:28px auto 0">
-    <p style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center;margin-bottom:14px">Lo que dicen quienes lo usan</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div class="testimonio-card"><p class="testimonio-texto">"La web me ha ayudado a tener un repositorio más que útil para mis primeros pasos en la inversión."</p><span class="testimonio-autor">— Jesús</span></div>
-      <div class="testimonio-card"><p class="testimonio-texto">"Enhorabuena por aportar más que el 90% de X."</p><span class="testimonio-autor">— Vicente</span></div>
-      <div class="testimonio-card"><p class="testimonio-texto">"¡Menudo trabajazo compañero! Súper completo, espero que tengas todo el reconocimiento que mereces."</p><span class="testimonio-autor">— David</span></div>
-      <div class="testimonio-card"><p class="testimonio-texto">"Está genial tío. ¡Menudo trabajazo!"</p><span class="testimonio-autor">— Iván</span></div>
-    </div>
-  </div>
-
-  <div id="newsletter-cta" style="margin:28px auto 0;max-width:520px;text-align:center;padding:22px 28px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;">
-    <p style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#e8f0f7;margin:0 0 8px 0;">Si quieres estar al d&iacute;a de lo que realmente merece la pena</p>
-    <p style="font-size:13px;color:rgba(184,200,216,.85);margin:0 0 14px 0;line-height:1.5;">Te aviso cuando publique nuevas herramientas, comparativas o cualquier cosa que pueda ayudarte con tu dinero</p>
-    <form action="https://app.kit.com/forms/9155906/subscriptions" method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center">
-      <input type="email" name="email_address" placeholder="tu@email.com" required style="background:rgba(255,255,255,.1);border:1px solid rgba(184,200,216,.25);color:#e8f0f7;font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 14px;border-radius:6px;outline:none;width:220px;">
-      <button type="submit" style="background:rgba(201,168,76,.92);border:1px solid rgba(201,168,76,.6);color:#0f2035;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 18px;border-radius:6px;cursor:pointer;white-space:nowrap;">🔔 Quiero recibirlo</button>
-      <span class="kit-msg" style="display:none;font-size:12px;color:rgba(184,200,216,.8);width:100%;text-align:center;"></span>
-    </form>
-    <p style="font-size:11px;color:rgba(184,200,216,.55);margin:10px 0 0">Te aviso solo cuando haya algo que merezca la pena</p>
-  </div>
 </header>
 
 <main style="background:#fff;min-height:100vh">
@@ -988,8 +1069,26 @@ function qfTrack(eventName, params) {
     </div>
 
 
+  <div class="home-proof-section">
+    <p class="home-proof-label">Lo que dicen quienes lo usan</p>
+    <div class="home-proof-grid">
+      <div class="testimonio-card"><p class="testimonio-texto">“La web me ha ayudado a tener un repositorio más que útil para mis primeros pasos en la inversión.”</p><span class="testimonio-autor">— Jesús</span></div>
+      <div class="testimonio-card"><p class="testimonio-texto">“¡Menudo trabajazo compañero! Súper completo.”</p><span class="testimonio-autor">— David</span></div>
     </div>
+  </div>
 
+  <div class="home-newsletter" id="newsletter-cta">
+    <div class="home-newsletter-copy">
+      <h3>La carta de Don Quijote</h3>
+      <p>Nuevas herramientas, comparativas y una idea útil cuando haya algo que realmente merezca la pena.</p>
+    </div>
+    <form action="https://app.kit.com/forms/9155906/subscriptions" method="post">
+      <input type="email" name="email_address" placeholder="tu@email.com" required>
+      <button type="submit">Quiero recibirla →</button>
+      <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+    </form>
+    <div class="home-newsletter-note">Sin spam. Solo cuando haya algo que merezca la pena.</div>
+  </div>
 
   <div onclick="openExcelModal()" style="margin:24px auto 32px;max-width:600px;background:var(--navy);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:18px 22px;text-align:center;cursor:pointer;transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(201,168,76,.55)'" onmouseleave="this.style.borderColor='rgba(201,168,76,.25)'">
     <div style="font-size:13px;font-weight:600;color:#e8f0f7;margin-bottom:4px">¿Quieres poner en práctica lo que ves aquí?</div>
@@ -1168,6 +1267,7 @@ function qfTrack(eventName, params) {
     <button type="button" class="cat-btn" data-tab="nomina" onclick="setCuentasTab('nomina');return false;">Cuentas nómina</button>
     <button type="button" class="cat-btn" data-tab="dep-sin" onclick="setCuentasTab('dep-sin');return false;">Depósitos sin condiciones</button>
     <button type="button" class="cat-btn" data-tab="dep-con" onclick="setCuentasTab('dep-con');return false;">Depósitos con condiciones</button>
+  </div>
 
   <div id="cuentas-content">
     <!-- rendered by JS -->
@@ -1269,7 +1369,7 @@ function qfTrack(eventName, params) {
     <button id="mediaClose" class="media-close" aria-label="Cerrar">×</button>
     <div class="media-head">
       <div>
-        <span id="mediaBadge" class="badge"></span>
+        <span id="mediaBadge" class="badge-media"></span>
         <h3 id="mediaTitle" style="font-family:'Playfair Display',serif;font-size:24px;color:var(--cream);margin:10px 0 0 0;"></h3>
       </div>
       <div class="media-nav">
@@ -4946,7 +5046,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     }).join('');
   }
   function bindQLFilters(){
-    document.querySelectorAll('#ql-filter .cat-btn').forEach(function(btn){
+    var row = document.getElementById('ql-filter');
+    if (!row || row.dataset.bound === '1') return;
+    row.dataset.bound = '1';
+    row.querySelectorAll('.cat-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
         document.querySelectorAll('#ql-filter .cat-btn').forEach(function(b){ b.classList.remove('active'); });
         this.classList.add('active');
@@ -4960,7 +5063,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   window.bindTecaFilters = function(){
     var row = document.getElementById("teca-filter");
-    if (!row) return;
+    if (!row || row.dataset.bound === '1') return;
+    row.dataset.bound = '1';
     row.querySelectorAll(".cat-btn").forEach(function(btn){
       btn.addEventListener("click", function(){
         row.querySelectorAll(".cat-btn").forEach(function(b){ b.classList.remove("active"); });
@@ -5014,21 +5118,11 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   // ── EXCEL EMAIL GATE ──────────────────────────────────────────────────────
   var excelModalShown = false;
 
-  window.openExcelModal = function() {
-    document.getElementById('excel-modal-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(function() { document.getElementById('excel-email-input').focus(); }, 100);
-    try { gtag('event', 'excel_modal_abierto'); } catch(e) {}
-  };
+  // (openExcelModal ya definida arriba, línea 822, con comprobaciones de null)
 
-  function closeExcelModal() {
-    document.getElementById('excel-modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('excel-modal-close').addEventListener('click', closeExcelModal);
+  document.getElementById('excel-modal-close').addEventListener('click', window.closeExcelModal);
   document.getElementById('excel-modal-overlay').addEventListener('click', function(e) {
-    if (e.target === this) closeExcelModal();
+    if (e.target === this) window.closeExcelModal();
   });
 
   document.getElementById('excel-submit-btn').addEventListener('click', function() {
