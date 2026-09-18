@@ -945,37 +945,101 @@ function qfTrack(eventName, params) {
 </head>
 <body class="show-home-intro">
 
-<!-- ── Sticky Top Bar ──────────────────────────────────────────────── -->
-<div id="top-bar" style="position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid #dde4ed;box-shadow:0 1px 4px rgba(15,32,53,.05)">
-  <div style="display:flex;align-items:center;padding:6px 16px;gap:10px">
-    <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0" title="Inicio">
-      <img src="logo.png" alt="Don Quijote de las Finanzas" style="width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(201,168,76,.4);object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">
-      <span class="topbar-name" style="font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:#0f2035;white-space:nowrap"><span style="font-weight:700;color:#0f2035">Don Quijote de las Finanzas</span></span>
+<!-- ── FASE 3 · Navegación / Header premium ───────────────────────── -->
+<div id="top-bar" class="site-nav-shell">
+  <div class="site-nav-inner">
+    <a href="/" class="site-brand" title="Inicio" aria-label="Ir al inicio">
+      <span class="site-brand-mark">
+        <img src="logo.png" alt="" onerror="this.style.display='none'">
+      </span>
+      <span class="site-brand-name">
+        <span class="brand-long">Don Quijote de las Finanzas</span>
+        <span class="brand-short">Quijote Finanzas</span>
+      </span>
     </a>
+    <div class="site-nav-viewport">
+      <nav id="main-nav" class="site-nav-track" aria-label="Navegación principal">
+        <button class="nav-btn active" data-section="sobre">Sobre mí</button>
+        <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
+        <button class="nav-btn" data-section="cuentas">QuijoCuentas</button>
+        <button class="nav-btn" data-section="quijolista">QuijoLista</button>
+        <button class="nav-btn" data-section="recursos">Recursos</button>
+        <button class="nav-btn" data-section="teca">QuijoTeca</button>
+        <button class="nav-btn" data-section="glosario">QuijoGlosario</button>
+        <button class="nav-btn" data-section="referidos">Referidos</button>
+      </nav>
+    </div>
   </div>
-  <nav id="main-nav" style="display:flex;gap:3px;overflow-x:auto;padding:4px 16px 6px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch">
-    <button class="nav-btn active" data-section="sobre" style="white-space:nowrap;flex-shrink:0">Sobre mí</button>
-    <button class="nav-btn" data-section="calculadoras" style="white-space:nowrap;flex-shrink:0">Calculadoras</button>
-    <button class="nav-btn" data-section="cuentas" style="white-space:nowrap;flex-shrink:0">QuijoCuentas</button>
-    <button class="nav-btn" data-section="quijolista" style="white-space:nowrap;flex-shrink:0">QuijoLista</button>
-    <button class="nav-btn" data-section="recursos" style="white-space:nowrap;flex-shrink:0">Recursos</button>
-    <button class="nav-btn" data-section="teca" style="white-space:nowrap;flex-shrink:0">QuijoTeca</button>
-    <button class="nav-btn" data-section="glosario" style="white-space:nowrap;flex-shrink:0">QuijoGlosario</button>
-    <button class="nav-btn" data-section="referidos" style="white-space:nowrap;flex-shrink:0">Referidos</button>
-  </nav>
 </div>
 <style>
-  #main-nav::-webkit-scrollbar{display:none}
-  @media(min-width:700px){
-    #top-bar>div:first-child{padding-bottom:0}
-    #top-bar{display:flex;align-items:center;padding:0}
-    #top-bar>div:first-child{padding:6px 16px;flex-shrink:0}
-    #top-bar nav#main-nav{padding:6px 16px;margin-left:auto;overflow-x:visible;flex-wrap:wrap;border-top:none}
-    .topbar-name{display:inline!important}
+/* ── FASE 3 · Navegación / Header premium ───────────────────────────── */
+.site-nav-shell{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(15,32,53,.08);
+  box-shadow:0 1px 0 rgba(15,32,53,.02),0 8px 28px rgba(15,32,53,.04);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)
+}
+.site-nav-inner{
+  max-width:1180px;margin:0 auto;min-height:64px;padding:0 24px;
+  display:flex;align-items:center;gap:26px
+}
+.site-brand{
+  display:inline-flex;align-items:center;gap:10px;flex:0 0 auto;
+  color:var(--navy);text-decoration:none;min-width:0
+}
+.site-brand-mark{
+  width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:#fff;border:1px solid rgba(201,168,76,.34);
+  box-shadow:0 4px 14px rgba(15,32,53,.07)
+}
+.site-brand-mark img{width:100%;height:100%;object-fit:contain;background:#fff}
+.site-brand-name{
+  font-family:'Playfair Display',serif;font-size:14px;line-height:1;font-weight:700;
+  letter-spacing:-.01em;white-space:nowrap
+}
+.brand-short{display:none}
+.site-nav-viewport{margin-left:auto;min-width:0;overflow:hidden}
+.site-nav-track{
+  display:flex;align-items:center;gap:2px;overflow-x:auto;overscroll-behavior-x:contain;
+  padding:0 2px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch
+}
+.site-nav-track::-webkit-scrollbar{display:none}
+.site-nav-track .nav-btn{
+  position:relative;flex:0 0 auto;white-space:nowrap;
+  appearance:none;-webkit-appearance:none;background:transparent;border:0;box-shadow:none;
+  color:#62778e;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.005em;padding:23px 10px 20px;border-radius:0;cursor:pointer;
+  transition:color .18s ease,background .18s ease
+}
+.site-nav-track .nav-btn::after{
+  content:'';position:absolute;left:10px;right:10px;bottom:10px;height:2px;border-radius:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .18s ease
+}
+.site-nav-track .nav-btn:hover{background:transparent;color:var(--navy)}
+.site-nav-track .nav-btn.active{background:transparent;border:0;color:var(--navy);font-weight:700;box-shadow:none}
+.site-nav-track .nav-btn.active::after{transform:scaleX(1)}
+.site-nav-track .nav-btn:focus-visible{outline:2px solid rgba(201,168,76,.55);outline-offset:-5px}
+@media(max-width:980px){
+  .site-nav-inner{gap:16px;padding:0 18px}
+  .site-brand-name{font-size:13px}
+  .brand-long{display:none}.brand-short{display:inline}
+  .site-nav-track .nav-btn{padding-left:9px;padding-right:9px}
+}
+@media(max-width:699px){
+  .site-nav-inner{display:block;min-height:0;padding:0}
+  .site-brand{height:48px;padding:0 16px;gap:9px}
+  .site-brand-mark{width:30px;height:30px}
+  .site-brand-name{font-size:13px}
+  .site-nav-viewport{border-top:1px solid rgba(15,32,53,.055);overflow:visible;position:relative}
+  .site-nav-viewport::after{
+    content:'';position:absolute;top:0;right:0;bottom:0;width:28px;pointer-events:none;
+    background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.96))
   }
-  @media(max-width:699px){
-    .topbar-name{display:none!important}
-  }
+  .site-nav-track{padding:0 12px 1px;gap:0}
+  .site-nav-track .nav-btn{font-size:11px;padding:13px 9px 12px}
+  .site-nav-track .nav-btn::after{left:9px;right:9px;bottom:5px;height:2px}
+}
 </style>
 
 <header>
