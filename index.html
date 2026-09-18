@@ -1602,8 +1602,8 @@ function qfTrack(eventName, params) {
         <h3 id="mediaTitle" style="font-family:'Playfair Display',serif;font-size:24px;color:var(--cream);margin:10px 0 0 0;"></h3>
       </div>
       <div class="media-nav">
-        <button id="mediaPrev" class="btn btn-ghost" type="button" aria-label="Anterior" title="Anterior" onclick="window.showPrevNext(-1); return false;">←</button>
-        <button id="mediaNext" class="btn btn-ghost" type="button" aria-label="Siguiente" title="Siguiente" onclick="window.showPrevNext(1); return false;">→</button>
+        <button id="mediaPrev" class="btn btn-ghost" type="button" aria-label="Anterior" title="Anterior" onclick="return window.mediaNavigate(-1);">←</button>
+        <button id="mediaNext" class="btn btn-ghost" type="button" aria-label="Siguiente" title="Siguiente" onclick="return window.mediaNavigate(1);">→</button>
       </div>
     </div>
     <div class="media-body">
@@ -5048,6 +5048,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
   var mediaState = { type:null, index:0, imageIndex:0 };
 
+  function syncMediaStateToDom(){
+    var overlay = document.getElementById('mediaOverlay');
+    if (!overlay) return;
+    overlay.dataset.mediaType = mediaState.type || '';
+    overlay.dataset.mediaIndex = String(mediaState.index || 0);
+  }
+
   window.openMedia = function(payload){
     var overlay = document.getElementById('mediaOverlay');
     var img = document.getElementById('mediaImg');
@@ -5065,6 +5072,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (src) { img.src = src; img.style.display = "block"; } else { img.style.display = "none"; }
     img.alt = payload.title || "";
 
+    syncMediaStateToDom();
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden","false");
   }
@@ -5093,32 +5101,50 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  // Navega entre TÉRMINOS/ENTRADAS (no entre imágenes de la misma ficha,
-  // ya que ningún item tiene más de una imagen). Respeta el filtro activo
-  // de QuijoTeca para no saltar a items ocultos por el filtro.
-  window.showPrevNext = function(delta){
-    if (mediaState.type === "glosario") {
-      var list = glosarioItems;
-      if (!list || list.length === 0) return;
-      var newIndex = (mediaState.index + delta + list.length) % list.length;
-      mediaState.index = newIndex;
+  // Navegación robusta entre conceptos/entradas del visor.
+  // Lee el estado desde el DOM como respaldo para evitar desincronizaciones.
+  window.mediaNavigate = function(delta){
+    var overlay = document.getElementById('mediaOverlay');
+    if (!overlay || !overlay.classList.contains('open')) return false;
+
+    var type = overlay.dataset.mediaType || mediaState.type;
+    var currentIndex = parseInt(overlay.dataset.mediaIndex || mediaState.index || '0', 10);
+    if (!Number.isFinite(currentIndex)) currentIndex = 0;
+
+    if (type === 'glosario') {
+      var list = window.glosarioItems || glosarioItems || [];
+      if (!list.length) return false;
+      var nextIndex = (currentIndex + delta + list.length) % list.length;
+      mediaState.type = 'glosario';
+      mediaState.index = nextIndex;
       mediaState.imageIndex = 0;
-      var it = list[newIndex];
-      openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images, imageIndex: 0});
-    } else if (mediaState.type === "teca") {
-      var filtered = getFilteredTecaItems();
-      if (!filtered || filtered.length === 0) return;
-      var currentItem = tecaItems[mediaState.index];
-      var posInFiltered = filtered.indexOf(currentItem);
-      if (posInFiltered === -1) posInFiltered = 0;
-      var newPos = (posInFiltered + delta + filtered.length) % filtered.length;
-      var it2 = filtered[newPos];
-      mediaState.index = tecaItems.indexOf(it2);
-      mediaState.imageIndex = 0;
-      var images = it2.image ? [it2.image] : [];
-      openMedia({badge: it2.badge, title: it2.title, desc: it2.desc + (it2.link ? "\n\nEnlace: " + it2.link : ""), images: images, imageIndex: 0});
+      var it = list[nextIndex];
+      openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images || [], imageIndex: 0});
+      return false;
     }
-  }
+
+    if (type === 'teca') {
+      var filtered = window.getFilteredTecaItems ? window.getFilteredTecaItems() : (window.tecaItems || tecaItems || []);
+      if (!filtered.length) return false;
+      var full = window.tecaItems || tecaItems || [];
+      var currentItem = full[currentIndex];
+      var pos = filtered.indexOf(currentItem);
+      if (pos < 0) pos = 0;
+      var nextPos = (pos + delta + filtered.length) % filtered.length;
+      var nextItem = filtered[nextPos];
+      var nextFullIndex = full.indexOf(nextItem);
+      mediaState.type = 'teca';
+      mediaState.index = nextFullIndex >= 0 ? nextFullIndex : 0;
+      mediaState.imageIndex = 0;
+      var images = nextItem.image ? [nextItem.image] : [];
+      openMedia({badge: nextItem.badge, title: nextItem.title, desc: nextItem.desc + (nextItem.link ? "\n\nEnlace: " + nextItem.link : ""), images: images, imageIndex: 0});
+      return false;
+    }
+    return false;
+  };
+
+  // Alias de compatibilidad con versiones anteriores.
+  window.showPrevNext = window.mediaNavigate;
 
   (window.bindMedia = function(){
     var overlay = document.getElementById('mediaOverlay');
@@ -5133,8 +5159,8 @@ document.addEventListener('DOMContentLoaded', function(){
     document.addEventListener('keydown', function(e){
       if (!overlay.classList.contains('open')) return;
       if (e.key === 'Escape') window.closeMedia();
-      if (e.key === 'ArrowLeft') { e.preventDefault(); window.showPrevNext(-1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); window.showPrevNext(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); window.mediaNavigate(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); window.mediaNavigate(1); }
     });
   });
 
