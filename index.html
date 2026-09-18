@@ -1167,6 +1167,119 @@ function qfTrack(eventName, params) {
 }
 .calc-modal .qf-brand-signature,.media-modal .qf-brand-signature{margin-top:16px}
 .qc-card .qf-brand-signature{margin-top:12px}
+
+
+/* ── FASE 17 · Ajustes móvil: Referidos + visor QuijoTeca/QuijoGlosario ── */
+/* El visor debe estar siempre por encima del header sticky. */
+.media-overlay{z-index:1200}
+
+@media(max-width:620px){
+  /* Referidos: evitamos que bonus/categoría estrangulen la columna de texto. */
+  #referidos .ref-card{
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr);
+    align-items:start;
+    gap:10px 12px;
+    padding:16px;
+    flex-wrap:initial;
+  }
+  #referidos .ref-card > div:first-of-type{
+    grid-column:1;
+    grid-row:1;
+    width:44px!important;
+    height:44px!important;
+  }
+  #referidos .ref-info{
+    grid-column:2;
+    grid-row:1;
+    min-width:0;
+    padding-right:0;
+  }
+  #referidos .ref-info h3,
+  #referidos .ref-info p,
+  #referidos .ref-meta{
+    word-break:normal;
+    overflow-wrap:break-word;
+    hyphens:auto;
+  }
+  #referidos .ref-bonus{
+    grid-column:1 / -1;
+    grid-row:auto;
+    justify-self:start;
+    margin-left:0!important;
+    align-items:flex-start;
+  }
+  #referidos .ref-cat-badge{
+    grid-column:1 / -1;
+    grid-row:auto;
+    justify-self:start;
+    margin-left:0!important;
+    align-self:auto;
+  }
+
+  /* Visor: ocupa la pantalla útil, queda por encima del header y mantiene controles visibles. */
+  .media-overlay{
+    padding:8px;
+    align-items:flex-start;
+    overflow-y:auto;
+  }
+  .media-modal{
+    width:100%;
+    max-width:none;
+    max-height:calc(100dvh - 16px);
+    margin:0;
+    padding:0 14px 14px;
+    overflow-y:auto;
+    border-radius:12px;
+  }
+  .media-head{
+    position:sticky;
+    top:0;
+    z-index:5;
+    margin:0 -14px 10px;
+    padding:12px 48px 10px 14px;
+    background:rgba(255,255,255,.98);
+    border-bottom:1px solid rgba(15,32,53,.08);
+    backdrop-filter:blur(8px);
+    align-items:center;
+  }
+  .media-head > div:first-child{min-width:0}
+  #mediaTitle{
+    font-size:18px!important;
+    margin-top:6px!important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:48vw;
+  }
+  .media-nav{
+    margin-left:auto;
+    flex:0 0 auto;
+  }
+  .media-close{
+    position:fixed;
+    top:14px;
+    right:16px;
+    z-index:1210;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    border:1px solid rgba(15,32,53,.14);
+    color:var(--navy);
+    box-shadow:0 4px 14px rgba(15,32,53,.12);
+  }
+  .media-body{gap:0}
+  .media-body img{
+    max-height:calc(100dvh - 145px);
+    border-radius:8px;
+  }
+  .media-desc{display:none!important}
+  .media-modal .qf-brand-signature{margin-top:12px}
+}
 </style>
 
 </head>
@@ -5269,7 +5382,7 @@ document.addEventListener('DOMContentLoaded', function(){
     title.textContent = payload.title || "";
     // En QuijoGlosario la propia infografía ya contiene la definición y el ejemplo.
     // Evitamos repetir debajo el mismo texto y dejamos el visor más limpio.
-    var hideDesc = (mediaState.type === "glosario");
+    var hideDesc = (mediaState.type === "glosario" || mediaState.type === "teca");
     desc.textContent = hideDesc ? "" : (payload.desc || "");
     desc.style.display = hideDesc || !desc.textContent.trim() ? "none" : "block";
 
