@@ -1094,6 +1094,66 @@ function qfTrack(eventName, params) {
   };
 })();
 </script>
+
+<style>
+/* ── FASE 12 · Referidos premium ───────────────────────────────────── */
+.ref-section-head{max-width:720px;margin-bottom:22px}
+.ref-section-kicker,.qc-kicker{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ref-section-head h2,.qc-section-head h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,38px);line-height:1.08;color:var(--navy);margin:0 0 10px}
+.ref-section-lead,.qc-lead{font-size:15px;line-height:1.7;color:var(--navy2);margin:0 0 7px}
+.ref-section-note{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+.ref-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 22px}
+.ref-trust-item{display:flex;gap:10px;align-items:flex-start;background:#f8fafc;border:1px solid rgba(15,32,53,.08);border-radius:12px;padding:13px 14px}
+.ref-trust-icon{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;background:rgba(201,168,76,.11);color:#8a6b16;font-weight:800;font-size:12px}
+.ref-trust-item strong{display:block;color:var(--navy);font-size:12px;margin-bottom:3px}
+.ref-trust-item div span{display:block;color:var(--muted);font-size:11px;line-height:1.45}
+#referidos #ref-filter{margin-bottom:14px}
+#referidos .ref-card{background:#fff;border:1px solid rgba(15,32,53,.10);border-radius:12px;padding:17px 18px;box-shadow:0 8px 24px rgba(15,32,53,.035);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+#referidos .ref-card:hover{background:#fff;border-color:rgba(201,168,76,.55);transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,32,53,.08)}
+#referidos .ref-info h3{color:var(--navy)!important;font-family:'Playfair Display',serif;font-size:16px;margin-bottom:4px}
+#referidos .ref-info p{color:var(--navy2)!important}
+#referidos .ref-meta{color:var(--muted)!important;font-size:11px;margin-top:5px}
+#referidos .ref-cat-badge{position:static;order:4;margin-left:auto;align-self:flex-start;background:#f4f6f9!important;color:var(--navy2)!important;border:1px solid rgba(15,32,53,.08);font-weight:600}
+#referidos .ref-bonus{display:flex;flex-direction:column;align-items:flex-end;gap:2px;background:rgba(201,168,76,.10);color:#7a5c10;border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:7px 10px;line-height:1.15}
+#referidos .ref-bonus::before{content:'Ventaja actual';font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+#referidos .note{background:#f8fafc;border-color:rgba(15,32,53,.08);border-left-color:var(--gold);color:var(--muted)}
+
+/* ── FASE 13 · QuijoCartera interactiva ────────────────────────────── */
+.qc-section-head{max-width:760px;margin-bottom:18px}
+.qc-meta-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.qc-meta-pill{display:inline-flex;align-items:center;font-size:10px;font-weight:600;color:var(--navy2);background:#f4f6f9;border:1px solid rgba(15,32,53,.08);padding:5px 9px;border-radius:999px}
+.qc-meta-pill.subtle{color:var(--muted);font-weight:500}
+.qc-intro-note{margin:0 0 18px;padding:12px 15px;border-radius:10px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.20);font-size:12px;line-height:1.6;color:var(--navy2)}
+.qc-intro-note strong{color:var(--navy)}
+.qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qc-card{background:#fff;border:1px solid rgba(15,32,53,.10);border-radius:16px;padding:18px;box-shadow:0 10px 28px rgba(15,32,53,.045)}
+.qc-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}
+.qc-card-eyebrow{display:block;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.qc-card h3{font-family:'Playfair Display',serif;font-size:19px;line-height:1.2;color:var(--navy);margin:0}
+.qc-date{font-size:9px;color:var(--muted);background:#f5f7fa;border:1px solid rgba(15,32,53,.07);padding:4px 7px;border-radius:999px;white-space:nowrap}
+.qc-chart-layout{display:grid;grid-template-columns:minmax(180px,.9fr) minmax(170px,1.1fr);gap:14px;align-items:center}
+.qc-chart-shell{height:230px;position:relative;min-width:0}
+.qc-chart-shell canvas{width:100%!important;height:100%!important}
+.qc-chart-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;display:flex;flex-direction:column;gap:1px;width:92px}
+.qc-chart-center strong{font-family:'Playfair Display',serif;font-size:24px;line-height:1;color:var(--navy)}
+.qc-chart-center span{font-size:10px;color:var(--muted);line-height:1.25;white-space:normal}
+.qc-legend{display:flex;flex-direction:column;gap:5px}
+.qc-legend-item{appearance:none;border:1px solid transparent;background:transparent;width:100%;display:grid;grid-template-columns:9px 1fr auto;align-items:center;gap:7px;padding:6px 7px;border-radius:8px;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s,border-color .15s}
+.qc-legend-item:hover,.qc-legend-item:focus-visible,.qc-legend-item.active{background:#f6f8fb;border-color:rgba(15,32,53,.08);outline:none}
+.qc-legend-dot{width:8px;height:8px;border-radius:50%}
+.qc-legend-name{font-size:11px;color:var(--navy2);line-height:1.25}
+.qc-legend-value{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--navy)}
+.qc-card-foot{font-size:10.5px;line-height:1.55;color:var(--muted);margin:13px 0 0;border-top:1px solid rgba(15,32,53,.06);padding-top:10px}
+.qc-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
+.qc-summary-card{background:#f8fafc;border:1px solid rgba(15,32,53,.08);border-radius:11px;padding:12px 13px;display:flex;flex-direction:column;gap:3px}
+.qc-summary-num{font-family:'Playfair Display',serif;font-size:23px;font-weight:700;color:var(--navy);line-height:1}
+.qc-summary-card strong{font-size:11px;color:var(--navy2)}
+.qc-summary-card>span:last-child{font-size:10px;line-height:1.4;color:var(--muted)}
+@media(max-width:800px){.qc-grid{grid-template-columns:1fr}.qc-summary-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.ref-trust-grid{grid-template-columns:1fr}.qc-chart-layout{grid-template-columns:1fr}.qc-chart-shell{height:250px}.qc-legend{display:grid;grid-template-columns:1fr 1fr}.qc-summary-grid{grid-template-columns:1fr 1fr}#referidos .ref-card{align-items:flex-start;flex-wrap:wrap}#referidos .ref-bonus{margin-left:58px;align-items:flex-start}.ref-section-head,.qc-section-head{margin-bottom:16px}}
+@media(max-width:420px){.qc-legend{grid-template-columns:1fr}.qc-summary-grid{grid-template-columns:1fr 1fr}}
+</style>
+
 </head>
 <body class="show-home-intro">
 
@@ -1115,6 +1175,7 @@ function qfTrack(eventName, params) {
         <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
         <button class="nav-btn" data-section="cuentas">QuijoCuentas</button>
         <button class="nav-btn" data-section="quijolista">QuijoLista</button>
+        <button class="nav-btn" data-section="quijocartera">QuijoCartera</button>
         <button class="nav-btn" data-section="recursos">Recursos</button>
         <button class="nav-btn" data-section="teca">QuijoTeca</button>
         <button class="nav-btn" data-section="glosario">QuijoGlosario</button>
@@ -1435,7 +1496,7 @@ function qfTrack(eventName, params) {
   <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS) y los Roboadvisors no tienen ISIN. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
   <div class="section-flow">
     <div class="section-flow-copy"><div class="section-flow-kicker">Antes de elegir</div><h3 class="section-flow-title">Define primero qué encaja contigo</h3><p class="section-flow-text">La lista sirve para estudiar opciones, no para comprarlo todo. Empieza por tu perfil y por entender el horizonte.</p></div>
-    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="openTest()">Hacer test de perfil →</button><button class="section-flow-btn secondary" onclick="openCalc('interes')">Interés compuesto</button></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="openTest()">Hacer test de perfil →</button><button class="section-flow-btn secondary" onclick="goTo('quijocartera')">Ver QuijoCartera</button></div>
   </div>
 </section>
 
@@ -1513,9 +1574,81 @@ function qfTrack(eventName, params) {
 </section>
 
 
+
+<section id="quijocartera" class="section">
+  <div class="qc-section-head">
+    <div class="qc-kicker">Cartera real · actualización mensual</div>
+    <h2>QuijoCartera</h2>
+    <p class="qc-lead">Así distribuyo actualmente mi propia cartera. Muestro porcentajes, no importes absolutos, para centrar el análisis en la estructura y no en el tamaño del patrimonio.</p>
+    <div class="qc-meta-row">
+      <span class="qc-meta-pill">Distribución · 14 sep 2026</span>
+      <span class="qc-meta-pill">Acciones · 16 sep 2026</span>
+      <span class="qc-meta-pill subtle">Datos reales de mi cartera</span>
+    </div>
+  </div>
+
+  <div class="qc-intro-note">
+    <strong>Cómo leerlo:</strong> esto refleja mis decisiones y mi situación, no una cartera modelo ni una recomendación. La composición puede cambiar de un mes a otro.
+  </div>
+
+  <div class="qc-grid">
+    <article class="qc-card">
+      <div class="qc-card-head">
+        <div><span class="qc-card-eyebrow">Cartera completa</span><h3>Distribución por activo</h3></div>
+        <span class="qc-date">14/09/2026</span>
+      </div>
+      <div class="qc-chart-layout">
+        <div class="qc-chart-shell">
+          <canvas id="qc-allocation-chart" aria-label="Distribución de la cartera" role="img"></canvas>
+          <div class="qc-chart-center" aria-hidden="true"><strong id="qc-allocation-value">100%</strong><span id="qc-allocation-label">Cartera</span></div>
+        </div>
+        <div class="qc-legend" id="qc-allocation-legend"></div>
+      </div>
+      <p class="qc-card-foot">Pasa el cursor —o toca en móvil— sobre cada segmento para ver su peso. La renta variable incluye fondos/vehículos diversificados; las acciones individuales se muestran aparte.</p>
+    </article>
+
+    <article class="qc-card">
+      <div class="qc-card-head">
+        <div><span class="qc-card-eyebrow">Dentro del 8% en acciones</span><h3>QuijoCartera Acciones</h3></div>
+        <span class="qc-date">16/09/2026</span>
+      </div>
+      <div class="qc-chart-layout">
+        <div class="qc-chart-shell">
+          <canvas id="qc-stocks-chart" aria-label="Distribución de la cartera de acciones" role="img"></canvas>
+          <div class="qc-chart-center" aria-hidden="true"><strong id="qc-stocks-value">100%</strong><span id="qc-stocks-label">Acciones</span></div>
+        </div>
+        <div class="qc-legend" id="qc-stocks-legend"></div>
+      </div>
+      <p class="qc-card-foot">Este segundo gráfico reparte únicamente la parte de acciones individuales de la cartera total. Los porcentajes suman el 100% de ese bloque.</p>
+    </article>
+  </div>
+
+  <div class="qc-summary-grid">
+    <div class="qc-summary-card"><span class="qc-summary-num">66%</span><strong>Renta variable</strong><span>Es el bloque principal de la cartera.</span></div>
+    <div class="qc-summary-card"><span class="qc-summary-num">21%</span><strong>Renta fija</strong><span>Segundo bloque por peso.</span></div>
+    <div class="qc-summary-card"><span class="qc-summary-num">8%</span><strong>Acciones</strong><span>Ocho compañías en cartera directa.</span></div>
+    <div class="qc-summary-card"><span class="qc-summary-num">5%</span><strong>Liquidez + alternativos</strong><span>3% liquidez, 1% oro y 1% cripto.</span></div>
+  </div>
+
+  <div class="section-flow">
+    <div class="section-flow-copy"><div class="section-flow-kicker">De mi cartera a tus decisiones</div><h3 class="section-flow-title">Estudia productos antes de construir la tuya</h3><p class="section-flow-text">QuijoCartera enseña lo que hago yo. QuijoLista reúne productos para estudiar y el test te ayuda a pensar primero en tu propio perfil.</p></div>
+    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('quijolista')">Explorar QuijoLista →</button><button class="section-flow-btn secondary" onclick="openTest()">Test de perfil</button></div>
+  </div>
+</section>
+
   
 <section id="referidos" class="section" >
-    <div class="section-header"><h2>Referidos</h2><p>Solo recomiendo lo que uso o he usado. Si te registras con mi enlace, ambos ganamos algo.</p><div class="divider"></div></div>
+    <div class="ref-section-head">
+      <div class="ref-section-kicker">Colaboraciones y referidos</div>
+      <h2>Referidos</h2>
+      <p class="ref-section-lead">Productos y servicios que uso o he usado personalmente y que pueden tener una ventaja para nuevos usuarios.</p>
+      <p class="ref-section-note">Si utilizas alguno de estos enlaces puedo recibir una compensación. Esa relación no modifica el orden de QuijoCuentas ni la selección editorial de QuijoLista.</p>
+    </div>
+    <div class="ref-trust-grid" aria-label="Criterios de transparencia">
+      <div class="ref-trust-item"><span class="ref-trust-icon">✓</span><div><strong>Uso real</strong><span>Solo incluyo servicios que uso o he probado.</span></div></div>
+      <div class="ref-trust-item"><span class="ref-trust-icon">↗</span><div><strong>Enlace identificado</strong><span>Sabes cuándo existe una posible compensación.</span></div></div>
+      <div class="ref-trust-item"><span class="ref-trust-icon">≠</span><div><strong>Sin alterar comparativas</strong><span>Los referidos no deciden QuijoCuentas ni QuijoLista.</span></div></div>
+    </div>
     <div class="filter-row" id="ref-filter">
       <button class="cat-btn active" data-cat="todos">Todos</button>
       <button class="cat-btn" data-cat="energia">Energ&iacute;a</button>
@@ -1627,6 +1760,7 @@ function qfTrack(eventName, params) {
       <a href="#" onclick="goTo('calculadoras');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">Calculadoras</a>
       <a href="#" onclick="goTo('cuentas');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoCuentas</a>
       <a href="#" onclick="goTo('quijolista');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoLista</a>
+      <a href="#" onclick="goTo('quijocartera');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoCartera</a>
       <a href="#" onclick="goTo('recursos');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">Recursos</a>
       <a href="sobre-el-proyecto.html" style="font-size:12px;color:#6a8aaa;text-decoration:none">Sobre el proyecto</a>
       <a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#6a8aaa;text-decoration:none">@QuijoteFinanzas</a>
@@ -3908,6 +4042,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Deep link / hash routing
   function activateSection(secId) {
+    // Cierra el visor de QuijoGlosario/QuijoTeca antes de cambiar de sección.
+    // Evita que el overlay quede superpuesto sobre la nueva vista.
+    try {
+      var mediaOverlay = document.getElementById('mediaOverlay');
+      if (mediaOverlay && mediaOverlay.classList.contains('open')) {
+        if (typeof window.closeMedia === 'function') {
+          window.closeMedia();
+        } else {
+          mediaOverlay.classList.remove('open');
+          mediaOverlay.setAttribute('aria-hidden','true');
+        }
+      }
+    } catch(e) {}
     var secEl = document.getElementById(secId);
     var secBtn = document.querySelector('#main-nav [data-section="'+secId+'"]');
     if (!secEl || !secBtn) return false;
@@ -3922,6 +4069,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (secId === 'glosario' && window.renderCards) { setTimeout(function(){ window.renderCards('glosarioGrid', window.glosarioItems||[], 'glosario'); }, 0); }
     if (secId === 'teca' && window.renderTeca) { setTimeout(function(){ window.renderTeca(); }, 0); }
     if (secId === 'quijolista' && window.renderQuijoLista) { setTimeout(function(){ window.renderQuijoLista(); }, 0); }
+    if (secId === 'quijocartera' && window.renderQuijoCartera) { setTimeout(function(){ window.renderQuijoCartera(); }, 20); }
     if (secId === 'cuentas' && window.renderCuentas) { setTimeout(function(){ window.renderCuentas(); if(window.bindCuentasTabs) bindCuentasTabs(); }, 0); }
 
     return true;
@@ -5446,6 +5594,91 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }, { passive: true });
 
 });
+</script>
+
+
+<script>
+/* ── FASE 13 · QuijoCartera interactiva ───────────────────────────── */
+(function(){
+  var charts = {};
+  var portfolioData = {
+    allocation: {
+      labels: ['Renta Variable','Renta Fija','Acciones','Liquidez','Oro','Criptomonedas'],
+      values: [66,21,8,3,1,1],
+      colors: ['#173f6e','#2b8b83','#c89b2d','#4f87b7','#d2ad48','#657384']
+    },
+    stocks: {
+      labels: ['Meta','Microsoft','LVMH','Mastercard','S&P Global','Amazon','McDonald’s','Airbus'],
+      values: [21.0,16.0,15.3,13.7,10.1,8.2,8.2,7.4],
+      colors: ['#2679ca','#579b45','#a6a9ad','#dc2626','#55595e','#f28a16','#f6c21b','#17446d']
+    }
+  };
+
+  function setCenter(prefix, value, label){
+    var v=document.getElementById(prefix+'-value');
+    var l=document.getElementById(prefix+'-label');
+    if(v) v.textContent=(typeof value==='number' ? value.toFixed(value%1?1:0) : value)+'%';
+    if(l) l.textContent=label;
+  }
+  function resetCenter(prefix, label){ setCenter(prefix,100,label); }
+
+  function buildLegend(chart, targetId, prefix, data, defaultLabel){
+    var root=document.getElementById(targetId); if(!root) return;
+    root.innerHTML='';
+    data.labels.forEach(function(label,i){
+      var b=document.createElement('button');
+      b.type='button'; b.className='qc-legend-item';
+      b.innerHTML='<span class="qc-legend-dot" style="background:'+data.colors[i]+'"></span><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+data.values[i].toFixed(data.values[i]%1?1:0)+'%</span>';
+      function activate(){
+        root.querySelectorAll('.qc-legend-item').forEach(function(x){x.classList.remove('active');});
+        b.classList.add('active');
+        chart.setActiveElements([{datasetIndex:0,index:i}]); chart.update('none');
+        setCenter(prefix,data.values[i],label);
+      }
+      function reset(){
+        b.classList.remove('active'); chart.setActiveElements([]); chart.update('none'); resetCenter(prefix,defaultLabel);
+      }
+      b.addEventListener('mouseenter',activate); b.addEventListener('focus',activate); b.addEventListener('click',activate);
+      b.addEventListener('mouseleave',reset); b.addEventListener('blur',reset);
+      root.appendChild(b);
+    });
+  }
+
+  function makeChart(key, canvasId, legendId, prefix, defaultLabel){
+    var canvas=document.getElementById(canvasId); if(!canvas || typeof Chart==='undefined') return null;
+    if(charts[key]){ charts[key].resize(); return charts[key]; }
+    var d=portfolioData[key];
+    var chart=new Chart(canvas.getContext('2d'),{
+      type:'doughnut',
+      data:{labels:d.labels,datasets:[{data:d.values,backgroundColor:d.colors,borderColor:'#ffffff',borderWidth:2,hoverBorderWidth:2,hoverOffset:7}]},
+      options:{
+        responsive:true,maintainAspectRatio:false,cutout:'67%',animation:{duration:650},
+        interaction:{mode:'nearest',intersect:true},
+        plugins:{legend:{display:false},tooltip:{displayColors:false,backgroundColor:'#0f2035',titleColor:'#ffffff',bodyColor:'#ffffff',padding:10,callbacks:{label:function(c){return c.label+': '+c.raw.toFixed(c.raw%1?1:0)+'%';}}}},
+        onHover:function(evt,elements){
+          if(elements && elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i]);canvas.style.cursor='pointer';}
+          else {resetCenter(prefix,defaultLabel);canvas.style.cursor='default';}
+        },
+        onClick:function(evt,elements){if(elements&&elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i]);}}
+      }
+    });
+    canvas.addEventListener('mouseleave',function(){chart.setActiveElements([]);chart.update('none');resetCenter(prefix,defaultLabel);});
+    charts[key]=chart;
+    buildLegend(chart,legendId,prefix,d,defaultLabel);
+    return chart;
+  }
+
+  window.renderQuijoCartera=function(){
+    makeChart('allocation','qc-allocation-chart','qc-allocation-legend','qc-allocation','Cartera');
+    makeChart('stocks','qc-stocks-chart','qc-stocks-legend','qc-stocks','Acciones');
+  };
+
+  // Soporta carga directa con #quijocartera.
+  document.addEventListener('DOMContentLoaded',function(){
+    var sec=document.getElementById('quijocartera');
+    if(sec && sec.classList.contains('active')) setTimeout(window.renderQuijoCartera,60);
+  });
+})();
 </script>
 
 <!-- ── Cookie Ball ──────────────────────────────────────────────────── -->
