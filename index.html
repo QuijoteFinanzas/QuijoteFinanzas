@@ -5267,7 +5267,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     badge.textContent = payload.badge || "";
     title.textContent = payload.title || "";
-    desc.textContent = payload.desc || "";
+    // En QuijoGlosario la propia infografía ya contiene la definición y el ejemplo.
+    // Evitamos repetir debajo el mismo texto y dejamos el visor más limpio.
+    var hideDesc = (mediaState.type === "glosario");
+    desc.textContent = hideDesc ? "" : (payload.desc || "");
+    desc.style.display = hideDesc || !desc.textContent.trim() ? "none" : "block";
 
     var src = payload.images && payload.images[payload.imageIndex] ? payload.images[payload.imageIndex] : "";
     img.src = ""; img.removeAttribute("src");
