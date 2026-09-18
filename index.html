@@ -1143,6 +1143,12 @@ function qfTrack(eventName, params) {
 .qc-legend-dot{width:8px;height:8px;border-radius:50%}
 .qc-legend-name{font-size:11px;color:var(--navy2);line-height:1.25}
 .qc-legend-value{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:var(--navy)}
+.qc-stock-logo{width:24px;height:24px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid rgba(15,32,53,.08);padding:2px;box-shadow:0 1px 3px rgba(15,32,53,.05)}
+.qc-legend-item.stock{grid-template-columns:24px 1fr auto;gap:8px}
+.qc-chart-center-logo{width:32px;height:32px;border-radius:8px;object-fit:contain;background:#fff;border:1px solid rgba(15,32,53,.08);padding:3px;margin:0 auto 5px;display:none;box-shadow:0 2px 7px rgba(15,32,53,.08)}
+.qc-chart-center.has-logo .qc-chart-center-logo{display:block}
+.qc-chart-center.has-logo strong{font-size:21px}
+@media(max-width:620px){.qc-stock-logo{width:26px;height:26px}.qc-legend-item.stock{grid-template-columns:26px 1fr auto}}
 .qc-card-foot{font-size:10.5px;line-height:1.55;color:var(--muted);margin:13px 0 0;border-top:1px solid rgba(15,32,53,.06);padding-top:10px}
 .qc-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
 .qc-summary-card{background:#f8fafc;border:1px solid rgba(15,32,53,.08);border-radius:11px;padding:12px 13px;display:flex;flex-direction:column;gap:3px}
@@ -1615,7 +1621,7 @@ function qfTrack(eventName, params) {
       <div class="qc-chart-layout">
         <div class="qc-chart-shell">
           <canvas id="qc-stocks-chart" aria-label="Distribución de la cartera de acciones" role="img"></canvas>
-          <div class="qc-chart-center" aria-hidden="true"><strong id="qc-stocks-value">100%</strong><span id="qc-stocks-label">Acciones</span></div>
+          <div class="qc-chart-center" id="qc-stocks-center" aria-hidden="true"><img id="qc-stocks-logo" class="qc-chart-center-logo" src="" alt=""><strong id="qc-stocks-value">100%</strong><span id="qc-stocks-label">Acciones</span></div>
         </div>
         <div class="qc-legend" id="qc-stocks-legend"></div>
       </div>
@@ -5610,30 +5616,56 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     stocks: {
       labels: ['Meta','Microsoft','LVMH','Mastercard','S&P Global','Amazon','McDonald’s','Airbus'],
       values: [21.0,16.0,15.3,13.7,10.1,8.2,8.2,7.4],
-      colors: ['#2679ca','#579b45','#a6a9ad','#dc2626','#55595e','#f28a16','#f6c21b','#17446d']
+      colors: ['#2679ca','#579b45','#a6a9ad','#dc2626','#55595e','#f28a16','#f6c21b','#17446d'],
+      logos: [
+        'https://logo.clearbit.com/meta.com',
+        'https://logo.clearbit.com/microsoft.com',
+        'https://logo.clearbit.com/lvmh.com',
+        'https://logo.clearbit.com/mastercard.com',
+        'https://logo.clearbit.com/spglobal.com',
+        'https://logo.clearbit.com/amazon.com',
+        'https://logo.clearbit.com/mcdonalds.com',
+        'https://logo.clearbit.com/airbus.com'
+      ]
     }
   };
 
-  function setCenter(prefix, value, label){
+  function setCenter(prefix, value, label, logo){
     var v=document.getElementById(prefix+'-value');
     var l=document.getElementById(prefix+'-label');
     if(v) v.textContent=(typeof value==='number' ? value.toFixed(value%1?1:0) : value)+'%';
     if(l) l.textContent=label;
+    if(prefix==='qc-stocks'){
+      var center=document.getElementById('qc-stocks-center');
+      var img=document.getElementById('qc-stocks-logo');
+      if(center && img){
+        if(logo){
+          img.src=logo; img.alt=label; center.classList.add('has-logo');
+          img.onerror=function(){ center.classList.remove('has-logo'); img.removeAttribute('src'); };
+        } else {
+          center.classList.remove('has-logo'); img.removeAttribute('src'); img.alt='';
+        }
+      }
+    }
   }
-  function resetCenter(prefix, label){ setCenter(prefix,100,label); }
+  function resetCenter(prefix, label){ setCenter(prefix,100,label,null); }
 
   function buildLegend(chart, targetId, prefix, data, defaultLabel){
     var root=document.getElementById(targetId); if(!root) return;
     root.innerHTML='';
     data.labels.forEach(function(label,i){
       var b=document.createElement('button');
-      b.type='button'; b.className='qc-legend-item';
-      b.innerHTML='<span class="qc-legend-dot" style="background:'+data.colors[i]+'"></span><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+data.values[i].toFixed(data.values[i]%1?1:0)+'%</span>';
+      b.type='button'; b.className='qc-legend-item'+(data.logos?' stock':'');
+      if(data.logos){
+        b.innerHTML='<img class="qc-stock-logo" src="'+data.logos[i]+'" alt="Logo '+label+'" onerror="this.style.display=\'none\'"><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+data.values[i].toFixed(data.values[i]%1?1:0)+'%</span>';
+      } else {
+        b.innerHTML='<span class="qc-legend-dot" style="background:'+data.colors[i]+'"></span><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+data.values[i].toFixed(data.values[i]%1?1:0)+'%</span>';
+      }
       function activate(){
         root.querySelectorAll('.qc-legend-item').forEach(function(x){x.classList.remove('active');});
         b.classList.add('active');
         chart.setActiveElements([{datasetIndex:0,index:i}]); chart.update('none');
-        setCenter(prefix,data.values[i],label);
+        setCenter(prefix,data.values[i],label,data.logos ? data.logos[i] : null);
       }
       function reset(){
         b.classList.remove('active'); chart.setActiveElements([]); chart.update('none'); resetCenter(prefix,defaultLabel);
@@ -5656,10 +5688,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
         interaction:{mode:'nearest',intersect:true},
         plugins:{legend:{display:false},tooltip:{displayColors:false,backgroundColor:'#0f2035',titleColor:'#ffffff',bodyColor:'#ffffff',padding:10,callbacks:{label:function(c){return c.label+': '+c.raw.toFixed(c.raw%1?1:0)+'%';}}}},
         onHover:function(evt,elements){
-          if(elements && elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i]);canvas.style.cursor='pointer';}
+          if(elements && elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i],d.logos ? d.logos[i] : null);canvas.style.cursor='pointer';}
           else {resetCenter(prefix,defaultLabel);canvas.style.cursor='default';}
         },
-        onClick:function(evt,elements){if(elements&&elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i]);}}
+        onClick:function(evt,elements){if(elements&&elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i],d.logos ? d.logos[i] : null);}}
       }
     });
     canvas.addEventListener('mouseleave',function(){chart.setActiveElements([]);chart.update('none');resetCenter(prefix,defaultLabel);});
