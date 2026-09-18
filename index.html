@@ -355,27 +355,40 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .ref-card{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .2s,transform .15s;text-decoration:none;position:relative}
 .ref-card:hover{border-color:rgba(201,168,76,.55);transform:translateY(-2px);box-shadow:0 4px 16px rgba(15,32,53,.2)}
 /* ── QuijoCuentas ─────────────────────────────────────────────────────── */
-.cuentas-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px}
-.cuentas-badge{font-size:11px;color:var(--muted);background:rgba(184,200,216,.08);border:1px solid var(--border);padding:4px 10px;border-radius:4px;font-family:'DM Mono',monospace}
-.cuentas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:16px}
-.cuenta-card{background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .15s;position:relative}
-.cuenta-card:hover{border-color:rgba(201,168,76,.5);transform:translateY(-2px);box-shadow:0 4px 16px rgba(15,32,53,.2)}
-.cuenta-card.top{border-color:var(--gold);border-width:2px}
-.cuenta-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.cuenta-banco{font-size:15px;font-weight:700;color:#e8f0f7;font-family:'Playfair Display',serif}
-.cuenta-tae{font-size:26px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace;line-height:1}
-.cuenta-tae span{font-size:13px;color:rgba(184,200,216,.7);font-weight:400}
-.cuenta-meta-row{display:flex;gap:8px;flex-wrap:wrap}
-.cuenta-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.08);color:rgba(184,200,216,.9);border:1px solid rgba(184,200,216,.2);white-space:nowrap}
-.cuenta-detail{font-size:12px;line-height:1.5;color:rgba(184,200,216,.85);margin-top:4px;white-space:normal;word-wrap:break-word}
-.cuenta-chip.fgd-es{background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.3)}
-.cuenta-chip.fgd-fr{background:rgba(125,170,211,.15);color:#a8c8e8;border-color:rgba(125,170,211,.3)}
-.cuenta-chip.fgd-de{background:rgba(200,140,255,.15);color:#d4a8ff;border-color:rgba(200,140,255,.3)}
-.cuenta-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px;font-size:12px}
-.cuenta-pro{color:#6dd8a4;font-weight:500}.cuenta-pro::before{content:"✓ "}
-.cuenta-con{color:#f0b080;font-weight:500}.cuenta-con::before{content:"△ "}
-.cuentas-disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6}
-.cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:8px;margin-top:16px}
+.cuentas-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.cuentas-kicker{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:7px}
+.cuentas-intro-copy{max-width:660px}
+.cuentas-intro-copy h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,36px);color:var(--navy);margin:0 0 8px;line-height:1.08}
+.cuentas-intro-copy p{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
+#cuentas-filter{gap:7px;margin-bottom:22px;padding-bottom:2px}
+#cuentas-filter .cat-btn{border-radius:999px;padding:7px 13px;background:#fff;border:1px solid #dbe3ed;color:var(--navy2);font-size:11px;font-weight:600}
+#cuentas-filter .cat-btn:hover{border-color:rgba(15,32,53,.4);background:#f8fafc}
+#cuentas-filter .cat-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(15,32,53,.12)}
+.cuentas-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:0 0 12px;padding:0 2px}
+.cuentas-sort{font-size:12px;color:var(--muted);margin:0}
+.cuentas-badge{font-size:10px;color:var(--navy2);background:#f6f8fb;border:1px solid #dfe6ee;padding:5px 9px;border-radius:999px;font-family:'DM Mono',monospace;white-space:nowrap}
+.cuentas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-top:0}
+.cuenta-card{background:#fff;border:1px solid #e1e7ef;border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;position:relative;box-shadow:0 1px 2px rgba(15,32,53,.03)}
+.cuenta-card:hover{border-color:#c9d3df;transform:translateY(-2px);box-shadow:0 10px 26px rgba(15,32,53,.08)}
+.cuenta-card.top{border-color:rgba(201,168,76,.6);box-shadow:inset 0 0 0 1px rgba(201,168,76,.16),0 2px 8px rgba(15,32,53,.04)}
+.cuenta-rank{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:#7a6020;background:rgba(201,168,76,.10);border:1px solid rgba(201,168,76,.28);padding:4px 8px;border-radius:999px;margin-bottom:7px;font-weight:800}
+.cuenta-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid #edf1f5}
+.cuenta-banco{font-size:16px;font-weight:700;color:var(--navy);font-family:'Playfair Display',serif;line-height:1.25}
+.cuenta-metric{text-align:right;min-width:112px}
+.cuenta-tae{font-size:27px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;line-height:1;letter-spacing:-.4px}
+.cuenta-tae span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.2px;margin-top:5px;text-transform:uppercase}
+.cuenta-meta-row{display:flex;gap:6px;flex-wrap:wrap}
+.cuenta-chip{font-size:10px;padding:5px 8px;border-radius:999px;background:#f7f9fc;color:var(--navy2);border:1px solid #e1e7ef;white-space:nowrap;font-weight:600}
+.cuenta-detail{font-size:12px;line-height:1.55;color:#4f6985;white-space:normal;word-wrap:break-word;padding-left:2px}
+.cuenta-chip.fgd-es,.cuenta-chip.fgd-fr,.cuenta-chip.fgd-de{background:#f7f9fc;color:var(--navy2);border-color:#e1e7ef}
+.cuenta-pros-cons{display:grid;grid-template-columns:1fr;gap:6px;margin-top:2px;padding-top:10px;border-top:1px solid #edf1f5;font-size:11px}
+.cuenta-pro,.cuenta-con{display:flex;align-items:flex-start;gap:7px;line-height:1.45;font-weight:500}
+.cuenta-pro{color:#2c7354}.cuenta-pro::before{content:"✓";font-weight:800;color:#2d8a5e}
+.cuenta-con{color:#8a5b42}.cuenta-con::before{content:"△";font-weight:800;color:#c06030}
+.cuenta-tae-ref{font-size:11px;color:var(--muted);margin-top:-2px}
+.cuentas-disclaimer{font-size:11px;color:var(--muted);margin-top:16px;line-height:1.65;padding:12px 14px;background:#f8fafc;border:1px solid #e5eaf0;border-radius:10px}
+.cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:10px;margin-top:16px;background:#fafbfd}
+@media(max-width:620px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:1fr}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-card{padding:16px}}
 .ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:1}
 .ref-cat-badge.banco{background:rgba(125,170,211,.2);color:#7daad3}
 .ref-cat-badge.inversion{background:rgba(125,211,168,.2);color:#7dd3a8}
@@ -884,6 +897,82 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
   #calculadoras .live span{font-size:13px}
   #calculadoras .coming{font-size:8px}
 }
+
+
+/* ── Fase 7 · QuijoLista premium ─────────────────────────────────────── */
+.ql-section-head{max-width:760px;margin-bottom:22px}
+.ql-section-kicker{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ql-section-head h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,34px);color:var(--navy);margin:0 0 8px}
+.ql-section-lead{font-size:14px;line-height:1.65;color:var(--navy2);max-width:720px;margin:0 0 6px}
+.ql-section-note{font-size:12px;line-height:1.6;color:var(--muted);max-width:720px;margin:0}
+#ql-filter{gap:7px;margin-bottom:14px}
+#ql-filter .cat-btn{border-radius:999px;padding:7px 13px;border:1px solid #dce3eb;background:#fff;color:var(--navy2);font-size:11px;font-weight:600;box-shadow:none}
+#ql-filter .cat-btn:hover{border-color:#aab8c8;background:#f8fafc;color:var(--navy)}
+#ql-filter .cat-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.ql-summary-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 10px}
+.ql-count{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.ql-calc-link{border:none;background:transparent;color:var(--navy2);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;padding:4px 0}
+.ql-calc-link:hover{color:var(--gold)}
+.ql-context{margin:0 0 18px;padding:14px 16px;border:1px solid #e4e9f0;border-left:3px solid rgba(201,168,76,.65);border-radius:0 8px 8px 0;background:#fafbfd;color:var(--muted);font-size:12px;line-height:1.65}
+.ql-context strong{color:var(--navy2)}
+.ql-list{gap:10px}
+.ql-list .ql-card{background:#fff;border:1px solid #e3e8ef;border-radius:12px;padding:16px 18px;align-items:flex-start;box-shadow:0 1px 2px rgba(15,32,53,.025);transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.ql-list .ql-card:hover{border-color:#cbd5e1;box-shadow:0 7px 22px rgba(15,32,53,.07);transform:translateY(-1px)}
+.ql-list .ql-logo{width:42px!important;min-width:42px!important;height:42px!important;border-radius:10px!important;font-size:11px!important}
+.ql-list .ref-info{padding-right:6px}
+.ql-list .ref-info h3{color:var(--navy)!important;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;line-height:1.35;margin:0 0 4px}
+.ql-list .ref-info>p{color:var(--muted)!important;font-size:12px;line-height:1.45;margin:0}
+.ql-list .ref-meta{margin-top:5px!important}
+.ql-list .ql-isin{color:#8193a8;font-size:10.5px}
+.ql-list .ql-tipo-badge{margin-left:auto;background:#f5f7fa;border:1px solid #e2e7ed;color:var(--navy2);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px}
+.ql-list .ql-helper-row{gap:5px;margin-top:8px}
+.ql-list .ql-helper-chip{font-size:9px;font-weight:700;letter-spacing:.05em;color:#62758b;border:1px solid #e3e8ef;background:#f7f9fb;padding:3px 7px}
+.ql-list .ql-myi{margin-top:9px;color:#245f95;border-color:#d6e5f2;background:#f7fbff;font-size:10.5px;font-weight:700;padding:4px 8px;border-radius:6px}
+.ql-list .ql-myi:hover{background:#eef7ff;border-color:#9fc3e1}
+#quijolista>.note{background:#fafbfd;border:1px solid #e5eaf0;border-left:none;border-radius:8px;color:var(--muted);padding:14px 16px;font-size:11.5px;line-height:1.65}
+@media(max-width:600px){
+  .ql-section-head{margin-bottom:18px}
+  #ql-filter{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;margin-right:-18px;padding-right:18px;scrollbar-width:none}
+  #ql-filter::-webkit-scrollbar{display:none}
+  #ql-filter .cat-btn{white-space:nowrap;flex:0 0 auto}
+  .ql-summary-row{align-items:flex-start}
+  .ql-list .ql-card{padding:14px 13px;gap:11px}
+  .ql-list .ql-logo{width:38px!important;min-width:38px!important;height:38px!important}
+  .ql-list .ql-tipo-badge{font-size:8px;padding:4px 7px}
+  .ql-list .ref-info h3{font-size:13px}
+}
+
+/* ── FASE 8 · Sobre el proyecto / confianza ───────────────────────── */
+.project-intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:18px;align-items:stretch;margin-top:4px}
+.project-story{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:30px 32px;box-shadow:var(--shadow-xs)}
+.project-kicker{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.project-story h3{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);line-height:1.2;color:var(--navy);margin:0 0 14px}
+.project-story p{font-size:14px;line-height:1.8;color:var(--silver2);margin:0 0 13px}
+.project-story p:last-child{margin-bottom:0}
+.project-story strong{color:var(--navy);font-weight:600}
+.project-principles{display:flex;flex-direction:column;gap:10px}
+.project-principle{background:var(--surface-soft,#f8f9fb);border:1px solid var(--border);border-radius:var(--radius-md);padding:17px 18px;min-height:0}
+.project-principle strong{display:block;font-size:12px;color:var(--navy);margin-bottom:4px}
+.project-principle span{display:block;font-size:12px;line-height:1.55;color:var(--muted)}
+.project-trustbar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.project-trustitem{background:var(--navy);border:1px solid rgba(201,168,76,.16);border-radius:var(--radius-md);padding:17px 18px;min-height:88px;display:flex;flex-direction:column;justify-content:center}
+.project-trustitem .project-trustnum{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold);line-height:1.05;margin-bottom:5px}
+.project-trustitem .project-trustlabel{font-size:11px;line-height:1.45;color:rgba(232,240,247,.72)}
+.project-transparency{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.project-note{background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:18px 20px}
+.project-note.gold{background:rgba(201,168,76,.055);border-color:rgba(201,168,76,.25)}
+.project-note h4{font-size:12px;color:var(--navy);margin:0 0 7px;font-weight:700}
+.project-note p{font-size:12px;color:var(--muted);line-height:1.65;margin:0}
+.project-note a{color:var(--navy);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(15,32,53,.18)}
+.project-note a:hover{border-bottom-color:var(--gold)}
+.project-contact{margin-top:14px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.project-contact-copy strong{display:block;color:var(--navy);font-size:13px;margin-bottom:3px}
+.project-contact-copy span{font-size:12px;color:var(--muted);line-height:1.5}
+.project-contact a{font-size:12px;font-weight:700;color:var(--navy);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:8px 13px;background:#fff;transition:all var(--transition-fast)}
+.project-contact a:hover{border-color:var(--gold);box-shadow:var(--shadow-xs)}
+@media(max-width:760px){.project-intro{grid-template-columns:1fr}.project-trustbar{grid-template-columns:1fr 1fr}.project-transparency{grid-template-columns:1fr}.project-story{padding:24px 22px}}
+@media(max-width:480px){.project-trustbar{grid-template-columns:1fr}.project-contact{align-items:flex-start}.project-contact a{width:100%;text-align:center}}
+
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -1170,56 +1259,79 @@ function qfTrack(eventName, params) {
 <main style="background:#fff;min-height:100vh">
   <section id="sobre" class="section active" >
     <div class="section-header">
-      <h2>Hola, soy Don Quijote de las Finanzas</h2>
-      <p>Más de 8 años en el sector financiero. Herramientas y criterio, sin promesas.</p>
+      <div class="project-kicker">Sobre el proyecto</div>
+      <h2>Por qué existe Don Quijote de las Finanzas</h2>
+      <p>Un proyecto independiente para entender mejor el dinero con herramientas, datos y explicaciones claras.</p>
       <div class="divider"></div>
     </div>
-    <div class="about-grid">
-      <div class="about-bio" style="background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:22px 24px;color:#e8f0f7">
-        <p style="margin-bottom:14px;color:#e8f0f7">Llevo más de 8 años en el sector financiero, trabajando en algunas de las empresas más importantes a nivel nacional e internacional. La mayoría de la gente nunca recibe una <strong style="color:#e8f0f7">educación financiera real</strong> — yo estoy aquí para cambiar eso.</p>
-        <p style="margin-bottom:14px">Lo que encontrarás aquí son <strong style="color:#e8f0f7">herramientas concretas, datos reales y análisis prácticos</strong> sobre lo que realmente importa: cuánto cobras, cómo crece tu dinero, cuánto te cuesta una hipoteca y dónde poner tus ahorros.</p>
-        <p style="margin-bottom:14px">Todo lo que comparto lo aplico yo mismo. <strong style="color:#e8f0f7">Sin humos, sin promesas de rentabilidades imposibles</strong> y con foco en los números. Si algo depende de tu situación personal, lo digo.</p>
-        <div style="margin-top:16px;padding:14px 16px;background:rgba(255,255,255,.06);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:13px;color:rgba(184,200,216,.9);line-height:1.6">
-          <strong style="color:#ffffff;display:block;margin-bottom:4px">¿Para quién es esto?</strong>
-          Para alguien que quiere entender sus finanzas sin necesitar un máster en economía. Para quien prefiere los datos a las opiniones. Para quien ya sabe que el tiempo es lo más valioso que tiene.
-        </div>
-        <div style="margin-top:12px;padding:14px 16px;background:rgba(255,255,255,.05);border-left:3px solid rgba(184,200,216,.25);border-radius:0 6px 6px 0;font-size:12px;color:rgba(184,200,216,.8);line-height:1.6">
-          ⚠️ <strong style="color:#e8f0f7">Aviso legal:</strong> Este sitio es educativo e informativo. No es asesoramiento financiero personalizado. Consulta siempre con un profesional antes de tomar decisiones de inversión importantes.
-        </div>
+
+    <div class="project-intro">
+      <div class="project-story">
+        <div class="project-kicker">La idea</div>
+        <h3>Menos ruido. Más criterio para decidir.</h3>
+        <p>Llevo <strong>más de 8 años trabajando en el sector financiero</strong> y una idea se repite constantemente: muchas decisiones importantes sobre ahorro, inversión, vivienda o salario se toman sin disponer de herramientas sencillas para entenderlas.</p>
+        <p>QuijoteFinanzas nace para cubrir ese hueco. Aquí encontrarás <strong>calculadoras, comparativas, conceptos y recursos prácticos</strong> pensados para que primero entiendas los números y después tomes tus propias decisiones.</p>
+        <p>No busco decirte qué tienes que comprar ni prometer resultados. El objetivo es darte contexto, mostrar supuestos y señalar las limitaciones cuando una respuesta depende de tu situación personal.</p>
       </div>
-      <div class="stat-card" style="background:var(--navy);border-color:rgba(201,168,76,.2)"><span class="stat-num" style="color:#e8f0f7">2K+</span><span class="stat-label" style="color:rgba(184,200,216,.7)">Seguidores en X</span></div>
-      <div class="stat-card"><span class="stat-num">8+</span><span class="stat-label">Años en el sector financiero</span></div>
-      <div class="contact-box" id="contacto" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px">
-        <strong style="color:var(--navy);display:block;margin-bottom:6px;font-size:14px">Contacto directo</strong>
-        <span style="font-size:13px;color:var(--navy2);line-height:1.6">&iquest;Dudas, propuestas o colaboraciones? Escribe a <a href="mailto:contacto@quijotefinanzas.com" style="color:var(--gold);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3)">contacto@quijotefinanzas.com</a> y responder&eacute; lo antes posible.</span>
+
+      <div class="project-principles">
+        <div class="project-principle"><strong>Datos antes que opiniones</strong><span>Las comparativas y herramientas intentan hacer visibles condiciones, costes y supuestos.</span></div>
+        <div class="project-principle"><strong>Educación, no asesoramiento</strong><span>El contenido es informativo. La decisión final y su adecuación a cada caso corresponden a quien la toma.</span></div>
+        <div class="project-principle"><strong>Actualización continua</strong><span>Tipos, productos y normativa cambian; cuando una herramienta depende de ello, se revisa y se fecha.</span></div>
+        <div class="project-principle"><strong>Sin identidad como reclamo</strong><span>La identidad personal queda fuera del proyecto para que el foco esté en la utilidad, la metodología y la calidad del contenido.</span></div>
       </div>
     </div>
 
-
-  <div class="home-proof-section">
-    <p class="home-proof-label">Lo que dicen quienes lo usan</p>
-    <div class="home-proof-grid">
-      <div class="testimonio-card"><p class="testimonio-texto">“La web me ha ayudado a tener un repositorio más que útil para mis primeros pasos en la inversión.”</p><span class="testimonio-autor">— Jesús</span></div>
-      <div class="testimonio-card"><p class="testimonio-texto">“¡Menudo trabajazo compañero! Súper completo.”</p><span class="testimonio-autor">— David</span></div>
+    <div class="project-trustbar" aria-label="Datos del proyecto">
+      <div class="project-trustitem"><div class="project-trustnum">8+</div><div class="project-trustlabel">años de experiencia en el sector financiero</div></div>
+      <div class="project-trustitem"><div class="project-trustnum">2K+</div><div class="project-trustlabel">personas siguiendo el proyecto en X</div></div>
+      <div class="project-trustitem"><div class="project-trustnum">Gratis</div><div class="project-trustlabel">herramientas, comparativas y recursos principales</div></div>
     </div>
-  </div>
 
-  <div class="home-newsletter" id="newsletter-cta">
-    <div class="home-newsletter-copy">
-      <h3>La carta de Don Quijote</h3>
-      <p>Nuevas herramientas, comparativas y una idea útil cuando haya algo que realmente merezca la pena.</p>
+    <div class="project-transparency">
+      <div class="project-note gold">
+        <h4>Transparencia económica</h4>
+        <p>En la sección de Referidos algunos enlaces pueden generar una compensación. Se identifican como tales. <strong>QuijoCuentas no se ordena por afiliación</strong> y sus comparativas se presentan como contenido informativo.</p>
+      </div>
+      <div class="project-note">
+        <h4>Qué no encontrarás aquí</h4>
+        <p>Promesas de rentabilidad, urgencia artificial o productos presentados como adecuados para todo el mundo. Cuando hay riesgos, condiciones o incertidumbre, forman parte de la explicación.</p>
+      </div>
     </div>
-    <form action="https://app.kit.com/forms/9155906/subscriptions" method="post">
-      <input type="email" name="email_address" placeholder="tu@email.com" required>
-      <button type="submit">Quiero recibirla →</button>
-      <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
-    </form>
-    <div class="home-newsletter-note">Sin spam. Solo cuando haya algo que merezca la pena.</div>
-  </div>
-  <div class="section-flow">
-    <div class="section-flow-copy"><div class="section-flow-kicker">Siguiente paso</div><h3 class="section-flow-title">Empieza por entender tus números</h3><p class="section-flow-text">Calcula tu situación y después compara dónde optimizar tu liquidez.</p></div>
-    <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('calculadoras')">Ver calculadoras →</button><button class="section-flow-btn secondary" onclick="goTo('cuentas')">Ir a QuijoCuentas</button></div>
-  </div>
+
+    <div class="project-contact" id="contacto">
+      <div class="project-contact-copy">
+        <strong>¿Dudas, propuestas o colaboraciones?</strong>
+        <span>Puedes escribirme directamente. El proyecto se firma siempre como Don Quijote de las Finanzas.</span>
+      </div>
+      <a href="mailto:contacto@quijotefinanzas.com">contacto@quijotefinanzas.com</a>
+    </div>
+
+    <div class="home-proof-section">
+      <p class="home-proof-label">Lo que dicen quienes lo usan</p>
+      <div class="home-proof-grid">
+        <div class="testimonio-card"><p class="testimonio-texto">“La web me ha ayudado a tener un repositorio más que útil para mis primeros pasos en la inversión.”</p><span class="testimonio-autor">— Jesús</span></div>
+        <div class="testimonio-card"><p class="testimonio-texto">“¡Menudo trabajazo compañero! Súper completo.”</p><span class="testimonio-autor">— David</span></div>
+      </div>
+    </div>
+
+    <div class="home-newsletter" id="newsletter-cta">
+      <div class="home-newsletter-copy">
+        <h3>Novedades de QuijoteFinanzas</h3>
+        <p>Te aviso cuando publique una herramienta nueva, actualice una comparativa importante o añada un recurso que merezca la pena.</p>
+      </div>
+      <form action="https://app.kit.com/forms/9155906/subscriptions" method="post">
+        <input type="email" name="email_address" placeholder="tu@email.com" required>
+        <button type="submit">Avísame de las novedades →</button>
+        <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+      </form>
+      <div class="home-newsletter-note">Sin frecuencia fija. Sin spam. Solo novedades que merezcan la pena.</div>
+    </div>
+
+    <div class="section-flow">
+      <div class="section-flow-copy"><div class="section-flow-kicker">Siguiente paso</div><h3 class="section-flow-title">Empieza por entender tus números</h3><p class="section-flow-text">Calcula tu situación y después compara dónde optimizar tu liquidez.</p></div>
+      <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('calculadoras')">Ver calculadoras →</button><button class="section-flow-btn secondary" onclick="goTo('cuentas')">Ir a QuijoCuentas</button></div>
+    </div>
   </section>
 
   <section id="recursos" class="section" >
@@ -1298,10 +1410,11 @@ function qfTrack(eventName, params) {
 </section>
 
   <section id="quijolista" class="section" >
-  <div class="section-head">
-    <h2>📋 QuijoLista</h2>
-    <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Fondos, ETFs y más — para empezar a invertir con criterio, no con ruido</p>
-    <p class="muted">Fondos, ETFs, ETCs, Planes de Pensiones y Roboadvisors que sigo y me parecen interesantes. No es una recomendación de inversión: investiga siempre antes de decidir. Puedes complementarlo con la <a href="#" style="color:var(--gold)" onclick="goTo('calculadoras'); setTimeout(function(){ openCalc('interes'); }, 50); return false;">calculadora de interés compuesto</a>.</p>
+  <div class="section-head ql-section-head">
+    <div class="ql-section-kicker">Selección editorial</div>
+    <h2>QuijoLista</h2>
+    <p class="ql-section-lead">Fondos, ETFs, ETCs, planes de pensiones y roboadvisors que sigo para estudiar distintas formas de construir y diversificar una cartera.</p>
+    <p class="ql-section-note">No es un ranking ni una recomendación personalizada. Filtra por categoría, compara el papel de cada producto y revisa siempre su clase y condiciones antes de invertir.</p>
   </div>
   <div class="filter-row" id="ql-filter">
     <button class="cat-btn active" data-cat="todos">Todos</button>
@@ -1313,8 +1426,12 @@ function qfTrack(eventName, params) {
     <button class="cat-btn" data-cat="nicho">Nicho</button>
     <button class="cat-btn" data-cat="roboadvisor">Roboadvisors</button>
   </div>
-  <div id="ql-context" class="note" style="margin-top:0;margin-bottom:18px;padding:12px 16px;font-size:12px;line-height:1.6"><strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto y comprueba siempre disponibilidad y condiciones en tu plataforma.</div>
-  <div class="referidos-list" id="quijolistaGrid"></div>
+  <div class="ql-summary-row">
+    <div id="ql-count" class="ql-count" aria-live="polite"></div>
+    <button class="ql-calc-link" type="button" onclick="goTo('calculadoras'); setTimeout(function(){ openCalc('interes'); }, 50);">Interés compuesto →</button>
+  </div>
+  <div id="ql-context" class="ql-context"><strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto y comprueba siempre disponibilidad y condiciones en tu plataforma.</div>
+  <div class="referidos-list ql-list" id="quijolistaGrid"></div>
   <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS) y los Roboadvisors no tienen ISIN. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
   <div class="section-flow">
     <div class="section-flow-copy"><div class="section-flow-kicker">Antes de elegir</div><h3 class="section-flow-title">Define primero qué encaja contigo</h3><p class="section-flow-text">La lista sirve para estudiar opciones, no para comprarlo todo. Empieza por tu perfil y por entender el horizonte.</p></div>
@@ -1370,10 +1487,12 @@ function qfTrack(eventName, params) {
 </section>
 
 <section id="cuentas" class="section" >
-  <div class="section-head">
-    <h2>🏦 QuijoCuentas</h2>
-    <p class="muted" style="font-size:13px;font-weight:600;color:var(--silver2);margin-bottom:4px">Para que tu liquidez no pierda poder adquisitivo</p>
-    <p class="muted">Comparativa mensual de cuentas y depósitos en España. Ordenado por tipo de producto y nivel de vinculación. Sin publicidad, sin afiliados. Solo datos.</p>
+  <div class="cuentas-intro">
+    <div class="cuentas-intro-copy">
+      <div class="cuentas-kicker">Comparativa mensual</div>
+      <h2>🏦 QuijoCuentas</h2>
+      <p>Compara cuentas y depósitos en España por rentabilidad, condiciones, límites y FGD. Sin publicidad ni posiciones patrocinadas: solo datos para que puedas comparar con más criterio.</p>
+    </div>
   </div>
   <div class="filter-row" id="cuentas-filter">
     <button type="button" class="cat-btn active" data-tab="sin" onclick="setCuentasTab('sin');return false;">Cuentas sin condiciones</button>
@@ -1483,8 +1602,8 @@ function qfTrack(eventName, params) {
         <h3 id="mediaTitle" style="font-family:'Playfair Display',serif;font-size:24px;color:var(--cream);margin:10px 0 0 0;"></h3>
       </div>
       <div class="media-nav">
-        <button id="mediaPrev" class="btn btn-ghost" type="button" aria-label="Anterior" title="Anterior">←</button>
-        <button id="mediaNext" class="btn btn-ghost" type="button" aria-label="Siguiente" title="Siguiente">→</button>
+        <button id="mediaPrev" class="btn btn-ghost" type="button" aria-label="Anterior" title="Anterior" onclick="window.showPrevNext(-1); return false;">←</button>
+        <button id="mediaNext" class="btn btn-ghost" type="button" aria-label="Siguiente" title="Siguiente" onclick="window.showPrevNext(1); return false;">→</button>
       </div>
     </div>
     <div class="media-body">
@@ -1556,7 +1675,7 @@ function qfTrack(eventName, params) {
   <div class="toast-logo"><img src="logo.png" alt="logo"></div>
   <div class="toast-text">
     <p>S&iacute;gueme en X</p>
-    <span>Nuevas calculadoras y recursos cada semana</span>
+    <span>Nuevas calculadoras, comparativas y recursos</span>
   </div>
   <div class="toast-btns">
     <a class="toast-cta" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">Seguir</a>
@@ -2875,8 +2994,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var mes = "julio 2026";
     var esNomina = cuentasTab === "nomina";
     var html = '<div class="cuentas-header">'
-      + '<p style="font-size:13px;color:var(--silver2)">' + (esNomina ? 'Ordenadas por dinero total potencial &middot; ' : 'Ordenadas de mayor a menor TAE &middot; ') + '</p>'
-      + '<span class="cuentas-badge">Actualizado: ' + mes + '</span>'
+      + '<p class="cuentas-sort">' + (esNomina ? 'Ordenadas por dinero total potencial' : 'Ordenadas de mayor a menor TAE') + '</p>'
+      + '<span class="cuentas-badge">Actualizado · ' + mes + '</span>'
       + '</div>';
 
     html += '<div class="cuentas-grid">'
@@ -2886,12 +3005,11 @@ document.addEventListener('DOMContentLoaded', function(){
         return '<div class="cuenta-card' + (isTop ? ' top' : '') + '">'
           + '<div class="cuenta-top">'
             + '<div>'
-              + (isTop ? '<div style="font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px">'
-                + (c.rank === 1 ? '🥇 Mejor opción' : '🥈 2ª opción') + '</div>' : '')
+              + (isTop ? '<div class="cuenta-rank">' + (c.rank === 1 ? '1º por criterio de orden' : '2º por criterio de orden') + '</div>' : '')
               + '<div class="cuenta-banco">' + c.banco + '</div>'
             + '</div>'
-            + '<div style="text-align:right">'
-              + '<div class="cuenta-tae">' + principal + (esNomina ? '<span> total potencial</span>' : '') + '</div>'
+            + '<div class="cuenta-metric">'
+              + '<div class="cuenta-tae">' + principal + (esNomina ? '<span>total potencial</span>' : '') + '</div>'
             + '</div>'
           + '</div>'
           + '<div class="cuenta-meta-row">'
@@ -2900,7 +3018,7 @@ document.addEventListener('DOMContentLoaded', function(){
           + '</div>'
           + (c.duracion && c.duracion !== '—' ? '<div class="cuenta-detail">⏱ ' + c.duracion + '</div>' : '')
           + (c.extra && c.extra !== '—' ? '<div class="cuenta-detail">📌 ' + c.extra + '</div>' : '')
-          + (esNomina && c.tae != null ? '<div style="font-size:12px;color:var(--muted);margin-top:2px">TAE máxima de referencia: ' + c.tae.toFixed(2).replace('.',',') + '%</div>' : '')
+          + (esNomina && c.tae != null ? '<div class="cuenta-tae-ref">TAE máxima de referencia: ' + c.tae.toFixed(2).replace('.',',') + '%</div>' : '')
           + '<div class="cuenta-pros-cons">'
             + '<span class="cuenta-pro">' + c.pro + '</span>'
             + (c.con && c.con !== '—' ? '<span class="cuenta-con">' + c.con + '</span>' : '')
@@ -5011,8 +5129,7 @@ document.addEventListener('DOMContentLoaded', function(){
     overlay.dataset.mediaBound = '1';
     if (closeBtn) closeBtn.addEventListener('click', window.closeMedia);
     overlay.addEventListener('click', function(e){ if (e.target === overlay) window.closeMedia(); });
-    if (prevBtn) prevBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); window.showPrevNext(-1); });
-    if (nextBtn) nextBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); window.showPrevNext(1); });
+    // Prev/Next use inline onclick handlers so navigation remains reliable even if this binding changes.
     document.addEventListener('keydown', function(e){
       if (!overlay.classList.contains('open')) return;
       if (e.key === 'Escape') window.closeMedia();
@@ -5120,7 +5237,12 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     filtered.sort(function(a,b){ return a.nombre.localeCompare(b.nombre, 'es'); });
     var grid = document.getElementById("quijolistaGrid");
     var ctx = document.getElementById("ql-context");
+    var count = document.getElementById("ql-count");
     if(!grid) return;
+    if(count){
+      var label = filtered.length === 1 ? 'producto' : 'productos';
+      count.textContent = filtered.length + ' ' + label + (qlFilter === 'todos' ? ' en la selección' : ' en esta categoría');
+    }
 
     var contextMap = {
       'todos': '<strong>Criterios de selección:</strong> Cada producto incluido cumple al menos uno de estos criterios: comisiones bajas respecto a su categoría, track record contrastable, disponibilidad en plataformas españolas accesibles o valor diferencial claro para el inversor particular. No es un ranking ni una recomendación personalizada — es un punto de partida para que compares con criterio.',
