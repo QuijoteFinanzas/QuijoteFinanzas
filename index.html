@@ -843,6 +843,47 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
 .section-flow-btn.secondary:hover{border-color:rgba(15,32,53,.35);background:var(--surface-soft);transform:translateY(-1px)}
 @media(max-width:640px){.section-flow{align-items:stretch}.section-flow-copy{max-width:none}.section-flow-links{width:100%}.section-flow-btn{flex:1;min-width:140px}}
 
+
+
+/* ── FASE 5 · Calculadoras premium ─────────────────────────────────── */
+#calculadoras .calc-section-head{margin-bottom:24px}
+#calculadoras .calc-section-kicker{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#927321;margin-bottom:7px}
+#calculadoras #calc-filter{gap:7px;margin-bottom:22px;padding-bottom:2px}
+#calculadoras #calc-filter .cat-btn{background:#fff;border-color:#dfe6ee;color:#5b7188;padding:7px 13px;border-radius:999px;font-size:11px;font-weight:600}
+#calculadoras #calc-filter .cat-btn:hover{border-color:#b9c6d4;background:#f8fafc;color:var(--navy)}
+#calculadoras #calc-filter .cat-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 4px 12px rgba(15,32,53,.10)}
+
+#calculadoras .calc-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#calculadoras .calc-item{position:relative;min-height:72px;background:#fff;border:1px solid #e2e8ef;border-radius:12px;padding:14px 14px 14px 15px;color:var(--navy);gap:12px;box-shadow:0 1px 2px rgba(15,32,53,.02)}
+#calculadoras .calc-item.clickable{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease}
+#calculadoras .calc-item.clickable:hover{background:#fff;border-color:rgba(201,168,76,.58);transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,32,53,.08)}
+#calculadoras .calc-item .ci{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:#f3f6f9;border:1px solid #e4eaf0;font-size:17px;flex-shrink:0}
+#calculadoras .calc-item.clickable:hover .ci{background:rgba(201,168,76,.09);border-color:rgba(201,168,76,.25)}
+#calculadoras .calc-name{font-size:13px;font-weight:650;color:var(--navy);line-height:1.35;min-width:0}
+#calculadoras .live{margin-left:auto;background:transparent!important;border:0!important;color:#8b6a15!important;padding:4px 2px!important;border-radius:0!important;font-size:10px!important;font-weight:700!important;letter-spacing:.02em!important;text-transform:none!important;white-space:nowrap}
+#calculadoras .coming{margin-left:auto;background:#f4f6f8;border:1px solid #e0e6ec;color:#8a98a7;padding:4px 8px;border-radius:999px;font-size:9px;letter-spacing:.03em;text-transform:none;font-weight:700}
+#calculadoras .calc-item:not(.clickable){background:#f8fafb;border-style:dashed;color:#8a98a7;box-shadow:none}
+#calculadoras .calc-item:not(.clickable) .ci{opacity:.7}
+#calculadoras .calc-item:not(.clickable) .calc-name{color:#7d8b99;font-weight:600}
+#calculadoras .calc-item.renta-featured{border-color:rgba(201,168,76,.55);box-shadow:inset 0 0 0 1px rgba(201,168,76,.12)}
+#calculadoras .renta-badge{display:inline-flex;align-items:center;margin-left:7px;background:rgba(201,168,76,.13)!important;border:1px solid rgba(201,168,76,.25)!important;color:#7c5f13!important;border-radius:999px!important;padding:2px 6px!important;font-size:8px!important;vertical-align:middle}
+
+#calculadoras .votos-section{margin-top:32px;padding:24px;border:1px solid #e4e9ef;border-radius:14px;background:#fafbfc}
+#calculadoras .votos-section h3{font-size:19px;margin-bottom:5px}
+#calculadoras .votos-section .sub{margin-bottom:16px}
+#calculadoras .voto-item{background:#fff;border-color:#e4e9ef;padding:14px 16px}
+#calculadoras .calc-note{margin-top:18px;background:#fff;border-color:#e4e9ef;border-left:2px solid rgba(201,168,76,.55);padding:13px 16px}
+
+@media(max-width:700px){
+  #calculadoras .calc-list{grid-template-columns:1fr}
+  #calculadoras .calc-item{min-height:66px;padding:12px 13px}
+  #calculadoras .votos-section{padding:19px 16px}
+}
+@media(max-width:420px){
+  #calculadoras .live{font-size:0!important}
+  #calculadoras .live span{font-size:13px}
+  #calculadoras .coming{font-size:8px}
+}
 </style>
 <!-- ── Google Consent Mode v2 — default denied ───────────────────────── -->
 <script>
@@ -1282,7 +1323,7 @@ function qfTrack(eventName, params) {
 </section>
 
   <section id="calculadoras" class="section" >
-    <div class="section-header"><h2>Calculadoras</h2><p>Pulsa en cualquier calculadora disponible para abrirla. Cada una tiene también su propia p&aacute;gina con m&aacute;s contexto y preguntas frecuentes.</p><div class="divider"></div></div>
+    <div class="section-header calc-section-head"><div class="calc-section-kicker">Herramientas gratuitas</div><h2>Calculadoras</h2><p>Elige qué quieres analizar y haz números antes de tomar una decisión. Las disponibles se abren directamente aquí.</p><div class="divider"></div></div>
     
     <div class="filter-row" id="calc-filter">
       <button class="cat-btn active" data-cat="todos">Todas</button>
@@ -1292,36 +1333,36 @@ function qfTrack(eventName, params) {
       <button class="cat-btn" data-cat="deuda">Deudas</button>
     </div>
     <div class="calc-list" id="calcList">
-      <div class="calc-item clickable renta-featured" data-cat="salario" data-calc="renta"><span class="ci">📋</span><span class="calc-name">¿Tengo que hacer la renta?<span class="renta-badge">Renta 2025</span></span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="jubilacion"><span class="ci">&#128293;</span><span class="calc-name">Jubilaci&oacute;n / FIRE</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="comparador"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="coste"><span class="ci">&#128188;</span><span class="calc-name">Coste para la empresa</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="hipoteca"><span class="ci">&#127968;</span><span class="calc-name">Cuota hipotecaria</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="deposito"><span class="ci">&#127987;&#65039;</span><span class="calc-name">Dep&oacute;sito a plazo fijo</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Plan de pensiones: ahorro fiscal</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="inflacion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n y valor futuro</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="interes"><span class="ci">&#128260;</span><span class="calc-name">Inter&eacute;s compuesto</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Salario bruto a neto</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Salario neto a bruto</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="cagr-salario"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n salarial (CAGR)</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Disponible</span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Disponible</span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste de un pr&eacute;stamo</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Liquidar deuda</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="inversion"><span class="ci">&#127919;</span><span class="calc-name">Ahorro para un objetivo</span><span class="coming">Pronto</span></div>
-      <div class="calc-item" data-cat="salario"><span class="ci">&#128200;</span><span class="calc-name">Subida salarial neta</span><span class="coming">Pronto</span></div>
+      <div class="calc-item clickable renta-featured" data-cat="salario" data-calc="renta"><span class="ci">📋</span><span class="calc-name">¿Tengo que hacer la renta?<span class="renta-badge">Renta 2025</span></span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="jubilacion"><span class="ci">&#128293;</span><span class="calc-name">Jubilaci&oacute;n / FIRE</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="comparador"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="coste"><span class="ci">&#128188;</span><span class="calc-name">Coste para la empresa</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="hipoteca"><span class="ci">&#127968;</span><span class="calc-name">Cuota hipotecaria</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="deposito"><span class="ci">&#127987;&#65039;</span><span class="calc-name">Dep&oacute;sito a plazo fijo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Plan de pensiones: ahorro fiscal</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="inflacion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n y valor futuro</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="interes"><span class="ci">&#128260;</span><span class="calc-name">Inter&eacute;s compuesto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Salario bruto a neto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Salario neto a bruto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="cagr-salario"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n salarial (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="salario" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste de un pr&eacute;stamo</span><span class="coming">Próximamente</span></div>
+      <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Próximamente</span></div>
+      <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Liquidar deuda</span><span class="coming">Próximamente</span></div>
+      <div class="calc-item" data-cat="inversion"><span class="ci">&#127919;</span><span class="calc-name">Ahorro para un objetivo</span><span class="coming">Próximamente</span></div>
+      <div class="calc-item" data-cat="salario"><span class="ci">&#128200;</span><span class="calc-name">Subida salarial neta</span><span class="coming">Próximamente</span></div>
     </div>
     <div class="votos-section">
       <h3>Vota la pr&oacute;xima calculadora</h3>
       <p class="sub">Ayuda a priorizar lo que construyo primero. Resultados en tiempo real.</p>
       <div id="votos-list"></div>
     </div>
-    <div class="note"><strong>Las marcadas como &ldquo;Disponible&rdquo; se abren directamente aquí.</strong> Cada calculadora tiene también su <a href="calculadora-salario-neto-espana.html" style="color:var(--gold)">propia página con más contexto y FAQ</a>. Las &ldquo;Pronto&rdquo; se irán añadiendo — s&iacute;gueme en X para enterarte.</div>
+    <div class="note calc-note"><strong>Cómo usar esta sección:</strong> las calculadoras activas se abren aquí mismo. Algunas cuentan además con una página independiente con más contexto y preguntas frecuentes para quien quiera profundizar.</div>
   <div class="section-flow">
     <div class="section-flow-copy"><div class="section-flow-kicker">Con tus números claros</div><h3 class="section-flow-title">Optimiza después, no antes</h3><p class="section-flow-text">Si ya sabes dónde estás, compara opciones para tu liquidez o estudia productos de inversión con más criterio.</p></div>
     <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('cuentas')">QuijoCuentas →</button><button class="section-flow-btn secondary" onclick="goTo('quijolista')">QuijoLista</button></div>
@@ -4966,11 +5007,18 @@ document.addEventListener('DOMContentLoaded', function(){
     var closeBtn = document.getElementById('mediaClose');
     var prevBtn = document.getElementById('mediaPrev');
     var nextBtn = document.getElementById('mediaNext');
-    if (closeBtn) closeBtn.addEventListener('click', closeMedia);
-    if (overlay) overlay.addEventListener('click', function(e){ if (e.target === overlay) closeMedia(); });
-    if (prevBtn) prevBtn.addEventListener('click', function(){ showPrevNext(-1); });
-    if (nextBtn) nextBtn.addEventListener('click', function(){ showPrevNext(1); });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMedia(); });
+    if (!overlay || overlay.dataset.mediaBound === '1') return;
+    overlay.dataset.mediaBound = '1';
+    if (closeBtn) closeBtn.addEventListener('click', window.closeMedia);
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) window.closeMedia(); });
+    if (prevBtn) prevBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); window.showPrevNext(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); window.showPrevNext(1); });
+    document.addEventListener('keydown', function(e){
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') window.closeMedia();
+      if (e.key === 'ArrowLeft') { e.preventDefault(); window.showPrevNext(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); window.showPrevNext(1); }
+    });
   });
 
 glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
