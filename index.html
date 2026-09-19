@@ -3133,15 +3133,47 @@ document.addEventListener('DOMContentLoaded', function(){
     'salario':    'Salario neto → bruto',
     'interes':    'Interés compuesto',
     'hipoteca':   'Cuota hipotecaria',
-    'coste':      'Coste real empresa',
-    'inflacion':  'Inflación valor futuro',
-    'jubilacion': 'Ahorro jubilación FIRE',
+    'coste':      'Coste para la empresa',
+    'inflacion':  'Inflación y valor futuro',
+    'jubilacion': 'Jubilación / FIRE',
     'deposito':   'Depósito a plazo fijo',
-    'pension':    'Desgravación pensiones',
+    'pension':    'Plan de pensiones: ahorro fiscal',
     'alquilervs': 'Alquiler vs compra',
     'amortizacion':'Amortización anticipada',
-    'alquiler':   'ROI rentabilidad alquiler',
-    'comparador': 'Comparador de ofertas'
+    'alquiler':   'ROI / Rentabilidad alquiler',
+    'comparador': 'Comparador de ofertas',
+    'cagr-salario':'Evolución salarial (CAGR)',
+    'cagr-patrimonio':'Evolución del patrimonio (CAGR)',
+    'tiempo':     'El coste del tiempo',
+    'autonomos':  'Simulador para autónomos'
+  };
+
+  // ── OPEN/CLOSE CALCULADORAS ─────────────────────────────────────────────
+  // Funciones base globales. Se mantienen separadas de los wrappers visuales
+  // de Fase 18/19 para que las tarjetas siempre puedan abrir/cerrar el modal.
+  window.openCalc = function(id) {
+    var modal = document.getElementById('modal-' + id);
+    if (!modal) {
+      console.warn('Calculadora no encontrada:', id);
+      return;
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    try { history.replaceState(null, '', '#calc-' + id); } catch(e) {}
+    try {
+      if (typeof trackVirtualPageView === 'function') {
+        trackVirtualPageView('/calc-' + id, (calcNames[id] || id) + ' · QuijoteFinanzas');
+      }
+    } catch(e) {}
+    try { gtag('event', 'calculadora_abierta', { calculadora: calcNames[id] || id }); } catch(e) {}
+  };
+
+  window.closeCalc = function(id) {
+    var modal = document.getElementById('modal-' + id);
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    try { history.replaceState(null, '', '#calculadoras'); } catch(e) {}
   };
 
 
@@ -3268,7 +3300,7 @@ document.addEventListener('DOMContentLoaded', function(){
   function renderVotosUnavailable(){
     var el=document.getElementById('votos-list'); if(!el)return;
     el.innerHTML='<div class="votos-unavailable"><strong>Votación temporalmente no disponible.</strong><span>No mostramos ceros ficticios: cuando la API vuelva a responder aparecerán aquí los votos acumulados.</span></div>';
-    votosSetStatus('No se ha podido conectar con el sistema de votación.','error');
+    votosSetStatus('','');
   }
   function normalizeVoteData(data){
     var out={}; VOTOS_OPT.forEach(function(op){out[op.id]={total:0,recent7:0};});
@@ -3716,6 +3748,20 @@ document.addEventListener('DOMContentLoaded', function(){
       subtitle.innerHTML='Estima el ahorro fiscal de tu aportación individual a un plan de pensiones. Máximo general: 1.500€/año.';
     }
   };
+  // Cuota IRPF aproximada sobre una base general (estatal + autonómica),
+  // descontando el mínimo personal aplicable. La usan las calculadoras de
+  // planes de pensiones (autónomos) y el simulador de autónomos.
+  function calcCuotaIRPFBase(baseGeneral, ccaa){
+    baseGeneral = Math.max(0, +baseGeneral || 0);
+    var estatalScales = [[12450,.095],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]];
+    var autonomicScales = getAutonomicScales(ccaa);
+    var minAplEstatal = Math.min(baseGeneral, 5550);
+    var minAplAuto = Math.min(baseGeneral, getAutonomicMinimo(ccaa));
+    var cuotaEstatal = progressiveTax(baseGeneral, estatalScales) - progressiveTax(minAplEstatal, estatalScales);
+    var cuotaAuto = progressiveTax(baseGeneral, autonomicScales) - progressiveTax(minAplAuto, autonomicScales);
+    return Math.max(0, cuotaEstatal + cuotaAuto);
+  }
+
   window.calcPension = function() {
     var tipo=document.getElementById('pp-tipo').value, bruto=parseFloat(document.getElementById('pp-bruto').value)||0, aportInput=parseFloat(document.getElementById('pp-aport').value)||0, ccaa=document.getElementById('pp-ccaa').value;
     var ns,nc,ahorro,coste,aport,limite,warning='';
