@@ -1282,6 +1282,101 @@ function qfTrack(eventName, params) {
 }
 </style>
 
+
+<style>
+/* ── FASE 18 · Calculadoras 2.0 ────────────────────────────────────── */
+.qf-live-badge{display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7f94}
+.qf-live-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#2d8a5e;box-shadow:0 0 0 3px rgba(45,138,94,.10)}
+.qf-range-field{display:flex;flex-direction:column;gap:8px}
+.qf-range-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.qf-range-head>label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);font-weight:700;opacity:.72}
+.qf-range-value{display:flex;align-items:center;gap:5px;background:#fff;border:1px solid #dfe6ee;border-radius:8px;padding:4px 8px;min-width:94px;justify-content:flex-end;transition:border-color .15s,box-shadow .15s}
+.qf-range-value:focus-within{border-color:rgba(201,168,76,.75);box-shadow:0 0 0 3px rgba(201,168,76,.10)}
+.qf-range-value input{border:0!important;background:transparent!important;padding:0!important;min-width:0;width:68px;text-align:right;font-family:'DM Mono',monospace;font-size:13px;color:var(--navy);outline:none!important;box-shadow:none!important}
+.qf-range-value span{font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap}
+.qf-range{width:100%;height:24px;appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer}
+.qf-range::-webkit-slider-runnable-track{height:5px;background:linear-gradient(90deg,var(--gold) 0,var(--gold) var(--range-pct,50%),#dfe6ee var(--range-pct,50%),#dfe6ee 100%);border-radius:999px}
+.qf-range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 8px rgba(15,32,53,.18);margin-top:-7.5px}
+.qf-range::-moz-range-track{height:5px;background:#dfe6ee;border-radius:999px}
+.qf-range::-moz-range-progress{height:5px;background:var(--gold);border-radius:999px}
+.qf-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 8px rgba(15,32,53,.18)}
+.qf-range-scale{display:flex;justify-content:space-between;margin-top:-6px;font-size:9px;color:#93a1af}
+.qf-result-hero{position:relative;overflow:hidden;margin:4px 0 22px;padding:22px 24px 17px;border-radius:16px;background:linear-gradient(135deg,#0f2035 0%,#173658 100%);border:1px solid rgba(201,168,76,.30);box-shadow:0 14px 38px rgba(15,32,53,.16);color:#fff}
+.qf-result-hero::after{content:'';position:absolute;width:210px;height:210px;border-radius:50%;right:-80px;top:-115px;background:radial-gradient(circle,rgba(201,168,76,.18),rgba(201,168,76,0) 68%);pointer-events:none}
+.qf-hero-eyebrow{position:relative;z-index:1;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(220,232,245,.65);font-weight:700;text-align:center}
+.qf-hero-main{position:relative;z-index:1;font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,58px);font-weight:700;line-height:1.02;text-align:center;color:#fff;margin:5px 0 19px;letter-spacing:-.02em}
+.qf-hero-main .qf-main-unit{font-family:'DM Sans',sans-serif;font-size:.38em;font-weight:600;color:rgba(220,232,245,.75);margin-left:4px;letter-spacing:0}
+.qf-hero-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.qf-hero-metric{text-align:center;padding:9px 8px;border-right:1px solid rgba(255,255,255,.09)}
+.qf-hero-metric:last-child{border-right:0}
+.qf-hero-metric span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(220,232,245,.58);margin-bottom:3px}
+.qf-hero-metric strong{display:block;font-family:'DM Mono',monospace;font-size:14px;color:#fff}
+.qf-hero-insight{position:relative;z-index:1;margin:4px auto 12px;max-width:620px;text-align:center;font-size:11px;line-height:1.55;color:rgba(220,232,245,.73)}
+.qf-hero-insight strong{color:#e7c86f}
+.qf-hero-actions{position:relative;z-index:1;display:flex;justify-content:center;margin-top:9px}
+.qf-share-result{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:8px 13px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+.qf-share-result:hover{background:rgba(255,255,255,.14);border-color:rgba(201,168,76,.58);transform:translateY(-1px)}
+.qf-card-brand{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.09);margin-top:14px;padding-top:10px;text-align:center;font-size:10px;letter-spacing:.08em;color:rgba(220,232,245,.45);font-weight:600}
+.qf-result-detail-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin:3px 0 8px}
+.qf-calc2 .calc-grid{align-items:start}
+.qf-calc2 .field-group{gap:15px}
+.qf-calc2 .calc-btn{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:700}
+.qf-calc2 .calc-btn:hover{background:var(--navy2);border-color:var(--navy2)}
+.qf-calc2 .chart-wrap{border-radius:14px;border-color:rgba(201,168,76,.22);padding:20px;background:linear-gradient(145deg,#0f2035,#173658)}
+.qf-calc2 .chart-container{height:230px}
+.qf-calc2 .results-panel{gap:7px}
+.qf-calc2 .result-row{padding:10px 13px;background:#f8fafc}
+.qf-calc2 .result-value{font-size:16px}
+.qf-live-note{font-size:10px;color:var(--muted);text-align:center;margin-top:6px}
+@media(max-width:580px){
+  .qf-result-hero{padding:19px 15px 15px;margin-bottom:18px}
+  .qf-hero-main{font-size:40px;margin-bottom:15px}
+  .qf-hero-metrics{grid-template-columns:1fr 1fr 1fr;gap:2px}
+  .qf-hero-metric{padding:7px 3px}
+  .qf-hero-metric strong{font-size:11px}
+  .qf-range-head{align-items:flex-end}
+  .qf-range-head>label{max-width:62%;line-height:1.25}
+  .qf-range-value{min-width:88px}
+  .qf-calc2 .chart-container{height:210px}
+}
+</style>
+
+
+<style>
+/* ── FASE 19 · Calculadoras 2.0 completo ───────────────────────────── */
+.qf-inline-range-wrap{margin-top:7px}
+.qf-inline-range{width:100%;height:20px;appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer}
+.qf-inline-range::-webkit-slider-runnable-track{height:4px;border-radius:999px;background:linear-gradient(90deg,var(--gold) 0,var(--gold) var(--range-pct,50%),#dfe6ee var(--range-pct,50%),#dfe6ee 100%)}
+.qf-inline-range::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 7px rgba(15,32,53,.16);margin-top:-6px}
+.qf-inline-range::-moz-range-track{height:4px;background:#dfe6ee;border-radius:999px}
+.qf-inline-range::-moz-range-progress{height:4px;background:var(--gold);border-radius:999px}
+.qf-inline-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 7px rgba(15,32,53,.16)}
+.qf-inline-range-scale{display:flex;justify-content:space-between;margin-top:-3px;font-size:8px;color:#9aa8b6;letter-spacing:.02em}
+.qf-generic-block{margin:10px 0 22px}
+.qf-generic-block .qf-live-badge{margin-bottom:8px}
+.qf-generic-hero .qf-hero-main{font-size:clamp(32px,6vw,50px)}
+.qf-generic-hero .qf-hero-main.long{font-size:clamp(24px,4.5vw,38px)}
+.qf-whatif{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px auto 4px}
+.qf-whatif-label{width:100%;font-size:9px;letter-spacing:.10em;text-transform:uppercase;color:rgba(220,232,245,.48);font-weight:700;text-align:center}
+.qf-whatif-btn{appearance:none;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.055);color:rgba(240,245,250,.9);border-radius:999px;padding:6px 10px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:650;cursor:pointer;transition:all .15s}
+.qf-whatif-btn:hover,.qf-whatif-btn:focus-visible{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.55);outline:none;transform:translateY(-1px)}
+.qf-scenario-flash{animation:qfScenarioFlash .45s ease}
+@keyframes qfScenarioFlash{0%{box-shadow:0 0 0 0 rgba(201,168,76,.35)}100%{box-shadow:0 0 0 10px rgba(201,168,76,0)}}
+.qf-generic-hero[data-state="empty"] .qf-hero-main{font-family:'DM Sans',sans-serif;font-size:18px;color:rgba(255,255,255,.70);letter-spacing:0}
+.qf-generic-hero[data-state="empty"] .qf-hero-metrics{opacity:.55}
+.qf-result-share-note{position:relative;z-index:1;text-align:center;font-size:9px;color:rgba(220,232,245,.42);margin-top:6px}
+.qf-renta-share-wrap{margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,32,53,.08);display:flex;justify-content:center}
+.qf-renta-share-wrap .qf-share-result{background:var(--navy);border-color:var(--navy);color:#fff}
+.qf-calc2 .calc-btn[data-run]{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:700}
+.qf-calc2 .calc-btn[data-run]:hover{background:var(--navy2);border-color:var(--navy2)}
+@media(max-width:580px){
+  .qf-generic-block{margin:8px 0 18px}
+  .qf-generic-hero .qf-hero-main{font-size:34px}
+  .qf-generic-hero .qf-hero-main.long{font-size:26px}
+  .qf-whatif-btn{font-size:9px;padding:6px 9px}
+}
+</style>
+
 </head>
 <body class="show-home-intro">
 
@@ -2066,17 +2161,30 @@ function qfTrack(eventName, params) {
 </div>
 
 <!-- MODALES -->
-<div class="calc-overlay" id="modal-interes">
+<div class="calc-overlay qf-calc2" id="modal-interes">
   <div class="calc-modal">
     <div class="modal-header"><div class="modal-header-left"><h2>&#128260; Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="logo"></div><button class="calc-close" data-close="interes">&#215;</button></div>
     <button class="share-btn" data-share="interes"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-interes">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula c&oacute;mo crece tu inversi&oacute;n con el tiempo gracias al inter&eacute;s compuesto.</p>
+    <div class="qf-live-badge">Resultado en tiempo real</div>
+    <div class="qf-result-hero" id="ic-hero" aria-live="polite">
+      <div class="qf-hero-eyebrow">Capital final estimado</div>
+      <div class="qf-hero-main" id="ic-hero-main">—</div>
+      <div class="qf-hero-metrics">
+        <div class="qf-hero-metric"><span>Aportado</span><strong id="ic-hero-aportado">—</strong></div>
+        <div class="qf-hero-metric"><span>Interés generado</span><strong id="ic-hero-interes">—</strong></div>
+        <div class="qf-hero-metric"><span>Horizonte</span><strong id="ic-hero-horizonte">—</strong></div>
+      </div>
+      <div class="qf-hero-insight" id="ic-hero-insight"></div>
+      <div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share="interes">Compartir resultado en X ↗</button></div>
+      <div class="qf-card-brand">quijotefinanzas.com</div>
+    </div>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Capital inicial (&euro;)</label><input type="number" id="ic-capital" value="10000" min="0"></div>
-        <div class="field"><label>Aportaci&oacute;n mensual (&euro;)</label><input type="number" id="ic-aportacion" value="200" min="0"></div>
-        <div class="field"><label>Rentabilidad anual (%)</label><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"></div>
-        <div class="field"><label>A&ntilde;os de inversi&oacute;n</label><input type="number" id="ic-anos" value="20" min="1" max="50"></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0€</span><span>2.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual (%)</label><div class="qf-range-value"><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="ic-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>A&ntilde;os de inversi&oacute;n</label><div class="qf-range-value"><input type="number" id="ic-anos" value="20" min="1" max="60" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="ic-anos" min="1" max="50" step="1" value="20"><div class="qf-range-scale"><span>1</span><span>50</span></div></div>
   <div class="infl-toggle" id="ic-infl-wrap">
       <input type="checkbox" id="ic-infl-check" onchange="document.getElementById('ic-infl-wrap').classList.toggle('active',this.checked)">
       <label for="ic-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
@@ -2086,7 +2194,7 @@ function qfTrack(eventName, params) {
       </div>
     </div>
     <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
-      <button class="calc-btn" data-run="interes">Calcular &rarr;</button>
+      <button class="calc-btn" data-run="interes">Actualizar resultado &rarr;</button><div class="qf-live-note">También se recalcula automáticamente al mover las barras.</div>
       </div>
       <div class="results-panel" id="ic-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
@@ -2250,18 +2358,31 @@ function qfTrack(eventName, params) {
 </div>
 
 <!-- MODAL: JUBILACIÓN / FIRE -->
-<div class="calc-overlay" id="modal-jubilacion">
+<div class="calc-overlay qf-calc2" id="modal-jubilacion">
   <div class="calc-modal">
     <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2></div><button class="calc-close" data-close="jubilacion">&#215;</button></div>
     <button class="share-btn" data-share="jubilacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-jubilacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cu&aacute;nto necesitas ahorrar para jubilarte o alcanzar la independencia financiera (FIRE). Basado en la regla del 4%.</p>
+    <div class="qf-live-badge">Resultado en tiempo real</div>
+    <div class="qf-result-hero" id="jub-hero" aria-live="polite">
+      <div class="qf-hero-eyebrow">Edad FIRE estimada</div>
+      <div class="qf-hero-main" id="jub-hero-main">—</div>
+      <div class="qf-hero-metrics">
+        <div class="qf-hero-metric"><span>Objetivo FIRE</span><strong id="jub-hero-target">—</strong></div>
+        <div class="qf-hero-metric"><span>Años estimados</span><strong id="jub-hero-years">—</strong></div>
+        <div class="qf-hero-metric"><span>Aportación/mes</span><strong id="jub-hero-aport">—</strong></div>
+      </div>
+      <div class="qf-hero-insight" id="jub-hero-insight"></div>
+      <div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share="jubilacion">Compartir resultado en X ↗</button></div>
+      <div class="qf-card-brand">quijotefinanzas.com</div>
+    </div>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
-        <div class="field"><label>Aportaci&oacute;n mensual (&euro;)</label><input type="number" id="jub-aport" value="500" min="0"></div>
-        <div class="field"><label>Rentabilidad anual estimada (%)</label><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"></div>
-        <div class="field"><label>Gastos mensuales en la retirada (&euro;)</label><input type="number" id="jub-gastos" value="2000" min="0"></div>
-        <div class="field"><label>Edad actual</label><input type="number" id="jub-edad" value="35" min="18" max="70"></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="jub-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500€</span><span>6.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label>Edad actual</label><div class="qf-range-value"><input type="number" id="jub-edad" value="35" min="18" max="70" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="jub-edad" min="18" max="70" step="1" value="35"><div class="qf-range-scale"><span>18</span><span>70</span></div></div>
   <div class="infl-toggle" id="jub-infl-wrap">
       <input type="checkbox" id="jub-infl-check" onchange="document.getElementById('jub-infl-wrap').classList.toggle('active',this.checked)">
       <label for="jub-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
@@ -2271,7 +2392,7 @@ function qfTrack(eventName, params) {
       </div>
     </div>
     <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
-      <button class="calc-btn" data-run="jubilacion">Calcular &rarr;</button>
+      <button class="calc-btn" data-run="jubilacion">Actualizar resultado &rarr;</button><div class="qf-live-note">También se recalcula automáticamente al mover las barras.</div>
       </div>
       <div class="results-panel" id="jub-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
@@ -2819,8 +2940,8 @@ function qfTrack(eventName, params) {
 </div>
 
 <!-- MODAL: EL COSTE DEL TIEMPO -->
-<div class="calc-overlay" id="modal-tiempo">
-  <div class="calc-modal" style="max-width:680px">
+<div class="calc-overlay qf-calc2" id="modal-tiempo">
+  <div class="calc-modal" style="max-width:760px">
     <div class="modal-header">
       <div class="modal-header-left"><h2>&#8987; El coste del tiempo</h2></div>
       <div class="modal-logo"><img src="logo.png" alt="logo"></div>
@@ -2829,13 +2950,26 @@ function qfTrack(eventName, params) {
     <button class="share-btn" data-share="tiempo"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
     <span class="share-toast" id="toast-tiempo">&#10003; Enlace copiado</span>
     <p class="subtitle">Cu&aacute;nto vale cada euro seg&uacute;n cu&aacute;ndo lo inviertes — y qu&eacute; pasa si paras de aportar antes de llegar.</p>
+    <div class="qf-live-badge">Resultado en tiempo real</div>
+    <div class="qf-result-hero" id="t-hero" aria-live="polite">
+      <div class="qf-hero-eyebrow">Patrimonio proyectado a la edad objetivo</div>
+      <div class="qf-hero-main" id="t-hero-main">—</div>
+      <div class="qf-hero-metrics">
+        <div class="qf-hero-metric"><span>Aportación/mes</span><strong id="t-hero-aport">—</strong></div>
+        <div class="qf-hero-metric"><span>Horizonte</span><strong id="t-hero-years">—</strong></div>
+        <div class="qf-hero-metric"><span>Rentabilidad</span><strong id="t-hero-rent">—</strong></div>
+      </div>
+      <div class="qf-hero-insight" id="t-hero-insight"></div>
+      <div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share="tiempo">Compartir resultado en X ↗</button></div>
+      <div class="qf-card-brand">quijotefinanzas.com</div>
+    </div>
 
     <div class="calc-grid">
       <div class="field"><label>Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
-      <div class="field"><label>Edad actual</label><input type="number" id="t-edad" value="30" min="18" max="64"></div>
-      <div class="field"><label>Aportaci&oacute;n mensual (&euro;)</label><input type="number" id="t-aport" value="300" min="0" step="50"></div>
-      <div class="field"><label>Rentabilidad anual estimada (%)</label><input type="number" id="t-rent" value="8" min="1" max="20" step="0.5"></div>
-      <div class="field"><label>Edad objetivo (retirada)</label><input type="number" id="t-objetivo" value="65" min="40" max="80"></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label>Edad actual</label><div class="qf-range-value"><input type="number" id="t-edad" value="30" min="18" max="64" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="t-edad" min="18" max="64" step="1" value="30"><div class="qf-range-scale"><span>18</span><span>64</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="t-rent" value="8" min="0" max="30" step="0.1"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="t-rent" min="0" max="15" step="0.1" value="8"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label>Edad objetivo (retirada)</label><div class="qf-range-value"><input type="number" id="t-objetivo" value="65" min="40" max="80" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="t-objetivo" min="40" max="80" step="1" value="65"><div class="qf-range-scale"><span>40</span><span>80</span></div></div>
     </div>
 <div class="infl-toggle" id="t-infl-wrap">
       <input type="checkbox" id="t-infl-check" onchange="document.getElementById('t-infl-wrap').classList.toggle('active',this.checked)">
@@ -2846,8 +2980,8 @@ function qfTrack(eventName, params) {
       </div>
     </div>
     <p class="infl-explain">Si lo activas, verás el resultado tambi&eacute;n <strong>en euros de hoy</strong> (descontando la inflaci&oacute;n acumulada), junto al valor nominal (sin descontar).</p>
-    <button class="calc-btn" data-run="tiempo">Calcular &rarr;</button>
-    <p class="disclaimer">Proyecci&oacute;n orientativa. Rentabilidad constante asumida. No tiene en cuenta inflaci&oacute;n ni impuestos.</p>
+    <button class="calc-btn" data-run="tiempo">Actualizar resultado &rarr;</button><div class="qf-live-note">También se recalcula automáticamente al mover las barras.</div>
+    <p class="disclaimer">Proyecci&oacute;n orientativa con rentabilidad constante asumida. Si activas el ajuste de inflaci&oacute;n, se muestra tambi&eacute;n el valor en euros de hoy. No incluye impuestos ni cambios futuros de rentabilidad.</p>
 
     <!-- BLOQUE 1: Coste del tiempo -->
     <div id="t-multiplicador-wrap" style="display:none">
@@ -3841,17 +3975,28 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('ic-chart-wrap').style.display='block';
     document.getElementById('ic-cta').style.display='flex';
     if(icChart) icChart.destroy();
+    var step=Math.max(1,Math.ceil(n/10));
+    var barLabels=[],barAport=[],barInterest=[],barReal=[];
+    for(var bi=0;bi<labels.length;bi++){
+      if(((bi+1)%step===0)||bi===labels.length-1){
+        barLabels.push((bi+1)+'a');
+        barAport.push(dataA[bi]);
+        barInterest.push(Math.max(0,dataC[bi]-dataA[bi]));
+        barReal.push(dataReal[bi]);
+      }
+    }
     var datasets=[
-      {label:'Capital total (nominal)',data:dataC,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.12)',fill:true,tension:.4,pointRadius:1,borderWidth:2},
-      {label:'Lo aportado',data:dataA,borderColor:'#b8c8d8',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:1,borderWidth:1.5,borderDash:[5,5]}
+      {label:'Lo que aportas',data:barAport,backgroundColor:'rgba(184,200,216,.30)',borderColor:'rgba(184,200,216,.45)',borderWidth:1,borderRadius:5,stack:'capital'},
+      {label:'Interés compuesto',data:barInterest,backgroundColor:'rgba(125,211,168,.78)',borderColor:'#7dd3a8',borderWidth:1,borderRadius:5,stack:'capital'}
     ];
-    if(infl>0) datasets.push({label:'Capital real (euros hoy)',data:dataReal,borderColor:'#c9a84c',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:0,borderWidth:1.5,borderDash:[3,3]});
-    icChart=new Chart(document.getElementById('ic-chart').getContext('2d'),{type:'line',
-      data:{labels:labels,datasets:datasets},
+    if(infl>0) datasets.push({type:'line',label:'Capital real (euros hoy)',data:barReal,borderColor:'#c9a84c',backgroundColor:'transparent',pointRadius:2,borderWidth:1.7,tension:.35,order:0});
+    icChart=new Chart(document.getElementById('ic-chart').getContext('2d'),{type:'bar',
+      data:{labels:barLabels,datasets:datasets},
       options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'rgba(184,200,216,.8)',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},
-        scales:{x:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.07)'}},
-                y:{ticks:{color:'rgba(184,200,216,.7)',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}
+        interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom',labels:{color:'rgba(220,232,245,.76)',font:{size:10},boxWidth:11}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': '+fmtEUR(c.raw);}}}},
+        scales:{x:{stacked:true,ticks:{color:'rgba(220,232,245,.68)',font:{size:10}},grid:{display:false}},
+                y:{stacked:true,ticks:{color:'rgba(220,232,245,.68)',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}
       }}});
   };
 
@@ -5891,5 +6036,381 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     }
   })();
 </script>
+
+<script>
+/* ── FASE 18 · Calculadoras 2.0 behavior ───────────────────────────── */
+(function(){
+  var calc2Ids=['interes','jubilacion','tiempo'];
+  var calc2Timer=null;
+
+  function eurCompact(n){
+    n=Number(n)||0;
+    if(Math.abs(n)>=1000000) return (n/1000000).toFixed(n>=10000000?1:2).replace('.',',')+' M€';
+    if(Math.abs(n)>=1000) return Math.round(n/1000).toLocaleString('es-ES')+'K €';
+    return Math.round(n).toLocaleString('es-ES')+' €';
+  }
+  function eurFull(n){return Math.round(Number(n)||0).toLocaleString('es-ES')+' €';}
+  function setText(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
+  function rangePct(r){var min=parseFloat(r.min)||0,max=parseFloat(r.max)||100,val=parseFloat(r.value)||0;return Math.max(0,Math.min(100,(val-min)/(max-min)*100));}
+  function paintRange(r){r.style.setProperty('--range-pct',rangePct(r)+'%');}
+  function syncRangeFromNumber(num){
+    var r=document.querySelector('.qf-range[data-sync-to="'+num.id+'"]');
+    if(!r)return;
+    var v=parseFloat(num.value);
+    if(!isFinite(v))return;
+    r.value=Math.max(parseFloat(r.min),Math.min(parseFloat(r.max),v));
+    paintRange(r);
+  }
+  function runCalc2(id){
+    if(id==='interes'&&typeof window.calcInteres==='function'){window.calcInteres();updateInterestHero();}
+    if(id==='jubilacion'&&typeof window.calcJubilacion==='function'){window.calcJubilacion();updateFireHero();}
+    if(id==='tiempo'&&typeof window.calcTiempo==='function'){window.calcTiempo();updateTiempoHero();}
+  }
+  function scheduleCalc2(id){clearTimeout(calc2Timer);calc2Timer=setTimeout(function(){runCalc2(id);},120);}
+
+  document.querySelectorAll('.qf-range').forEach(function(r){
+    var target=document.getElementById(r.dataset.syncTo);
+    if(!target)return;
+    paintRange(r);
+    r.addEventListener('input',function(){target.value=r.value;paintRange(r);scheduleCalc2(r.closest('.calc-overlay').id.replace('modal-',''));});
+    target.addEventListener('input',function(){syncRangeFromNumber(target);scheduleCalc2(target.closest('.calc-overlay').id.replace('modal-',''));});
+  });
+  ['ic-infl-check','ic-infl-val','jub-infl-check','jub-infl-val','t-infl-check','t-infl-val','ic-capital','jub-actual','t-patrimonio'].forEach(function(id){
+    var el=document.getElementById(id); if(!el)return;
+    el.addEventListener('input',function(){var m=el.closest('.calc-overlay');if(m)scheduleCalc2(m.id.replace('modal-',''));});
+    el.addEventListener('change',function(){var m=el.closest('.calc-overlay');if(m)scheduleCalc2(m.id.replace('modal-',''));});
+  });
+
+  function calcCompound(C,A,r,n){
+    var rm=r/100/12,cap=C;
+    for(var i=0;i<n*12;i++) cap=cap*(1+rm)+A;
+    return cap;
+  }
+  function updateInterestHero(){
+    var C=parseFloat(document.getElementById('ic-capital').value)||0;
+    var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
+    var r=parseFloat(document.getElementById('ic-rent').value)||0;
+    var n=parseInt(document.getElementById('ic-anos').value)||1;
+    var cap=calcCompound(C,A,r,n),aport=C+A*12*n,interest=cap-aport;
+    setText('ic-hero-main',eurFull(cap));
+    setText('ic-hero-aportado',eurCompact(aport));
+    setText('ic-hero-interes',eurCompact(interest));
+    setText('ic-hero-horizonte',n+' años');
+    var capPlus=calcCompound(C,A+50,r,n),extra=Math.max(0,capPlus-cap);
+    var insight=document.getElementById('ic-hero-insight');
+    if(insight) insight.innerHTML='Con <strong>50 € más al mes</strong>, este mismo escenario terminaría con aproximadamente <strong>'+eurFull(capPlus)+'</strong> ('+eurFull(extra)+' más).';
+  }
+  function yearsToFire(actual,aport,r,gastos){
+    var fire=gastos*12/0.04,rm=r/100/12,cap=actual,y=0;
+    if(cap>=fire)return 0;
+    while(cap<fire&&y<80){for(var m=0;m<12;m++)cap=cap*(1+rm)+aport;y++;}
+    return y;
+  }
+  function updateFireHero(){
+    var actual=parseFloat(document.getElementById('jub-actual').value)||0;
+    var aport=parseFloat(document.getElementById('jub-aport').value)||0;
+    var r=parseFloat(document.getElementById('jub-rent').value)||0;
+    var gastos=parseFloat(document.getElementById('jub-gastos').value)||0;
+    var edad=parseInt(document.getElementById('jub-edad').value)||35;
+    var fire=gastos*12/0.04,y=yearsToFire(actual,aport,r,gastos),edadFire=edad+y;
+    setText('jub-hero-main',y<80?edadFire+' años':'> '+(edad+80)+' años');
+    setText('jub-hero-target',eurCompact(fire));
+    setText('jub-hero-years',y<80?y+' años':'>80 años');
+    setText('jub-hero-aport',eurCompact(aport));
+    var yPlus=yearsToFire(actual,aport+100,r,gastos),gain=Math.max(0,y-yPlus);
+    var insight=document.getElementById('jub-hero-insight');
+    if(insight){
+      if(y<80&&gain>0) insight.innerHTML='Con <strong>100 € más al mes</strong>, el mismo escenario alcanzaría el objetivo aproximadamente <strong>'+gain+' '+(gain===1?'año':'años')+' antes</strong>.';
+      else insight.textContent='La estimación depende de mantener aportaciones y rentabilidad constantes. Úsala como escenario, no como promesa.';
+    }
+  }
+  function projectTime(patrimonio,edad,objetivo,aport,r){
+    if(edad>=objetivo)return patrimonio;
+    var rm=Math.pow(1+r/100,1/12)-1,cap=patrimonio,months=(objetivo-edad)*12;
+    for(var i=0;i<months;i++)cap=cap*(1+rm)+aport;
+    return cap;
+  }
+  function projectTimeDelayed(patrimonio,edad,objetivo,aport,r,delayYears){
+    if(edad>=objetivo)return patrimonio;
+    var rm=Math.pow(1+r/100,1/12)-1,cap=patrimonio,months=(objetivo-edad)*12,delay=delayYears*12;
+    for(var i=0;i<months;i++)cap=cap*(1+rm)+(i>=delay?aport:0);
+    return cap;
+  }
+  function updateTiempoHero(){
+    var patr=parseFloat(document.getElementById('t-patrimonio').value)||0;
+    var edad=parseInt(document.getElementById('t-edad').value)||30;
+    var aport=parseFloat(document.getElementById('t-aport').value)||0;
+    var r=parseFloat(document.getElementById('t-rent').value)||0;
+    var obj=parseInt(document.getElementById('t-objetivo').value)||65;
+    if(edad>=obj){setText('t-hero-main','Revisa edades');return;}
+    var final=projectTime(patr,edad,obj,aport,r),years=obj-edad;
+    setText('t-hero-main',eurFull(final));
+    setText('t-hero-aport',eurCompact(aport));
+    setText('t-hero-years',years+' años');
+    setText('t-hero-rent',r.toLocaleString('es-ES',{maximumFractionDigits:1})+'%');
+    var delayed=projectTimeDelayed(patr,edad,obj,aport,r,5),loss=Math.max(0,final-delayed),pct=final?loss/final*100:0;
+    var insight=document.getElementById('t-hero-insight');
+    if(insight) insight.innerHTML='Si esperases <strong>5 años</strong> para empezar a aportar, el patrimonio proyectado sería aproximadamente <strong>'+eurFull(loss)+' menor</strong> ('+pct.toFixed(1).replace('.',',')+'%).';
+  }
+
+  // Auto-calculate when these calculators are opened, preserving previous openCalc wrappers.
+  var prevOpen=window.openCalc;
+  window.openCalc=function(id){
+    if(prevOpen)prevOpen(id);
+    if(calc2Ids.indexOf(id)!==-1)setTimeout(function(){runCalc2(id);},60);
+  };
+
+  function resultShareText(id){
+    if(id==='interes'){
+      var A=parseFloat(document.getElementById('ic-aportacion').value)||0,r=parseFloat(document.getElementById('ic-rent').value)||0,n=parseInt(document.getElementById('ic-anos').value)||1,C=parseFloat(document.getElementById('ic-capital').value)||0;
+      var cap=calcCompound(C,A,r,n);
+      return '📈 '+eurFull(A)+'/mes durante '+n+' años al '+r.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(cap)+'. El tiempo hace buena parte del trabajo. Calcula tu escenario en QuijoteFinanzas:';
+    }
+    if(id==='jubilacion'){
+      var a=parseFloat(document.getElementById('jub-actual').value)||0,ap=parseFloat(document.getElementById('jub-aport').value)||0,rr=parseFloat(document.getElementById('jub-rent').value)||0,g=parseFloat(document.getElementById('jub-gastos').value)||0,e=parseInt(document.getElementById('jub-edad').value)||35;
+      var y=yearsToFire(a,ap,rr,g);
+      if(y>=80) return '🔥 Con estos supuestos, mi objetivo FIRE queda fuera del horizonte de 80 años. Probar escenarios cambia mucho el resultado. Calcula el tuyo en QuijoteFinanzas:';
+      return '🔥 Con este escenario, mi objetivo FIRE se situaría alrededor de los '+(e+y)+' años. Puedes probar el tuyo en QuijoteFinanzas:';
+    }
+    if(id==='tiempo'){
+      var p=parseFloat(document.getElementById('t-patrimonio').value)||0,e2=parseInt(document.getElementById('t-edad').value)||30,ap2=parseFloat(document.getElementById('t-aport').value)||0,rr2=parseFloat(document.getElementById('t-rent').value)||0,o=parseInt(document.getElementById('t-objetivo').value)||65;
+      var f=projectTime(p,e2,o,ap2,rr2);
+      return '⌛ '+eurFull(ap2)+'/mes desde los '+e2+' hasta los '+o+' años al '+rr2.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(f)+'. El coste de esperar puede ser enorme. Prueba tu escenario:';
+    }
+    return 'Prueba esta calculadora en QuijoteFinanzas:';
+  }
+  document.querySelectorAll('[data-result-share]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var id=btn.dataset.resultShare;
+      var url=location.origin+location.pathname+'#calc-'+id;
+      var text=resultShareText(id);
+      var intent='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
+      try{qfTrack('calculator_result_share',{label:id});}catch(e){}
+      window.open(intent,'_blank','noopener,noreferrer,width=720,height=560');
+    });
+  });
+
+  // Ensure hero cards are ready even if a modal is deep-linked on load.
+  setTimeout(function(){
+    document.querySelectorAll('.qf-range').forEach(paintRange);
+    var h=location.hash||'';
+    calc2Ids.forEach(function(id){if(h==='#calc-'+id)setTimeout(function(){runCalc2(id);},120);});
+  },50);
+})();
+</script>
+
+
+<script>
+/* ── FASE 19 · Calculadoras 2.0 completo ───────────────────────────── */
+(function(){
+  function initQF19(){
+  var pilotIds=['interes','jubilacion','tiempo'];
+  var genericIds=['autonomos','salario','hipoteca','coste','inflacion','deposito','irpf','pension','alquilervs','amortizacion','alquiler','comparador','cagr-salario','cagr-patrimonio'];
+  var allEnhanced=pilotIds.concat(genericIds).concat(['renta']);
+  var timerById={};
+
+  var runMap={
+    autonomos:'calcAutonomos',salario:'calcSalario',hipoteca:'calcHipoteca',coste:'calcCoste',inflacion:'calcInflacion',
+    deposito:'calcDeposito',irpf:'calcIrpf',pension:'calcPension',alquilervs:'calcAlquilervs',amortizacion:'calcAmortizacion',
+    alquiler:'calcAlquiler',comparador:'calcComparador','cagr-salario':'calcCagrSalario','cagr-patrimonio':'calcCagrPatrimonio'
+  };
+
+  var resultSelector={
+    autonomos:'#au-results',salario:'#sal-results',hipoteca:'#hip-results',coste:'#ce-results',inflacion:'#inf-results',
+    deposito:'#dep-results',irpf:'#irpf-results',pension:'#pp-results',alquilervs:'#avs-results',amortizacion:'#am-results',
+    alquiler:'#alq-results',comparador:'#cmp-results','cagr-salario':'#cags-results','cagr-patrimonio':'#cagp-results'
+  };
+
+  var heroConfig={
+    autonomos:{title:'Dinero neto estimado',main:['dinero que entra en tu cuenta este trimestre'],metrics:[['ingresos del trimestre','Ingresos'],['gastos deducibles','Gastos'],['cuota reta del trimestre','RETA']] ,private:true},
+    salario:{title:'Bruto anual necesario',main:['salario bruto necesario'],metrics:[['neto objetivo','Neto objetivo'],['irpf estimado','IRPF'],['neto por paga','Neto / paga']],private:true},
+    hipoteca:{title:'Cuota mensual estimada',main:['cuota mensual'],metrics:[['capital prestado','Capital'],['total intereses','Intereses'],['plazo','Plazo']]},
+    coste:{title:'Coste anual para la empresa',main:['coste total anual'],metrics:[['tu salario bruto','Bruto'],['ss a cargo empresa','SS empresa'],['coste mensual','Coste / mes']],private:true},
+    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['poder adquisitivo real','Poder real'],['inflación acumulada','Inflación']]},
+    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses netos','Intereses netos'],['tae equivalente','TAE']]},
+    irpf:{title:'Neto estimado por paga',main:['neto por paga'],metrics:[['salario bruto anual','Bruto anual'],['irpf anual','IRPF anual'],['tipo efectivo irpf','Tipo efectivo']],private:true},
+    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal anual'],metrics:[['aportación anual al plan','Aportación'],['coste real de la aportación','Coste real'],['ahorro por cada 100','Ahorro / 100€']]},
+    amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']]},
+    alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]},
+    'cagr-salario':{title:'Crecimiento salarial anualizado',main:['cagr'],metrics:[['inicio','Inicio'],['final','Final'],['variación total','Variación']],private:true},
+    'cagr-patrimonio':{title:'Crecimiento patrimonial anualizado',main:['cagr'],metrics:[['inicio','Inicio'],['final','Final'],['variación total','Variación']],private:true}
+  };
+
+  var sliderConfig={
+    'au-ingresos':{min:0,max:50000,step:500,minLabel:'0€',maxLabel:'50k€'},'au-gastos':{min:0,max:25000,step:250,minLabel:'0€',maxLabel:'25k€'},
+    'ic-capital':{min:0,max:250000,step:2500,minLabel:'0€',maxLabel:'250k€'},
+    'sal-neto':{min:12000,max:100000,step:1000,minLabel:'12k€',maxLabel:'100k€'},
+    'hip-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'hip-entrada':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'},'hip-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'hip-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},
+    'ce-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},
+    'inf-capital':{min:1000,max:500000,step:5000,minLabel:'1k€',maxLabel:'500k€'},'inf-ipc':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'inf-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'inf-rent':{min:0,max:15,step:.1,minLabel:'0%',maxLabel:'15%'},
+    'jub-actual':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'},
+    'dep-capital':{min:1000,max:500000,step:5000,minLabel:'1k€',maxLabel:'500k€'},'dep-tin':{min:0,max:8,step:.1,minLabel:'0%',maxLabel:'8%'},'dep-meses':{min:1,max:60,step:1,minLabel:'1m',maxLabel:'60m'},
+    'irpf-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'irpf-pp':{min:0,max:10000,step:250,minLabel:'0€',maxLabel:'10k€'},
+    'pp-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'pp-aport':{min:0,max:10000,step:250,minLabel:'0€',maxLabel:'10k€'},
+    'avs-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'avs-entrada':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'},'avs-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'avs-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},'avs-alquiler':{min:300,max:5000,step:50,minLabel:'300€',maxLabel:'5k€'},'avs-revalor':{min:-5,max:10,step:.1,minLabel:'-5%',maxLabel:'10%'},'avs-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},
+    'am-capital':{min:10000,max:500000,step:5000,minLabel:'10k€',maxLabel:'500k€'},'am-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'am-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'am-extra':{min:0,max:100000,step:1000,minLabel:'0€',maxLabel:'100k€'},
+    'alq-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'alq-gastos':{min:0,max:20,step:.5,minLabel:'0%',maxLabel:'20%'},'alq-renta':{min:300,max:5000,step:50,minLabel:'300€',maxLabel:'5k€'},'alq-gastos-anuales':{min:0,max:20000,step:250,minLabel:'0€',maxLabel:'20k€'},'alq-vacante':{min:0,max:12,step:.5,minLabel:'0m',maxLabel:'12m'},
+    'cmp-a-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'cmp-a-bonus':{min:0,max:50000,step:500,minLabel:'0€',maxLabel:'50k€'},'cmp-b-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'cmp-b-bonus':{min:0,max:50000,step:500,minLabel:'0€',maxLabel:'50k€'},
+    't-patrimonio':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'}
+  };
+
+  var scenarioConfig={
+    interes:[{label:'+50 €/mes',target:'ic-aportacion',delta:50},{label:'+5 años',target:'ic-anos',delta:5}],
+    jubilacion:[{label:'+100 €/mes',target:'jub-aport',delta:100},{label:'−100 € gasto/mes',target:'jub-gastos',delta:-100}],
+    tiempo:[{label:'+50 €/mes',target:'t-aport',delta:50},{label:'Empezar 5 años antes',target:'t-edad',delta:-5}],
+    autonomos:[{label:'+1.000 € ingresos',target:'au-ingresos',delta:1000},{label:'−500 € gastos',target:'au-gastos',delta:-500}],
+    salario:[{label:'+100 €/mes netos',target:'sal-neto',delta:1200}],
+    hipoteca:[{label:'−0,5 pp de interés',target:'hip-tipo',delta:-.5},{label:'+10.000 € entrada',target:'hip-entrada',delta:10000}],
+    coste:[{label:'+5.000 € de bruto',target:'ce-bruto',delta:5000}],
+    inflacion:[{label:'+1 pp rentabilidad',target:'inf-rent',delta:1},{label:'+5 años',target:'inf-anos',delta:5}],
+    deposito:[{label:'+0,5 pp TIN',target:'dep-tin',delta:.5},{label:'+6 meses',target:'dep-meses',delta:6}],
+    irpf:[{label:'+500 € al plan',target:'irpf-pp',delta:500},{label:'+5.000 € bruto',target:'irpf-bruto',delta:5000}],
+    pension:[{label:'+500 € aportación',target:'pp-aport',delta:500}],
+    alquilervs:[{label:'−0,5 pp hipoteca',target:'avs-tipo',delta:-.5},{label:'+5 años comparación',target:'avs-anos',delta:5}],
+    amortizacion:[{label:'+5.000 € amortización',target:'am-extra',delta:5000},{label:'+1 pp de interés',target:'am-tipo',delta:1}],
+    alquiler:[{label:'+50 €/mes renta',target:'alq-renta',delta:50},{label:'−0,5 mes vacante',target:'alq-vacante',delta:-.5}],
+    comparador:[{label:'+2.000 € bruto B',target:'cmp-b-bruto',delta:2000},{label:'+1 día remoto B',target:'cmp-b-tw',delta:1}]
+  };
+
+  function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();}
+  function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+  function paintRange(r){var min=parseFloat(r.min)||0,max=parseFloat(r.max)||100,val=parseFloat(r.value)||0;var p=max===min?0:(val-min)/(max-min)*100;r.style.setProperty('--range-pct',clamp(p,0,1)*100+'%');}
+  function schedule(id){clearTimeout(timerById[id]);timerById[id]=setTimeout(function(){runCalc(id);},160);}
+  function runCalc(id){var fn=runMap[id]&&window[runMap[id]];if(typeof fn==='function')fn();}
+
+  function enhanceSlider(input,cfg){
+    if(!input||input.dataset.qfSlider==='1'||input.closest('.qf-range-field')||input.closest('.infl-input'))return;
+    input.dataset.qfSlider='1';
+    var wrap=document.createElement('div');wrap.className='qf-inline-range-wrap';
+    var range=document.createElement('input');range.type='range';range.className='qf-inline-range';
+    range.min=cfg.min;range.max=cfg.max;range.step=cfg.step;range.value=clamp(parseFloat(input.value)||cfg.min,cfg.min,cfg.max);
+    var scale=document.createElement('div');scale.className='qf-inline-range-scale';scale.innerHTML='<span>'+cfg.minLabel+'</span><span>'+cfg.maxLabel+'</span>';
+    wrap.appendChild(range);wrap.appendChild(scale);input.insertAdjacentElement('afterend',wrap);paintRange(range);
+    range.addEventListener('input',function(){input.value=range.value;paintRange(range);input.dispatchEvent(new Event('input',{bubbles:true}));});
+    input.addEventListener('input',function(){var v=parseFloat(input.value);if(isFinite(v)){range.value=clamp(v,cfg.min,cfg.max);paintRange(range);}});
+  }
+
+  function pairsFrom(id){
+    var root=document.querySelector(resultSelector[id]);if(!root)return [];
+    var pairs=[];
+    root.querySelectorAll('.result-row').forEach(function(row){var l=row.querySelector('.result-label'),v=row.querySelector('.result-value');if(l&&v)pairs.push({label:l.textContent.trim(),value:v.textContent.trim()});});
+    root.querySelectorAll('.res-item').forEach(function(row){var l=row.querySelector('.res-label'),v=row.querySelector('.res-val');if(l&&v)pairs.push({label:l.textContent.trim(),value:v.textContent.trim()});});
+    return pairs;
+  }
+  function findPair(pairs,needles){
+    needles=Array.isArray(needles)?needles:[needles];
+    for(var i=0;i<needles.length;i++){var n=norm(needles[i]);for(var j=0;j<pairs.length;j++){if(norm(pairs[j].label).indexOf(n)!==-1)return pairs[j];}}
+    return null;
+  }
+  function parseEuro(s){var t=String(s||'').replace(/[^0-9,.-]/g,'').replace(/\./g,'').replace(',','.');var n=parseFloat(t);return isFinite(n)?n:0;}
+  function eur(n){return Math.round(n).toLocaleString('es-ES')+' €';}
+
+  function genericHeroHTML(id,cfg){
+    return '<div class="qf-generic-block" data-qf-block="'+id+'"><div class="qf-live-badge">Resultado en tiempo real</div>'+
+      '<div class="qf-result-hero qf-generic-hero" data-qf-hero="'+id+'" data-state="empty">'+
+      '<div class="qf-hero-eyebrow" id="qf-'+id+'-eyebrow">'+cfg.title+'</div><div class="qf-hero-main" id="qf-'+id+'-main">Ajusta los datos</div>'+
+      '<div class="qf-hero-metrics"><div class="qf-hero-metric"><span id="qf-'+id+'-m1l">Dato 1</span><strong id="qf-'+id+'-m1">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m2l">Dato 2</span><strong id="qf-'+id+'-m2">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m3l">Dato 3</span><strong id="qf-'+id+'-m3">—</strong></div></div>'+
+      '<div class="qf-hero-insight" id="qf-'+id+'-insight">Mueve las barras o cambia los campos para comparar escenarios al instante.</div><div class="qf-whatif" id="qf-'+id+'-whatif"></div>'+
+      '<div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share-all="'+id+'">Compartir resultado en X ↗</button></div>'+
+      (cfg.private?'<div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>':'')+
+      '<div class="qf-card-brand">quijotefinanzas.com</div></div></div>';
+  }
+
+  function insertGenericHero(id,cfg){
+    var modal=document.getElementById('modal-'+id);if(!modal||modal.querySelector('[data-qf-hero="'+id+'"]'))return;
+    modal.classList.add('qf-calc2');var box=modal.querySelector('.calc-modal');if(!box)return;
+    var anchor=box.querySelector('.disclaimer')||box.querySelector('.subtitle')||box.querySelector('.share-toast')||box.querySelector('.share-btn');
+    if(anchor)anchor.insertAdjacentHTML('afterend',genericHeroHTML(id,cfg));else box.insertAdjacentHTML('afterbegin',genericHeroHTML(id,cfg));
+  }
+
+  function ensureScenarioArea(id){
+    var cfg=scenarioConfig[id];if(!cfg||!cfg.length)return;
+    var host=document.getElementById('qf-'+id+'-whatif');
+    if(!host){var pilotHero=(id==='interes'?document.getElementById('ic-hero'):(id==='jubilacion'?document.getElementById('jub-hero'):(id==='tiempo'?document.getElementById('t-hero'):null)));var hero=document.querySelector('[data-qf-hero="'+id+'"]')||pilotHero;if(hero){host=document.createElement('div');host.className='qf-whatif';host.id='qf-'+id+'-whatif';var insight=hero.querySelector('.qf-hero-insight');if(insight)insight.insertAdjacentElement('afterend',host);else hero.querySelector('.qf-hero-actions').insertAdjacentElement('beforebegin',host);}}
+    if(!host||host.dataset.bound==='1')return;host.dataset.bound='1';
+    host.innerHTML='<div class="qf-whatif-label">Prueba un escenario</div>'+cfg.map(function(s,i){return '<button type="button" class="qf-whatif-btn" data-scenario-id="'+id+'" data-scenario-index="'+i+'">'+s.label+'</button>';}).join('');
+  }
+
+  function setHero(id,eyebrow,main,metrics,insight){
+    var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(!hero)return;hero.dataset.state='ready';
+    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=main||'—';mainEl.classList.toggle('long',String(main||'').length>18);}
+    var e=document.getElementById('qf-'+id+'-eyebrow');if(e&&eyebrow)e.textContent=eyebrow;
+    for(var i=0;i<3;i++){var m=metrics&&metrics[i];var l=document.getElementById('qf-'+id+'-m'+(i+1)+'l'),v=document.getElementById('qf-'+id+'-m'+(i+1));if(l)l.textContent=m?m.label:'—';if(v)v.textContent=m?m.value:'—';}
+    var ins=document.getElementById('qf-'+id+'-insight');if(ins&&insight)ins.innerHTML=insight;
+  }
+
+  function updateAlquilerVs(){
+    var p=pairsFrom('alquilervs'),c=findPair(p,['coste total compra']),a=findPair(p,['coste total alquiler']),v=findPair(p,['valor estimado piso']);if(!c||!a)return;
+    var cn=parseEuro(c.value),an=parseEuro(a.value),diff=Math.abs(cn-an),winner=cn<=an?'Comprar':'Alquilar';
+    setHero('alquilervs','Diferencia de coste estimada',eur(diff),[{label:'Comprar',value:c.value},{label:'Alquilar',value:a.value},{label:'Menor coste',value:winner}],'<strong>'+winner+'</strong> presenta menor coste acumulado con estos supuestos. Cambia horizonte, tipo o alquiler y observa cómo se mueve el resultado.');
+  }
+  function updateComparador(){
+    var root=document.getElementById('cmp-results');if(!root)return;var rows=root.querySelectorAll('tbody tr');if(!rows.length)return;var last=rows[rows.length-1],cells=last.querySelectorAll('td');if(cells.length<3)return;
+    var av=cells[1].textContent.trim(),bv=cells[2].textContent.trim(),an=parseEuro(av),bn=parseEuro(bv),winner=an>=bn?'Oferta A':'Oferta B',diff=Math.abs(an-bn);
+    setHero('comparador','Diferencia anual estimada',eur(diff),[{label:'Oferta A',value:av},{label:'Oferta B',value:bv},{label:'Mejor valor',value:winner}],'<strong>'+winner+'</strong> ofrece mayor valor anual estimado al combinar neto, beneficios y costes de desplazamiento.');
+  }
+
+  function updateGenericHero(id){
+    if(id==='alquilervs'){updateAlquilerVs();return;}if(id==='comparador'){updateComparador();return;}
+    var cfg=heroConfig[id];if(!cfg)return;var p=pairsFrom(id);if(!p.length)return;var main=findPair(p,cfg.main);if(!main)return;
+    var metrics=[];(cfg.metrics||[]).forEach(function(m){if(metrics.length>=3)return;var pair=findPair(p,m[0]);if(pair)metrics.push({label:m[1],value:pair.value});});
+    setHero(id,cfg.title,main.value,metrics,'Mueve las barras o usa los escenarios rápidos para ver cómo cambia el resultado sin salir de la calculadora.');
+  }
+
+  function bindAutoCalc(id){
+    var modal=document.getElementById('modal-'+id);if(!modal||modal.dataset.qfAuto==='1')return;modal.dataset.qfAuto='1';
+    modal.querySelectorAll('input,select').forEach(function(el){if(el.type==='checkbox'){el.addEventListener('change',function(){schedule(id);});}else{el.addEventListener('input',function(){schedule(id);});el.addEventListener('change',function(){schedule(id);});}});
+    var btn=modal.querySelector('[data-run="'+id+'"]');if(btn){btn.textContent=(id==='comparador'?'Actualizar comparación →':'Actualizar resultado →');if(!btn.nextElementSibling||!btn.nextElementSibling.classList.contains('qf-live-note'))btn.insertAdjacentHTML('afterend','<div class="qf-live-note">También se recalcula automáticamente al cambiar los datos.</div>');}
+  }
+
+  function wrapCalcFunction(id){var name=runMap[id],orig=window[name];if(typeof orig!=='function'||orig.__qf19)return;var wrapped=function(){var out=orig.apply(this,arguments);setTimeout(function(){updateGenericHero(id);},0);return out;};wrapped.__qf19=true;window[name]=wrapped;}
+
+  function applyScenario(id,index){var s=(scenarioConfig[id]||[])[index];if(!s)return;var el=document.getElementById(s.target);if(!el)return;var cur=parseFloat(el.value)||0,min=el.min!==''?parseFloat(el.min):-Infinity,max=el.max!==''?parseFloat(el.max):Infinity;var next=clamp(cur+s.delta,isFinite(min)?min:-1e15,isFinite(max)?max:1e15);el.value=String(Math.round(next*100)/100);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(hero){hero.classList.remove('qf-scenario-flash');void hero.offsetWidth;hero.classList.add('qf-scenario-flash');}try{qfTrack('calculator_scenario_click',{label:id+':'+s.label});}catch(e){}}
+
+  function calcTitle(id){var modal=document.getElementById('modal-'+id),h=modal&&modal.querySelector('h2');return h?h.textContent.trim().replace(/^[^A-Za-zÁÉÍÓÚÜÑ¿]+/,''):'Calculadora';}
+  function shareText(id){
+    if(id==='renta'){var v=document.querySelector('#renta-result-content .renta-result-verdict');return v?'📋 '+v.textContent.trim()+'. Comprueba tu caso en QuijoteFinanzas:':'📋 Comprueba si tienes que presentar la Renta con QuijoteFinanzas:';}
+    var cfg=heroConfig[id];var hero=document.querySelector('[data-qf-hero="'+id+'"]'),main=document.getElementById('qf-'+id+'-main'),eye=document.getElementById('qf-'+id+'-eyebrow');
+    if(cfg&&cfg.private)return '🧮 He probado la calculadora de '+calcTitle(id)+' en QuijoteFinanzas. Puedes calcular tu propio escenario aquí:';
+    if(main&&hero&&hero.dataset.state==='ready')return '🧮 '+calcTitle(id)+': '+(eye?eye.textContent.trim()+' ':'')+main.textContent.trim()+'. Prueba tu escenario en QuijoteFinanzas:';
+    return '🧮 Prueba la calculadora de '+calcTitle(id)+' en QuijoteFinanzas:';
+  }
+  function openShare(id){var url=location.origin+location.pathname+'#calc-'+id,text=shareText(id),intent='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);try{qfTrack('calculator_result_share',{label:id});}catch(e){}window.open(intent,'_blank','noopener,noreferrer,width=720,height=560');}
+
+  // Base visual para todas las calculadoras activas.
+  allEnhanced.forEach(function(id){var m=document.getElementById('modal-'+id);if(m)m.classList.add('qf-calc2');});
+  Object.keys(heroConfig).forEach(function(id){insertGenericHero(id,heroConfig[id]);});
+  // Casos con hero personalizado.
+  pilotIds.forEach(function(id){ensureScenarioArea(id);});
+  Object.keys(heroConfig).forEach(function(id){ensureScenarioArea(id);});
+  ['alquilervs','comparador'].forEach(function(id){if(!heroConfig[id]){heroConfig[id]={title:'Resultado comparado',main:[],metrics:[]};insertGenericHero(id,heroConfig[id]);ensureScenarioArea(id);}});
+
+  Object.keys(sliderConfig).forEach(function(id){enhanceSlider(document.getElementById(id),sliderConfig[id]);});
+  genericIds.forEach(function(id){wrapCalcFunction(id);bindAutoCalc(id);});
+
+  document.addEventListener('click',function(e){
+    var sc=e.target.closest('[data-scenario-id]');if(sc){applyScenario(sc.dataset.scenarioId,parseInt(sc.dataset.scenarioIndex,10)||0);return;}
+    var sh=e.target.closest('[data-result-share-all]');if(sh){openShare(sh.dataset.resultShareAll);return;}
+    var rs=e.target.closest('[data-renta-result-share]');if(rs){openShare('renta');}
+  });
+
+  // Share para Renta: el propio veredicto ya funciona como tarjeta, no duplicamos UI.
+  var rentaRoot=document.getElementById('renta-result-content');
+  function enhanceRenta(){if(!rentaRoot||!rentaRoot.querySelector('.renta-result-verdict')||rentaRoot.querySelector('[data-renta-result-share]'))return;rentaRoot.insertAdjacentHTML('beforeend','<div class="qf-renta-share-wrap"><button type="button" class="qf-share-result" data-renta-result-share="1">Compartir resultado en X ↗</button></div>');}
+  if(rentaRoot){new MutationObserver(enhanceRenta).observe(rentaRoot,{childList:true,subtree:true});enhanceRenta();}
+
+  // Autocalcular al abrir, salvo Renta y CAGR (necesitan flujo/datos previos).
+  var prevOpen19=window.openCalc;
+  window.openCalc=function(id){if(prevOpen19)prevOpen19(id);if(genericIds.indexOf(id)!==-1&&id!=='cagr-salario'&&id!=='cagr-patrimonio')setTimeout(function(){runCalc(id);},90);if(pilotIds.indexOf(id)!==-1)setTimeout(function(){var r=document.querySelector('#modal-'+id+' .qf-range');if(r)r.dispatchEvent(new Event('input',{bubbles:true}));},90);};
+
+  // Si se entra con hash directo.
+  setTimeout(function(){var h=(location.hash||'').replace('#calc-','');if(genericIds.indexOf(h)!==-1&&h!=='cagr-salario'&&h!=='cagr-patrimonio')runCalc(h);},120);
+
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initQF19);
+  else initQF19();
+})();
+</script>
+
 </body>
 </html>
