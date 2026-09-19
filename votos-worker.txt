@@ -1,0 +1,87 @@
+const ALLOWED_OPTIONS = new Set([
+  'prestamo',
+  'tae-tin',
+  'liquidar-deuda',
+  'objetivo-ahorro',
+  'subida-neta'
+]);
+
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Cache-Control': 'no-store'
+};
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...CORS, 'Content-Type': 'application/json; charset=utf-8' }
+  });
+}
+
+async function getCounts(env) {
+  const rows = await env.DB.prepare(`
+    SELECT
+      option_id,
+      COUNT(*) AS total,
+      SUM(CASE WHEN datetime(created_at) >= datetime('now', '-7 days') THEN 1 ELSE 0 END) AS recent7
+    FROM votes
+    GROUP BY option_id
+  `).all();
+
+  const counts = {};
+  for (const id of ALLOWED_OPTIONS) counts[id] = { total: 0, recent7: 0 };
+  for (const row of rows.results || []) {
+    if (!ALLOWED_OPTIONS.has(row.option_id)) continue;
+    counts[row.option_id] = {
+      total: Number(row.total || 0),
+      recent7: Number(row.recent7 || 0)
+    };
+  }
+  const totalVotes = Object.values(counts).reduce((sum, item) => sum + item.total, 0);
+  return { counts, totalVotes, updatedAt: new Date().toISOString() };
+}
+
+export default {
+  async fetch(request, env) {
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
+
+    try {
+      if (!env.DB) return json({ error: 'D1 binding DB not configured' }, 500);
+
+      if (request.method === 'GET') {
+        return json(await getCounts(env));
+      }
+
+      if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
+
+      let body;
+      try { body = await request.json(); }
+      catch (_) { return json({ error: 'Invalid JSON' }, 400); }
+
+      const optionId = String(body?.id || '');
+      const voterId = String(body?.voterId || '').trim();
+
+      if (!ALLOWED_OPTIONS.has(optionId)) return json({ error: 'Invalid option' }, 400);
+      if (voterId.length < 8 || voterId.length > 160) return json({ error: 'Invalid voterId' }, 400);
+
+      const result = await env.DB.prepare(
+        'INSERT OR IGNORE INTO votes (option_id, voter_id) VALUES (?, ?)'
+      ).bind(optionId, voterId).run();
+
+      const counts = await getCounts(env);
+
+      if (!result.meta || Number(result.meta.changes || 0) === 0) {
+        const existing = await env.DB.prepare(
+          'SELECT option_id FROM votes WHERE voter_id = ? LIMIT 1'
+        ).bind(voterId).first();
+        return json({ ...counts, alreadyVoted: existing?.option_id || null }, 409);
+      }
+
+      return json(counts, 201);
+    } catch (err) {
+      return json({ error: 'Internal error' }, 500);
+    }
+  }
+};
