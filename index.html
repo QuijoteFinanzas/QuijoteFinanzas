@@ -1294,6 +1294,11 @@ function qfTrack(eventName, params) {
 .qf-range-value:focus-within{border-color:rgba(201,168,76,.75);box-shadow:0 0 0 3px rgba(201,168,76,.10)}
 .qf-range-value input{border:0!important;background:transparent!important;padding:0!important;min-width:0;width:68px;text-align:right;font-family:'DM Mono',monospace;font-size:13px;color:var(--navy);outline:none!important;box-shadow:none!important}
 .qf-range-value span{font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap}
+.qf-range-value{position:relative}
+.qf-range-value[data-display]::before{content:attr(data-display);font-family:'DM Mono',monospace;font-size:13px;color:var(--navy);text-align:right;min-width:68px;pointer-events:none}
+.qf-range-value[data-display]:not(:focus-within) input{position:absolute;inset:0 26px 0 0;width:auto!important;opacity:0;cursor:text}
+.qf-range-value[data-display]:focus-within::before{display:none}
+.qf-range-value[data-display]:focus-within input{position:static;opacity:1;width:68px!important}
 .qf-range{width:100%;height:24px;appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer}
 .qf-range::-webkit-slider-runnable-track{height:5px;background:linear-gradient(90deg,var(--gold) 0,var(--gold) var(--range-pct,50%),#dfe6ee var(--range-pct,50%),#dfe6ee 100%);border-radius:999px}
 .qf-range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 8px rgba(15,32,53,.18);margin-top:-7.5px}
@@ -1352,6 +1357,7 @@ function qfTrack(eventName, params) {
 .qf-inline-range::-moz-range-progress{height:4px;background:var(--gold);border-radius:999px}
 .qf-inline-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 7px rgba(15,32,53,.16)}
 .qf-inline-range-scale{display:flex;justify-content:space-between;margin-top:-3px;font-size:8px;color:#9aa8b6;letter-spacing:.02em}
+.qf-inline-range-current{display:flex;justify-content:flex-end;margin:0 2px -2px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--navy);opacity:.78}
 .qf-generic-block{margin:10px 0 22px}
 .qf-generic-block .qf-live-badge{margin-bottom:8px}
 .qf-generic-hero .qf-hero-main{font-size:clamp(32px,6vw,50px)}
@@ -5525,6 +5531,15 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function setText(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
   function rangePct(r){var min=parseFloat(r.min)||0,max=parseFloat(r.max)||100,val=parseFloat(r.value)||0;return Math.max(0,Math.min(100,(val-min)/(max-min)*100));}
   function paintRange(r){r.style.setProperty('--range-pct',rangePct(r)+'%');}
+  function qfFormatNumber(v,step){
+    var n=Number(v); if(!isFinite(n)) return '';
+    var st=String(step||'1'), d=st.indexOf('.')>=0?Math.min(2,st.split('.')[1].length):0;
+    return new Intl.NumberFormat('es-ES',{minimumFractionDigits:0,maximumFractionDigits:d,useGrouping:'always'}).format(n);
+  }
+  function updateRangeDisplay(input){
+    var wrap=input&&input.closest('.qf-range-value'); if(!wrap)return;
+    wrap.dataset.display=qfFormatNumber(input.value,input.step);
+  }
   function syncRangeFromNumber(num){
     var r=document.querySelector('.qf-range[data-sync-to="'+num.id+'"]');
     if(!r)return;
@@ -5543,9 +5558,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   document.querySelectorAll('.qf-range').forEach(function(r){
     var target=document.getElementById(r.dataset.syncTo);
     if(!target)return;
-    paintRange(r);
-    r.addEventListener('input',function(){target.value=r.value;paintRange(r);scheduleCalc2(r.closest('.calc-overlay').id.replace('modal-',''));});
-    target.addEventListener('input',function(){syncRangeFromNumber(target);scheduleCalc2(target.closest('.calc-overlay').id.replace('modal-',''));});
+    paintRange(r); updateRangeDisplay(target);
+    r.addEventListener('input',function(){target.value=r.value;paintRange(r);updateRangeDisplay(target);scheduleCalc2(r.closest('.calc-overlay').id.replace('modal-',''));});
+    target.addEventListener('input',function(){updateRangeDisplay(target);syncRangeFromNumber(target);scheduleCalc2(target.closest('.calc-overlay').id.replace('modal-',''));});
+    target.addEventListener('blur',function(){updateRangeDisplay(target);});
   });
   ['ic-infl-check','ic-infl-val','jub-infl-check','jub-infl-val','t-infl-check','t-infl-val','ic-capital','jub-actual','t-patrimonio'].forEach(function(id){
     var el=document.getElementById(id); if(!el)return;
@@ -5748,6 +5764,17 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();}
   function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
   function paintRange(r){var min=parseFloat(r.min)||0,max=parseFloat(r.max)||100,val=parseFloat(r.value)||0;var p=max===min?0:(val-min)/(max-min)*100;r.style.setProperty('--range-pct',clamp(p,0,1)*100+'%');}
+  function inlineValue(v,cfg){
+    var n=Number(v); if(!isFinite(n))return '';
+    var st=String(cfg.step||1), d=st.indexOf('.')>=0?Math.min(2,st.split('.')[1].length):0;
+    var txt=new Intl.NumberFormat('es-ES',{minimumFractionDigits:0,maximumFractionDigits:d,useGrouping:'always'}).format(n);
+    var labels=String(cfg.minLabel||'')+' '+String(cfg.maxLabel||'');
+    if(labels.indexOf('%')>=0)return txt+'%';
+    if(labels.indexOf('€')>=0)return txt+' €';
+    if(/(^|\d)a(?:$|\b)/.test(String(cfg.maxLabel||'')))return txt+' años';
+    if(/(^|\d)m(?:$|\b)/.test(String(cfg.maxLabel||'')))return txt+' meses';
+    return txt;
+  }
   function schedule(id){clearTimeout(timerById[id]);timerById[id]=setTimeout(function(){runCalc(id);},160);}
   function runCalc(id){var fn=runMap[id]&&window[runMap[id]];if(typeof fn==='function')fn();}
 
@@ -5757,10 +5784,11 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     var wrap=document.createElement('div');wrap.className='qf-inline-range-wrap';
     var range=document.createElement('input');range.type='range';range.className='qf-inline-range';
     range.min=cfg.min;range.max=cfg.max;range.step=cfg.step;range.value=clamp(parseFloat(input.value)||cfg.min,cfg.min,cfg.max);
+    var current=document.createElement('div');current.className='qf-inline-range-current';current.textContent=inlineValue(input.value,cfg);
     var scale=document.createElement('div');scale.className='qf-inline-range-scale';scale.innerHTML='<span>'+cfg.minLabel+'</span><span>'+cfg.maxLabel+'</span>';
-    wrap.appendChild(range);wrap.appendChild(scale);input.insertAdjacentElement('afterend',wrap);paintRange(range);
-    range.addEventListener('input',function(){input.value=range.value;paintRange(range);input.dispatchEvent(new Event('input',{bubbles:true}));});
-    input.addEventListener('input',function(){var v=parseFloat(input.value);if(isFinite(v)){range.value=clamp(v,cfg.min,cfg.max);paintRange(range);}});
+    wrap.appendChild(current);wrap.appendChild(range);wrap.appendChild(scale);input.insertAdjacentElement('afterend',wrap);paintRange(range);
+    range.addEventListener('input',function(){input.value=range.value;current.textContent=inlineValue(input.value,cfg);paintRange(range);input.dispatchEvent(new Event('input',{bubbles:true}));});
+    input.addEventListener('input',function(){var v=parseFloat(input.value);if(isFinite(v)){range.value=clamp(v,cfg.min,cfg.max);current.textContent=inlineValue(v,cfg);paintRange(range);}});
   }
 
   function pairsFrom(id){
