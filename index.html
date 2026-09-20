@@ -1404,6 +1404,69 @@ body:not(.show-home-intro) header{display:none !important}
 
 <!-- Fase 21D: hero principal solo en Sobre el proyecto; el resto entra directo al contenido -->
 <!-- Fase 21A: votaciones 2.0 con rondas, nuevas herramientas y barras porcentuales -->
+
+<style>
+/* ── FASE 22 · QuijoCartera navegación por capas ─────────────────── */
+#quijocartera .qc-grid-single{grid-template-columns:1fr;max-width:790px;margin:0 auto}
+#quijocartera .qc-main-card{padding:22px}
+#quijocartera .qc-chart-layout{grid-template-columns:minmax(250px,.95fr) minmax(230px,1.05fr);gap:24px}
+#quijocartera .qc-chart-shell{height:300px}
+#quijocartera .qc-legend-item{padding:8px 9px;border-radius:9px}
+#quijocartera .qc-legend-item::after{content:'›';font-size:16px;line-height:1;color:#9aabbb;margin-left:2px}
+#quijocartera .qc-legend-item{grid-template-columns:9px 1fr auto auto}
+#quijocartera .qc-legend-item:hover::after,#quijocartera .qc-legend-item:focus-visible::after{color:var(--gold)}
+#quijocartera .qc-card-foot{text-align:center}
+
+.qc-detail-overlay{display:none;position:fixed;inset:0;z-index:1350;background:rgba(8,15,26,.86);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:18px}
+.qc-detail-overlay.open{display:flex}
+.qc-detail-modal{position:relative;width:min(860px,100%);max-height:92vh;overflow-y:auto;background:#fff;border:1px solid #dfe6ee;border-radius:16px;box-shadow:0 26px 90px rgba(15,32,53,.28);padding:28px 30px 20px}
+.qc-detail-close{position:absolute;top:15px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid #dfe6ee;background:#fff;color:var(--navy);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(15,32,53,.08)}
+.qc-detail-close:hover{border-color:rgba(201,168,76,.65);color:#7c5f13}
+.qc-detail-head{padding-right:48px;margin-bottom:20px}
+.qc-detail-kicker{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:6px}
+.qc-detail-title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qc-detail-title-row h3{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,32px);line-height:1.15;color:var(--navy);margin:0}
+.qc-detail-total{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:var(--navy2);background:#f4f6f9;border:1px solid #dfe6ee;border-radius:999px;padding:5px 9px}
+.qc-detail-sub{font-size:12px;color:var(--muted);line-height:1.6;margin:7px 0 0}
+.qc-detail-layout{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(320px,1.15fr);gap:24px;align-items:center}
+.qc-detail-chart-shell{height:310px;position:relative;min-width:0}
+.qc-detail-chart-shell canvas{width:100%!important;height:100%!important}
+.qc-detail-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:110px;pointer-events:none}
+.qc-detail-center strong{display:block;font-family:'Playfair Display',serif;font-size:28px;line-height:1;color:var(--navy)}
+.qc-detail-center span{display:block;margin-top:4px;font-size:10px;line-height:1.3;color:var(--muted)}
+.qc-detail-list{display:flex;flex-direction:column;gap:8px}
+.qc-detail-item{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:9px;align-items:start;padding:10px 11px;border:1px solid #e5eaf0;border-radius:10px;background:#fafbfd;transition:border-color .15s,background .15s}
+.qc-detail-item:hover,.qc-detail-item.active{border-color:rgba(201,168,76,.45);background:#fffdf8}
+.qc-detail-dot{width:9px;height:9px;border-radius:50%;margin-top:5px}
+.qc-detail-info{min-width:0}
+.qc-detail-name{display:block;font-size:12px;line-height:1.4;color:var(--navy);font-weight:700}
+.qc-detail-code{display:block;margin-top:3px;font-family:'DM Mono',monospace;font-size:9.5px;color:#8293a5;overflow-wrap:anywhere}
+.qc-detail-pct{font-family:'DM Mono',monospace;font-size:12px;font-weight:800;color:var(--navy);white-space:nowrap;padding-top:1px}
+.qc-detail-logo{width:32px;height:26px;object-fit:contain;background:#fff;border:1px solid #e1e7ee;border-radius:6px;padding:2px;margin-top:-3px}
+.qc-detail-item.has-logo{grid-template-columns:34px minmax(0,1fr) auto}
+.qc-detail-note{margin:18px 0 0;padding-top:13px;border-top:1px solid #edf1f5;font-size:10.5px;line-height:1.55;color:var(--muted);text-align:center}
+.qc-brand-mark{width:34px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:0 0 34px;background:#fff;border:1px solid rgba(15,32,53,.10);box-shadow:0 1px 4px rgba(15,32,53,.05);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:800;letter-spacing:-.02em;color:var(--navy);text-align:center;padding:2px 4px}
+.qc-brand-mark.wide{font-size:7px;letter-spacing:-.04em}
+.qc-detail-brand{display:block;font-size:9px;color:#8a9aab;margin-top:3px;font-weight:600}
+.qc-detail-modal .qf-brand-signature{margin-top:14px}
+body.qc-modal-open{overflow:hidden}
+@media(max-width:700px){
+  #quijocartera .qc-main-card{padding:18px 15px}
+  #quijocartera .qc-chart-layout{grid-template-columns:1fr;gap:12px}
+  #quijocartera .qc-chart-shell{height:270px}
+  #quijocartera .qc-legend{grid-template-columns:1fr 1fr}
+  .qc-detail-overlay{padding:8px;align-items:flex-start;overflow-y:auto}
+  .qc-detail-modal{max-height:calc(100dvh - 16px);margin:0;padding:22px 15px 16px;border-radius:13px}
+  .qc-detail-head{padding-right:40px;margin-bottom:14px}
+  .qc-detail-layout{grid-template-columns:1fr;gap:12px}
+  .qc-detail-chart-shell{height:245px}
+  .qc-detail-list{gap:7px}
+  .qc-detail-item{padding:9px 10px}
+  .qc-detail-close{position:fixed;top:14px;right:14px;z-index:1360}
+}
+@media(max-width:430px){#quijocartera .qc-legend{grid-template-columns:1fr}.qc-detail-title-row h3{font-size:24px}.qc-detail-chart-shell{height:225px}}
+</style>
+
 </head>
 <body class="show-home-intro">
 
@@ -1831,55 +1894,31 @@ body:not(.show-home-intro) header{display:none !important}
     <h2>QuijoCartera</h2>
     <p class="qc-lead">Así distribuyo actualmente mi propia cartera. Muestro porcentajes, no importes absolutos, para centrar el análisis en la estructura y no en el tamaño del patrimonio.</p>
     <div class="qc-meta-row">
-      <span class="qc-meta-pill">Distribución · 14 sep 2026</span>
-      <span class="qc-meta-pill">Acciones · 16 sep 2026</span>
+      <span class="qc-meta-pill">Actualizada · 20 sep 2026</span>
       <span class="qc-meta-pill subtle">Datos reales de mi cartera</span>
     </div>
   </div>
 
   <div class="qc-intro-note">
-    <strong>Cómo leerlo:</strong> esto refleja mis decisiones y mi situación, no una cartera modelo ni una recomendación. La composición puede cambiar de un mes a otro.
+    <strong>Cómo leerlo:</strong> pulsa cualquier bloque del gráfico o de la leyenda para abrir su composición interna. Los porcentajes del segundo nivel se expresan dentro de cada bloque y vuelven a sumar el 100%.
   </div>
 
-  <div class="qc-grid">
-    <article class="qc-card">
+  <div class="qc-grid qc-grid-single">
+    <article class="qc-card qc-main-card">
       <div class="qc-card-head">
         <div><span class="qc-card-eyebrow">Cartera completa</span><h3>Distribución por activo</h3></div>
-        <span class="qc-date">14/09/2026</span>
+        <span class="qc-date">20/09/2026</span>
       </div>
       <div class="qc-chart-layout">
         <div class="qc-chart-shell">
-          <canvas id="qc-allocation-chart" aria-label="Distribución de la cartera" role="img"></canvas>
+          <canvas id="qc-allocation-chart" aria-label="Distribución de la cartera. Pulsa un segmento para ver su desglose." role="img"></canvas>
           <div class="qc-chart-center" aria-hidden="true"><strong id="qc-allocation-value">100%</strong><span id="qc-allocation-label">Cartera</span></div>
         </div>
         <div class="qc-legend" id="qc-allocation-legend"></div>
       </div>
-      <p class="qc-card-foot">Pasa el cursor —o toca en móvil— sobre cada segmento para ver su peso. La renta variable incluye fondos/vehículos diversificados; las acciones individuales se muestran aparte.</p>
+      <p class="qc-card-foot">Pulsa un activo para ver qué hay dentro. La renta variable incluye fondos y planes de pensiones; las acciones individuales se muestran como un bloque separado.</p>
       <div class="qf-brand-signature">quijotefinanzas.com</div>
     </article>
-
-    <article class="qc-card">
-      <div class="qc-card-head">
-        <div><span class="qc-card-eyebrow">Dentro del 8% en acciones</span><h3>QuijoCartera Acciones</h3></div>
-        <span class="qc-date">16/09/2026</span>
-      </div>
-      <div class="qc-chart-layout">
-        <div class="qc-chart-shell">
-          <canvas id="qc-stocks-chart" aria-label="Distribución de la cartera de acciones" role="img"></canvas>
-          <div class="qc-chart-center" id="qc-stocks-center" aria-hidden="true"><img id="qc-stocks-logo" class="qc-chart-center-logo" src="" alt=""><strong id="qc-stocks-value">100%</strong><span id="qc-stocks-label">Acciones</span></div>
-        </div>
-        <div class="qc-legend" id="qc-stocks-legend"></div>
-      </div>
-      <p class="qc-card-foot">Este segundo gráfico reparte únicamente la parte de acciones individuales de la cartera total. Los porcentajes suman el 100% de ese bloque.</p>
-      <div class="qf-brand-signature">quijotefinanzas.com</div>
-    </article>
-  </div>
-
-  <div class="qc-summary-grid">
-    <div class="qc-summary-card"><span class="qc-summary-num">66%</span><strong>Renta variable</strong><span>Es el bloque principal de la cartera.</span></div>
-    <div class="qc-summary-card"><span class="qc-summary-num">21%</span><strong>Renta fija</strong><span>Segundo bloque por peso.</span></div>
-    <div class="qc-summary-card"><span class="qc-summary-num">8%</span><strong>Acciones</strong><span>Ocho compañías en cartera directa.</span></div>
-    <div class="qc-summary-card"><span class="qc-summary-num">5%</span><strong>Liquidez + alternativos</strong><span>3% liquidez, 1% oro y 1% cripto.</span></div>
   </div>
 
   <div class="section-flow">
@@ -1977,6 +2016,30 @@ body:not(.show-home-intro) header{display:none !important}
 
 </main>
 
+
+
+<div id="qc-detail-overlay" class="qc-detail-overlay" aria-hidden="true">
+  <div class="qc-detail-modal" role="dialog" aria-modal="true" aria-labelledby="qc-detail-title">
+    <button type="button" class="qc-detail-close" id="qc-detail-close" aria-label="Cerrar desglose">×</button>
+    <div class="qc-detail-head">
+      <div class="qc-detail-kicker">Dentro del bloque</div>
+      <div class="qc-detail-title-row">
+        <h3 id="qc-detail-title">Detalle</h3>
+        <span id="qc-detail-total" class="qc-detail-total"></span>
+      </div>
+      <p id="qc-detail-sub" class="qc-detail-sub">Los porcentajes se recalculan dentro de este bloque.</p>
+    </div>
+    <div class="qc-detail-layout">
+      <div class="qc-detail-chart-shell">
+        <canvas id="qc-detail-chart" aria-label="Desglose del bloque seleccionado" role="img"></canvas>
+        <div class="qc-detail-center" aria-hidden="true"><strong id="qc-detail-center-value">100%</strong><span id="qc-detail-center-label">Bloque</span></div>
+      </div>
+      <div id="qc-detail-list" class="qc-detail-list"></div>
+    </div>
+    <p class="qc-detail-note">Los porcentajes de esta vista corresponden al peso de cada posición dentro del bloque seleccionado, no sobre el patrimonio total. Las cifras están redondeadas a una décima.</p>
+    <div class="qf-brand-signature">quijotefinanzas.com</div>
+  </div>
+</div>
 
 <div id="mediaOverlay" class="media-overlay" aria-hidden="true">
   <div class="media-modal" role="dialog" aria-modal="true" aria-labelledby="mediaTitle">
@@ -5405,9 +5468,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   var charts = {};
   var portfolioData = {
     allocation: {
-      labels: ['Renta Variable','Renta Fija','Acciones','Liquidez','Oro','Criptomonedas'],
-      values: [66,21,8,3,1,1],
-      colors: ['#173f6e','#2b8b83','#c89b2d','#4f87b7','#d2ad48','#657384']
+      labels: ['Renta variable','Acciones','RF / Defensivos','Liquidez','Bitcoin','Oro'],
+      keys: ['rv','stocks','rf','cash','bitcoin','gold'],
+      values: [65.6,7.8,21.5,3.1,1.3,0.6],
+      colors: ['#173f6e','#c89b2d','#2b8b83','#4f87b7','#657384','#d2ad48']
     },
     stocks: {
       labels: ['Meta','Microsoft','LVMH','Mastercard','S&P Global','Amazon','McDonald’s','Airbus'],
@@ -5425,6 +5489,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       ]
     }
   };
+  window.qcPortfolioData = portfolioData;
 
   function setCenter(prefix, value, label, logo){
     var v=document.getElementById(prefix+'-value');
@@ -5466,7 +5531,11 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       function reset(){
         b.classList.remove('active'); chart.setActiveElements([]); chart.update('none'); resetCenter(prefix,defaultLabel);
       }
-      b.addEventListener('mouseenter',activate); b.addEventListener('focus',activate); b.addEventListener('click',activate);
+      b.addEventListener('mouseenter',activate); b.addEventListener('focus',activate);
+      b.addEventListener('click',function(){
+        activate();
+        if(prefix==='qc-allocation' && data.keys && window.openQuijoCarteraDetail){ window.openQuijoCarteraDetail(data.keys[i]); }
+      });
       b.addEventListener('mouseleave',reset); b.addEventListener('blur',reset);
       root.appendChild(b);
     });
@@ -5487,7 +5556,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
           if(elements && elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i],d.logos ? d.logos[i] : null);canvas.style.cursor='pointer';}
           else {resetCenter(prefix,defaultLabel);canvas.style.cursor='default';}
         },
-        onClick:function(evt,elements){if(elements&&elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i],d.logos ? d.logos[i] : null);}}
+        onClick:function(evt,elements){if(elements&&elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i],d.logos ? d.logos[i] : null);if(key==='allocation' && d.keys && window.openQuijoCarteraDetail){window.openQuijoCarteraDetail(d.keys[i]);}}}
       }
     });
     canvas.addEventListener('mouseleave',function(){chart.setActiveElements([]);chart.update('none');resetCenter(prefix,defaultLabel);});
@@ -5498,13 +5567,171 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   window.renderQuijoCartera=function(){
     makeChart('allocation','qc-allocation-chart','qc-allocation-legend','qc-allocation','Cartera');
-    makeChart('stocks','qc-stocks-chart','qc-stocks-legend','qc-stocks','Acciones');
   };
 
   // Soporta carga directa con #quijocartera.
   document.addEventListener('DOMContentLoaded',function(){
     var sec=document.getElementById('quijocartera');
     if(sec && sec.classList.contains('active')) setTimeout(window.renderQuijoCartera,60);
+  });
+})();
+</script>
+
+<script>
+/* ── FASE 22 · Segundo nivel QuijoCartera ────────────────────────── */
+(function(){
+  var detailChart = null;
+  var palette = ['#173f6e','#c89b2d','#2b8b83','#4f87b7','#657384','#d2ad48','#8a6f9f','#bd6b55'];
+
+  var detailData = {
+    rv: {
+      title: 'Renta variable', total: 65.6, normalize: true,
+      items: [
+        {name:'Vanguard Global Stock Index Fund EUR Acc', short:'World', raw:37.6, codeLabel:'ISIN', code:'IE00B03HD191', brand:'Vanguard', mark:'V'},
+        {name:'MyInvestor Indexado Global PP', short:'PP Global', raw:12.9, codeLabel:'Código DGS', code:'N5396', brand:'MyInvestor', mark:'MI'},
+        {name:'Robeco QI Emerging Markets Active Equities D EUR', short:'Emergentes', raw:5.8, codeLabel:'ISIN', code:'LU0329355670', brand:'Robeco', mark:'R'},
+        {name:'Vanguard Global Small-Cap Index Fund EUR Acc', short:'Small Caps', raw:5.1, codeLabel:'ISIN', code:'IE00B42W4L06', brand:'Vanguard', mark:'V'},
+        {name:'Magallanes European Equity Clase P', short:'Europa Value', raw:4.1, codeLabel:'ISIN', code:'ES0159259029', brand:'Magallanes', mark:'M'}
+      ]
+    },
+    stocks: {
+      title: 'Acciones individuales', total: 7.8, normalize: false,
+      items: [
+        {name:'Meta', pct:21.0},
+        {name:'Microsoft', pct:16.0},
+        {name:'LVMH', pct:15.3},
+        {name:'Mastercard', pct:13.7},
+        {name:'S&P Global', pct:10.1},
+        {name:'Amazon', pct:8.2},
+        {name:"McDonald's", pct:8.2},
+        {name:'Airbus', pct:7.4}
+      ]
+    },
+    rf: {
+      title: 'RF / Defensivos', total: 21.5, normalize: true,
+      items: [
+        {name:'AXA Trésor Court Terme C', short:'AXA', raw:5.9, codeLabel:'ISIN', code:'FR0000447823', brand:'AXA', mark:'AXA'},
+        {name:'Ostrum Credit Ultra Short Plus R/C', short:'Ostrum', raw:5.0, codeLabel:'ISIN', code:'FR001400CFA4', brand:'Ostrum', mark:'O'},
+        {name:'DNCA Invest Alpha Bonds A EUR', short:'DNCA', raw:5.2, codeLabel:'ISIN', code:'LU1694789451', brand:'DNCA', mark:'DNCA'},
+        {name:'Gamma Global FI', short:'Gamma', raw:5.3, codeLabel:'ISIN', code:'ES0140794001', brand:'Gamma', mark:'G'}
+      ]
+    },
+    cash: {
+      title: 'Liquidez', total: 3.1, normalize: false,
+      items: [{name:'Efectivo / cuentas bancarias · Bankinter', short:'Bankinter', pct:100, brand:'Bankinter', mark:'BKT'}]
+    },
+    bitcoin: {
+      title: 'Bitcoin', total: 1.3, normalize: false,
+      items: [{name:'iShares Bitcoin ETP', short:'Bitcoin ETP', pct:100, codeLabel:'ISIN', code:'XS2940466316', brand:'iShares', mark:'iS'}]
+    },
+    gold: {
+      title: 'Oro', total: 0.6, normalize: false,
+      items: [{name:'iShares Physical Gold ETC', short:'Physical Gold', pct:100, codeLabel:'ISIN', code:'IE00B4ND3602', brand:'iShares', mark:'iS'}]
+    }
+  };
+
+  function fmt(n){ return Number(n).toLocaleString('es-ES',{minimumFractionDigits:(Math.abs(n-Math.round(n))>.001?1:0),maximumFractionDigits:1})+'%'; }
+
+  function normalize(items){
+    var sum=items.reduce(function(a,x){return a+Number(x.raw||0);},0);
+    var rounded=[]; var used=0;
+    items.forEach(function(x,i){
+      var val;
+      if(i===items.length-1){ val=Math.round((100-used)*10)/10; }
+      else { val=Math.round((Number(x.raw)/sum*100)*10)/10; used+=val; }
+      rounded.push(val);
+    });
+    return rounded;
+  }
+
+  function prepared(block){
+    var pcts = block.normalize ? normalize(block.items) : block.items.map(function(x){return Number(x.pct);});
+    return block.items.map(function(x,i){
+      return Object.assign({},x,{pct:pcts[i],color:palette[i%palette.length]});
+    });
+  }
+
+  function setDetailCenter(value,label){
+    var v=document.getElementById('qc-detail-center-value');
+    var l=document.getElementById('qc-detail-center-label');
+    if(v) v.textContent=fmt(value);
+    if(l) l.textContent=label;
+  }
+
+  function buildList(items, blockKey){
+    var root=document.getElementById('qc-detail-list'); if(!root) return;
+    root.innerHTML='';
+    var stockLogos=(window.qcPortfolioData && window.qcPortfolioData.stocks && window.qcPortfolioData.stocks.logos)||[];
+    items.forEach(function(item,i){
+      var row=document.createElement('div');
+      var hasLogo=blockKey==='stocks' && stockLogos[i];
+      row.className='qc-detail-item'+(hasLogo?' has-logo':'');
+      if(hasLogo){
+        row.innerHTML='<img class="qc-detail-logo" src="'+stockLogos[i]+'" alt="Logo '+item.name+'" onerror="this.style.display=\'none\'"><div class="qc-detail-info"><span class="qc-detail-name">'+item.name+'</span></div><span class="qc-detail-pct">'+fmt(item.pct)+'</span>';
+      } else {
+        var code=item.code ? '<span class="qc-detail-code">'+item.codeLabel+': '+item.code+'</span>' : '';
+        var brand=item.brand ? '<span class="qc-detail-brand">'+item.brand+'</span>' : '';
+        var mark=item.mark ? '<span class="qc-brand-mark'+(String(item.mark).length>3?' wide':'')+'" aria-hidden="true">'+item.mark+'</span>' : '<span class="qc-detail-dot" style="background:'+item.color+'"></span>';
+        row.innerHTML=mark+'<div class="qc-detail-info"><span class="qc-detail-name">'+item.name+'</span>'+brand+code+'</div><span class="qc-detail-pct">'+fmt(item.pct)+'</span>';
+      }
+      function activate(){
+        root.querySelectorAll('.qc-detail-item').forEach(function(x){x.classList.remove('active');});
+        row.classList.add('active');
+        if(detailChart){detailChart.setActiveElements([{datasetIndex:0,index:i}]);detailChart.update('none');}
+        setDetailCenter(item.pct,item.short||item.name);
+      }
+      function reset(){
+        row.classList.remove('active');
+        if(detailChart){detailChart.setActiveElements([]);detailChart.update('none');}
+        setDetailCenter(100,'Dentro del bloque');
+      }
+      row.addEventListener('mouseenter',activate); row.addEventListener('mouseleave',reset);
+      root.appendChild(row);
+    });
+  }
+
+  function draw(blockKey, block, items){
+    var canvas=document.getElementById('qc-detail-chart'); if(!canvas || typeof Chart==='undefined') return;
+    if(detailChart){detailChart.destroy();detailChart=null;}
+    detailChart=new Chart(canvas.getContext('2d'),{
+      type:'doughnut',
+      data:{labels:items.map(function(x){return x.short||x.name;}),datasets:[{data:items.map(function(x){return x.pct;}),backgroundColor:items.map(function(x){return x.color;}),borderColor:'#fff',borderWidth:2,hoverBorderWidth:2,hoverOffset:7}]},
+      options:{
+        responsive:true,maintainAspectRatio:false,cutout:'68%',animation:{duration:520},
+        plugins:{legend:{display:false},tooltip:{displayColors:false,backgroundColor:'#0f2035',titleColor:'#fff',bodyColor:'#fff',padding:10,callbacks:{label:function(c){return c.label+': '+fmt(c.raw);}}}},
+        onHover:function(evt,elements){
+          if(elements&&elements.length){var i=elements[0].index;setDetailCenter(items[i].pct,items[i].short||items[i].name);canvas.style.cursor='pointer';}
+          else{setDetailCenter(100,'Dentro del bloque');canvas.style.cursor='default';}
+        }
+      }
+    });
+    canvas.onmouseleave=function(){if(detailChart){detailChart.setActiveElements([]);detailChart.update('none');}setDetailCenter(100,'Dentro del bloque');};
+    buildList(items,blockKey);
+  }
+
+  window.openQuijoCarteraDetail=function(key){
+    var block=detailData[key]; if(!block) return;
+    var overlay=document.getElementById('qc-detail-overlay'); if(!overlay) return;
+    var items=prepared(block);
+    document.getElementById('qc-detail-title').textContent=block.title;
+    document.getElementById('qc-detail-total').textContent=fmt(block.total)+' de la cartera';
+    document.getElementById('qc-detail-sub').textContent=(key==='stocks' ? 'Distribución del bloque de acciones individuales.' : 'Porcentajes recalculados dentro del bloque seleccionado.');
+    overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.classList.add('qc-modal-open');
+    setDetailCenter(100,'Dentro del bloque');
+    requestAnimationFrame(function(){draw(key,block,items);});
+    try{qfTrack('quijocartera_asset_click',{label:key,asset:block.title});}catch(e){}
+  };
+
+  window.closeQuijoCarteraDetail=function(){
+    var overlay=document.getElementById('qc-detail-overlay'); if(!overlay) return;
+    overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); document.body.classList.remove('qc-modal-open');
+    if(detailChart){detailChart.destroy();detailChart=null;}
+  };
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var close=document.getElementById('qc-detail-close'); if(close) close.addEventListener('click',window.closeQuijoCarteraDetail);
+    var overlay=document.getElementById('qc-detail-overlay'); if(overlay) overlay.addEventListener('click',function(e){if(e.target===overlay) window.closeQuijoCarteraDetail();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape' && overlay && overlay.classList.contains('open')) window.closeQuijoCarteraDetail();});
   });
 })();
 </script>
