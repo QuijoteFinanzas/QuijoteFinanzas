@@ -1390,12 +1390,14 @@ function qfTrack(eventName, params) {
 .cuenta-source,.cuenta-ref{display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;text-decoration:none;border-radius:999px;padding:6px 9px;transition:all .15s ease}
 .cuenta-source{color:var(--navy2);background:#f7f9fc;border:1px solid #dfe6ee}.cuenta-source:hover{border-color:#aebdcb;color:var(--navy)}
 .cuenta-ref{color:#735711;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.32)}.cuenta-ref:hover{background:rgba(201,168,76,.16);border-color:var(--gold)}
-.votos-status{font-size:11px;color:var(--muted);margin:-8px 0 14px}.votos-status.ok{color:#557468}.votos-status.error{color:#a65f4a}.votos-status.loading{color:var(--muted)}
-.voto-trend{font-size:10px;color:#8090a0;margin:-3px 0 8px 0}.votos-unavailable{padding:16px 18px;background:#fff;border:1px dashed #d8e0e8;border-radius:10px;display:flex;flex-direction:column;gap:4px;color:var(--muted);font-size:12px}.votos-unavailable strong{color:var(--navy)}
-@media(max-width:600px){.cuenta-actions>a{flex:1;min-width:120px}.voto-header{flex-wrap:wrap}.voto-count{margin-left:auto}.voto-btn{flex:0 0 auto}}
+.votos-status{font-size:11px;color:var(--muted);margin:-2px 0 14px}.votos-status.ok{color:#557468}.votos-status.error{color:#a65f4a}.votos-status.loading{color:var(--muted)}
+.votos-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:5px}.votos-kicker{display:block;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#927321;margin-bottom:4px}.votos-round{font-size:9px;font-weight:700;color:var(--muted);background:#fff;border:1px solid #e2e8ef;border-radius:999px;padding:5px 8px;white-space:nowrap}
+.voto-copy{flex:1;min-width:0}.voto-nombre-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.voto-desc{display:block;font-size:11px;line-height:1.45;color:#74879a;margin-top:3px}.voto-leader-badge{display:inline-flex;align-items:center;font-size:8px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#806316;background:rgba(201,168,76,.11);border:1px solid rgba(201,168,76,.30);border-radius:999px;padding:3px 6px}.voto-item.community-leader{border-color:rgba(201,168,76,.42)!important;box-shadow:0 5px 18px rgba(15,32,53,.04);background:linear-gradient(180deg,#fff 0%,#fffdf8 100%)!important}.voto-count{font-variant-numeric:tabular-nums}.voto-trend{font-size:10px;color:#8090a0;margin:7px 0 8px 0}.votos-unavailable{padding:16px 18px;background:#fff;border:1px dashed #d8e0e8;border-radius:10px;display:flex;flex-direction:column;gap:4px;color:var(--muted);font-size:12px}.votos-unavailable strong{color:var(--navy)}
+#calculadoras .voto-bar-wrap{height:7px;background:#edf1f5;border-radius:999px}#calculadoras .voto-bar{background:linear-gradient(90deg,#b39035,#d2b85f);border-radius:999px}.voto-btn:disabled:not(.voted){opacity:.55;cursor:not-allowed}
+@media(max-width:600px){.cuenta-actions>a{flex:1;min-width:120px}.votos-head-row{align-items:center}.votos-round{display:none}.voto-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}.voto-copy{grid-column:1 / -1}.voto-count{margin:0}.voto-btn{flex:0 0 auto}.voto-desc{padding-right:4px}}
 </style>
 
-<!-- Fase 20.4: modales de calculadoras por encima del header en móvil + agrupación de miles ES forzada -->
+<!-- Fase 21A: votaciones 2.0 con rondas, nuevas herramientas y barras porcentuales -->
 </head>
 <body class="show-home-intro">
 
@@ -1770,15 +1772,15 @@ function qfTrack(eventName, params) {
       <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="salario" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Coste de un pr&eacute;stamo</span><span class="coming">Próximamente</span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#128203;</span><span class="calc-name">TAE vs TIN</span><span class="coming">Próximamente</span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#9200;</span><span class="calc-name">Liquidar deuda</span><span class="coming">Próximamente</span></div>
-      <div class="calc-item" data-cat="inversion"><span class="ci">&#127919;</span><span class="calc-name">Ahorro para un objetivo</span><span class="coming">Próximamente</span></div>
-      <div class="calc-item" data-cat="salario"><span class="ci">&#128200;</span><span class="calc-name">Subida salarial neta</span><span class="coming">Próximamente</span></div>
+      <div class="calc-item" data-cat="inversion"><span class="ci">&#128200;</span><span class="calc-name">Impacto de las comisiones</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="inversion"><span class="ci">&#128737;&#65039;</span><span class="calc-name">Fondo de emergencia</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca vs invertir</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#128273;</span><span class="calc-name">Entrada para comprar vivienda</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Deudas: avalancha vs bola de nieve</span><span class="coming">En votación</span></div>
     </div>
     <div class="votos-section">
-      <h3>Vota la pr&oacute;xima calculadora</h3>
-      <p class="sub">Ayuda a priorizar lo que construyo primero. Los votos se comparten entre usuarios y muestran también la actividad de los últimos 7 días.</p>
+      <div class="votos-head-row"><div><span class="votos-kicker">Próximas herramientas</span><h3>¿Cuál quieres que construya primero?</h3></div><span class="votos-round">Ronda · sep. 2026</span></div>
+      <p class="sub">Vota una opción. Los resultados son globales y muestran el movimiento de los últimos 7 días. La votación sirve como señal de prioridad, no como promesa de fecha.</p>
       <div id="votos-status" class="votos-status" aria-live="polite">Cargando votación…</div>
       <div id="votos-list"></div>
     </div>
@@ -3287,15 +3289,17 @@ document.addEventListener('DOMContentLoaded', function(){
     row.querySelectorAll('.cat-btn').forEach(function(btn){btn.addEventListener('click',function(ev){ev.preventDefault();setCuentasTab(btn.getAttribute('data-tab'));});});
   }
 
-  // ── VOTOS · persistencia global vía Cloudflare Worker + D1 ─────────────────
+  // ── VOTOS 2.0 · rondas + persistencia global vía Cloudflare Worker + D1 ────
+  var VOTOS_BALLOT='tools-2026-09-2';
   var VOTOS_OPT = [
-    {id:'prestamo',label:'Coste real de un préstamo'},
-    {id:'tae-tin',label:'TAE vs TIN'},
-    {id:'liquidar-deuda',label:'Liquidar deuda: bola de nieve vs avalancha'},
-    {id:'objetivo-ahorro',label:'Ahorro para un objetivo'},
-    {id:'subida-neta',label:'Subida salarial: cuánto llega al neto'}
+    {id:'impacto-comisiones',label:'Impacto de las comisiones',desc:'Cuánto te resta pagar 0,20%, 0,50%, 1% o más durante 10, 20 o 30 años.'},
+    {id:'fondo-emergencia',label:'Fondo de emergencia',desc:'Calcula tu colchón objetivo y cuánto tardarías en construirlo con tu ahorro mensual.'},
+    {id:'amortizar-vs-invertir',label:'Amortizar hipoteca vs invertir',desc:'Compara el ahorro de intereses con una rentabilidad alternativa configurable.'},
+    {id:'entrada-vivienda',label:'Entrada para comprar vivienda',desc:'Entrada, gastos y ahorro mensual necesario para llegar a una fecha objetivo.'},
+    {id:'estrategia-deudas',label:'Deudas: avalancha vs bola de nieve',desc:'Compara orden de pago, intereses totales y fecha estimada de liquidación.'}
   ];
   var VOTOS_WORKER='https://votos-quijotefinanzas.donquijotedelasfinanzas.workers.dev';
+  function votosChoiceKey(){return 'qf_vote_choice_'+VOTOS_BALLOT;}
 
   function votosVoterId(){
     var id=gS('qf_vote_voter_id',null);
@@ -3306,7 +3310,7 @@ document.addEventListener('DOMContentLoaded', function(){
   function votosSetStatus(msg,kind){var el=document.getElementById('votos-status');if(!el)return;el.textContent=msg||'';el.className='votos-status'+(kind?' '+kind:'');}
   function renderVotosUnavailable(){
     var el=document.getElementById('votos-list'); if(!el)return;
-    el.innerHTML='<div class="votos-unavailable"><strong>Votación temporalmente no disponible.</strong><span>No mostramos ceros ficticios: cuando la API vuelva a responder aparecerán aquí los votos acumulados.</span></div>';
+    el.innerHTML='<div class="votos-unavailable"><strong>Votación temporalmente no disponible.</strong><span>Los resultados volverán a mostrarse cuando la API responda. No sustituimos los datos reales por ceros ficticios.</span></div>';
     votosSetStatus('','');
   }
   function normalizeVoteData(data){
@@ -3314,32 +3318,33 @@ document.addEventListener('DOMContentLoaded', function(){
     var counts=(data&&data.counts)||{}; Object.keys(counts).forEach(function(k){if(out[k]){out[k].total=Number(counts[k].total||0);out[k].recent7=Number(counts[k].recent7||0);}}); return out;
   }
   function renderVotosUI(data,votado){
-    var votos=normalizeVoteData(data), totals=VOTOS_OPT.map(function(op){return votos[op.id].total;}), maxV=Math.max.apply(null,[1].concat(totals));
-    var total=totals.reduce(function(a,b){return a+b;},0);
+    if(data&&data.ballotId&&data.ballotId!==VOTOS_BALLOT){renderVotosUnavailable();return;}
+    var votos=normalizeVoteData(data), totals=VOTOS_OPT.map(function(op){return votos[op.id].total;}), total=totals.reduce(function(a,b){return a+b;},0);
+    var maxV=Math.max.apply(null,[0].concat(totals)), leaders=total&&maxV>0?totals.filter(function(n){return n===maxV;}).length:0;
     var html=VOTOS_OPT.map(function(op){
-      var d=votos[op.id],n=d.total,pct=total?Math.round(n/total*100):0,isV=votado===op.id;
-      return '<div class="voto-item"><div class="voto-header"><span class="voto-nombre">'+op.label+'</span>'
+      var d=votos[op.id],n=d.total,pct=total?Math.round(n/total*100):0,isV=votado===op.id,isLeader=total>0&&leaders===1&&n===maxV;
+      return '<div class="voto-item'+(isLeader?' community-leader':'')+'"><div class="voto-header"><div class="voto-copy"><div class="voto-nombre-row"><span class="voto-nombre">'+op.label+'</span>'+(isLeader?'<span class="voto-leader-badge">Más votada</span>':'')+'</div><span class="voto-desc">'+op.desc+'</span></div>'
         +'<span class="voto-count">'+n+' voto'+(n===1?'':'s')+(total?' · '+pct+'%':'')+'</span>'
         +'<button class="voto-btn'+(isV?' voted':'')+'" data-vote="'+op.id+'"'+(votado?' disabled':'')+'>'+(isV?'Votado':'Votar')+'</button></div>'
         +'<div class="voto-trend">'+(d.recent7>0?'+'+d.recent7+' en los últimos 7 días':'Sin votos nuevos en 7 días')+'</div>'
-        +'<div class="voto-bar-wrap"><div class="voto-bar" style="width:'+(n?Math.max(4,Math.round(n/maxV*100)):0)+'%"></div></div></div>';
+        +'<div class="voto-bar-wrap" role="img" aria-label="'+pct+'% de los votos"><div class="voto-bar" style="width:'+(n?Math.max(3,pct):0)+'%"></div></div></div>';
     }).join('');
     var root=document.getElementById('votos-list'); if(!root)return; root.innerHTML=html;
-    votosSetStatus(total+' voto'+(total===1?'':'s')+' acumulado'+(total===1?'':'s')+' entre todos los usuarios.','ok');
+    votosSetStatus(total?total+' voto'+(total===1?'':'s')+' en esta ronda.':'Todavía no hay votos en esta ronda.','ok');
     root.querySelectorAll('[data-vote]').forEach(function(btn){btn.addEventListener('click',function(){
-      var id=btn.getAttribute('data-vote'); if(gS('ya_vote',null))return;
+      var id=btn.getAttribute('data-vote'); if(gS(votosChoiceKey(),null))return;
       root.querySelectorAll('[data-vote]').forEach(function(b){b.disabled=true;}); votosSetStatus('Guardando tu voto…','loading');
       fetch(VOTOS_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,voterId:votosVoterId()})})
         .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,data:j};});})
         .then(function(res){
-          if(res.ok){sS('ya_vote',id);renderVotosUI(res.data,id);return;}
-          if(res.status===409&&res.data&&res.data.alreadyVoted){sS('ya_vote',res.data.alreadyVoted);renderVotosUI(res.data,res.data.alreadyVoted);return;}
+          if(res.ok){sS(votosChoiceKey(),id);renderVotosUI(res.data,id);return;}
+          if(res.status===409&&res.data&&res.data.alreadyVoted){sS(votosChoiceKey(),res.data.alreadyVoted);renderVotosUI(res.data,res.data.alreadyVoted);return;}
           throw new Error('vote failed');
         }).catch(function(){renderVotos();});
     });});
   }
   function renderVotos(){
-    var votado=gS('ya_vote',null); votosSetStatus('Cargando votación…','loading');
+    var votado=gS(votosChoiceKey(),null); votosSetStatus('Cargando votación…','loading');
     fetch(VOTOS_WORKER,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
       .then(function(data){renderVotosUI(data,votado);}).catch(function(){renderVotosUnavailable();});
   }
