@@ -17,22 +17,22 @@
 <meta property="og:url" content="https://quijotefinanzas.com/">
 <meta property="og:site_name" content="Don Quijote de las Finanzas">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Don Quijote de las Finanzas — Herramientas financieras gratuitas">
-<meta property="og:description" content="Calculadoras, recursos y guías para tomar decisiones financieras con números reales. Gratis, sin publicidad.">
-<meta property="og:image" content="https://quijotefinanzas.com/og-image.png">
-  <meta property="og:image:secure_url" content="https://quijotefinanzas.com/og-image.png">
+<meta property="og:title" content="Don Quijote de las Finanzas | Herramientas y educación financiera">
+<meta property="og:description" content="Calculadoras, comparativas y recursos gratuitos para entender mejor tus finanzas y tomar decisiones con criterio.">
+<meta property="og:image" content="https://quijotefinanzas.com/og-image-2026.png">
+  <meta property="og:image:secure_url" content="https://quijotefinanzas.com/og-image-2026.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Don Quijote de las Finanzas - Herramientas financieras gratuitas">
+<meta property="og:image:alt" content="Don Quijote de las Finanzas - Herramientas y educación financiera">
 <meta property="og:image:type" content="image/png">
 
 <!-- ── TWITTER / X CARD ─────────────────────────────────────────────── -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@quijotefinanzas">
 <meta name="twitter:creator" content="@quijotefinanzas">
-<meta name="twitter:title" content="Don Quijote de las Finanzas — Herramientas financieras gratuitas">
-<meta name="twitter:description" content="Calculadoras, recursos y guías para tomar decisiones financieras con números reales. Gratis, sin publicidad.">
-<meta name="twitter:image" content="https://quijotefinanzas.com/og-image.png">
+<meta name="twitter:title" content="Don Quijote de las Finanzas | Herramientas y educación financiera">
+<meta name="twitter:description" content="Calculadoras, comparativas y recursos gratuitos para entender mejor tus finanzas y tomar decisiones con criterio.">
+<meta name="twitter:image" content="https://quijotefinanzas.com/og-image-2026.png">
 
 <!-- ── SCHEMA.ORG STRUCTURED DATA ───────────────────────────────────── -->
 <script type="application/ld+json">
@@ -1397,6 +1397,12 @@ function qfTrack(eventName, params) {
 @media(max-width:600px){.cuenta-actions>a{flex:1;min-width:120px}.votos-head-row{align-items:center}.votos-round{display:none}.voto-header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}.voto-copy{grid-column:1 / -1}.voto-count{margin:0}.voto-btn{flex:0 0 auto}.voto-desc{padding-right:4px}}
 </style>
 
+<style>
+/* ── FASE 21D · navegación directa + hero solo en Sobre el proyecto ── */
+body:not(.show-home-intro) header{display:none !important}
+</style>
+
+<!-- Fase 21D: hero principal solo en Sobre el proyecto; el resto entra directo al contenido -->
 <!-- Fase 21A: votaciones 2.0 con rondas, nuevas herramientas y barras porcentuales -->
 </head>
 <body class="show-home-intro">
@@ -2887,12 +2893,9 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function scrollToSectionTop(secId) {
-    if (secId === 'sobre') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    var nav = document.getElementById('main-nav');
-    if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Cada cambio de sección empieza desde arriba, independientemente
+    // de la posición de scroll que tuviera la sección anterior.
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }
 
   // Los listeners del nav se vinculan más abajo con bindNav()
