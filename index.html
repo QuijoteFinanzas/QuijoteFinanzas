@@ -1436,6 +1436,7 @@ body:not(.show-home-intro) header{display:none !important}
 .qc-detail-center span{display:block;margin-top:4px;font-size:10px;line-height:1.3;color:var(--muted)}
 .qc-detail-list{display:flex;flex-direction:column;gap:8px}
 .qc-detail-item{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:9px;align-items:start;padding:10px 11px;border:1px solid #e5eaf0;border-radius:10px;background:#fafbfd;transition:border-color .15s,background .15s}
+.qc-detail-item.has-brand-mark{grid-template-columns:34px minmax(0,1fr) auto;gap:10px}
 .qc-detail-item:hover,.qc-detail-item.active{border-color:rgba(201,168,76,.45);background:#fffdf8}
 .qc-detail-dot{width:9px;height:9px;border-radius:50%;margin-top:5px}
 .qc-detail-info{min-width:0}
@@ -1445,7 +1446,7 @@ body:not(.show-home-intro) header{display:none !important}
 .qc-detail-logo{width:32px;height:26px;object-fit:contain;background:#fff;border:1px solid #e1e7ee;border-radius:6px;padding:2px;margin-top:-3px}
 .qc-detail-item.has-logo{grid-template-columns:34px minmax(0,1fr) auto}
 .qc-detail-note{margin:18px 0 0;padding-top:13px;border-top:1px solid #edf1f5;font-size:10.5px;line-height:1.55;color:var(--muted);text-align:center}
-.qc-brand-mark{width:34px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:0 0 34px;background:#fff;border:1px solid rgba(15,32,53,.10);box-shadow:0 1px 4px rgba(15,32,53,.05);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:800;letter-spacing:-.02em;color:var(--navy);text-align:center;padding:2px 4px}
+.qc-brand-mark{width:34px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:0 0 34px;background:#fff;border:1px solid rgba(15,32,53,.10);box-shadow:0 1px 4px rgba(15,32,53,.05);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:800;letter-spacing:-.02em;color:var(--navy);text-align:center;padding:2px 4px;line-height:1.05}
 .qc-brand-mark.wide{font-size:7px;letter-spacing:-.04em}
 .qc-detail-brand{display:block;font-size:9px;color:#8a9aab;margin-top:3px;font-weight:600}
 .qc-detail-modal .qf-brand-signature{margin-top:14px}
@@ -1462,6 +1463,9 @@ body.qc-modal-open{overflow:hidden}
   .qc-detail-chart-shell{height:245px}
   .qc-detail-list{gap:7px}
   .qc-detail-item{padding:9px 10px}
+  .qc-detail-item.has-brand-mark{grid-template-columns:40px minmax(0,1fr) auto;gap:10px}
+  .qc-brand-mark{width:40px;height:32px;border-radius:9px;font-size:10px;padding:3px 5px}
+  .qc-brand-mark.wide{font-size:8px}
   .qc-detail-close{position:fixed;top:14px;right:14px;z-index:1360}
 }
 @media(max-width:430px){#quijocartera .qc-legend{grid-template-columns:1fr}.qc-detail-title-row h3{font-size:24px}.qc-detail-chart-shell{height:225px}}
@@ -5665,7 +5669,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     items.forEach(function(item,i){
       var row=document.createElement('div');
       var hasLogo=blockKey==='stocks' && stockLogos[i];
-      row.className='qc-detail-item'+(hasLogo?' has-logo':'');
+      var hasBrandMark=!hasLogo && !!item.mark;
+      row.className='qc-detail-item'+(hasLogo?' has-logo':'')+(hasBrandMark?' has-brand-mark':'');
       if(hasLogo){
         row.innerHTML='<img class="qc-detail-logo" src="'+stockLogos[i]+'" alt="Logo '+item.name+'" onerror="this.style.display=\'none\'"><div class="qc-detail-info"><span class="qc-detail-name">'+item.name+'</span></div><span class="qc-detail-pct">'+fmt(item.pct)+'</span>';
       } else {
