@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" id="qf-theme-color" content="#ffffff">
 
 <!-- ── SEO PRIMARY ──────────────────────────────────────────────────── -->
 <title>Don Quijote de las Finanzas | Herramientas y educación financiera</title>
@@ -168,6 +169,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+/* ── FASE 28 · Tema claro / oscuro: bootstrap sin flash ───────────── */
+(function(){
+  try{
+    var saved=localStorage.getItem('qf-theme');
+    var theme=(saved==='light'||saved==='dark')?saved:(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    document.documentElement.setAttribute('data-theme',theme);
+    document.documentElement.style.colorScheme=theme;
+    var tc=document.getElementById('qf-theme-color'); if(tc) tc.setAttribute('content',theme==='dark'?'#101a26':'#ffffff');
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
 <style>
 :root{
   /* Fondos */
@@ -1499,6 +1514,10 @@ body.qc-modal-open{overflow:hidden}
         <button class="nav-btn" data-section="referidos">Referidos</button>
       </nav>
     </div>
+    <button id="qf-theme-toggle" class="qf-theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro" aria-pressed="false">
+      <svg class="qf-theme-icon qf-theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6a8.5 8.5 0 1 0 11.6 11.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="qf-theme-icon qf-theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </div>
 <style>
@@ -5225,41 +5244,41 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }
   // ── QuijoLista ──────────────────────────────────────────────
   var quijolistaItems = [
-    { cat:"rv", tipo:"Fondo", nombre:"Alken Fund Small Cap Europe Class A", isin:"LU0524465548", gestora:"Alken AM", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Alken Fund - Small Cap Europe Class R", isin:"LU0300834669", gestora:"AFFM S.A.", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Amundi Index MSCI Emerging Markets IE-C", isin:"LU0996175948", gestora:"Amundi", myi:true },
-    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"AXA IM", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116", gestora:"Azvalor AM", myi:false },
+    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"BNP Paribas Asset Management Europe", myi:true },
+    { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116", gestora:"Azvalor / Dunas Capital Pensiones", myi:false },
     { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:true },
     { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219", gestora:"Cobas AM", myi:true },
+    { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219", gestora:"Cobas Pensiones, SGFP", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección C FI", isin:"ES0124037005", gestora:"Cobas AM", myi:false },
     { cat:"nicho", tipo:"Fondo", nombre:"DWS Invest Gold and Precious Metals Equities LC", isin:"LU0273159177", gestora:"DWS", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity S&P 500 Index Fund EUR P Acc", isin:"IE00BYX5MX67", gestora:"Fidelity", myi:true },
     { cat:"nicho", tipo:"Fondo", nombre:"Franklin Natural Resources Fund A(acc) EUR", isin:"LU0300741732", gestora:"Franklin Templeton", myi:true },
-    { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Welzia", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Hamco Global Value Fund R FI", isin:"ES0141116030", gestora:"Hamco Financial", myi:false },
+    { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Singular Asset Management", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"HAMCO SICAV Global Value Fund R EUR Acc", isin:"LU3038481936", gestora:"HAMCO", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Heptagon Kopernik Global All-Cap Equity Fund AE EUR Acc", isin:"IE00BH6XSF26", gestora:"Heptagon / Kopernik", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true },
     { cat:"nicho", tipo:"ETC",  nombre:"Invesco Physical Gold ETC", isin:"IE00B579F325", gestora:"Invesco", myi:false },
     { cat:"rv", tipo:"ETF",  nombre:"iShares Core MSCI World UCITS ETF USD (Acc)", isin:"IE00B4L5Y983", gestora:"BlackRock / iShares", myi:false },
     { cat:"rv", tipo:"ETF",  nombre:"iShares Core S&P 500 UCITS ETF USD (Acc)", isin:"IE00B5BMR087", gestora:"BlackRock / iShares", myi:false },
     { cat:"nicho", tipo:"Fondo", nombre:"iShares Developed Real Estate Index Fund Institutional Acc EUR", isin:"IE00B83YJG36", gestora:"BlackRock / iShares", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"iShares Developed World Index Fund (IE) D Acc EUR", isin:"IE00BD0NCM55", gestora:"BlackRock / iShares", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"iShares Developed World Index (IE) Acc EUR clase S", isin:"IE000ZYRH0Q7", gestora:"BlackRock / iShares", myi:true },
     { cat:"nicho", tipo:"ETC",  nombre:"iShares Physical Gold ETC", isin:"IE00B4ND3602", gestora:"BlackRock / iShares", myi:false },
     { cat:"rv", tipo:"Fondo", nombre:"Janus Henderson Horizon Global Smaller Companies A2 EUR", isin:"LU1984712320", gestora:"Janus Henderson", myi:true },
     { cat:"nicho", tipo:"Fondo", nombre:"Jupiter Gold & Silver Fund L EUR Acc", isin:"IE00BYVJR916", gestora:"Jupiter AM", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income D H EUR", isin:"IE00008TZ2E8", gestora:"Man Investments", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396", gestora:"MyInvestor", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394", gestora:"MyInvestor", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income DB H EUR Capitalisation", isin:"IE000WFG9PJ8", gestora:"Man Group", myi:true },
+    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396", gestora:"MyInvestor / Merchbanc EGFP", myi:true },
+    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394", gestora:"MyInvestor / Merchbanc EGFP", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:true },
-    { cat:"monetario", tipo:"Fondo", nombre:"Ostrum SRI Credit Ultra Short Plus R/C EUR", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:true },
+    { cat:"rf", tipo:"Fondo", nombre:"Ostrum Credit Ultra Short Plus R/C (EUR)", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:true },
     { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:true },
     { cat:"rv", tipo:"Fondo", nombre:"Robeco QI Emerging Markets Active Equities D EUR", isin:"LU0329355670", gestora:"Robeco", myi:true },
     { cat:"nicho", tipo:"Fondo", nombre:"Robeco Smart Energy D-EUR Capitalisation", isin:"LU2145461757", gestora:"Robeco", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI", isin:"ES0175902008", gestora:"Welzia", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI · Clase A", isin:"ES0175902008", gestora:"Singular Asset Management", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Storm Fund II - Storm Bond Fund RC EUR", isin:"LU0840158819", gestora:"Storm Capital", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Investor EUR Acc", isin:"IE0031786142", gestora:"Vanguard", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Fund EUR Acc", isin:"IE0031786696", gestora:"Vanguard", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Eurozone Inflation-Linked Bond Index Fund EUR Acc", isin:"IE00B04GQR24", gestora:"Vanguard", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Bond Index Fund EUR Hedged Acc", isin:"IE00BH65QP47", gestora:"Vanguard", myi:true },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Corporate Bond Index EUR Hedged Acc", isin:"IE00BDFB7290", gestora:"Vanguard", myi:true },
@@ -6143,6 +6162,213 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initQF19);
   else initQF19();
+})();
+</script>
+
+
+<style id="qf-theme-styles">
+/* ── FASE 28 · Modo claro / oscuro ────────────────────────────────── */
+.qf-theme-toggle{
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,32,53,.12);
+  background:#fff;color:#526b84;display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease;
+  box-shadow:0 3px 12px rgba(15,32,53,.05);padding:0
+}
+.qf-theme-toggle:hover{border-color:rgba(201,168,76,.55);color:#8a6b1f;transform:translateY(-1px)}
+.qf-theme-toggle:focus-visible{outline:2px solid rgba(201,168,76,.72);outline-offset:2px}
+.qf-theme-icon{width:18px;height:18px;display:block}
+.qf-theme-sun{display:none}
+html[data-theme="dark"] .qf-theme-moon{display:none}
+html[data-theme="dark"] .qf-theme-sun{display:block}
+
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101a26;--bg2:#162334;--bg3:#1c2c40;--tag-bg:#1c2c40;
+  --cream:#edf3f8;--silver2:#d8e2ec;--silver:#c2d0dd;--muted:#9fb2c4;--border:#34495d;
+  --sec-a:#101a26;--sec-b:#132030;--surface:#182638;--surface-soft:#1d2d41;
+  --text2:#adbdcc;
+  --shadow-soft:0 10px 30px rgba(0,0,0,.18);
+  --shadow-hover:0 12px 34px rgba(0,0,0,.18)
+}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#101a26!important;color:#dbe5ee}
+html[data-theme="dark"] main,html[data-theme="dark"] .section,html[data-theme="dark"] header{background:#101a26!important}
+html[data-theme="dark"] .site-nav-shell{background:rgba(16,26,38,.96);border-bottom-color:rgba(180,199,218,.10);box-shadow:0 1px 0 rgba(255,255,255,.02),0 10px 30px rgba(0,0,0,.17)}
+html[data-theme="dark"] .site-brand{color:#edf3f8}
+html[data-theme="dark"] .site-nav-track .nav-btn{color:#8fa5ba}
+html[data-theme="dark"] .site-nav-track .nav-btn:hover,html[data-theme="dark"] .site-nav-track .nav-btn.active{color:#f2f6fa}
+html[data-theme="dark"] .site-nav-viewport{border-top-color:rgba(180,199,218,.09)}
+html[data-theme="dark"] .site-nav-viewport::after{background:linear-gradient(90deg,rgba(16,26,38,0),rgba(16,26,38,.98))}
+html[data-theme="dark"] .qf-theme-toggle{background:#182638;border-color:#3a5065;color:#c8d5e1;box-shadow:0 4px 14px rgba(0,0,0,.17)}
+html[data-theme="dark"] .qf-theme-toggle:hover{border-color:rgba(201,168,76,.62);color:#d9ba62;background:#1d2d41}
+
+html[data-theme="dark"] h1,html[data-theme="dark"] h1 span,html[data-theme="dark"] .compact-brand-title,html[data-theme="dark"] .compact-brand-title span,
+html[data-theme="dark"] .section-header h2,html[data-theme="dark"] .section-head h2,
+html[data-theme="dark"] .cuentas-intro-copy h2,html[data-theme="dark"] .ql-section-head h2,
+html[data-theme="dark"] .project-story h3,html[data-theme="dark"] .home-newsletter-copy h3,
+html[data-theme="dark"] .section-flow-title,html[data-theme="dark"] .ref-section-head h2,
+html[data-theme="dark"] .qc-section-head h2,html[data-theme="dark"] .qc-card h3,
+html[data-theme="dark"] .qc-chart-center strong,html[data-theme="dark"] .qc-summary-num,
+html[data-theme="dark"] .calc-modal h2,html[data-theme="dark"] .modal-header h2,
+html[data-theme="dark"] .project-note h4,html[data-theme="dark"] .project-principle strong,
+html[data-theme="dark"] .project-contact-copy strong,html[data-theme="dark"] .cuenta-banco,
+html[data-theme="dark"] .cuenta-tae,html[data-theme="dark"] .voto-nombre,
+html[data-theme="dark"] .qc-detail-title-row h3,html[data-theme="dark"] .qc-detail-center strong{color:#edf3f8!important}
+html[data-theme="dark"] .ql-section-lead,html[data-theme="dark"] .ref-section-lead,html[data-theme="dark"] .qc-lead,
+html[data-theme="dark"] .project-story p,html[data-theme="dark"] .cuenta-detail,
+html[data-theme="dark"] .qc-legend-name,html[data-theme="dark"] .qc-summary-card strong{color:#b9c9d8!important}
+
+html[data-theme="dark"] .about-bio,html[data-theme="dark"] .stat-card,html[data-theme="dark"] .contact-box,
+html[data-theme="dark"] .note,html[data-theme="dark"] .suscripcion-box,html[data-theme="dark"] .home-newsletter,
+html[data-theme="dark"] .project-story,html[data-theme="dark"] .project-principle,html[data-theme="dark"] .project-note,
+html[data-theme="dark"] .project-contact,html[data-theme="dark"] .ref-trust-item,html[data-theme="dark"] #referidos .ref-card,
+html[data-theme="dark"] .qc-card,html[data-theme="dark"] .qc-summary-card,html[data-theme="dark"] .qc-date,
+html[data-theme="dark"] .ql-context,html[data-theme="dark"] .ql-list .ql-card,html[data-theme="dark"] #quijolista>.note,
+html[data-theme="dark"] .cuenta-card,html[data-theme="dark"] .cuentas-disclaimer,html[data-theme="dark"] .cuentas-pronto,
+html[data-theme="dark"] #calculadoras .calc-item,html[data-theme="dark"] #calculadoras .votos-section,
+html[data-theme="dark"] #calculadoras .voto-item,html[data-theme="dark"] #calculadoras .calc-note,
+html[data-theme="dark"] .voto-item,html[data-theme="dark"] .calc-modal,html[data-theme="dark"] .calc-help,
+html[data-theme="dark"] .result-row,html[data-theme="dark"] .media-modal,html[data-theme="dark"] .parati-col,
+html[data-theme="dark"] .test-modal,html[data-theme="dark"] .test-option,html[data-theme="dark"] .qc-detail-modal,
+html[data-theme="dark"] .qc-detail-item,html[data-theme="dark"] .qc-detail-total,html[data-theme="dark"] .votos-unavailable{
+  background:#182638!important;border-color:#34495d!important;color:#dbe5ee!important;box-shadow:none
+}
+html[data-theme="dark"] .project-note.gold,html[data-theme="dark"] .qc-intro-note{background:rgba(201,168,76,.08)!important;border-color:rgba(201,168,76,.26)!important}
+html[data-theme="dark"] .ql-list .ql-card:hover,html[data-theme="dark"] .cuenta-card:hover,html[data-theme="dark"] #referidos .ref-card:hover,
+html[data-theme="dark"] #calculadoras .calc-item.clickable:hover,html[data-theme="dark"] .qc-detail-item:hover,html[data-theme="dark"] .qc-detail-item.active{
+  background:#1d2d41!important;border-color:rgba(201,168,76,.48)!important;box-shadow:0 10px 28px rgba(0,0,0,.18)!important
+}
+
+html[data-theme="dark"] .social-btn,html[data-theme="dark"] .cat-btn,html[data-theme="dark"] .calc-help-link,
+html[data-theme="dark"] .cta-link,html[data-theme="dark"] .section-flow-btn.secondary,html[data-theme="dark"] .project-contact a,
+html[data-theme="dark"] .media-nav .btn.btn-ghost,html[data-theme="dark"] #ql-filter .cat-btn,
+html[data-theme="dark"] #cuentas-filter .cat-btn,html[data-theme="dark"] #calculadoras #calc-filter .cat-btn,
+html[data-theme="dark"] .cuenta-source,html[data-theme="dark"] .votos-round,html[data-theme="dark"] .qc-detail-close{
+  background:#162334!important;border-color:#3a5065!important;color:#c7d5e2!important
+}
+html[data-theme="dark"] .cat-btn:hover,html[data-theme="dark"] #ql-filter .cat-btn:hover,html[data-theme="dark"] #cuentas-filter .cat-btn:hover,
+html[data-theme="dark"] #calculadoras #calc-filter .cat-btn:hover,html[data-theme="dark"] .section-flow-btn.secondary:hover{background:#1c2c40!important;border-color:#536b82!important;color:#f0f5f9!important}
+html[data-theme="dark"] .cat-btn.active,html[data-theme="dark"] #ql-filter .cat-btn.active,html[data-theme="dark"] #cuentas-filter .cat-btn.active,
+html[data-theme="dark"] #calculadoras #calc-filter .cat-btn.active{background:#244563!important;border-color:rgba(201,168,76,.55)!important;color:#fff!important}
+html[data-theme="dark"] .home-newsletter button,html[data-theme="dark"] .section-flow-btn.primary,
+html[data-theme="dark"] .qf-calc2 .calc-btn,html[data-theme="dark"] .qf-calc2 .calc-btn[data-run]{background:#244563!important;border-color:#3b6285!important;color:#fff!important}
+
+html[data-theme="dark"] input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] select,html[data-theme="dark"] textarea,html[data-theme="dark"] .qf-range-value{
+  background:#132030!important;border-color:#3a5065!important;color:#edf3f8!important
+}
+html[data-theme="dark"] input::placeholder,html[data-theme="dark"] textarea::placeholder{color:#6f859a!important}
+html[data-theme="dark"] .field select option{background:#132030;color:#edf3f8}
+html[data-theme="dark"] .qf-inline-range::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--gold) 0,var(--gold) var(--range-pct,50%),#3a4f63 var(--range-pct,50%),#3a4f63 100%)}
+html[data-theme="dark"] .qf-inline-range::-moz-range-track{background:#3a4f63}
+html[data-theme="dark"] .qf-range::-webkit-slider-thumb,html[data-theme="dark"] .qf-inline-range::-webkit-slider-thumb,
+html[data-theme="dark"] .qf-range::-moz-range-thumb,html[data-theme="dark"] .qf-inline-range::-moz-range-thumb{background:#e7edf4;border-color:#49657f}
+
+html[data-theme="dark"] .cuenta-top,html[data-theme="dark"] .cuenta-pros-cons{border-color:#30465a}
+html[data-theme="dark"] .cuenta-chip,html[data-theme="dark"] .cuenta-chip.fgd-es,html[data-theme="dark"] .cuenta-chip.fgd-fr,html[data-theme="dark"] .cuenta-chip.fgd-de,
+html[data-theme="dark"] .cuentas-badge{background:#1c2c40;border-color:#3a5065;color:#b9cad9}
+html[data-theme="dark"] .cuenta-pro{color:#76b999}
+html[data-theme="dark"] .cuenta-con{color:#d29a7a}
+html[data-theme="dark"] .cuenta-rank{color:#d9bd6a}
+
+html[data-theme="dark"] .ql-list .ref-info h3{color:#edf3f8!important}
+html[data-theme="dark"] .ql-list .ref-info>p,html[data-theme="dark"] .ql-list .ql-isin{color:#91a6ba!important}
+html[data-theme="dark"] .ql-list .ql-tipo-badge,html[data-theme="dark"] .ql-list .ql-helper-chip{background:#1c2c40;border-color:#3a5065;color:#b7c8d8}
+html[data-theme="dark"] .ql-list .ql-myi{background:#17304a;border-color:#35658c;color:#79b6e4}
+html[data-theme="dark"] .ql-context strong{color:#dbe6ef}
+html[data-theme="dark"] .ql-calc-link,html[data-theme="dark"] .project-note a,html[data-theme="dark"] .qc-intro-note strong,
+html[data-theme="dark"] .ref-trust-item strong,html[data-theme="dark"] .qc-detail-total{color:#dbe6ef!important}
+
+html[data-theme="dark"] #referidos .ref-info h3{color:#edf3f8!important}
+html[data-theme="dark"] #referidos .ref-info p{color:#b9cad9!important}
+html[data-theme="dark"] #referidos .ref-cat-badge{background:#1c2c40!important;color:#b9cad9!important;border-color:#3a5065!important}
+html[data-theme="dark"] #referidos .note{background:#182638;border-color:#34495d;border-left-color:var(--gold)}
+
+html[data-theme="dark"] .qc-meta-pill,html[data-theme="dark"] .qc-date{background:#1c2c40;border-color:#3a5065;color:#aebfd0}
+html[data-theme="dark"] .qc-legend-item:hover,html[data-theme="dark"] .qc-legend-item:focus-visible,html[data-theme="dark"] .qc-legend-item.active{background:#1c2c40;border-color:#3a5065}
+html[data-theme="dark"] .qc-legend-value,html[data-theme="dark"] .qc-detail-pct,html[data-theme="dark"] .qc-detail-name{color:#edf3f8}
+html[data-theme="dark"] .qc-card-foot,html[data-theme="dark"] .qf-brand-signature,html[data-theme="dark"] .qc-detail-note{border-color:#30465a}
+html[data-theme="dark"] .qc-detail-code,html[data-theme="dark"] .qc-detail-brand{color:#8fa5b9}
+html[data-theme="dark"] .qc-detail-overlay{background:rgba(5,12,20,.84)}
+html[data-theme="dark"] .qc-detail-logo,html[data-theme="dark"] .qc-stock-logo,html[data-theme="dark"] .qc-chart-center-logo,
+html[data-theme="dark"] .qc-brand-mark,html[data-theme="dark"] .site-brand-mark,html[data-theme="dark"] .site-brand-mark img,
+html[data-theme="dark"] .logo-wrap img,html[data-theme="dark"] .compact-brand-logo img{background:#fff!important}
+
+html[data-theme="dark"] .calc-help p strong,html[data-theme="dark"] .results-panel .result-label,html[data-theme="dark"] .result-value{color:#dbe6ef}
+html[data-theme="dark"] .calc-close:hover{color:#fff}
+html[data-theme="dark"] .calc-uses-badge,html[data-theme="dark"] .coming{background:#1c2c40;border-color:#3a5065;color:#9eb1c3}
+html[data-theme="dark"] .qf-renta-share-wrap{border-color:#30465a}
+html[data-theme="dark"] .media-head{background:rgba(24,38,56,.98)!important;border-bottom-color:#34495d!important}
+html[data-theme="dark"] .test-option:hover{border-color:#617b93!important;background:#1c2c40!important}
+html[data-theme="dark"] .test-option.selected{background:#244563!important;border-color:rgba(201,168,76,.58)!important;color:#fff!important}
+
+html[data-theme="dark"] .empieza-block,html[data-theme="dark"] .home-proof-section{border-color:#30465a}
+html[data-theme="dark"] .empieza-card{background:#182638;border-color:#34495d;color:#dbe5ee;box-shadow:none}
+html[data-theme="dark"] .empieza-card:hover{background:#1d2d41;border-color:rgba(201,168,76,.48);box-shadow:0 12px 28px rgba(0,0,0,.17)}
+html[data-theme="dark"] .empieza-label{color:#edf3f8}
+html[data-theme="dark"] .empieza-sub{color:#93a7ba}
+html[data-theme="dark"] .badge-hero{color:#d5b65b}
+
+html[data-theme="dark"] footer{background:#101a26;border-top-color:#2d4255}
+html[data-theme="dark"] .qf-brand-signature{color:#7f96aa}
+html[data-theme="dark"] #cookie-ball{background:#182638!important;border-color:#3a5065!important;box-shadow:0 3px 14px rgba(0,0,0,.20)!important}
+
+@media(max-width:699px){
+  .site-nav-inner{position:relative}
+  .qf-theme-toggle{position:absolute;top:7px;right:12px;width:34px;height:34px;z-index:3}
+  .site-brand{padding-right:58px}
+}
+@media(min-width:700px){.qf-theme-toggle{margin-left:-12px}}
+</style>
+
+<script>
+/* ── FASE 28 · comportamiento selector de tema ───────────────────── */
+(function(){
+  var KEY='qf-theme';
+  var media=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+
+  function stored(){
+    try{var v=localStorage.getItem(KEY);return (v==='light'||v==='dark')?v:null;}catch(e){return null;}
+  }
+  function current(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
+  function syncButton(theme){
+    var btn=document.getElementById('qf-theme-toggle'); if(!btn) return;
+    var dark=theme==='dark';
+    btn.setAttribute('aria-pressed',dark?'true':'false');
+    btn.setAttribute('aria-label',dark?'Activar modo claro':'Activar modo oscuro');
+    btn.setAttribute('title',dark?'Activar modo claro':'Activar modo oscuro');
+  }
+  function refreshCharts(theme){
+    if(typeof Chart==='undefined'||!Chart.instances) return;
+    try{
+      Chart.defaults.color=theme==='dark'?'#9fb2c4':'#6a8aaa';
+      Object.keys(Chart.instances).forEach(function(k){
+        var chart=Chart.instances[k]; if(!chart) return;
+        if(chart.canvas && (chart.canvas.id==='qc-allocation-chart'||chart.canvas.id==='qc-detail-chart')){
+          (chart.data.datasets||[]).forEach(function(ds){ds.borderColor=theme==='dark'?'#182638':'#ffffff';});
+        }
+        chart.update('none');
+      });
+    }catch(e){}
+  }
+  function apply(theme,persist){
+    document.documentElement.setAttribute('data-theme',theme);
+    document.documentElement.style.colorScheme=theme;
+    var tc=document.getElementById('qf-theme-color'); if(tc) tc.setAttribute('content',theme==='dark'?'#101a26':'#ffffff');
+    if(persist){try{localStorage.setItem(KEY,theme);}catch(e){}}
+    syncButton(theme);
+    setTimeout(function(){refreshCharts(theme);},0);
+  }
+  function init(){
+    syncButton(current());
+    var btn=document.getElementById('qf-theme-toggle');
+    if(btn){btn.addEventListener('click',function(){apply(current()==='dark'?'light':'dark',true);});}
+    if(media){
+      var listener=function(e){if(!stored()) apply(e.matches?'dark':'light',false);};
+      if(media.addEventListener) media.addEventListener('change',listener); else if(media.addListener) media.addListener(listener);
+    }
+    refreshCharts(current());
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();
 </script>
 
