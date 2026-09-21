@@ -1013,10 +1013,26 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
 
 <!-- ── Eventos custom GA4 + Clarity ─────────────────────────────────── -->
 <script>
+function qfActiveSection(){
+  var sec=document.querySelector('.section.active');
+  return sec ? sec.id : (document.body && document.body.classList.contains('show-home-intro') ? 'home' : 'site');
+}
 function qfTrack(eventName, params) {
   try {
-    if (typeof gtag === 'function') gtag('event', eventName, params || {});
-    if (typeof clarity === 'function') clarity('set', eventName, (params && params.label) || eventName);
+    var clean = {};
+    Object.keys(params || {}).forEach(function(key){
+      // Nunca enviar PII a Analytics. Kit gestiona el email por su propio formulario.
+      if (/email/i.test(key)) return;
+      var value = params[key];
+      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') clean[key] = value;
+    });
+    if (!clean.section_name) clean.section_name = qfActiveSection();
+    if (typeof gtag === 'function') gtag('event', eventName, clean);
+    if (typeof clarity === 'function') {
+      clarity('set', 'last_event', eventName);
+      clarity('set', 'section_name', clean.section_name || 'site');
+      if (clean.label) clarity('set', 'event_label', String(clean.label));
+    }
   } catch(e) {}
 }
 </script>
@@ -1101,7 +1117,7 @@ function qfTrack(eventName, params) {
       var inp = document.getElementById('excel-email-input');
       if (inp) inp.focus();
     }, 100);
-    try { gtag('event', 'excel_modal_abierto'); } catch(e) {}
+    try { qfTrack('quijoexcel_open', {source_component:'modal'}); } catch(e) {}
   };
 
   window.closeExcelModal = function() {
@@ -1610,11 +1626,11 @@ body.qc-modal-open{overflow:hidden}
     <span>8+ años en el sector financiero</span><span>Herramientas gratuitas</span><span>Sin promesas ni humo</span>
   </div>
   <div class="social-links">
-    <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{gtag('event','home_social_x_click',{destination_url:'https://x.com/quijotefinanzas'});}catch(e){}">
+    <a class="social-btn" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{qfTrack('social_click',{platform:'x',source_component:'hero'});}catch(e){}">
       <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       @quijotefinanzas
     </a>
-    <a class="social-btn" href="https://instagram.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{gtag('event','home_social_instagram_click',{destination_url:'https://instagram.com/quijotefinanzas'});}catch(e){}">
+    <a class="social-btn" href="https://instagram.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" onclick="try{qfTrack('social_click',{platform:'instagram',source_component:'hero'});}catch(e){}">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       @quijotefinanzas
     </a>
@@ -1649,7 +1665,7 @@ body.qc-modal-open{overflow:hidden}
       <h3>QuijoExcel — organiza tus finanzas en un solo sitio</h3>
       <p>La plantilla que utilizo para controlar gastos, ahorro e inversiones. Gratis y editable.</p>
     </div>
-    <button class="cta-excel-btn" onclick="try{gtag('event','home_quijoexcel_click',{section_name:'hero'});}catch(e){}; openExcelModal()" style="border:none;cursor:pointer;">Acceder gratis →</button>
+    <button class="cta-excel-btn" onclick="try{qfTrack('quijoexcel_cta_click',{source_component:'hero'});}catch(e){}; openExcelModal()" style="border:none;cursor:pointer;">Acceder gratis →</button>
   </div>
   <!-- Newsletter CTA — único en la página -->
 
@@ -3203,14 +3219,10 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='tiempo') calcTiempo();
       else if (id==='autonomos') calcAutonomos();
 
-      // ── Fase 2: evento clave genérico + específicos (no sustituye nada existente) ──
+      // Evento canónico: resultado solicitado/actualizado por el usuario.
       try {
         var calcLabel = (typeof calcNames !== 'undefined' && calcNames[id]) || id;
-        gtag('event', 'calculator_completed', { tool_name: id, resource_name: calcLabel });
-        if (id === 'deposito')   gtag('event', 'deposit_calculator_completed',  { tool_name: id });
-        if (id === 'interes')    gtag('event', 'compound_calculator_completed', { tool_name: id });
-        if (id === 'jubilacion') gtag('event', 'fire_calculator_completed',     { tool_name: id });
-        if (id === 'hipoteca')   gtag('event', 'mortgage_calculator_completed',{ tool_name: id });
+        qfTrack('calculator_result', { tool_name: id, tool_label: calcLabel });
       } catch(e) {}
     });
   });
@@ -3273,7 +3285,7 @@ document.addEventListener('DOMContentLoaded', function(){
         trackVirtualPageView('/calc-' + id, (calcNames[id] || id) + ' · QuijoteFinanzas');
       }
     } catch(e) {}
-    try { gtag('event', 'calculadora_abierta', { calculadora: calcNames[id] || id }); } catch(e) {}
+    try { qfTrack('calculator_open', { tool_name:id, tool_label:calcNames[id] || id }); } catch(e) {}
   };
 
   window.closeCalc = function(id) {
@@ -3379,9 +3391,12 @@ document.addEventListener('DOMContentLoaded', function(){
   };
 
   window.setCuentasTab = function(tab) {
-    var row=document.getElementById('cuentas-filter'); cuentasTab=tab;
+    var row=document.getElementById('cuentas-filter');
+    var changed = cuentasTab !== tab;
+    cuentasTab=tab;
     if(row) row.querySelectorAll('.cat-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===tab);});
     if(window.renderCuentas) window.renderCuentas();
+    if(changed){ try{ qfTrack('quijocuentas_tab_select',{tab_name:tab}); }catch(e){} }
   };
   window.bindCuentasTabs = function() {
     var row=document.getElementById('cuentas-filter'); if(!row||row.dataset.bound==='1') return; row.dataset.bound='1';
@@ -3436,7 +3451,7 @@ document.addEventListener('DOMContentLoaded', function(){
       fetch(VOTOS_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,voterId:votosVoterId()})})
         .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,data:j};});})
         .then(function(res){
-          if(res.ok){sS(votosChoiceKey(),id);renderVotosUI(res.data,id);return;}
+          if(res.ok){sS(votosChoiceKey(),id);try{qfTrack('tool_vote_cast',{option_id:id,ballot_id:VOTOS_BALLOT});}catch(e){}renderVotosUI(res.data,id);return;}
           if(res.status===409&&res.data&&res.data.alreadyVoted){sS(votosChoiceKey(),res.data.alreadyVoted);renderVotosUI(res.data,res.data.alreadyVoted);return;}
           throw new Error('vote failed');
         }).catch(function(){renderVotos();});
@@ -3988,10 +4003,6 @@ document.addEventListener('DOMContentLoaded', function(){
         page_title: title || document.title
       });
     } catch(e) {}
-    // Clarity: diferenciar "páginas" dentro de la SPA con un custom tag.
-    // No existe un "page_view" nativo en Clarity para SPA, así que usamos
-    // 'set' con una clave fija — esto permite filtrar sesiones/heatmaps por
-    // page_path desde el dashboard de Clarity (Filtros > Custom tags).
     try {
       if (typeof clarity === 'function') {
         clarity('set', 'page_path', path);
@@ -4000,11 +4011,16 @@ document.addEventListener('DOMContentLoaded', function(){
     } catch(e) {}
   }
 
+  function trackSectionView(secId, source){
+    try { qfTrack('section_view', {section_name:secId, source_component:source || 'internal'}); } catch(e) {}
+  }
+
   // Registrar goTo real y resolver queue de clicks tempranos
   var _realGoTo = function(secId) {
     if (!activateSection(secId)) return;
     try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
     trackVirtualPageView('/'+secId, document.title);
+    trackSectionView(secId, 'internal_link');
     scrollToSectionTop(secId);
   };
 
@@ -4788,7 +4804,7 @@ document.addEventListener('DOMContentLoaded', function(){
     testActual = 0;
     document.getElementById('test-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
-    try { gtag('event', 'investor_test_started'); } catch(e) {}
+    try { qfTrack('investor_test_start'); } catch(e) {}
     renderTestPregunta();
   }
 
@@ -4878,7 +4894,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('test-progress').style.width = '100%';
     var resultado = calcularPerfil();
     var p = testPerfiles[resultado.perfil];
-    try { gtag('event', 'investor_test_completed', { resource_name: resultado.perfil }); } catch(e) {}
+    try { qfTrack('investor_test_complete', {profile:resultado.perfil}); } catch(e) {}
 
     var dimLabels = { horizonte:'Horizonte temporal', tolerancia:'Tolerancia al riesgo', situacion:'Situación financiera', conocimiento:'Conocimiento' };
     var dimColors = { horizonte:'#185fa5', tolerancia:'#3b6d11', situacion:'#854f0b', conocimiento:'#c9a84c' };
@@ -4902,7 +4918,7 @@ document.addEventListener('DOMContentLoaded', function(){
       '<div class="test-cartera-grid">' + carteraHTML + '</div>' +
       '<div style="font-size:12px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:10px 12px;color:#7a5800;line-height:1.5;margin-bottom:16px"><strong>💡 Nota:</strong> ' + p.nota + '</div>' +
       '<div class="test-result-actions">' +
-      '<button class="calc-btn" style="width:auto;padding:10px 18px" onclick="try{gtag(&quot;event&quot;,&quot;investor_test_cta_click&quot;,{destination_url:&quot;quijolista&quot;});}catch(e){}; closeTest(); goTo(\'quijolista\');">Ver QuijoLista →</button>' +
+      '<button class="calc-btn" style="width:auto;padding:10px 18px" onclick="try{qfTrack(&quot;investor_test_cta&quot;,{destination_section:&quot;quijolista&quot;});}catch(e){}; closeTest(); goTo(\'quijolista\');">Ver QuijoLista →</button>' +
       '<button class="calc-btn" style="width:auto;padding:10px 18px;background:rgba(15,32,53,.08);color:var(--navy)" onclick="openTest()">Repetir test</button>' +
       '</div>' +
       '<div class="test-disclaimer">⚠️ Este test es orientativo y educativo. No constituye asesoramiento financiero personalizado (CNMV). Las carteras mostradas son ejemplos genéricos — consulta siempre tu situación personal antes de invertir.</div>' +
@@ -4927,16 +4943,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if (window._resolveGoTo) window._resolveGoTo(_realGoTo);
   else window.goTo = _realGoTo;
 
-  // Fase 3: mapa sección → nombre de evento de la botonera principal (home)
-  var homeNavEvents = {
-    'recursos':    'home_resources_click',
-    'calculadoras':'home_calculators_click',
-    'glosario':    'home_glossary_click',
-    'teca':        'home_tips_click',
-    'cuentas':     'home_news_click',
-    'referidos':   'home_referrals_click'
-  };
-
+  // Navegación principal: un único evento con la sección como parámetro.
   function bindNav() {
     document.querySelectorAll('#main-nav .nav-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
@@ -4945,8 +4952,8 @@ document.addEventListener('DOMContentLoaded', function(){
         try { history.replaceState(null, '', '#'+secId); } catch(e) { location.hash = '#'+secId; }
         trackVirtualPageView('/'+secId, document.title);
         try {
-          var evName = homeNavEvents[secId];
-          if (evName) gtag('event', evName, { button_text: btn.textContent.trim(), destination_url: '/'+secId, section_name: 'main_nav' });
+          qfTrack('nav_click', {destination_section:secId, button_text:btn.textContent.trim(), source_component:'main_nav'});
+          trackSectionView(secId, 'main_nav');
         } catch(e) {}
         scrollToSectionTop(secId);
       });
@@ -4969,17 +4976,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
   (function handleHashOnLoad(){
     var h = location.hash || '';
-    if (!h) return;
+    if (!h) { trackSectionView('sobre','initial_load'); return; }
 
     if (h.indexOf('#calc-') === 0) {
       var calcId = h.replace('#calc-', '');
       activateSection('calculadoras');
+      trackSectionView('calculadoras','deep_link');
       setTimeout(function(){ if (typeof openCalc === 'function') openCalc(calcId); }, 200);
       return;
     }
 
     var secId = h.replace('#','');
-    if (secId) activateSection(secId);
+    if (secId && activateSection(secId)) trackSectionView(secId,'deep_link');
   })();
 
 })();  // end IIFE
@@ -5132,12 +5140,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
   window.onCardClick = function(type, idx){
     if (type === "glosario") {
+      var glossaryItem = glosarioItems[idx];
+      try{ qfTrack('glossary_item_open',{item_title:glossaryItem ? glossaryItem.title : String(idx)}); }catch(e){}
       mediaState.type = "glosario";
       mediaState.index = idx;
       mediaState.imageIndex = 0;
       var it = glosarioItems[idx];
       openMedia({badge: it.badge, title: it.title, desc: it.desc, images: it.images, imageIndex: mediaState.imageIndex});
     } else if (type === "teca") {
+      var tecaItem = tecaItems[idx];
+      try{ qfTrack('quijoteca_item_open',{item_title:tecaItem ? tecaItem.title : String(idx),item_type:tecaItem ? tecaItem.type : ''}); }catch(e){}
       mediaState.type = "teca";
       mediaState.index = idx;
       mediaState.imageIndex = 0;
@@ -5364,13 +5376,24 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       btn.addEventListener('click', function(){
         document.querySelectorAll('#ql-filter .cat-btn').forEach(function(b){ b.classList.remove('active'); });
         this.classList.add('active');
-        qlFilter = this.dataset.cat;
+        var nextFilter = this.dataset.cat;
+        var changed = qlFilter !== nextFilter;
+        qlFilter = nextFilter;
         renderQuijoLista();
+        if(changed){ try{ qfTrack('quijolista_filter_select',{filter_name:qlFilter}); }catch(e){} }
       });
     });
   }
   renderQuijoLista();
   bindQLFilters();
+
+  document.addEventListener('click', function(e){
+    var link=e.target.closest && e.target.closest('#quijolistaGrid .ql-myi');
+    if(!link) return;
+    var card=link.closest('.ql-card');
+    var title=card && card.querySelector('h3');
+    try{qfTrack('quijolista_product_click',{product_name:title?title.textContent.trim():'unknown',destination:'myinvestor'});}catch(err){}
+  });
 
   window.bindTecaFilters = function(){
     var row = document.getElementById("teca-filter");
@@ -5380,8 +5403,11 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       btn.addEventListener("click", function(){
         row.querySelectorAll(".cat-btn").forEach(function(b){ b.classList.remove("active"); });
         btn.classList.add("active");
-        tecaFilter = btn.getAttribute("data-cat") || "todos";
+        var nextFilter = btn.getAttribute("data-cat") || "todos";
+        var changed = tecaFilter !== nextFilter;
+        tecaFilter = nextFilter;
         renderTeca();
+        if(changed){ try{ qfTrack('quijoteca_filter_select',{filter_name:tecaFilter}); }catch(e){} }
       });
     });
   }
@@ -5397,31 +5423,42 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   window.renderCuentas && window.renderCuentas();
   bindCuentasTabs && bindCuentasTabs();
 
-  // ── GA4: Referidos clicks ─────────────────────────────────────────────
+  // ── Tracking de salidas, referidos y captación ─────────────────────────
   document.querySelectorAll('#refList .ref-card').forEach(function(card) {
     card.addEventListener('click', function() {
       var name = card.querySelector('h3');
-      try { gtag('event', 'referido_click', {
-        referido: name ? name.textContent.trim() : card.href
-      }); } catch(e) {}
+      try { qfTrack('referral_click', {provider:name ? name.textContent.trim() : 'unknown', source_component:'referidos'}); } catch(e) {}
     });
   });
 
-  // ── GA4: Botones Avisadme ─────────────────────────────────────────────
+  document.addEventListener('click', function(e){
+    var sourceLink=e.target.closest && e.target.closest('#cuentas-content .cuenta-source');
+    if(sourceLink){
+      var card=sourceLink.closest('.cuenta-card');
+      var bank=card && card.querySelector('.cuenta-banco');
+      try{qfTrack('quijocuentas_source_click',{provider:bank?bank.textContent.trim():'unknown'});}catch(err){}
+      return;
+    }
+    var referralLink=e.target.closest && e.target.closest('#cuentas-content .cuenta-ref');
+    if(referralLink){
+      var rcard=referralLink.closest('.cuenta-card');
+      var rbank=rcard && rcard.querySelector('.cuenta-banco');
+      try{qfTrack('referral_click',{provider:rbank?rbank.textContent.trim():'unknown',source_component:'quijocuentas'});}catch(err){}
+    }
+  });
+
   document.querySelectorAll('a[href="#kit-main-cta"]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var sec = btn.closest('.section');
-      var secId = sec ? sec.id : 'desconocida';
-      try { gtag('event', 'cta_avisadme_click', { seccion: secId }); } catch(e) {}
+      try { qfTrack('newsletter_cta_click', {source_component:sec ? sec.id : 'site'}); } catch(e) {}
     });
   });
 
-  // ── GA4: Envío formulario suscripción ─────────────────────────────────
   var kitForm = document.querySelector('form[action*="kit.com"]');
   if (kitForm) {
     kitForm.addEventListener('submit', function() {
-      try { gtag('event', 'formulario_enviado', { formulario: 'newsletter_kit' }); } catch(e) {}
-      try { gtag('event', 'newsletter_signup', { source_component: 'newsletter_kit' }); } catch(e) {}
+      // Solo medimos el intento. El alta confirmada se instrumentará con el funnel de Kit.
+      try { qfTrack('newsletter_submit', {source_component:'newsletter_home'}); } catch(e) {}
     });
   }
 
@@ -5461,14 +5498,14 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       // Kit devuelve 200 o 303 — cualquier respuesta la tratamos como OK
       document.getElementById('excel-modal-form-state').style.display = 'none';
       document.getElementById('excel-modal-success-state').style.display = 'flex';
-      try { gtag('event', 'excel_email_enviado', { email: email }); } catch(e) {}
+      try { qfTrack('quijoexcel_submit', {result:'request_sent'}); } catch(e) {}
     })
     .catch(function() {
       // Fallback: si falla el fetch, mostramos success igualmente
       // (Kit no admite CORS en todos los casos, pero el form se envía)
       document.getElementById('excel-modal-form-state').style.display = 'none';
       document.getElementById('excel-modal-success-state').style.display = 'flex';
-      try { gtag('event', 'excel_email_enviado_fallback'); } catch(e) {}
+      try { qfTrack('quijoexcel_submit', {result:'cors_unverified'}); } catch(e) {}
     });
   });
 
@@ -5477,17 +5514,21 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if (e.key === 'Enter') document.getElementById('excel-submit-btn').click();
   });
 
-  // ── GA4: Scroll depth 50% y 90% ──────────────────────────────────────
-  var scrollMarks = { 50: false, 90: false };
+  // ── Scroll depth por sección activa ────────────────────────────────────
+  var scrollMarksBySection = {};
   window.addEventListener('scroll', function() {
-    var pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-    if (!scrollMarks[50] && pct >= 50) {
-      scrollMarks[50] = true;
-      try { gtag('event', 'scroll_profundidad', { porcentaje: 50 }); } catch(e) {}
+    var sec = qfActiveSection();
+    if(!scrollMarksBySection[sec]) scrollMarksBySection[sec]={50:false,90:false};
+    var denom = document.documentElement.scrollHeight - window.innerHeight;
+    if(denom <= 0) return;
+    var pct = Math.round((window.scrollY / denom) * 100);
+    if (!scrollMarksBySection[sec][50] && pct >= 50) {
+      scrollMarksBySection[sec][50] = true;
+      try { qfTrack('scroll_depth', {percent:50,section_name:sec}); } catch(e) {}
     }
-    if (!scrollMarks[90] && pct >= 90) {
-      scrollMarks[90] = true;
-      try { gtag('event', 'scroll_profundidad', { porcentaje: 90 }); } catch(e) {}
+    if (!scrollMarksBySection[sec][90] && pct >= 90) {
+      scrollMarksBySection[sec][90] = true;
+      try { qfTrack('scroll_depth', {percent:90,section_name:sec}); } catch(e) {}
     }
   }, { passive: true });
 
@@ -5753,7 +5794,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.classList.add('qc-modal-open');
     setDetailCenter(100,'Dentro del bloque');
     requestAnimationFrame(function(){draw(key,block,items);});
-    try{qfTrack('quijocartera_asset_click',{label:key,asset:block.title});}catch(e){}
+    try{qfTrack('portfolio_asset_open',{label:key,asset_name:block.title});}catch(e){}
   };
 
   window.closeQuijoCarteraDetail=function(){
@@ -5943,7 +5984,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       var url=location.origin+location.pathname+'#calc-'+id;
       var text=resultShareText(id);
       var intent='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
-      try{qfTrack('calculator_result_share',{label:id});}catch(e){}
+      try{qfTrack('calculator_share',{tool_name:id,share_method:'x'});}catch(e){}
       window.open(intent,'_blank','noopener,noreferrer,width=720,height=560');
     });
   });
@@ -6135,7 +6176,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   function wrapCalcFunction(id){var name=runMap[id],orig=window[name];if(typeof orig!=='function'||orig.__qf19)return;var wrapped=function(){var out=orig.apply(this,arguments);setTimeout(function(){updateGenericHero(id);},0);return out;};wrapped.__qf19=true;window[name]=wrapped;}
 
-  function applyScenario(id,index){var s=(scenarioConfig[id]||[])[index];if(!s)return;var el=document.getElementById(s.target);if(!el)return;var cur=parseFloat(el.value)||0,min=el.min!==''?parseFloat(el.min):-Infinity,max=el.max!==''?parseFloat(el.max):Infinity;var next=clamp(cur+s.delta,isFinite(min)?min:-1e15,isFinite(max)?max:1e15);el.value=String(Math.round(next*100)/100);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(hero){hero.classList.remove('qf-scenario-flash');void hero.offsetWidth;hero.classList.add('qf-scenario-flash');}try{qfTrack('calculator_scenario_click',{label:id+':'+s.label});}catch(e){}}
+  function applyScenario(id,index){var s=(scenarioConfig[id]||[])[index];if(!s)return;var el=document.getElementById(s.target);if(!el)return;var cur=parseFloat(el.value)||0,min=el.min!==''?parseFloat(el.min):-Infinity,max=el.max!==''?parseFloat(el.max):Infinity;var next=clamp(cur+s.delta,isFinite(min)?min:-1e15,isFinite(max)?max:1e15);el.value=String(Math.round(next*100)/100);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(hero){hero.classList.remove('qf-scenario-flash');void hero.offsetWidth;hero.classList.add('qf-scenario-flash');}try{qfTrack('calculator_scenario_click',{tool_name:id,scenario_name:s.label});}catch(e){}}
 
   function calcTitle(id){var modal=document.getElementById('modal-'+id),h=modal&&modal.querySelector('h2');return h?h.textContent.trim().replace(/^[^A-Za-zÁÉÍÓÚÜÑ¿]+/,''):'Calculadora';}
   function shareText(id){
@@ -6144,7 +6185,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if(main&&hero&&hero.dataset.state==='ready')return '🧮 '+calcTitle(id)+': '+(eye?eye.textContent.trim()+' ':'')+main.textContent.trim()+'. Prueba tu escenario en QuijoteFinanzas:';
     return '🧮 Prueba la calculadora de '+calcTitle(id)+' en QuijoteFinanzas:';
   }
-  function openShare(id){var url=location.origin+location.pathname+'#calc-'+id,text=shareText(id),intent='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);try{qfTrack('calculator_result_share',{label:id});}catch(e){}window.open(intent,'_blank','noopener,noreferrer,width=720,height=560');}
+  function openShare(id){var url=location.origin+location.pathname+'#calc-'+id,text=shareText(id),intent='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);try{qfTrack('calculator_share',{tool_name:id,share_method:'x'});}catch(e){}window.open(intent,'_blank','noopener,noreferrer,width=720,height=560');}
 
   // Base visual para todas las calculadoras activas.
   allEnhanced.forEach(function(id){var m=document.getElementById('modal-'+id);if(m)m.classList.add('qf-calc2');});
@@ -6374,7 +6415,7 @@ html[data-theme="dark"] #cookie-ball{background:#182638!important;border-color:#
   function init(){
     syncButton(current());
     var btn=document.getElementById('qf-theme-toggle');
-    if(btn){btn.addEventListener('click',function(){apply(current()==='dark'?'light':'dark',true);});}
+    if(btn){btn.addEventListener('click',function(){var next=current()==='dark'?'light':'dark';apply(next,true);try{qfTrack('theme_change',{theme:next,source_component:'theme_toggle'});}catch(e){}});}
     if(media){
       var listener=function(e){if(!stored()) apply(e.matches?'dark':'light',false);};
       if(media.addEventListener) media.addEventListener('change',listener); else if(media.addListener) media.addListener(listener);
