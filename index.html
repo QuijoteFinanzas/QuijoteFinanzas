@@ -65,7 +65,7 @@
         "price": "0",
         "priceCurrency": "EUR"
       },
-      "description": "Suite de 17 calculadoras financieras gratuitas para España: salario, IRPF, hipoteca, interés compuesto, FIRE, depósitos, amortización, inflación, autónomos, evolución salarial y patrimonial y más.",
+      "description": "Suite de 16 calculadoras financieras gratuitas para España: salario, IRPF, hipoteca, interés compuesto, FIRE, depósitos, amortización, inflación, autónomos, evolución salarial y patrimonial y más.",
       "featureList": [
         "Calculadora salario bruto a neto con IRPF por comunidad autónoma 2026",
         "Calculadora salario neto a bruto (cuánto bruto necesitas)",
@@ -688,6 +688,13 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .cagr-row label input[type=checkbox]{width:14px;height:14px;cursor:pointer}
 .cagr-del{background:none;border:none;color:#c06030;font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
 .cagr-ytd-badge{background:rgba(201,168,76,.18);color:var(--navy);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.05em}
+.cagr-mode-switch{display:inline-flex;gap:5px;padding:4px;background:#f3f6f9;border:1px solid #e1e7ee;border-radius:999px;margin:2px 0 16px}
+.cagr-mode-btn{border:0;background:transparent;color:#657a8f;padding:7px 14px;border-radius:999px;font-size:11px;font-weight:700;cursor:pointer;transition:.18s ease}
+.cagr-mode-btn:hover{color:var(--navy)}
+.cagr-mode-btn.active{background:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(15,32,53,.12)}
+.cagr-mode-panel[hidden]{display:none!important}
+.cagr-mode-panel.active{display:block}
+
 
 /* ── CAGR results panel ─────────────────────────────────────────────────── */
 .res-item{background:rgba(15,32,53,.06);border:1px solid rgba(15,32,53,.1);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
@@ -1864,33 +1871,32 @@ body.qc-modal-open{overflow:hidden}
     
     <div class="filter-row" id="calc-filter">
       <button class="cat-btn active" data-cat="todos">Todas</button>
-      <button class="cat-btn" data-cat="salario">Salario</button>
-      <button class="cat-btn" data-cat="inversion">Inversi&oacute;n</button>
-      <button class="cat-btn" data-cat="hipoteca">Hipoteca</button>
+      <button class="cat-btn" data-cat="trabajo">Trabajo</button>
+      <button class="cat-btn" data-cat="inversion">Ahorro e inversi&oacute;n</button>
+      <button class="cat-btn" data-cat="vivienda">Vivienda</button>
       <button class="cat-btn" data-cat="deuda">Deudas</button>
     </div>
     <div class="calc-list" id="calcList">
       <div class="calc-item clickable" data-cat="inversion" data-calc="jubilacion"><span class="ci">&#128293;</span><span class="calc-name">Jubilaci&oacute;n / FIRE</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="comparador"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="coste"><span class="ci">&#128188;</span><span class="calc-name">Coste para la empresa</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="hipoteca"><span class="ci">&#127968;</span><span class="calc-name">Cuota hipotecaria</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="comparador"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="coste"><span class="ci">&#128188;</span><span class="calc-name">Coste para la empresa</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="hipoteca"><span class="ci">&#127968;</span><span class="calc-name">Cuota hipotecaria</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="deposito"><span class="ci">&#127987;&#65039;</span><span class="calc-name">Dep&oacute;sito a plazo fijo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Plan de pensiones: ahorro fiscal</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Plan de pensiones: ahorro fiscal</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="inflacion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n y valor futuro</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="interes"><span class="ci">&#128260;</span><span class="calc-name">Inter&eacute;s compuesto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="hipoteca" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Salario bruto a neto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Salario neto a bruto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="cagr-salario"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n salarial (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="cagr-patrimonio"><span class="ci">&#128176;</span><span class="calc-name">Evoluci&oacute;n del patrimonio (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Salario bruto a neto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Salario neto a bruto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo inversion" data-calc="cagr"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n y crecimiento (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="salario" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item" data-cat="inversion"><span class="ci">&#128200;</span><span class="calc-name">Impacto de las comisiones</span><span class="coming">En votación</span></div>
       <div class="calc-item" data-cat="inversion"><span class="ci">&#128737;&#65039;</span><span class="calc-name">Fondo de emergencia</span><span class="coming">En votación</span></div>
-      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca vs invertir</span><span class="coming">En votación</span></div>
-      <div class="calc-item" data-cat="hipoteca"><span class="ci">&#128273;</span><span class="calc-name">Entrada para comprar vivienda</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="vivienda"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca vs invertir</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="vivienda"><span class="ci">&#128273;</span><span class="calc-name">Entrada para comprar vivienda</span><span class="coming">En votación</span></div>
       <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Deudas: avalancha vs bola de nieve</span><span class="coming">En votación</span></div>
     </div>
     <div class="votos-section">
@@ -2194,7 +2200,7 @@ body.qc-modal-open{overflow:hidden}
       <div style="text-align:left;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--silver2);line-height:1.8">
         <strong style="color:var(--cream);font-size:11px;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:8px">Lo que recibes</strong>
         <div>📊 <strong>QuijoExcel</strong> — plantilla de finanzas personales</div>
-        <div>🧮 <strong>17 calculadoras gratuitas</strong> — salario, hipoteca, inversión y más</div>
+        <div>🧮 <strong>16 calculadoras gratuitas</strong> — salario, hipoteca, inversión y más</div>
         <div>📊 <strong>QuijoCuentas</strong> — comparativa mensual de cuentas y depósitos</div>
         <div>🔔 <strong>Avisos puntuales</strong> — solo cuando haya algo que merezca la pena</div>
       </div>
@@ -2288,7 +2294,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="calc-cta" id="au-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Sabes si tu tramo de cotizaci&oacute;n es el correcto?</strong> Comparto gesti&oacute;n fiscal para aut&oacute;nomos en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
@@ -2396,7 +2402,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="calc-cta" id="sal-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Quieres negociar mejor tu salario?</strong> Publico an&aacute;lisis y consejos sobre finanzas personales en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('irpf');return false;">Salario neto →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
@@ -2486,7 +2492,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="calc-cta" id="inf-cta" style="display:none">
       <div><p><strong>&#128161; La inflaci&oacute;n es el impuesto silencioso.</strong>Te explico c&oacute;mo proteger tu dinero en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('interes');return false;">Interés compuesto →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
@@ -2540,7 +2546,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="calc-cta" id="jub-cta" style="display:none">
       <div><p><strong>&#128161; La independencia financiera es un proceso, no un destino.</strong>Comparto ideas y herramientas sobre ahorro e inversión en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Interés compuesto →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('interes');return false;">Interés compuesto →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
@@ -2853,7 +2859,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="calc-cta" id="cmp-cta" style="display:none">
       <div><p><strong>&#128161; El sueldo bruto es solo la mitad de la ecuaci&oacute;n.</strong>M&aacute;s an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto →</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('irpf');return false;">Salario neto →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel →</a>
@@ -2864,60 +2870,63 @@ body.qc-modal-open{overflow:hidden}
   </div>
 </div>
 
-<!-- MODAL: EVOLUCIÓN SALARIAL CAGR -->
-<div class="calc-overlay" id="modal-cagr-salario">
+<!-- MODAL: EVOLUCIÓN Y CRECIMIENTO CAGR -->
+<div class="calc-overlay qf-calc2" id="modal-cagr">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n Salarial</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="cagr-salario">&#215;</button></div>
-    <button class="share-btn" data-share="cagr-salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-cagr-salario">&#10003; Enlace copiado</span>
-    <p class="subtitle">Registra tu salario bruto anual por a&ntilde;o y calcula tu crecimiento compuesto (CAGR).</p>
-    <div class="calc-grid" style="grid-template-columns:1fr">
-      <div id="cags-rows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-        <button class="calc-btn" style="width:auto;padding:9px 18px" onclick="cagsAddRow()">+ A&ntilde;adir a&ntilde;o</button>
-        <button class="calc-btn" data-run="cagr-salario" style="flex:1">Calcular &rarr;</button>
-      </div>
-      <div class="results-panel" id="cags-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
-    </div>
-    <div class="chart-wrap" id="cags-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del salario bruto anual</h4><div class="chart-container" style="height:260px"><canvas id="cags-chart"></canvas></div></div>
-    <div class="calc-cta" id="cags-cta" style="display:none">
-      <div><p><strong>&#128161; &iquest;Tu salario crece como deber&iacute;a?</strong> Comparto an&aacute;lisis de mercado y estrategias de negociaci&oacute;n en X.</p></div>
-      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('irpf');return false;">Salario neto &rarr;</button>
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
-        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
-      </div></div>
-    </div>
-  
-    <div class="qf-brand-signature">quijotefinanzas.com</div>
-  </div>
-</div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="cagr">&#215;</button></div>
+    <p class="subtitle">Calcula el crecimiento anual compuesto (CAGR) de tu salario o de tu patrimonio a partir de datos reales por a&ntilde;o.</p>
 
-<!-- MODAL: EVOLUCIÓN PATRIMONIO CAGR -->
-<div class="calc-overlay" id="modal-cagr-patrimonio">
-  <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Evoluci&oacute;n del Patrimonio</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="cagr-patrimonio">&#215;</button></div>
-    <button class="share-btn" data-share="cagr-patrimonio"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-cagr-patrimonio">&#10003; Enlace copiado</span>
-    <p class="subtitle">Registra tu patrimonio neto por a&ntilde;o y calcula tu crecimiento compuesto (CAGR). Marca YTD si el a&ntilde;o actual no ha terminado.</p>
-    <div class="calc-grid" style="grid-template-columns:1fr">
-      <div id="cagp-rows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-        <button class="calc-btn" style="width:auto;padding:9px 18px" onclick="cagpAddRow()">+ A&ntilde;adir a&ntilde;o</button>
-        <button class="calc-btn" data-run="cagr-patrimonio" style="flex:1">Calcular &rarr;</button>
+    <div class="cagr-mode-switch" role="tablist" aria-label="Tipo de evoluci&oacute;n">
+      <button type="button" class="cagr-mode-btn active" data-cagr-mode="salario" role="tab" aria-selected="true">Salario</button>
+      <button type="button" class="cagr-mode-btn" data-cagr-mode="patrimonio" role="tab" aria-selected="false">Patrimonio</button>
+    </div>
+
+    <div class="cagr-mode-panel active" id="cagr-panel-salario" data-cagr-panel="salario">
+      <button class="share-btn" data-share="cagr-salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir salario</button><span class="share-toast" id="toast-cagr-salario">&#10003; Enlace copiado</span>
+      <p class="subtitle">Registra tu salario bruto anual por a&ntilde;o y calcula su crecimiento compuesto.</p>
+      <div class="calc-grid" style="grid-template-columns:1fr">
+        <div id="cags-rows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="calc-btn" style="width:auto;padding:9px 18px" onclick="cagsAddRow()">+ A&ntilde;adir a&ntilde;o</button>
+          <button class="calc-btn" data-run="cagr-salario" style="flex:1">Calcular &rarr;</button>
+        </div>
+        <div class="results-panel" id="cags-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
       </div>
-      <div class="results-panel" id="cagp-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
+      <div class="chart-wrap" id="cags-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del salario bruto anual</h4><div class="chart-container" style="height:260px"><canvas id="cags-chart"></canvas></div></div>
+      <div class="calc-cta" id="cags-cta" style="display:none">
+        <div><p><strong>&#128161; &iquest;Tu salario crece como deber&iacute;a?</strong> Comparto an&aacute;lisis de mercado y estrategias de negociaci&oacute;n en X.</p></div>
+        <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('irpf');return false;">Salario neto &rarr;</button>
+          <button class="cta-link" style="cursor:pointer" onclick="closeCalc('cagr'); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
+          <button class="cta-link" style="cursor:pointer" onclick="closeCalc('cagr'); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
+          <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
+        </div></div>
+      </div>
     </div>
-    <div class="chart-wrap" id="cagp-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del patrimonio neto</h4><div class="chart-container" style="height:260px"><canvas id="cagp-chart"></canvas></div></div>
-    <div class="calc-cta" id="cagp-cta" style="display:none">
-      <div><p><strong>&#128161; El patrimonio crece con tiempo y disciplina.</strong> Comparto ideas de ahorro e inversión en X.</p></div>
-      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
-        <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
-      </div></div>
+
+    <div class="cagr-mode-panel" id="cagr-panel-patrimonio" data-cagr-panel="patrimonio" hidden>
+      <button class="share-btn" data-share="cagr-patrimonio"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir patrimonio</button><span class="share-toast" id="toast-cagr-patrimonio">&#10003; Enlace copiado</span>
+      <p class="subtitle">Registra tu patrimonio neto por a&ntilde;o y calcula su crecimiento compuesto. Marca YTD si el a&ntilde;o actual no ha terminado.</p>
+      <div class="calc-grid" style="grid-template-columns:1fr">
+        <div id="cagp-rows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="calc-btn" style="width:auto;padding:9px 18px" onclick="cagpAddRow()">+ A&ntilde;adir a&ntilde;o</button>
+          <button class="calc-btn" data-run="cagr-patrimonio" style="flex:1">Calcular &rarr;</button>
+        </div>
+        <div class="results-panel" id="cagp-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
+      </div>
+      <div class="chart-wrap" id="cagp-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del patrimonio neto</h4><div class="chart-container" style="height:260px"><canvas id="cagp-chart"></canvas></div></div>
+      <div class="calc-cta" id="cagp-cta" style="display:none">
+        <div><p><strong>&#128161; El patrimonio crece con tiempo y disciplina.</strong> Comparto ideas de ahorro e inversi&oacute;n en X.</p></div>
+        <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
+          <button class="cta-link" style="cursor:pointer" onclick="closeCalc('cagr'); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
+          <button class="cta-link" style="cursor:pointer" onclick="closeCalc('cagr'); goTo('cuentas'); return false;">QuijoCuentas &rarr;</button>
+          <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
+        </div></div>
+      </div>
     </div>
-  
+
     <div class="qf-brand-signature">quijotefinanzas.com</div>
   </div>
 </div>
@@ -2984,7 +2993,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="calc-cta" id="t-cta" style="display:none">
       <div><p><strong>&#128161; El tiempo es el activo m&aacute;s valioso.</strong> An&aacute;lisis y estrategias de inversi&oacute;n en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
+        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('interes');return false;">Inter&eacute;s compuesto &rarr;</button>
         <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="openCalc('jubilacion');return false;">FIRE / Jubilaci&oacute;n &rarr;</button>
         <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras &rarr;</button>
         <a class="cta-link" href="#" onclick="openExcelModal();return false;">QuijoExcel &rarr;</a>
@@ -3020,7 +3029,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!btn) return;
     var cat = btn.getAttribute('data-cat');
     document.querySelectorAll('#calcList .calc-item').forEach(function(item) {
-      item.style.display = (cat === 'todos' || item.getAttribute('data-cat') === cat) ? 'flex' : 'none';
+      var cats = (item.getAttribute('data-cat') || '').split(/\s+/);
+      item.style.display = (cat === 'todos' || cats.indexOf(cat) !== -1) ? 'flex' : 'none';
     });
     document.querySelectorAll('#calc-filter [data-cat]').forEach(function(b){ b.classList.remove('active'); });
     btn.classList.add('active');
@@ -3262,6 +3272,7 @@ document.addEventListener('DOMContentLoaded', function(){
     'amortizacion':'Amortización anticipada',
     'alquiler':   'ROI / Rentabilidad alquiler',
     'comparador': 'Comparador de ofertas',
+    'cagr':       'Evolución y crecimiento (CAGR)',
     'cagr-salario':'Evolución salarial (CAGR)',
     'cagr-patrimonio':'Evolución del patrimonio (CAGR)',
     'tiempo':     'El coste del tiempo',
@@ -4403,12 +4414,37 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  // Hook en openCalc
+  // Selector interno del CAGR + compatibilidad con enlaces antiguos.
+  window.setCagrMode = function(mode){
+    mode = mode === 'patrimonio' ? 'patrimonio' : 'salario';
+    document.querySelectorAll('[data-cagr-mode]').forEach(function(btn){
+      var active = btn.getAttribute('data-cagr-mode') === mode;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-cagr-panel]').forEach(function(panel){
+      var active = panel.getAttribute('data-cagr-panel') === mode;
+      panel.classList.toggle('active', active);
+      panel.hidden = !active;
+    });
+    try { qfTrack('calculator_mode_select',{tool_name:'cagr',mode:mode}); } catch(e) {}
+  };
+
+  document.querySelectorAll('[data-cagr-mode]').forEach(function(btn){
+    btn.addEventListener('click',function(){ window.setCagrMode(btn.getAttribute('data-cagr-mode')); });
+  });
+
   var _origOpenCalc = window.openCalc;
   window.openCalc = function(id){
-    if(id === 'cagr-salario') initCagsRows();
-    if(id === 'cagr-patrimonio') initCagpRows();
-    if(_origOpenCalc) _origOpenCalc(id);
+    var target=id, mode=null;
+    if(id === 'cagr-salario'){ target='cagr'; mode='salario'; }
+    if(id === 'cagr-patrimonio'){ target='cagr'; mode='patrimonio'; }
+    if(target === 'cagr'){
+      initCagsRows();
+      initCagpRows();
+      window.setCagrMode(mode || 'salario');
+    }
+    if(_origOpenCalc) _origOpenCalc(target);
   };
 
   window.calcCagrSalario = function(){
@@ -6004,20 +6040,20 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 (function(){
   function initQF19(){
   var pilotIds=['interes','jubilacion','tiempo'];
-  var genericIds=['autonomos','salario','hipoteca','coste','inflacion','deposito','irpf','pension','alquilervs','amortizacion','alquiler','comparador','cagr-salario','cagr-patrimonio'];
+  var genericIds=['autonomos','salario','hipoteca','coste','inflacion','deposito','irpf','pension','alquilervs','amortizacion','alquiler','comparador'];
   var allEnhanced=pilotIds.concat(genericIds);
   var timerById={};
 
   var runMap={
     autonomos:'calcAutonomos',salario:'calcSalario',hipoteca:'calcHipoteca',coste:'calcCoste',inflacion:'calcInflacion',
     deposito:'calcDeposito',irpf:'calcIrpf',pension:'calcPension',alquilervs:'calcAlquilervs',amortizacion:'calcAmortizacion',
-    alquiler:'calcAlquiler',comparador:'calcComparador','cagr-salario':'calcCagrSalario','cagr-patrimonio':'calcCagrPatrimonio'
+    alquiler:'calcAlquiler',comparador:'calcComparador'
   };
 
   var resultSelector={
     autonomos:'#au-results',salario:'#sal-results',hipoteca:'#hip-results',coste:'#ce-results',inflacion:'#inf-results',
     deposito:'#dep-results',irpf:'#irpf-results',pension:'#pp-results',alquilervs:'#avs-results',amortizacion:'#am-results',
-    alquiler:'#alq-results',comparador:'#cmp-results','cagr-salario':'#cags-results','cagr-patrimonio':'#cagp-results'
+    alquiler:'#alq-results',comparador:'#cmp-results'
   };
 
   var heroConfig={
@@ -6030,9 +6066,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     irpf:{title:'Neto estimado por paga',main:['neto por paga'],metrics:[['salario bruto anual','Bruto anual'],['irpf anual','IRPF anual'],['tipo efectivo irpf','Tipo efectivo']],private:true},
     pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal anual'],metrics:[['aportación anual al plan','Aportación'],['coste real de la aportación','Coste real'],['ahorro por cada 100','Ahorro / 100€']]},
     amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']]},
-    alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]},
-    'cagr-salario':{title:'Crecimiento salarial anualizado',main:['cagr'],metrics:[['inicio','Inicio'],['final','Final'],['variación total','Variación']],private:true},
-    'cagr-patrimonio':{title:'Crecimiento patrimonial anualizado',main:['cagr'],metrics:[['inicio','Inicio'],['final','Final'],['variación total','Variación']],private:true}
+    alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]}
   };
 
   var sliderConfig={
@@ -6205,7 +6239,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   // Autocalcular al abrir, salvo CAGR (necesitan datos previos).
   var prevOpen19=window.openCalc;
-  window.openCalc=function(id){if(prevOpen19)prevOpen19(id);if(genericIds.indexOf(id)!==-1&&id!=='cagr-salario'&&id!=='cagr-patrimonio')setTimeout(function(){runCalc(id);},90);if(pilotIds.indexOf(id)!==-1)setTimeout(function(){var r=document.querySelector('#modal-'+id+' .qf-range');if(r)r.dispatchEvent(new Event('input',{bubbles:true}));},90);};
+  window.openCalc=function(id){if(prevOpen19)prevOpen19(id);if(genericIds.indexOf(id)!==-1)setTimeout(function(){runCalc(id);},90);if(pilotIds.indexOf(id)!==-1)setTimeout(function(){var r=document.querySelector('#modal-'+id+' .qf-range');if(r)r.dispatchEvent(new Event('input',{bubbles:true}));},90);};
 
   // Si se entra con hash directo.
   setTimeout(function(){var h=(location.hash||'').replace('#calc-','');if(genericIds.indexOf(h)!==-1&&h!=='cagr-salario'&&h!=='cagr-patrimonio')runCalc(h);},120);
@@ -6350,6 +6384,11 @@ html[data-theme="dark"] #calculadoras .calc-item:not(.clickable) .calc-name{colo
 html[data-theme="dark"] #calculadoras .live{color:#d7b457!important}
 html[data-theme="dark"] .calc-close:hover{color:#fff}
 html[data-theme="dark"] .calc-uses-badge,html[data-theme="dark"] .coming{background:#1c2c40;border-color:#3a5065;color:#9eb1c3}
+html[data-theme="dark"] .cagr-mode-switch{background:#132030;border-color:#3a5065}
+html[data-theme="dark"] .cagr-mode-btn{color:#9fb2c4}
+html[data-theme="dark"] .cagr-mode-btn:hover{color:#edf3f8}
+html[data-theme="dark"] .cagr-mode-btn.active{background:#244563;color:#fff}
+
 html[data-theme="dark"] .qf-renta-share-wrap{border-color:#30465a}
 html[data-theme="dark"] .media-head{background:rgba(24,38,56,.98)!important;border-bottom-color:#34495d!important}
 html[data-theme="dark"] .test-option:hover{border-color:#617b93!important;background:#1c2c40!important}
