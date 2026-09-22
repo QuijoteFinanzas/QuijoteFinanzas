@@ -166,13 +166,24 @@
       apply(current());
 
       // Conversión real: se registra una vez por sesión para evitar duplicados al recargar.
+      var qfOrigin = 'unknown';
+      try{
+        var rawOrigin = localStorage.getItem('qf_newsletter_source');
+        if(rawOrigin){
+          var parsedOrigin = JSON.parse(rawOrigin);
+          if(parsedOrigin && parsedOrigin.source && parsedOrigin.ts && (Date.now()-parsedOrigin.ts) < 7*24*60*60*1000) qfOrigin = parsedOrigin.source;
+        }
+      }catch(e){}
+
       try{
         if(!sessionStorage.getItem('qf-newsletter-confirmed')){
           gtag('event','newsletter_confirmed',{
-            source_component:'kit_double_optin',
+            source_component:qfOrigin,
+            confirmation_method:'kit_double_optin',
             conversion_type:'newsletter'
           });
           sessionStorage.setItem('qf-newsletter-confirmed','1');
+          try{localStorage.removeItem('qf_newsletter_source');}catch(err){}
         }
       }catch(e){}
     })();

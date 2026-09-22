@@ -180,24 +180,34 @@
       }
       if(btn)btn.addEventListener('click',function(){apply(current()==='dark'?'light':'dark');});
       apply(current());
+      var qfOrigin = 'unknown';
+      try{
+        var rawOrigin = localStorage.getItem('qf_quijoexcel_source');
+        if(rawOrigin){
+          var parsedOrigin = JSON.parse(rawOrigin);
+          if(parsedOrigin && parsedOrigin.source && parsedOrigin.ts && (Date.now()-parsedOrigin.ts) < 7*24*60*60*1000) qfOrigin = parsedOrigin.source;
+        }
+      }catch(e){}
 
       try{
         if(!sessionStorage.getItem('qf-quijoexcel-confirmed')){
           gtag('event','quijoexcel_confirmed',{
-            source_component:'kit_double_optin',
+            source_component:qfOrigin,
+            confirmation_method:'kit_double_optin',
             conversion_type:'quijoexcel'
           });
           sessionStorage.setItem('qf-quijoexcel-confirmed','1');
+          try{localStorage.removeItem('qf_quijoexcel_source');}catch(err){}
         }
       }catch(e){}
 
       var excel=document.getElementById('quijoexcel-open');
       if(excel) excel.addEventListener('click',function(){
-        try{gtag('event','quijoexcel_open_file',{source_component:'gracias_quijoexcel'});}catch(e){}
+        try{gtag('event','quijoexcel_open_file',{source_component:'gracias_quijoexcel',origin_source:qfOrigin});}catch(e){}
       });
       var newsletter=document.getElementById('newsletter-cta');
       if(newsletter) newsletter.addEventListener('click',function(){
-        try{gtag('event','quijoexcel_newsletter_cta',{source_component:'gracias_quijoexcel'});}catch(e){}
+        try{gtag('event','quijoexcel_newsletter_cta',{source_component:'gracias_quijoexcel',origin_source:qfOrigin});}catch(e){}
       });
     })();
   </script>
