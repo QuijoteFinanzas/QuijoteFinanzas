@@ -841,6 +841,11 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
 .home-newsletter input:focus{border-color:rgba(201,168,76,.65);box-shadow:0 0 0 2px rgba(201,168,76,.10)}
 .home-newsletter button{background:var(--navy);border:1px solid var(--navy);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;padding:9px 14px;border-radius:var(--radius-sm);cursor:pointer;white-space:nowrap}
 .home-newsletter-note{grid-column:1/-1;font-size:10px;color:#8394a6;margin-top:-8px}
+.home-newsletter-success{display:none;grid-column:1/-1;padding:16px 18px;border:1px solid rgba(201,168,76,.28);border-radius:10px;background:rgba(201,168,76,.07);text-align:left}
+.home-newsletter-success.show{display:block}
+.home-newsletter-success strong{display:block;font-size:15px;color:var(--navy);margin-bottom:5px}
+.home-newsletter-success p{margin:0;font-size:12px;line-height:1.6;color:var(--muted)}
+.home-newsletter form.is-hidden,.home-newsletter-note.is-hidden,.home-newsletter-copy.is-hidden{display:none!important}
 @media(max-width:700px){
   header{padding:38px 18px 34px}
   header h1{font-size:clamp(34px,11vw,48px)}
@@ -1742,12 +1747,17 @@ body.qc-modal-open{overflow:hidden}
         <h3>Novedades de QuijoteFinanzas</h3>
         <p>Te aviso cuando publique una herramienta nueva, actualice una comparativa importante o añada un recurso que merezca la pena.</p>
       </div>
-      <form action="https://app.kit.com/forms/9155906/subscriptions" method="post">
-        <input type="email" name="email_address" placeholder="tu@email.com" required>
+      <form id="newsletter-form" action="https://app.kit.com/forms/9947108/subscriptions" method="post" target="newsletter-submit-frame">
+        <input type="email" name="email_address" placeholder="tu@email.com" required autocomplete="email" aria-label="Correo electrónico">
         <button type="submit">Avísame de las novedades →</button>
-        <span class="kit-msg" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
+        <span class="kit-msg" aria-live="polite" style="display:none;font-size:12px;color:var(--muted);width:100%;text-align:center;"></span>
       </form>
+      <iframe name="newsletter-submit-frame" title="Envío de suscripción" style="display:none"></iframe>
       <div class="home-newsletter-note">Sin frecuencia fija. Sin spam. Solo novedades que merezcan la pena.</div>
+      <div class="home-newsletter-success" id="newsletter-success" role="status" aria-live="polite">
+        <strong>✓ ¡Ya casi estás!</strong>
+        <p>Revisa tu correo y pulsa <strong style="display:inline;font-size:inherit;margin:0">“Confirmar suscripción”</strong>. Si no lo ves en unos minutos, comprueba spam o promociones.</p>
+      </div>
     </div>
 
     <div class="section-flow">
@@ -5490,11 +5500,24 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     });
   });
 
-  var kitForm = document.querySelector('form[action*="kit.com"]');
-  if (kitForm) {
-    kitForm.addEventListener('submit', function() {
-      // Solo medimos el intento. El alta confirmada se instrumentará con el funnel de Kit.
-      try { qfTrack('newsletter_submit', {source_component:'newsletter_home'}); } catch(e) {}
+  var newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function() {
+      // El POST se envía a Kit en un iframe oculto para mantener al usuario en la web.
+      // Aquí medimos únicamente el envío; la confirmación real se mide en gracias-newsletter.html.
+      var btn = newsletterForm.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+      try { qfTrack('newsletter_submit', {source_component:'newsletter_home', form_id:'9947108'}); } catch(e) {}
+      window.setTimeout(function(){
+        var wrap = document.getElementById('newsletter-cta');
+        var success = document.getElementById('newsletter-success');
+        var copy = wrap && wrap.querySelector('.home-newsletter-copy');
+        var note = wrap && wrap.querySelector('.home-newsletter-note');
+        if (newsletterForm) newsletterForm.classList.add('is-hidden');
+        if (copy) copy.classList.add('is-hidden');
+        if (note) note.classList.add('is-hidden');
+        if (success) success.classList.add('show');
+      }, 250);
     });
   }
 
@@ -6451,6 +6474,10 @@ html[data-theme="dark"] .empieza-label{color:#edf3f8}
 html[data-theme="dark"] .empieza-sub{color:#93a7ba}
 html[data-theme="dark"] .badge-hero{color:#d5b65b}
 
+
+html[data-theme="dark"] .home-newsletter-success{background:rgba(201,168,76,.08)!important;border-color:rgba(201,168,76,.30)!important}
+html[data-theme="dark"] .home-newsletter-success strong{color:#edf3f8!important}
+html[data-theme="dark"] .home-newsletter-success p{color:#b9c9d8!important}
 html[data-theme="dark"] footer{background:#101a26;border-top-color:#2d4255}
 html[data-theme="dark"] .qf-brand-signature{color:#7f96aa}
 html[data-theme="dark"] #cookie-ball{background:#182638!important;border-color:#3a5065!important;box-shadow:0 3px 14px rgba(0,0,0,.20)!important}
