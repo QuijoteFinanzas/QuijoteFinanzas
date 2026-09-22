@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" id="qf-theme-color" content="#ffffff">
+  <title>Suscripción confirmada | QuijoteFinanzas</title>
+  <meta name="description" content="Tu suscripción a las novedades de QuijoteFinanzas está confirmada.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0f2035;
+      --navy-2:#17304a;
+      --gold:#c9a84c;
+      --text:#17293b;
+      --muted:#6a8299;
+      --bg:#f7f9fb;
+      --card:#ffffff;
+      --border:#dfe6ed;
+      --soft:#f1f5f8;
+      --shadow:0 18px 50px rgba(15,32,53,.09);
+    }
+    html[data-theme="dark"]{
+      --text:#edf3f8;
+      --muted:#a5b7c7;
+      --bg:#101a26;
+      --card:#182638;
+      --border:#34495d;
+      --soft:#132030;
+      --shadow:0 18px 50px rgba(0,0,0,.22);
+    }
+    *{box-sizing:border-box}
+    html{color-scheme:light}
+    html[data-theme="dark"]{color-scheme:dark}
+    body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;transition:background .2s,color .2s}
+    a{color:inherit}
+    .page{min-height:100vh;display:flex;flex-direction:column}
+    .topbar{width:min(1050px,calc(100% - 32px));margin:0 auto;padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;color:var(--navy)}
+    html[data-theme="dark"] .brand{color:#edf3f8}
+    .brand img{width:38px;height:38px;border-radius:50%;object-fit:contain;background:#fff;border:1px solid var(--border)}
+    .brand span{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:-.01em}
+    .theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);display:grid;place-items:center;cursor:pointer;font-size:16px;box-shadow:0 3px 12px rgba(15,32,53,.04)}
+    .theme-toggle:hover{border-color:rgba(201,168,76,.65)}
+    main{flex:1;display:grid;place-items:center;padding:34px 16px 70px}
+    .wrap{width:min(820px,100%)}
+    .hero{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:54px 54px 40px;box-shadow:var(--shadow);text-align:center}
+    .check{width:56px;height:56px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:rgba(201,168,76,.13);border:1px solid rgba(201,168,76,.35);color:#9a761c;font-size:26px;font-weight:700}
+    html[data-theme="dark"] .check{color:#e1c269;background:rgba(201,168,76,.10)}
+    .kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,52px);line-height:1.04;letter-spacing:-.03em;margin:0 0 16px;color:var(--navy)}
+    html[data-theme="dark"] h1{color:#edf3f8}
+    .lead{font-size:16px;line-height:1.75;color:var(--muted);max-width:630px;margin:0 auto 28px}
+    .primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;background:var(--navy);color:#fff;border:1px solid var(--navy);border-radius:10px;padding:13px 20px;font-weight:700;font-size:14px;transition:transform .15s,box-shadow .15s,background .15s}
+    .primary:hover{transform:translateY(-1px);background:var(--navy-2);box-shadow:0 10px 24px rgba(15,32,53,.16)}
+    html[data-theme="dark"] .primary{background:#244563;border-color:#3b6285}
+    .next-label{margin:34px 0 12px;padding-top:26px;border-top:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
+    .card{display:block;text-decoration:none;border:1px solid var(--border);background:var(--soft);border-radius:13px;padding:16px;transition:transform .15s,border-color .15s,background .15s}
+    .card:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.6)}
+    .card strong{display:block;font-size:13px;margin-bottom:4px;color:var(--text)}
+    .card span{display:block;font-size:11px;line-height:1.45;color:var(--muted)}
+    .home-link{display:inline-block;margin-top:23px;font-size:12px;color:var(--muted);text-decoration:none}
+    .home-link:hover{color:var(--text)}
+    footer{width:min(1050px,calc(100% - 32px));margin:0 auto;padding:22px 0 30px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:11px}
+    footer a{text-decoration:none;margin-right:14px}
+    footer a:hover{color:var(--text)}
+    @media(max-width:680px){
+      .topbar{padding-top:16px}
+      .brand span{font-size:16px}
+      main{padding-top:20px}
+      .hero{padding:38px 20px 28px;border-radius:18px}
+      .lead{font-size:15px}
+      .primary{width:100%}
+      .grid{grid-template-columns:1fr}
+      footer{padding-bottom:24px}
+    }
+  </style>
+
+  <!-- Consent Mode: respeta la preferencia guardada en la web principal -->
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{
+      analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500
+    });
+    try{
+      if(localStorage.getItem('cookie_consent')==='accepted'){
+        gtag('consent','update',{analytics_storage:'granted'});
+      }
+    }catch(e){}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4VBMV5WPN"></script>
+  <script>
+    gtag('js',new Date());
+    gtag('config','G-S4VBMV5WPN',{anonymize_ip:true});
+  </script>
+
+  <script>
+    (function(){
+      var KEY='qf-theme';
+      var stored=null;
+      try{stored=localStorage.getItem(KEY);}catch(e){}
+      var dark=stored==='dark'||(!stored&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+      document.documentElement.style.colorScheme=dark?'dark':'light';
+    })();
+  </script>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <a class="brand" href="/" aria-label="Volver a QuijoteFinanzas">
+        <img src="logo.png" alt="">
+        <span>QuijoteFinanzas</span>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <section class="hero" aria-labelledby="titulo">
+          <div class="check" aria-hidden="true">✓</div>
+          <div class="kicker">Suscripción confirmada</div>
+          <h1 id="titulo">Ya formas parte de QuijoteFinanzas</h1>
+          <p class="lead">Tu correo está confirmado. Te avisaré cuando publique una nueva herramienta, una actualización importante o un recurso que realmente merezca la pena.</p>
+          <a class="primary" href="/#calculadoras">Explorar las calculadoras <span aria-hidden="true">→</span></a>
+
+          <div class="next-label">También puedes explorar</div>
+          <div class="grid">
+            <a class="card" href="/#cuentas"><strong>QuijoCuentas →</strong><span>Compara cuentas y depósitos con datos actualizados.</span></a>
+            <a class="card" href="/#quijolista"><strong>QuijoLista →</strong><span>Explora productos interesantes para estudiar y comparar.</span></a>
+            <a class="card" href="/#quijocartera"><strong>QuijoCartera →</strong><span>Consulta cómo distribuyo actualmente mi propia cartera.</span></a>
+          </div>
+          <a class="home-link" href="/">Volver a quijotefinanzas.com</a>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div>© 2026 Don Quijote de las Finanzas</div>
+      <div>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="aviso-legal.html">Aviso legal</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      var KEY='qf-theme';
+      var btn=document.getElementById('theme-toggle');
+      function current(){return document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';}
+      function apply(theme){
+        document.documentElement.setAttribute('data-theme',theme);
+        document.documentElement.style.colorScheme=theme;
+        var meta=document.getElementById('qf-theme-color');
+        if(meta)meta.setAttribute('content',theme==='dark'?'#101a26':'#ffffff');
+        try{localStorage.setItem(KEY,theme);}catch(e){}
+      }
+      if(btn)btn.addEventListener('click',function(){apply(current()==='dark'?'light':'dark');});
+      apply(current());
+
+      // Conversión real: se registra una vez por sesión para evitar duplicados al recargar.
+      try{
+        if(!sessionStorage.getItem('qf-newsletter-confirmed')){
+          gtag('event','newsletter_confirmed',{
+            source_component:'kit_double_optin',
+            conversion_type:'newsletter'
+          });
+          sessionStorage.setItem('qf-newsletter-confirmed','1');
+        }
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>
