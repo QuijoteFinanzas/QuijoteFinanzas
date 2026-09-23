@@ -375,6 +375,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuentas-intro-copy{max-width:660px}
 .cuentas-intro-copy h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,36px);color:var(--navy);margin:0 0 8px;line-height:1.08}
 .cuentas-intro-copy p{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
+.cuentas-seo-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.cuentas-seo-links a{font-size:11px;font-weight:700;text-decoration:none;color:var(--navy2);border:1px solid #dfe6ee;background:#fff;border-radius:999px;padding:6px 10px}.cuentas-seo-links a:hover{border-color:rgba(201,168,76,.65);color:#8b6a15}html[data-theme="dark"] .cuentas-seo-links a{background:#182638;border-color:#33485e;color:#cbd8e4}
 .cuentas-intro-copy .divider,.ql-section-head .divider,.qc-section-head .divider,.ref-section-head .divider{margin-top:14px}
 #cuentas-filter{gap:7px;margin-bottom:22px;padding-bottom:2px}
 #cuentas-filter .cat-btn{border-radius:999px;padding:7px 13px;background:#fff;border:1px solid #dbe3ed;color:var(--navy2);font-size:11px;font-weight:600}
@@ -1552,6 +1553,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
+<script src="/assets/quijocuentas-data.js"></script>
 </head>
 <body class="show-home-intro">
 
@@ -1964,6 +1966,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
       <div class="cuentas-kicker">Comparativa mensual</div>
       <h2>QuijoCuentas</h2>
       <p>Compara cuentas y depósitos en España por rentabilidad, condiciones, límites y FGD. Sin publicidad ni posiciones patrocinadas: solo datos para que puedas comparar con más criterio.</p>
+      <div class="cuentas-seo-links"><a href="/mejores-cuentas-remuneradas.html">Guía de cuentas remuneradas →</a><a href="/mejores-depositos/">Guía de depósitos →</a></div>
       <div class="divider"></div>
     </div>
   </div>
@@ -3366,42 +3369,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // Selección contrastada con las páginas oficiales de las entidades. El orden
   // usa la TAE máxima anunciada en cuentas/depósitos y el potencial anunciado
   // en nómina; los plazos, saldos y requisitos NO son equivalentes.
-  var cuentasData = [
-    // Cuentas sin condiciones
-    {tab:"sin",rank:1,banco:"Renault Bank · Cuenta Contigo",tae:2.27,limite:"Sin límite",duracion:"Indefinida · condiciones publicadas válidas hasta 23/09/2026",fgd:"Francia",fgdClass:"fgd-fr",pro:"Liquidez total y abono mensual de intereses",con:"No admite operativa bancaria completa (recibos/tarjetas)",extra:"Sin nómina, recibos ni permanencia",url:"https://renaultbank.es/productos/"},
-    {tab:"sin",rank:2,banco:"Banco BiG · Gran Cuenta",tae:2.00,limite:"Sin mínimo de apertura",duracion:"Indefinida · liquidación trimestral",fgd:"Portugal",fgdClass:"fgd-es",pro:"Sin vinculación ni comisión de mantenimiento",con:"FGD portugués",extra:"Sin condiciones",url:"https://www.bancobig.es/cuentas-big/gran-cuenta-remunerada/"},
-    {tab:"sin",rank:3,banco:"Indexa Capital / A&G",tae:2.00,limite:"Desde 10.000€",duracion:"Variable: facilidad BCE − 0,50 pp",fgd:"España",fgdClass:"fgd-es",pro:"Tipo ligado de forma transparente al BCE",con:"Exige un saldo mínimo mayor que otras cuentas",extra:"Cuenta bancaria gestionada por A&G Banco",url:"https://indexacapital.com/es/esp/yield"},
-    {tab:"sin",rank:4,banco:"Pibank · Cuenta Remunerada",tae:1.76,limite:"Sin límite de saldo",duracion:"Indefinida · intereses mensuales",fgd:"España",fgdClass:"fgd-es",pro:"Sin límite máximo remunerado",con:"TAE inferior a las primeras alternativas",extra:"Sin condiciones ni comisiones",url:"https://www.pibank.es/cuenta-remunerada/"},
-    {tab:"sin",rank:5,banco:"Self Bank · Cuenta Ahorro",tae:1.00,limite:"Hasta 60.000€",duracion:"Indefinida",fgd:"España",fgdClass:"fgd-es",pro:"Cuenta sencilla sin vinculación",con:"La TAE sin vinculación es más baja",extra:"Puede subir al 1,50% con ≥20.000€ en fondos/ETF/PP",url:"https://www.selfbank.es/ahorrar/cuenta-ahorro-self"},
-
-    // Cuentas con condiciones / promociones
-    {tab:"con",rank:1,banco:"Revolut · Cuenta Remunerada",tae:3.51,limite:"Hasta 25.000€",duracion:"Hasta 120 días desde apertura",fgd:"Según entidad depositaria",fgdClass:"fgd-de",pro:"TAE promocional muy alta con liquidez",con:"Tras 30 días exige 3 pagos con tarjeta ≥5€ cada 30 días; puede haber condiciones adicionales",extra:"Nuevos clientes desde 16/09/2026",url:"https://help.revolut.com/es-ES/help/app-features/savings-vaults/question-savings-promotional-campaign-2/",referral:"https://www.revolut.com/es-ES/referral/?referral-code=alberteqkd%21AUG1-25-AR-H1",referralNote:"Comprueba que el referido sea compatible con la promoción de ahorro."},
-    {tab:"con",rank:2,banco:"Trade Republic",tae:3.04,limite:"Hasta 50.000€",duracion:"Promoción para nuevos clientes",fgd:"Según banco asociado",fgdClass:"fgd-de",pro:"Buena remuneración y liquidez",con:"La estructura de custodia/depósito puede depender de la entidad asociada",extra:"Nuevos clientes",url:"https://traderepublic.com/es-es/interes"},
-    {tab:"con",rank:3,banco:"Bankinter · Cuenta Digital",tae:3.00,limite:"Hasta 100.000€",duracion:"Tipo promocional garantizado 7 meses",fgd:"España",fgdClass:"fgd-es",pro:"Límite remunerado elevado",con:"Promoción temporal para nuevos clientes",extra:"Oferta de septiembre-octubre 2026",url:"https://www.bankinter.com/banca/cuentas-tarjetas/cuentas/cuenta-corriente-digital"},
-    {tab:"con",rank:4,banco:"B100 · Cuenta Health",tae:3.00,limite:"Hasta 50.000€",duracion:"Hasta 3,00% TAE",fgd:"España",fgdClass:"fgd-es",pro:"Combina ahorro y objetivos de hábitos",con:"Para el máximo exige compras y cumplimiento de objetivos",extra:"8 compras/mes y ≥200€ de gasto, además de objetivos Health/Detox",url:"https://b100.es/es/banco/cuentas/cuenta-health/"},
-    {tab:"con",rank:5,banco:"Openbank · Cuenta Remunerada",tae:2.75,limite:"Sin límite de saldo anunciado",duracion:"12 meses",fgd:"España",fgdClass:"fgd-es",pro:"Plazo promocional largo",con:"Solo nuevos clientes y requiere traer Bizum y ahorro",extra:"Puede añadir hasta 200€ por recibos según campaña",url:"https://www.openbank.es/cuenta-remunerada"},
-
-    // Cuentas nómina — potenciales no comparables directamente por plazo/saldo
-    {tab:"nomina",rank:1,banco:"Banco Sabadell · Cuenta Online",total:"Hasta 2.580€ · 1 año",tae:2.00,limite:"2% TAE hasta 100.000€",duracion:"Hasta ~2.000€ intereses + 400€ nómina/Bizum + hasta 180€ cashback Bizum",fgd:"España",fgdClass:"fgd-es",pro:"Potencial alto si mantienes mucho saldo",con:"El máximo exige 100.000€ de saldo y cumplir nómina/Bizum",extra:"Nómina ≥1.000€ + Bizum · campaña 10/09–07/10/2026",url:"https://www.bancsabadell.com/bsnacional/es/particulares/cuentas-bancarias/cuenta-online-sabadell/"},
-    {tab:"nomina",rank:2,banco:"Ibercaja · Cuenta Vamos",total:"Hasta 1.400€ · 2 años",tae:5.10,limite:"Hasta 20.000€",duracion:"5,10% TAE 1er año + 2,02% TAE 2º año",fgd:"España",fgdClass:"fgd-es",pro:"Remuneración potente con un saldo máximo moderado",con:"Exige actividad con recibos y tarjeta",extra:"Nómina/pensión ≥600€ + 6 recibos y 6 pagos con tarjeta por semestre",url:"https://www.ibercaja.es/particulares/cuentas-tarjetas/cuentas/cuenta-vamos/"},
-    {tab:"nomina",rank:3,banco:"Santander · Cuenta Online",total:"Hasta 840€ · 2 años",tae:null,limite:"Sin saldo mínimo para el incentivo",duracion:"Hasta 360€ nómina + 240€ Bizum + 240€ recibos",fgd:"España",fgdClass:"fgd-es",pro:"Sin permanencia y bonificación mensual modular",con:"Los 840€ requieren nómina ≥1.500€ y cumplir Bizum + recibos cada mes",extra:"Nómina ≥800€; con 800–1.499€ el máximo baja a 720€",url:"https://www.bancosantander.es/particulares/cuentas-bancarias/cuentas-nomina"},
-    {tab:"nomina",rank:4,banco:"Cajamar · Promo Nómina",total:"Hasta 750€",tae:null,limite:"—",duracion:"300€ / 500€ / 750€ según importe de nómina",fgd:"España",fgdClass:"fgd-es",pro:"Incentivo directo en efectivo",con:"El máximo exige nómina ≥4.000€ y permanencia 36 meses",extra:"Primera domiciliación de nómina",url:"https://www.cajamar.es/es/comun/eventos/promo-nominas/"},
-    {tab:"nomina",rank:5,banco:"Bankinter · Cuenta Nómina",total:"Hasta 683,52€ · 2 años",tae:5.00,limite:"Hasta 10.000€",duracion:"5% TAE 1er año + 2% TAE 2º año",fgd:"España",fgdClass:"fgd-es",pro:"Condiciones conocidas y horizonte de dos años",con:"Saldo remunerado limitado a 10.000€",extra:"Nómina ≥800€ + 3 recibos/trimestre + 3 pagos con tarjeta/trimestre",url:"https://www.bankinter.com/banca/cuentas-tarjetas/cuentas/cuenta-nomina",referral:"https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing?P5=CN&P2=MGMG5YN9BD5QH",referralNote:"El enlace de referido es de Bankinter; revisa su compatibilidad con la promoción concreta."},
-
-    // Depósitos sin condiciones
-    {tab:"dep-sin",rank:1,banco:"Renault Bank · Depósitos Tú+",tae:3.24,limite:"500€ – 1.000.000€",duracion:"2,88% 12m · 3,14% 24m · 3,24% 36m",fgd:"Francia",fgdClass:"fgd-fr",pro:"Rentabilidad creciente por plazo",con:"No permite cancelación anticipada",extra:"Intereses trimestrales · condiciones publicadas válidas hasta 23/09/2026",url:"https://renaultbank.es/productos/"},
-    {tab:"dep-sin",rank:2,banco:"Volkswagen Bank · Depósito",tae:3.15,limite:"Desde 5.000€",duracion:"3,15% TAE 12m · 1,90% TAE 6m",fgd:"Alemania",fgdClass:"fgd-de",pro:"3,15% a un plazo de 12 meses",con:"Si cancelas antes, la remuneración baja al 1% TAE",extra:"Cancelable con penalización de interés",url:"https://www.vwfs.es/banca/deposito-vw-bank.html"},
-    {tab:"dep-sin",rank:3,banco:"Cetelem · Depósitos",tae:3.00,limite:"Desde 1€",duracion:"2,20% 3m · 2,55% 6m · 2,75% 12m · 3,00% 24m",fgd:"Francia",fgdClass:"fgd-fr",pro:"Importe mínimo muy bajo y varios plazos",con:"La cancelación anticipada puede reducir o eliminar intereses",extra:"Sin vinculación",url:"https://www.cetelem.es/ahorro-y-depositos-cetelem/"},
-    {tab:"dep-sin",rank:4,banco:"EBN Banco · Depósito Sinycon Plus",tae:2.60,limite:"Desde 5.000€",duracion:"Hasta 2,60% TAE a 12 meses según oferta oficial vigente",fgd:"España",fgdClass:"fgd-es",pro:"FGD español y oferta sencilla",con:"Conviene revisar plazos/tipos justo antes de contratar",extra:"Sin vinculación",url:"https://www.ebnbanco.com/ahorro/deposito-sinycon-plus/"},
-    {tab:"dep-sin",rank:5,banco:"Pibank · Depósito",tae:2.52,limite:"Sin mínimo ni máximo anunciado",duracion:"12 meses",fgd:"España",fgdClass:"fgd-es",pro:"Flexible en importe",con:"La cancelación anticipada penaliza los intereses",extra:"Liquidación trimestral · condiciones publicadas hasta 30/09/2026",url:"https://www.pibank.es/deposito-bancario-plazo-fijo/"},
-
-    // Depósitos con condiciones / promoción
-    {tab:"dep-con",rank:1,banco:"Banco BiG · Gran Depósito",tae:4.00,limite:"Según modalidad",duracion:"4,00% TAE a 1 mes para nuevos clientes",fgd:"Portugal",fgdClass:"fgd-es",pro:"TAE promocional muy alta",con:"Solo un mes y la cancelación puede suponer perder intereses",extra:"Nuevos clientes · consulta el resto de plazos",url:"https://www.bancobig.es/ahorrar/depositos-a-plazo-fijo/"},
-    {tab:"dep-con",rank:2,banco:"Deutsche Bank · Depósito Confianza Más DB",tae:3.50,limite:"25.000€ – 150.000€",duracion:"12 meses · hasta 3,50% según vinculación",fgd:"Alemania",fgdClass:"fgd-de",pro:"Puede alcanzar una TAE elevada",con:"El máximo exige vinculación; verifica el desglose vigente antes de contratar",extra:"Dinero nuevo + nómina/tarjeta/fondo según bonificación",url:"https://www.deutsche-bank.es/es/soluciones-db/deposito-confianza.html"},
-    {tab:"dep-con",rank:3,banco:"Arquia · Depósito Bienvenida",tae:3.25,limite:"10.000€ – 30.000€",duracion:"6 meses",fgd:"España",fgdClass:"fgd-es",pro:"TAE elevada a seis meses",con:"Nuevos clientes y requiere una de las vinculaciones admitidas",extra:"Nómina/autónomo, inversión ≥10.000€ o seguro HNA mediado por Arquia",url:"https://www.arquia.com/particulares/depositos"},
-    {tab:"dep-con",rank:4,banco:"ING · Depósito Bienvenida",tae:3.00,limite:"Hasta 50.000€",duracion:"3 meses",fgd:"Países Bajos",fgdClass:"fgd-es",pro:"Condición sencilla para nuevos clientes",con:"Plazo promocional corto",extra:"Nuevos clientes · condiciones publicadas hasta 30/09/2026",url:"https://www.ing.es/depositos-naranja"},
-    {tab:"dep-con",rank:5,banco:"Openbank · Depósito",tae:2.75,limite:"Dinero nuevo",duracion:"6 meses · 1,25% si no cumples ingresos",fgd:"España",fgdClass:"fgd-es",pro:"Cancelable",con:"Para el 2,75% exige ingresos externos ≥900€/mes durante el periodo requerido",extra:"Ingresos mensuales ≥900€",url:"https://www.openbank.es/deposito-a-plazo-fijo"}
-  ];
+  var cuentasData = window.QF_CUENTAS_DATA || [];
   var cuentasTab = "sin";
 
   window.renderCuentas = function() {
