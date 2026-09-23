@@ -90,7 +90,7 @@
           "name": "¿Cómo calcular el salario neto desde el bruto en España?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Para calcular el salario neto desde el bruto en España hay que restar la cotización a la Seguridad Social (6,50% del bruto incluyendo MEI del trabajador en 2026) y la retención de IRPF, que varía según la comunidad autónoma y la situación personal. Nuestra calculadora estima la retención con normativa general 2026, gasto deducible general de 2.000€, reducción del artículo 20 y escalas estatal y autonómica para las 15 comunidades autónomas de régimen común."
+            "text": "Para estimar el salario neto desde el bruto en España hay que separar la cotización del trabajador y la retención de IRPF. La cotización depende de las bases y reglas aplicables; no se modela como un porcentaje universal. La retención se estima con el algoritmo general de la AEAT y la comunidad autónoma se utiliza aparte para aproximar la cuota anual del IRPF."
           }
         },
         {
@@ -98,7 +98,7 @@
           "name": "¿Qué retención de IRPF me corresponde en 2026?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "La retención de IRPF depende de tu salario bruto, comunidad autónoma, número de pagas y situación personal. El resultado combina normativa estatal y autonómica, por lo que puede variar de una comunidad a otra y también según las circunstancias personales del contribuyente."
+            "text": "La retención de IRPF depende de las retribuciones y de las circunstancias personales y familiares contempladas por el algoritmo oficial de retenciones. La comunidad autónoma no se utiliza para calcular la retención ordinaria del pagador; sí interviene en la estimación separada de la cuota anual del IRPF."
           }
         },
         {
@@ -1519,6 +1519,38 @@ body.qc-modal-open{overflow:hidden}
 @media(max-width:430px){#quijocartera .qc-legend{grid-template-columns:1fr}.qc-detail-title-row h3{font-size:24px}.qc-detail-chart-shell{height:225px}}
 </style>
 
+
+<style id="qf-embed-style">
+html.qf-embed-root,html.qf-embed-root body{background:transparent!important;min-height:0!important}
+html.qf-embed-root body{margin:0!important;padding:0!important;overflow:auto!important}
+html.qf-embed-root body>*{display:none!important}
+html.qf-embed-root body>.calc-overlay.qf-embed-target{display:block!important;position:static!important;inset:auto!important;background:transparent!important;backdrop-filter:none!important;padding:0!important;z-index:auto!important}
+html.qf-embed-root .qf-embed-target .calc-modal{display:block!important;width:100%!important;max-width:none!important;max-height:none!important;overflow:visible!important;margin:0!important;box-shadow:none!important;border:1px solid #dde4ed!important;border-radius:14px!important;padding:28px 30px!important}
+html.qf-embed-root .qf-embed-target .calc-close,html.qf-embed-root .qf-embed-target .calc-help,html.qf-embed-root .qf-embed-target .calc-cta,html.qf-embed-root .qf-embed-target .qf-brand-signature{display:none!important}
+html[data-theme="dark"].qf-embed-root .qf-embed-target .calc-modal{border-color:#33485e!important}
+@media(max-width:600px){html.qf-embed-root .qf-embed-target .calc-modal{padding:20px 16px!important;border-radius:12px!important}}
+</style>
+<script>
+(function(){
+  try{
+    var q=new URLSearchParams(location.search);
+    if(q.get('embedCalc')){
+      document.documentElement.classList.add('qf-embed-root');
+      var r=document.querySelector('meta[name="robots"]'); if(r) r.setAttribute('content','noindex,follow');
+    }
+  }catch(e){}
+})();
+</script>
+
+
+<style id="fase33-calc-guide-link-fix">
+#calculadoras .calc-seo-link{margin-left:4px!important;font-size:10px;color:#6d8093;opacity:.9;text-decoration:none;font-weight:650;white-space:nowrap;padding:4px 3px}
+#calculadoras .calc-seo-link:hover{color:#8b6a15;opacity:1}
+#calculadoras .live{margin-left:4px!important}
+html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
+html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
+@media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
+</style>
 </head>
 <body class="show-home-intro">
 
@@ -1890,22 +1922,22 @@ body.qc-modal-open{overflow:hidden}
       <button class="cat-btn" data-cat="deuda">Deudas</button>
     </div>
     <div class="calc-list" id="calcList">
-      <div class="calc-item clickable" data-cat="inversion" data-calc="jubilacion"><span class="ci">&#128293;</span><span class="calc-name">Jubilaci&oacute;n / FIRE</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="vivienda" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="vivienda" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="trabajo" data-calc="comparador"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="trabajo" data-calc="coste"><span class="ci">&#128188;</span><span class="calc-name">Coste para la empresa</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="vivienda" data-calc="hipoteca"><span class="ci">&#127968;</span><span class="calc-name">Cuota hipotecaria</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="deposito"><span class="ci">&#127987;&#65039;</span><span class="calc-name">Dep&oacute;sito a plazo fijo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Plan de pensiones: ahorro fiscal</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="inflacion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n y valor futuro</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="interes"><span class="ci">&#128260;</span><span class="calc-name">Inter&eacute;s compuesto</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="vivienda" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="trabajo" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Bruto a neto · salario / pensión</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="trabajo" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Neto a bruto · salario / pensión</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="trabajo inversion" data-calc="cagr"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n y crecimiento (CAGR)</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item clickable" data-cat="trabajo" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="jubilacion"><span class="ci">&#128293;</span><span class="calc-name">Jubilaci&oacute;n / FIRE</span><a class="calc-seo-link" href="/calculadora-jubilacion-fire/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="alquilervs"><span class="ci">&#128273;</span><span class="calc-name">Alquiler vs compra</span><a class="calc-seo-link" href="/calculadora-alquiler-vs-compra/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="amortizacion"><span class="ci">&#9889;</span><span class="calc-name">Amortizaci&oacute;n anticipada</span><a class="calc-seo-link" href="/calculadora-amortizacion-hipoteca/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="comparador"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Comparador de ofertas</span><a class="calc-seo-link" href="/comparador-ofertas-trabajo/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="coste"><span class="ci">&#128188;</span><span class="calc-name">Coste para la empresa</span><a class="calc-seo-link" href="/calculadora-coste-empresa/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="hipoteca"><span class="ci">&#127968;</span><span class="calc-name">Cuota hipotecaria</span><a class="calc-seo-link" href="/calculadora-cuota-hipoteca/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="deposito"><span class="ci">&#127987;&#65039;</span><span class="calc-name">Dep&oacute;sito a plazo fijo</span><a class="calc-seo-link" href="/calculadora-deposito-plazo-fijo/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="pension"><span class="ci">&#127775;</span><span class="calc-name">Plan de pensiones: ahorro fiscal</span><a class="calc-seo-link" href="/calculadora-plan-pensiones/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="inflacion"><span class="ci">&#128201;</span><span class="calc-name">Inflaci&oacute;n y valor futuro</span><a class="calc-seo-link" href="/calculadora-inflacion/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="interes"><span class="ci">&#128260;</span><span class="calc-name">Inter&eacute;s compuesto</span><a class="calc-seo-link" href="/calculadora-interes-compuesto/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="vivienda" data-calc="alquiler"><span class="ci">&#128202;</span><span class="calc-name">ROI / Rentabilidad alquiler</span><a class="calc-seo-link" href="/calculadora-rentabilidad-alquiler/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="irpf"><span class="ci">&#128203;</span><span class="calc-name">Bruto a neto · salario / pensión</span><a class="calc-seo-link" href="/calculadora-salario-neto/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="salario"><span class="ci">&#127919;</span><span class="calc-name">Neto a bruto · salario / pensión</span><a class="calc-seo-link" href="/calculadora-salario-bruto/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo inversion" data-calc="cagr"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n y crecimiento (CAGR)</span><a class="calc-seo-link" href="/calculadora-cagr/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><a class="calc-seo-link" href="/calculadora-coste-tiempo/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
+      <div class="calc-item clickable" data-cat="trabajo" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><a class="calc-seo-link" href="/calculadora-autonomos/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item" data-cat="inversion"><span class="ci">&#128200;</span><span class="calc-name">Impacto de las comisiones</span><span class="coming">En votación</span></div>
       <div class="calc-item" data-cat="inversion"><span class="ci">&#128737;&#65039;</span><span class="calc-name">Fondo de emergencia</span><span class="coming">En votación</span></div>
       <div class="calc-item" data-cat="vivienda"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca vs invertir</span><span class="coming">En votación</span></div>
@@ -1918,7 +1950,7 @@ body.qc-modal-open{overflow:hidden}
       <div id="votos-status" class="votos-status" aria-live="polite">Cargando votación…</div>
       <div id="votos-list"></div>
     </div>
-    <div class="note calc-note"><strong>Cómo usar esta sección:</strong> las calculadoras activas se abren aquí mismo. Algunas cuentan además con una página independiente con más contexto y preguntas frecuentes para quien quiera profundizar.</div>
+    <div class="note calc-note"><strong>Cómo usar esta sección:</strong> las calculadoras activas se abren aquí mismo. Todas cuentan además con una página independiente con más contexto y preguntas frecuentes para quien quiera profundizar. <a href="/calculadoras/" style="color:var(--navy);font-weight:700;text-decoration:none">Ver todas las guías →</a></div>
   <div class="section-flow">
     <div class="section-flow-copy"><div class="section-flow-kicker">Con tus números claros</div><h3 class="section-flow-title">Optimiza después, no antes</h3><p class="section-flow-text">Si ya sabes dónde estás, compara opciones para tu liquidez o estudia productos de inversión con más criterio.</p></div>
     <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('cuentas')">QuijoCuentas →</button><button class="section-flow-btn secondary" onclick="goTo('quijolista')">QuijoLista</button></div>
@@ -2374,55 +2406,31 @@ body.qc-modal-open{overflow:hidden}
 
 <div class="calc-overlay" id="modal-salario">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127987; Salario neto a bruto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="salario">&#215;</button></div>
-    <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">&#10003; Enlace copiado</span>
-    <p class="subtitle">&iquest;Cu&aacute;nto bruto necesitas para cobrar lo que quieres? Calcula el bruto necesario dado un neto objetivo.</p>
-    <p class="disclaimer">Estimación anual orientativa con normativa general 2026, no cálculo exacto de la retención de nómina de una empresa. Incluye gasto deducible general de 2.000€, reducción del artículo 20, mínimo personal/familiar según tu CCAA, deducción estatal para rentas bajas y cotización general del trabajador. No incluye deducciones auton&oacute;micas propias por hijos, alquiler, vivienda o donaciones, ya que estas se aplican en la declaraci&oacute;n anual y no en la retenci&oacute;n mensual de n&oacute;mina.</p>
+    <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="salario">×</button></div>
+    <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">✓ Enlace copiado</span>
+    <p class="subtitle">Calcula qué bruto aproximado necesitas para alcanzar un neto objetivo, diferenciando lo que entra en banco de tu neto fiscal anual.</p>
+    <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Neto deseado al a&ntilde;o (&euro;)</label><input type="number" id="sal-neto" value="25000" min="0"></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="sal-ccaa">
-          <option value="andalucia">Andaluc&iacute;a</option>
-          <option value="aragon">Arag&oacute;n</option>
-          <option value="asturias">Asturias</option>
-          <option value="baleares">Baleares</option>
-          <option value="canarias">Canarias</option>
-          <option value="cantabria">Cantabria</option>
-          <option value="clm">Castilla-La Mancha</option>
-          <option value="cyl">Castilla y Le&oacute;n</option>
-          <option value="cataluna">Catalu&ntilde;a</option>
-          <option value="extremadura">Extremadura</option>
-          <option value="galicia">Galicia</option>
-          <option value="madrid" selected>Madrid</option>
-          <option value="murcia">Murcia</option>
-          <option value="rioja">La Rioja</option>
-          <option value="valencia">C. Valenciana</option>
+        <div class="field"><label>Tipo de ingreso</label><select id="sal-income-type" onchange="fiscalNetGrossFields()"><option value="salary" selected>Salario por cuenta ajena</option><option value="pension">Pensión ordinaria sujeta a IRPF</option></select></div>
+        <div class="field"><label>Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
+        <div class="field"><label id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
+        <div class="field"><label>Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
+        <div class="field"><label>Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+        <div class="field"><label>Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
+        <div class="field"><label>Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
+        <div class="field"><label>De ellos, menores de 3 años</label><input type="number" id="sal-desc3" value="0" min="0" max="12"></div>
+        <div class="field"><label>Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="sal-ccaa">
+          <option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option>
         </select></div>
-        <div class="field"><label>Situaci&oacute;n personal</label><select id="sal-sit">
-          <option value="0">Soltero/a sin hijos</option>
-          <option value="2400">Casado/a sin hijos</option>
-          <option value="2400">Con 1 hijo</option>
-          <option value="5100">Con 2 hijos o m&aacute;s</option>
-        </select></div>
-        <div class="field"><label>N&uacute;mero de pagas</label><select id="sal-pagas">
-          <option value="12">12 pagas</option>
-          <option value="14" selected>14 pagas</option>
-        </select></div>
-        <button class="calc-btn" data-run="salario">Calcular &rarr;</button>
+        <div class="field"><label>Número de pagas</label><select id="sal-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field sal-salary-only"><label>Tipo de contrato</label><select id="sal-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
+        <button class="calc-btn" data-run="salario">Calcular →</button>
       </div>
       <div class="results-panel" id="sal-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="sal-chart-wrap" style="display:none"><h4>Desglose del salario bruto necesario</h4><div class="chart-container"><canvas id="sal-chart"></canvas></div></div>
-    <div class="calc-cta" id="sal-cta" style="display:none">
-      <div><p><strong>&#128161; &iquest;Quieres negociar mejor tu salario?</strong> Publico an&aacute;lisis y consejos sobre finanzas personales en X.</p></div>
-      <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
-        <button class="cta-link cta-link-related" style="cursor:pointer;border-color:var(--gold);color:var(--navy);font-weight:600" onclick="closeCalc('cagr'); openCalc('irpf');return false;">Salario neto →</button>
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('calculadoras'); return false;">Otras calculadoras →</button>
-        <button class="cta-link" style="cursor:pointer" onclick="closeCalc(this.closest('.calc-overlay').id.replace('modal-','')); goTo('cuentas'); return false;">QuijoCuentas →</button>
-        <a class="cta-link" href="#" onclick="openExcelModal('calculator_'+this.closest('.calc-overlay').id.replace('modal-',''));return false;">QuijoExcel →</a>
-      </div></div>
-    </div>
-  
+    <div class="chart-wrap" id="sal-chart-wrap" style="display:none"><h4>Desglose fiscal estimado</h4><div class="chart-container"><canvas id="sal-chart"></canvas></div></div>
+    <div class="calc-cta" id="sal-cta" style="display:none"><div><p><strong>💡 Bruto, retención y cuota final no son lo mismo.</strong> Si tienes 14 pagas, la paga extraordinaria puede ser mayor que una paga ordinaria porque la cotización se soporta a través de las bases mensuales ordinarias.</p></div></div>
     <div class="qf-brand-signature">quijotefinanzas.com</div>
   </div>
 </div>
@@ -2617,7 +2625,7 @@ body.qc-modal-open{overflow:hidden}
     <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="irpf">&#215;</button></div>
     <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
     <p class="subtitle">Separa nómina, pensión, retención del pagador y cuota anual estimada de IRPF. Incluye el año de transición trabajo → jubilación.</p>
-    <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas actualizadas 22/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB ni incorpora todas las deducciones autonómicas o situaciones especiales.</p>
+    <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>¿Qué quieres calcular?</label><select id="irpf-mode" onchange="fiscalModeFields()"><option value="salary">Nómina</option><option value="pension">Pensión</option><option value="transition">Me jubilo este año</option><option value="annual">Declaración anual / varios pagadores</option></select></div>
@@ -2626,6 +2634,7 @@ body.qc-modal-open{overflow:hidden}
           <div class="field"><label>Año de nacimiento</label><input type="number" id="irpf-birth" value="1985" min="1920" max="2010"></div>
           <div class="field"><label>Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
           <div class="field"><label>Descendientes fiscalmente computables</label><input type="number" id="irpf-desc" value="0" min="0" max="12"></div>
+          <div class="field"><label>Cómputo del mínimo por descendientes</label><select id="irpf-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Si tienes descendientes con porcentajes distintos, usa el modo como aproximación; la versión avanzada por descendiente se incorporará tras validar el motor.</span></div>
           <div class="field"><label>De ellos, menores de 3 años</label><input type="number" id="irpf-desc3" value="0" min="0" max="12"></div>
           <div class="field"><label>Discapacidad del contribuyente</label><select id="irpf-disability"><option value="0">No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
           <div class="field"><label>Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="irpf-ccaa"><option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option></select></div>
@@ -2634,7 +2643,7 @@ body.qc-modal-open{overflow:hidden}
         <div id="fiscal-salary-fields">
           <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
           <div class="field"><label>Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-          <div class="field"><label>Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal</option></select></div>
+          <div class="field"><label>Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
           <div class="field"><label>Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
         </div>
 
@@ -2662,6 +2671,7 @@ body.qc-modal-open{overflow:hidden}
           <div class="field"><label>Retenciones pagador 2 (&euro;)</label><input type="number" id="ann-r2" value="0" min="0"></div>
           <div class="field"><label>Cotizaciones deducibles pagador 2 (&euro;)</label><input type="number" id="ann-ss2" value="0" min="0"></div>
           <div class="field"><label>Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
+          <div class="field"><label>Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
           <div class="field"><label>Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
           <div class="field"><label>Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
         </div>
@@ -3679,7 +3689,8 @@ document.addEventListener('DOMContentLoaded', function(){
   // Cuota anual: estimación general estatal + autonómica, sin todas las deducciones propias.
   var TAX_YEAR = 2026;
   var TAX_RULES_2026 = {
-    updated:'2026-09-22',
+    updated:'2026-09-23',
+    workIncomeDeduction:{threshold1:17094,threshold2:20048.45,max:590.89,slope:.2,otherIncomeLimit:6500},
     ss:{cc:0.047, unemploymentIndef:0.0155, unemploymentTemp:0.016, training:0.001, mei:0.0015, maxMonthly:5101.20,
       solidarity:[[5611.32,0.0019],[7651.80,0.0021],[Infinity,0.0024]]},
     withholdingScale:[[12450,.19],[20200,.24],[35200,.30],[60000,.37],[300000,.45],[Infinity,.47]],
@@ -3692,114 +3703,191 @@ document.addEventListener('DOMContentLoaded', function(){
   function round2(n){return Math.round((n+Number.EPSILON)*100)/100;}
   function ageAtTaxYear(birthYear){birthYear=parseInt(birthYear)||0;return birthYear?TAX_YEAR-birthYear:0;}
 
+  // Escalas autonómicas de la base liquidable general auditadas para el ejercicio 2026
+  // según normativa oficial vigente a 23/09/2026. Los límites son acumulados.
   function getAutonomicScales(ccaa){
-    // Escalas generales configuradas para estimación 2026. CLM corregida según Ley 8/2013 consolidada.
     var r={
-      andalucia:[[12450,.09],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]],
-      aragon:[[12450,.10],[20200,.1225],[35200,.1575],[60000,.20],[300000,.235],[Infinity,.255]],
-      asturias:[[12450,.10],[20200,.125],[35200,.17],[60000,.21],[90000,.235],[175000,.245],[300000,.26],[Infinity,.27]],
-      baleares:[[12450,.09],[20200,.1175],[35200,.155],[60000,.195],[100000,.23],[200000,.245],[Infinity,.26]],
-      canarias:[[12450,.09],[20200,.1175],[35200,.155],[60000,.195],[90000,.215],[Infinity,.245]],
-      cantabria:[[12450,.10],[20200,.1275],[35200,.17],[60000,.21],[90000,.235],[Infinity,.255]],
+      andalucia:[[13000,.095],[21100,.12],[35200,.15],[60000,.185],[Infinity,.225]],
+      aragon:[[13072.50,.095],[21210,.12],[36960,.15],[52500,.185],[60000,.205],[80000,.23],[90000,.24],[130000,.25],[Infinity,.255]],
+      asturias:[[12450,.09],[17707.20,.12],[33007.20,.14],[53407.20,.192],[70000,.215],[90000,.225],[175000,.25],[Infinity,.26]],
+      baleares:[[10000,.09],[18000,.1125],[30000,.1425],[48000,.175],[70000,.19],[90000,.2175],[120000,.2275],[175000,.2375],[Infinity,.2475]],
+      canarias:[[13748,.09],[19422,.115],[35924,.14],[57566,.185],[93268,.235],[123745,.25],[Infinity,.26]],
+      cantabria:[[13000,.085],[21000,.11],[35200,.145],[60000,.18],[90000,.225],[Infinity,.245]],
       clm:[[12450,.095],[20200,.12],[35200,.15],[60000,.185],[Infinity,.225]],
-      cyl:[[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],
-      cataluna:[[12450,.105],[20200,.125],[35200,.165],[60000,.205],[90000,.225],[175000,.255],[300000,.265],[Infinity,.275]],
-      extremadura:[[12450,.10],[20200,.125],[35200,.175],[60000,.215],[Infinity,.255]],
-      galicia:[[12450,.095],[20200,.1175],[35200,.155],[60000,.195],[Infinity,.225]],
-      madrid:[[12450,.09],[20200,.1175],[35200,.155],[60000,.185],[Infinity,.21]],
-      murcia:[[12450,.095],[20200,.12],[35200,.155],[60000,.195],[Infinity,.225]],
-      rioja:[[12450,.09],[20200,.12],[35200,.155],[60000,.185],[Infinity,.225]],
+      cyl:[[12450,.09],[20200,.12],[35200,.14],[53407.20,.185],[Infinity,.215]],
+      cataluna:[[12500,.095],[22000,.125],[33000,.16],[53000,.19],[90000,.215],[120000,.235],[175000,.245],[Infinity,.255]],
+      extremadura:[[12450,.0775],[20200,.0975],[24200,.16],[35200,.175],[60000,.21],[80200,.235],[99200,.24],[120200,.245],[Infinity,.25]],
+      galicia:[[12985.35,.09],[21068.60,.1165],[35200,.149],[60000,.184],[Infinity,.225]],
+      madrid:[[13362.22,.085],[19004.63,.107],[35425.68,.128],[57320.40,.174],[Infinity,.205]],
+      murcia:[[12450,.095],[20200,.112],[34000,.133],[60000,.179],[Infinity,.225]],
+      rioja:[[12450,.08],[20200,.106],[35200,.136],[40000,.178],[50000,.183],[60000,.19],[120000,.245],[Infinity,.27]],
       valencia:[[12000,.088],[22000,.117],[32000,.146],[42000,.17],[52000,.194],[62000,.219],[72000,.244],[100000,.261],[150000,.2735],[200000,.2835],[Infinity,.2935]]
     };return r[ccaa]||r.clm;
   }
-  function getAutonomicMinimo(ccaa){var m={andalucia:5790,asturias:6105,canarias:5606,galicia:5789,madrid:5956.65,valencia:6105};return m[ccaa]||5550;}
+
+  var STATE_FAMILY_MIN_2026={
+    base:5550,age65:1150,age75:1400,desc:[2400,2700,4000,4500],under3:2800,disLow:3000,disHigh:9000,assist:3000
+  };
+  // Solo se definen aquí CCAA que sustituyen alguna cuantía estatal del mínimo personal/familiar.
+  // En el resto se aplican las cuantías estatales.
+  var AUTONOMIC_FAMILY_MIN_2026={
+    andalucia:{base:5790,age65:1200,age75:1460,desc:[2510,2820,4170,4700],under3:2920,disLow:3130,disHigh:9390,assist:3130},
+    asturias:{base:6105,age65:1265,age75:1540,desc:[2640,2970,4400,4950],under3:3080,disLow:3300,disHigh:9900,assist:3300},
+    baleares:{base:5550,age65:1265,age75:1540,desc:[2400,2970,4400,4950],under3:2800,disLow:3300,disHigh:9900,assist:3300},
+    canarias:{base:5606,age65:1162,age75:1414,desc:[2424,2727,4040,4545],under3:2828,disLow:3030,disHigh:9090,assist:3030},
+    galicia:{base:5789,age65:1199,age75:1460,desc:[2503,2816,4172,4694],under3:2920,disLow:3129,disHigh:9387,assist:3129},
+    madrid:{base:5956.65,age65:1234.26,age75:1502.58,desc:[2575.85,2897.83,4400,4950],under3:3005.16,disLow:3219.81,disHigh:9659.44,assist:3219.81},
+    valencia:{base:6105,age65:1265,age75:1540,desc:[2640,2970,4400,4950],under3:3080,disLow:3300,disHigh:9900,assist:3300}
+  };
+  function annualFamilyMinimumFromRules(rules,birthYear,numDesc,numUnder3,disability,descShare){
+    rules=rules||STATE_FAMILY_MIN_2026;
+    var age=ageAtTaxYear(birthYear),min=rules.base,share=(+descShare===0.5?0.5:1);
+    // Para la cuota anual, la LIRPF y las normas autonómicas aplican los incrementos si la edad es SUPERIOR a 65/75 años.
+    if(age>65)min+=rules.age65;if(age>75)min+=rules.age75;
+    numDesc=Math.max(0,parseInt(numDesc)||0);numUnder3=Math.max(0,Math.min(parseInt(numUnder3)||0,numDesc));
+    for(var i=0;i<numDesc;i++)min+=rules.desc[Math.min(i,3)]*share;
+    min+=numUnder3*rules.under3*share;
+    if(+disability>=65)min+=rules.disHigh+rules.assist;else if(+disability>=33)min+=rules.disLow;
+    return round2(min);
+  }
+  function annualStateFamilyMinimum(birthYear,numDesc,numUnder3,disability,descShare){
+    return annualFamilyMinimumFromRules(STATE_FAMILY_MIN_2026,birthYear,numDesc,numUnder3,disability,descShare);
+  }
+  function annualAutonomicFamilyMinimum(ccaa,birthYear,numDesc,numUnder3,disability,descShare){
+    return annualFamilyMinimumFromRules(AUTONOMIC_FAMILY_MIN_2026[ccaa]||STATE_FAMILY_MIN_2026,birthYear,numDesc,numUnder3,disability,descShare);
+  }
+  function getAutonomicBaseMinimum(ccaa){return (AUTONOMIC_FAMILY_MIN_2026[ccaa]||STATE_FAMILY_MIN_2026).base;}
   function progressiveTax(base,scales){var b=Math.max(0,+base||0),t=0,prev=0;for(var i=0;i<scales.length;i++){var lim=scales[i][0],rate=scales[i][1];if(b<=lim){t+=(b-prev)*rate;break;}t+=(lim-prev)*rate;prev=lim;}return Math.max(0,t);}
   function calcRendTrabajoReduction(r){r=Math.max(0,+r||0);if(r<=14852)return 7302;if(r<=17673.52)return Math.max(0,7302-1.75*(r-14852));if(r<19747.5)return Math.max(0,2364.34-1.14*(r-17673.52));return 0;}
 
   function calcEmployeeSS2026(bruto,contract){
     bruto=Math.max(0,+bruto||0); var annualMax=TAX_RULES_2026.ss.maxMonthly*12;
-    var base=Math.min(bruto,annualMax); var unemp=contract==='temp'?TAX_RULES_2026.ss.unemploymentTemp:TAX_RULES_2026.ss.unemploymentIndef;
+    var base=Math.min(bruto,annualMax); var isTemp=(contract==='temp'||contract==='under1'); var unemp=isTemp?TAX_RULES_2026.ss.unemploymentTemp:TAX_RULES_2026.ss.unemploymentIndef;
     var total=base*(TAX_RULES_2026.ss.cc+unemp+TAX_RULES_2026.ss.training+TAX_RULES_2026.ss.mei);
     var excess=Math.max(0,bruto-annualMax), t1=Math.min(excess,(5611.32-5101.20)*12), t2=Math.min(Math.max(0,excess-(5611.32-5101.20)*12),(7651.80-5611.32)*12), t3=Math.max(0,excess-(7651.80-5101.20)*12);
     total+=t1*.0019+t2*.0021+t3*.0024; return round2(total);
   }
 
   function pensionTaxability(type){return (type==='ipa'||type==='gran'||type==='orfandad')?0:1;}
-  function familyMinimum(birthYear,numDesc,numUnder3,disability){
-    var age=ageAtTaxYear(birthYear), min=5550; if(age>=65)min+=1150;if(age>=75)min+=1400;
-    var vals=[2400,2700,4000,4500]; for(var i=0;i<numDesc;i++)min+=vals[Math.min(i,3)]; min+=Math.min(numUnder3,numDesc)*2800;
-    if(+disability>=65)min+=12000; else if(+disability>=33)min+=3000; return min;
+  // Mínimo usado exclusivamente por el algoritmo de RETENCIONES AEAT 2026: sus variables por año de nacimiento equivalen a >=65 / >=75.
+  function familyMinimum(birthYear,numDesc,numUnder3,disability,descShare){
+    var age=ageAtTaxYear(birthYear), min=5550, share=(+descShare===0.5?0.5:1); if(age>=65)min+=1150;if(age>=75)min+=1400;
+    numDesc=Math.max(0,parseInt(numDesc)||0); numUnder3=Math.max(0,Math.min(parseInt(numUnder3)||0,numDesc));
+    var vals=[2400,2700,4000,4500]; for(var i=0;i<numDesc;i++)min+=vals[Math.min(i,3)]*share; min+=numUnder3*2800*share;
+    if(+disability>=65)min+=12000; else if(+disability>=33)min+=3000; return round2(min);
   }
   function withholdingThreshold(sit,numDesc,pensionAdj){var t={1:[0,17644,18694],2:[17197,18130,19262],3:[15876,16342,16867]};var a=t[sit]||t[3];var idx=numDesc<=0?0:(numDesc===1?1:2);return (a[idx]||0)+pensionAdj;}
   function withholding43Base(sit,numDesc,pensionAdj){return withholdingThreshold(sit,numDesc,pensionAdj);}
   function calcWithholding2026(o){
     var retrib=Math.max(0,+o.retrib||0), cot=Math.max(0,+o.contributions||0), isP=o.kind==='pension', nDesc=Math.max(0,parseInt(o.numDesc)||0), under3=Math.max(0,parseInt(o.under3)||0), sit=parseInt(o.situation)||3;
-    if(o.taxable===false||retrib<=0)return {rate:0,annual:0,base:0,quota:0,gastos:0,red20:0,minFamily:familyMinimum(o.birthYear,nDesc,under3,o.disability)};
+    if(o.taxable===false||retrib<=0)return {rate:0,annual:0,base:0,quota:0,gastos:0,red20:0,minFamily:familyMinimum(o.birthYear,nDesc,under3,o.disability,o.descShare)};
     var gastos=Math.min(2000,Math.max(0,retrib-cot)); var rnt=Math.max(0,retrib-cot); var red20=round2(calcRendTrabajoReduction(rnt)); var rntRed=Math.max(0,rnt-gastos-red20);
     var pensionAdj=isP?600:0, hijos=nDesc>2?600:0, base=Math.max(0,rntRed-pensionAdj-hijos-Math.max(0,+o.pensionComp||0));
-    var minFam=familyMinimum(o.birthYear,nDesc,under3,o.disability);
-    var threshold=withholdingThreshold(sit,nDesc,pensionAdj); if(retrib<=threshold)return {rate:0,annual:0,base:base,quota:0,gastos:gastos,red20:red20,minFamily:minFam,pensionAdj:pensionAdj,threshold:threshold};
+    var minFam=familyMinimum(o.birthYear,nDesc,under3,o.disability,o.descShare);
+    var threshold=withholdingThreshold(sit,nDesc,pensionAdj); if(retrib<=threshold){var minRate=(o.kind==='salary'&&o.contract==='under1')?2:0;return {rate:minRate,annual:round2(retrib*minRate/100),base:base,quota:0,gastos:gastos,red20:red20,minFamily:minFam,pensionAdj:pensionAdj,threshold:threshold};}
     var q1=progressiveTax(base,TAX_RULES_2026.withholdingScale), q2=progressiveTax(minFam,TAX_RULES_2026.withholdingScale), quota=Math.max(0,q1-q2);
     if(retrib<=35200){var lim=Math.max(0,(retrib-withholding43Base(sit,nDesc,pensionAdj))*.43);quota=Math.min(quota,lim);}
     var rate=trunc2(quota/retrib*100); if(o.kind==='salary'&&o.contract==='under1'&&rate<2)rate=2;
     var annual=round2(retrib*rate/100); return {rate:rate,annual:annual,base:base,quota:quota,gastos:gastos,red20:red20,minFamily:minFam,pensionAdj:pensionAdj,threshold:threshold};
   }
 
+  function calcWorkIncomeDeduction2026(serviceWorkGross,otherIncome){
+    var g=Math.max(0,+serviceWorkGross||0), other=Math.max(0,+otherIncome||0), r=TAX_RULES_2026.workIncomeDeduction;
+    if(g<=0||g>=r.threshold2||other>r.otherIncomeLimit)return 0;
+    if(g<=r.threshold1)return r.max;
+    return round2(Math.max(0,r.max-r.slope*(g-r.threshold1)));
+  }
+
   function calcAnnualIRPF2026(o){
     var bruto=Math.max(0,+o.gross||0), cot=Math.max(0,+o.contributions||0), reductions=Math.max(0,+o.reductions||0), ccaa=o.ccaa||'clm';
     var gastos=Math.min(2000,Math.max(0,bruto-cot)), rnt=Math.max(0,bruto-cot), red20=Math.min(rnt,calcRendTrabajoReduction(rnt));
     var base=Math.max(0,rnt-gastos-red20-reductions); if(o.joint==='joint-married')base=Math.max(0,base-3400); if(o.joint==='joint-single')base=Math.max(0,base-2150);
-    var minState=familyMinimum(o.birthYear,o.numDesc,o.under3,o.disability), minAuto=Math.max(0,minState-5550+getAutonomicMinimo(ccaa));
+    var minState=annualStateFamilyMinimum(o.birthYear,o.numDesc,o.under3,o.disability,o.descShare), minAuto=annualAutonomicFamilyMinimum(ccaa,o.birthYear,o.numDesc,o.under3,o.disability,o.descShare);
     var state=Math.max(0,progressiveTax(base,TAX_RULES_2026.stateScale)-progressiveTax(Math.min(base,minState),TAX_RULES_2026.stateScale));
     var autoScale=getAutonomicScales(ccaa), auto=Math.max(0,progressiveTax(base,autoScale)-progressiveTax(Math.min(base,minAuto),autoScale));
-    var irpf=round2(state+auto); return {gross:bruto,contributions:cot,gastos:gastos,red20:red20,base:base,minState:minState,minAuto:minAuto,irpf:irpf,effective:bruto?irpf/bruto*100:0,net:bruto-cot-irpf};
+    var grossQuota=Math.max(0,state+auto);
+    var serviceGross=Math.min(bruto,Math.max(0,+o.serviceWorkGross||0)), otherNonService=Math.max(0,+o.otherNonServiceIncome||0);
+    var workDeductionRaw=calcWorkIncomeDeduction2026(serviceGross,otherNonService), workDeductionLimit=grossQuota;
+    if(serviceGross>0&&serviceGross<bruto&&bruto>0)workDeductionLimit=grossQuota*(serviceGross/bruto);
+    var workDeduction=round2(Math.min(workDeductionRaw,Math.max(0,workDeductionLimit)));
+    var irpf=round2(Math.max(0,grossQuota-workDeduction)); return {gross:bruto,contributions:cot,gastos:gastos,red20:red20,base:base,minState:minState,minAuto:minAuto,state:state,autonomic:auto,grossQuota:round2(grossQuota),workDeduction:workDeduction,irpf:irpf,effective:bruto?irpf/bruto*100:0,net:bruto-cot-irpf};
   }
   // Compatibilidad con otras calculadoras existentes.
-  function calcSalaryTax2026(bruto,ccaa,minExtra,pp){var a=calcAnnualIRPF2026({gross:bruto,contributions:calcEmployeeSS2026(bruto,'indef'),reductions:pp||0,ccaa:ccaa,birthYear:1985,numDesc:0,under3:0,disability:0});return {bruto:bruto,ss:a.contributions,gastoGeneral:a.gastos,rendimientoNetoTrabajo:Math.max(0,bruto-a.contributions-a.gastos),reduccionTrabajo:a.red20,minimoPersonalFamiliar:a.minState,minimoAutonomico:a.minAuto,deduccionSMI:0,baseLiquidableGeneral:a.base,irpf:a.irpf,neto:a.net,tipoEfectivo:a.effective};}
+  function calcSalaryTax2026(bruto,ccaa,minExtra,pp){var a=calcAnnualIRPF2026({gross:bruto,contributions:calcEmployeeSS2026(bruto,'indef'),reductions:pp||0,ccaa:ccaa,birthYear:1985,numDesc:0,under3:0,descShare:1,disability:0,serviceWorkGross:bruto,otherNonServiceIncome:0});return {bruto:bruto,ss:a.contributions,gastoGeneral:a.gastos,rendimientoNetoTrabajo:Math.max(0,bruto-a.contributions-a.gastos),reduccionTrabajo:a.red20,minimoPersonalFamiliar:a.minState,minimoAutonomico:a.minAuto,deduccionSMI:0,baseLiquidableGeneral:a.base,irpf:a.irpf,neto:a.net,tipoEfectivo:a.effective};}
   window.calcIRPFTramos=function(bl,ccaa){return progressiveTax(bl,TAX_RULES_2026.stateScale)+progressiveTax(bl,getAutonomicScales(ccaa));};
 
   window.fiscalModeFields=function(){
     var m=fiscalVal('irpf-mode');['salary','pension','transition','annual'].forEach(function(x){var e=document.getElementById('fiscal-'+x+'-fields');if(e)e.style.display=(m===x?'block':'none');});
   };
-  window.fiscalNetGrossFields=function(){var p=fiscalVal('sal-income-type')==='pension';document.querySelectorAll('.sal-salary-only').forEach(function(e){e.style.display=p?'none':'block';});var t=fiscalVal('sal-target-type'),lab=document.getElementById('sal-target-label');if(lab)lab.textContent=t==='bank'?'Neto deseado por paga (€)':'Neto fiscal deseado al año (€)';};
-  document.addEventListener('change',function(e){if(e.target&&e.target.id==='sal-target-type')fiscalNetGrossFields();});
+  window.fiscalNetGrossFields=function(){var p=fiscalVal('sal-income-type')==='pension';document.querySelectorAll('.sal-salary-only').forEach(function(e){e.style.display=p?'none':'block';});var t=fiscalVal('sal-target-type'),lab=document.getElementById('sal-target-label');if(lab)lab.textContent=t==='bank'?(p?'Neto deseado por paga (€)':'Neto ordinario deseado por paga (€)'):'Neto fiscal deseado al año (€)';};
+  document.addEventListener('change',function(e){if(e.target&&(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'))fiscalNetGrossFields();});
 
-  function commonFiscalInput(prefix){return {birthYear:fiscalNum(prefix+'birth'),situation:parseInt(fiscalVal(prefix+'sit'))||3,numDesc:fiscalNum(prefix+'desc'),under3:fiscalNum(prefix+'desc3'),disability:fiscalNum(prefix+'disability'),ccaa:fiscalVal(prefix+'ccaa')||'clm'};}
+  function commonFiscalInput(prefix){return {birthYear:fiscalNum(prefix+'birth'),situation:parseInt(fiscalVal(prefix+'sit'))||3,numDesc:fiscalNum(prefix+'desc'),under3:fiscalNum(prefix+'desc3'),descShare:parseFloat(fiscalVal(prefix+'desc-share'))||1,disability:fiscalNum(prefix+'disability'),ccaa:fiscalVal(prefix+'ccaa')||'clm'};}
 
+
+  function fiscalCcaaValidationNote(ccaa){return '<div class="disclaimer" style="margin-top:14px"><strong>Estimación fiscal 2026:</strong> escala general y mínimo personal/familiar estatal y autonómico revisados con normativa vigente a 23/09/2026. No incluye todas las deducciones autonómicas, base del ahorro, ganancias patrimoniales, inmuebles ni otros supuestos especiales. No sustituye Renta WEB ni asesoramiento fiscal.</div>'; }
   window.calcIrpf=function(){
     var mode=fiscalVal('irpf-mode'), c=commonFiscalInput('irpf-'), html='', chart=[];
     if(mode==='salary'){
       var gross=fiscalNum('irpf-bruto'),pays=parseInt(fiscalVal('irpf-pagas'))||14,contract=fiscalVal('irpf-contract')||'indef',ss=calcEmployeeSS2026(gross,contract);
-      var wh=calcWithholding2026({kind:'salary',retrib:gross,contributions:ss,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,disability:c.disability});
-      var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('irpf-pp'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,disability:c.disability});
-      var bankAnnual=gross-ss-wh.annual;
-      html='<div style="font-weight:700;margin-bottom:8px">A. COBRO / RETENCIÓN DEL PAGADOR</div>'+rr('Salario bruto anual',fmtEUR(gross))+rr('Cotización trabajador estimada',fmtEUR(ss),'o')+rr('Tipo de retención AEAT estimado',fmtPct(wh.rate),'o')+rr('IRPF retenido anual',fmtEUR(wh.annual),'o')+rr('Neto cobrado estimado por paga',fmtEUR(bankAnnual/pays),'g')+
-        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL ESTIMADO</div>'+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final sobre bruto',fmtPct(ann.effective),'o')+rr('Neto fiscal anual',fmtEUR(ann.net),'g')+rr('Neto fiscal medio / '+pays+' pagas',fmtEUR(ann.net/pays))+
-        '<div style="font-weight:700;margin:16px 0 8px">C. AJUSTE RENTA</div>'+rr('Retenciones previstas',fmtEUR(wh.annual))+rr('Diferencia estimada',fmtEUR(ann.irpf-wh.annual),(ann.irpf-wh.annual)>0?'o':'g')+rr('Resultado',Math.abs(ann.irpf-wh.annual)<1?'Aprox. neutro':((ann.irpf-wh.annual)>0?'A ingresar':'A devolver'),(ann.irpf-wh.annual)>0?'o':'g'); chart=[ann.net,ann.irpf,ss];
+      var wh=calcWithholding2026({kind:'salary',retrib:gross,contributions:ss,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability});
+      var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('irpf-pp'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:gross,otherNonServiceIncome:0});
+      var bankAnnual=gross-ss-wh.annual,grossPay=gross/pays,whPay=wh.annual/pays,ordinaryNet=pays===14?grossPay-whPay-ss/12:bankAnnual/pays,extraNet=pays===14?grossPay-whPay:null;
+      html='<div style="font-weight:700;margin-bottom:8px">A. COBRO / RETENCIÓN DEL PAGADOR</div>'+rr('Salario bruto anual',fmtEUR(gross))+rr('Cotización trabajador estimada',fmtEUR(ss),'o')+rr('Tipo de retención AEAT estimado',fmtPct(wh.rate),'o')+rr('IRPF retenido anual',fmtEUR(wh.annual),'o')+rr(pays===14?'Neto estimado paga ordinaria':'Neto estimado por paga',fmtEUR(ordinaryNet),'g')+(pays===14?rr('Neto estimado paga extraordinaria',fmtEUR(extraNet),'g'):'')+
+        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL ESTIMADO</div>'+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final sobre bruto',fmtPct(ann.effective),'o')+rr('Neto fiscal anual',fmtEUR(ann.net),'g')+rr('Neto fiscal medio / '+pays+' pagas',fmtEUR(ann.net/pays))+
+        '<div style="font-weight:700;margin:16px 0 8px">C. AJUSTE RENTA</div>'+rr('Retenciones previstas',fmtEUR(wh.annual))+rr('Diferencia estimada',fmtEUR(ann.irpf-wh.annual),(ann.irpf-wh.annual)>0?'o':'g')+rr('Resultado',Math.abs(ann.irpf-wh.annual)<1?'Aprox. neutro':((ann.irpf-wh.annual)>0?'A ingresar':'A devolver'),(ann.irpf-wh.annual)>0?'o':'g'); html+=fiscalCcaaValidationNote(c.ccaa); chart=[ann.net,ann.irpf,ss];
     } else if(mode==='pension'){
       var typ=fiscalVal('pen-type'),pay=fiscalNum('pen-monthly'),pays=parseInt(fiscalVal('pen-pagas'))||14,gross=pay*pays,taxable=pensionTaxability(typ)>0;
       if(!taxable){html=rr('Pensión bruta anual',fmtEUR(gross))+rr('Tratamiento configurado','Exenta de IRPF en este simulador','g')+rr('Cotización del pensionista',fmtEUR(0))+rr('Neto estimado por paga',fmtEUR(pay),'g')+'<div class="disclaimer" style="margin-top:14px">Comprueba que tu prestación concreta cumple los requisitos de exención; puede haber excepciones.</div>';chart=[gross,0,0];}
-      else {var wh=calcWithholding2026({kind:'pension',retrib:gross,contributions:0,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,disability:c.disability,taxable:true});var ann=calcAnnualIRPF2026({gross:gross,contributions:0,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,disability:c.disability});var bankAnnual=gross-wh.annual;
+      else {var wh=calcWithholding2026({kind:'pension',retrib:gross,contributions:0,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,taxable:true});var ann=calcAnnualIRPF2026({gross:gross,contributions:0,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:0,otherNonServiceIncome:gross});var bankAnnual=gross-wh.annual;
         html='<div style="font-weight:700;margin-bottom:8px">A. COBRO</div>'+rr('Pensión bruta anual',fmtEUR(gross))+rr('Cotización del pensionista',fmtEUR(0))+rr('Gasto general de rendimientos del trabajo',fmtEUR(wh.gastos))+rr('Reducción pensionista (solo retenciones)',fmtEUR(wh.pensionAdj))+rr('Base para retención',fmtEUR(wh.base))+rr('Tipo de retención estimado',fmtPct(wh.rate),'o')+rr('Retención anual estimada',fmtEUR(wh.annual),'o')+rr('NETO ESTIMADO COBRADO POR PAGA',fmtEUR(bankAnnual/pays),'g')+
-        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL</div>'+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final',fmtPct(ann.effective),'o')+rr('Neto económico anual después de IRPF',fmtEUR(ann.net),'g')+rr('NETO FISCAL MEDIO DESPUÉS DE REGULARIZAR IRPF',fmtEUR(ann.net/pays))+
-        '<div style="font-weight:700;margin:16px 0 8px">C. AJUSTE RENTA</div>'+rr('Retenciones previstas',fmtEUR(wh.annual))+rr('Diferencia estimada',fmtEUR(ann.irpf-wh.annual),(ann.irpf-wh.annual)>0?'o':'g')+rr('Resultado',(ann.irpf-wh.annual)>1?'A ingresar':((ann.irpf-wh.annual)<-1?'A devolver':'Aprox. neutro'),(ann.irpf-wh.annual)>0?'o':'g');chart=[ann.net,ann.irpf,0];}
+        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL</div>'+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final',fmtPct(ann.effective),'o')+rr('Neto económico anual después de IRPF',fmtEUR(ann.net),'g')+rr('NETO FISCAL MEDIO DESPUÉS DE REGULARIZAR IRPF',fmtEUR(ann.net/pays))+
+        '<div style="font-weight:700;margin:16px 0 8px">C. AJUSTE RENTA</div>'+rr('Retenciones previstas',fmtEUR(wh.annual))+rr('Diferencia estimada',fmtEUR(ann.irpf-wh.annual),(ann.irpf-wh.annual)>0?'o':'g')+rr('Resultado',(ann.irpf-wh.annual)>1?'A ingresar':((ann.irpf-wh.annual)<-1?'A devolver':'Aprox. neutro'),(ann.irpf-wh.annual)>0?'o':'g');html+=fiscalCcaaValidationNote(c.ccaa); chart=[ann.net,ann.irpf,0];}
     } else if(mode==='transition'){
-      var sal=fiscalNum('tr-salary'),salRet=fiscalNum('tr-salary-withheld'),salSS=fiscalNum('tr-salary-ss'),pPay=fiscalNum('tr-pension-pay'),pPays=fiscalNum('tr-pension-pays'),pGross=pPay*pPays,pRet=fiscalNum('tr-pension-withheld'); if(!pRet){pRet=calcWithholding2026({kind:'pension',retrib:pGross,contributions:0,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,disability:c.disability,taxable:true}).annual;}
-      var totalGross=sal+pGross,totalRet=salRet+pRet,ann=calcAnnualIRPF2026({gross:totalGross,contributions:salSS,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,disability:c.disability});var diff=ann.irpf-totalRet;
-      html=rr('Salario cobrado',fmtEUR(sal))+rr('Pensión realmente devengada este año',fmtEUR(pGross))+rr('Total ingresos del trabajo/pensión',fmtEUR(totalGross),'g')+rr('Retenciones nómina',fmtEUR(salRet))+rr('Retenciones INSS estimadas/indicadas',fmtEUR(pRet))+rr('Total retenciones',fmtEUR(totalRet))+rr('Cuota anual estimada',fmtEUR(ann.irpf),'o')+rr('Resultado estimado declaración',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Una retención baja de la pensión en el primer año no implica un IRPF final bajo: la declaración suma salario + pensión + demás rentas.</div>';chart=[Math.max(0,totalGross-salSS-ann.irpf),ann.irpf,salSS];
+      var sal=fiscalNum('tr-salary'),salRet=fiscalNum('tr-salary-withheld'),salSS=fiscalNum('tr-salary-ss'),pPay=fiscalNum('tr-pension-pay'),pPays=fiscalNum('tr-pension-pays'),pGross=pPay*pPays,pRet=fiscalNum('tr-pension-withheld'); if(!pRet){pRet=calcWithholding2026({kind:'pension',retrib:pGross,contributions:0,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,taxable:true}).annual;}
+      var totalGross=sal+pGross,totalRet=salRet+pRet,ann=calcAnnualIRPF2026({gross:totalGross,contributions:salSS,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:sal,otherNonServiceIncome:pGross});var diff=ann.irpf-totalRet;
+      html=rr('Salario cobrado',fmtEUR(sal))+rr('Pensión realmente devengada este año',fmtEUR(pGross))+rr('Total ingresos del trabajo/pensión',fmtEUR(totalGross),'g')+rr('Retenciones nómina',fmtEUR(salRet))+rr('Retenciones INSS estimadas/indicadas',fmtEUR(pRet))+rr('Total retenciones',fmtEUR(totalRet))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada',fmtEUR(ann.irpf),'o')+rr('Resultado estimado declaración',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Una retención baja de la pensión en el primer año no implica un IRPF final bajo: la declaración suma salario + pensión + demás rentas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,totalGross-salSS-ann.irpf),ann.irpf,salSS];
     } else {
-      var gross=fiscalNum('ann-i1')+fiscalNum('ann-i2')+fiscalNum('ann-other'),withheld=fiscalNum('ann-r1')+fiscalNum('ann-r2')+fiscalNum('ann-other-ret'),ss=fiscalNum('ann-ss1')+fiscalNum('ann-ss2'),joint=fiscalVal('ann-joint');var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('ann-reductions'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,disability:c.disability,joint:joint});var diff=ann.irpf-withheld;
-      html=rr('Total ingresos',fmtEUR(gross),'g')+rr('Total cotizaciones deducibles',fmtEUR(ss))+rr('Gasto general aplicado',fmtEUR(ann.gastos))+rr('Reducción art. 20 estimada',fmtEUR(ann.red20))+rr('Base general aproximada',fmtEUR(ann.base))+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Total retenciones',fmtEUR(withheld))+rr('Resultado estimado',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Tener dos pagadores no aumenta por sí mismo el impuesto. La diferencia suele venir de que cada pagador retiene con información parcial. Este módulo no incluye rendimientos de capital, ganancias patrimoniales ni todas las deducciones autonómicas.</div>';chart=[Math.max(0,gross-ss-ann.irpf),ann.irpf,ss];
+      var gross=fiscalNum('ann-i1')+fiscalNum('ann-i2')+fiscalNum('ann-other'),withheld=fiscalNum('ann-r1')+fiscalNum('ann-r2')+fiscalNum('ann-other-ret'),ss=fiscalNum('ann-ss1')+fiscalNum('ann-ss2'),joint=fiscalVal('ann-joint'),serviceWork=Math.min(gross,fiscalNum('ann-service-work'));var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('ann-reductions'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,joint:joint,serviceWorkGross:serviceWork,otherNonServiceIncome:Math.max(0,gross-serviceWork)});var diff=ann.irpf-withheld;
+      html=rr('Total ingresos',fmtEUR(gross),'g')+rr('Total cotizaciones deducibles',fmtEUR(ss))+rr('Gasto general aplicado',fmtEUR(ann.gastos))+rr('Reducción art. 20 estimada',fmtEUR(ann.red20))+rr('Base general aproximada',fmtEUR(ann.base))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Total retenciones',fmtEUR(withheld))+rr('Resultado estimado',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Tener dos pagadores no aumenta por sí mismo el impuesto. La diferencia suele venir de que cada pagador retiene con información parcial. Este módulo no incluye rendimientos de capital, ganancias patrimoniales ni todas las deducciones autonómicas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,gross-ss-ann.irpf),ann.irpf,ss];
     }
     document.getElementById('irpf-results').innerHTML=html;document.getElementById('irpf-chart-wrap').style.display='block';document.getElementById('irpf-cta').style.display='flex';if(window._irpfChart)window._irpfChart.destroy();window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',data:{labels:['Neto fiscal','IRPF anual','Cotizaciones'],datasets:[{data:chart,backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderWidth:1}]},options:doughnutOpts(chart.reduce(function(a,b){return a+b;},0)||1)});
   };
 
+  function netGrossOutcome2026(g,o){
+    var kind=o.kind||'salary', pays=parseInt(o.pays)||14, contract=o.contract||'indef';
+    var ss=kind==='salary'?calcEmployeeSS2026(g,contract):0;
+    var wh=calcWithholding2026({kind:kind,retrib:g,contributions:ss,contract:contract,birthYear:o.birthYear,situation:o.situation,numDesc:o.numDesc,under3:o.under3,descShare:o.descShare,disability:o.disability||0,taxable:o.taxable!==false});
+    var ann=calcAnnualIRPF2026({gross:g,contributions:ss,ccaa:o.ccaa||'clm',birthYear:o.birthYear,numDesc:o.numDesc,under3:o.under3,descShare:o.descShare,disability:o.disability||0,serviceWorkGross:(kind==='salary'?g:0),otherNonServiceIncome:(kind==='salary'?0:g)});
+    var grossPay=g/pays,whPay=wh.annual/pays,bankAnnual=g-ss-wh.annual,bankOrd,bankExtra=null;
+    if(kind==='salary'&&pays===14){bankOrd=grossPay-whPay-ss/12;bankExtra=grossPay-whPay;} else {bankOrd=bankAnnual/pays;}
+    return {gross:g,ss:ss,wh:wh,ann:ann,bank:bankOrd,bankExtra:bankExtra,bankAnnual:bankAnnual,fiscal:ann.net,grossPay:grossPay};
+  }
+  function solveGrossForNet2026(o){
+    var target=Math.max(0,+o.target||0),targetType=o.targetType||'bank',pays=parseInt(o.pays)||14;
+    var hi=Math.max(target*(targetType==='bank'?pays:1)*2,30000);
+    function metric(g){var r=netGrossOutcome2026(g,o);return targetType==='bank'?r.bank:r.fiscal;}
+    while(metric(hi)<target&&hi<2000000)hi*=1.4;
+    function scan(a,b,step){
+      var bestG=a,bestD=Infinity,bestV=metric(a);
+      for(var g=a;g<=b+step/2;g+=step){var v=metric(g),d=Math.abs(v-target);if(d<bestD-1e-9||(Math.abs(d-bestD)<=1e-9&&g<bestG)){bestD=d;bestG=g;bestV=v;}}
+      return {g:bestG,d:bestD,v:bestV,step:step};
+    }
+    var step=Math.max(1,hi/2500),r1=scan(0,hi,step);
+    var step2=Math.max(.05,step/100),r2=scan(Math.max(0,r1.g-step*2),Math.min(hi,r1.g+step*2),step2);
+    var step3=Math.max(.001,step2/100),r3=scan(Math.max(0,r2.g-step2*2),Math.min(hi,r2.g+step2*2),step3);
+    return netGrossOutcome2026(r3.g,o);
+  }
+
   window.calcSalario=function(){
-    var kind=fiscalVal('sal-income-type'),targetType=fiscalVal('sal-target-type'),target=fiscalNum('sal-neto'),pays=parseInt(fiscalVal('sal-pagas'))||14,contract=fiscalVal('sal-contract')||'indef';var c={birthYear:fiscalNum('sal-birth'),situation:parseInt(fiscalVal('sal-sit'))||3,numDesc:fiscalNum('sal-desc'),under3:fiscalNum('sal-desc3'),disability:0,ccaa:fiscalVal('sal-ccaa')||'clm'};
-    function outcome(g){var ss=kind==='salary'?calcEmployeeSS2026(g,contract):0,wh=calcWithholding2026({kind:kind,retrib:g,contributions:ss,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,disability:0,taxable:true}),ann=calcAnnualIRPF2026({gross:g,contributions:ss,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,disability:0});return {gross:g,ss:ss,wh:wh,ann:ann,bank:(g-ss-wh.annual)/pays,fiscal:ann.net};}
-    var lo=0,hi=Math.max(target*(targetType==='bank'?pays:1)*2,30000);while((targetType==='bank'?outcome(hi).bank:outcome(hi).fiscal)<target&&hi<2000000)hi*=1.4;for(var i=0;i<80;i++){var mid=(lo+hi)/2,val=targetType==='bank'?outcome(mid).bank:outcome(mid).fiscal;if(val<target)lo=mid;else hi=mid;}var r=outcome((lo+hi)/2),diff=r.ann.irpf-r.wh.annual;
-    var html=rr(targetType==='bank'?'Neto objetivo por paga':'Neto fiscal objetivo anual',fmtEUR(target))+rr(kind==='salary'?'Salario bruto necesario':'Pensión bruta anual necesaria',fmtEUR(r.gross),'g')+rr('Cotizaciones reales estimadas',fmtEUR(r.ss),'o')+rr('Tipo retención estimado',fmtPct(r.wh.rate),'o')+rr('Retención anual estimada',fmtEUR(r.wh.annual))+rr('Neto cobrado estimado por paga',fmtEUR(r.bank),'g')+rr('Cuota anual IRPF estimada',fmtEUR(r.ann.irpf),'o')+rr('Neto fiscal anual',fmtEUR(r.ann.net),'g')+rr('Regularización estimada',Math.abs(diff)<1?'Aprox. neutra':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g');
-    document.getElementById('sal-results').innerHTML=html;document.getElementById('sal-chart-wrap').style.display='block';document.getElementById('sal-cta').style.display='flex';if(window._salChart)window._salChart.destroy();window._salChart=new Chart(document.getElementById('sal-chart').getContext('2d'),{type:'doughnut',data:{labels:['Neto fiscal','IRPF','Cotizaciones'],datasets:[{data:[r.ann.net,r.ann.irpf,r.ss],backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderWidth:1}]},options:doughnutOpts(r.gross)});
+    var kind=fiscalVal('sal-income-type')||'salary',targetType=fiscalVal('sal-target-type')||'bank',target=fiscalNum('sal-neto'),pays=parseInt(fiscalVal('sal-pagas'))||14,contract=fiscalVal('sal-contract')||'indef';
+    var c={birthYear:fiscalNum('sal-birth')||1985,situation:parseInt(fiscalVal('sal-sit'))||3,numDesc:fiscalNum('sal-desc'),under3:fiscalNum('sal-desc3'),descShare:parseFloat(fiscalVal('sal-desc-share'))||1,disability:0,ccaa:fiscalVal('sal-ccaa')||'clm'};
+    var r=solveGrossForNet2026({kind:kind,targetType:targetType,target:target,pays:pays,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:0,ccaa:c.ccaa,taxable:true}),diff=r.ann.irpf-r.wh.annual;
+    var html=rr(targetType==='bank'?(kind==='salary'?'Neto ordinario objetivo por paga':'Neto objetivo por paga'):'Neto fiscal objetivo anual',fmtEUR(target))+
+      rr(kind==='salary'?'Salario bruto anual necesario':'Pensión bruta anual necesaria',fmtEUR(r.gross),'g')+rr('Bruto por paga',fmtEUR(r.grossPay))+rr('Cotizaciones reales estimadas',fmtEUR(r.ss),'o')+rr('Tipo retención estimado',fmtPct(r.wh.rate),'o')+rr('Retención anual estimada',fmtEUR(r.wh.annual))+
+      rr(kind==='salary'&&pays===14?'Neto estimado paga ordinaria':'Neto cobrado estimado por paga',fmtEUR(r.bank),'g')+(r.bankExtra!==null?rr('Neto estimado paga extraordinaria',fmtEUR(r.bankExtra),'g'):'')+
+      (r.ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(r.ann.workDeduction),'g'):'')+rr('Cuota anual IRPF estimada',fmtEUR(r.ann.irpf),'o')+rr('Neto fiscal anual',fmtEUR(r.ann.net),'g')+rr('Regularización estimada',Math.abs(diff)<1?'Aprox. neutra':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g');
+    html+=fiscalCcaaValidationNote(c.ccaa); document.getElementById('sal-results').innerHTML=html;document.getElementById('sal-chart-wrap').style.display='block';document.getElementById('sal-cta').style.display='flex';if(window._salChart)window._salChart.destroy();window._salChart=new Chart(document.getElementById('sal-chart').getContext('2d'),{type:'doughnut',data:{labels:['Neto fiscal','IRPF','Cotizaciones'],datasets:[{data:[r.ann.net,r.ann.irpf,r.ss],backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderWidth:1}]},options:doughnutOpts(r.gross)});
   };
 
   window.ppUpdateFields = function(){
@@ -3822,7 +3910,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var estatalScales = [[12450,.095],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]];
     var autonomicScales = getAutonomicScales(ccaa);
     var minAplEstatal = Math.min(baseGeneral, 5550);
-    var minAplAuto = Math.min(baseGeneral, getAutonomicMinimo(ccaa));
+    var minAplAuto = Math.min(baseGeneral, getAutonomicBaseMinimum(ccaa));
     var cuotaEstatal = progressiveTax(baseGeneral, estatalScales) - progressiveTax(minAplEstatal, estatalScales);
     var cuotaAuto = progressiveTax(baseGeneral, autonomicScales) - progressiveTax(minAplAuto, autonomicScales);
     return Math.max(0, cuotaEstatal + cuotaAuto);
@@ -6457,6 +6545,57 @@ html[data-theme="dark"] #cookie-ball{background:#182638!important;border-color:#
 })();
 
   setTimeout(function(){ if(window.fiscalModeFields) fiscalModeFields(); if(window.fiscalNetGrossFields) fiscalNetGrossFields(); },0);
+</script>
+
+
+<script id="qf-embed-behavior">
+(function(){
+  var q; try{q=new URLSearchParams(location.search);}catch(e){return;}
+  var calcId=q.get('embedCalc'); if(!calcId) return;
+  var sharePath=q.get('sharePath')||'';
+  var preset=q.get('preset')||'';
+  function sendHeight(){
+    var modal=document.getElementById('modal-'+calcId); if(!modal) return;
+    var h=Math.ceil(modal.getBoundingClientRect().height)+4;
+    try{parent.postMessage({type:'qf-calc-height',calcId:calcId,height:h},location.origin);}catch(e){}
+  }
+  function applyPreset(){
+    if(calcId==='irpf' && preset){
+      var s=document.getElementById('irpf-mode');
+      if(s && ['salary','pension','transition','annual'].indexOf(preset)!==-1){
+        s.value=preset;
+        if(typeof window.fiscalModeFields==='function') window.fiscalModeFields();
+        if(typeof window.calcIrpf==='function') setTimeout(function(){window.calcIrpf();sendHeight();},80);
+      }
+    }
+    if(calcId==='salario' && preset==='pension'){
+      var i=document.getElementById('sal-income-type'); if(i){i.value='pension'; if(typeof window.fiscalNetGrossFields==='function')window.fiscalNetGrossFields();}
+    }
+  }
+  function init(){
+    var modal=document.getElementById('modal-'+calcId); if(!modal) return;
+    modal.classList.add('qf-embed-target','open');
+    document.body.style.overflow='auto';
+    setTimeout(function(){applyPreset();sendHeight();},180);
+    if(window.ResizeObserver){var ro=new ResizeObserver(function(){sendHeight();});ro.observe(modal);}
+    else setInterval(sendHeight,700);
+    document.addEventListener('click',function(e){
+      var b=e.target.closest&&e.target.closest('[data-share]');
+      if(!b||!sharePath)return;
+      e.preventDefault();e.stopImmediatePropagation();
+      var u=location.origin+sharePath;
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).catch(function(){})}
+      var t=document.getElementById('toast-'+calcId); if(t){t.style.display='inline';setTimeout(function(){t.style.display='none'},2200)}
+    },true);
+    try{ if(typeof qfTrack==='function') qfTrack('calculator_seo_embed_view',{tool_name:calcId,source_component:'seo_page'}); }catch(e){}
+  }
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin||!e.data)return;
+    if(e.data.type==='qf-consent' && e.data.value==='accepted' && typeof gtag==='function') gtag('consent','update',{analytics_storage:'granted'});
+    if(e.data.type==='qf-theme' && (e.data.theme==='light'||e.data.theme==='dark')) document.documentElement.setAttribute('data-theme',e.data.theme);
+  });
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(init,80)}); else setTimeout(init,80);
+})();
 </script>
 
 </body>
