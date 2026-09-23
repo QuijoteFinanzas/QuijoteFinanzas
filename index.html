@@ -1375,8 +1375,9 @@ function qfTrack(eventName, params) {
 .qf-calc2 .field-group{gap:15px}
 .qf-calc2 .calc-btn{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:700}
 .qf-calc2 .calc-btn:hover{background:var(--navy2);border-color:var(--navy2)}
-.qf-calc2 .chart-wrap{border-radius:14px;border-color:rgba(201,168,76,.22);padding:20px;background:linear-gradient(145deg,#0f2035,#173658)}
-.qf-calc2 .chart-container{height:230px}
+.qf-calc2 .chart-wrap{border-radius:16px;border-color:rgba(201,168,76,.26);padding:20px 20px 18px;background:linear-gradient(145deg,#0f2035,#173658);box-shadow:0 14px 34px rgba(15,32,53,.14)}
+.qf-calc2 .chart-wrap h4{margin:0 0 16px;color:rgba(232,240,247,.78);font-size:10px;letter-spacing:.12em}
+.qf-calc2 .chart-container{height:240px}
 .qf-calc2 .results-panel{gap:7px}
 .qf-calc2 .result-row{padding:10px 13px;background:#f8fafc}
 .qf-calc2 .result-value{font-size:16px}
@@ -2649,7 +2650,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
         <div id="fiscal-pension-fields" style="display:none">
           <div class="field"><label>Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
-          <div class="field"><label>Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1716" min="0"></div>
+          <div class="field"><label>Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
           <div class="field"><label>Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
         </div>
 
@@ -2657,7 +2658,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
           <div class="field"><label>Salario bruto cobrado antes de jubilarte (&euro;)</label><input type="number" id="tr-salary" value="24000" min="0"></div>
           <div class="field"><label>Retenciones ya soportadas en nómina (&euro;)</label><input type="number" id="tr-salary-withheld" value="3000" min="0"></div>
           <div class="field"><label>Cotizaciones soportadas trabajando (&euro;)</label><input type="number" id="tr-salary-ss" value="1560" min="0"></div>
-          <div class="field"><label>Pensión bruta por paga desde jubilación (&euro;)</label><input type="number" id="tr-pension-pay" value="1716" min="0"></div>
+          <div class="field"><label>Pensión bruta por paga desde jubilación (&euro;)</label><input type="number" id="tr-pension-pay" value="1500" min="0"></div>
           <div class="field"><label>Pagas de pensión que cobrarás este ejercicio <span style="font-weight:400;color:var(--muted)">(incluye extras devengadas)</span></label><input type="number" id="tr-pension-pays" value="4" min="1" max="14" step="1"></div>
           <div class="field"><label>Retenciones INSS ya practicadas/previstas (&euro;) <span style="font-weight:400;color:var(--muted)">(0 = estimar)</span></label><input type="number" id="tr-pension-withheld" value="0" min="0"></div>
         </div>
@@ -3513,13 +3514,26 @@ document.addEventListener('DOMContentLoaded', function(){
   var fmtEUR = function(n){ return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:'always'}).format(n); };
   var fmtNum = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:'always'}).format(n); };
   var fmtPct = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+'%'; };
+  var fmtEUR0 = function(n){ return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:0,maximumFractionDigits:0,useGrouping:'always'}).format(n); };
+  var fmtPct1 = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:1,maximumFractionDigits:1}).format(n)+'%'; };
+  if(typeof Chart!=='undefined'){try{Chart.defaults.font.family="'DM Sans', sans-serif";Chart.defaults.animation.duration=450;Chart.defaults.plugins.tooltip.backgroundColor='rgba(9,20,32,.96)';Chart.defaults.plugins.tooltip.titleColor='#f4f7fa';Chart.defaults.plugins.tooltip.bodyColor='#dce7ef';Chart.defaults.plugins.tooltip.padding=12;Chart.defaults.plugins.tooltip.cornerRadius=9;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.boxWidth=10;Chart.defaults.plugins.legend.labels.padding=14;}catch(e){}}
   function rr(label,value,cls){ return '<div class="result-row"><span class="result-label">'+label+'</span><span class="result-value'+(cls?' '+cls:'')+'">'+value+'</span></div>'; }
 
   var icChart=null, salChart=null, hipChart=null, ceChart=null;
-  function doughnutOpts(bruto) {
-    return {responsive:true,maintainAspectRatio:false,cutout:'65%',
-      plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11},padding:14,boxWidth:12}},
-      tooltip:{callbacks:{label:function(c){return c.label+': '+fmtEUR(c.raw)+' ('+fmtPct(c.raw/Math.max(bruto,1)*100)+')';}}}}}; 
+  if(typeof Chart!=='undefined'&&!window.__qfCenterTextPlugin){
+    window.__qfCenterTextPlugin=true;
+    Chart.register({id:'qfCenterText',afterDraw:function(chart,args,opts){
+      if(chart.config.type!=='doughnut'||!opts||opts.display===false)return;var meta=chart.getDatasetMeta(0);if(!meta||!meta.data||!meta.data.length)return;
+      var x=meta.data[0].x,y=meta.data[0].y,vals=(chart.data.datasets[0]&&chart.data.datasets[0].data)||[],sum=vals.reduce(function(a,b){return a+(Number(b)||0);},0),total=Number(opts.total);if(!isFinite(total)||total<=0)total=sum;
+      var ctx=chart.ctx;ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba(220,232,245,.58)';ctx.font='600 10px DM Sans, sans-serif';ctx.fillText(opts.label||'TOTAL',x,y-10);ctx.fillStyle='#f4f7fa';ctx.font='700 15px DM Mono, monospace';ctx.fillText(fmtEUR0(total),x,y+10);ctx.restore();
+    }});
+  }
+  function doughnutOpts(bruto,label) {
+    return {responsive:true,maintainAspectRatio:false,cutout:'72%',radius:'94%',layout:{padding:{top:4,bottom:2}},animation:{duration:450},
+      plugins:{qfCenterText:{display:true,total:bruto,label:label||'TOTAL'},legend:{position:'bottom',labels:{color:'rgba(220,232,245,.78)',font:{size:10,weight:'600'},padding:16,boxWidth:10,usePointStyle:true,pointStyle:'circle',generateLabels:function(chart){
+        var base=Chart.defaults.plugins.legend.labels.generateLabels(chart),vals=(chart.data.datasets[0]&&chart.data.datasets[0].data)||[],sum=vals.reduce(function(a,b){return a+(Number(b)||0);},0)||1;
+        base.forEach(function(item,i){var v=Number(vals[i])||0;item.text=(chart.data.labels[i]||item.text)+' · '+fmtEUR0(v)+' · '+fmtPct1(v/sum*100);});return base;
+      }}},tooltip:{backgroundColor:'rgba(9,20,32,.96)',titleColor:'#f4f7fa',bodyColor:'#dce7ef',padding:12,cornerRadius:9,displayColors:true,callbacks:{label:function(c){var vals=c.dataset.data||[],sum=vals.reduce(function(a,b){return a+(Number(b)||0);},0)||1;return ' '+c.label+': '+fmtEUR(c.raw)+' · '+fmtPct1((Number(c.raw)||0)/sum*100);}}}}};
   }
 
 
@@ -6118,7 +6132,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     jubilacion:[{label:'+100 €/mes',target:'jub-aport',delta:100},{label:'−100 € gasto/mes',target:'jub-gastos',delta:-100}],
     tiempo:[{label:'+50 €/mes',target:'t-aport',delta:50},{label:'Empezar 5 años antes',target:'t-edad',delta:-5}],
     autonomos:[{label:'+1.000 € ingresos',target:'au-ingresos',delta:1000},{label:'−500 € gastos',target:'au-gastos',delta:-500}],
-    salario:[{label:'+100 €/mes netos',target:'sal-neto',delta:1200}],
+    salario:[{label:'+100 € netos/paga',target:'sal-neto',delta:100}],
     hipoteca:[{label:'−0,5 pp de interés',target:'hip-tipo',delta:-.5},{label:'+10.000 € entrada',target:'hip-entrada',delta:10000}],
     coste:[{label:'+5.000 € de bruto',target:'ce-bruto',delta:5000}],
     inflacion:[{label:'+1 pp rentabilidad',target:'inf-rent',delta:1},{label:'+5 años',target:'inf-anos',delta:5}],
@@ -6180,7 +6194,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     return '<div class="qf-generic-block" data-qf-block="'+id+'"><div class="qf-live-badge">Resultado en tiempo real</div>'+
       '<div class="qf-result-hero qf-generic-hero" data-qf-hero="'+id+'" data-state="empty">'+
       '<div class="qf-hero-eyebrow" id="qf-'+id+'-eyebrow">'+cfg.title+'</div><div class="qf-hero-main" id="qf-'+id+'-main">Ajusta los datos</div>'+
-      '<div class="qf-hero-metrics"><div class="qf-hero-metric"><span id="qf-'+id+'-m1l">Dato 1</span><strong id="qf-'+id+'-m1">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m2l">Dato 2</span><strong id="qf-'+id+'-m2">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m3l">Dato 3</span><strong id="qf-'+id+'-m3">—</strong></div></div>'+
+      '<div class="qf-hero-metrics"><div class="qf-hero-metric"><span id="qf-'+id+'-m1l">—</span><strong id="qf-'+id+'-m1">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m2l">—</span><strong id="qf-'+id+'-m2">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m3l">—</span><strong id="qf-'+id+'-m3">—</strong></div></div>'+
       '<div class="qf-hero-insight" id="qf-'+id+'-insight">Mueve las barras o cambia los campos para comparar escenarios al instante.</div><div class="qf-whatif" id="qf-'+id+'-whatif"></div>'+
       '<div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share-all="'+id+'">Compartir resultado en X ↗</button></div>'+
       (cfg.private?'<div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>':'')+
@@ -6190,16 +6204,33 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function insertGenericHero(id,cfg){
     var modal=document.getElementById('modal-'+id);if(!modal||modal.querySelector('[data-qf-hero="'+id+'"]'))return;
     modal.classList.add('qf-calc2');var box=modal.querySelector('.calc-modal');if(!box)return;
-    var anchor=box.querySelector('.disclaimer')||box.querySelector('.subtitle')||box.querySelector('.share-toast')||box.querySelector('.share-btn');
+    var anchor=box.querySelector('.subtitle')||box.querySelector('.share-toast')||box.querySelector('.share-btn');
     if(anchor)anchor.insertAdjacentHTML('afterend',genericHeroHTML(id,cfg));else box.insertAdjacentHTML('afterbegin',genericHeroHTML(id,cfg));
   }
 
+  function scenariosFor(id){
+    if(id==='irpf'){
+      var mode=(document.getElementById('irpf-mode')||{}).value||'salary';
+      if(mode==='pension')return [{label:'+100 € por paga',target:'pen-monthly',delta:100}];
+      if(mode==='transition')return [{label:'+100 € pensión/paga',target:'tr-pension-pay',delta:100}];
+      if(mode==='annual')return [];
+    }
+    if(id==='salario'){
+      var targetType=(document.getElementById('sal-target-type')||{}).value||'bank';
+      return targetType==='fiscal'
+        ?[{label:'+1.200 € netos/año',target:'sal-neto',delta:1200}]
+        :[{label:'+100 € netos/paga',target:'sal-neto',delta:100}];
+    }
+    return scenarioConfig[id]||[];
+  }
+
   function ensureScenarioArea(id){
-    var cfg=scenarioConfig[id];if(!cfg||!cfg.length)return;
+    var cfg=scenariosFor(id);
     var host=document.getElementById('qf-'+id+'-whatif');
-    if(!host){var pilotHero=(id==='interes'?document.getElementById('ic-hero'):(id==='jubilacion'?document.getElementById('jub-hero'):(id==='tiempo'?document.getElementById('t-hero'):null)));var hero=document.querySelector('[data-qf-hero="'+id+'"]')||pilotHero;if(hero){host=document.createElement('div');host.className='qf-whatif';host.id='qf-'+id+'-whatif';var insight=hero.querySelector('.qf-hero-insight');if(insight)insight.insertAdjacentElement('afterend',host);else hero.querySelector('.qf-hero-actions').insertAdjacentElement('beforebegin',host);}}
-    if(!host||host.dataset.bound==='1')return;host.dataset.bound='1';
-    host.innerHTML='<div class="qf-whatif-label">Prueba un escenario</div>'+cfg.map(function(s,i){return '<button type="button" class="qf-whatif-btn" data-scenario-id="'+id+'" data-scenario-index="'+i+'">'+s.label+'</button>';}).join('');
+    if(!host&&cfg.length){var pilotHero=(id==='interes'?document.getElementById('ic-hero'):(id==='jubilacion'?document.getElementById('jub-hero'):(id==='tiempo'?document.getElementById('t-hero'):null)));var hero=document.querySelector('[data-qf-hero="'+id+'"]')||pilotHero;if(hero){host=document.createElement('div');host.className='qf-whatif';host.id='qf-'+id+'-whatif';var insight=hero.querySelector('.qf-hero-insight');if(insight)insight.insertAdjacentElement('afterend',host);else hero.querySelector('.qf-hero-actions').insertAdjacentElement('beforebegin',host);}}
+    if(!host)return;
+    var sig=JSON.stringify(cfg);if(host.dataset.scenarioSignature===sig)return;host.dataset.scenarioSignature=sig;
+    host.innerHTML=cfg.length?('<div class="qf-whatif-label">Prueba un escenario</div>'+cfg.map(function(s,i){return '<button type="button" class="qf-whatif-btn" data-scenario-id="'+id+'" data-scenario-index="'+i+'">'+s.label+'</button>';}).join('')):'';
   }
 
   function setHero(id,eyebrow,main,metrics,insight){
@@ -6221,8 +6252,56 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     setHero('comparador','Diferencia anual estimada',eur(diff),[{label:'Oferta A',value:av},{label:'Oferta B',value:bv},{label:'Mejor valor',value:winner}],'<strong>'+winner+'</strong> ofrece mayor valor anual estimado al combinar neto, beneficios y costes de desplazamiento.');
   }
 
+  function metricFrom(pairs,needles,label){var x=findPair(pairs,needles);return x?{label:label,value:x.value}:null;}
+  function compactMetrics(items){return items.filter(function(x){return !!x;}).slice(0,3);}
+
+  function updateIrpfHero(){
+    var p=pairsFrom('irpf');if(!p.length)return;var mode=(document.getElementById('irpf-mode')||{}).value||'salary',main,metrics=[],title,insight;
+    if(mode==='pension'){
+      main=findPair(p,['neto estimado cobrado por paga','neto fiscal medio despues de regularizar irpf','neto estimado por paga']);
+      title='Neto estimado por paga';
+      metrics=compactMetrics([
+        metricFrom(p,['pension bruta anual'],'Bruto anual'),
+        metricFrom(p,['cuota anual estimada de irpf'],'IRPF anual'),
+        metricFrom(p,['diferencia estimada'],'Ajuste Renta')
+      ]);
+      insight='La <strong>retención del pagador</strong> y la cuota final de IRPF pueden ser distintas. El ajuste estimado ayuda a ver esa diferencia.';
+    }else if(mode==='salary'){
+      main=findPair(p,['neto estimado paga ordinaria','neto estimado por paga','neto fiscal medio']);
+      title='Neto estimado por paga';
+      metrics=compactMetrics([
+        metricFrom(p,['salario bruto anual'],'Bruto anual'),
+        metricFrom(p,['cuota anual estimada de irpf'],'IRPF anual'),
+        metricFrom(p,['tipo efectivo final sobre bruto'],'Tipo efectivo')
+      ]);
+      insight='Distingue entre <strong>retención</strong>, <strong>cuota anual</strong> y neto fiscal para interpretar correctamente el resultado.';
+    }else if(mode==='transition'){
+      main=findPair(p,['resultado estimado declaracion']);title='Resultado estimado de la declaración';
+      metrics=compactMetrics([metricFrom(p,['total ingresos del trabajo/pension'],'Ingresos'),metricFrom(p,['total retenciones'],'Retenciones'),metricFrom(p,['cuota anual estimada'],'IRPF anual')]);
+      insight='En el año de jubilación se suman salario y pensión: una retención baja de un pagador no implica una cuota final baja.';
+    }else{
+      main=findPair(p,['resultado estimado']);title='Resultado anual estimado';
+      metrics=compactMetrics([metricFrom(p,['total ingresos'],'Ingresos'),metricFrom(p,['total retenciones'],'Retenciones'),metricFrom(p,['cuota anual estimada de irpf'],'IRPF anual')]);
+      insight='La estimación agrega los pagadores introducidos y compara la cuota anual con las retenciones soportadas.';
+    }
+    if(!main)return;setHero('irpf',title,main.value,metrics,insight);
+  }
+
+  function updateSalarioHero(){
+    var p=pairsFrom('salario');if(!p.length)return;var kind=(document.getElementById('sal-income-type')||{}).value||'salary';
+    var main=findPair(p,kind==='pension'?['pension bruta anual necesaria']:['salario bruto anual necesario']);if(!main)return;
+    var target=findPair(p,['neto ordinario objetivo por paga','neto objetivo por paga','neto fiscal objetivo anual']);
+    var irpf=findPair(p,['cuota anual irpf estimada']);
+    var bank=findPair(p,['neto estimado paga ordinaria','neto cobrado estimado por paga','neto fiscal anual']);
+    setHero('salario',kind==='pension'?'Pensión bruta anual necesaria':'Bruto anual necesario',main.value,compactMetrics([
+      target?{label:'Neto objetivo',value:target.value}:null,
+      irpf?{label:'IRPF anual',value:irpf.value}:null,
+      bank?{label:kind==='pension'?'Neto / paga':'Neto ordinario',value:bank.value}:null
+    ]),'El bruto necesario cambia con retenciones, cotizaciones y situación personal. Ajusta los datos para comparar escenarios.');
+  }
+
   function updateGenericHero(id){
-    if(id==='alquilervs'){updateAlquilerVs();return;}if(id==='comparador'){updateComparador();return;}
+    if(id==='alquilervs'){updateAlquilerVs();return;}if(id==='comparador'){updateComparador();return;}if(id==='irpf'){updateIrpfHero();return;}if(id==='salario'){updateSalarioHero();return;}
     var cfg=heroConfig[id];if(!cfg)return;var p=pairsFrom(id);if(!p.length)return;var main=findPair(p,cfg.main);if(!main)return;
     var metrics=[];(cfg.metrics||[]).forEach(function(m){if(metrics.length>=3)return;var pair=findPair(p,m[0]);if(pair)metrics.push({label:m[1],value:pair.value});});
     setHero(id,cfg.title,main.value,metrics,'Mueve las barras o usa los escenarios rápidos para ver cómo cambia el resultado sin salir de la calculadora.');
@@ -6232,6 +6311,11 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     var modal=document.getElementById('modal-'+id);if(!modal||modal.dataset.qfAuto==='1')return;modal.dataset.qfAuto='1';
     modal.querySelectorAll('input,select').forEach(function(el){if(el.type==='checkbox'){el.addEventListener('change',function(){schedule(id);});}else{el.addEventListener('input',function(){schedule(id);});el.addEventListener('change',function(){schedule(id);});}});
     var btn=modal.querySelector('[data-run="'+id+'"]');if(btn){btn.textContent=(id==='comparador'?'Actualizar comparación →':'Actualizar resultado →');if(!btn.nextElementSibling||!btn.nextElementSibling.classList.contains('qf-live-note'))btn.insertAdjacentHTML('afterend','<div class="qf-live-note">También se recalcula automáticamente al cambiar los datos.</div>');}
+  }
+
+  function observeResults(id){
+    var root=document.querySelector(resultSelector[id]);if(!root||root.dataset.qfObserved==='1'||typeof MutationObserver==='undefined')return;root.dataset.qfObserved='1';
+    var obs=new MutationObserver(function(){setTimeout(function(){updateGenericHero(id);},0);});obs.observe(root,{childList:true,subtree:true,characterData:true});
   }
 
   function wrapCalcFunction(id){var name=runMap[id],orig=window[name];if(typeof orig!=='function'||orig.__qf19)return;var wrapped=function(){var out=orig.apply(this,arguments);setTimeout(function(){updateGenericHero(id);},0);return out;};wrapped.__qf19=true;window[name]=wrapped;}
@@ -6256,11 +6340,17 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   ['alquilervs','comparador'].forEach(function(id){if(!heroConfig[id]){heroConfig[id]={title:'Resultado comparado',main:[],metrics:[]};insertGenericHero(id,heroConfig[id]);ensureScenarioArea(id);}});
 
   Object.keys(sliderConfig).forEach(function(id){enhanceSlider(document.getElementById(id),sliderConfig[id]);});
-  genericIds.forEach(function(id){wrapCalcFunction(id);bindAutoCalc(id);});
+  genericIds.forEach(function(id){wrapCalcFunction(id);bindAutoCalc(id);observeResults(id);});
 
   document.addEventListener('click',function(e){
     var sc=e.target.closest('[data-scenario-id]');if(sc){applyScenario(sc.dataset.scenarioId,parseInt(sc.dataset.scenarioIndex,10)||0);return;}
     var sh=e.target.closest('[data-result-share-all]');if(sh){openShare(sh.dataset.resultShareAll);return;}
+  });
+
+  document.addEventListener('change',function(e){
+    if(!e.target)return;
+    if(e.target.id==='irpf-mode'){setTimeout(function(){ensureScenarioArea('irpf');updateGenericHero('irpf');},0);}
+    if(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'){setTimeout(function(){ensureScenarioArea('salario');updateGenericHero('salario');},0);}
   });
 
   // Autocalcular al abrir, salvo CAGR (necesitan datos previos).
@@ -6565,11 +6655,12 @@ html[data-theme="dark"] #cookie-ball{background:#182638!important;border-color:#
       if(s && ['salary','pension','transition','annual'].indexOf(preset)!==-1){
         s.value=preset;
         if(typeof window.fiscalModeFields==='function') window.fiscalModeFields();
+        try{s.dispatchEvent(new Event('change',{bubbles:true}));}catch(e){}
         if(typeof window.calcIrpf==='function') setTimeout(function(){window.calcIrpf();sendHeight();},80);
       }
     }
     if(calcId==='salario' && preset==='pension'){
-      var i=document.getElementById('sal-income-type'); if(i){i.value='pension'; if(typeof window.fiscalNetGrossFields==='function')window.fiscalNetGrossFields();}
+      var i=document.getElementById('sal-income-type'); if(i){i.value='pension'; if(typeof window.fiscalNetGrossFields==='function')window.fiscalNetGrossFields();try{i.dispatchEvent(new Event('change',{bubbles:true}));}catch(e){}}
     }
   }
   function init(){
