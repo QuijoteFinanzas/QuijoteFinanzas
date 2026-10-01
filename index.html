@@ -384,16 +384,24 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuentas-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:0 0 12px;padding:0 2px}
 .cuentas-sort{font-size:12px;color:var(--muted);margin:0}
 .cuentas-badge{font-size:10px;color:var(--navy2);background:#f6f8fb;border:1px solid #dfe6ee;padding:5px 9px;border-radius:999px;font-family:'DM Mono',monospace;white-space:nowrap}
-.cuentas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-top:0}
+.cuentas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:0}
 .cuenta-card{background:#fff;border:1px solid #e1e7ef;border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;position:relative;box-shadow:0 1px 2px rgba(15,32,53,.03)}
 .cuenta-card:hover{border-color:#c9d3df;transform:translateY(-2px);box-shadow:0 10px 26px rgba(15,32,53,.08)}
 .cuenta-card.top{border-color:rgba(201,168,76,.6);box-shadow:inset 0 0 0 1px rgba(201,168,76,.16),0 2px 8px rgba(15,32,53,.04)}
 .cuenta-rank{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:#7a6020;background:rgba(201,168,76,.10);border:1px solid rgba(201,168,76,.28);padding:4px 8px;border-radius:999px;margin-bottom:7px;font-weight:800}
 .cuenta-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid #edf1f5}
-.cuenta-banco{font-size:16px;font-weight:700;color:var(--navy);font-family:'Playfair Display',serif;line-height:1.25}
-.cuenta-metric{text-align:right;min-width:112px}
+.cuenta-banco{color:var(--navy);line-height:1.2;min-width:0;display:flex;flex-direction:column;gap:3px}
+.cuenta-bank-name{font-size:16px;font-weight:700;font-family:'Playfair Display',serif;line-height:1.18}
+.cuenta-bank-product{font-size:11px;font-weight:650;font-family:'DM Sans',sans-serif;color:var(--muted);line-height:1.3}
+.cuenta-metric{text-align:right;min-width:126px;flex:0 0 auto}
 .cuenta-tae{font-size:27px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;line-height:1;letter-spacing:-.4px}
 .cuenta-tae span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.2px;margin-top:5px;text-transform:uppercase}
+.cuenta-rich-metric{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:138px}
+.cuenta-rich-prefix{font-size:10px;line-height:1;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.cuenta-rich-value{font-family:'DM Mono',monospace;font-size:25px;line-height:1.02;font-weight:700;color:var(--navy);letter-spacing:-.5px;white-space:nowrap}
+.cuenta-rich-period{font-size:11px;line-height:1.25;font-weight:700;color:var(--navy2);white-space:nowrap}
+.cuenta-rich-secondary{font-size:10px;line-height:1.25;font-weight:600;color:var(--muted);white-space:nowrap}
+.cuenta-rich-label{font-size:9px;line-height:1.15;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
 .cuenta-meta-row{display:flex;gap:6px;flex-wrap:wrap}
 .cuenta-chip{font-size:10px;padding:5px 8px;border-radius:999px;background:#f7f9fc;color:var(--navy2);border:1px solid #e1e7ef;white-space:nowrap;font-weight:600}
 .cuenta-detail{font-size:12px;line-height:1.55;color:#4f6985;white-space:normal;word-wrap:break-word;padding-left:2px}
@@ -405,7 +413,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuenta-tae-ref{font-size:11px;color:var(--muted);margin-top:-2px}
 .cuentas-disclaimer{font-size:11px;color:var(--muted);margin-top:16px;line-height:1.65;padding:12px 14px;background:#f8fafc;border:1px solid #e5eaf0;border-radius:10px}
 .cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:10px;margin-top:16px;background:#fafbfd}
-@media(max-width:620px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:1fr}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-card{padding:16px}}
+@media(max-width:760px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:1fr}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-rich-value{font-size:23px}.cuenta-metric{min-width:116px}.cuenta-card{padding:16px}}
 .ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:1}
 .ref-cat-badge.banco{background:rgba(125,170,211,.2);color:#7daad3}
 .ref-cat-badge.inversion{background:rgba(125,211,168,.2);color:#7dd3a8}
@@ -1553,7 +1561,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script src="/assets/quijocuentas-data.js"></script>
+<script src="/assets/quijocuentas-data.js?v=20261001c"></script>
 </head>
 <body class="show-home-intro">
 
@@ -3376,6 +3384,25 @@ document.addEventListener('DOMContentLoaded', function(){
     return String(v==null?'':v).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});
   }
 
+  function qcBankHtml(bank,title){
+    var raw=String(bank==null?'':bank);
+    var parts=raw.split(' · ');
+    var name=parts.shift()||raw;
+    var product=parts.join(' · ');
+    if(title) product+=(product?' · ':'')+String(title);
+    return '<span class="cuenta-bank-name">'+qcEsc(name)+'</span>'+(product?'<span class="cuenta-bank-product">'+qcEsc(product)+'</span>':'');
+  }
+
+  function qcRichMetric(c,label){
+    var h='<div class="cuenta-rich-metric">';
+    if(c.metricPrefix) h+='<span class="cuenta-rich-prefix">'+qcEsc(c.metricPrefix)+'</span>';
+    h+='<strong class="cuenta-rich-value">'+qcEsc(c.metricValue||'—')+'</strong>';
+    if(c.metricPeriod) h+='<span class="cuenta-rich-period">'+qcEsc(c.metricPeriod)+'</span>';
+    if(c.metricSecondary) h+='<span class="cuenta-rich-secondary">'+qcEsc(c.metricSecondary)+'</span>';
+    if(label) h+='<span class="cuenta-rich-label">'+qcEsc(label)+'</span>';
+    return h+'</div>';
+  }
+
   window.renderCuentas = function() {
     var filtered = cuentasData.filter(function(c){ return c.tab === cuentasTab; });
     var container = document.getElementById('cuentas-content');
@@ -3390,12 +3417,23 @@ document.addEventListener('DOMContentLoaded', function(){
       ? 'Promociones en efectivo verificadas y separadas de la rentabilidad de cuentas y depósitos. No se ordenan como recomendación.'
       : (esNomina
         ? 'Orden orientativo por potencial máximo anunciado; los plazos, saldos y requisitos no son equivalentes.'
-        : (esDeposito ? 'Ordenadas por la TAE máxima mostrada; compara siempre el plazo y la cancelación.' : 'Ordenadas por la TAE máxima anunciada para el supuesto indicado.'));
+        : (esDeposito ? 'Ordenadas por la TAE máxima mostrada; compara siempre el plazo y la cancelación.' : 'Ordenadas por la rentabilidad anual anunciada para el supuesto indicado; indicamos si es TAE o tipo anual.'));
     var html='<div class="cuentas-header"><p class="cuentas-sort">'+sortText+'</p><span class="cuentas-badge">Actualizado · '+mes+'</span></div>';
     html+='<div class="cuentas-grid">'+filtered.map(function(c){
       var isTop=!esPromo && Number(c.rank)<=2;
-      var principal=esPromo ? qcEsc(c.cashMax||'—') : (esNomina ? qcEsc(c.total||'—') : (c.tae!=null?Number(c.tae).toFixed(2).replace('.',',')+'<span>% TAE</span>':'—'));
-      var rankLabel=esNomina?(c.rank+'º por potencial anunciado'):(c.rank+'º por TAE mostrada');
+      var principal;
+      if(esNomina && c.metricValue){
+        principal=qcRichMetric(c,'potencial anunciado');
+      }else if(esPromo && c.metricValue){
+        principal=qcRichMetric(c,'bonificación máxima');
+      }else if(esPromo){
+        principal='<div class="cuenta-tae">'+qcEsc(c.cashMax||'—')+'<span>bonificación máxima</span></div>';
+      }else if(c.displayRate){
+        principal='<div class="cuenta-tae">'+qcEsc(c.displayRate)+'<span>'+qcEsc(c.rateLabel||'rentabilidad anual')+'</span></div>';
+      }else{
+        principal='<div class="cuenta-tae">'+(c.tae!=null?Number(c.tae).toFixed(2).replace('.',',')+'<span>% TAE</span>':'—')+'</div>';
+      }
+      var rankLabel=esNomina?(c.rank+'º por potencial anunciado'):(c.rank+'º por rentabilidad mostrada');
       var actions='';
       if(c.url) actions+='<a class="cuenta-source" data-qc-source="1"'+(esPromo?' data-promo-id="'+qcEsc(c.promoId||'')+'"':'')+' href="'+qcEsc(c.url)+'" target="_blank" rel="noopener noreferrer">Fuente oficial ↗</a>';
       if(c.referral) actions+='<a class="cuenta-ref" data-qc-referral="1" href="'+qcEsc(c.referral)+'" target="_blank" rel="nofollow sponsored noopener noreferrer" title="'+qcEsc(c.referralNote||'Enlace de referido')+'">Invitación identificada ↗</a>';
@@ -3414,8 +3452,8 @@ document.addEventListener('DOMContentLoaded', function(){
         if(c.extra) details+='<div class="cuenta-detail">📌 '+qcEsc(c.extra)+'</div>';
       }
       return '<div class="cuenta-card'+(isTop?' top':'')+'"'+(esPromo?' data-promo-card="'+qcEsc(c.promoId||'')+'"':'')+'>'
-        +'<div class="cuenta-top"><div>'+(isTop?'<div class="cuenta-rank">'+rankLabel+'</div>':'')+'<div class="cuenta-banco">'+qcEsc(c.banco)+(esPromo&&c.title?' · '+qcEsc(c.title):'')+'</div></div>'
-        +'<div class="cuenta-metric"><div class="cuenta-tae">'+principal+(esPromo?'<span>bonificación máxima</span>':(esNomina?'<span>potencial anunciado</span>':''))+'</div></div></div>'
+        +'<div class="cuenta-top"><div>'+(isTop?'<div class="cuenta-rank">'+rankLabel+'</div>':'')+'<div class="cuenta-banco">'+qcBankHtml(c.banco,esPromo?c.title:'')+'</div></div>'
+        +'<div class="cuenta-metric">'+principal+'</div></div>'
         +(meta?'<div class="cuenta-meta-row">'+meta+'</div>':'')+details
         +(esNomina&&c.tae!=null?'<div class="cuenta-tae-ref">TAE de referencia: '+Number(c.tae).toFixed(2).replace('.',',')+'%</div>':'')
         +((c.pro||c.con)?'<div class="cuenta-pros-cons">'+(c.pro?'<span class="cuenta-pro">'+qcEsc(c.pro)+'</span>':'')+(c.con?'<span class="cuenta-con">'+qcEsc(c.con)+'</span>':'')+'</div>':'')
