@@ -3554,7 +3554,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if(typeof Chart!=='undefined'&&!window.__qfCenterTextPlugin){
     window.__qfCenterTextPlugin=true;
     Chart.register({id:'qfCenterText',afterDraw:function(chart,args,opts){
-      if(chart.config.type!=='doughnut'||!opts||opts.display===false)return;var meta=chart.getDatasetMeta(0);if(!meta||!meta.data||!meta.data.length)return;
+      if(chart.config.type!=='doughnut'||!opts||opts.display!==true)return;var meta=chart.getDatasetMeta(0);if(!meta||!meta.data||!meta.data.length)return;
       var x=meta.data[0].x,y=meta.data[0].y,vals=(chart.data.datasets[0]&&chart.data.datasets[0].data)||[],sum=vals.reduce(function(a,b){return a+(Number(b)||0);},0),total=Number(opts.total);if(!isFinite(total)||total<=0)total=sum;
       var ctx=chart.ctx;ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba(220,232,245,.58)';ctx.font='600 10px DM Sans, sans-serif';ctx.fillText(opts.label||'TOTAL',x,y-10);ctx.fillStyle='#f4f7fa';ctx.font='700 15px DM Mono, monospace';ctx.fillText(fmtEUR0(total),x,y+10);ctx.restore();
     }});
