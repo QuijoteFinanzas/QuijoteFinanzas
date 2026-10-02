@@ -427,11 +427,18 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuentas-changelog-body li::before{content:'\2022';position:absolute;left:2px;top:0;color:var(--gold);font-weight:800}
 .cuentas-changelog-body strong{color:var(--navy2)}
 .cuentas-changelog-date{font-size:10px;line-height:1.5;color:var(--muted);margin:9px 0 0}
+.cuentas-snapshot{margin:12px 0 4px;padding:11px 12px;border:1px solid #e5eaf0;border-radius:10px;background:#fff}
+.cuentas-snapshot-title{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cuentas-snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px}
+.cuentas-snapshot-item{font-size:10.5px;line-height:1.45;color:#5c7288}
+.cuentas-snapshot-item strong{display:block;font-size:10px;color:var(--navy2);margin-bottom:1px}
+.cuentas-snapshot-note{font-size:9.5px;line-height:1.45;color:var(--muted);margin:8px 0 0}
+html[data-theme="dark"] .cuentas-snapshot{background:#132030;border-color:#30465a}
 html[data-theme="dark"] .cuentas-changelog{background:#182638;border-color:#33485e}
 html[data-theme="dark"] .cuentas-changelog-body{border-color:#30465a}
 html[data-theme="dark"] .cuentas-changelog-body li{color:#b9c9d8}
 html[data-theme="dark"] .cuentas-changelog-body strong{color:#edf3f8}
-@media(max-width:520px){.cuentas-changelog{margin-top:-4px}.cuentas-changelog summary{padding:11px 12px}.cuentas-changelog-body{padding-left:12px;padding-right:12px}.cuentas-changelog-title span:last-child{white-space:normal}.cuentas-changelog-action span{display:none}}
+@media(max-width:520px){.cuentas-snapshot-grid{grid-template-columns:1fr}.cuentas-changelog{margin-top:-4px}.cuentas-changelog summary{padding:11px 12px}.cuentas-changelog-body{padding-left:12px;padding-right:12px}.cuentas-changelog-title span:last-child{white-space:normal}.cuentas-changelog-action span{display:none}}
 @media(max-width:760px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:1fr}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-rich-value{font-size:23px}.cuenta-metric{min-width:116px}.cuenta-card{padding:16px}}
 .ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:1}
 .ref-cat-badge.banco{background:rgba(125,170,211,.2);color:#7daad3}
@@ -1993,7 +2000,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
       <div class="cuentas-kicker">Comparativa mensual</div>
       <h2>QuijoCuentas</h2>
       <p>Compara cuentas y depósitos en España por rentabilidad, condiciones, límites y FGD. Sin publicidad ni posiciones patrocinadas: solo datos para que puedas comparar con más criterio.</p>
-      <div class="cuentas-seo-links"><a href="/mejores-cuentas-remuneradas.html">Guía de cuentas remuneradas →</a><a href="/mejores-depositos/">Guía de depósitos →</a></div>
+      <div class="cuentas-seo-links"><a href="/mejores-cuentas-remuneradas.html">Guía de cuentas remuneradas →</a><a href="/mejores-depositos/">Guía de depósitos →</a><a href="/calculadora-deposito-plazo-fijo/">Calculadora de depósito →</a></div>
       <div class="divider"></div>
     </div>
   </div>
@@ -2018,6 +2025,18 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <li><strong>Depósitos actualizados y reordenados</strong> para reflejar los tipos, plazos y condiciones publicados para octubre.</li>
         <li><strong>Ofertas caducadas fuera:</strong> mantenemos solo promociones que hemos podido confirmar como vigentes y enlazamos siempre a la fuente oficial.</li>
       </ul>
+      <div class="cuentas-snapshot" aria-label="Resumen estático de QuijoCuentas octubre 2026">
+        <div class="cuentas-snapshot-title">Foto rápida de octubre</div>
+        <div class="cuentas-snapshot-grid">
+          <div class="cuentas-snapshot-item"><strong>Sin condiciones</strong>Trade Republic · 2,50% tipo anual BCE.</div>
+          <div class="cuentas-snapshot-item"><strong>Con condiciones</strong>Revolut · 3,51% TAE · hasta 25.000€ · máximo 120 días.</div>
+          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>Banco Sabadell · hasta 2.580€ en 1 año; el máximo exige 100.000€ de saldo.</div>
+          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>Renault Bank · hasta 3,34% TAE a 36 meses.</div>
+          <div class="cuentas-snapshot-item"><strong>Depósitos promocionales</strong>Banco BiG · 4,00% TAE a 1 mes para nuevos clientes.</div>
+          <div class="cuentas-snapshot-item"><strong>Promociones bancarias</strong>BBVA PLAN1060 · hasta 1.060€ combinando varias acciones.</div>
+        </div>
+        <p class="cuentas-snapshot-note">Resumen orientativo del primer resultado o incentivo visible en cada bloque. Las categorías no son equivalentes: revisa saldo, plazo, requisitos y fuente oficial antes de comparar.</p>
+      </div>
       <p class="cuentas-changelog-date">Última revisión completa: 1 de octubre de 2026. Si detectas una condición distinta, escríbenos y la revisamos.</p>
     </div>
   </details>
