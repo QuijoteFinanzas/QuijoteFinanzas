@@ -413,6 +413,25 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuenta-tae-ref{font-size:11px;color:var(--muted);margin-top:-2px}
 .cuentas-disclaimer{font-size:11px;color:var(--muted);margin-top:16px;line-height:1.65;padding:12px 14px;background:#f8fafc;border:1px solid #e5eaf0;border-radius:10px}
 .cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:10px;margin-top:16px;background:#fafbfd}
+.cuentas-changelog{margin:-6px 0 18px;border:1px solid #e1e7ef;border-radius:12px;background:#fbfcfe;overflow:hidden;box-shadow:0 1px 2px rgba(15,32,53,.025)}
+.cuentas-changelog summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;cursor:pointer;color:var(--navy);font-size:12px;font-weight:700;user-select:none}
+.cuentas-changelog summary::-webkit-details-marker{display:none}
+.cuentas-changelog-title{display:flex;align-items:center;gap:8px;min-width:0}
+.cuentas-changelog-title span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cuentas-changelog-action{font-size:10px;color:var(--muted);font-weight:650;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.cuentas-changelog-action::after{content:'\2193';font-size:12px;transition:transform .18s ease}
+.cuentas-changelog[open] .cuentas-changelog-action::after{transform:rotate(180deg)}
+.cuentas-changelog-body{padding:0 14px 13px;border-top:1px solid #edf1f5}
+.cuentas-changelog-body ul{margin:11px 0 8px;padding:0;list-style:none;display:grid;gap:8px}
+.cuentas-changelog-body li{position:relative;padding-left:16px;font-size:11.5px;line-height:1.55;color:#4f6985}
+.cuentas-changelog-body li::before{content:'\2022';position:absolute;left:2px;top:0;color:var(--gold);font-weight:800}
+.cuentas-changelog-body strong{color:var(--navy2)}
+.cuentas-changelog-date{font-size:10px;line-height:1.5;color:var(--muted);margin:9px 0 0}
+html[data-theme="dark"] .cuentas-changelog{background:#182638;border-color:#33485e}
+html[data-theme="dark"] .cuentas-changelog-body{border-color:#30465a}
+html[data-theme="dark"] .cuentas-changelog-body li{color:#b9c9d8}
+html[data-theme="dark"] .cuentas-changelog-body strong{color:#edf3f8}
+@media(max-width:520px){.cuentas-changelog{margin-top:-4px}.cuentas-changelog summary{padding:11px 12px}.cuentas-changelog-body{padding-left:12px;padding-right:12px}.cuentas-changelog-title span:last-child{white-space:normal}.cuentas-changelog-action span{display:none}}
 @media(max-width:760px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:1fr}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-rich-value{font-size:23px}.cuenta-metric{min-width:116px}.cuenta-card{padding:16px}}
 .ref-cat-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:1}
 .ref-cat-badge.banco{background:rgba(125,170,211,.2);color:#7daad3}
@@ -1986,6 +2005,22 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <button type="button" class="cat-btn" data-tab="dep-con" onclick="setCuentasTab('dep-con');return false;">Depósitos con condiciones</button>
     <button type="button" class="cat-btn" data-tab="promo" onclick="setCuentasTab('promo');return false;">🎁 Promociones bancarias</button>
   </div>
+
+  <details class="cuentas-changelog">
+    <summary>
+      <span class="cuentas-changelog-title"><span aria-hidden="true">✨</span><span>Qué ha cambiado en octubre</span></span>
+      <span class="cuentas-changelog-action"><span>Ver cambios</span></span>
+    </summary>
+    <div class="cuentas-changelog-body">
+      <ul>
+        <li><strong>Nueva sección de Promociones bancarias:</strong> separamos los incentivos por nómina, Bizum, recibos o apertura de cuenta de la remuneración tradicional.</li>
+        <li><strong>Revisión completa de cuentas y cuentas nómina</strong> tras el cierre o cambio de varias campañas de septiembre.</li>
+        <li><strong>Depósitos actualizados y reordenados</strong> para reflejar los tipos, plazos y condiciones publicados para octubre.</li>
+        <li><strong>Ofertas caducadas fuera:</strong> mantenemos solo promociones que hemos podido confirmar como vigentes y enlazamos siempre a la fuente oficial.</li>
+      </ul>
+      <p class="cuentas-changelog-date">Última revisión completa: 1 de octubre de 2026. Si detectas una condición distinta, escríbenos y la revisamos.</p>
+    </div>
+  </details>
 
   <div id="cuentas-content">
     <!-- rendered by JS -->
