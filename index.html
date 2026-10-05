@@ -391,6 +391,13 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuenta-rank{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:#7a6020;background:rgba(201,168,76,.10);border:1px solid rgba(201,168,76,.28);padding:4px 8px;border-radius:999px;margin-bottom:7px;font-weight:800}
 .cuenta-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid #edf1f5}
 .cuenta-banco{color:var(--navy);line-height:1.2;min-width:0;display:flex;flex-direction:column;gap:3px}
+/* Logos de entidad · QuijoCuentas */
+.cuenta-identity{display:flex;align-items:center;gap:10px;min-width:0}
+.cuenta-logo{width:42px;height:42px;flex:0 0 42px;border-radius:10px;background:#fff;border:1px solid #e1e7ef;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 7px rgba(15,32,53,.06)}
+.cuenta-logo img{display:block;width:30px;height:30px;object-fit:contain}
+.cuenta-logo-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font:800 10px 'DM Sans',sans-serif;color:var(--navy2);letter-spacing:.02em;background:#fff}
+@media(max-width:760px){.cuenta-logo{width:40px;height:40px;flex-basis:40px}.cuenta-logo img{width:29px;height:29px}}
+
 .cuenta-bank-name{font-size:16px;font-weight:700;font-family:'Playfair Display',serif;line-height:1.18}
 .cuenta-bank-product{font-size:11px;font-weight:650;font-family:'DM Sans',sans-serif;color:var(--muted);line-height:1.3}
 .cuenta-metric{text-align:right;min-width:126px;flex:0 0 auto}
@@ -1193,6 +1200,11 @@ function qfTrack(eventName, params) {
 #referidos #ref-filter{margin-bottom:14px}
 #referidos .ref-card{background:#fff;border:1px solid rgba(15,32,53,.10);border-radius:12px;padding:17px 18px;box-shadow:0 8px 24px rgba(15,32,53,.035);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
 #referidos .ref-card:hover{background:#fff;border-color:rgba(201,168,76,.55);transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,32,53,.08)}
+/* Logos reales y consistentes · Referidos */
+#referidos .ref-logo-box{width:44px;height:44px;flex:0 0 44px;border-radius:10px;background:#fff;border:1px solid #e1e7ef;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 7px rgba(15,32,53,.06)}
+#referidos .ref-logo-box img{display:block;width:31px;height:31px;object-fit:contain}
+#referidos .ref-logo-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font:800 10px 'DM Sans',sans-serif;color:#183752;background:#fff}
+
 #referidos .ref-info h3{color:var(--navy)!important;font-family:'Playfair Display',serif;font-size:16px;margin-bottom:4px}
 #referidos .ref-info p{color:var(--navy2)!important}
 #referidos .ref-meta{color:var(--muted)!important;font-size:11px;margin-top:5px}
@@ -1587,7 +1599,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script src="/assets/quijocuentas-data.js?v=20261001c"></script>
+<script src="/assets/quijocuentas-data.js?v=20261005a"></script>
 </head>
 <body class="show-home-intro">
 
@@ -2117,57 +2129,57 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
     <div class="referidos-list" id="refList">
       <a class="ref-card" href="https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing?P5=CN&P2=MGMG5YN9BD5QH" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/bankinter.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🏦'" alt="Bankinter"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/bankinter.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">B</span></div>
         <div class="ref-info"><h3>Bankinter</h3><p>Cuenta bancaria de alta remuneraci&oacute;n &middot; c&oacute;digo: MGMG5YN9BD5QH</p><p class="ref-meta">Bono al domiciliar n&oacute;mina</p></div>
         <span class="ref-bonus">150&euro; bono</span>
       </a>
       <a class="ref-card" href="https://esim.holafly.com/?sref_id=n9w1mer&utm_campaign=referral_program&utm_source=loyalty" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/holafly.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='✈️'" alt="Holafly"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/holafly.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">H</span></div>
         <div class="ref-info"><h3>Holafly</h3><p>eSIM para viajar sin preocuparte por el roaming</p><p class="ref-meta">Compatible con la mayor&iacute;a de smartphones modernos</p></div>
         <span class="ref-bonus">5% descuento</span>
       </a>
       <a class="ref-card" href="https://www.hsnstore.com/customer/account/create/referral/1690019/" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/hsnstore.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='💪'" alt="HSN"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/hsnstore.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">H</span></div>
         <div class="ref-info"><h3>HSN</h3><p>Suplementaci&oacute;n deportiva y nutrici&oacute;n de calidad</p><p class="ref-meta">Descuento en tu primer pedido</p></div>
         <span class="ref-bonus">5&euro; descuento</span>
       </a>
       <a class="ref-card" href="https://es.igraal.com/padrinazgo?padrino=AG_67a5df416b087" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/igraal.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🛍️'" alt="iGraal"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/igraal.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
         <div class="ref-info"><h3>iGraal</h3><p>Cashback en compras online &mdash; ahorra en lo que ya gastas</p><p class="ref-meta">Cashback autom&aacute;tico en cientos de tiendas</p></div>
         <span class="ref-bonus">3&euro; + cashback</span>
       </a>
       <a class="ref-card" href="https://seguro.lineadirecta.com/fidelizacion-amigo?AMIGO00007570" data-cat="seguro" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge seguro">Seguro</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/lineadirecta.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🚗'" alt="Línea Directa"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/lineadirecta.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">LD</span></div>
         <div class="ref-info"><h3>L&iacute;nea Directa</h3><p>Seguro de coche y moto &mdash; contrata usando mi enlace de recomendaci&oacute;n</p><p class="ref-meta">Descuento aplicado al contratar &middot; sin permanencia</p></div>
         <span class="ref-bonus">30&euro; descuento</span>
       </a>
       <a class="ref-card" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" data-cat="inversion" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge inversion">Inversión</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/myinvestor.es" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='📈'" alt="MyInvestor"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/myinvestor.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">M</span></div>
         <div class="ref-info"><h3>MyInvestor</h3><p>Fondos indexados, ETFs y carteras automatizadas &middot; c&oacute;digo: xpKDn</p><p class="ref-meta">Bono al abrir cuenta y depositar</p></div>
         <span class="ref-bonus">25&euro; bono</span>
       </a>
       <a class="ref-card" href="https://n26.com/es-es/referral/albertoc42158c" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#1a1a2e;border:1px solid #333;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-family:'DM Mono',monospace;font-size:11px;font-weight:800;letter-spacing:-0.5px">N26</div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/n26.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">N</span></div>
         <div class="ref-info"><h3>N26</h3><p>Banco digital &mdash; cuenta sin comisiones, tarjeta gratuita</p><p class="ref-meta">Bono al activar la tarjeta y hacer primer pago</p></div>
         <span class="ref-bonus">15&euro; al activar</span>
       </a>
       <a class="ref-card" href="https://octopusenergy.es/referidos?referralCode=mellow-owl-104" data-cat="energia" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge energia">Energía</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/octopusenergy.es" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🐙'" alt="Octopus Energy"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/octopusenergy.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">OE</span></div>
         <div class="ref-info"><h3>Octopus Energy</h3><p>Compa&ntilde;&iacute;a de luz 100% renovable</p><p class="ref-meta">Bono aplicado al registrarte &middot; sin permanencia</p></div>
         <span class="ref-bonus">50&euro; descuento</span>
       </a>
       <a class="ref-card" href="https://www.paypal.com/es/campaign/invite/terms?referral_context=006JFX5NokqilVpcfjeykEJgOVvCpujYmq0Lcc4zEiUeOJ-DwzaT_o9wfXDJQ4BA-InV6za-_J2SoxnoqGCEBfJUJc74XZZjMX3RNZ4W6lqN" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/paypal.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='💳'" alt="PayPal"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/paypal.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">P</span></div>
         <div class="ref-info"><h3>PayPal</h3><p>Plataforma de pagos &mdash; &uacute;til para compras internacionales</p><p class="ref-meta">Bono al registrarte y realizar tu primer pago</p></div>
         <span class="ref-bonus">10&euro; bono</span>
       </a>
       <a class="ref-card" href="https://es.privalia.com/gr/registration?mgmcode=892465E6" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/privalia.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='🛍'" alt="Privalia"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/privalia.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">P</span></div>
         <div class="ref-info"><h3>Privalia</h3><p>Outlet de moda online con descuentos permanentes</p><p class="ref-meta">Descuento en tu primera compra</p></div>
         <span class="ref-bonus">10&euro; primera cuenta</span>
       </a>
       <a class="ref-card" href="https://www.revolut.com/es-ES/referral/?referral-code=alberteqkd%21AUG1-25-AR-H1" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
-        <div style="width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid #e8e8e8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0"><img src="https://logo.clearbit.com/revolut.com" width="32" height="32" style="object-fit:contain" onerror="this.parentElement.innerHTML='💳'" alt="Revolut"></div>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/revolut.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">R</span></div>
         <div class="ref-info"><h3>Revolut</h3><p>Tarjeta multimoneda &mdash; ideal para viajes y d&iacute;a a d&iacute;a</p><p class="ref-meta">Bono al completar el registro y hacer primer pago</p></div>
         <span class="ref-bonus">50&euro; al unirte</span>
       </a>
@@ -3438,6 +3450,16 @@ document.addEventListener('DOMContentLoaded', function(){
     return String(v==null?'':v).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});
   }
 
+  function qcInitials(bank){
+    var base=String(bank||'').split(' · ')[0].replace(/\s*\/.*$/,'').trim();
+    var words=base.split(/\s+/).filter(Boolean);
+    return words.slice(0,2).map(function(w){return w.charAt(0).toUpperCase();}).join('')||'QF';
+  }
+  function qcLogoHtml(c){
+    if(!c || !c.logoDomain) return '';
+    return '<span class="cuenta-logo" aria-hidden="true"><img loading="lazy" src="https://logo.clearbit.com/'+qcEsc(c.logoDomain)+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="cuenta-logo-fallback">'+qcEsc(qcInitials(c.banco))+'</span></span>';
+  }
+
   function qcBankHtml(bank,title){
     var raw=String(bank==null?'':bank);
     var parts=raw.split(' · ');
@@ -3506,7 +3528,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if(c.extra) details+='<div class="cuenta-detail">📌 '+qcEsc(c.extra)+'</div>';
       }
       return '<div class="cuenta-card'+(isTop?' top':'')+'"'+(esPromo?' data-promo-card="'+qcEsc(c.promoId||'')+'"':'')+'>'
-        +'<div class="cuenta-top"><div>'+(isTop?'<div class="cuenta-rank">'+rankLabel+'</div>':'')+'<div class="cuenta-banco">'+qcBankHtml(c.banco,esPromo?c.title:'')+'</div></div>'
+        +'<div class="cuenta-top"><div>'+(isTop?'<div class="cuenta-rank">'+rankLabel+'</div>':'')+'<div class="cuenta-identity">'+qcLogoHtml(c)+'<div class="cuenta-banco">'+qcBankHtml(c.banco,esPromo?c.title:'')+'</div></div></div>'
         +'<div class="cuenta-metric">'+principal+'</div></div>'
         +(meta?'<div class="cuenta-meta-row">'+meta+'</div>':'')+details
         +(esNomina&&c.tae!=null?'<div class="cuenta-tae-ref">TAE de referencia: '+Number(c.tae).toFixed(2).replace('.',',')+'%</div>':'')
