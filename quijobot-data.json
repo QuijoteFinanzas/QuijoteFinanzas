@@ -1,0 +1,374 @@
+{
+  "version": "2026-10-13",
+  "site": "https://quijotefinanzas.com",
+  "items": [
+    {
+      "id": "sobre",
+      "type": "section",
+      "title": "Sobre el proyecto",
+      "url": "/#sobre",
+      "description": "Qué es Don Quijote de las Finanzas, principios del proyecto, transparencia, contacto y newsletter.",
+      "keywords": ["quijotefinanzas", "quijote finanzas", "proyecto", "quien eres", "quienes sois", "sobre la web", "contacto", "newsletter", "suscribirme", "novedades"]
+    },
+    {
+      "id": "calculadoras",
+      "type": "section",
+      "title": "Calculadoras financieras",
+      "url": "/calculadoras/",
+      "description": "Directorio de calculadoras gratuitas para salario, vivienda, inversión, inflación, depósitos, jubilación y otros análisis financieros.",
+      "keywords": ["calculadoras", "calcular", "simulador", "hacer numeros", "herramientas", "calculadora financiera"]
+    },
+    {
+      "id": "quijocuentas",
+      "type": "section",
+      "title": "QuijoCuentas",
+      "url": "/#cuentas",
+      "description": "Comparativa actualizada de cuentas y depósitos en España por rentabilidad, condiciones, límites y fondo de garantía. Las cifras cambian y deben consultarse en la propia sección.",
+      "keywords": ["cuentas", "cuenta remunerada", "cuentas remuneradas", "depositos", "deposito", "bancos", "ahorro", "liquidez", "tae cuenta", "mejor cuenta", "mejor deposito", "nomina", "promociones bancarias"]
+    },
+    {
+      "id": "quijolista",
+      "type": "section",
+      "title": "QuijoLista",
+      "url": "/#quijolista",
+      "description": "Selección editorial de fondos, ETF, ETC, planes de pensiones y roboadvisors para estudiar alternativas. No es un ranking ni una recomendación personalizada.",
+      "keywords": ["fondos", "fondo inversion", "etf", "etc", "plan pensiones", "roboadvisor", "renta variable", "renta fija", "monetario", "productos inversion", "quijolista"]
+    },
+    {
+      "id": "quijocartera",
+      "type": "section",
+      "title": "QuijoCartera",
+      "url": "/#quijocartera",
+      "description": "Seguimiento educativo de la cartera real del creador, su distribución y composición. No es una cartera modelo ni una recomendación para terceros.",
+      "keywords": ["cartera", "quijocartera", "tu cartera", "cartera real", "distribucion cartera", "activos cartera", "inversiones quijote"]
+    },
+    {
+      "id": "recursos",
+      "type": "section",
+      "title": "Recursos",
+      "url": "/#recursos",
+      "description": "Recursos gratuitos de QuijoteFinanzas, incluido QuijoExcel y el test orientativo de perfil inversor.",
+      "keywords": ["recursos", "quijoexcel", "excel", "plantilla finanzas", "presupuesto excel", "perfil inversor", "test inversor", "test riesgo"]
+    },
+    {
+      "id": "quijoteca",
+      "type": "section",
+      "title": "QuijoTeca",
+      "url": "/#teca",
+      "description": "Libros, podcasts y películas recomendados para seguir aprendiendo sobre finanzas, inversión y economía.",
+      "keywords": ["quijoteca", "libros", "podcasts", "peliculas", "recomendaciones", "aprender finanzas", "recursos aprendizaje"]
+    },
+    {
+      "id": "quijoglosario",
+      "type": "section",
+      "title": "QuijoGlosario",
+      "url": "/#glosario",
+      "description": "Glosario visual de conceptos financieros explicado de forma sencilla.",
+      "keywords": ["glosario", "quijoglosario", "conceptos", "definicion", "que significa", "terminos financieros"]
+    },
+    {
+      "id": "referidos",
+      "type": "section",
+      "title": "Referidos",
+      "url": "/#referidos",
+      "description": "Enlaces de referidos identificados de productos y servicios que el creador usa o ha probado. Los referidos no determinan el orden de QuijoCuentas ni QuijoLista.",
+      "keywords": ["referidos", "codigos", "codigo promocional", "promociones", "descuentos", "bonos", "enlace referido"]
+    },
+    {
+      "id": "quijoexcel",
+      "type": "resource",
+      "title": "QuijoExcel — Finanzas Personales",
+      "url": "/#recursos",
+      "description": "Plantilla gratuita y editable para presupuesto, seguimiento del ahorro y evolución de inversiones. El acceso se solicita por email desde la sección Recursos.",
+      "keywords": ["quijoexcel", "excel", "hoja calculo", "plantilla", "presupuesto", "control gastos", "ahorro", "seguimiento inversiones"]
+    },
+    {
+      "id": "test-perfil",
+      "type": "resource",
+      "title": "Test de perfil inversor",
+      "url": "/#recursos",
+      "description": "Test educativo de 10 preguntas para reflexionar sobre horizonte, tolerancia al riesgo, situación financiera y conocimiento. Es orientativo y no asesoramiento.",
+      "keywords": ["perfil inversor", "test inversor", "riesgo", "conservador", "moderado", "dinamico", "tolerancia riesgo", "que inversor soy"]
+    },
+    {
+      "id": "cuentas-guia",
+      "type": "guide",
+      "title": "Mejores cuentas remuneradas",
+      "url": "/mejores-cuentas-remuneradas.html",
+      "description": "Guía para comparar cuentas remuneradas y entender TAE, límites, condiciones y protección del depósito. Consulta la página para las cifras vigentes.",
+      "keywords": ["mejores cuentas remuneradas", "cuenta remunerada", "cuentas ahorro", "interes cuenta", "tae cuenta"]
+    },
+    {
+      "id": "depositos-guia",
+      "type": "guide",
+      "title": "Mejores depósitos",
+      "url": "/mejores-depositos/",
+      "description": "Guía para comparar depósitos a plazo, sus plazos, condiciones y rentabilidad. Consulta la página para las cifras vigentes.",
+      "keywords": ["mejores depositos", "depositos plazo fijo", "deposito bancario", "tae deposito"]
+    },
+    {
+      "id": "calc-interes-compuesto",
+      "type": "calculator",
+      "title": "Calculadora de interés compuesto",
+      "url": "/calculadora-interes-compuesto/",
+      "description": "Simula cómo puede evolucionar un capital con una rentabilidad, plazo y aportaciones periódicas.",
+      "keywords": ["interes compuesto", "capital futuro", "aportaciones mensuales", "invertir cada mes", "crecimiento inversion", "rentabilidad compuesta"]
+    },
+    {
+      "id": "calc-salario-neto",
+      "type": "calculator",
+      "title": "Calculadora de salario neto — bruto a neto",
+      "url": "/calculadora-salario-neto/",
+      "description": "Estima el salario neto a partir del salario bruto y los datos necesarios del cálculo.",
+      "keywords": ["salario neto", "bruto a neto", "cuanto cobro neto", "nomina neta", "irpf salario", "sueldo neto", "bruto anual"]
+    },
+    {
+      "id": "calc-pension-neta",
+      "type": "calculator",
+      "title": "Calculadora de pensión neta",
+      "url": "/calculadora-pension-neta/",
+      "description": "Estima la pensión neta a partir de una pensión bruta y los supuestos incluidos en la herramienta.",
+      "keywords": ["pension neta", "jubilacion neta", "irpf pension", "pension bruta", "cuanto cobro pension"]
+    },
+    {
+      "id": "calc-salario-bruto",
+      "type": "calculator",
+      "title": "Calculadora de salario bruto — neto a bruto",
+      "url": "/calculadora-salario-bruto/",
+      "description": "Estima qué salario bruto corresponde aproximadamente a un salario neto objetivo.",
+      "keywords": ["neto a bruto", "salario bruto", "quiero cobrar neto", "sueldo bruto necesario", "bruto objetivo"]
+    },
+    {
+      "id": "calc-cuota-hipoteca",
+      "type": "calculator",
+      "title": "Calculadora de cuota de hipoteca",
+      "url": "/calculadora-cuota-hipoteca/",
+      "description": "Calcula una cuota hipotecaria aproximada a partir de capital, tipo de interés y plazo.",
+      "keywords": ["hipoteca", "cuota hipoteca", "mensualidad hipoteca", "prestamo vivienda", "tipo hipoteca", "cuanto pago hipoteca"]
+    },
+    {
+      "id": "calc-amortizacion-hipoteca",
+      "type": "calculator",
+      "title": "Calculadora de amortización anticipada de hipoteca",
+      "url": "/calculadora-amortizacion-hipoteca/",
+      "description": "Compara el efecto de amortizar anticipadamente una hipoteca reduciendo plazo o cuota.",
+      "keywords": ["amortizar hipoteca", "amortizacion anticipada", "reducir cuota", "reducir plazo", "ahorrar intereses hipoteca"]
+    },
+    {
+      "id": "calc-alquiler-compra",
+      "type": "calculator",
+      "title": "Calculadora alquiler vs compra",
+      "url": "/calculadora-alquiler-vs-compra/",
+      "description": "Compara escenarios de alquilar o comprar vivienda bajo distintos supuestos económicos.",
+      "keywords": ["alquiler vs compra", "alquilar o comprar", "comprar casa", "alquiler vivienda", "que compensa alquiler compra"]
+    },
+    {
+      "id": "calc-rentabilidad-alquiler",
+      "type": "calculator",
+      "title": "Calculadora de rentabilidad de alquiler",
+      "url": "/calculadora-rentabilidad-alquiler/",
+      "description": "Calcula rentabilidad bruta y neta aproximada de una vivienda destinada al alquiler.",
+      "keywords": ["rentabilidad alquiler", "roi alquiler", "inversion inmobiliaria", "alquilar piso", "beneficio alquiler", "rentabilidad vivienda"]
+    },
+    {
+      "id": "calc-deposito",
+      "type": "calculator",
+      "title": "Calculadora de depósito a plazo fijo",
+      "url": "/calculadora-deposito-plazo-fijo/",
+      "description": "Calcula intereses y resultado aproximado de un depósito a plazo fijo a partir de capital, TAE y plazo.",
+      "keywords": ["deposito plazo fijo", "intereses deposito", "cuanto gano deposito", "tae deposito", "rentabilidad deposito"]
+    },
+    {
+      "id": "calc-fire",
+      "type": "calculator",
+      "title": "Calculadora de jubilación / FIRE",
+      "url": "/calculadora-jubilacion-fire/",
+      "description": "Simula escenarios de independencia financiera y jubilación a partir de ahorro, patrimonio, gasto y supuestos de rentabilidad.",
+      "keywords": ["fire", "jubilacion anticipada", "independencia financiera", "libertad financiera", "cuanto necesito jubilarme", "retirada", "patrimonio objetivo"]
+    },
+    {
+      "id": "calc-plan-pensiones",
+      "type": "calculator",
+      "title": "Calculadora de plan de pensiones y ahorro fiscal",
+      "url": "/calculadora-plan-pensiones/",
+      "description": "Ayuda a estimar el efecto fiscal de aportaciones a planes de pensiones según los supuestos de la herramienta.",
+      "keywords": ["plan pensiones", "desgravacion plan pensiones", "ahorro fiscal", "aportacion pensiones", "irpf plan pensiones"]
+    },
+    {
+      "id": "calc-inflacion",
+      "type": "calculator",
+      "title": "Calculadora de inflación y valor futuro",
+      "url": "/calculadora-inflacion/",
+      "description": "Estima cómo afecta la inflación al poder adquisitivo y al valor futuro del dinero.",
+      "keywords": ["inflacion", "poder adquisitivo", "valor futuro", "perdida valor dinero", "precio futuro"]
+    },
+    {
+      "id": "calc-coste-empresa",
+      "type": "calculator",
+      "title": "Calculadora de coste para la empresa",
+      "url": "/calculadora-coste-empresa/",
+      "description": "Estima el coste total aproximado que supone un salario para la empresa bajo los supuestos de la herramienta.",
+      "keywords": ["coste empresa", "coste trabajador", "coste empleado", "salario empresa", "seguridad social empresa"]
+    },
+    {
+      "id": "calc-comparador-ofertas",
+      "type": "calculator",
+      "title": "Comparador de ofertas de trabajo",
+      "url": "/comparador-ofertas-trabajo/",
+      "description": "Compara dos ofertas laborales incorporando salario y otros factores económicos o de condiciones de trabajo.",
+      "keywords": ["comparar ofertas trabajo", "dos ofertas", "cambiar trabajo", "oferta laboral", "salario ofertas", "teletrabajo oferta"]
+    },
+    {
+      "id": "calc-cagr",
+      "type": "calculator",
+      "title": "Calculadora de CAGR",
+      "url": "/calculadora-cagr/",
+      "description": "Calcula la tasa anual de crecimiento compuesto entre un valor inicial y uno final durante un periodo.",
+      "keywords": ["cagr", "crecimiento anual", "rentabilidad anualizada", "tasa crecimiento compuesto", "evolucion inversion"]
+    },
+    {
+      "id": "calc-coste-tiempo",
+      "type": "calculator",
+      "title": "Calculadora del coste del tiempo",
+      "url": "/calculadora-coste-tiempo/",
+      "description": "Visualiza el coste de retrasar el ahorro o la inversión bajo determinados supuestos.",
+      "keywords": ["coste tiempo", "empezar invertir tarde", "retrasar inversion", "tiempo inversion", "invertir joven"]
+    },
+    {
+      "id": "calc-autonomos",
+      "type": "calculator",
+      "title": "Simulador para autónomos",
+      "url": "/calculadora-autonomos/",
+      "description": "Herramienta para realizar estimaciones financieras relacionadas con la actividad de un autónomo según sus supuestos.",
+      "keywords": ["autonomo", "autonomos", "facturar", "cuota autonomo", "ingresos autonomo", "neto autonomo"]
+    },
+    {
+      "id": "glosario-tae",
+      "type": "glossary",
+      "title": "TAE — Tasa Anual Equivalente",
+      "url": "/#glosario",
+      "description": "Muestra el coste o rentabilidad real anual de un producto en porcentaje, incluyendo intereses y gastos.",
+      "keywords": ["tae", "tasa anual equivalente", "que es tae"]
+    },
+    {
+      "id": "glosario-tin",
+      "type": "glossary",
+      "title": "TIN — Tipo de Interés Nominal",
+      "url": "/#glosario",
+      "description": "Interés nominal anual sin incorporar por sí solo todos los gastos o comisiones del producto.",
+      "keywords": ["tin", "tipo interes nominal", "que es tin"]
+    },
+    {
+      "id": "glosario-interes-compuesto",
+      "type": "glossary",
+      "title": "Interés compuesto",
+      "url": "/#glosario",
+      "description": "Interés que se suma al capital y hace que los nuevos intereses se generen también sobre los intereses acumulados.",
+      "keywords": ["que es interes compuesto", "interes sobre intereses", "capitalizacion"]
+    },
+    {
+      "id": "glosario-inflacion",
+      "type": "glossary",
+      "title": "Inflación",
+      "url": "/#glosario",
+      "description": "Crecimiento general de los precios de bienes y servicios que reduce el poder adquisitivo del dinero.",
+      "keywords": ["que es inflacion", "inflacion definicion", "subida precios"]
+    },
+    {
+      "id": "glosario-fondo-emergencia",
+      "type": "glossary",
+      "title": "Fondo de emergencia",
+      "url": "/#glosario",
+      "description": "Ahorro reservado para afrontar imprevistos sin tener que vender inversiones o endeudarse.",
+      "keywords": ["fondo emergencia", "colchon emergencia", "ahorro imprevistos"]
+    },
+    {
+      "id": "glosario-etf",
+      "type": "glossary",
+      "title": "ETF",
+      "url": "/#glosario",
+      "description": "Fondo cotizado que se compra y vende en bolsa y que puede replicar un índice u otra estrategia.",
+      "keywords": ["etf", "que es etf", "fondo cotizado"]
+    },
+    {
+      "id": "glosario-fondo-indexado",
+      "type": "glossary",
+      "title": "Fondo indexado",
+      "url": "/#glosario",
+      "description": "Fondo de gestión pasiva diseñado para replicar el comportamiento de un índice de referencia.",
+      "keywords": ["fondo indexado", "que es fondo indexado", "gestion pasiva"]
+    },
+    {
+      "id": "glosario-renta-fija",
+      "type": "glossary",
+      "title": "Renta fija",
+      "url": "/#glosario",
+      "description": "Inversiones basadas normalmente en prestar dinero a Estados, bancos o empresas a cambio de intereses y devolución del principal según las condiciones de la emisión.",
+      "keywords": ["renta fija", "que es renta fija", "bonos"]
+    },
+    {
+      "id": "glosario-renta-variable",
+      "type": "glossary",
+      "title": "Renta variable",
+      "url": "/#glosario",
+      "description": "Inversiones cuya rentabilidad no está garantizada y depende de la evolución de empresas o mercados.",
+      "keywords": ["renta variable", "que es renta variable", "acciones"]
+    },
+    {
+      "id": "glosario-diversificacion",
+      "type": "glossary",
+      "title": "Diversificación",
+      "url": "/#glosario",
+      "description": "Repartir el dinero entre distintas inversiones para reducir la dependencia de un único activo, empresa, mercado o riesgo.",
+      "keywords": ["diversificacion", "diversificar", "repartir inversiones"]
+    },
+    {
+      "id": "glosario-dca",
+      "type": "glossary",
+      "title": "DCA — aportaciones periódicas",
+      "url": "/#glosario",
+      "description": "Estrategia de inversión en la que se aporta una cantidad de forma periódica sin intentar acertar el mejor momento del mercado.",
+      "keywords": ["dca", "dollar cost average", "aportaciones periodicas", "invertir cada mes"]
+    },
+    {
+      "id": "glosario-liquidez",
+      "type": "glossary",
+      "title": "Liquidez",
+      "url": "/#glosario",
+      "description": "Facilidad con la que un activo puede convertirse en dinero disponible sin una pérdida significativa de valor.",
+      "keywords": ["liquidez", "que es liquidez", "dinero disponible"]
+    },
+    {
+      "id": "glosario-volatilidad",
+      "type": "glossary",
+      "title": "Volatilidad",
+      "url": "/#glosario",
+      "description": "Medida de cuánto fluctúa el precio o valor de una inversión a lo largo del tiempo.",
+      "keywords": ["volatilidad", "que es volatilidad", "variacion precio"]
+    },
+    {
+      "id": "glosario-drawdown",
+      "type": "glossary",
+      "title": "Drawdown",
+      "url": "/#glosario",
+      "description": "Caída desde un máximo anterior hasta un mínimo posterior durante un periodo de pérdidas.",
+      "keywords": ["drawdown", "caida maxima", "perdida desde maximos"]
+    },
+    {
+      "id": "glosario-rentabilidad",
+      "type": "glossary",
+      "title": "Rentabilidad",
+      "url": "/#glosario",
+      "description": "Resultado de una inversión en relación con el capital invertido, normalmente expresado como porcentaje.",
+      "keywords": ["rentabilidad", "que es rentabilidad", "rendimiento inversion"]
+    },
+    {
+      "id": "glosario-rebalanceo",
+      "type": "glossary",
+      "title": "Rebalanceo de cartera",
+      "url": "/#glosario",
+      "description": "Ajustar una cartera para acercarla de nuevo a la distribución de activos definida como objetivo.",
+      "keywords": ["rebalanceo", "rebalancear cartera", "pesos cartera"]
+    }
+  ]
+}
