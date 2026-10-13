@@ -596,5 +596,6 @@ footer a{color:var(--muted)}
     window._avsChart=new Chart(document.getElementById('avs-chart').getContext('2d'),{type:'line',data:{labels:labelsA,datasets:[{label:'Coste compra acumulado',data:dComp,borderColor:'#f0a070',backgroundColor:'rgba(240,160,112,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2},{label:'Coste alquiler acumulado',data:dAlq,borderColor:'#7dd3a8',backgroundColor:'rgba(125,211,168,.08)',fill:true,tension:.4,pointRadius:1,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#6a8aaa',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa',font:{size:10},maxTicksLimit:8},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{color:'#6a8aaa',font:{size:10},callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
 
 </script>
+<script defer src="/assets/quijobot.js?v=20261013c"></script>
 </body>
 </html>
