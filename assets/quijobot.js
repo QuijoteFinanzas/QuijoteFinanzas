@@ -200,10 +200,24 @@ html[data-theme="dark"] .qjb-nudge-close:hover{background:#223449;color:#fff}
     function addLinks(links){
       if(!Array.isArray(links)||!links.length) return;
       var wrap=el('div','qjb-links');
+      var sectionIds=['sobre','calculadoras','cuentas','quijolista','quijocartera','recursos','teca','glosario','referidos'];
       links.slice(0,3).forEach(function(item){
         if(!item||typeof item.url!=='string') return;
         var a=el('a','qjb-link'); a.href=item.url; a.appendChild(el('span','',item.title||'Abrir recurso')); a.appendChild(el('span','','→'));
-        a.addEventListener('click',function(){track('quijobot_result_click',{source_component:'floating_mascot',destination:item.url});});
+        a.addEventListener('click',function(e){
+          track('quijobot_result_click',{source_component:'floating_mascot',destination:item.url});
+          try{
+            var target=new URL(item.url,window.location.origin);
+            var onHome=(window.location.pathname==='/'||window.location.pathname==='/index.html');
+            var targetHome=(target.origin===window.location.origin&&(target.pathname==='/'||target.pathname==='/index.html'));
+            var secId=(target.hash||'').replace(/^#/,'');
+            if(onHome&&targetHome&&sectionIds.indexOf(secId)!==-1&&typeof window.goTo==='function'){
+              e.preventDefault();
+              shut();
+              window.goTo(secId);
+            }
+          }catch(err){}
+        });
         wrap.appendChild(a);
       });
       feed.appendChild(wrap); scrollBottom();
