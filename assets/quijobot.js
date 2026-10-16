@@ -26,7 +26,7 @@
 .qjb-launch:active{transform:translateY(0) scale(.98)}
 .qjb-launch:focus-visible,.qjb-close:focus-visible,.qjb-send:focus-visible,.qjb-chip:focus-visible,.qjb-link:focus-visible,.qjb-input:focus-visible,.qjb-nudge-close:focus-visible{outline:2px solid #c9a84c;outline-offset:3px}
 .qjb-status{position:absolute;right:2px;bottom:3px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #fff;box-shadow:0 1px 5px rgba(15,32,53,.18)}
-.qjb-status::after{content:'';display:block;width:100%;height:100%;border-radius:50%;background:#c9a84c}
+.qjb-status::after{content:'';display:block;width:100%;height:100%;border-radius:50%;background:#28c76f;box-shadow:0 0 0 2px rgba(40,199,111,.18)}
 .qjb-tooltip{position:absolute;right:76px;bottom:18px;background:#0f2035;color:#fff;border-radius:9px;padding:7px 10px;font-size:11px;font-weight:700;white-space:nowrap;box-shadow:0 8px 24px rgba(15,32,53,.18);opacity:0;transform:translateX(5px);pointer-events:none;transition:opacity .16s ease,transform .16s ease}
 .qjb-tooltip::after{content:'';position:absolute;right:-5px;top:50%;width:10px;height:10px;background:#0f2035;transform:translateY(-50%) rotate(45deg);border-radius:1px}
 .qjb-launch:hover + .qjb-tooltip,.qjb-launch:focus-visible + .qjb-tooltip{opacity:1;transform:translateX(0)}
