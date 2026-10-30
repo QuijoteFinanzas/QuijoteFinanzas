@@ -2339,7 +2339,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div>🏦 <strong>QuijoCuentas</strong> — comparativa mensual de cuentas y depósitos</div>
       </div>
       <form id="excel-kit-form" action="https://app.kit.com/forms/9947329/subscriptions" method="post" target="excel-submit-frame">
-        <input type="email" id="excel-email-input" name="email_address" placeholder="tu@email.com" autocomplete="email" required>
+        <input type="email" id="excel-email-input" aria-label="Tu email" name="email_address" placeholder="tu@email.com" autocomplete="email" required>
         <div class="em-error" id="excel-email-error" aria-live="polite"></div>
         <button class="em-btn" id="excel-submit-btn" type="submit">Quiero QuijoExcel</button>
       </form>
@@ -2384,20 +2384,20 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Cuota RETA, pago fraccionado de IRPF (Modelo 130) e IVA trimestral estimado. Introduce los datos de un trimestre.</p>
 
     <div class="calc-grid">
-      <div class="field"><label>Ingresos del trimestre, sin IVA (&euro;)</label><input type="number" id="au-ingresos" value="9000" min="0" step="100"></div>
-      <div class="field"><label>Gastos deducibles del trimestre, sin IVA (&euro;)</label><input type="number" id="au-gastos" value="1500" min="0" step="100"></div>
-      <div class="field"><label>Tipo de IVA de tu actividad</label><select id="au-iva">
+      <div class="field"><label for="au-ingresos">Ingresos del trimestre, sin IVA (&euro;)</label><input type="number" id="au-ingresos" value="9000" min="0" step="100"></div>
+      <div class="field"><label for="au-gastos">Gastos deducibles del trimestre, sin IVA (&euro;)</label><input type="number" id="au-gastos" value="1500" min="0" step="100"></div>
+      <div class="field"><label for="au-iva">Tipo de IVA de tu actividad</label><select id="au-iva">
         <option value="21">21% (general)</option>
         <option value="10">10% (reducido)</option>
         <option value="4">4% (superreducido)</option>
         <option value="0">Exenta de IVA</option>
       </select></div>
-      <div class="field"><label>Retenci&oacute;n IRPF en tus facturas</label><select id="au-retencion">
+      <div class="field"><label for="au-retencion">Retenci&oacute;n IRPF en tus facturas</label><select id="au-retencion">
         <option value="15">15% (general)</option>
         <option value="7">7% (nuevos aut&oacute;nomos, primeros 3 a&ntilde;os)</option>
         <option value="0">0% (sin retenci&oacute;n / clientes particulares)</option>
       </select></div>
-      <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="au-ccaa">
+      <div class="field"><label for="au-ccaa">Comunidad Aut&oacute;noma</label><select id="au-ccaa">
         <option value="andalucia">Andaluc&iacute;a</option>
         <option value="aragon">Arag&oacute;n</option>
         <option value="asturias">Asturias</option>
@@ -2414,7 +2414,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <option value="rioja">La Rioja</option>
         <option value="valencia">C. Valenciana</option>
       </select></div>
-      <div class="field" style="grid-column:1/-1"><label>Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
+      <div class="field" style="grid-column:1/-1"><label for="au-antiguedad">Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
         <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
         <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 80&euro;/mes, sin condiciones</option>
         <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana 80&euro;/mes solo si tu rendimiento neto anual no supera el SMI (17.094&euro;)</option>
@@ -2462,15 +2462,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital inicial (&euro;)</label><input type="number" id="ic-capital" value="10000" min="0"></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0€</span><span>2.000€+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual (%)</label><div class="qf-range-value"><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="ic-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>A&ntilde;os de inversi&oacute;n</label><div class="qf-range-value"><input type="number" id="ic-anos" value="20" min="1" max="60" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="ic-anos" min="1" max="50" step="1" value="20"><div class="qf-range-scale"><span>1</span><span>50</span></div></div>
+        <div class="field"><label for="ic-capital">Capital inicial (&euro;)</label><input type="number" id="ic-capital" value="10000" min="0"></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-aportacion">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0€</span><span>2.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-rent">Rentabilidad anual (%)</label><div class="qf-range-value"><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"><span>%</span></div></div><input aria-label="Rentabilidad anual (%)" class="qf-range" type="range" data-sync-to="ic-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-anos">A&ntilde;os de inversi&oacute;n</label><div class="qf-range-value"><input type="number" id="ic-anos" value="20" min="1" max="60" step="1"><span>años</span></div></div><input aria-label="Años de inversión" class="qf-range" type="range" data-sync-to="ic-anos" min="1" max="50" step="1" value="20"><div class="qf-range-scale"><span>1</span><span>50</span></div></div>
   <div class="infl-toggle" id="ic-infl-wrap">
       <input type="checkbox" id="ic-infl-check" onchange="document.getElementById('ic-infl-wrap').classList.toggle('active',this.checked)">
       <label for="ic-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="ic-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="ic-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -2502,19 +2502,19 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Tipo de ingreso</label><select id="sal-income-type" onchange="fiscalNetGrossFields()"><option value="salary" selected>Salario por cuenta ajena</option><option value="pension">Pensión ordinaria sujeta a IRPF</option></select></div>
-        <div class="field"><label>Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
-        <div class="field"><label id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
-        <div class="field"><label>Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
-        <div class="field"><label>Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
-        <div class="field"><label>Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
-        <div class="field"><label>Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
-        <div class="field"><label>De ellos, menores de 3 años</label><input type="number" id="sal-desc3" value="0" min="0" max="12"></div>
-        <div class="field"><label>Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="sal-ccaa">
+        <div class="field"><label for="sal-income-type">Tipo de ingreso</label><select id="sal-income-type" onchange="fiscalNetGrossFields()"><option value="salary" selected>Salario por cuenta ajena</option><option value="pension">Pensión ordinaria sujeta a IRPF</option></select></div>
+        <div class="field"><label for="sal-target-type">Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
+        <div class="field"><label for="sal-neto" id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
+        <div class="field"><label for="sal-birth">Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
+        <div class="field"><label for="sal-sit">Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+        <div class="field"><label for="sal-desc">Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
+        <div class="field"><label for="sal-desc-share">Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
+        <div class="field"><label for="sal-desc3">De ellos, menores de 3 años</label><input type="number" id="sal-desc3" value="0" min="0" max="12"></div>
+        <div class="field"><label for="sal-ccaa">Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="sal-ccaa">
           <option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option>
         </select></div>
-        <div class="field"><label>Número de pagas</label><select id="sal-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-        <div class="field sal-salary-only"><label>Tipo de contrato</label><select id="sal-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
+        <div class="field"><label for="sal-pagas">Número de pagas</label><select id="sal-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field sal-salary-only"><label for="sal-contract">Tipo de contrato</label><select id="sal-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
         <button class="calc-btn" data-run="salario">Calcular →</button>
       </div>
       <div class="results-panel" id="sal-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2532,10 +2532,10 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Calcula tu cuota mensual, total pagado e intereses de tu hipoteca.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Precio de la vivienda (&euro;)</label><input type="number" id="hip-precio" value="200000" min="0"></div>
-        <div class="field"><label>Entrada / ahorro (&euro;)</label><input type="number" id="hip-entrada" value="40000" min="0"></div>
-        <div class="field"><label>Tipo de inter&eacute;s anual (%)</label><input type="number" id="hip-tipo" value="3.5" step="0.1" min="0" max="20"></div>
-        <div class="field"><label>Plazo (a&ntilde;os)</label><input type="number" id="hip-plazo" value="30" min="1" max="40"></div>
+        <div class="field"><label for="hip-precio">Precio de la vivienda (&euro;)</label><input type="number" id="hip-precio" value="200000" min="0"></div>
+        <div class="field"><label for="hip-entrada">Entrada / ahorro (&euro;)</label><input type="number" id="hip-entrada" value="40000" min="0"></div>
+        <div class="field"><label for="hip-tipo">Tipo de inter&eacute;s anual (%)</label><input type="number" id="hip-tipo" value="3.5" step="0.1" min="0" max="20"></div>
+        <div class="field"><label for="hip-plazo">Plazo (a&ntilde;os)</label><input type="number" id="hip-plazo" value="30" min="1" max="40"></div>
         <button class="calc-btn" data-run="hipoteca">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="hip-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2562,9 +2562,9 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Estima el coste laboral directo para la empresa: bruto, cotizaciones patronales y solidaridad cuando corresponda.</p><p class="disclaimer">Estimación para contrato indefinido en 2026. La cotización por AT/EP depende de la actividad y puede cambiar el resultado; no incluye beneficios, formación, equipos, absentismo ni otros costes empresariales.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> cotizaciones empresariales y tope de base según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), normas de cotización a la Seguridad Social 2026 (tope máximo 5.101,20&nbsp;&euro;/mes). Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Tu salario bruto anual (&euro;)</label><input type="number" id="ce-bruto" value="30000" min="0"></div>
-        <div class="field"><label>N&uacute;mero de pagas</label><select id="ce-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-        <div class="field"><label>AT/EP estimado de la actividad (%)</label><input type="number" id="ce-at" value="1.5" min="0" max="10" step="0.1"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">La prima por accidentes de trabajo/enfermedad profesional depende de la actividad. 1,5% es solo un supuesto editable.</span></div>
+        <div class="field"><label for="ce-bruto">Tu salario bruto anual (&euro;)</label><input type="number" id="ce-bruto" value="30000" min="0"></div>
+        <div class="field"><label for="ce-pagas">N&uacute;mero de pagas</label><select id="ce-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field"><label for="ce-at">AT/EP estimado de la actividad (%)</label><input type="number" id="ce-at" value="1.5" min="0" max="10" step="0.1"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">La prima por accidentes de trabajo/enfermedad profesional depende de la actividad. 1,5% es solo un supuesto editable.</span></div>
         <button class="calc-btn" data-run="coste">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="ce-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2592,10 +2592,10 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Descubre cu&aacute;nto valdr&aacute; tu dinero en el futuro con la inflaci&oacute;n, y cu&aacute;nto necesitas invertir para mantener tu poder adquisitivo.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital actual (&euro;)</label><input type="number" id="inf-capital" value="10000" min="0"></div>
-        <div class="field"><label>Inflaci&oacute;n anual estimada (%)</label><input type="number" id="inf-ipc" value="3" step="0.1" min="0" max="30"></div>
-        <div class="field"><label>A&ntilde;os</label><input type="number" id="inf-anos" value="10" min="1" max="50"></div>
-        <div class="field"><label>Rentabilidad inversi&oacute;n anual (%)</label><input type="number" id="inf-rent" value="7" step="0.1" min="0" max="30"></div>
+        <div class="field"><label for="inf-capital">Capital actual (&euro;)</label><input type="number" id="inf-capital" value="10000" min="0"></div>
+        <div class="field"><label for="inf-ipc">Inflaci&oacute;n anual estimada (%)</label><input type="number" id="inf-ipc" value="3" step="0.1" min="0" max="30"></div>
+        <div class="field"><label for="inf-anos">A&ntilde;os</label><input type="number" id="inf-anos" value="10" min="1" max="50"></div>
+        <div class="field"><label for="inf-rent">Rentabilidad inversi&oacute;n anual (%)</label><input type="number" id="inf-rent" value="7" step="0.1" min="0" max="30"></div>
         <button class="calc-btn" data-run="inflacion">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="inf-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2636,16 +2636,16 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="jub-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500€</span><span>6.000€+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Edad actual</label><div class="qf-range-value"><input type="number" id="jub-edad" value="35" min="18" max="70" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="jub-edad" min="18" max="70" step="1" value="35"><div class="qf-range-scale"><span>18</span><span>70</span></div></div>
+        <div class="field"><label for="jub-actual">Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-rent">Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"><span>%</span></div></div><input aria-label="Rentabilidad anual estimada (%)" class="qf-range" type="range" data-sync-to="jub-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-gastos">Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input aria-label="Gastos mensuales en la retirada (€)" class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500€</span><span>6.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-edad">Edad actual</label><div class="qf-range-value"><input type="number" id="jub-edad" value="35" min="18" max="70" step="1"><span>años</span></div></div><input aria-label="Edad actual" class="qf-range" type="range" data-sync-to="jub-edad" min="18" max="70" step="1" value="35"><div class="qf-range-scale"><span>18</span><span>70</span></div></div>
   <div class="infl-toggle" id="jub-infl-wrap">
       <input type="checkbox" id="jub-infl-check" onchange="document.getElementById('jub-infl-wrap').classList.toggle('active',this.checked)">
       <label for="jub-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="jub-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="jub-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -2678,14 +2678,14 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="disclaimer"><strong>Fiscalidad:</strong> el 19% que se aplica en el c&aacute;lculo es solo la retenci&oacute;n a cuenta que practica el banco. Los intereses tributan despu&eacute;s en la declaraci&oacute;n anual de IRPF, en la base del ahorro, con la escala 2026: 19% hasta 6.000&nbsp;&euro;, 21% de 6.000 a 50.000&nbsp;&euro;, 23% de 50.000 a 200.000&nbsp;&euro;, 27% de 200.000 a 300.000&nbsp;&euro; y 30% a partir de 300.000&nbsp;&euro;. Seg&uacute;n tus otros rendimientos del ahorro, el resultado final puede ser una cuota a pagar o a devolver.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
-        <div class="field"><label>TIN anual (%)</label><input type="number" id="dep-tin" value="3" step="0.1" min="0" max="20"></div>
-        <div class="field"><label>Plazo (meses)</label><input type="number" id="dep-meses" value="12" min="1" max="120"></div>
+        <div class="field"><label for="dep-capital">Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
+        <div class="field"><label for="dep-tin">TIN anual (%)</label><input type="number" id="dep-tin" value="3" step="0.1" min="0" max="20"></div>
+        <div class="field"><label for="dep-meses">Plazo (meses)</label><input type="number" id="dep-meses" value="12" min="1" max="120"></div>
   <div class="infl-toggle" id="dep-infl-wrap">
       <input type="checkbox" id="dep-infl-check" onchange="document.getElementById('dep-infl-wrap').classList.toggle('active',this.checked)">
       <label for="dep-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="dep-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="dep-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -2718,52 +2718,52 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>¿Qué quieres calcular?</label><select id="irpf-mode" onchange="fiscalModeFields()"><option value="salary">Nómina</option><option value="pension">Pensión</option><option value="transition">Me jubilo este año</option><option value="annual">Declaración anual / varios pagadores</option></select></div>
+        <div class="field"><label for="irpf-mode">¿Qué quieres calcular?</label><select id="irpf-mode" onchange="fiscalModeFields()"><option value="salary">Nómina</option><option value="pension">Pensión</option><option value="transition">Me jubilo este año</option><option value="annual">Declaración anual / varios pagadores</option></select></div>
 
         <div id="fiscal-common">
-          <div class="field"><label>Año de nacimiento</label><input type="number" id="irpf-birth" value="1985" min="1920" max="2010"></div>
-          <div class="field"><label>Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
-          <div class="field"><label>Descendientes fiscalmente computables</label><input type="number" id="irpf-desc" value="0" min="0" max="12"></div>
-          <div class="field"><label>Cómputo del mínimo por descendientes</label><select id="irpf-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Si tienes descendientes con porcentajes distintos, usa el modo como aproximación; la versión avanzada por descendiente se incorporará tras validar el motor.</span></div>
-          <div class="field"><label>De ellos, menores de 3 años</label><input type="number" id="irpf-desc3" value="0" min="0" max="12"></div>
-          <div class="field"><label>Discapacidad del contribuyente</label><select id="irpf-disability"><option value="0">No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
-          <div class="field"><label>Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="irpf-ccaa"><option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option></select></div>
+          <div class="field"><label for="irpf-birth">Año de nacimiento</label><input type="number" id="irpf-birth" value="1985" min="1920" max="2010"></div>
+          <div class="field"><label for="irpf-sit">Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+          <div class="field"><label for="irpf-desc">Descendientes fiscalmente computables</label><input type="number" id="irpf-desc" value="0" min="0" max="12"></div>
+          <div class="field"><label for="irpf-desc-share">Cómputo del mínimo por descendientes</label><select id="irpf-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Si tienes descendientes con porcentajes distintos, usa el modo como aproximación; la versión avanzada por descendiente se incorporará tras validar el motor.</span></div>
+          <div class="field"><label for="irpf-desc3">De ellos, menores de 3 años</label><input type="number" id="irpf-desc3" value="0" min="0" max="12"></div>
+          <div class="field"><label for="irpf-disability">Discapacidad del contribuyente</label><select id="irpf-disability"><option value="0">No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
+          <div class="field"><label for="irpf-ccaa">Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="irpf-ccaa"><option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option></select></div>
         </div>
 
         <div id="fiscal-salary-fields">
-          <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
-          <div class="field"><label>Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-          <div class="field"><label>Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
-          <div class="field"><label>Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
+          <div class="field"><label for="irpf-bruto">Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
+          <div class="field"><label for="irpf-pagas">Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+          <div class="field"><label for="irpf-contract">Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
+          <div class="field"><label for="irpf-pp">Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
         </div>
 
         <div id="fiscal-pension-fields" style="display:none">
-          <div class="field"><label>Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
-          <div class="field"><label>Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
-          <div class="field"><label>Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
+          <div class="field"><label for="pen-type">Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
+          <div class="field"><label for="pen-monthly">Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
+          <div class="field"><label for="pen-pagas">Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
         </div>
 
         <div id="fiscal-transition-fields" style="display:none">
-          <div class="field"><label>Salario bruto cobrado antes de jubilarte (&euro;)</label><input type="number" id="tr-salary" value="24000" min="0"></div>
-          <div class="field"><label>Retenciones ya soportadas en nómina (&euro;)</label><input type="number" id="tr-salary-withheld" value="3000" min="0"></div>
-          <div class="field"><label>Cotizaciones soportadas trabajando (&euro;)</label><input type="number" id="tr-salary-ss" value="1560" min="0"></div>
-          <div class="field"><label>Pensión bruta por paga desde jubilación (&euro;)</label><input type="number" id="tr-pension-pay" value="1500" min="0"></div>
-          <div class="field"><label>Pagas de pensión que cobrarás este ejercicio <span style="font-weight:400;color:var(--muted)">(incluye extras devengadas)</span></label><input type="number" id="tr-pension-pays" value="4" min="1" max="14" step="1"></div>
-          <div class="field"><label>Retenciones INSS ya practicadas/previstas (&euro;) <span style="font-weight:400;color:var(--muted)">(0 = estimar)</span></label><input type="number" id="tr-pension-withheld" value="0" min="0"></div>
+          <div class="field"><label for="tr-salary">Salario bruto cobrado antes de jubilarte (&euro;)</label><input type="number" id="tr-salary" value="24000" min="0"></div>
+          <div class="field"><label for="tr-salary-withheld">Retenciones ya soportadas en nómina (&euro;)</label><input type="number" id="tr-salary-withheld" value="3000" min="0"></div>
+          <div class="field"><label for="tr-salary-ss">Cotizaciones soportadas trabajando (&euro;)</label><input type="number" id="tr-salary-ss" value="1560" min="0"></div>
+          <div class="field"><label for="tr-pension-pay">Pensión bruta por paga desde jubilación (&euro;)</label><input type="number" id="tr-pension-pay" value="1500" min="0"></div>
+          <div class="field"><label for="tr-pension-pays">Pagas de pensión que cobrarás este ejercicio <span style="font-weight:400;color:var(--muted)">(incluye extras devengadas)</span></label><input type="number" id="tr-pension-pays" value="4" min="1" max="14" step="1"></div>
+          <div class="field"><label for="tr-pension-withheld">Retenciones INSS ya practicadas/previstas (&euro;) <span style="font-weight:400;color:var(--muted)">(0 = estimar)</span></label><input type="number" id="tr-pension-withheld" value="0" min="0"></div>
         </div>
 
         <div id="fiscal-annual-fields" style="display:none">
-          <div class="field"><label>Modalidad de declaración</label><select id="ann-joint"><option value="individual" selected>Individual</option><option value="joint-married">Conjunta · matrimonio (estimación)</option><option value="joint-single">Conjunta · unidad monoparental (estimación)</option></select></div>
-          <div class="field"><label>Ingresos pagador 1 (&euro;)</label><input type="number" id="ann-i1" value="24000" min="0"></div>
-          <div class="field"><label>Retenciones pagador 1 (&euro;)</label><input type="number" id="ann-r1" value="3000" min="0"></div>
-          <div class="field"><label>Cotizaciones deducibles pagador 1 (&euro;)</label><input type="number" id="ann-ss1" value="1500" min="0"></div>
-          <div class="field"><label>Ingresos pagador 2 (&euro;)</label><input type="number" id="ann-i2" value="0" min="0"></div>
-          <div class="field"><label>Retenciones pagador 2 (&euro;)</label><input type="number" id="ann-r2" value="0" min="0"></div>
-          <div class="field"><label>Cotizaciones deducibles pagador 2 (&euro;)</label><input type="number" id="ann-ss2" value="0" min="0"></div>
-          <div class="field"><label>Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
-          <div class="field"><label>Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
-          <div class="field"><label>Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
-          <div class="field"><label>Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
+          <div class="field"><label for="ann-joint">Modalidad de declaración</label><select id="ann-joint"><option value="individual" selected>Individual</option><option value="joint-married">Conjunta · matrimonio (estimación)</option><option value="joint-single">Conjunta · unidad monoparental (estimación)</option></select></div>
+          <div class="field"><label for="ann-i1">Ingresos pagador 1 (&euro;)</label><input type="number" id="ann-i1" value="24000" min="0"></div>
+          <div class="field"><label for="ann-r1">Retenciones pagador 1 (&euro;)</label><input type="number" id="ann-r1" value="3000" min="0"></div>
+          <div class="field"><label for="ann-ss1">Cotizaciones deducibles pagador 1 (&euro;)</label><input type="number" id="ann-ss1" value="1500" min="0"></div>
+          <div class="field"><label for="ann-i2">Ingresos pagador 2 (&euro;)</label><input type="number" id="ann-i2" value="0" min="0"></div>
+          <div class="field"><label for="ann-r2">Retenciones pagador 2 (&euro;)</label><input type="number" id="ann-r2" value="0" min="0"></div>
+          <div class="field"><label for="ann-ss2">Cotizaciones deducibles pagador 2 (&euro;)</label><input type="number" id="ann-ss2" value="0" min="0"></div>
+          <div class="field"><label for="ann-other">Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
+          <div class="field"><label for="ann-service-work">Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
+          <div class="field"><label for="ann-other-ret">Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
+          <div class="field"><label for="ann-reductions">Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
         </div>
 
         <button class="calc-btn" data-run="irpf">Calcular &rarr;</button>
@@ -2785,13 +2785,13 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="disclaimer">Estimaci&oacute;n orientativa. El ahorro real depende de tu tipo marginal y CCAA. Consulta con un asesor fiscal.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Eres...</label><select id="pp-tipo" onchange="ppUpdateFields()">
+        <div class="field"><label for="pp-tipo">Eres...</label><select id="pp-tipo" onchange="ppUpdateFields()">
           <option value="empleado">Empleado por cuenta ajena</option>
           <option value="autonomo">Aut&oacute;nomo</option>
         </select></div>
-        <div class="field"><label id="pp-bruto-label">Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
-        <div class="field"><label>Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="5750"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite general de aportación individual: 1.500€/año. Las aportaciones empresariales a planes de empleo tienen límites adicionales y no se modelan en esta calculadora.</span></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="pp-ccaa">
+        <div class="field"><label for="pp-bruto" id="pp-bruto-label">Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
+        <div class="field"><label for="pp-aport">Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="5750"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite general de aportación individual: 1.500€/año. Las aportaciones empresariales a planes de empleo tienen límites adicionales y no se modelan en esta calculadora.</span></div>
+        <div class="field"><label for="pp-ccaa">Comunidad Aut&oacute;noma</label><select id="pp-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option>
           <option value="aragon">Arag&oacute;n</option>
           <option value="asturias">Asturias</option>
@@ -2835,18 +2835,18 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Compara el patrimonio final estimado al comprar frente a alquilar, incorporando hipoteca, revalorización, gastos y el coste de oportunidad del capital.</p><p class="disclaimer">Modelo orientativo: supone tipo hipotecario fijo, aportaciones/costes constantes según los campos y reinversión de las diferencias mensuales. No incluye fiscalidad individual, reformas extraordinarias ni incertidumbre de mercado.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Precio del piso (&euro;)</label><input type="number" id="avs-precio" value="250000" min="0"></div>
-        <div class="field"><label>Entrada disponible (&euro;)</label><input type="number" id="avs-entrada" value="50000" min="0"></div>
-        <div class="field"><label>Tipo hipoteca (%)</label><input type="number" id="avs-tipo" value="3.5" step="0.1" min="0" max="15"></div>
-        <div class="field"><label>Plazo hipoteca (a&ntilde;os)</label><input type="number" id="avs-plazo" value="25" min="5" max="40"></div>
-        <div class="field"><label>Alquiler mensual equivalente (&euro;)</label><input type="number" id="avs-alquiler" value="1000" min="0"></div>
-        <div class="field"><label>Revalorizaci&oacute;n anual piso (%)</label><input type="number" id="avs-revalor" value="3" step="0.1" min="-5" max="15"></div>
-        <div class="field"><label>A&ntilde;os de comparaci&oacute;n</label><input type="number" id="avs-anos" value="15" min="1" max="40"></div>
-        <div class="field"><label>Gastos iniciales de compra (%)</label><input type="number" id="avs-gastos-compra" value="10" min="0" max="20" step="0.5"></div>
-        <div class="field"><label>Gastos anuales propietario (&euro;)</label><input type="number" id="avs-gastos-prop" value="2000" min="0" step="100"></div>
-        <div class="field"><label>Subida anual del alquiler (%)</label><input type="number" id="avs-alq-growth" value="3" min="-5" max="10" step="0.1"></div>
-        <div class="field"><label>Rentabilidad alternativa del ahorro (%)</label><input type="number" id="avs-alt-return" value="7" min="0" max="15" step="0.1"></div>
-        <div class="field"><label>Coste de venta estimado (%)</label><input type="number" id="avs-sale-cost" value="3" min="0" max="10" step="0.1"></div>
+        <div class="field"><label for="avs-precio">Precio del piso (&euro;)</label><input type="number" id="avs-precio" value="250000" min="0"></div>
+        <div class="field"><label for="avs-entrada">Entrada disponible (&euro;)</label><input type="number" id="avs-entrada" value="50000" min="0"></div>
+        <div class="field"><label for="avs-tipo">Tipo hipoteca (%)</label><input type="number" id="avs-tipo" value="3.5" step="0.1" min="0" max="15"></div>
+        <div class="field"><label for="avs-plazo">Plazo hipoteca (a&ntilde;os)</label><input type="number" id="avs-plazo" value="25" min="5" max="40"></div>
+        <div class="field"><label for="avs-alquiler">Alquiler mensual equivalente (&euro;)</label><input type="number" id="avs-alquiler" value="1000" min="0"></div>
+        <div class="field"><label for="avs-revalor">Revalorizaci&oacute;n anual piso (%)</label><input type="number" id="avs-revalor" value="3" step="0.1" min="-5" max="15"></div>
+        <div class="field"><label for="avs-anos">A&ntilde;os de comparaci&oacute;n</label><input type="number" id="avs-anos" value="15" min="1" max="40"></div>
+        <div class="field"><label for="avs-gastos-compra">Gastos iniciales de compra (%)</label><input type="number" id="avs-gastos-compra" value="10" min="0" max="20" step="0.5"></div>
+        <div class="field"><label for="avs-gastos-prop">Gastos anuales propietario (&euro;)</label><input type="number" id="avs-gastos-prop" value="2000" min="0" step="100"></div>
+        <div class="field"><label for="avs-alq-growth">Subida anual del alquiler (%)</label><input type="number" id="avs-alq-growth" value="3" min="-5" max="10" step="0.1"></div>
+        <div class="field"><label for="avs-alt-return">Rentabilidad alternativa del ahorro (%)</label><input type="number" id="avs-alt-return" value="7" min="0" max="15" step="0.1"></div>
+        <div class="field"><label for="avs-sale-cost">Coste de venta estimado (%)</label><input type="number" id="avs-sale-cost" value="3" min="0" max="10" step="0.1"></div>
         <button class="calc-btn" data-run="alquilervs">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="avs-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2874,11 +2874,11 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Calcula cuánto podrías ahorrar en intereses y tiempo amortizando anticipadamente. Compara reducir cuota vs reducir plazo.</p><p class="disclaimer">Estimación con hipoteca a tipo fijo y sistema francés. No incluye posibles comisiones de amortización, compensaciones contractuales ni efectos fiscales.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital pendiente (&euro;)</label><input type="number" id="am-capital" value="150000" min="0"></div>
-        <div class="field"><label>Tipo de inter&eacute;s (%)</label><input type="number" id="am-tipo" value="3.5" step="0.1" min="0" max="15"></div>
-        <div class="field"><label>A&ntilde;os restantes</label><input type="number" id="am-anos" value="20" min="1" max="40"></div>
-        <div class="field"><label>Importe a amortizar (&euro;)</label><input type="number" id="am-extra" value="10000" min="0"></div>
-        <div class="field"><label>Objetivo</label><select id="am-tipo-amort"><option value="plazo">Reducir plazo (misma cuota)</option><option value="cuota">Reducir cuota (mismo plazo)</option></select></div>
+        <div class="field"><label for="am-capital">Capital pendiente (&euro;)</label><input type="number" id="am-capital" value="150000" min="0"></div>
+        <div class="field"><label for="am-tipo">Tipo de inter&eacute;s (%)</label><input type="number" id="am-tipo" value="3.5" step="0.1" min="0" max="15"></div>
+        <div class="field"><label for="am-anos">A&ntilde;os restantes</label><input type="number" id="am-anos" value="20" min="1" max="40"></div>
+        <div class="field"><label for="am-extra">Importe a amortizar (&euro;)</label><input type="number" id="am-extra" value="10000" min="0"></div>
+        <div class="field"><label for="am-tipo-amort">Objetivo</label><select id="am-tipo-amort"><option value="plazo">Reducir plazo (misma cuota)</option><option value="cuota">Reducir cuota (mismo plazo)</option></select></div>
         <button class="calc-btn" data-run="amortizacion">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="am-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2906,11 +2906,11 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="subtitle">Calcula la rentabilidad bruta sobre el precio y la rentabilidad neta sobre la inversión total, incluyendo gastos anuales y vacante.</p><p class="disclaimer">No incluye financiación, IRPF/IS, derramas, reformas extraordinarias, impagos ni revalorización del inmueble.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Precio de compra (&euro;)</label><input type="number" id="alq-precio" value="200000" min="0"></div>
-        <div class="field"><label>Gastos compra (ITP/IVA+notar&iacute;a, %)</label><input type="number" id="alq-gastos" value="10" step="0.5" min="0" max="20"></div>
-        <div class="field"><label>Renta mensual (&euro;)</label><input type="number" id="alq-renta" value="900" min="0"></div>
-        <div class="field"><label>Gastos anuales (IBI + comunidad + seguro, &euro;)</label><input type="number" id="alq-gastos-anuales" value="1500" min="0"></div>
-        <div class="field"><label>Meses de vacante al a&ntilde;o</label><input type="number" id="alq-vacante" value="1" min="0" max="12" step="0.5"></div>
+        <div class="field"><label for="alq-precio">Precio de compra (&euro;)</label><input type="number" id="alq-precio" value="200000" min="0"></div>
+        <div class="field"><label for="alq-gastos">Gastos compra (ITP/IVA+notar&iacute;a, %)</label><input type="number" id="alq-gastos" value="10" step="0.5" min="0" max="20"></div>
+        <div class="field"><label for="alq-renta">Renta mensual (&euro;)</label><input type="number" id="alq-renta" value="900" min="0"></div>
+        <div class="field"><label for="alq-gastos-anuales">Gastos anuales (IBI + comunidad + seguro, &euro;)</label><input type="number" id="alq-gastos-anuales" value="1500" min="0"></div>
+        <div class="field"><label for="alq-vacante">Meses de vacante al a&ntilde;o</label><input type="number" id="alq-vacante" value="1" min="0" max="12" step="0.5"></div>
         <button class="calc-btn" data-run="alquiler">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="alq-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2938,15 +2938,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <p class="disclaimer">Estimación orientativa con el motor fiscal 2026 de la web. El bonus se valora por el incremento de neto estimado, no aplicando un tipo fijo. Los beneficios en especie y su fiscalidad real pueden variar.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
       <!-- Oferta A -->
-      <div class="field-group" style="border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:16px">
-        <p style="font-family:'Playfair Display',serif;color:#c9a84c;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta A</p>
-        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="cmp-a-bruto" value="40000" min="0"></div>
-        <div class="field"><label>Bonus anual estimado (&euro;)</label><input type="number" id="cmp-a-bonus" value="0" min="0"></div>
-        <div class="field"><label>D&iacute;as teletrabajo / semana</label><select id="cmp-a-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
-        <div class="field"><label>Coste transporte / mes (&euro;)</label><input type="number" id="cmp-a-transp" value="80" min="0"></div>
-        <div class="field"><label>Seguro m&eacute;dico empresa</label><select id="cmp-a-seguro"><option value="0">No incluido</option><option value="600">S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
-        <div class="field"><label>Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-a-ticket" value="0" min="0"></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="cmp-a-ccaa">
+      <div class="field-group" role="group" aria-labelledby="cmp-a-title" style="border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:16px">
+        <p id="cmp-a-title" style="font-family:'Playfair Display',serif;color:#c9a84c;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta A</p>
+        <div class="field"><label for="cmp-a-bruto">Salario bruto anual (&euro;)</label><input type="number" id="cmp-a-bruto" value="40000" min="0"></div>
+        <div class="field"><label for="cmp-a-bonus">Bonus anual estimado (&euro;)</label><input type="number" id="cmp-a-bonus" value="0" min="0"></div>
+        <div class="field"><label for="cmp-a-tw">D&iacute;as teletrabajo / semana</label><select id="cmp-a-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
+        <div class="field"><label for="cmp-a-transp">Coste transporte / mes (&euro;)</label><input type="number" id="cmp-a-transp" value="80" min="0"></div>
+        <div class="field"><label for="cmp-a-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-a-seguro"><option value="0">No incluido</option><option value="600">S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
+        <div class="field"><label for="cmp-a-ticket">Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-a-ticket" value="0" min="0"></div>
+        <div class="field"><label for="cmp-a-ccaa">Comunidad Aut&oacute;noma</label><select id="cmp-a-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option><option value="aragon">Arag&oacute;n</option>
           <option value="asturias">Asturias</option><option value="baleares">Baleares</option>
           <option value="canarias">Canarias</option><option value="cantabria">Cantabria</option>
@@ -2958,15 +2958,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         </select></div>
       </div>
       <!-- Oferta B -->
-      <div class="field-group" style="border:1px solid rgba(125,211,168,.25);border-radius:8px;padding:16px">
-        <p style="font-family:'Playfair Display',serif;color:#7dd3a8;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta B</p>
-        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="cmp-b-bruto" value="36000" min="0"></div>
-        <div class="field"><label>Bonus anual estimado (&euro;)</label><input type="number" id="cmp-b-bonus" value="3000" min="0"></div>
-        <div class="field"><label>D&iacute;as teletrabajo / semana</label><select id="cmp-b-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
-        <div class="field"><label>Coste transporte / mes (&euro;)</label><input type="number" id="cmp-b-transp" value="30" min="0"></div>
-        <div class="field"><label>Seguro m&eacute;dico empresa</label><select id="cmp-b-seguro"><option value="0">No incluido</option><option value="600" selected>S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
-        <div class="field"><label>Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-b-ticket" value="220" min="0"></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="cmp-b-ccaa">
+      <div class="field-group" role="group" aria-labelledby="cmp-b-title" style="border:1px solid rgba(125,211,168,.25);border-radius:8px;padding:16px">
+        <p id="cmp-b-title" style="font-family:'Playfair Display',serif;color:#7dd3a8;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta B</p>
+        <div class="field"><label for="cmp-b-bruto">Salario bruto anual (&euro;)</label><input type="number" id="cmp-b-bruto" value="36000" min="0"></div>
+        <div class="field"><label for="cmp-b-bonus">Bonus anual estimado (&euro;)</label><input type="number" id="cmp-b-bonus" value="3000" min="0"></div>
+        <div class="field"><label for="cmp-b-tw">D&iacute;as teletrabajo / semana</label><select id="cmp-b-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
+        <div class="field"><label for="cmp-b-transp">Coste transporte / mes (&euro;)</label><input type="number" id="cmp-b-transp" value="30" min="0"></div>
+        <div class="field"><label for="cmp-b-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-b-seguro"><option value="0">No incluido</option><option value="600" selected>S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
+        <div class="field"><label for="cmp-b-ticket">Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-b-ticket" value="220" min="0"></div>
+        <div class="field"><label for="cmp-b-ccaa">Comunidad Aut&oacute;noma</label><select id="cmp-b-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option><option value="aragon">Arag&oacute;n</option>
           <option value="asturias">Asturias</option><option value="baleares">Baleares</option>
           <option value="canarias">Canarias</option><option value="cantabria">Cantabria</option>
@@ -3082,17 +3082,17 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
 
     <div class="calc-grid">
-      <div class="field"><label>Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Edad actual</label><div class="qf-range-value"><input type="number" id="t-edad" value="30" min="18" max="64" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="t-edad" min="18" max="64" step="1" value="30"><div class="qf-range-scale"><span>18</span><span>64</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="t-rent" value="8" min="0" max="30" step="0.1"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="t-rent" min="0" max="15" step="0.1" value="8"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Edad objetivo (retirada)</label><div class="qf-range-value"><input type="number" id="t-objetivo" value="65" min="40" max="80" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="t-objetivo" min="40" max="80" step="1" value="65"><div class="qf-range-scale"><span>40</span><span>80</span></div></div>
+      <div class="field"><label for="t-patrimonio">Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-edad">Edad actual</label><div class="qf-range-value"><input type="number" id="t-edad" value="30" min="18" max="64" step="1"><span>años</span></div></div><input aria-label="Edad actual" class="qf-range" type="range" data-sync-to="t-edad" min="18" max="64" step="1" value="30"><div class="qf-range-scale"><span>18</span><span>64</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-rent">Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="t-rent" value="8" min="0" max="30" step="0.1"><span>%</span></div></div><input aria-label="Rentabilidad anual estimada (%)" class="qf-range" type="range" data-sync-to="t-rent" min="0" max="15" step="0.1" value="8"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-objetivo">Edad objetivo (retirada)</label><div class="qf-range-value"><input type="number" id="t-objetivo" value="65" min="40" max="80" step="1"><span>años</span></div></div><input aria-label="Edad objetivo (retirada)" class="qf-range" type="range" data-sync-to="t-objetivo" min="40" max="80" step="1" value="65"><div class="qf-range-scale"><span>40</span><span>80</span></div></div>
     </div>
 <div class="infl-toggle" id="t-infl-wrap">
       <input type="checkbox" id="t-infl-check" onchange="document.getElementById('t-infl-wrap').classList.toggle('active',this.checked)">
       <label for="t-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="t-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="t-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -6290,6 +6290,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     input.dataset.qfSlider='1';
     var wrap=document.createElement('div');wrap.className='qf-inline-range-wrap';
     var range=document.createElement('input');range.type='range';range.className='qf-inline-range';
+    var rangeName=(input.labels&&input.labels[0])?input.labels[0].textContent.replace(/\s+/g,' ').trim():(input.getAttribute('aria-label')||'');if(rangeName)range.setAttribute('aria-label',rangeName);
     range.min=cfg.min;range.max=cfg.max;range.step=cfg.step;range.value=clamp(parseFloat(input.value)||cfg.min,cfg.min,cfg.max);
     var current=document.createElement('div');current.className='qf-inline-range-current';current.textContent=inlineValue(input.value,cfg);
     var scale=document.createElement('div');scale.className='qf-inline-range-scale';scale.innerHTML='<span>'+cfg.minLabel+'</span><span>'+cfg.maxLabel+'</span>';
