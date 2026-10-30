@@ -3867,7 +3867,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var bruto=parseFloat(document.getElementById('ce-bruto').value)||0;
     var atRate=(parseFloat(document.getElementById('ce-at').value)||0)/100;
     var maxAnual=5101.20*12;
-    if(!(bruto>0)) return qfInvalid('ce-results','Indica un salario bruto anual mayor que 0 &euro;.','ce-bruto');
+    if(!(bruto>0)) return qfInvalid('ce-results','Indica un salario bruto anual mayor que 0&nbsp;&euro;.','ce-bruto');
     // Base mínima: a jornada completa la base de cotización no puede ser inferior al SMI (tope mínimo, art. 19.2 LGSS,
     // RDL 8/2015). SMI 2026 usado: 17.094 €/año (1.221 € × 14), cifra de la auditoría de Datos pendiente de su verificación.
     // Con jornada parcial la base mínima es proporcional a las horas.
@@ -3884,7 +3884,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('ce-results').innerHTML=
       rr('Tu salario bruto',fmtEUR(bruto))+
       rr('Base anual sujeta a cotización ordinaria',fmtEUR(base))+
-      (bajoSMI?'<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin:2px 0 6px">Tu bruto es inferior al SMI anual (17.094 &euro;). A jornada completa se cotiza como m&iacute;nimo por esa base, as&iacute; que la SS de la empresa se calcula sobre 17.094 &euro;. Si trabajas a jornada parcial, la base m&iacute;nima es proporcional a tus horas y el coste real ser&aacute; menor: este c&aacute;lculo supone jornada completa.</div>':'')+
+      (bajoSMI?'<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin:2px 0 6px">Tu bruto es inferior al SMI anual (17.094&nbsp;&euro;). A jornada completa se cotiza como m&iacute;nimo por esa base, as&iacute; que la SS de la empresa se calcula sobre 17.094&nbsp;&euro;. Si trabajas a jornada parcial, la base m&iacute;nima es proporcional a tus horas y el coste real ser&aacute; menor: este c&aacute;lculo supone jornada completa.</div>':'')+
       rr('SS a cargo empresa (base + AT/EP)',fmtEUR(cotBase),'o')+
       (solidaridad>0?rr('Cuota adicional de solidaridad',fmtEUR(solidaridad),'o'):'')+
       rr('Coste total anual',fmtEUR(costeTotal),'g')+
