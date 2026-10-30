@@ -1471,6 +1471,14 @@ function qfTrack(eventName, params) {
 @keyframes qfScenarioFlash{0%{box-shadow:0 0 0 0 rgba(201,168,76,.35)}100%{box-shadow:0 0 0 10px rgba(201,168,76,0)}}
 .qf-generic-hero[data-state="empty"] .qf-hero-main{font-family:'DM Sans',sans-serif;font-size:18px;color:rgba(255,255,255,.70);letter-spacing:0}
 .qf-generic-hero[data-state="empty"] .qf-hero-metrics{opacity:.55}
+/* Revisión oct-2026: sin métricas vacías «—» y mensaje claro cuando faltan datos */
+.qf-hero-metrics[data-count="2"]{grid-template-columns:repeat(2,1fr)}
+.qf-hero-metrics[data-count="1"]{grid-template-columns:1fr}
+.qf-hero-metrics[data-count="0"],.qf-generic-hero[data-state="empty"] .qf-hero-metrics{display:none}
+.qf-hero-metric[hidden]{display:none}
+.qf-result-hero[data-state="invalid"] .qf-hero-main{font-family:'DM Sans',sans-serif;font-size:17px;line-height:1.4;font-weight:600;color:#ffd9a8;letter-spacing:0;margin:8px 0 10px}
+.qf-result-hero[data-state="invalid"] .qf-hero-metrics,.qf-result-hero[data-state="invalid"] .qf-whatif,.qf-result-hero[data-state="invalid"] .qf-hero-actions,.qf-result-hero[data-state="invalid"] .qf-result-share-note,.qf-result-hero[data-state="invalid"] .qf-hero-insight:empty{display:none}
+input[aria-invalid="true"]{border-color:#d9822b !important;box-shadow:0 0 0 2px rgba(217,130,43,.25)}
 .qf-result-share-note{position:relative;z-index:1;text-align:center;font-size:9px;color:rgba(220,232,245,.42);margin-top:6px}
 .qf-renta-share-wrap{margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,32,53,.08);display:flex;justify-content:center}
 .qf-renta-share-wrap .qf-share-result{background:var(--navy);border-color:var(--navy);color:#fff}
@@ -2504,6 +2512,13 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <option value="7">7% (nuevos aut&oacute;nomos, primeros 3 a&ntilde;os)</option>
         <option value="0">0% (sin retenci&oacute;n / clientes particulares)</option>
       </select></div>
+      <div class="field"><label for="au-rn-anterior">Rendimiento neto de tu actividad el a&ntilde;o anterior</label><select id="au-rn-anterior">
+        <option value="mas12000" selected>M&aacute;s de 12.000&nbsp;&euro; (sin minoraci&oacute;n)</option>
+        <option value="hasta9000">Hasta 9.000&nbsp;&euro; (&minus;100&nbsp;&euro; en cada Modelo 130)</option>
+        <option value="hasta10000">De 9.000,01 a 10.000&nbsp;&euro; (&minus;75&nbsp;&euro;)</option>
+        <option value="hasta11000">De 10.000,01 a 11.000&nbsp;&euro; (&minus;50&nbsp;&euro;)</option>
+        <option value="hasta12000">De 11.000,01 a 12.000&nbsp;&euro; (&minus;25&nbsp;&euro;)</option>
+      </select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Minoraci&oacute;n del pago fraccionado (art. 110.3.c del Reglamento del IRPF).</span></div>
       <div class="field"><label for="au-ccaa">Comunidad Aut&oacute;noma</label><select id="au-ccaa">
         <option value="andalucia">Andaluc&iacute;a</option>
         <option value="aragon">Arag&oacute;n</option>
@@ -2528,7 +2543,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       </select><p class="field-note" style="font-size:11px;line-height:1.45;margin:6px 0 0;color:var(--muted,#5a6b7d)">Tarifa plana: 80 &euro;/mes + MEI = 88,64 &euro;/mes (Seguridad Social). Solo si no estuviste de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya la disfrutaste) y la pides al darte de alta. El segundo a&ntilde;o exige un rendimiento neto anual inferior al SMI (17.094 &euro;) y pedirla antes de que empiece (LETA, art. 38 ter).</p></div>
     </div>
     <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
-    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se estima con el 20% general sobre el rendimiento neto acumulado; el IRPF real se calcula con las escalas progresivas estatal y auton&oacute;mica sobre tu rendimiento neto anual, como se liquida realmente al presentar la Renta. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. <strong>Supuestos (modelo simplificado):</strong> estimaci&oacute;n directa simplificada; el rendimiento neto para IRPF descuenta la cuota RETA (art. 30.2.1.&ordf; LIRPF) y un 5% de gastos de dif&iacute;cil justificaci&oacute;n con un m&aacute;ximo de 2.000&nbsp;&euro;/a&ntilde;o. El Modelo 130 es el 20% del rendimiento neto menos retenciones y, si procede, la minoraci&oacute;n del art. 110.3.c RIRPF; la AEAT lo calcula sobre el acumulado del a&ntilde;o, que con cuatro trimestres iguales da lo mismo que este c&aacute;lculo trimestral. El IRPF anual aplica la reducci&oacute;n del art. 32.2.3.&ordm; LIRPF suponiendo que no tienes otras rentas, y las escalas estatal y auton&oacute;mica con el m&iacute;nimo personal general (sin m&iacute;nimos por edad, descendientes ni deducciones auton&oacute;micas). La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
 
     <div class="results-panel" id="au-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
 
@@ -2613,6 +2628,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <div class="field"><label for="sal-target-type">Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
         <div class="field"><label for="sal-neto" id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
         <div class="field"><label for="sal-birth">Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
+        <div class="field"><label for="sal-disability">Discapacidad del perceptor</label><select id="sal-disability"><option value="0" selected>No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
         <div class="field"><label for="sal-sit">Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
         <div class="field"><label for="sal-desc">Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
         <div class="field"><label for="sal-desc-share">Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
@@ -2841,11 +2857,12 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
           <div class="field"><label for="irpf-bruto">Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
           <div class="field"><label for="irpf-pagas">Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
           <div class="field"><label for="irpf-contract">Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
-          <div class="field"><label for="irpf-pp">Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
+          <div class="field"><label for="irpf-pp">Aportación a planes de pensiones / previsión social (&euro;) <span style="font-weight:400;color:var(--muted)">(se aplica el límite del art. 52 LIRPF)</span></label><input type="number" id="irpf-pp" value="0" min="0"></div>
         </div>
 
         <div id="fiscal-pension-fields" style="display:none">
           <div class="field"><label for="pen-type">Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
+          <div class="field" id="pen-orf-wrap" style="display:none"><label for="pen-orf-cond">¿El huérfano es menor de 22 años o está incapacitado para todo trabajo?</label><select id="pen-orf-cond"><option value="exenta" selected>Sí · exenta (art. 7.h LIRPF, régimen público)</option><option value="sujeta">No · tributa como rendimiento del trabajo</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">La orfandad solo está exenta si la pagan la Seguridad Social o Clases Pasivas y el beneficiario es menor de 22 años o está incapacitado para todo trabajo.</span></div>
           <div class="field"><label for="pen-monthly">Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
           <div class="field"><label for="pen-pagas">Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
         </div>
@@ -2870,7 +2887,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
           <div class="field"><label for="ann-other">Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
           <div class="field"><label for="ann-service-work">Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
           <div class="field"><label for="ann-other-ret">Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
-          <div class="field"><label for="ann-reductions">Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
+          <div class="field"><label for="ann-reductions">Aportaciones a planes de pensiones / previsión social (&euro;) <span style="font-weight:400;color:var(--muted)">(se aplica el límite del art. 52 LIRPF: 1.500 € o el 30% de tus rendimientos netos, el menor)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
         </div>
 
         <button class="calc-btn" data-run="irpf">Calcular &rarr;</button>
@@ -3787,13 +3804,43 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
 
+  // ── Validación en línea (revisión oct-2026) ──────────────────────────────
+  // Un dato obligatorio vacío o fuera de rango ya no se sustituye en silencio por un valor por defecto:
+  // se muestra un mensaje junto al resultado, se marca el campo y no se calcula nada.
+  window.qfNum = function(id){
+    var e=document.getElementById(id); if(!e) return NaN;
+    var t=String(e.value==null?'':e.value).trim(); if(t==='') return NaN;
+    var v=window.QF_FMT?QF_FMT.parse(t):parseFloat(t.replace(/\./g,'').replace(',','.'));
+    return isFinite(v)?v:NaN;
+  };
+  window.qfInvalid = function(resId,msg,fieldId){
+    var r=document.getElementById(resId);
+    if(r) r.innerHTML='<div class="empty-state qf-invalid" role="alert">'+msg+'</div>';
+    var pre=String(resId).replace(/-results$/,'');
+    ['-chart-wrap','-cta'].forEach(function(suf){var x=document.getElementById(pre+suf);if(x)x.style.display='none';});
+    if(fieldId){var f=document.getElementById(fieldId);if(f)f.setAttribute('aria-invalid','true');}
+    return false;
+  };
+  document.addEventListener('input',function(e){if(e.target&&e.target.getAttribute&&e.target.getAttribute('aria-invalid')==='true')e.target.removeAttribute('aria-invalid');},true);
+  // Hero de las calculadoras piloto (interés, FIRE, coste del tiempo) en estado «faltan datos».
+  window.qfPilotHeroInvalid = function(heroId,msg){
+    var h=document.getElementById(heroId); if(!h) return;
+    h.setAttribute('data-state','invalid');
+    var m=h.querySelector('.qf-hero-main'); if(m){m.textContent=msg;}
+    h.querySelectorAll('.qf-hero-metric strong').forEach(function(x){x.textContent='';});
+    var ins=h.querySelector('.qf-hero-insight'); if(ins) ins.textContent='';
+  };
+  window.qfPilotHeroReady = function(heroId){var h=document.getElementById(heroId);if(h)h.setAttribute('data-state','ready');};
+
   window.calcHipoteca = function() {
     var precio=parseFloat(document.getElementById('hip-precio').value)||0;
     var entrada=parseFloat(document.getElementById('hip-entrada').value)||0;
     var tipo=parseFloat(document.getElementById('hip-tipo').value)||0;
-    var plazo=parseInt(document.getElementById('hip-plazo').value)||30;
+    var plazo=qfNum('hip-plazo');
     var capital=precio-entrada;
     if(precio<=0||entrada<0||entrada>precio){document.getElementById('hip-results').innerHTML='<div class="empty-state">Revisa precio y entrada: la entrada no puede superar el precio.</div>';return;}
+    if(!(plazo>=1)) return qfInvalid('hip-results','Indica el plazo de la hipoteca en a&ntilde;os (m&iacute;nimo 1 a&ntilde;o).','hip-plazo');
+    plazo=Math.floor(plazo);
     var rm=tipo/100/12, n=plazo*12;
     var cuota=(rm===0)?capital/n:capital*rm*Math.pow(1+rm,n)/(Math.pow(1+rm,n)-1);
     var totalPagado=cuota*n, totalIntereses=totalPagado-capital;
@@ -3820,7 +3867,13 @@ document.addEventListener('DOMContentLoaded', function(){
     var bruto=parseFloat(document.getElementById('ce-bruto').value)||0;
     var atRate=(parseFloat(document.getElementById('ce-at').value)||0)/100;
     var maxAnual=5101.20*12;
-    var base=Math.min(bruto,maxAnual);
+    if(!(bruto>0)) return qfInvalid('ce-results','Indica un salario bruto anual mayor que 0&nbsp;&euro;.','ce-bruto');
+    // Base mínima: a jornada completa la base de cotización no puede ser inferior al SMI (tope mínimo, art. 19.2 LGSS,
+    // RDL 8/2015). SMI 2026 usado: 17.094 €/año (1.221 € × 14), cifra de la auditoría de Datos pendiente de su verificación.
+    // Con jornada parcial la base mínima es proporcional a las horas.
+    var SMI_ANUAL_2026=17094;
+    var bajoSMI=bruto<SMI_ANUAL_2026;
+    var base=Math.max(Math.min(bruto,maxAnual),SMI_ANUAL_2026);
     var tipoEmpresaBase=0.236+0.055+0.002+0.006+0.0075; // CC + desempleo indef. + FOGASA + formación + MEI
     var cotBase=base*(tipoEmpresaBase+atRate);
     var t1Max=(5611.32-5101.20)*12, t2Max=(7651.80-5611.32)*12;
@@ -3831,6 +3884,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('ce-results').innerHTML=
       rr('Tu salario bruto',fmtEUR(bruto))+
       rr('Base anual sujeta a cotización ordinaria',fmtEUR(base))+
+      (bajoSMI?'<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin:2px 0 6px">Tu bruto es inferior al SMI anual (17.094&nbsp;&euro;). A jornada completa se cotiza como m&iacute;nimo por esa base, as&iacute; que la SS de la empresa se calcula sobre 17.094&nbsp;&euro;. Si trabajas a jornada parcial, la base m&iacute;nima es proporcional a tus horas y el coste real ser&aacute; menor: este c&aacute;lculo supone jornada completa.</div>':'')+
       rr('SS a cargo empresa (base + AT/EP)',fmtEUR(cotBase),'o')+
       (solidaridad>0?rr('Cuota adicional de solidaridad',fmtEUR(solidaridad),'o'):'')+
       rr('Coste total anual',fmtEUR(costeTotal),'g')+
@@ -3845,7 +3899,9 @@ document.addEventListener('DOMContentLoaded', function(){
   window.calcInflacion = function() {
     var cap=parseFloat(document.getElementById('inf-capital').value)||0;
     var ipc=(parseFloat(document.getElementById('inf-ipc').value)||0)/100;
-    var anos=parseInt(document.getElementById('inf-anos').value)||1;
+    var anos=qfNum('inf-anos');
+    if(!(anos>=1)) return qfInvalid('inf-results','Indica el n&uacute;mero de a&ntilde;os (m&iacute;nimo 1).','inf-anos');
+    anos=Math.floor(anos);
     var rent=(parseFloat(document.getElementById('inf-rent').value)||0)/100;
     var invNom=cap*Math.pow(1+rent,anos);
     var cashReal=cap/Math.pow(1+ipc,anos);
@@ -3871,7 +3927,7 @@ document.addEventListener('DOMContentLoaded', function(){
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)',maxTicksLimit:10}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}}}}}});
   };
 
-  // ── Helper inflación// ── Helper inflación ─────────────────────────────────────────────────────
+  // ── Helper inflación ─────────────────────────────────────────────────────
   function getInfl(prefix) {
     var chk = document.getElementById(prefix+'-infl-check');
     if (!chk || !chk.checked) return 0;
@@ -3881,13 +3937,21 @@ document.addEventListener('DOMContentLoaded', function(){
     if (inflAnual <= 0) return nominal;
     return nominal / Math.pow(1 + inflAnual, anos);
   }
+  // Única lectura de datos para el detalle y el hero de FIRE (antes el detalle usaba gastos||2000 y el hero gastos||0).
+  window.qfFireInputs = function(){
+    var d={actual:parseFloat(document.getElementById('jub-actual').value)||0,
+      aport:parseFloat(document.getElementById('jub-aport').value)||0,
+      rent:parseFloat(document.getElementById('jub-rent').value)||0,
+      gastos:qfNum('jub-gastos'),
+      edad:parseInt(document.getElementById('jub-edad').value)||35,
+      infl:getInfl('jub')};
+    if(!(d.gastos>0)) d.error='Indica tus gastos mensuales en la jubilaci&oacute;n (mayor que 0&nbsp;&euro;): el capital objetivo se calcula a partir de ellos.';
+    return d;
+  };
   window.calcJubilacion = function() {
-    var actual=parseFloat(document.getElementById('jub-actual').value)||0;
-    var aport=parseFloat(document.getElementById('jub-aport').value)||0;
-    var rent=parseFloat(document.getElementById('jub-rent').value)||0;
-    var gastos=parseFloat(document.getElementById('jub-gastos').value)||2000;
-    var edad=parseInt(document.getElementById('jub-edad').value)||35;
-    var infl=getInfl('jub');
+    var d=qfFireInputs();
+    if(d.error) return qfInvalid('jub-results',d.error,'jub-gastos');
+    var actual=d.actual, aport=d.aport, rent=d.rent, gastos=d.gastos, edad=d.edad, infl=d.infl;
     var fireReal=gastos*12/0.04;
     var rm=Math.pow(1+rent/100,1/12)-1, capital=actual, anos=0;
     var labels=[],dataNom=[],dataReal=[],target=[];
@@ -3914,7 +3978,9 @@ document.addEventListener('DOMContentLoaded', function(){
   window.calcDeposito = function() {
     var cap=parseFloat(document.getElementById('dep-capital').value)||0;
     var tin=(parseFloat(document.getElementById('dep-tin').value)||0)/100;
-    var meses=parseInt(document.getElementById('dep-meses').value)||12;
+    var meses=qfNum('dep-meses');
+    if(!(meses>=1)) return qfInvalid('dep-results','Indica el plazo del dep&oacute;sito en meses (m&iacute;nimo 1 mes).','dep-meses');
+    meses=Math.floor(meses);
     var infl=getInfl('dep'), anos=meses/12;
     var periodYield=tin*anos, intBruto=cap*periodYield, retencion=intBruto*0.19, intNeto=intBruto-retencion, totalNeto=cap+intNeto;
     var taeEq=meses>0?Math.pow(1+periodYield,12/meses)-1:0;
@@ -3929,11 +3995,18 @@ document.addEventListener('DOMContentLoaded', function(){
     window._depChart=new Chart(document.getElementById('dep-chart').getContext('2d'),{type:'doughnut',data:{labels:['Capital','Intereses tras retención','Retención a cuenta'],datasets:[{data:[+cap.toFixed(2),+intNeto.toFixed(2),+retencion.toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(125,180,255,.75)','rgba(240,160,112,.75)'],borderColor:['#7dd3a8','#7db4ff','#f0a070'],borderWidth:1.5,hoverOffset:6}]},options:doughnutOpts(cap+intBruto)});
   };
 
+  window.qfInteresInputs = function(){
+    var d={C:parseFloat(document.getElementById('ic-capital').value)||0,
+      A:parseFloat(document.getElementById('ic-aportacion').value)||0,
+      r:parseFloat(document.getElementById('ic-rent').value)||0,
+      n:qfNum('ic-anos')};
+    if(!(d.n>=1)) d.error='Indica el n&uacute;mero de a&ntilde;os (m&iacute;nimo 1).'; else d.n=Math.floor(d.n);
+    return d;
+  };
   window.calcInteres = function() {
-    var C=parseFloat(document.getElementById('ic-capital').value)||0;
-    var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
-    var r=parseFloat(document.getElementById('ic-rent').value)||0;
-    var n=parseInt(document.getElementById('ic-anos').value)||1;
+    var d=qfInteresInputs();
+    if(d.error) return qfInvalid('ic-results',d.error,'ic-anos');
+    var C=d.C, A=d.A, r=d.r, n=d.n;
     var infl=getInfl('ic');
     var rm=Math.pow(1+r/100,1/12)-1, capital=C, totalAportado=C, labels=[],dataC=[],dataA=[],dataReal=[];
     for(var y=1;y<=n;y++){for(var m=0;m<12;m++){capital=capital*(1+rm)+A;totalAportado+=A;}labels.push('Año '+y);dataC.push(+capital.toFixed(2));dataA.push(+totalAportado.toFixed(2));dataReal.push(+valorReal(capital,infl,y).toFixed(2));}
@@ -4006,8 +4079,9 @@ document.addEventListener('DOMContentLoaded', function(){
   function annualFamilyMinimumFromRules(rules,birthYear,numDesc,numUnder3,disability,descShare){
     rules=rules||STATE_FAMILY_MIN_2026;
     var age=ageAtTaxYear(birthYear),min=rules.base,share=(+descShare===0.5?0.5:1);
-    // Para la cuota anual, la LIRPF y las normas autonómicas aplican los incrementos si la edad es SUPERIOR a 65/75 años.
-    if(age>65)min+=rules.age65;if(age>75)min+=rules.age75;
+    // Incremento por edad: se aplica si el contribuyente tiene 65/75 años o más (igual o superior) a 31/12, fecha de devengo
+    // (LIRPF art. 57.2 y art. 61.3.ª; criterio del Manual práctico de Renta de la AEAT). La retención usa la misma regla (RIRPF art. 84).
+    if(age>=65)min+=rules.age65;if(age>=75)min+=rules.age75;
     numDesc=Math.max(0,parseInt(numDesc)||0);numUnder3=Math.max(0,Math.min(parseInt(numUnder3)||0,numDesc));
     for(var i=0;i<numDesc;i++)min+=rules.desc[Math.min(i,3)]*share;
     min+=numUnder3*rules.under3*share;
@@ -4032,8 +4106,11 @@ document.addEventListener('DOMContentLoaded', function(){
     total+=t1*.0019+t2*.0021+t3*.0024; return round2(total);
   }
 
-  function pensionTaxability(type){return (type==='ipa'||type==='gran'||type==='orfandad')?0:1;}
-  // Mínimo usado exclusivamente por el algoritmo de RETENCIONES AEAT 2026: sus variables por año de nacimiento equivalen a >=65 / >=75.
+  // Exenciones (LIRPF art. 7): f) incapacidad permanente absoluta y gran invalidez de la Seguridad Social;
+  // h) orfandad de regímenes públicos solo si el beneficiario es menor de 22 años o está incapacitado para todo trabajo.
+  function pensionTaxability(type,orfCond){if(type==='ipa'||type==='gran')return 0;if(type==='orfandad')return orfCond==='sujeta'?1:0;return 1;}
+  function pensionExemptReason(type){return type==='orfandad'?'Exenta (art. 7.h LIRPF: orfandad, menor de 22 años o incapacitado)':'Exenta (art. 7.f LIRPF: incapacidad absoluta o gran invalidez)';}
+  // Mínimo del algoritmo de RETENCIONES AEAT 2026 (RIRPF art. 84): mismo criterio de edad que la cuota anual, >=65 / >=75 a 31/12.
   function familyMinimum(birthYear,numDesc,numUnder3,disability,descShare){
     var age=ageAtTaxYear(birthYear), min=5550, share=(+descShare===0.5?0.5:1); if(age>=65)min+=1150;if(age>=75)min+=1400;
     numDesc=Math.max(0,parseInt(numDesc)||0); numUnder3=Math.max(0,Math.min(parseInt(numUnder3)||0,numDesc));
@@ -4042,10 +4119,13 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function withholdingThreshold(sit,numDesc,pensionAdj){var t={1:[0,17644,18694],2:[17197,18130,19262],3:[15876,16342,16867]};var a=t[sit]||t[3];var idx=numDesc<=0?0:(numDesc===1?1:2);return (a[idx]||0)+pensionAdj;}
   function withholding43Base(sit,numDesc,pensionAdj){return withholdingThreshold(sit,numDesc,pensionAdj);}
+  function disabilityWorkExpense(d){d=+d||0;return d>=65?7750:(d>=33?3500:0);}
   function calcWithholding2026(o){
     var retrib=Math.max(0,+o.retrib||0), cot=Math.max(0,+o.contributions||0), isP=o.kind==='pension', nDesc=Math.max(0,parseInt(o.numDesc)||0), under3=Math.max(0,parseInt(o.under3)||0), sit=parseInt(o.situation)||3;
     if(o.taxable===false||retrib<=0)return {rate:0,annual:0,base:0,quota:0,gastos:0,red20:0,minFamily:familyMinimum(o.birthYear,nDesc,under3,o.disability,o.descShare)};
-    var gastos=Math.min(2000,Math.max(0,retrib-cot)); var rnt=Math.max(0,retrib-cot); var red20=round2(calcRendTrabajoReduction(rnt)); var rntRed=Math.max(0,rnt-gastos-red20);
+    // Otros gastos deducibles (LIRPF art. 19.2.f): 2.000 € + incremento para trabajadores activos con discapacidad
+    // (3.500 € si 33% a <65%; 7.750 € si >=65% o movilidad reducida); variable INCREGASDISTRA del algoritmo AEAT de retenciones.
+    var gastos=Math.min(2000+(isP?0:disabilityWorkExpense(o.disability)),Math.max(0,retrib-cot)); var rnt=Math.max(0,retrib-cot); var red20=round2(calcRendTrabajoReduction(rnt)); var rntRed=Math.max(0,rnt-gastos-red20);
     var pensionAdj=isP?600:0, hijos=nDesc>2?600:0, base=Math.max(0,rntRed-pensionAdj-hijos-Math.max(0,+o.pensionComp||0));
     var minFam=familyMinimum(o.birthYear,nDesc,under3,o.disability,o.descShare);
     var threshold=withholdingThreshold(sit,nDesc,pensionAdj); if(retrib<=threshold){var minRate=(o.kind==='salary'&&o.contract==='under1')?2:0;return {rate:minRate,annual:round2(retrib*minRate/100),base:base,quota:0,gastos:gastos,red20:red20,minFamily:minFam,pensionAdj:pensionAdj,threshold:threshold};}
@@ -4063,8 +4143,14 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function calcAnnualIRPF2026(o){
-    var bruto=Math.max(0,+o.gross||0), cot=Math.max(0,+o.contributions||0), reductions=Math.max(0,+o.reductions||0), ccaa=o.ccaa||'clm';
-    var gastos=Math.min(2000,Math.max(0,bruto-cot)), rnt=Math.max(0,bruto-cot), red20=Math.min(rnt,calcRendTrabajoReduction(rnt));
+    var bruto=Math.max(0,+o.gross||0), cot=Math.max(0,+o.contributions||0), reductionsAsked=Math.max(0,+o.reductions||0), ccaa=o.ccaa||'clm';
+    // Gasto adicional por discapacidad (LIRPF art. 19.2.f): solo si hay rendimientos de trabajo en activo (no pensiones).
+    var disabilityExtra=(Math.max(0,+o.serviceWorkGross||0)>0)?disabilityWorkExpense(o.disability):0;
+    var gastos=Math.min(2000+disabilityExtra,Math.max(0,bruto-cot)), rnt=Math.max(0,bruto-cot), red20=Math.min(rnt,calcRendTrabajoReduction(rnt));
+    // Límite de reducción por aportaciones a previsión social (LIRPF art. 52.1): el menor de 1.500 € y el 30% de los
+    // rendimientos netos del trabajo y de actividades económicas. No se modelan las contribuciones empresariales ni los PPES.
+    var ppLimit=round2(Math.max(0,Math.min(1500,0.30*(Math.max(0,rnt-gastos)+Math.max(0,+o.activityNet||0)))));
+    var reductions=Math.min(reductionsAsked,ppLimit);
     var base=Math.max(0,rnt-gastos-red20-reductions); if(o.joint==='joint-married')base=Math.max(0,base-3400); if(o.joint==='joint-single')base=Math.max(0,base-2150);
     var minState=annualStateFamilyMinimum(o.birthYear,o.numDesc,o.under3,o.disability,o.descShare), minAuto=annualAutonomicFamilyMinimum(ccaa,o.birthYear,o.numDesc,o.under3,o.disability,o.descShare);
     var state=Math.max(0,progressiveTax(base,TAX_RULES_2026.stateScale)-progressiveTax(Math.min(base,minState),TAX_RULES_2026.stateScale));
@@ -4074,7 +4160,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var workDeductionRaw=calcWorkIncomeDeduction2026(serviceGross,otherNonService), workDeductionLimit=grossQuota;
     if(serviceGross>0&&serviceGross<bruto&&bruto>0)workDeductionLimit=grossQuota*(serviceGross/bruto);
     var workDeduction=round2(Math.min(workDeductionRaw,Math.max(0,workDeductionLimit)));
-    var irpf=round2(Math.max(0,grossQuota-workDeduction)); return {gross:bruto,contributions:cot,gastos:gastos,red20:red20,base:base,minState:minState,minAuto:minAuto,state:state,autonomic:auto,grossQuota:round2(grossQuota),workDeduction:workDeduction,irpf:irpf,effective:bruto?irpf/bruto*100:0,net:bruto-cot-irpf};
+    var irpf=round2(Math.max(0,grossQuota-workDeduction)); return {gross:bruto,contributions:cot,gastos:gastos,disabilityExtra:disabilityExtra,reductionsAsked:reductionsAsked,reductions:reductions,ppLimit:ppLimit,red20:red20,base:base,minState:minState,minAuto:minAuto,state:state,autonomic:auto,grossQuota:round2(grossQuota),workDeduction:workDeduction,irpf:irpf,effective:bruto?irpf/bruto*100:0,net:bruto-cot-irpf};
   }
   // Compatibilidad con otras calculadoras existentes.
   function calcSalaryTax2026(bruto,ccaa,minExtra,pp){var a=calcAnnualIRPF2026({gross:bruto,contributions:calcEmployeeSS2026(bruto,'indef'),reductions:pp||0,ccaa:ccaa,birthYear:1985,numDesc:0,under3:0,descShare:1,disability:0,serviceWorkGross:bruto,otherNonServiceIncome:0});return {bruto:bruto,ss:a.contributions,gastoGeneral:a.gastos,rendimientoNetoTrabajo:Math.max(0,bruto-a.contributions-a.gastos),reduccionTrabajo:a.red20,minimoPersonalFamiliar:a.minState,minimoAutonomico:a.minAuto,deduccionSMI:0,baseLiquidableGeneral:a.base,irpf:a.irpf,neto:a.net,tipoEfectivo:a.effective};}
@@ -4084,11 +4170,20 @@ document.addEventListener('DOMContentLoaded', function(){
     var m=fiscalVal('irpf-mode');['salary','pension','transition','annual'].forEach(function(x){var e=document.getElementById('fiscal-'+x+'-fields');if(e)e.style.display=(m===x?'block':'none');});
   };
   window.fiscalNetGrossFields=function(){var p=fiscalVal('sal-income-type')==='pension';document.querySelectorAll('.sal-salary-only').forEach(function(e){e.style.display=p?'none':'block';});var t=fiscalVal('sal-target-type'),lab=document.getElementById('sal-target-label');if(lab)lab.textContent=t==='bank'?(p?'Neto deseado por paga (€)':'Neto ordinario deseado por paga (€)'):'Neto fiscal deseado al año (€)';};
-  document.addEventListener('change',function(e){if(e.target&&(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'))fiscalNetGrossFields();});
+  document.addEventListener('change',function(e){if(e.target&&(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'))fiscalNetGrossFields();if(e.target&&e.target.id==='pen-type'){var w=document.getElementById('pen-orf-wrap');if(w)w.style.display=(e.target.value==='orfandad'?'block':'none');}});
 
   function commonFiscalInput(prefix){return {birthYear:fiscalNum(prefix+'birth'),situation:parseInt(fiscalVal(prefix+'sit'))||3,numDesc:fiscalNum(prefix+'desc'),under3:fiscalNum(prefix+'desc3'),descShare:parseFloat(fiscalVal(prefix+'desc-share'))||1,disability:fiscalNum(prefix+'disability'),ccaa:fiscalVal(prefix+'ccaa')||'clm'};}
 
 
+    function irpfAnnualExtraRows(ann){
+    var h='';
+    if(ann.disabilityExtra>0)h+=rr('Gasto adicional por discapacidad (art. 19.2.f LIRPF)',fmtEUR(ann.disabilityExtra),'g');
+    if(ann.reductionsAsked>0){
+      h+=rr('Reducción por previsión social aplicada',fmtEUR(ann.reductions),'g');
+      if(ann.reductionsAsked>ann.reductions+0.005)h+='<div class="qf-calc-note" style="font-size:12px;color:var(--muted);margin:4px 0 8px">Has indicado '+fmtEUR(ann.reductionsAsked)+', pero el art. 52 LIRPF limita la reducción al menor de 1.500 € y el 30% de tus rendimientos netos del trabajo y actividades ('+fmtEUR(ann.ppLimit)+'). El exceso no reduce la base este año. La parte que no cabe por el límite del 30% (no la que supera 1.500 €) puede reducirse en los cinco ejercicios siguientes (art. 52.2 LIRPF).</div>';
+    }
+    return h;
+  }
   function fiscalCcaaValidationNote(ccaa){return '<div class="disclaimer" style="margin-top:14px"><strong>Estimación fiscal 2026:</strong> escala general y mínimo personal/familiar estatal y autonómico revisados con normativa vigente a 23/09/2026. No incluye todas las deducciones autonómicas, base del ahorro, ganancias patrimoniales, inmuebles ni otros supuestos especiales. No sustituye Renta WEB ni asesoramiento fiscal.</div>'; }
   window.calcIrpf=function(){
     var mode=fiscalVal('irpf-mode'), c=commonFiscalInput('irpf-'), html='', chart=[];
@@ -4098,11 +4193,11 @@ document.addEventListener('DOMContentLoaded', function(){
       var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('irpf-pp'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:gross,otherNonServiceIncome:0});
       var bankAnnual=gross-ss-wh.annual,grossPay=gross/pays,whPay=wh.annual/pays,ordinaryNet=pays===14?grossPay-whPay-ss/12:bankAnnual/pays,extraNet=pays===14?grossPay-whPay:null;
       html='<div style="font-weight:700;margin-bottom:8px">A. COBRO / RETENCIÓN DEL PAGADOR</div>'+rr('Salario bruto anual',fmtEUR(gross))+rr('Cotización trabajador estimada',fmtEUR(ss),'o')+rr('Tipo de retención AEAT estimado',fmtPct(wh.rate),'o')+rr('IRPF retenido anual',fmtEUR(wh.annual),'o')+rr(pays===14?'Neto estimado paga ordinaria':'Neto estimado por paga',fmtEUR(ordinaryNet),'g')+(pays===14?rr('Neto estimado paga extraordinaria',fmtEUR(extraNet),'g'):'')+
-        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL ESTIMADO</div>'+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final sobre bruto',fmtPct(ann.effective),'o')+rr('Neto fiscal anual',fmtEUR(ann.net),'g')+rr('Neto fiscal medio / '+pays+' pagas',fmtEUR(ann.net/pays))+
+        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL ESTIMADO</div>'+irpfAnnualExtraRows(ann)+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final sobre bruto',fmtPct(ann.effective),'o')+rr('Neto fiscal anual',fmtEUR(ann.net),'g')+rr('Neto fiscal medio / '+pays+' pagas',fmtEUR(ann.net/pays))+
         '<div style="font-weight:700;margin:16px 0 8px">C. AJUSTE RENTA</div>'+rr('Retenciones previstas',fmtEUR(wh.annual))+rr('Diferencia estimada',fmtEUR(ann.irpf-wh.annual),(ann.irpf-wh.annual)>0?'o':'g')+rr('Resultado',Math.abs(ann.irpf-wh.annual)<1?'Aprox. neutro':((ann.irpf-wh.annual)>0?'A ingresar':'A devolver'),(ann.irpf-wh.annual)>0?'o':'g'); html+=fiscalCcaaValidationNote(c.ccaa); chart=[ann.net,ann.irpf,ss];
     } else if(mode==='pension'){
-      var typ=fiscalVal('pen-type'),pay=fiscalNum('pen-monthly'),pays=parseInt(fiscalVal('pen-pagas'))||14,gross=pay*pays,taxable=pensionTaxability(typ)>0;
-      if(!taxable){html=rr('Pensión bruta anual',fmtEUR(gross))+rr('Tratamiento configurado','Exenta de IRPF en este simulador','g')+rr('Cotización del pensionista',fmtEUR(0))+rr('Neto estimado por paga',fmtEUR(pay),'g')+'<div class="disclaimer" style="margin-top:14px">Comprueba que tu prestación concreta cumple los requisitos de exención; puede haber excepciones.</div>';chart=[gross,0,0];}
+      var typ=fiscalVal('pen-type'),pay=fiscalNum('pen-monthly'),pays=parseInt(fiscalVal('pen-pagas'))||14,gross=pay*pays,taxable=pensionTaxability(typ,fiscalVal('pen-orf-cond'))>0;
+      if(!taxable){html=rr('Pensión bruta anual',fmtEUR(gross))+rr('Tratamiento fiscal',pensionExemptReason(typ),'g')+rr('Cuota anual estimada de IRPF',fmtEUR(0),'g')+rr('Cotización del pensionista',fmtEUR(0))+rr('Neto estimado por paga',fmtEUR(pay),'g')+'<div class="disclaimer" style="margin-top:14px">'+(typ==='orfandad'?'Si el beneficiario tiene 22 años o más y no está incapacitado para todo trabajo, o la pensión no procede de un régimen público, la orfandad tributa: elige «No» en la pregunta anterior.':'La exención exige que la incapacidad la reconozca la Seguridad Social (o mutualidad alternativa, con límite). La incapacidad permanente total tributa.')+'</div>';chart=[gross,0,0];}
       else {var wh=calcWithholding2026({kind:'pension',retrib:gross,contributions:0,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,taxable:true});var ann=calcAnnualIRPF2026({gross:gross,contributions:0,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:0,otherNonServiceIncome:gross});var bankAnnual=gross-wh.annual;
         html='<div style="font-weight:700;margin-bottom:8px">A. COBRO</div>'+rr('Pensión bruta anual',fmtEUR(gross))+rr('Cotización del pensionista',fmtEUR(0))+rr('Gasto general de rendimientos del trabajo',fmtEUR(wh.gastos))+rr('Reducción pensionista (solo retenciones)',fmtEUR(wh.pensionAdj))+rr('Base para retención',fmtEUR(wh.base))+rr('Tipo de retención estimado',fmtPct(wh.rate),'o')+rr('Retención anual estimada',fmtEUR(wh.annual),'o')+rr('NETO ESTIMADO COBRADO POR PAGA',fmtEUR(bankAnnual/pays),'g')+
         '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL</div>'+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final',fmtPct(ann.effective),'o')+rr('Neto económico anual después de IRPF',fmtEUR(ann.net),'g')+rr('NETO FISCAL MEDIO DESPUÉS DE REGULARIZAR IRPF',fmtEUR(ann.net/pays))+
@@ -4113,7 +4208,7 @@ document.addEventListener('DOMContentLoaded', function(){
       html=rr('Salario cobrado',fmtEUR(sal))+rr('Pensión realmente devengada este año',fmtEUR(pGross))+rr('Total ingresos del trabajo/pensión',fmtEUR(totalGross),'g')+rr('Retenciones nómina',fmtEUR(salRet))+rr('Retenciones INSS estimadas/indicadas',fmtEUR(pRet))+rr('Total retenciones',fmtEUR(totalRet))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada',fmtEUR(ann.irpf),'o')+rr('Resultado estimado declaración',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Una retención baja de la pensión en el primer año no implica un IRPF final bajo: la declaración suma salario + pensión + demás rentas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,totalGross-salSS-ann.irpf),ann.irpf,salSS];
     } else {
       var gross=fiscalNum('ann-i1')+fiscalNum('ann-i2')+fiscalNum('ann-other'),withheld=fiscalNum('ann-r1')+fiscalNum('ann-r2')+fiscalNum('ann-other-ret'),ss=fiscalNum('ann-ss1')+fiscalNum('ann-ss2'),joint=fiscalVal('ann-joint'),serviceWork=Math.min(gross,fiscalNum('ann-service-work'));var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('ann-reductions'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,joint:joint,serviceWorkGross:serviceWork,otherNonServiceIncome:Math.max(0,gross-serviceWork)});var diff=ann.irpf-withheld;
-      html=rr('Total ingresos',fmtEUR(gross),'g')+rr('Total cotizaciones deducibles',fmtEUR(ss))+rr('Gasto general aplicado',fmtEUR(ann.gastos))+rr('Reducción art. 20 estimada',fmtEUR(ann.red20))+rr('Base general aproximada',fmtEUR(ann.base))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Total retenciones',fmtEUR(withheld))+rr('Resultado estimado',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Tener dos pagadores no aumenta por sí mismo el impuesto. La diferencia suele venir de que cada pagador retiene con información parcial. Este módulo no incluye rendimientos de capital, ganancias patrimoniales ni todas las deducciones autonómicas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,gross-ss-ann.irpf),ann.irpf,ss];
+      html=rr('Total ingresos',fmtEUR(gross),'g')+rr('Total cotizaciones deducibles',fmtEUR(ss))+rr('Gasto general aplicado',fmtEUR(ann.gastos))+rr('Reducción art. 20 estimada',fmtEUR(ann.red20))+irpfAnnualExtraRows(ann)+rr('Base general aproximada',fmtEUR(ann.base))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Total retenciones',fmtEUR(withheld))+rr('Resultado estimado',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Tener dos pagadores no aumenta por sí mismo el impuesto. La diferencia suele venir de que cada pagador retiene con información parcial. Este módulo no incluye rendimientos de capital, ganancias patrimoniales ni todas las deducciones autonómicas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,gross-ss-ann.irpf),ann.irpf,ss];
     }
     document.getElementById('irpf-results').innerHTML=html;document.getElementById('irpf-chart-wrap').style.display='block';document.getElementById('irpf-cta').style.display='flex';if(window._irpfChart)window._irpfChart.destroy();window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',data:{labels:['Neto fiscal','IRPF anual','Cotizaciones'],datasets:[{data:chart,backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderWidth:1}]},options:doughnutOpts(chart.reduce(function(a,b){return a+b;},0)||1)});
   };
@@ -4145,8 +4240,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
   window.calcSalario=function(){
     var kind=fiscalVal('sal-income-type')||'salary',targetType=fiscalVal('sal-target-type')||'bank',target=fiscalNum('sal-neto'),pays=parseInt(fiscalVal('sal-pagas'))||14,contract=fiscalVal('sal-contract')||'indef';
-    var c={birthYear:fiscalNum('sal-birth')||1985,situation:parseInt(fiscalVal('sal-sit'))||3,numDesc:fiscalNum('sal-desc'),under3:fiscalNum('sal-desc3'),descShare:parseFloat(fiscalVal('sal-desc-share'))||1,disability:0,ccaa:fiscalVal('sal-ccaa')||'clm'};
-    var r=solveGrossForNet2026({kind:kind,targetType:targetType,target:target,pays:pays,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:0,ccaa:c.ccaa,taxable:true}),diff=r.ann.irpf-r.wh.annual;
+    var c={birthYear:fiscalNum('sal-birth')||1985,situation:parseInt(fiscalVal('sal-sit'))||3,numDesc:fiscalNum('sal-desc'),under3:fiscalNum('sal-desc3'),descShare:parseFloat(fiscalVal('sal-desc-share'))||1,disability:fiscalNum('sal-disability'),ccaa:fiscalVal('sal-ccaa')||'clm'};
+    var r=solveGrossForNet2026({kind:kind,targetType:targetType,target:target,pays:pays,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,ccaa:c.ccaa,taxable:true}),diff=r.ann.irpf-r.wh.annual;
     var html=rr(targetType==='bank'?(kind==='salary'?'Neto ordinario objetivo por paga':'Neto objetivo por paga'):'Neto fiscal objetivo anual',fmtEUR(target))+
       rr(kind==='salary'?'Salario bruto anual necesario':'Pensión bruta anual necesaria',fmtEUR(r.gross),'g')+rr('Bruto por paga',fmtEUR(r.grossPay))+rr('Cotizaciones reales estimadas',fmtEUR(r.ss),'o')+rr('Tipo retención estimado',fmtPct(r.wh.rate),'o')+rr('Retención anual estimada',fmtEUR(r.wh.annual))+
       rr(kind==='salary'&&pays===14?'Neto estimado paga ordinaria':'Neto cobrado estimado por paga',fmtEUR(r.bank),'g')+(r.bankExtra!==null?rr('Neto estimado paga extraordinaria',fmtEUR(r.bankExtra),'g'):'')+
@@ -4186,9 +4281,14 @@ document.addEventListener('DOMContentLoaded', function(){
     if(tipo==='autonomo'){
       limite=Math.min(5750,bruto*0.30); aport=Math.min(aportInput,limite); var q0=calcCuotaIRPFBase(bruto,ccaa),q1=calcCuotaIRPFBase(Math.max(0,bruto-aport),ccaa); ahorro=q0-q1; ns=bruto-q0; nc=ns+ahorro; coste=aport-ahorro;
       if(aportInput>limite)warning='La aportación usada se limita a '+fmtEUR(limite)+' por los topes introducidos en el modelo.';
+      // Supuesto simplificado: el rendimiento neto introducido se trata como base liquidable (sin reducción art. 32.2.3º ni otras rentas).
+      // El tope de 5.750 € (1.500 + 4.250) exige aportar 4.250 € a un plan de pensiones de empleo simplificado (PPES) de autónomos (LIRPF art. 52.1).
+      warning+=(warning?' ':'')+'Supuesto simplificado: el rendimiento neto se trata como base liquidable, sin otras rentas ni reducciones. Por encima de 1.500 € solo cuenta lo aportado a un plan de empleo simplificado (PPES) de autónomos.';
     }else{
-      limite=Math.min(1500,bruto*0.30); aport=Math.min(aportInput,limite); var cn=function(b,p){return calcSalaryTax2026(b,ccaa,0,p).neto;}; ns=cn(bruto,0);nc=cn(bruto,aport);ahorro=nc-ns;coste=aport-ahorro;
-      if(aportInput>limite)warning='La aportación individual usada se limita a '+fmtEUR(limite)+' (máximo general 1.500 € y límite porcentual aproximado).';
+      // Límite art. 52.1 LIRPF: el menor de 1.500 € y el 30% de los rendimientos netos del trabajo (bruto − cotizaciones − gastos art. 19.2.f), no del bruto.
+      var ppSS=calcEmployeeSS2026(bruto,'indef'),ppRendNeto=Math.max(0,bruto-ppSS-Math.min(2000,Math.max(0,bruto-ppSS)));
+      limite=round2(Math.min(1500,ppRendNeto*0.30)); aport=Math.min(aportInput,limite); var cn=function(b,p){return calcSalaryTax2026(b,ccaa,0,p).neto;}; ns=cn(bruto,0);nc=cn(bruto,aport);ahorro=nc-ns;coste=aport-ahorro;
+      if(aportInput>limite)warning='La aportación individual usada se limita a '+fmtEUR(limite)+': el menor de 1.500 € y el 30% de tus rendimientos netos del trabajo ('+fmtEUR(ppRendNeto)+'), art. 52 LIRPF.';
     }
     var html=rr('Aportación anual al plan',fmtEUR(aport)); if(warning)html+='<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">⚠️ '+warning+'</div>';
     html+=rr('Neto estimado sin aportación',fmtEUR(ns))+rr('Neto estimado con aportación',fmtEUR(nc),'g')+rr('Ahorro fiscal estimado',fmtEUR(ahorro),'g')+rr('Coste real estimado de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100 € aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
@@ -4222,7 +4322,9 @@ document.addEventListener('DOMContentLoaded', function(){
   window.calcAmortizacion = function() {
     var capital=parseFloat(document.getElementById('am-capital').value)||0;
     var tipo=parseFloat(document.getElementById('am-tipo').value)||0;
-    var anos=parseInt(document.getElementById('am-anos').value)||1;
+    var anos=qfNum('am-anos');
+    if(!(anos>=1)) return qfInvalid('am-results','Indica los a&ntilde;os que le quedan a la hipoteca (m&iacute;nimo 1).','am-anos');
+    anos=Math.floor(anos);
     var extra=parseFloat(document.getElementById('am-extra').value)||0;
     var obj=document.getElementById('am-tipo-amort').value;
     var r=tipo/100/12,n=anos*12;
@@ -4240,6 +4342,7 @@ document.addEventListener('DOMContentLoaded', function(){
   };
   window.calcAlquiler = function() {
     var precio=parseFloat(document.getElementById('alq-precio').value)||0,pctG=parseFloat(document.getElementById('alq-gastos').value)||0,renta=parseFloat(document.getElementById('alq-renta').value)||0,gA=parseFloat(document.getElementById('alq-gastos-anuales').value)||0,vac=parseFloat(document.getElementById('alq-vacante').value)||0;
+    if(!(precio>0)) return qfInvalid('alq-results','Indica el precio de compra del inmueble (mayor que 0&nbsp;&euro;): la rentabilidad se calcula sobre &eacute;l.','alq-precio');
     var inv=precio*(1+pctG/100),ingB=renta*12,ingE=renta*(12-vac),benN=ingE-gA;
     var rB=precio>0?ingB/precio*100:0,rN=inv>0?benN/inv*100:0,ptr=ingB>0?precio/ingB:0;
     document.getElementById('alq-results').innerHTML=rr('Inversión total (precio + gastos)',fmtEUR(inv))+rr('Ingresos brutos anuales',fmtEUR(ingB))+rr('Ingresos efectivos (con vacante)',fmtEUR(ingE),'g')+rr('Gastos anuales',fmtEUR(gA),'o')+rr('Beneficio neto anual',fmtEUR(benN),benN>=0?'g':'o')+rr('Rentabilidad bruta sobre precio',fmtPct(rB))+rr('Rentabilidad neta sobre inversión total',fmtPct(rN),rN>=0?'g':'o')+rr('Price-to-Rent ratio',ptr?Math.round(ptr*10)/10+'x':'—');
@@ -4366,7 +4469,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var ccaa = document.getElementById('au-ccaa').value;
     var antiguedad = document.getElementById('au-antiguedad').value; // 'normal' | 'ano1' | 'ano2'
 
-    // 1. Rendimiento neto del trimestre (para IRPF): -5% gastos difícil justif., máx 500 €/trimestre (2.000 €/año)
+    // 1. Rendimiento antes de la cuota RETA (solo para el requisito del SMI de la tarifa plana del segundo año).
+    //    El rendimiento neto a efectos de IRPF se calcula más abajo, una vez conocida la cuota RETA (art. 30.2.1ª LIRPF).
     var difJustif = Math.min((ingT - gasT) * 0.05, 500);
     var rendNetoTrim = Math.max(0, ingT - gasT - difJustif);
 
@@ -4379,15 +4483,32 @@ document.addEventListener('DOMContentLoaded', function(){
     var reta = calcCuotaReta(rendNetoMensualReta, tarifaPlanaAplica);
     var retaTrimestral = reta.cuota * 3;
 
-    // 3. Modelo 130 (pago A CUENTA del IRPF) — trimestre independiente, sin acumulado
-    var tipoIrpf = 0.20; // Modelo 130: tipo general; el 7%/15% pertenece a retenciones de facturas, no al pago fraccionado
-    var cuotaIrpfBruta = rendNetoTrim * tipoIrpf;
-    var retencionesSoportadas = ingT * (retencion / 100); // dinero que el cliente retiene y NO llega a tu cuenta
-    var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas);
+    // 2b. Rendimiento neto a efectos de IRPF (estimación directa simplificada):
+    //     ingresos − gastos − cuota RETA (gasto deducible, art. 30.2.1ª LIRPF) − gastos de difícil justificación
+    //     (5% de ese rendimiento, máx. 2.000 €/año, art. 30.2.4ª LIRPF y art. 30 RIRPF; aquí 500 €/trimestre).
+    var rendPrevioIrpf = ingT - gasT - retaTrimestral;
+    var difJustifIrpf = rendPrevioIrpf > 0 ? Math.min(rendPrevioIrpf * 0.05, 500) : 0;
+    var rendNetoTrimIrpf = rendPrevioIrpf - difJustifIrpf;
 
-    // 3b. IRPF REAL estimado (escalas progresivas estatal+autonómica sobre el rendimiento ANUAL) —
-    // estimación anual de IRPF; el Modelo 130 es un pago a cuenta general del 20%.
-    var irpfAnualReal = calcCuotaIRPFBase(rendNetoAnualEstimado, ccaa);
+    // 3. Modelo 130 (pago fraccionado, art. 110 RIRPF). Supuesto: los cuatro trimestres son iguales. Con ese supuesto,
+    //    el 20% del rendimiento acumulado menos los pagos de trimestres anteriores (art. 110.1.a) coincide con el 20%
+    //    del rendimiento del trimestre, y lo mismo pasa con las retenciones acumuladas (art. 110.3.a).
+    var tipoIrpf = 0.20; // Modelo 130: tipo general; el 7%/15% pertenece a retenciones de facturas, no al pago fraccionado
+    var cuotaIrpfBruta = Math.max(0, rendNetoTrimIrpf) * tipoIrpf;
+    var retencionesSoportadas = ingT * (retencion / 100); // dinero que el cliente retiene y NO llega a tu cuenta
+    // Minoración art. 110.3.c RIRPF según el rendimiento neto de actividades del ejercicio ANTERIOR (dato del usuario).
+    var rnAnteriorSel = (document.getElementById('au-rn-anterior') || {}).value || 'mas12000';
+    var minoracion130 = {hasta9000:100, hasta10000:75, hasta11000:50, hasta12000:25}[rnAnteriorSel] || 0;
+    var minoracionAplicada = Math.min(minoracion130, Math.max(0, cuotaIrpfBruta - retencionesSoportadas));
+    var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas - minoracion130);
+
+    // 3b. IRPF anual estimado: rendimiento del trimestre ×4, reducción art. 32.2.3º LIRPF (rentas < 12.000 €,
+    //     suponiendo que no hay otras rentas) y escalas estatal + autonómica con el mínimo personal general.
+    var rendNetoAnualIrpf = Math.max(0, rendNetoTrimIrpf * 4);
+    var reduccion32 = rendNetoAnualIrpf <= 8000 ? 1000 : (rendNetoAnualIrpf < 12000 ? 1000 - 0.125 * (rendNetoAnualIrpf - 8000) : 0);
+    reduccion32 = Math.min(reduccion32, rendNetoAnualIrpf);
+    var baseIrpfAnual = rendNetoAnualIrpf - reduccion32;
+    var irpfAnualReal = calcCuotaIRPFBase(baseIrpfAnual, ccaa);
     var yaPagadoEnElAno = (modelo130 + retencionesSoportadas) * 4; // Modelo 130 + retenciones, proyectado a 4 trimestres iguales
     var regularizacion = irpfAnualReal - yaPagadoEnElAno; // positivo = te falta pagar, negativo = te devuelven
     var provisionTrimestral = regularizacion / 4;
@@ -4405,8 +4526,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var netoConProvision = dineroEnCuenta - provisionTrimestral;
 
     var html = rr('Ingresos del trimestre', fmtEUR(ingT)) +
-      rr('Gastos deducibles', fmtEUR(gasT), 'o') +
-      rr('Rendimiento neto (base IRPF)', fmtEUR(rendNetoTrim));
+      rr('Gastos deducibles', fmtEUR(gasT), 'o');
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Cuota RETA (Seguridad Social)</div>';
     if (tarifaPlanaAplica) {
@@ -4423,13 +4543,26 @@ document.addEventListener('DOMContentLoaded', function(){
     html += rr('Cuota RETA del trimestre (3 meses)', fmtEUR(retaTrimestral), 'o');
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130 (pago a cuenta)</div>';
-    html += rr('Tipo aplicado', fmtPct(tipoIrpf*100)) +
+    html += rr('Ingresos &minus; gastos &minus; cuota RETA', fmtEUR(rendPrevioIrpf)) +
+      rr('Gastos de dif&iacute;cil justificaci&oacute;n (5%, m&aacute;x. 500&nbsp;&euro;/trimestre)', fmtEUR(difJustifIrpf), 'o') +
+      rr('Rendimiento neto del trimestre (base IRPF)', fmtEUR(rendNetoTrimIrpf)) +
+      rr('20% del rendimiento neto', fmtEUR(cuotaIrpfBruta)) +
       rr('Retenciones ya soportadas en factura', fmtEUR(retencionesSoportadas)) +
+      (minoracion130 > 0 ? rr('Minoraci&oacute;n art. 110.3.c RIRPF', fmtEUR(minoracionAplicada), 'g') : '') +
       rr('A ingresar en el Modelo 130', fmtEUR(modelo130), 'o');
+    if (rendNetoTrimIrpf < 0) {
+      html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">Rendimiento negativo: el Modelo 130 sale a 0&nbsp;&euro; y esa p&eacute;rdida se compensa con los trimestres positivos del mismo a&ntilde;o, porque el pago fraccionado se calcula sobre el acumulado.</div>';
+    }
+    if (minoracion130 > minoracionAplicada + 0.005) {
+      html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">La parte de la minoraci&oacute;n que no cabe este trimestre (' + fmtEUR(minoracion130 - minoracionAplicada) + ') puede restarse en los siguientes pagos fraccionados del mismo a&ntilde;o.</div>';
+    }
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF real estimado (al presentar la Renta)</div>';
     html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">El Modelo 130 es solo un pago a cuenta. El IRPF real se calcula con las escalas estatal y auton&oacute;mica sobre tu rendimiento neto anual.</div>';
-    html += rr('IRPF anual real estimado (escalas progresivas)', fmtEUR(irpfAnualReal)) +
+    html += rr('Rendimiento neto anual estimado (trimestre &times;4)', fmtEUR(rendNetoAnualIrpf)) +
+      (reduccion32 > 0 ? rr('Reducci&oacute;n art. 32.2.3&ordm; LIRPF (rentas &lt; 12.000&nbsp;&euro;)', fmtEUR(reduccion32), 'g') : '') +
+      rr('Base liquidable estimada', fmtEUR(baseIrpfAnual)) +
+      rr('IRPF anual real estimado (escalas progresivas)', fmtEUR(irpfAnualReal)) +
       rr('Ya pagado en el a&ntilde;o (Modelo 130 + retenciones, x4)', fmtEUR(yaPagadoEnElAno));
     if (regularizacion > 0) {
       html += rr('Te faltar&aacute; pagar al presentar la Renta', fmtEUR(regularizacion), 'o');
@@ -4493,6 +4626,11 @@ document.addEventListener('DOMContentLoaded', function(){
     return years > 0 ? (Math.pow(n, 1/years) - 1) * 100 : 0;
   }
 
+  // Los años con 0 € (o negativo) no pueden entrar en el CAGR: se avisa en lugar de descartarlos en silencio.
+  function cagrSkippedNote(rows){
+    if(!rows.skipped || !rows.skipped.length) return '';
+    return '<div class="qf-invalid-note" role="note" style="font-size:12px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:10px">No se ha usado '+(rows.skipped.length>1?'los a&ntilde;os ':'el a&ntilde;o ')+rows.skipped.join(', ')+': con un valor de 0&nbsp;&euro; o negativo no se puede calcular una tasa de crecimiento compuesto. El resultado usa solo los a&ntilde;os con valor positivo.</div>';
+  }
   function cagrResultsHTML(rows, unit){
     var sorted=rows.slice().sort(function(a,b){return a.year-b.year;}), completed=sorted.filter(function(r){return !r.ytd;}), base=completed.length>=2?completed:sorted;
     var first=base[0],lastFull=base[base.length-1],lastShown=sorted[sorted.length-1],yearsExact=lastFull.year-first.year;
@@ -4652,6 +4790,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var val  = parseFloat(row.querySelector('.cagr-val').value.replace(',','.'));
       var ytd  = row.querySelector('.cagr-ytd') ? row.querySelector('.cagr-ytd').checked : false;
       if(!isNaN(year) && !isNaN(val) && val > 0) rows.push({year:year, val:val, ytd:ytd});
+      else if(!isNaN(year) && !isNaN(val)) rows.skipped = (rows.skipped||[]).concat(year);
     });
     return rows;
   }
@@ -4736,7 +4875,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var rows = getRows('cags-rows');
     var res = document.getElementById('cags-results');
     if(rows.length < 2){ res.innerHTML = '<div class="empty-state">Necesitas al menos 2 a&ntilde;os con datos</div>'; return; }
-    res.innerHTML = cagrResultsHTML(rows, '€');
+    res.innerHTML = cagrSkippedNote(rows) + cagrResultsHTML(rows, '€');
     document.getElementById('cags-chart-wrap').style.display = 'block';
     document.getElementById('cags-cta').style.display = 'flex';
     setTimeout(function(){ cagrDrawChart('cags-chart', rows, [60,100,200], [100,180,255], '€'); }, 50);
@@ -4746,7 +4885,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var rows = getRows('cagp-rows');
     var res = document.getElementById('cagp-results');
     if(rows.length < 2){ res.innerHTML = '<div class="empty-state">Necesitas al menos 2 a&ntilde;os con datos</div>'; return; }
-    res.innerHTML = cagrResultsHTML(rows, '€');
+    res.innerHTML = cagrSkippedNote(rows) + cagrResultsHTML(rows, '€');
     document.getElementById('cagp-chart-wrap').style.display = 'block';
     document.getElementById('cagp-cta').style.display = 'flex';
     setTimeout(function(){ cagrDrawChart('cagp-chart', rows, [26,90,150], [100,160,240], '€'); }, 50);
@@ -4755,14 +4894,30 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ── EL COSTE DEL TIEMPO ──────────────────────────────────────────────────
 
+  // Única lectura de datos para el detalle y el hero (antes el detalle usaba rent||8 % y el hero aceptaba el 0 %).
+  window.qfTiempoInputs = function(){
+    var d={patrimonio:parseFloat(document.getElementById('t-patrimonio').value)||0,
+      edad:parseInt(document.getElementById('t-edad').value)||30,
+      aport:parseFloat(document.getElementById('t-aport').value)||0,
+      rent:qfNum('t-rent'),
+      objetivo:parseInt(document.getElementById('t-objetivo').value)||65};
+    if(!isFinite(d.rent)||d.rent<=-100){d.error='Indica la rentabilidad anual estimada (puede ser 0 %).';d.field='t-rent';}
+    else if(d.edad>=d.objetivo){d.error='La edad objetivo tiene que ser mayor que tu edad actual.';d.field='t-objetivo';}
+    return d;
+  };
   window.calcTiempo = function() {
-    var patrimonio = parseFloat(document.getElementById('t-patrimonio').value) || 0;
-    var edadActual = parseInt(document.getElementById('t-edad').value) || 30;
-    var aportMes   = parseFloat(document.getElementById('t-aport').value) || 0;
-    var rentAnual  = parseFloat(document.getElementById('t-rent').value) / 100 || 0.08;
-    var objetivo   = parseInt(document.getElementById('t-objetivo').value) || 65;
-
-    if (edadActual >= objetivo) return;
+    var d = qfTiempoInputs();
+    if (d.error) {
+      ['t-multiplicador-wrap','t-parar-wrap'].forEach(function(w){var x=document.getElementById(w);if(x)x.style.display='none';});
+      var f=document.getElementById(d.field); if(f) f.setAttribute('aria-invalid','true');
+      qfPilotHeroInvalid('t-hero', d.error.replace(/&[a-z]+;/g,function(m){var t=document.createElement('textarea');t.innerHTML=m;return t.value;}));
+      return;
+    }
+    var patrimonio = d.patrimonio;
+    var edadActual = d.edad;
+    var aportMes   = d.aport;
+    var rentAnual  = d.rent / 100;
+    var objetivo   = d.objetivo;
 
     var rentMes = Math.pow(1 + rentAnual, 1/12) - 1;
 
@@ -6228,11 +6383,12 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     for(var i=0;i<n*12;i++) cap=cap*(1+rm)+A;
     return cap;
   }
+  function decodeEnt(t){var x=document.createElement('textarea');x.innerHTML=t;return x.value;}
   function updateInterestHero(){
-    var C=parseFloat(document.getElementById('ic-capital').value)||0;
-    var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
-    var r=parseFloat(document.getElementById('ic-rent').value)||0;
-    var n=parseInt(document.getElementById('ic-anos').value)||1;
+    var d=window.qfInteresInputs?window.qfInteresInputs():null;
+    if(!d||d.error){if(window.qfPilotHeroInvalid)qfPilotHeroInvalid('ic-hero',decodeEnt(d?d.error:'Faltan datos'));return;}
+    qfPilotHeroReady('ic-hero');
+    var C=d.C,A=d.A,r=d.r,n=d.n;
     var cap=calcCompound(C,A,r,n),aport=C+A*12*n,interest=cap-aport;
     setText('ic-hero-main',eurFull(cap));
     setText('ic-hero-aportado',eurCompact(aport));
@@ -6250,12 +6406,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     return y;
   }
   function updateFireHero(){
-    var actual=parseFloat(document.getElementById('jub-actual').value)||0;
-    var aport=parseFloat(document.getElementById('jub-aport').value)||0;
-    var r=parseFloat(document.getElementById('jub-rent').value)||0;
-    var gastos=parseFloat(document.getElementById('jub-gastos').value)||0;
-    var edad=parseInt(document.getElementById('jub-edad').value)||35;
-    var infl=(document.getElementById('jub-infl-check')&&document.getElementById('jub-infl-check').checked)?((parseFloat(document.getElementById('jub-infl-val').value)||0)/100):0;var fire=gastos*12/0.04,y=yearsToFire(actual,aport,r,gastos,infl),edadFire=edad+y;
+    var d=window.qfFireInputs?window.qfFireInputs():null;
+    if(!d||d.error){if(window.qfPilotHeroInvalid)qfPilotHeroInvalid('jub-hero',decodeEnt(d?d.error:'Faltan datos'));return;}
+    qfPilotHeroReady('jub-hero');
+    var actual=d.actual,aport=d.aport,r=d.rent,gastos=d.gastos,edad=d.edad,infl=d.infl;var fire=gastos*12/0.04,y=yearsToFire(actual,aport,r,gastos,infl),edadFire=edad+y;
     setText('jub-hero-main',y<80?edadFire+' años':'> '+(edad+80)+' años');
     setText('jub-hero-target',eurCompact(fire));
     setText('jub-hero-years',y<80?y+' años':'>80 años');
@@ -6280,12 +6434,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     return cap;
   }
   function updateTiempoHero(){
-    var patr=parseFloat(document.getElementById('t-patrimonio').value)||0;
-    var edad=parseInt(document.getElementById('t-edad').value)||30;
-    var aport=parseFloat(document.getElementById('t-aport').value)||0;
-    var r=parseFloat(document.getElementById('t-rent').value)||0;
-    var obj=parseInt(document.getElementById('t-objetivo').value)||65;
-    if(edad>=obj){setText('t-hero-main','Revisa edades');return;}
+    var d=window.qfTiempoInputs?window.qfTiempoInputs():null;
+    if(!d||d.error){if(window.qfPilotHeroInvalid)qfPilotHeroInvalid('t-hero',decodeEnt(d?d.error:'Faltan datos'));return;}
+    qfPilotHeroReady('t-hero');
+    var patr=d.patrimonio,edad=d.edad,aport=d.aport,r=d.rent,obj=d.objetivo;
     var final=projectTime(patr,edad,obj,aport,r),years=obj-edad;
     setText('t-hero-main',eurFull(final));
     setText('t-hero-aport',eurCompact(aport));
@@ -6304,6 +6456,13 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   };
 
   function resultShareText(id){
+    // Mismas lecturas de datos que el detalle y el hero; si faltan datos, texto genérico.
+    var src={interes:window.qfInteresInputs,jubilacion:window.qfFireInputs,tiempo:window.qfTiempoInputs}[id];
+    if(src){var chk=src();if(chk.error)return 'Prueba esta calculadora en QuijoteFinanzas:';
+      if(id==='interes'){var C0=chk.C,A0=chk.A,r0=chk.r,n0=chk.n,cap0=calcCompound(C0,A0,r0,n0);return '📈 '+eurFull(A0)+'/mes durante '+n0+' años al '+r0.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(cap0)+'. El tiempo hace buena parte del trabajo. Calcula tu escenario en QuijoteFinanzas:';}
+      if(id==='jubilacion'){var y0=yearsToFire(chk.actual,chk.aport,chk.rent,chk.gastos,chk.infl);if(y0>=80)return 'Con estos supuestos, mi objetivo FIRE queda fuera del horizonte de 80 años. Probar escenarios cambia mucho el resultado. Calcula el tuyo en QuijoteFinanzas:';return 'Con este escenario, mi objetivo FIRE se situaría alrededor de los '+(chk.edad+y0)+' años. Puedes probar el tuyo en QuijoteFinanzas:';}
+      if(id==='tiempo'){var f0=projectTime(chk.patrimonio,chk.edad,chk.objetivo,chk.aport,chk.rent);return '⌛ '+eurFull(chk.aport)+'/mes desde los '+chk.edad+' hasta los '+chk.objetivo+' años al '+chk.rent.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(f0)+'. El coste de esperar puede ser enorme. Prueba tu escenario:';}
+    }
     if(id==='interes'){
       var A=parseFloat(document.getElementById('ic-aportacion').value)||0,r=parseFloat(document.getElementById('ic-rent').value)||0,n=parseInt(document.getElementById('ic-anos').value)||1,C=parseFloat(document.getElementById('ic-capital').value)||0;
       var cap=calcCompound(C,A,r,n);
@@ -6369,10 +6528,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     salario:{title:'Bruto anual necesario',main:['salario bruto necesario'],metrics:[['neto objetivo','Neto objetivo'],['irpf estimado','IRPF'],['neto por paga','Neto / paga']],private:true},
     hipoteca:{title:'Cuota mensual estimada',main:['cuota mensual'],metrics:[['capital prestado','Capital'],['total intereses','Intereses'],['plazo','Plazo']]},
     coste:{title:'Coste anual para la empresa',main:['coste total anual'],metrics:[['tu salario bruto','Bruto'],['ss a cargo empresa','SS empresa'],['coste mensual','Coste / mes']],private:true},
-    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['poder adquisitivo real','Poder real'],['inflación acumulada','Inflación']]},
-    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses netos','Intereses netos'],['tae equivalente','TAE']]},
+    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['valor real de la inversion','Valor real (euros de hoy)'],['poder adquisitivo del efectivo','Efectivo sin invertir']]},
+    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses tras retencion','Intereses netos'],['tae equivalente','TAE']]},
     irpf:{title:'Neto estimado por paga',main:['neto por paga'],metrics:[['salario bruto anual','Bruto anual'],['irpf anual','IRPF anual'],['tipo efectivo irpf','Tipo efectivo']],private:true},
-    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal anual'],metrics:[['aportación anual al plan','Aportación'],['coste real de la aportación','Coste real'],['ahorro por cada 100','Ahorro / 100 €']]},
+    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal'],metrics:[['aportacion anual al plan','Aportación'],['coste real estimado de la aportacion','Coste real'],['ahorro por cada 100','Ahorro / 100 €']]},
     amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']]},
     alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]}
   };
@@ -6380,7 +6539,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   var sliderConfig={
     'au-ingresos':{min:0,max:50000,step:500,minLabel:'0 €',maxLabel:'50k€'},'au-gastos':{min:0,max:25000,step:250,minLabel:'0 €',maxLabel:'25k€'},
     'ic-capital':{min:0,max:250000,step:2500,minLabel:'0 €',maxLabel:'250k€'},
-    'sal-neto':{min:12000,max:100000,step:1000,minLabel:'12k€',maxLabel:'100k€'},
+    // Rango según «Objetivo»: neto por paga (banco) o neto fiscal anual. Antes era siempre 12k-100k y el slider fijaba 20.000 €/paga.
+    'sal-neto':{min:500,max:8000,step:50,minLabel:'500€',maxLabel:'8k€'},
     'hip-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'hip-entrada':{min:0,max:500000,step:5000,minLabel:'0 €',maxLabel:'500k€'},'hip-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'hip-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},
     'ce-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'ce-at':{min:0,max:8,step:.1,minLabel:'0%',maxLabel:'8%'},
     'inf-capital':{min:1000,max:500000,step:5000,minLabel:'1k€',maxLabel:'500k€'},'inf-ipc':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'inf-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'inf-rent':{min:0,max:15,step:.1,minLabel:'0%',maxLabel:'15%'},
@@ -6453,7 +6613,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }
   function findPair(pairs,needles){
     needles=Array.isArray(needles)?needles:[needles];
-    for(var i=0;i<needles.length;i++){var n=norm(needles[i]);for(var j=0;j<pairs.length;j++){if(norm(pairs[j].label).indexOf(n)!==-1)return pairs[j];}}
+    for(var i=0;i<needles.length;i++){var n=norm(needles[i]);if(!n)continue;for(var j=0;j<pairs.length;j++){if(norm(pairs[j].label).indexOf(n)!==-1)return pairs[j];}}
     return null;
   }
   function parseEuro(s){var t=String(s||'').replace(/[^0-9,.-]/g,'').replace(/\./g,'').replace(',','.');var n=parseFloat(t);return isFinite(n)?n:0;}
@@ -6462,9 +6622,9 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function genericHeroHTML(id,cfg){
     return '<div class="qf-generic-block" data-qf-block="'+id+'"><div class="qf-live-badge">Resultado en tiempo real</div>'+
       '<div class="qf-result-hero qf-generic-hero" data-qf-hero="'+id+'" data-state="empty">'+
-      '<div class="qf-hero-eyebrow" id="qf-'+id+'-eyebrow">'+cfg.title+'</div><div class="qf-hero-main" id="qf-'+id+'-main">Ajusta los datos</div>'+
-      '<div class="qf-hero-metrics"><div class="qf-hero-metric"><span id="qf-'+id+'-m1l">—</span><strong id="qf-'+id+'-m1">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m2l">—</span><strong id="qf-'+id+'-m2">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m3l">—</span><strong id="qf-'+id+'-m3">—</strong></div></div>'+
-      '<div class="qf-hero-insight" id="qf-'+id+'-insight">Mueve las barras o cambia los campos para comparar escenarios al instante.</div><div class="qf-whatif" id="qf-'+id+'-whatif"></div>'+
+      '<div class="qf-hero-eyebrow" id="qf-'+id+'-eyebrow">'+cfg.title+'</div><div class="qf-hero-main" id="qf-'+id+'-main">Introduce tus datos para ver el resultado</div>'+
+      '<div class="qf-hero-metrics" data-count="0"><div class="qf-hero-metric" hidden><span id="qf-'+id+'-m1l"></span><strong id="qf-'+id+'-m1"></strong></div><div class="qf-hero-metric" hidden><span id="qf-'+id+'-m2l"></span><strong id="qf-'+id+'-m2"></strong></div><div class="qf-hero-metric" hidden><span id="qf-'+id+'-m3l"></span><strong id="qf-'+id+'-m3"></strong></div></div>'+
+      '<div class="qf-hero-insight" id="qf-'+id+'-insight">El resultado se actualiza al cambiar cualquier dato.</div><div class="qf-whatif" id="qf-'+id+'-whatif"></div>'+
       '<div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share-all="'+id+'">Compartir resultado en X ↗</button></div>'+
       (cfg.private?'<div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>':'')+
       '<div class="qf-card-brand">quijotefinanzas.com</div></div></div>';
@@ -6504,9 +6664,12 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   function setHero(id,eyebrow,main,metrics,insight){
     var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(!hero)return;hero.dataset.state='ready';
-    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=main||'—';mainEl.classList.toggle('long',String(main||'').length>18);}
+    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=main||'';mainEl.classList.toggle('long',String(main||'').length>18);}
     var e=document.getElementById('qf-'+id+'-eyebrow');if(e&&eyebrow)e.textContent=eyebrow;
-    for(var i=0;i<3;i++){var m=metrics&&metrics[i];var l=document.getElementById('qf-'+id+'-m'+(i+1)+'l'),v=document.getElementById('qf-'+id+'-m'+(i+1));if(l)l.textContent=m?m.label:'—';if(v)v.textContent=m?m.value:'—';}
+    // Las métricas sin dato se ocultan (antes se pintaba «—»).
+    var shown=0;
+    for(var i=0;i<3;i++){var m=metrics&&metrics[i];var l=document.getElementById('qf-'+id+'-m'+(i+1)+'l'),v=document.getElementById('qf-'+id+'-m'+(i+1));if(l)l.textContent=m?m.label:'';if(v)v.textContent=m?m.value:'';var box=v&&v.parentNode;if(box){if(m){box.removeAttribute('hidden');shown++;}else box.setAttribute('hidden','');}}
+    var mw=hero.querySelector('.qf-hero-metrics');if(mw)mw.setAttribute('data-count',String(shown));
     var ins=document.getElementById('qf-'+id+'-insight');if(ins&&insight)ins.innerHTML=insight;
   }
 
@@ -6532,7 +6695,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       metrics=compactMetrics([
         metricFrom(p,['pension bruta anual'],'Bruto anual'),
         metricFrom(p,['cuota anual estimada de irpf'],'IRPF anual'),
-        metricFrom(p,['diferencia estimada'],'Ajuste Renta')
+        metricFrom(p,['diferencia estimada'],'Ajuste Renta')||(function(t){return t?{label:'Tratamiento',value:/^exenta/i.test(t.value)?'Exenta':(/^sujeta/i.test(t.value)?'Sujeta':t.value.split(' (')[0])}:null;})(findPair(p,['tratamiento fiscal']))
       ]);
       insight='La <strong>retención del pagador</strong> y la cuota final de IRPF pueden ser distintas. El ajuste estimado ayuda a ver esa diferencia.';
     }else if(mode==='salary'){
@@ -6569,7 +6732,22 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     ]),'El bruto necesario cambia con retenciones, cotizaciones y situación personal. Ajusta los datos para comparar escenarios.');
   }
 
+  // Mensaje en el hero cuando no hay resultado (dato obligatorio vacío o fuera de rango).
+  function setHeroMessage(id,msg,state){
+    var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(!hero)return;hero.dataset.state=state||'invalid';
+    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=msg;mainEl.classList.remove('long');}
+    var mw=hero.querySelector('.qf-hero-metrics');if(mw)mw.setAttribute('data-count','0');
+    hero.querySelectorAll('.qf-hero-metric').forEach(function(b){b.setAttribute('hidden','');});
+    var ins=document.getElementById('qf-'+id+'-insight');if(ins)ins.textContent='';
+  }
+  function heroFromEmptyState(id){
+    var root=document.querySelector(resultSelector[id]);if(!root)return false;
+    if(root.querySelector('.result-row,.res-item,tbody tr'))return false;
+    var es=root.querySelector('.empty-state');if(!es)return false;
+    setHeroMessage(id,es.textContent.trim()||'Revisa los datos introducidos.','invalid');return true;
+  }
   function updateGenericHero(id){
+    if(heroFromEmptyState(id))return;
     if(id==='alquilervs'){updateAlquilerVs();return;}if(id==='comparador'){updateComparador();return;}if(id==='irpf'){updateIrpfHero();return;}if(id==='salario'){updateSalarioHero();return;}
     var cfg=heroConfig[id];if(!cfg)return;var p=pairsFrom(id);if(!p.length)return;var main=findPair(p,cfg.main);if(!main)return;
     var metrics=[];(cfg.metrics||[]).forEach(function(m){if(metrics.length>=3)return;var pair=findPair(p,m[0]);if(pair)metrics.push({label:m[1],value:pair.value});});
@@ -6609,6 +6787,18 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   ['alquilervs','comparador'].forEach(function(id){if(!heroConfig[id]){heroConfig[id]={title:'Resultado comparado',main:[],metrics:[]};insertGenericHero(id,heroConfig[id]);ensureScenarioArea(id);}});
 
   Object.keys(sliderConfig).forEach(function(id){enhanceSlider(document.getElementById(id),sliderConfig[id]);});
+  function syncSalNetoSlider(){
+    var input=document.getElementById('sal-neto'),cfg=sliderConfig['sal-neto'];if(!input||!cfg)return;
+    var fiscal=((document.getElementById('sal-target-type')||{}).value==='fiscal');
+    var next=fiscal?{min:6000,max:150000,step:500,minLabel:'6k€',maxLabel:'150k€'}:{min:500,max:8000,step:50,minLabel:'500€',maxLabel:'8k€'};
+    Object.keys(next).forEach(function(k){cfg[k]=next[k];});
+    var wrap=input.nextElementSibling;if(!wrap||!wrap.classList.contains('qf-inline-range-wrap'))return;
+    var range=wrap.querySelector('.qf-inline-range'),scale=wrap.querySelector('.qf-inline-range-scale'),cur=wrap.querySelector('.qf-inline-range-current');
+    range.min=cfg.min;range.max=cfg.max;range.step=cfg.step;range.value=clamp(parseFloat(input.value)||cfg.min,cfg.min,cfg.max);
+    if(scale)scale.innerHTML='<span>'+cfg.minLabel+'</span><span>'+cfg.maxLabel+'</span>';
+    if(cur)cur.textContent=inlineValue(input.value,cfg);paintRange(range);
+  }
+  syncSalNetoSlider();
   genericIds.forEach(function(id){wrapCalcFunction(id);bindAutoCalc(id);observeResults(id);});
 
   document.addEventListener('click',function(e){
@@ -6619,7 +6809,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   document.addEventListener('change',function(e){
     if(!e.target)return;
     if(e.target.id==='irpf-mode'){setTimeout(function(){ensureScenarioArea('irpf');updateGenericHero('irpf');},0);}
-    if(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'){setTimeout(function(){ensureScenarioArea('salario');updateGenericHero('salario');},0);}
+    if(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'){syncSalNetoSlider();setTimeout(function(){ensureScenarioArea('salario');updateGenericHero('salario');},0);}
   });
 
   // Autocalcular al abrir, salvo CAGR (necesitan datos previos).
