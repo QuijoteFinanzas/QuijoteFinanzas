@@ -168,7 +168,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 /* ── FASE 28 · Tema claro / oscuro: bootstrap sin flash ───────────── */
 (function(){
@@ -1607,6 +1607,14 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 /* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
 :root{--focus-ring:#8b6a15}
 html[data-theme="dark"]{--focus-ring:#c9a84c}
+/* CLS: estilos criticos del boton de tema (duplicados de #qf-theme-styles, que se carga al final) */
+.qf-theme-toggle{flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,32,53,.12);background:#fff;color:#526b84;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.qf-theme-icon{width:18px;height:18px;display:block}
+.qf-theme-sun{display:none}
+html[data-theme="dark"] .qf-theme-moon{display:none}
+html[data-theme="dark"] .qf-theme-sun{display:block}
+@media(max-width:699px){.site-nav-inner{position:relative}.qf-theme-toggle{position:absolute;top:7px;right:12px;width:34px;height:34px;z-index:3}.site-brand{padding-right:58px}}
+@media(min-width:700px){.qf-theme-toggle{margin-left:-12px}}
 .skip-link{position:absolute;left:12px;top:-60px;z-index:10000;background:#0f2035;color:#fff;padding:10px 16px;border-radius:6px;font:600 14px 'DM Sans',sans-serif;text-decoration:none;transition:top .15s}
 .skip-link:focus{top:12px;outline:2px solid #c9a84c;outline-offset:2px}
 main:focus{outline:none}
@@ -1642,7 +1650,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
   <div class="site-nav-inner">
     <a href="/" class="site-brand" title="Inicio" aria-label="Ir al inicio">
       <span class="site-brand-mark">
-        <img src="logo.png" alt="" onerror="this.style.display='none'">
+        <img src="logo.png" alt="" width="32" height="32" onerror="this.style.display='none'">
       </span>
       <span class="site-brand-name">
         <span class="brand-long">Don Quijote de las Finanzas</span>
@@ -1741,14 +1749,14 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 
 <header>
   <div class="compact-brand" aria-hidden="true">
-    <div class="compact-brand-logo"><img src="logo.png" alt="Logo Don Quijote de las Finanzas"></div>
+    <div class="compact-brand-logo"><img src="logo.png" alt="" width="36" height="36"></div>
     <div class="compact-brand-badge">Finanzas Personales</div>
     <div class="compact-brand-title">Don Quijote<br><span>de las Finanzas</span></div>
     <div class="compact-brand-copy">
       <span>Educación financiera para entender tu dinero, tomar mejores decisiones y empezar a invertir con criterio</span>
     </div>
   </div>
-  <div class="logo-wrap"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
+  <div class="logo-wrap"><img src="logo.png" alt="" width="92" height="92" fetchpriority="high"></div>
   <div class="badge-hero">Finanzas Personales</div>
   <h1>Don Quijote<br><span>de las Finanzas</span></h1>
   <p class="positioning">Educaci&oacute;n financiera para entender tu dinero, tomar mejores decisiones y empezar a invertir con criterio</p>
@@ -2287,7 +2295,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
   <!-- Top: logo + links -->
   <div style="display:flex;align-items:center;gap:32px;margin-bottom:20px;flex-wrap:wrap">
     <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0">
-      <img src="logo.png" alt="Don Quijote de las Finanzas" style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(201,168,76,.35);object-fit:cover">
+      <img src="logo.png" alt="" width="36" height="36" style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(201,168,76,.35);object-fit:cover">
       <div style="font-family:'DM Sans',sans-serif;line-height:1.2">
         <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#0f2035">Don Quijote de las Finanzas</div>
       </div>
@@ -2343,7 +2351,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 
 <!-- TOAST suscripción -->
 <div id="sub-toast">
-  <div class="toast-logo"><img src="logo.png" alt="logo"></div>
+  <div class="toast-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
   <div class="toast-text">
     <p>S&iacute;gueme en X</p>
     <span>Nuevas calculadoras, comparativas y recursos</span>
@@ -2407,7 +2415,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
   <div class="calc-modal" style="max-width:680px">
     <div class="modal-header">
       <div class="modal-header-left"><h2>&#128188; Simulador para aut&oacute;nomos</h2></div>
-      <div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
+      <div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
       <button class="calc-close" data-close="autonomos" aria-label="Cerrar calculadora">&#215;</button>
     </div>
     <button class="share-btn" data-share="autonomos"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
@@ -2475,7 +2483,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODALES -->
 <div class="calc-overlay qf-calc2" id="modal-interes">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128260; Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="interes" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128260; Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="interes" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="interes"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-interes">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula c&oacute;mo crece tu inversi&oacute;n con el tiempo gracias al inter&eacute;s compuesto.</p>
     <div class="qf-live-badge">Resultado en tiempo real</div>
@@ -2527,7 +2535,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 
 <div class="calc-overlay" id="modal-salario">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="salario" aria-label="Cerrar calculadora">×</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="salario" aria-label="Cerrar calculadora">×</button></div>
     <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">✓ Enlace copiado</span>
     <p class="subtitle">Calcula qué bruto aproximado necesitas para alcanzar un neto objetivo, diferenciando lo que entra en banco de tu neto fiscal anual.</p>
     <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
@@ -2558,7 +2566,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 
 <div class="calc-overlay" id="modal-hipoteca">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127968; Cuota Hipotecaria</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="hipoteca" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127968; Cuota Hipotecaria</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="hipoteca" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="hipoteca"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-hipoteca">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula tu cuota mensual, total pagado e intereses de tu hipoteca.</p>
     <div class="calc-grid">
@@ -2588,7 +2596,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 
 <div class="calc-overlay" id="modal-coste">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128188; Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="coste" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128188; Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="coste" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="coste"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-coste">&#10003; Enlace copiado</span>
     <p class="subtitle">Estima el coste laboral directo para la empresa: bruto, cotizaciones patronales y solidaridad cuando corresponda.</p><p class="disclaimer">Estimación para contrato indefinido en 2026. La cotización por AT/EP depende de la actividad y puede cambiar el resultado; no incluye beneficios, formación, equipos, absentismo ni otros costes empresariales.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> cotizaciones empresariales y tope de base según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), normas de cotización a la Seguridad Social 2026 (tope máximo 5.101,20&nbsp;&euro;/mes). Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
@@ -2618,7 +2626,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: INFLACIÓN -->
 <div class="calc-overlay" id="modal-inflacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128201; Inflaci&oacute;n: Valor Futuro</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="inflacion" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128201; Inflaci&oacute;n: Valor Futuro</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="inflacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="inflacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-inflacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Descubre cu&aacute;nto valdr&aacute; tu dinero en el futuro con la inflaci&oacute;n, y cu&aacute;nto necesitas invertir para mantener tu poder adquisitivo.</p>
     <div class="calc-grid">
@@ -2649,7 +2657,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: JUBILACIÓN / FIRE -->
 <div class="calc-overlay qf-calc2" id="modal-jubilacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="jubilacion" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="jubilacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="jubilacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-jubilacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cu&aacute;nto necesitas ahorrar para jubilarte o alcanzar la independencia financiera (FIRE). Basado en la regla del 4%.</p>
     <div class="qf-live-badge">Resultado en tiempo real</div>
@@ -2703,7 +2711,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: DEPÓSITO A PLAZO FIJO -->
 <div class="calc-overlay" id="modal-deposito">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="deposito" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="deposito" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="deposito"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-deposito">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula los intereses brutos y el importe tras la retención a cuenta del 19% para un depósito simple.</p><p class="disclaimer">Supone TIN simple y pago de intereses al vencimiento. El 19% es una retención/pago a cuenta: la tributación final del ahorro depende de tu declaración y del conjunto de rendimientos.</p>
     <p class="disclaimer"><strong>Fiscalidad:</strong> el 19% que se aplica en el c&aacute;lculo es solo la retenci&oacute;n a cuenta que practica el banco. Los intereses tributan despu&eacute;s en la declaraci&oacute;n anual de IRPF, en la base del ahorro, con la escala 2026: 19% hasta 6.000&nbsp;&euro;, 21% de 6.000 a 50.000&nbsp;&euro;, 23% de 50.000 a 200.000&nbsp;&euro;, 27% de 200.000 a 300.000&nbsp;&euro; y 30% a partir de 300.000&nbsp;&euro;. Seg&uacute;n tus otros rendimientos del ahorro, el resultado final puede ser una cuota a pagar o a devolver.</p>
@@ -2743,7 +2751,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: FISCAL 2026 -->
 <div class="calc-overlay" id="modal-irpf">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="irpf" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="irpf" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
     <p class="subtitle">Separa nómina, pensión, retención del pagador y cuota anual estimada de IRPF. Incluye el año de transición trabajo → jubilación.</p>
     <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
@@ -2810,7 +2818,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: PLAN DE PENSIONES -->
 <div class="calc-overlay" id="modal-pension">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="pension" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="pension" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="pension"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-pension">&#10003; Enlace copiado</span>
     <p class="subtitle" id="pp-subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. Límite general individual: 1.500 €/año. Para autónomos se contempla, de forma separada, la posible ampliación mediante PPES.</p>
     <p class="disclaimer">Estimaci&oacute;n orientativa. El ahorro real depende de tu tipo marginal y CCAA. Consulta con un asesor fiscal.</p>
@@ -2861,7 +2869,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: ALQUILER VS COMPRA -->
 <div class="calc-overlay" id="modal-alquilervs">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128273; Alquiler vs Compra</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="alquilervs" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128273; Alquiler vs Compra</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquilervs" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="alquilervs"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquilervs">&#10003; Enlace copiado</span>
     <p class="subtitle">Compara el patrimonio final estimado al comprar frente a alquilar, incorporando hipoteca, revalorización, gastos y el coste de oportunidad del capital.</p><p class="disclaimer">Modelo orientativo: supone tipo hipotecario fijo, aportaciones/costes constantes según los campos y reinversión de las diferencias mensuales. No incluye fiscalidad individual, reformas extraordinarias ni incertidumbre de mercado.</p>
     <div class="calc-grid">
@@ -2900,7 +2908,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: AMORTIZACIÓN ANTICIPADA -->
 <div class="calc-overlay" id="modal-amortizacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#9889; Amortizaci&oacute;n Anticipada</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="amortizacion" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#9889; Amortizaci&oacute;n Anticipada</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="amortizacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="amortizacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-amortizacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cuánto podrías ahorrar en intereses y tiempo amortizando anticipadamente. Compara reducir cuota vs reducir plazo.</p><p class="disclaimer">Estimación con hipoteca a tipo fijo y sistema francés. No incluye posibles comisiones de amortización, compensaciones contractuales ni efectos fiscales.</p>
     <div class="calc-grid">
@@ -2932,7 +2940,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: ROI ALQUILER -->
 <div class="calc-overlay" id="modal-alquiler">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128202; ROI / Rentabilidad Alquiler</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="alquiler" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128202; ROI / Rentabilidad Alquiler</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquiler" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="alquiler"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquiler">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula la rentabilidad bruta sobre el precio y la rentabilidad neta sobre la inversión total, incluyendo gastos anuales y vacante.</p><p class="disclaimer">No incluye financiación, IRPF/IS, derramas, reformas extraordinarias, impagos ni revalorización del inmueble.</p>
     <div class="calc-grid">
@@ -2963,7 +2971,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: COMPARADOR DE OFERTAS -->
 <div class="calc-overlay" id="modal-comparador">
   <div class="calc-modal" style="max-width:820px">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#9878;&#65039; Comparador de ofertas</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="comparador" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#9878;&#65039; Comparador de ofertas</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="comparador" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="comparador"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-comparador">&#10003; Enlace copiado</span>
     <p class="subtitle">Compara dos ofertas de trabajo de forma objetiva. M&aacute;s all&aacute; del bruto: neto real, teletrabajo, beneficios y coste de desplazamiento.</p>
     <p class="disclaimer">Estimación orientativa con el motor fiscal 2026 de la web. El bonus se valora por el incremento de neto estimado, no aplicando un tipo fijo. Los beneficios en especie y su fiscalidad real pueden variar.</p>
@@ -3029,7 +3037,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
 <!-- MODAL: EVOLUCIÓN Y CRECIMIENTO CAGR -->
 <div class="calc-overlay qf-calc2" id="modal-cagr">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="cagr" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="cagr" aria-label="Cerrar calculadora">&#215;</button></div>
     <p class="subtitle">Calcula el crecimiento anual compuesto (CAGR) de tu salario o de tu patrimonio a partir de datos reales por a&ntilde;o.</p>
 
     <div class="cagr-mode-switch" role="tablist" aria-label="Tipo de evoluci&oacute;n">
@@ -3092,7 +3100,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
   <div class="calc-modal" style="max-width:760px">
     <div class="modal-header">
       <div class="modal-header-left"><h2>&#8987; El coste del tiempo</h2></div>
-      <div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
+      <div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
       <button class="calc-close" data-close="tiempo" aria-label="Cerrar calculadora">&#215;</button>
     </div>
     <button class="share-btn" data-share="tiempo"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
