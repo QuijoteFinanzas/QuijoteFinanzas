@@ -3454,7 +3454,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function qcLogoHtml(c){
     if(!c || !c.logoDomain) return '';
-    return '<span class="cuenta-logo" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain='+qcEsc(c.logoDomain)+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="cuenta-logo-fallback">'+qcEsc(qcInitials(c.banco))+'</span></span>';
+    return '<span class="cuenta-logo" aria-hidden="true"><img loading="lazy" src="'+(c.logo?qcEsc(c.logo):'https://www.google.com/s2/favicons?sz=128&domain='+qcEsc(c.logoDomain))+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="cuenta-logo-fallback">'+qcEsc(qcInitials(c.banco))+'</span></span>';
   }
 
   function qcBankHtml(bank,title){
