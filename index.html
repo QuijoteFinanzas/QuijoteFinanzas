@@ -2042,8 +2042,8 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="cuentas-snapshot-grid">
           <div class="cuentas-snapshot-item"><strong>Sin condiciones</strong>Trade Republic · 2,50% tipo anual BCE.</div>
           <div class="cuentas-snapshot-item"><strong>Con condiciones</strong>Revolut · 3,51% TAE · hasta 25.000€ · máximo 120 días.</div>
-          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>La campaña de Banco Sabadell terminó el 07/10/2026; consulta la pestaña «Nómina» de la tabla.</div>
-          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>Las condiciones de Renault Bank terminaron el 07/10/2026; consulta la pestaña «Depósitos» de la tabla.</div>
+          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>Banco Sabadell · hasta 3.120€ en 1 año; el máximo exige 100.000€ de saldo.</div>
+          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>HoistSpar · 3,51% TAE a 12 meses.</div>
           <div class="cuentas-snapshot-item"><strong>Depósitos promocionales</strong>Banco BiG · 4,00% TAE a 1 mes para nuevos clientes.</div>
           <div class="cuentas-snapshot-item"><strong>Promociones bancarias</strong>BBVA PLAN1060 · hasta 1.060€ combinando varias acciones.</div>
         </div>
@@ -3482,7 +3482,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!container) return;
     if (!filtered.length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
 
-    var mes = (window.QF_CUENTAS_UPDATED || "05/10/2026");
+    var mes = (window.QF_CUENTAS_UPDATED || "30/10/2026");
     var esNomina = cuentasTab === "nomina";
     var esDeposito = cuentasTab.indexOf('dep-') === 0;
     var esPromo = cuentasTab === 'promo';
@@ -3491,7 +3491,7 @@ document.addEventListener('DOMContentLoaded', function(){
       : (esNomina
         ? 'Orden orientativo por potencial máximo anunciado; los plazos, saldos y requisitos no son equivalentes.'
         : (esDeposito ? 'Ordenadas por la TAE máxima mostrada; compara siempre el plazo y la cancelación.' : 'Ordenadas por la rentabilidad anual anunciada para el supuesto indicado; indicamos si es TAE o tipo anual.'));
-    var html='<div class="cuentas-header"><p class="cuentas-sort">'+sortText+'</p><span class="cuentas-badge">Datos revisados el '+mes+'</span></div>';
+    var html='<div class="cuentas-header"><p class="cuentas-sort">'+sortText+'</p><span class="cuentas-badge">Actualizado · '+mes+'</span></div>';
     html+='<div class="cuentas-grid">'+filtered.map(function(c){
       var isTop=!esPromo && Number(c.rank)<=2;
       var principal;
