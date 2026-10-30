@@ -1653,6 +1653,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 </style>
+<link rel="stylesheet" href="/assets/site-menu.css?v=20261030"><script src="/assets/site-menu.js?v=20261030" defer></script>
 </head>
 <body class="show-home-intro">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -1670,18 +1671,19 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       </span>
     </a>
     <div class="site-nav-viewport">
-      <nav id="main-nav" class="site-nav-track" aria-label="Navegación principal">
-        <button class="nav-btn active" data-section="sobre">Sobre el proyecto</button>
-        <button class="nav-btn" data-section="calculadoras">Calculadoras</button>
-        <button class="nav-btn" data-section="cuentas">QuijoCuentas</button>
-        <button class="nav-btn" data-section="quijolista">QuijoLista</button>
-        <button class="nav-btn" data-section="quijocartera">QuijoCartera</button>
-        <button class="nav-btn" data-section="recursos">Recursos</button>
-        <a class="nav-btn" href="/calendario-financiero/">Calendario</a>
-        <a class="nav-btn" href="/colaboraciones/">Colaboraciones</a>
-        <button class="nav-btn" data-section="teca">QuijoTeca</button>
-        <button class="nav-btn" data-section="glosario">QuijoGlosario</button>
-        <button class="nav-btn" data-section="referidos">Referidos</button>
+      <button class="qf-menu-burger" type="button" aria-expanded="false" aria-controls="main-nav">Menú</button>
+      <nav id="main-nav" class="qf-menu" aria-label="Navegación principal">
+        <ul class="qf-menu-list">
+          <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-herramientas">Herramientas</button>
+            <ul class="qf-menu-sub" id="qf-sub-herramientas" role="menu"><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="calculadoras">Calculadoras</button></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="quijocartera">QuijoCartera</button></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" onclick="openExcelModal('menu')">QuijoExcel</button></li></ul></li>
+          <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-comparativas">Comparativas</button>
+            <ul class="qf-menu-sub" id="qf-sub-comparativas" role="menu"><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="cuentas">QuijoCuentas</button></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="quijolista">QuijoLista</button></li></ul></li>
+          <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-aprende">Aprende</button>
+            <ul class="qf-menu-sub" id="qf-sub-aprende" role="menu"><li><a class="nav-btn qf-menu-link" role="menuitem" href="/glosario/">QuijoGlosario</a></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="teca">QuijoTeca</button></li><li><a class="nav-btn qf-menu-link" role="menuitem" href="/calendario-financiero/">Calendario financiero</a></li></ul></li>
+          <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-recursos">Recursos</button>
+            <ul class="qf-menu-sub" id="qf-sub-recursos" role="menu"><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="recursos">Recursos y descargas</button></li><li><a class="nav-btn qf-menu-link" role="menuitem" href="/colaboraciones/">Colaboraciones</a></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="referidos">Referidos</button></li></ul></li>
+          <li><button class="nav-btn qf-menu-top active" type="button" data-section="sobre">Sobre el proyecto</button></li>
+        </ul>
       </nav>
     </div>
     <button id="qf-theme-toggle" class="qf-theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro" aria-pressed="false">

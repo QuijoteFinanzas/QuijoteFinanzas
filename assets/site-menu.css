@@ -1,0 +1,38 @@
+/* Menú agrupado con desplegables (scripts/build-nav.py) */
+#top-bar nav.qf-menu{padding:0;display:block;gap:0}
+#top-bar .site-nav-viewport{overflow:visible;position:relative}
+#top-bar .site-nav-viewport::after{display:none}
+.qf-menu-list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:2px}
+.qf-menu-list>li{position:relative}
+#top-bar .qf-menu-top{position:relative;white-space:nowrap;background:transparent;border:0;box-shadow:none;color:#62778e;font:600 12.5px 'DM Sans',sans-serif;padding:23px 11px 20px;cursor:pointer;text-decoration:none;display:inline-block;line-height:normal;border-radius:0}
+#top-bar .qf-menu-group>.qf-menu-top::before{content:'';float:right;margin:5px 0 0 6px;border:4px solid transparent;border-top-color:currentColor;border-bottom:0}
+#top-bar .qf-menu-top::after{content:'';position:absolute;left:11px;right:11px;bottom:10px;height:2px;background:var(--gold,#c9a84c);transform:scaleX(0);transition:transform .18s}
+#top-bar .qf-menu-top:hover,#top-bar .qf-menu-top[aria-expanded="true"]{color:var(--navy,#0f2035)}
+#top-bar .qf-menu-top.active{color:var(--navy,#0f2035);font-weight:700}
+#top-bar .qf-menu-top.active::after{transform:scaleX(1)}
+.qf-menu-sub{display:none;list-style:none;margin:0;padding:6px;position:absolute;top:calc(100% - 6px);left:0;min-width:210px;background:#fff;border:1px solid rgba(15,32,53,.10);border-radius:10px;box-shadow:0 14px 34px rgba(15,32,53,.14);z-index:1000}
+.qf-menu-top[aria-expanded="true"]+.qf-menu-sub{display:block}
+#top-bar .qf-menu-link{display:block;width:100%;text-align:left;background:transparent;border:0;border-radius:6px;color:#33465b;font:500 13.5px 'DM Sans',sans-serif;padding:9px 12px;text-decoration:none;cursor:pointer;white-space:nowrap;box-shadow:none}
+#top-bar .qf-menu-link:hover,#top-bar .qf-menu-link:focus-visible{background:rgba(201,168,76,.13);color:var(--navy,#0f2035)}
+#top-bar .qf-menu-link[aria-current="page"],#top-bar .qf-menu-link.active{font-weight:700;color:var(--navy,#0f2035);background:rgba(201,168,76,.10)}
+#top-bar .qf-menu-top:focus-visible,#top-bar .qf-menu-link:focus-visible,.qf-menu-burger:focus-visible{outline:2px solid rgba(201,168,76,.7);outline-offset:-3px}
+.qf-menu-burger{display:none}
+@media(max-width:699px){
+  #top-bar nav.qf-menu{display:none}#top-bar nav.qf-menu.open{display:block}
+  .site-brand{padding-right:96px!important}
+  .qf-menu-burger{display:inline-flex;align-items:center;gap:7px;position:absolute;top:-41px;right:58px;height:34px;padding:0 12px;border:1px solid rgba(15,32,53,.14);border-radius:8px;background:#fff;color:var(--navy,#0f2035);font:600 13px 'DM Sans',sans-serif;cursor:pointer}
+  .qf-menu-burger::before{content:'';width:14px;height:10px;background:linear-gradient(currentColor 0 0) top/100% 2px no-repeat,linear-gradient(currentColor 0 0) center/100% 2px no-repeat,linear-gradient(currentColor 0 0) bottom/100% 2px no-repeat}
+  #top-bar .site-nav-viewport{border-top:0}
+  .qf-menu{display:none;max-height:calc(100vh - 56px);overflow:auto;border-top:1px solid rgba(15,32,53,.08)}
+  .qf-menu.open{display:block}
+  .qf-menu-list{display:block;padding:6px 12px 12px}
+  .qf-menu-list>li{border-bottom:1px solid rgba(15,32,53,.06)}
+  #top-bar .qf-menu-top{display:block;width:100%;text-align:left;padding:14px 6px;font-size:15px}
+  #top-bar .qf-menu-top::after{display:none}
+  .qf-menu-sub{position:static;box-shadow:none;border:0;padding:0 0 8px 8px;min-width:0}
+  #top-bar .qf-menu-link{font-size:14.5px;padding:11px 10px;white-space:normal}
+}
+html[data-theme="dark"] .qf-menu-sub,html[data-theme="dark"] .qf-menu-burger{background:#142233;border-color:rgba(180,199,218,.14);color:#e6eef6}
+html[data-theme="dark"] #top-bar .qf-menu-link{color:#c4d2df}
+html[data-theme="dark"] #top-bar .qf-menu-top{color:#8fa5ba}
+html[data-theme="dark"] #top-bar .qf-menu-top.active,html[data-theme="dark"] #top-bar .qf-menu-top[aria-expanded="true"],html[data-theme="dark"] #top-bar .qf-menu-link:hover,html[data-theme="dark"] #top-bar .qf-menu-link[aria-current="page"]{color:#f2f6fa}
