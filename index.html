@@ -411,7 +411,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuenta-meta-row{display:flex;gap:6px;flex-wrap:wrap}
 .cuenta-chip{font-size:10px;padding:5px 8px;border-radius:999px;background:#f7f9fc;color:var(--navy2);border:1px solid #e1e7ef;white-space:nowrap;font-weight:600}
 .cuenta-detail{font-size:12px;line-height:1.55;color:#4f6985;white-space:normal;word-wrap:break-word;padding-left:2px}
-.cuenta-chip.fgd-es,.cuenta-chip.fgd-fr,.cuenta-chip.fgd-de{background:#f7f9fc;color:var(--navy2);border-color:#e1e7ef}
+.cuenta-chip.fgd-es,.cuenta-chip.fgd-fr,.cuenta-chip.fgd-de,.cuenta-chip.fgd-pt{background:#f7f9fc;color:var(--navy2);border-color:#e1e7ef}
 .cuenta-pros-cons{display:grid;grid-template-columns:1fr;gap:6px;margin-top:2px;padding-top:10px;border-top:1px solid #edf1f5;font-size:11px}
 .cuenta-pro,.cuenta-con{display:flex;align-items:flex-start;gap:7px;line-height:1.45;font-weight:500}
 .cuenta-pro{color:#2c7354}.cuenta-pro::before{content:"✓";font-weight:800;color:#2d8a5e}
@@ -1604,7 +1604,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261030b"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261030c"></script>
 <style>
 /* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
 :root{--focus-ring:#8b6a15}
@@ -2465,9 +2465,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       </select></div>
       <div class="field" style="grid-column:1/-1"><label for="au-antiguedad">Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
         <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
-        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 80&euro;/mes, sin condiciones</option>
-        <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana 80&euro;/mes solo si tu rendimiento neto anual no supera el SMI (17.094&euro;)</option>
-      </select></div>
+        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 88,64&euro;/mes</option>
+        <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana si rindes menos del SMI</option>
+      </select><p class="field-note" style="font-size:11px;line-height:1.45;margin:6px 0 0;color:var(--muted,#5a6b7d)">Tarifa plana: 80&euro;/mes + MEI = 88,64&euro;/mes (Seguridad Social). Solo si no estuviste de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya la disfrutaste) y la pides al darte de alta. El segundo a&ntilde;o exige un rendimiento neto anual inferior al SMI (17.094&euro;) y pedirla antes de que empiece (LETA, art. 38 ter).</p></div>
     </div>
     <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
     <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se estima con el 20% general sobre el rendimiento neto acumulado; el IRPF real se calcula con las escalas progresivas estatal y auton&oacute;mica sobre tu rendimiento neto anual, como se liquida realmente al presentar la Renta. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
@@ -4267,7 +4267,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // [rendNetoMensualMax, baseMin, baseMax, label]
     [670,      653.59,  718.94,  'Tramo R1'],
     [900,      718.95,  900.00,  'Tramo R2'],
-    [1166.70,  849.67,  1166.70, 'Tramo R3'],
+    [1166.70,  849.67,  1166.70, 'Tramo R3', true], // R3: rendimiento < 1.166,70 € (estricto); 1.166,70 € ya es Tramo 1
     [1300,     950.98,  1300.00, 'Tramo 1'],
     [1500,     960.78,  1500.00, 'Tramo 2'],
     [1700,     960.78,  1700.00, 'Tramo 3'],
@@ -4285,13 +4285,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function getRetaTramo(rendNetoMensual){
     for (var i = 0; i < RETA_TRAMOS_2026.length; i++){
-      if (rendNetoMensual <= RETA_TRAMOS_2026[i][0]) return RETA_TRAMOS_2026[i];
+      // La Orden usa «≤» como límite superior salvo en R3 («< 1.166,70 €»), marcado con true
+      var t = RETA_TRAMOS_2026[i];
+      if (t[4] ? rendNetoMensual < t[0] : rendNetoMensual <= t[0]) return t;
     }
     return RETA_TRAMOS_2026[RETA_TRAMOS_2026.length - 1];
   }
 
   function calcCuotaReta(rendNetoMensual, tarifaPlana){
-    if (tarifaPlana) return { cuota: 80, tramo: null, base: null };
+    // Tarifa plana: 80 €/mes + MEI = 88,64 €/mes según la Seguridad Social (Import@ss)
+    if (tarifaPlana) return { cuota: 88.64, tramo: null, base: null };
     var t = getRetaTramo(Math.max(0, rendNetoMensual));
     var cuota = t[1] * RETA_TIPO;
     return { cuota: cuota, tramo: t[3], base: t[1] };
@@ -4314,7 +4317,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var SMI_ANUAL = 17094;
     var rendNetoAnualEstimado = rendNetoTrim * 4; // extrapolación simple del trimestre a un año
 
-    var tarifaPlanaAplica = (antiguedad === 'ano1') || (antiguedad === 'ano2' && rendNetoAnualEstimado <= SMI_ANUAL);
+    var tarifaPlanaAplica = (antiguedad === 'ano1') || (antiguedad === 'ano2' && rendNetoAnualEstimado < SMI_ANUAL);
     var reta = calcCuotaReta(rendNetoMensualReta, tarifaPlanaAplica);
     var retaTrimestral = reta.cuota * 3;
 
@@ -4351,9 +4354,10 @@ document.addEventListener('DOMContentLoaded', function(){
     if (tarifaPlanaAplica) {
       var labelTarifa = antiguedad === 'ano1' ? 'Tarifa plana (primer a&ntilde;o)' : 'Tarifa plana (segundo a&ntilde;o, bajo el SMI)';
       html += rr(labelTarifa, fmtEUR(reta.cuota) + '/mes', 'g');
+      html += '<div style="grid-column:1/-1;font-size:11px;color:var(--muted,#5a6b7d);margin-bottom:6px">80&euro;/mes de cuota reducida + MEI = 88,64&euro;/mes (Seguridad Social, Import@ss). Requisitos: no haber estado de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya disfrutaste la tarifa plana) y solicitarla al darte de alta; el segundo a&ntilde;o exige un rendimiento neto inferior al SMI (LETA, art. 38 ter).</div>';
     } else {
       if (antiguedad === 'ano2') {
-        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado supera el SMI (17.094&euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
+        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado no es inferior al SMI (17.094&euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
       }
       html += rr('Tu tramo estimado', reta.tramo, 'g') +
         rr('Cuota mensual (base m&iacute;nima del tramo)', fmtEUR(reta.cuota), 'g');
@@ -5619,7 +5623,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
         +'<div class="ref-info">'
           +'<h3>'+f.nombre+'</h3>'
           +'<p>'+f.gestora+'</p>'
-          +(f.cat !== 'roboadvisor' ? '<p class="ref-meta"><span class="ql-isin">ISIN: '+f.isin+'</span></p>' : '')
+          +(f.cat !== 'roboadvisor' ? '<p class="ref-meta"><span class="ql-isin">'+(f.tipo === 'PP' ? 'C&oacute;digo DGS: ' : 'ISIN: ')+f.isin+'</span></p>' : '')
           +(helperChips ? '<div class="ql-helper-row">'+helperChips+'</div>' : '')
           +myiHtml
         +'</div>'
@@ -6716,7 +6720,7 @@ html[data-theme="dark"] .voto-leader-badge{color:#d8bc68!important;background:rg
 html[data-theme="dark"] .cuenta-ref{color:#d8bc68!important;background:rgba(201,168,76,.08)!important;border-color:rgba(201,168,76,.30)!important}
 
 html[data-theme="dark"] .cuenta-top,html[data-theme="dark"] .cuenta-pros-cons{border-color:#30465a}
-html[data-theme="dark"] .cuenta-chip,html[data-theme="dark"] .cuenta-chip.fgd-es,html[data-theme="dark"] .cuenta-chip.fgd-fr,html[data-theme="dark"] .cuenta-chip.fgd-de,
+html[data-theme="dark"] .cuenta-chip,html[data-theme="dark"] .cuenta-chip.fgd-es,html[data-theme="dark"] .cuenta-chip.fgd-fr,html[data-theme="dark"] .cuenta-chip.fgd-de,html[data-theme="dark"] .cuenta-chip.fgd-pt,
 html[data-theme="dark"] .cuentas-badge{background:#1c2c40;border-color:#3a5065;color:#b9cad9}
 html[data-theme="dark"] .cuenta-pro{color:#76b999}
 html[data-theme="dark"] .cuenta-con{color:#d29a7a}
