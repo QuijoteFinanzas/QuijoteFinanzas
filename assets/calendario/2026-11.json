@@ -1,0 +1,172 @@
+[
+  {
+    "fecha": "2026-11-02",
+    "hora": "17:35",
+    "categoria": "Resultados",
+    "titulo": "Grifols: resultados 3T 2026",
+    "descripcion": "Publicación de resultados del 3T 2026; webcast a las 18:30.",
+    "fuente_url": "https://www.grifols.com/en/quarterly-reports",
+    "verificado": true,
+    "por_que_importa": "Empresa del IBEX 35; afecta a fondos e indexados con exposición a la bolsa española."
+  },
+  {
+    "fecha": "2026-11-02",
+    "hora": "",
+    "categoria": "Fiscalidad",
+    "titulo": "AEAT: último día para domiciliar el 2º plazo de la Renta 2025",
+    "descripcion": "Solo si se domicilió el primer plazo (60%); el 2º plazo puede domiciliarse hasta el 2/11 inclusive.",
+    "fuente_url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c01-campana-declaracion-renta/pago-deuda-tributaria-irpf/modalidades-ingreso-pago/domiciliacion-bancaria.html",
+    "verificado": true,
+    "por_que_importa": "Quien fraccionó la Renta y quiere pagar el 40% por domiciliación tiene hasta este día."
+  },
+  {
+    "fecha": "2026-11-03",
+    "hora": "",
+    "categoria": "Euríbor",
+    "titulo": "Banco de España: Euríbor oficial de octubre 2026",
+    "descripcion": "Difusión estadística de la media mensual de octubre. Se publica en el BOE después (fecha del BOE pendiente de confirmar; en octubre se publicó el día 2, el siguiente al de la difusión). La prensa da un cierre de octubre del 3,239% (dato no oficial hasta el BOE).",
+    "fuente_url": "https://www.bde.es/webbe/en/estadisticas/calendario/calendario-difusion-estadisticas.html",
+    "verificado": true,
+    "por_que_importa": "Es la referencia para revisar las hipotecas variables; la cuota sube o baja según la diferencia con el euríbor de hace 6 o 12 meses."
+  },
+  {
+    "fecha": "2026-11-04",
+    "hora": "",
+    "categoria": "Euríbor",
+    "titulo": "BOE: Euríbor oficial de octubre (pendiente de confirmar)",
+    "descripcion": "Pendiente de confirmar: la fecha del BOE no viene en ningún calendario oficial. Lo previsible es que salga el día siguiente a la difusión del Banco de España, como en octubre (difusión el 1/10, BOE del 2/10).",
+    "fuente_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-20519",
+    "verificado": false,
+    "por_que_importa": "El índice es oficial para las hipotecas desde que se publica en el BOE."
+  },
+  {
+    "fecha": "2026-11-05",
+    "hora": "",
+    "categoria": "Fiscalidad",
+    "titulo": "AEAT: fin del plazo del 2º pago de la Renta 2025 (modelo 102)",
+    "descripcion": "Ingreso del 40% restante si se fraccionó el pago (60/40). Las domiciliaciones del 2º plazo se cargan este día.",
+    "fuente_url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/noviembre/hasta-5-noviembre.html",
+    "verificado": true,
+    "por_que_importa": "Conviene tener el saldo en la cuenta de cargo; no pagar a tiempo conlleva recargos."
+  },
+  {
+    "fecha": "2026-11-05",
+    "hora": "18:30",
+    "categoria": "Resultados",
+    "titulo": "Cellnex: resultados 3T 2026",
+    "descripcion": "Conferencia de resultados del 3T 2026 a las 18:30 (la web lo marca como CEST; en noviembre la hora de Madrid es CET).",
+    "fuente_url": "https://www.cellnex.com/investor-relations/",
+    "verificado": true,
+    "por_que_importa": "Empresa del IBEX 35."
+  },
+  {
+    "fecha": "2026-11-06",
+    "hora": "09:30",
+    "categoria": "Resultados",
+    "titulo": "IAG: resultados 3T 2026",
+    "descripcion": "Publicación de resultados del periodo cerrado a 30/09; presentación a las 9:30 (hora de Madrid), según la comunicación a la CNMV del 14/10.",
+    "fuente_url": "https://www.iairgroup.com/es/inversores-y-accionistas/calendario-financiero/",
+    "verificado": true,
+    "por_que_importa": "Empresa del IBEX 35."
+  },
+  {
+    "fecha": "2026-11-12",
+    "hora": "10:00",
+    "categoria": "Resultados",
+    "titulo": "Telefónica: resultados enero-septiembre 2026",
+    "descripcion": "Publicación antes de la apertura del mercado; multiconferencia a las 10:00.",
+    "fuente_url": "https://www.telefonica.com/es/accionistas-inversores/calendario/",
+    "verificado": true,
+    "por_que_importa": "Empresa del IBEX 35 seguida por muchos inversores por dividendo."
+  },
+  {
+    "fecha": "2026-11-13",
+    "hora": "09:00",
+    "categoria": "IPC",
+    "titulo": "INE: IPC definitivo de octubre 2026 (e IPCA)",
+    "descripcion": "Dato final del IPC de octubre (el adelantado del 30/10 dio un 4,9% general y un 3,1% subyacente). El mismo día se publica el Índice de Referencia de Alquiler de Vivienda.",
+    "fuente_url": "https://www.ine.es/dynt3/Calendario/calenHTML.htm?L=1",
+    "verificado": true,
+    "por_que_importa": "Confirma la inflación con la que se compara la rentabilidad real de cuentas y depósitos."
+  },
+  {
+    "fecha": "2026-11-17",
+    "hora": "15:00",
+    "categoria": "Resultados",
+    "titulo": "Home Depot: resultados 3T 2026",
+    "descripcion": "Earnings release a las 9:00 ET (15:00 en Madrid). Gran empresa del S&P 500.",
+    "fuente_url": "https://ir.homedepot.com/events-and-presentations",
+    "verificado": true,
+    "por_que_importa": "Termómetro del consumo y del sector de la vivienda en EE. UU.; afecta a los indexados del S&P 500."
+  },
+  {
+    "fecha": "2026-11-17",
+    "hora": "22:20",
+    "categoria": "Resultados",
+    "titulo": "Nvidia: resultados 3T del ejercicio fiscal 2027",
+    "descripcion": "Resultados hacia las 13:20 PT (22:20 en Madrid); conferencia a las 14:00 PT (23:00 en Madrid).",
+    "fuente_url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx",
+    "verificado": true,
+    "por_que_importa": "Una de las mayores empresas del S&P 500 por capitalización: su resultado mueve los indexados y los ETF globales."
+  },
+  {
+    "fecha": "2026-11-19",
+    "hora": "13:00",
+    "categoria": "Resultados",
+    "titulo": "Walmart: resultados 3T del ejercicio fiscal 2027",
+    "descripcion": "Materiales hacia las 6:00 CT (13:00 en Madrid); conferencia a las 7:00 CT (14:00 en Madrid).",
+    "fuente_url": "https://corporate.walmart.com/news/events/fy2027-q3-earnings-release",
+    "verificado": true,
+    "por_que_importa": "Referencia del consumo en EE. UU.; empresa del S&P 500."
+  },
+  {
+    "fecha": "2026-11-20",
+    "hora": "",
+    "categoria": "Fiscalidad",
+    "titulo": "AEAT: retenciones de octubre (solo grandes empresas)",
+    "descripcion": "Modelos 111, 115, 123 y otros del mes de octubre, solo para grandes empresas. No afecta a la mayoría de particulares y autónomos (estos declaran por trimestres: el próximo plazo es en enero).",
+    "fuente_url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/noviembre/hasta-20-noviembre.html",
+    "verificado": true,
+    "por_que_importa": "Informativo: en noviembre no hay pagos trimestrales para autónomos."
+  },
+  {
+    "fecha": "2026-11-25",
+    "hora": "",
+    "categoria": "BCE",
+    "titulo": "BCE: reunión no monetaria del Consejo de Gobierno (Fráncfort)",
+    "descripcion": "No es una reunión de política monetaria: no hay decisión de tipos. La próxima reunión de tipos es el 16-17/12, con rueda de prensa el 17/12.",
+    "fuente_url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html",
+    "verificado": true,
+    "por_que_importa": "Los tipos del BCE (facilidad de depósito al 2,50%) no cambian en noviembre."
+  },
+  {
+    "fecha": "2026-11-26",
+    "hora": "",
+    "categoria": "BCE",
+    "titulo": "BCE: reunión del Consejo General (Fráncfort)",
+    "descripcion": "Reunión del Consejo General del BCE; sin decisión de tipos.",
+    "fuente_url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html",
+    "verificado": true,
+    "por_que_importa": "Informativo, sin efecto directo sobre los tipos."
+  },
+  {
+    "fecha": "2026-11-27",
+    "hora": "09:00",
+    "categoria": "IPC",
+    "titulo": "INE: IPC adelantado de noviembre 2026 (e IPCA)",
+    "descripcion": "Indicador adelantado del IPC de noviembre. El definitivo sale el 15/12.",
+    "fuente_url": "https://www.ine.es/dynt3/Calendario/calenHTML.htm?L=1",
+    "verificado": true,
+    "por_que_importa": "Con este dato están ya las 12 tasas que se usan para revalorizar las pensiones de 2027 (dato a confirmar con el definitivo del 15/12)."
+  },
+  {
+    "fecha": "2026-11-30",
+    "hora": "",
+    "categoria": "Fiscalidad",
+    "titulo": "AEAT: IVA de octubre, modelo 303 (solo declarantes mensuales)",
+    "descripcion": "Autoliquidación mensual del IVA de octubre (modelo 303), solo para quienes están inscritos en el registro de devolución mensual o en el SII. También es el último día para inscribirse o darse de baja en ese registro (modelo 036).",
+    "fuente_url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/noviembre/hasta-30-noviembre.html",
+    "verificado": true,
+    "por_que_importa": "La mayoría de autónomos presenta el IVA por trimestres, así que no les afecta."
+  }
+]
