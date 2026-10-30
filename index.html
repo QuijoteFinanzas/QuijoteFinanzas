@@ -3920,7 +3920,7 @@ document.addEventListener('DOMContentLoaded', function(){
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#6a8aaa',font:{size:11}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)',maxTicksLimit:10}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}}}}}});
   };
 
-  // ── Helper inflación// ── Helper inflación ─────────────────────────────────────────────────────
+  // ── Helper inflación ─────────────────────────────────────────────────────
   function getInfl(prefix) {
     var chk = document.getElementById(prefix+'-infl-check');
     if (!chk || !chk.checked) return 0;
@@ -3938,7 +3938,7 @@ document.addEventListener('DOMContentLoaded', function(){
       gastos:qfNum('jub-gastos'),
       edad:parseInt(document.getElementById('jub-edad').value)||35,
       infl:getInfl('jub')};
-    if(!(d.gastos>0)) d.error='Indica tus gastos mensuales en la jubilaci&oacute;n (mayor que 0 &euro;): el capital objetivo se calcula a partir de ellos.';
+    if(!(d.gastos>0)) d.error='Indica tus gastos mensuales en la jubilaci&oacute;n (mayor que 0&nbsp;&euro;): el capital objetivo se calcula a partir de ellos.';
     return d;
   };
   window.calcJubilacion = function() {
@@ -4335,7 +4335,7 @@ document.addEventListener('DOMContentLoaded', function(){
   };
   window.calcAlquiler = function() {
     var precio=parseFloat(document.getElementById('alq-precio').value)||0,pctG=parseFloat(document.getElementById('alq-gastos').value)||0,renta=parseFloat(document.getElementById('alq-renta').value)||0,gA=parseFloat(document.getElementById('alq-gastos-anuales').value)||0,vac=parseFloat(document.getElementById('alq-vacante').value)||0;
-    if(!(precio>0)) return qfInvalid('alq-results','Indica el precio de compra del inmueble (mayor que 0 &euro;): la rentabilidad se calcula sobre &eacute;l.','alq-precio');
+    if(!(precio>0)) return qfInvalid('alq-results','Indica el precio de compra del inmueble (mayor que 0&nbsp;&euro;): la rentabilidad se calcula sobre &eacute;l.','alq-precio');
     var inv=precio*(1+pctG/100),ingB=renta*12,ingE=renta*(12-vac),benN=ingE-gA;
     var rB=precio>0?ingB/precio*100:0,rN=inv>0?benN/inv*100:0,ptr=ingB>0?precio/ingB:0;
     document.getElementById('alq-results').innerHTML=rr('Inversión total (precio + gastos)',fmtEUR(inv))+rr('Ingresos brutos anuales',fmtEUR(ingB))+rr('Ingresos efectivos (con vacante)',fmtEUR(ingE),'g')+rr('Gastos anuales',fmtEUR(gA),'o')+rr('Beneficio neto anual',fmtEUR(benN),benN>=0?'g':'o')+rr('Rentabilidad bruta sobre precio',fmtPct(rB))+rr('Rentabilidad neta sobre inversión total',fmtPct(rN),rN>=0?'g':'o')+rr('Price-to-Rent ratio',ptr?Math.round(ptr*10)/10+'x':'—');
@@ -4622,7 +4622,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // Los años con 0 € (o negativo) no pueden entrar en el CAGR: se avisa en lugar de descartarlos en silencio.
   function cagrSkippedNote(rows){
     if(!rows.skipped || !rows.skipped.length) return '';
-    return '<div class="qf-invalid-note" role="note" style="font-size:12px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:10px">No se ha usado '+(rows.skipped.length>1?'los a&ntilde;os ':'el a&ntilde;o ')+rows.skipped.join(', ')+': con un valor de 0 &euro; o negativo no se puede calcular una tasa de crecimiento compuesto. El resultado usa solo los a&ntilde;os con valor positivo.</div>';
+    return '<div class="qf-invalid-note" role="note" style="font-size:12px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:10px">No se ha usado '+(rows.skipped.length>1?'los a&ntilde;os ':'el a&ntilde;o ')+rows.skipped.join(', ')+': con un valor de 0&nbsp;&euro; o negativo no se puede calcular una tasa de crecimiento compuesto. El resultado usa solo los a&ntilde;os con valor positivo.</div>';
   }
   function cagrResultsHTML(rows, unit){
     var sorted=rows.slice().sort(function(a,b){return a.year-b.year;}), completed=sorted.filter(function(r){return !r.ytd;}), base=completed.length>=2?completed:sorted;
