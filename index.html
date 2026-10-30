@@ -3867,7 +3867,13 @@ document.addEventListener('DOMContentLoaded', function(){
     var bruto=parseFloat(document.getElementById('ce-bruto').value)||0;
     var atRate=(parseFloat(document.getElementById('ce-at').value)||0)/100;
     var maxAnual=5101.20*12;
-    var base=Math.min(bruto,maxAnual);
+    if(!(bruto>0)) return qfInvalid('ce-results','Indica un salario bruto anual mayor que 0 &euro;.','ce-bruto');
+    // Base mínima: a jornada completa la base de cotización no puede ser inferior al SMI (tope mínimo, art. 19.2 LGSS,
+    // RDL 8/2015). SMI 2026 usado: 17.094 €/año (1.221 € × 14), cifra de la auditoría de Datos pendiente de su verificación.
+    // Con jornada parcial la base mínima es proporcional a las horas.
+    var SMI_ANUAL_2026=17094;
+    var bajoSMI=bruto<SMI_ANUAL_2026;
+    var base=Math.max(Math.min(bruto,maxAnual),SMI_ANUAL_2026);
     var tipoEmpresaBase=0.236+0.055+0.002+0.006+0.0075; // CC + desempleo indef. + FOGASA + formación + MEI
     var cotBase=base*(tipoEmpresaBase+atRate);
     var t1Max=(5611.32-5101.20)*12, t2Max=(7651.80-5611.32)*12;
@@ -3878,6 +3884,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('ce-results').innerHTML=
       rr('Tu salario bruto',fmtEUR(bruto))+
       rr('Base anual sujeta a cotización ordinaria',fmtEUR(base))+
+      (bajoSMI?'<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin:2px 0 6px">Tu bruto es inferior al SMI anual (17.094 &euro;). A jornada completa se cotiza como m&iacute;nimo por esa base, as&iacute; que la SS de la empresa se calcula sobre 17.094 &euro;. Si trabajas a jornada parcial, la base m&iacute;nima es proporcional a tus horas y el coste real ser&aacute; menor: este c&aacute;lculo supone jornada completa.</div>':'')+
       rr('SS a cargo empresa (base + AT/EP)',fmtEUR(cotBase),'o')+
       (solidaridad>0?rr('Cuota adicional de solidaridad',fmtEUR(solidaridad),'o'):'')+
       rr('Coste total anual',fmtEUR(costeTotal),'g')+
