@@ -2071,12 +2071,12 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <button type="button" class="cat-btn" data-tab="nomina" onclick="setCuentasTab('nomina');return false;">Cuentas nómina</button>
     <button type="button" class="cat-btn" data-tab="dep-sin" onclick="setCuentasTab('dep-sin');return false;">Depósitos sin condiciones</button>
     <button type="button" class="cat-btn" data-tab="dep-con" onclick="setCuentasTab('dep-con');return false;">Depósitos con condiciones</button>
-    <button type="button" class="cat-btn" data-tab="promo" onclick="setCuentasTab('promo');return false;">🎁 Promociones bancarias</button>
+    <button type="button" class="cat-btn" data-tab="promo" onclick="setCuentasTab('promo');return false;">Promociones bancarias</button>
   </div>
 
   <details class="cuentas-changelog">
     <summary>
-      <span class="cuentas-changelog-title"><span aria-hidden="true">✨</span><span>Qué ha cambiado en octubre</span></span>
+      <span class="cuentas-changelog-title"><span>Qué ha cambiado en octubre</span></span>
       <span class="cuentas-changelog-action"><span>Ver cambios</span></span>
     </summary>
     <div class="cuentas-changelog-body">
@@ -2380,8 +2380,8 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       <p class="em-sub">Introduce tu email para recibir acceso a QuijoExcel. Después de confirmar tu correo podrás abrir la plantilla.</p>
       <div style="text-align:left;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--silver2);line-height:1.8">
         <strong style="color:var(--cream);font-size:11px;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:8px">Lo que recibes</strong>
-        <div>📊 <strong>QuijoExcel</strong> — plantilla de finanzas personales</div>
-        <div>🧮 <strong>17 calculadoras gratuitas</strong> — salario, vivienda, ahorro e inversión</div>
+        <div><strong>QuijoExcel</strong> — plantilla de finanzas personales</div>
+        <div><strong>17 calculadoras gratuitas</strong> — salario, vivienda, ahorro e inversión</div>
         <div>🏦 <strong>QuijoCuentas</strong> — comparativa mensual de cuentas y depósitos</div>
       </div>
       <form id="excel-kit-form" action="https://app.kit.com/forms/9947329/subscriptions" method="post" target="excel-submit-frame">
@@ -2542,7 +2542,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
 <div class="calc-overlay" id="modal-salario">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="salario" aria-label="Cerrar calculadora">×</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="salario" aria-label="Cerrar calculadora">×</button></div>
     <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">✓ Enlace copiado</span>
     <p class="subtitle">Calcula qué bruto aproximado necesitas para alcanzar un neto objetivo, diferenciando lo que entra en banco de tu neto fiscal anual.</p>
     <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
@@ -2566,7 +2566,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       <div class="results-panel" id="sal-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
     <div class="chart-wrap" id="sal-chart-wrap" style="display:none"><h4>Desglose fiscal estimado</h4><div class="chart-container"><canvas id="sal-chart"></canvas></div></div>
-    <div class="calc-cta" id="sal-cta" style="display:none"><div><p><strong>💡 Bruto, retención y cuota final no son lo mismo.</strong> Si tienes 14 pagas, la paga extraordinaria puede ser mayor que una paga ordinaria porque la cotización se soporta a través de las bases mensuales ordinarias.</p></div></div>
+    <div class="calc-cta" id="sal-cta" style="display:none"><div><p><strong>Bruto, retención y cuota final no son lo mismo.</strong> Si tienes 14 pagas, la paga extraordinaria puede ser mayor que una paga ordinaria porque la cotización se soporta a través de las bases mensuales ordinarias.</p></div></div>
     <div class="qf-brand-signature">quijotefinanzas.com</div>
   </div>
 </div>
@@ -6213,8 +6213,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if(id==='jubilacion'){
       var a=parseFloat(document.getElementById('jub-actual').value)||0,ap=parseFloat(document.getElementById('jub-aport').value)||0,rr=parseFloat(document.getElementById('jub-rent').value)||0,g=parseFloat(document.getElementById('jub-gastos').value)||0,e=parseInt(document.getElementById('jub-edad').value)||35;
       var infl=(document.getElementById('jub-infl-check')&&document.getElementById('jub-infl-check').checked)?((parseFloat(document.getElementById('jub-infl-val').value)||0)/100):0;var y=yearsToFire(a,ap,rr,g,infl);
-      if(y>=80) return '🔥 Con estos supuestos, mi objetivo FIRE queda fuera del horizonte de 80 años. Probar escenarios cambia mucho el resultado. Calcula el tuyo en QuijoteFinanzas:';
-      return '🔥 Con este escenario, mi objetivo FIRE se situaría alrededor de los '+(e+y)+' años. Puedes probar el tuyo en QuijoteFinanzas:';
+      if(y>=80) return 'Con estos supuestos, mi objetivo FIRE queda fuera del horizonte de 80 años. Probar escenarios cambia mucho el resultado. Calcula el tuyo en QuijoteFinanzas:';
+      return 'Con este escenario, mi objetivo FIRE se situaría alrededor de los '+(e+y)+' años. Puedes probar el tuyo en QuijoteFinanzas:';
     }
     if(id==='tiempo'){
       var p=parseFloat(document.getElementById('t-patrimonio').value)||0,e2=parseInt(document.getElementById('t-edad').value)||30,ap2=parseFloat(document.getElementById('t-aport').value)||0,rr2=parseFloat(document.getElementById('t-rent').value)||0,o=parseInt(document.getElementById('t-objetivo').value)||65;
@@ -6495,9 +6495,9 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function calcTitle(id){var modal=document.getElementById('modal-'+id),h=modal&&modal.querySelector('h2');return h?h.textContent.trim().replace(/^[^A-Za-zÁÉÍÓÚÜÑ¿]+/,''):'Calculadora';}
   function shareText(id){
     var cfg=heroConfig[id];var hero=document.querySelector('[data-qf-hero="'+id+'"]'),main=document.getElementById('qf-'+id+'-main'),eye=document.getElementById('qf-'+id+'-eyebrow');
-    if(cfg&&cfg.private)return '🧮 He probado la calculadora de '+calcTitle(id)+' en QuijoteFinanzas. Puedes calcular tu propio escenario aquí:';
-    if(main&&hero&&hero.dataset.state==='ready')return '🧮 '+calcTitle(id)+': '+(eye?eye.textContent.trim()+' ':'')+main.textContent.trim()+'. Prueba tu escenario en QuijoteFinanzas:';
-    return '🧮 Prueba la calculadora de '+calcTitle(id)+' en QuijoteFinanzas:';
+    if(cfg&&cfg.private)return 'He probado la calculadora de '+calcTitle(id)+' en QuijoteFinanzas. Puedes calcular tu propio escenario aquí:';
+    if(main&&hero&&hero.dataset.state==='ready')return ''+calcTitle(id)+': '+(eye?eye.textContent.trim()+' ':'')+main.textContent.trim()+'. Prueba tu escenario en QuijoteFinanzas:';
+    return 'Prueba la calculadora de '+calcTitle(id)+' en QuijoteFinanzas:';
   }
   function openShare(id){var url=location.origin+location.pathname+'#calc-'+id,text=shareText(id),intent='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);try{qfTrack('calculator_share',{tool_name:id,share_method:'x'});}catch(e){}window.open(intent,'_blank','noopener,noreferrer,width=720,height=560');}
 
