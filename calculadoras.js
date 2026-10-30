@@ -229,11 +229,11 @@ window.ppUpdateFields = function(){
   if (tipo === 'autonomo') {
     brutoLabel.innerHTML = 'Rendimiento neto anual de la actividad (&euro;)';
     aportInput.max = 5750;
-    aportHelp.innerHTML = 'Límite individual: 1.500€/año. Hasta 5.750€ con Plan de Empleo Simplificado (PPES, máx. 4.250€ adicionales). Nunca supera el 30% de tu rendimiento neto.';
+    aportHelp.innerHTML = 'Límite individual: 1.500 €/año. Hasta 5.750 € con Plan de Empleo Simplificado (PPES, máx. 4.250 € adicionales). Nunca supera el 30% de tu rendimiento neto.';
   } else {
     brutoLabel.innerHTML = 'Salario bruto anual (&euro;)';
     aportInput.max = 10000;
-    aportHelp.innerHTML = 'Límite individual: 1.500€/año. Hasta 10.000€ si los 8.500€ adicionales proceden de contribuciones de tu empresa o de tus aportaciones al mismo plan de empleo (según el multiplicador del art. 52.1 LIRPF).';
+    aportHelp.innerHTML = 'Límite individual: 1.500 €/año. Hasta 10.000 € si los 8.500 € adicionales proceden de contribuciones de tu empresa o de tus aportaciones al mismo plan de empleo (según el multiplicador del art. 52.1 LIRPF).';
   }
 };
 
@@ -263,7 +263,7 @@ window.calcPension = function() {
   }
 
   document.getElementById('pp-results').innerHTML=
-    rr('Aportación anual al plan',fmtEUR(aport))+rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100€ aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
+    rr('Aportación anual al plan',fmtEUR(aport))+rr('Neto sin plan de pensiones',fmtEUR(ns))+rr('Neto con plan de pensiones',fmtEUR(nc),'g')+rr('Ahorro fiscal anual',fmtEUR(ahorro),'g')+rr('Coste real de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100 € aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
   document.getElementById('pp-chart-wrap').style.display='block';document.getElementById('pp-cta').style.display='flex';
   if(window._ppChart) window._ppChart.destroy();
   window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin plan','Con plan'],datasets:[{label:'Neto anual',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'#6a8aaa'},grid:{display:false}},y:{ticks:{color:'#6a8aaa',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.03)'}}}}});
@@ -315,7 +315,7 @@ window.calcPension = function() {
       rr('SS a cargo empresa (30,48%)',fmtEUR(ssEmpresa),'o')+
       rr('Coste total anual',fmtEUR(costeTotal),'g')+
       rr('Coste mensual',fmtEUR(costeTotal/12))+
-      rr('Coste por hora (~1.800h)',fmtEUR(costeTotal/1800))+
+      rr('Coste por hora (aprox. 1.800 h)',fmtEUR(costeTotal/1800))+
       rr('Multiplicador sobre tu bruto','x'+fmtNum(costeTotal/Math.max(bruto,1)),'g');
     document.getElementById('ce-chart-wrap').style.display='block';
     document.getElementById('ce-cta').style.display='flex';

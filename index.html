@@ -105,7 +105,7 @@
           "name": "¿Cuánto dinero necesito para jubilarme anticipadamente (FIRE)?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Según la regla del 4%, necesitas ahorrar 25 veces tus gastos anuales para poder retirarte. Con 2.000€/mes de gastos necesitarías 600.000€. Nuestra calculadora FIRE te muestra cuántos años tardarás en alcanzarlo según tu ahorro actual, aportación mensual y rentabilidad esperada."
+            "text": "Según la regla del 4%, necesitas ahorrar 25 veces tus gastos anuales para poder retirarte. Con 2.000 €/mes de gastos necesitarías 600.000 €. Nuestra calculadora FIRE te muestra cuántos años tardarás en alcanzarlo según tu ahorro actual, aportación mensual y rentabilidad esperada."
           }
         },
         {
@@ -113,7 +113,7 @@
           "name": "¿Cómo funciona el interés compuesto?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "El interés compuesto es el proceso por el que los intereses generados se reinvierten y a su vez generan nuevos intereses. A diferencia del interés simple, el capital crece de forma exponencial. Por ejemplo, 10.000€ invertidos al 7% anual se convierten en 19.671€ en 10 años y en 76.122€ en 30 años, sin añadir ni un euro más. El tiempo es la variable más determinante."
+            "text": "El interés compuesto es el proceso por el que los intereses generados se reinvierten y a su vez generan nuevos intereses. A diferencia del interés simple, el capital crece de forma exponencial. Por ejemplo, 10.000 € invertidos al 7% anual se convierten en 19.671 € en 10 años y en 76.122 € en 30 años, sin añadir ni un euro más. El tiempo es la variable más determinante."
           }
         },
         {
@@ -121,7 +121,7 @@
           "name": "¿Cuánto me cuesta realmente una hipoteca?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "El coste real de una hipoteca va más allá de la cuota mensual. Con un préstamo de 200.000€ a 30 años al 3,5% pagarás una cuota de unos 898€/mes, pero el total abonado al banco será de 323.280€, es decir, 123.280€ en intereses. Nuestra calculadora de hipoteca muestra cuota, total pagado e intereses totales, y permite comparar distintos escenarios de plazo y tipo."
+            "text": "El coste real de una hipoteca va más allá de la cuota mensual. Con un préstamo de 200.000 € a 30 años al 3,5% pagarás una cuota de unos 898 €/mes, pero el total abonado al banco será de 323.280 €, es decir, 123.280 € en intereses. Nuestra calculadora de hipoteca muestra cuota, total pagado e intereses totales, y permite comparar distintos escenarios de plazo y tipo."
           }
         },
         {
@@ -137,7 +137,7 @@
           "name": "¿Cuánto puedo deducir aportando a un plan de pensiones?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "En España puedes aportar hasta 1.500€/año a un plan de pensiones individual y deducirte esa cantidad de la base imponible del IRPF. Si tributas al 30%, una aportación de 1.500€ te devuelve 450€ en la declaración de la renta. El límite puede llegar a 10.000€ si tu empresa también aporta a un plan de empleo. Nuestra calculadora ofrece una estimación del ahorro fiscal según los supuestos introducidos y la comunidad autónoma."
+            "text": "En España puedes aportar hasta 1.500 €/año a un plan de pensiones individual y deducirte esa cantidad de la base imponible del IRPF. Si tributas al 30%, una aportación de 1.500 € te devuelve 450 € en la declaración de la renta. El límite puede llegar a 10.000 € si tu empresa también aporta a un plan de empleo. Nuestra calculadora ofrece una estimación del ahorro fiscal según los supuestos introducidos y la comunidad autónoma."
           }
         },
         {
@@ -168,6 +168,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/assets/formato.js?v=20261030"></script>
 <script>
 /* ── FASE 28 · Tema claro / oscuro: bootstrap sin flash ───────────── */
 (function(){
@@ -345,15 +346,12 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .calc-cta-links{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap}
 .cta-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--navy);border:1px solid #dde4ed;padding:6px 14px;border-radius:4px;text-decoration:none;transition:all .2s;background:#f4f6f9;white-space:nowrap}
 .cta-link:hover{border-color:var(--navy);background:#fff;color:var(--navy)}
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-@media(max-width:580px){.calc-grid{grid-template-columns:1fr}}
-/* El texto de la tarifa plana no debe ensanchar la ficha ni el iframe embebido */
-#modal-autonomos .calc-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-@media(max-width:580px){#modal-autonomos .calc-grid{grid-template-columns:minmax(0,1fr)}}
-#modal-autonomos .field{min-width:0}
+.calc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+@media(max-width:580px){.calc-grid{grid-template-columns:minmax(0,1fr)}.qf-cmp-grid{grid-template-columns:minmax(0,1fr)!important}}
+.field-group{display:flex;flex-direction:column;gap:12px;min-width:0}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field input,.field select{max-width:100%;min-width:0}
 #modal-autonomos .field select,#modal-autonomos .field input{width:0;min-width:100%;max-width:100%}
-.field-group{display:flex;flex-direction:column;gap:12px}
-.field{display:flex;flex-direction:column;gap:5px}
 .field label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);font-weight:600;opacity:.7}
 .field input,.field select{background:#f8f9fb;border:1px solid #dde4ed;color:var(--navy);font-family:'DM Sans',sans-serif;font-size:14px;padding:10px 14px;border-radius:6px;outline:none;transition:border-color .2s;-webkit-appearance:none}
 .field input:focus,.field select:focus{border-color:var(--navy);box-shadow:0 0 0 2px rgba(15,32,53,.08)}
@@ -2240,9 +2238,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <div class="referidos-list" id="refList">
       <a class="ref-card" href="https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing?P5=CN&P2=MGMG5YN9BD5QH" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=bankinter.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">B</span></div>
-        <div class="ref-info"><h3>Bankinter</h3><p>Cuenta bancaria de alta remuneraci&oacute;n &middot; c&oacute;digo: MGMG5YN9BD5QH</p><p class="ref-meta">Promo &laquo;Bankinter en familia&raquo;: para familiares (padres, hijos, hermanos, abuelos o pareja) de clientes seleccionados &middot; 15.000&euro; en cuenta o inversi&oacute;n en 30 d&iacute;as y mantenerlos 6 meses</p></div>
+        <div class="ref-info"><h3>Bankinter</h3><p>Cuenta bancaria de alta remuneraci&oacute;n &middot; c&oacute;digo: MGMG5YN9BD5QH</p><p class="ref-meta">Promo &laquo;Bankinter en familia&raquo;: para familiares (padres, hijos, hermanos, abuelos o pareja) de clientes seleccionados &middot; 15.000 &euro; en cuenta o inversi&oacute;n en 30 d&iacute;as y mantenerlos 6 meses</p></div>
         <!-- Fuente: https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing (consultado 30/10/2026): 150 EUR para el nuevo cliente; plazas limitadas (5.000 cuentas); fecha fin no indicada en la web. -->
-        <span class="ref-bonus">150&euro; bono</span>
+        <span class="ref-bonus">150 &euro; bono</span>
       </a>
       <a class="ref-card" href="https://esim.holafly.com/?sref_id=n9w1mer&utm_campaign=referral_program&utm_source=loyalty" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=holafly.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">H</span></div>
@@ -2252,12 +2250,12 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       <a class="ref-card" href="https://www.hsnstore.com/customer/account/create/referral/1690019/" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=hsnstore.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">H</span></div>
         <div class="ref-info"><h3>HSN</h3><p>Suplementaci&oacute;n deportiva y nutrici&oacute;n de calidad</p><p class="ref-meta">Descuento en tu primer pedido</p></div>
-        <span class="ref-bonus">5&euro; descuento</span>
+        <span class="ref-bonus">5 &euro; descuento</span>
       </a>
       <a class="ref-card" href="https://es.igraal.com/padrinazgo?padrino=AG_67a5df416b087" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=igraal.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
         <div class="ref-info"><h3>iGraal</h3><p>Cashback en compras online &mdash; ahorra en lo que ya gastas</p><p class="ref-meta">Cashback autom&aacute;tico en cientos de tiendas</p></div>
-        <span class="ref-bonus">3&euro; + cashback</span>
+        <span class="ref-bonus">3 &euro; + cashback</span>
       </a>
 <div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=ing.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
@@ -2267,12 +2265,12 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       <a class="ref-card" href="https://seguro.lineadirecta.com/fidelizacion-amigo?AMIGO00007570" data-cat="seguro" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge seguro">Seguro</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=lineadirecta.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">LD</span></div>
         <div class="ref-info"><h3>L&iacute;nea Directa</h3><p>Seguro de coche y moto &mdash; contrata usando mi enlace de recomendaci&oacute;n</p><p class="ref-meta">Descuento aplicado al contratar &middot; sin permanencia</p></div>
-        <span class="ref-bonus">30&euro; descuento</span>
+        <span class="ref-bonus">30 &euro; descuento</span>
       </a>
       <a class="ref-card" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" data-cat="inversion" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge inversion">Inversión</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=myinvestor.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">M</span></div>
         <div class="ref-info"><h3>MyInvestor</h3><p>Fondos indexados, ETFs y carteras automatizadas &middot; c&oacute;digo: xpKDn</p><p class="ref-meta">Bono al abrir cuenta y depositar</p></div>
-        <span class="ref-bonus">25&euro; bono</span>
+        <span class="ref-bonus">25 &euro; bono</span>
       </a>
       <div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=n26.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">N</span></div>
@@ -2282,17 +2280,17 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       <a class="ref-card" href="https://octopusenergy.es/referidos?referralCode=mellow-owl-104" data-cat="energia" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge energia">Energía</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=octopusenergy.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">OE</span></div>
         <div class="ref-info"><h3>Octopus Energy</h3><p>Compa&ntilde;&iacute;a de luz 100% renovable</p><p class="ref-meta">Bono aplicado al registrarte &middot; sin permanencia</p></div>
-        <span class="ref-bonus">50&euro; descuento</span>
+        <span class="ref-bonus">50 &euro; descuento</span>
       </a>
       <a class="ref-card" href="https://www.paypal.com/es/campaign/invite/terms?referral_context=006JFX5NokqilVpcfjeykEJgOVvCpujYmq0Lcc4zEiUeOJ-DwzaT_o9wfXDJQ4BA-InV6za-_J2SoxnoqGCEBfJUJc74XZZjMX3RNZ4W6lqN" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=paypal.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">P</span></div>
         <div class="ref-info"><h3>PayPal</h3><p>Plataforma de pagos &mdash; &uacute;til para compras internacionales</p><p class="ref-meta">Bono al registrarte y realizar tu primer pago</p></div>
-        <span class="ref-bonus">10&euro; bono</span>
+        <span class="ref-bonus">10 &euro; bono</span>
       </a>
       <a class="ref-card" href="https://es.privalia.com/gr/registration?mgmcode=892465E6" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=privalia.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">P</span></div>
         <div class="ref-info"><h3>Privalia</h3><p>Outlet de moda online con descuentos permanentes</p><p class="ref-meta">Descuento en tu primera compra</p></div>
-        <span class="ref-bonus">10&euro; primera cuenta</span>
+        <span class="ref-bonus">10 &euro; primera cuenta</span>
       </a>
       <div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=revolut.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">R</span></div>
@@ -2469,8 +2467,8 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
   <div class="test-modal">
     <div class="test-header">
       <button class="test-close" onclick="closeTest()" aria-label="Cerrar test">&#215;</button>
-      <h2>&#127919; &iquest;Cu&aacute;l es tu perfil inversor?</h2>
-      <p>10 preguntas &middot; ~3 minutos &middot; Sin registro</p>
+      <h2>&iquest;Cu&aacute;l es tu perfil inversor?</h2>
+      <p>10 preguntas &middot; unos 3 minutos &middot; Sin registro</p>
       <div class="test-progress-bar" style="margin-top:14px;border-radius:2px">
         <div class="test-progress-fill" id="test-progress" style="width:0%"></div>
       </div>
@@ -2484,7 +2482,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <div class="calc-overlay" id="modal-autonomos">
   <div class="calc-modal" style="max-width:680px">
     <div class="modal-header">
-      <div class="modal-header-left"><h2>&#128188; Simulador para aut&oacute;nomos</h2></div>
+      <div class="modal-header-left"><h2>Simulador para aut&oacute;nomos</h2></div>
       <div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
       <button class="calc-close" data-close="autonomos" aria-label="Cerrar calculadora">&#215;</button>
     </div>
@@ -2525,9 +2523,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       </select></div>
       <div class="field" style="grid-column:1/-1"><label for="au-antiguedad">Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
         <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
-        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 88,64&euro;/mes</option>
+        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 88,64 &euro;/mes</option>
         <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana si rindes menos del SMI</option>
-      </select><p class="field-note" style="font-size:11px;line-height:1.45;margin:6px 0 0;color:var(--muted,#5a6b7d)">Tarifa plana: 80&euro;/mes + MEI = 88,64&euro;/mes (Seguridad Social). Solo si no estuviste de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya la disfrutaste) y la pides al darte de alta. El segundo a&ntilde;o exige un rendimiento neto anual inferior al SMI (17.094&euro;) y pedirla antes de que empiece (LETA, art. 38 ter).</p></div>
+      </select><p class="field-note" style="font-size:11px;line-height:1.45;margin:6px 0 0;color:var(--muted,#5a6b7d)">Tarifa plana: 80 &euro;/mes + MEI = 88,64 &euro;/mes (Seguridad Social). Solo si no estuviste de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya la disfrutaste) y la pides al darte de alta. El segundo a&ntilde;o exige un rendimiento neto anual inferior al SMI (17.094 &euro;) y pedirla antes de que empiece (LETA, art. 38 ter).</p></div>
     </div>
     <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
     <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se estima con el 20% general sobre el rendimiento neto acumulado; el IRPF real se calcula con las escalas progresivas estatal y auton&oacute;mica sobre tu rendimiento neto anual, como se liquida realmente al presentar la Renta. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
@@ -2553,7 +2551,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODALES -->
 <div class="calc-overlay qf-calc2" id="modal-interes">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128260; Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="interes" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="interes" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="interes"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-interes">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula c&oacute;mo crece tu inversi&oacute;n con el tiempo gracias al inter&eacute;s compuesto.</p>
     <div class="qf-live-badge">Resultado en tiempo real</div>
@@ -2572,7 +2570,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label for="ic-capital">Capital inicial (&euro;)</label><input type="number" id="ic-capital" value="10000" min="0"></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-aportacion">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0€</span><span>2.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-aportacion">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0 €</span><span>2.000 €+</span></div></div>
         <div class="qf-range-field"><div class="qf-range-head"><label for="ic-rent">Rentabilidad anual (%)</label><div class="qf-range-value"><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"><span>%</span></div></div><input aria-label="Rentabilidad anual (%)" class="qf-range" type="range" data-sync-to="ic-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
         <div class="qf-range-field"><div class="qf-range-head"><label for="ic-anos">A&ntilde;os de inversi&oacute;n</label><div class="qf-range-value"><input type="number" id="ic-anos" value="20" min="1" max="60" step="1"><span>años</span></div></div><input aria-label="Años de inversión" class="qf-range" type="range" data-sync-to="ic-anos" min="1" max="50" step="1" value="20"><div class="qf-range-scale"><span>1</span><span>50</span></div></div>
   <div class="infl-toggle" id="ic-infl-wrap">
@@ -2615,7 +2613,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <div class="field"><label for="sal-target-type">Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
         <div class="field"><label for="sal-neto" id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
         <div class="field"><label for="sal-birth">Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
-        <div class="field"><label for="sal-sit">Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+        <div class="field"><label for="sal-sit">Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
         <div class="field"><label for="sal-desc">Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
         <div class="field"><label for="sal-desc-share">Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
         <div class="field"><label for="sal-desc3">De ellos, menores de 3 años</label><input type="number" id="sal-desc3" value="0" min="0" max="12"></div>
@@ -2636,7 +2634,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
 <div class="calc-overlay" id="modal-hipoteca">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127968; Cuota Hipotecaria</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="hipoteca" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Cuota Hipotecaria</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="hipoteca" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="hipoteca"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-hipoteca">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula tu cuota mensual, total pagado e intereses de tu hipoteca.</p>
     <div class="calc-grid">
@@ -2666,7 +2664,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
 <div class="calc-overlay" id="modal-coste">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128188; Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="coste" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="coste" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="coste"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-coste">&#10003; Enlace copiado</span>
     <p class="subtitle">Estima el coste laboral directo para la empresa: bruto, cotizaciones patronales y solidaridad cuando corresponda.</p><p class="disclaimer">Estimación para contrato indefinido en 2026. La cotización por AT/EP depende de la actividad y puede cambiar el resultado; no incluye beneficios, formación, equipos, absentismo ni otros costes empresariales.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> cotizaciones empresariales y tope de base según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), normas de cotización a la Seguridad Social 2026 (tope máximo 5.101,20&nbsp;&euro;/mes). Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
@@ -2696,7 +2694,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: INFLACIÓN -->
 <div class="calc-overlay" id="modal-inflacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128201; Inflaci&oacute;n: Valor Futuro</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="inflacion" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Inflaci&oacute;n: Valor Futuro</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="inflacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="inflacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-inflacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Descubre cu&aacute;nto valdr&aacute; tu dinero en el futuro con la inflaci&oacute;n, y cu&aacute;nto necesitas invertir para mantener tu poder adquisitivo.</p>
     <div class="calc-grid">
@@ -2727,7 +2725,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: JUBILACIÓN / FIRE -->
 <div class="calc-overlay qf-calc2" id="modal-jubilacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="jubilacion" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Ahorro Jubilaci&oacute;n / FIRE</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="jubilacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="jubilacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-jubilacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cu&aacute;nto necesitas ahorrar para jubilarte o alcanzar la independencia financiera (FIRE). Basado en la regla del 4%.</p>
     <div class="qf-live-badge">Resultado en tiempo real</div>
@@ -2746,9 +2744,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label for="jub-actual">Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0 €</span><span>3.000 €+</span></div></div>
         <div class="qf-range-field"><div class="qf-range-head"><label for="jub-rent">Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"><span>%</span></div></div><input aria-label="Rentabilidad anual estimada (%)" class="qf-range" type="range" data-sync-to="jub-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-gastos">Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input aria-label="Gastos mensuales en la retirada (€)" class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500€</span><span>6.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-gastos">Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input aria-label="Gastos mensuales en la retirada (€)" class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500 €</span><span>6.000 €+</span></div></div>
         <div class="qf-range-field"><div class="qf-range-head"><label for="jub-edad">Edad actual</label><div class="qf-range-value"><input type="number" id="jub-edad" value="35" min="18" max="70" step="1"><span>años</span></div></div><input aria-label="Edad actual" class="qf-range" type="range" data-sync-to="jub-edad" min="18" max="70" step="1" value="35"><div class="qf-range-scale"><span>18</span><span>70</span></div></div>
   <div class="infl-toggle" id="jub-infl-wrap">
       <input type="checkbox" id="jub-infl-check" onchange="document.getElementById('jub-infl-wrap').classList.toggle('active',this.checked)">
@@ -2781,7 +2779,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: DEPÓSITO A PLAZO FIJO -->
 <div class="calc-overlay" id="modal-deposito">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="deposito" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="deposito" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="deposito"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-deposito">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula los intereses brutos y el importe tras la retención a cuenta del 19% para un depósito simple.</p><p class="disclaimer">Supone TIN simple y pago de intereses al vencimiento. El 19% es una retención/pago a cuenta: la tributación final del ahorro depende de tu declaración y del conjunto de rendimientos.</p>
     <p class="disclaimer"><strong>Fiscalidad:</strong> el 19% que se aplica en el c&aacute;lculo es solo la retenci&oacute;n a cuenta que practica el banco. Los intereses tributan despu&eacute;s en la declaraci&oacute;n anual de IRPF, en la base del ahorro, con la escala 2026: 19% hasta 6.000&nbsp;&euro;, 21% de 6.000 a 50.000&nbsp;&euro;, 23% de 50.000 a 200.000&nbsp;&euro;, 27% de 200.000 a 300.000&nbsp;&euro; y 30% a partir de 300.000&nbsp;&euro;. Seg&uacute;n tus otros rendimientos del ahorro, el resultado final puede ser una cuota a pagar o a devolver.</p>
@@ -2821,7 +2819,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: FISCAL 2026 -->
 <div class="calc-overlay" id="modal-irpf">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="irpf" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="irpf" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
     <p class="subtitle">Separa nómina, pensión, retención del pagador y cuota anual estimada de IRPF. Incluye el año de transición trabajo → jubilación.</p>
     <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
@@ -2831,7 +2829,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
         <div id="fiscal-common">
           <div class="field"><label for="irpf-birth">Año de nacimiento</label><input type="number" id="irpf-birth" value="1985" min="1920" max="2010"></div>
-          <div class="field"><label for="irpf-sit">Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+          <div class="field"><label for="irpf-sit">Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
           <div class="field"><label for="irpf-desc">Descendientes fiscalmente computables</label><input type="number" id="irpf-desc" value="0" min="0" max="12"></div>
           <div class="field"><label for="irpf-desc-share">Cómputo del mínimo por descendientes</label><select id="irpf-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Si tienes descendientes con porcentajes distintos, usa el modo como aproximación; la versión avanzada por descendiente se incorporará tras validar el motor.</span></div>
           <div class="field"><label for="irpf-desc3">De ellos, menores de 3 años</label><input type="number" id="irpf-desc3" value="0" min="0" max="12"></div>
@@ -2888,9 +2886,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: PLAN DE PENSIONES -->
 <div class="calc-overlay" id="modal-pension">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="pension" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Desgravaci&oacute;n Plan de Pensiones</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="pension" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="pension"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-pension">&#10003; Enlace copiado</span>
-    <p class="subtitle" id="pp-subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. Límite general individual: 1.500 €/año. Para autónomos se contempla, de forma separada, la posible ampliación mediante PPES.</p>
+    <p class="subtitle" id="pp-subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. Límite general individual: 1.500 €/año. Para autónomos se contempla, de forma separada, la posible ampliación mediante PPES.</p>
     <p class="disclaimer">Estimaci&oacute;n orientativa. El ahorro real depende de tu tipo marginal y CCAA. Consulta con un asesor fiscal.</p>
     <div class="calc-grid">
       <div class="field-group">
@@ -2899,7 +2897,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
           <option value="autonomo">Aut&oacute;nomo</option>
         </select></div>
         <div class="field"><label for="pp-bruto" id="pp-bruto-label">Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
-        <div class="field"><label for="pp-aport">Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="5750"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite general de aportación individual: 1.500€/año. Las aportaciones empresariales a planes de empleo tienen límites adicionales y no se modelan en esta calculadora.</span></div>
+        <div class="field"><label for="pp-aport">Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="5750"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite general de aportación individual: 1.500 €/año. Las aportaciones empresariales a planes de empleo tienen límites adicionales y no se modelan en esta calculadora.</span></div>
         <div class="field"><label for="pp-ccaa">Comunidad Aut&oacute;noma</label><select id="pp-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option>
           <option value="aragon">Arag&oacute;n</option>
@@ -2939,7 +2937,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: ALQUILER VS COMPRA -->
 <div class="calc-overlay" id="modal-alquilervs">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128273; Alquiler vs Compra</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquilervs" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Alquiler vs Compra</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquilervs" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="alquilervs"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquilervs">&#10003; Enlace copiado</span>
     <p class="subtitle">Compara el patrimonio final estimado al comprar frente a alquilar, incorporando hipoteca, revalorización, gastos y el coste de oportunidad del capital.</p><p class="disclaimer">Modelo orientativo: supone tipo hipotecario fijo, aportaciones/costes constantes según los campos y reinversión de las diferencias mensuales. No incluye fiscalidad individual, reformas extraordinarias ni incertidumbre de mercado.</p>
     <div class="calc-grid">
@@ -2978,7 +2976,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: AMORTIZACIÓN ANTICIPADA -->
 <div class="calc-overlay" id="modal-amortizacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#9889; Amortizaci&oacute;n Anticipada</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="amortizacion" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Amortizaci&oacute;n Anticipada</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="amortizacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="amortizacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-amortizacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cuánto podrías ahorrar en intereses y tiempo amortizando anticipadamente. Compara reducir cuota vs reducir plazo.</p><p class="disclaimer">Estimación con hipoteca a tipo fijo y sistema francés. No incluye posibles comisiones de amortización, compensaciones contractuales ni efectos fiscales.</p>
     <div class="calc-grid">
@@ -3010,7 +3008,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: ROI ALQUILER -->
 <div class="calc-overlay" id="modal-alquiler">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128202; ROI / Rentabilidad Alquiler</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquiler" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>ROI / Rentabilidad Alquiler</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquiler" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="alquiler"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquiler">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula la rentabilidad bruta sobre el precio y la rentabilidad neta sobre la inversión total, incluyendo gastos anuales y vacante.</p><p class="disclaimer">No incluye financiación, IRPF/IS, derramas, reformas extraordinarias, impagos ni revalorización del inmueble.</p>
     <div class="calc-grid">
@@ -3041,11 +3039,11 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: COMPARADOR DE OFERTAS -->
 <div class="calc-overlay" id="modal-comparador">
   <div class="calc-modal" style="max-width:820px">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#9878;&#65039; Comparador de ofertas</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="comparador" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Comparador de ofertas</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="comparador" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="comparador"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-comparador">&#10003; Enlace copiado</span>
     <p class="subtitle">Compara dos ofertas de trabajo de forma objetiva. M&aacute;s all&aacute; del bruto: neto real, teletrabajo, beneficios y coste de desplazamiento.</p>
     <p class="disclaimer">Estimación orientativa con el motor fiscal 2026 de la web. El bonus se valora por el incremento de neto estimado, no aplicando un tipo fijo. Los beneficios en especie y su fiscalidad real pueden variar.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="qf-cmp-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
       <!-- Oferta A -->
       <div class="field-group" role="group" aria-labelledby="cmp-a-title" style="border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:16px">
         <p id="cmp-a-title" style="font-family:'Playfair Display',serif;color:#c9a84c;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta A</p>
@@ -3053,7 +3051,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <div class="field"><label for="cmp-a-bonus">Bonus anual estimado (&euro;)</label><input type="number" id="cmp-a-bonus" value="0" min="0"></div>
         <div class="field"><label for="cmp-a-tw">D&iacute;as teletrabajo / semana</label><select id="cmp-a-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
         <div class="field"><label for="cmp-a-transp">Coste transporte / mes (&euro;)</label><input type="number" id="cmp-a-transp" value="80" min="0"></div>
-        <div class="field"><label for="cmp-a-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-a-seguro"><option value="0">No incluido</option><option value="600">S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
+        <div class="field"><label for="cmp-a-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-a-seguro"><option value="0">No incluido</option><option value="600">S&iacute; (valor aprox. 600 &euro;/a&ntilde;o)</option><option value="1200">Premium (aprox. 1.200 &euro;/a&ntilde;o)</option></select></div>
         <div class="field"><label for="cmp-a-ticket">Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-a-ticket" value="0" min="0"></div>
         <div class="field"><label for="cmp-a-ccaa">Comunidad Aut&oacute;noma</label><select id="cmp-a-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option><option value="aragon">Arag&oacute;n</option>
@@ -3073,7 +3071,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <div class="field"><label for="cmp-b-bonus">Bonus anual estimado (&euro;)</label><input type="number" id="cmp-b-bonus" value="3000" min="0"></div>
         <div class="field"><label for="cmp-b-tw">D&iacute;as teletrabajo / semana</label><select id="cmp-b-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
         <div class="field"><label for="cmp-b-transp">Coste transporte / mes (&euro;)</label><input type="number" id="cmp-b-transp" value="30" min="0"></div>
-        <div class="field"><label for="cmp-b-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-b-seguro"><option value="0">No incluido</option><option value="600" selected>S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
+        <div class="field"><label for="cmp-b-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-b-seguro"><option value="0">No incluido</option><option value="600" selected>S&iacute; (valor aprox. 600 &euro;/a&ntilde;o)</option><option value="1200">Premium (aprox. 1.200 &euro;/a&ntilde;o)</option></select></div>
         <div class="field"><label for="cmp-b-ticket">Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-b-ticket" value="220" min="0"></div>
         <div class="field"><label for="cmp-b-ccaa">Comunidad Aut&oacute;noma</label><select id="cmp-b-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option><option value="aragon">Arag&oacute;n</option>
@@ -3107,7 +3105,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <!-- MODAL: EVOLUCIÓN Y CRECIMIENTO CAGR -->
 <div class="calc-overlay qf-calc2" id="modal-cagr">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="cagr" aria-label="Cerrar calculadora">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="cagr" aria-label="Cerrar calculadora">&#215;</button></div>
     <p class="subtitle">Calcula el crecimiento anual compuesto (CAGR) de tu salario o de tu patrimonio a partir de datos reales por a&ntilde;o.</p>
 
     <div class="cagr-mode-switch" role="tablist" aria-label="Tipo de evoluci&oacute;n">
@@ -3169,7 +3167,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <div class="calc-overlay qf-calc2" id="modal-tiempo">
   <div class="calc-modal" style="max-width:760px">
     <div class="modal-header">
-      <div class="modal-header-left"><h2>&#8987; El coste del tiempo</h2></div>
+      <div class="modal-header-left"><h2>El coste del tiempo</h2></div>
       <div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
       <button class="calc-close" data-close="tiempo" aria-label="Cerrar calculadora">&#215;</button>
     </div>
@@ -3193,7 +3191,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <div class="calc-grid">
       <div class="field"><label for="t-patrimonio">Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
       <div class="qf-range-field"><div class="qf-range-head"><label for="t-edad">Edad actual</label><div class="qf-range-value"><input type="number" id="t-edad" value="30" min="18" max="64" step="1"><span>años</span></div></div><input aria-label="Edad actual" class="qf-range" type="range" data-sync-to="t-edad" min="18" max="64" step="1" value="30"><div class="qf-range-scale"><span>18</span><span>64</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label for="t-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0 €</span><span>3.000 €+</span></div></div>
       <div class="qf-range-field"><div class="qf-range-head"><label for="t-rent">Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="t-rent" value="8" min="0" max="30" step="0.1"><span>%</span></div></div><input aria-label="Rentabilidad anual estimada (%)" class="qf-range" type="range" data-sync-to="t-rent" min="0" max="15" step="0.1" value="8"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
       <div class="qf-range-field"><div class="qf-range-head"><label for="t-objetivo">Edad objetivo (retirada)</label><div class="qf-range-value"><input type="number" id="t-objetivo" value="65" min="40" max="80" step="1"><span>años</span></div></div><input aria-label="Edad objetivo (retirada)" class="qf-range" type="range" data-sync-to="t-objetivo" min="40" max="80" step="1" value="65"><div class="qf-range-scale"><span>40</span><span>80</span></div></div>
     </div>
@@ -3211,14 +3209,14 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
     <!-- BLOQUE 1: Coste del tiempo -->
     <div id="t-multiplicador-wrap" style="display:none">
-      <h4 style="margin:20px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">&#128308; Cu&aacute;nto vale 1&euro; seg&uacute;n cu&aacute;ndo empezaste</h4>
+      <h4 style="margin:20px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">Cu&aacute;nto vale 1 &euro; seg&uacute;n cu&aacute;ndo empezaste</h4>
       <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Con aportaci&oacute;n de <span id="t-aport-label">300</span>&euro;/mes hasta los <span id="t-objetivo-label">65</span> a&ntilde;os al <span id="t-rent-label">8</span>% anual</p>
       <div id="t-mult-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px"></div>
     </div>
 
     <!-- BLOQUE 2: ¿Cuándo parar? -->
     <div id="t-parar-wrap" style="display:none">
-      <h4 style="margin:22px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">&#128200; &iquest;Qu&eacute; pasa si paras de aportar?</h4>
+      <h4 style="margin:22px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">&iquest;Qu&eacute; pasa si paras de aportar?</h4>
       <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Patrimonio proyectado a los <span id="t-obj2-label">65</span> seg&uacute;n cu&aacute;ndo dejas de aportar</p>
       <div class="chart-wrap" id="t-chart-wrap"><h4>Evoluci&oacute;n del patrimonio por escenario</h4><div class="chart-container" style="height:260px"><canvas id="t-chart"></canvas></div></div>
       <div id="t-escenarios-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:14px"></div>
@@ -3763,11 +3761,11 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   // ── FORMATO EUR ──────────────────────────────────────────────────────────
-  var fmtEUR = function(n){ return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:'always'}).format(n); };
-  var fmtNum = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:'always'}).format(n); };
-  var fmtPct = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+'%'; };
-  var fmtEUR0 = function(n){ return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:0,maximumFractionDigits:0,useGrouping:'always'}).format(n); };
-  var fmtPct1 = function(n){ return new Intl.NumberFormat('es-ES',{minimumFractionDigits:1,maximumFractionDigits:1}).format(n)+'%'; };
+  var fmtEUR = function(n){ return QF_FMT.eur(n,2); };
+  var fmtNum = function(n){ return QF_FMT.num(n,2); };
+  var fmtPct = function(n){ return QF_FMT.pct(n,2); };
+  var fmtEUR0 = function(n){ return QF_FMT.eur(n,0); };
+  var fmtPct1 = function(n){ return QF_FMT.pct(n,1); };
   if(typeof Chart!=='undefined'){try{Chart.defaults.font.family="'DM Sans', sans-serif";Chart.defaults.animation.duration=450;Chart.defaults.plugins.tooltip.backgroundColor='rgba(9,20,32,.96)';Chart.defaults.plugins.tooltip.titleColor='#f4f7fa';Chart.defaults.plugins.tooltip.bodyColor='#dce7ef';Chart.defaults.plugins.tooltip.padding=12;Chart.defaults.plugins.tooltip.cornerRadius=9;Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.boxWidth=10;Chart.defaults.plugins.legend.labels.padding=14;}catch(e){}}
   function rr(label,value,cls){ return '<div class="result-row"><span class="result-label">'+label+'</span><span class="result-value'+(cls?' '+cls:'')+'">'+value+'</span></div>'; }
 
@@ -3837,7 +3835,7 @@ document.addEventListener('DOMContentLoaded', function(){
       (solidaridad>0?rr('Cuota adicional de solidaridad',fmtEUR(solidaridad),'o'):'')+
       rr('Coste total anual',fmtEUR(costeTotal),'g')+
       rr('Coste mensual',fmtEUR(costeTotal/12))+
-      rr('Coste por hora (~1.800h)',fmtEUR(costeTotal/1800))+
+      rr('Coste por hora (aprox. 1.800 h)',fmtEUR(costeTotal/1800))+
       rr('Multiplicador sobre tu bruto','x'+fmtNum(costeTotal/Math.max(bruto,1)),'g');
     document.getElementById('ce-chart-wrap').style.display='block'; document.getElementById('ce-cta').style.display='flex';
     if(window._ceChart) window._ceChart.destroy();
@@ -4160,12 +4158,12 @@ document.addEventListener('DOMContentLoaded', function(){
     var tipo=document.getElementById('pp-tipo').value, brutoLabel=document.getElementById('pp-bruto-label'), aportInput=document.getElementById('pp-aport'), aportHelp=document.getElementById('pp-aport-help'), subtitle=document.getElementById('pp-subtitle');
     if(tipo==='autonomo'){
       brutoLabel.innerHTML='Rendimiento neto anual de la actividad (€)'; aportInput.max=5750;
-      aportHelp.innerHTML='Hasta 5.750€/año si, además del plan individual, utilizas un PPES para autónomos (4.250€ adicionales), sujeto también al límite del 30% del rendimiento neto.';
+      aportHelp.innerHTML='Hasta 5.750 €/año si, además del plan individual, utilizas un PPES para autónomos (4.250 € adicionales), sujeto también al límite del 30% del rendimiento neto.';
       subtitle.innerHTML='Estima el ahorro fiscal por aportaciones a plan individual y, en su caso, PPES de autónomos.';
     }else{
       brutoLabel.innerHTML='Salario bruto anual (€)'; aportInput.max=1500; if(parseFloat(aportInput.value)>1500)aportInput.value=1500;
-      aportHelp.innerHTML='Esta calculadora modela tu aportación individual: máximo general 1.500€/año y límite porcentual aplicable. Las aportaciones empresariales a planes de empleo no se introducen aquí.';
-      subtitle.innerHTML='Estima el ahorro fiscal de tu aportación individual a un plan de pensiones. Máximo general: 1.500€/año.';
+      aportHelp.innerHTML='Esta calculadora modela tu aportación individual: máximo general 1.500 €/año y límite porcentual aplicable. Las aportaciones empresariales a planes de empleo no se introducen aquí.';
+      subtitle.innerHTML='Estima el ahorro fiscal de tu aportación individual a un plan de pensiones. Máximo general: 1.500 €/año.';
     }
   };
   // Cuota IRPF aproximada sobre una base general (estatal + autonómica),
@@ -4190,10 +4188,10 @@ document.addEventListener('DOMContentLoaded', function(){
       if(aportInput>limite)warning='La aportación usada se limita a '+fmtEUR(limite)+' por los topes introducidos en el modelo.';
     }else{
       limite=Math.min(1500,bruto*0.30); aport=Math.min(aportInput,limite); var cn=function(b,p){return calcSalaryTax2026(b,ccaa,0,p).neto;}; ns=cn(bruto,0);nc=cn(bruto,aport);ahorro=nc-ns;coste=aport-ahorro;
-      if(aportInput>limite)warning='La aportación individual usada se limita a '+fmtEUR(limite)+' (máximo general 1.500€ y límite porcentual aproximado).';
+      if(aportInput>limite)warning='La aportación individual usada se limita a '+fmtEUR(limite)+' (máximo general 1.500 € y límite porcentual aproximado).';
     }
     var html=rr('Aportación anual al plan',fmtEUR(aport)); if(warning)html+='<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">⚠️ '+warning+'</div>';
-    html+=rr('Neto estimado sin aportación',fmtEUR(ns))+rr('Neto estimado con aportación',fmtEUR(nc),'g')+rr('Ahorro fiscal estimado',fmtEUR(ahorro),'g')+rr('Coste real estimado de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100€ aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
+    html+=rr('Neto estimado sin aportación',fmtEUR(ns))+rr('Neto estimado con aportación',fmtEUR(nc),'g')+rr('Ahorro fiscal estimado',fmtEUR(ahorro),'g')+rr('Coste real estimado de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100 € aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
     document.getElementById('pp-results').innerHTML=html;document.getElementById('pp-chart-wrap').style.display='block';document.getElementById('pp-cta').style.display='flex';
     if(window._ppChart)window._ppChart.destroy();window._ppChart=new Chart(document.getElementById('pp-chart').getContext('2d'),{type:'bar',data:{labels:['Sin aportación','Con aportación'],datasets:[{label:'Neto anual estimado',data:[+ns.toFixed(2),+nc.toFixed(2)],backgroundColor:['rgba(184,200,216,.5)','rgba(125,211,168,.75)'],borderColor:['#b8c8d8','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)'},grid:{display:false}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}});
   };
@@ -4327,7 +4325,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // [rendNetoMensualMax, baseMin, baseMax, label]
     [670,      653.59,  718.94,  'Tramo R1'],
     [900,      718.95,  900.00,  'Tramo R2'],
-    [1166.70,  849.67,  1166.70, 'Tramo R3', true], // R3: rendimiento < 1.166,70 € (estricto); 1.166,70 € ya es Tramo 1
+    [1166.70,  849.67,  1166.70, 'Tramo R3', true], // R3: rendimiento < 1.166,70 € (estricto); 1.166,70 € ya es Tramo 1
     [1300,     950.98,  1300.00, 'Tramo 1'],
     [1500,     960.78,  1500.00, 'Tramo 2'],
     [1700,     960.78,  1700.00, 'Tramo 3'],
@@ -4345,7 +4343,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function getRetaTramo(rendNetoMensual){
     for (var i = 0; i < RETA_TRAMOS_2026.length; i++){
-      // La Orden usa «≤» como límite superior salvo en R3 («< 1.166,70 €»), marcado con true
+      // La Orden usa «≤» como límite superior salvo en R3 («< 1.166,70 €»), marcado con true
       var t = RETA_TRAMOS_2026[i];
       if (t[4] ? rendNetoMensual < t[0] : rendNetoMensual <= t[0]) return t;
     }
@@ -4353,7 +4351,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function calcCuotaReta(rendNetoMensual, tarifaPlana){
-    // Tarifa plana: 80 €/mes + MEI = 88,64 €/mes según la Seguridad Social (Import@ss)
+    // Tarifa plana: 80 €/mes + MEI = 88,64 €/mes según la Seguridad Social (Import@ss)
     if (tarifaPlana) return { cuota: 88.64, tramo: null, base: null };
     var t = getRetaTramo(Math.max(0, rendNetoMensual));
     var cuota = t[1] * RETA_TIPO;
@@ -4368,7 +4366,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var ccaa = document.getElementById('au-ccaa').value;
     var antiguedad = document.getElementById('au-antiguedad').value; // 'normal' | 'ano1' | 'ano2'
 
-    // 1. Rendimiento neto del trimestre (para IRPF): -5% gastos difícil justif., máx 500€/trimestre (2.000€/año)
+    // 1. Rendimiento neto del trimestre (para IRPF): -5% gastos difícil justif., máx 500 €/trimestre (2.000 €/año)
     var difJustif = Math.min((ingT - gasT) * 0.05, 500);
     var rendNetoTrim = Math.max(0, ingT - gasT - difJustif);
 
@@ -4414,10 +4412,10 @@ document.addEventListener('DOMContentLoaded', function(){
     if (tarifaPlanaAplica) {
       var labelTarifa = antiguedad === 'ano1' ? 'Tarifa plana (primer a&ntilde;o)' : 'Tarifa plana (segundo a&ntilde;o, bajo el SMI)';
       html += rr(labelTarifa, fmtEUR(reta.cuota) + '/mes', 'g');
-      html += '<div style="grid-column:1/-1;font-size:11px;color:var(--muted,#5a6b7d);margin-bottom:6px">80&euro;/mes de cuota reducida + MEI = 88,64&euro;/mes (Seguridad Social, Import@ss). Requisitos: no haber estado de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya disfrutaste la tarifa plana) y solicitarla al darte de alta; el segundo a&ntilde;o exige un rendimiento neto inferior al SMI (LETA, art. 38 ter).</div>';
+      html += '<div style="grid-column:1/-1;font-size:11px;color:var(--muted,#5a6b7d);margin-bottom:6px">80 &euro;/mes de cuota reducida + MEI = 88,64 &euro;/mes (Seguridad Social, Import@ss). Requisitos: no haber estado de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya disfrutaste la tarifa plana) y solicitarla al darte de alta; el segundo a&ntilde;o exige un rendimiento neto inferior al SMI (LETA, art. 38 ter).</div>';
     } else {
       if (antiguedad === 'ano2') {
-        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado no es inferior al SMI (17.094&euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
+        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado no es inferior al SMI (17.094 &euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
       }
       html += rr('Tu tramo estimado', reta.tramo, 'g') +
         rr('Cuota mensual (base m&iacute;nima del tramo)', fmtEUR(reta.cuota), 'g');
@@ -4488,7 +4486,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // ── EVOLUCIÓN SALARIAL / PATRIMONIO (CAGR) ───────────────────────────────
 
   // ─ helpers compartidos ─
-  function fmt(n){ return n.toLocaleString('es-ES', {maximumFractionDigits:0}); }
+  function fmt(n){ return QF_FMT.num(n,0); }
 
   function cagrValue(n, years){
     // CAGR = (end/start)^(1/years) - 1
@@ -4538,14 +4536,14 @@ document.addEventListener('DOMContentLoaded', function(){
         var first = vals[0], last2 = vals[vals.length-1];
         var yearsN = sorted[sorted.length-1].year - sorted[0].year;
         var cagrPct = yearsN > 0 ? ((Math.pow(last2/first, 1/yearsN) - 1)*100) : 0;
-        var cagrLabel = 'CAGR ' + sorted[0].year + '–' + sorted[sorted.length-1].year + ': ' + (cagrPct>=0?'+':'') + cagrPct.toFixed(1) + '%';
+        var cagrLabel = 'CAGR ' + sorted[0].year + '–' + sorted[sorted.length-1].year + ': ' + (cagrPct>=0?'+':'') + QF_FMT.pct(cagrPct,1);
 
         // Coordenadas: desde primera barra hasta última, a 80% de altura del chart
         var xScale = chart.scales.x;
         var yScale = chart.scales.y;
         var x1 = chartArea.left + (chartArea.right - chartArea.left) * 0.04;
         var x2 = chartArea.right - (chartArea.right - chartArea.left) * 0.04;
-        // y: desde ~70% del máximo valor al inicio hasta el top del último valor
+        // y: desde aprox. el 70% del máximo valor al inicio hasta el top del último valor
         var yMax = yScale.max;
         var y1 = yScale.getPixelForValue(yMax * 0.55);
         var y2 = yScale.getPixelForValue(yMax * 0.88);
@@ -4796,11 +4794,11 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function fmtM(n) {
-      if (Math.abs(n) >= 1e6) return (n/1e6).toFixed(2).replace('.',',') + 'M€';
-      if (Math.abs(n) >= 1e3) return Math.round(n/1000) + 'K€';
-      return Math.round(n) + '€';
+      if (Math.abs(n) >= 1e6) return QF_FMT.num(n/1e6,2) + '\u00a0M€';
+      if (Math.abs(n) >= 1e3) return QF_FMT.num(Math.round(n/1000),0) + '\u00a0K€';
+      return QF_FMT.num(Math.round(n),0) + '\u00a0 €';
     }
-    function fmtMult(n) { return '×' + n.toFixed(1); }
+    function fmtMult(n) { return '×' + QF_FMT.num(n,1); }
 
     // ── BLOQUE 1: multiplicador del tiempo ────────────────────────────────
     // Para cada edad de inicio desde 20 hasta edadActual (cada 5 años + edad actual)
@@ -4851,13 +4849,13 @@ document.addEventListener('DOMContentLoaded', function(){
         + '<div style="font-size:10px;color:rgba(184,200,216,.4);margin-bottom:5px">'+anos+' años para crecer</div>'
         + '<div style="font-size:22px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace;line-height:1">'+fmtMult(mult)+'</div>'
         + '<div style="font-size:9px;color:rgba(184,200,216,.45);margin:3px 0 6px">por cada €1 invertido</div>'
-        + '<div style="font-size:10px;color:rgba(184,200,216,.65)">'+Math.round(aportMes)+'€/mes → <strong style="color:'+color+'">'+fmtM(resultadoAport)+'</strong>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.65)">'+QF_FMT.num(Math.round(aportMes),0)+' €/mes → <strong style="color:'+color+'">'+fmtM(resultadoAport)+'</strong>'
         + (infl>0 ? ' <span style="font-size:9px;color:rgba(201,168,76,.8)">('+fmtM(resultadoReal)+' real)</span>' : '')+'</div>'
         + '<div style="position:absolute;bottom:0;left:0;height:3px;width:'+Math.min(100,mult/Math.pow(1+rentAnual,45)*100)+'%;background:'+color+'"></div>';
       multGrid.appendChild(card);
     });
 
-    document.getElementById('t-aport-label').textContent = Math.round(aportMes);
+    document.getElementById('t-aport-label').textContent = QF_FMT.num(Math.round(aportMes),0);
     document.getElementById('t-objetivo-label').textContent = objetivo;
     document.getElementById('t-rent-label').textContent = (rentAnual*100).toFixed(1).replace('.',',');
     document.getElementById('t-multiplicador-wrap').style.display = 'block';
@@ -4997,7 +4995,7 @@ document.addEventListener('DOMContentLoaded', function(){
     },
     // 3. TOLERANCIA - CAÍDA
     { id:'t1', dim:'tolerancia', peso:3,
-      texto:'Tu cartera vale 20.000€. En 3 meses cae a 14.000€ (–30%). ¿Qué harías?',
+      texto:'Tu cartera vale 20.000 €. En 3 meses cae a 14.000 € (–30%). ¿Qué harías?',
       opciones:[
         { txt:'Vendería todo para no perder más', pts:1 },
         { txt:'Vendería una parte para reducir el riesgo', pts:2 },
@@ -5118,7 +5116,7 @@ document.addEventListener('DOMContentLoaded', function(){
         { pct:'5%', label:'Renta variable emergente', ejemplo:'Vanguard Emerging Markets' },
         { pct:'5%', label:'Liquidez mínima', ejemplo:'Cuenta remunerada' }
       ],
-      nota: 'La renta variable global ha dado ~10% anual histórico (nominal). A cambio, es normal ver caídas del 30-50% en crisis. El tiempo en el mercado suele compensar, pero requiere disciplina.'
+      nota: 'La renta variable global ha dado en torno a un 10% anual histórico (nominal). A cambio, es normal ver caídas del 30-50% en crisis. El tiempo en el mercado suele compensar, pero requiere disciplina.'
     }
   };
 
@@ -5591,9 +5589,9 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   var quijolistaItems = [
     { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección FI clase D", isin:"ES0124037013", gestora:"Cobas AM", myi:false, gest:"Gestión activa", coste:"Comisión de gestión 1,75 %", costeFuente:"CNMV, clase D", trasp:true, minimo:null, nota:"Clase abierta a nuevos partícipes. Los gastos corrientes de esta clase están pendientes de verificar." },
     { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:true, gest:"Gestión activa", coste:"0,36 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:"1 participación (folleto)", nota:null },
-    { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:true, gest:"Gestión activa", coste:"0,74 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:"6.000 € (folleto)", nota:null },
+    { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:true, gest:"Gestión activa", coste:"0,74 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:"6.000 € (folleto)", nota:null },
     { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Singular Asset Management", myi:true, gest:"Gestión activa", coste:"0,86 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:null, nota:null },
-    { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true, gest:"Gestión activa", coste:"1,87 %", costeFuente:"DFI de febrero de 2026", trasp:true, minimo:"100 € (folleto)", nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true, gest:"Gestión activa", coste:"1,87 %", costeFuente:"DFI de febrero de 2026", trasp:true, minimo:"100 € (folleto)", nota:null },
     { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI · Clase A", isin:"ES0175902008", gestora:"Singular Asset Management", myi:true, gest:"Gestión activa", coste:"1,59 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:null, nota:null },
     { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Stock Index Fund EUR Acc", isin:"IE00B03HD191", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,18 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
     { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Fund EUR Acc", isin:"IE0031786696", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,23 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
@@ -5601,8 +5599,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Eurozone Inflation-Linked Bond Index Fund EUR Acc", isin:"IE00B04GQR24", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,12 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Bond Index Fund EUR Hedged Acc", isin:"IE00BH65QP47", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,15 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
     { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Corporate Bond Index EUR Hedged Acc", isin:"IE00BDFB7290", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,18 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
-    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Bond Index Fund EUR Hedged Acc", isin:"IE00B18GC888", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,15 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:"1 € en MyInvestor", nota:null },
-    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Euro Government Bond Index Fund EUR Acc", isin:"IE0007472990", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,12 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:"1 € en MyInvestor", nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Bond Index Fund EUR Hedged Acc", isin:"IE00B18GC888", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,15 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:"1 € en MyInvestor", nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Euro Government Bond Index Fund EUR Acc", isin:"IE0007472990", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,12 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:"1 € en MyInvestor", nota:null },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:null, nota:null },
     { cat:"rv", tipo:"Fondo", nombre:"Fidelity S&P 500 Index Fund EUR P Acc", isin:"IE00BYX5MX67", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:null, nota:null },
     { cat:"nicho", tipo:"Fondo", nombre:"iShares Developed Real Estate Index Fund Institutional Acc EUR", isin:"IE00B83YJG36", gestora:"BlackRock / iShares", myi:true, gest:"Indexado", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
@@ -5633,14 +5631,14 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     { cat:"nicho", tipo:"ETC", nombre:"iShares Physical Gold ETC", isin:"IE00B4ND3602", gestora:"BlackRock / iShares", myi:false, gest:"Indexado", coste:"0,13 %", costeFuente:"KID 27/04/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
     { cat:"nicho", tipo:"ETC", nombre:"Xetra-Gold", isin:"DE000A0S9GB0", gestora:"Deutsche Börse", myi:false, gest:"Indexado", coste:null, costeFuente:null, trasp:false, minimo:null, nota:null },
     { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116 (plan) / F1905 (fondo)", gestora:"Azvalor / Dunas Capital Pensiones", myi:false, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
-    { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219 (plan) / F1633 (fondo)", gestora:"Cobas Pensiones, SGFP", myi:true, gest:"Gestión activa", coste:"Gestión 1,00 % + depósito 0,05 %", costeFuente:"web de la gestora, 30/10/2026", trasp:true, minimo:"25 € (gestora)", nota:null },
+    { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219 (plan) / F1633 (fondo)", gestora:"Cobas Pensiones, SGFP", myi:true, gest:"Gestión activa", coste:"Gestión 1,00 % + depósito 0,05 %", costeFuente:"web de la gestora, 30/10/2026", trasp:true, minimo:"25 € (gestora)", nota:null },
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396 (plan) / F2160 (fondo)", gestora:"MyInvestor / Merchbanc EGFP", myi:true, gest:"Indexado", coste:"Gestión 0,30 % + depósito 0,08 %", costeFuente:"DFP del plan", trasp:true, minimo:null, nota:"Invierte a través de ETF indexados, pero su documento oficial indica que no tiene índice de referencia en su gestión." },
     { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394 (plan) / F2159 (fondo)", gestora:"MyInvestor / Merchbanc EGFP", myi:true, gest:"Indexado", coste:"Gestión 0,30 % + depósito 0,08 %", costeFuente:"DFP del plan", trasp:true, minimo:null, nota:"Invierte a través de ETF indexados, pero su documento oficial indica que no tiene índice de referencia en su gestión." },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Finizens", gestora:"Finizens SGIIC", myi:false, gest:"Gestión automatizada", coste:null, costeFuente:null, minimo:null, nota:null },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Indexa Capital", gestora:"Indexa Capital AV", myi:false, gest:"Gestión automatizada", coste:null, costeFuente:null, minimo:null, nota:null },
     { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Carteras automatizadas MyInvestor", gestora:"MyInvestor", myi:true, gest:"Gestión automatizada", coste:null, costeFuente:null, minimo:null, nota:null },
-    { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI Europe Index Fund EUR P Acc", isin:"IE00BYX5MD61", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:"1 € en MyInvestor", nota:"Ejemplo de la lista de indexado de Europa, elegido por coste, registro en la CNMV y acceso desde 1 €. No es una recomendación." },
-    { cat:"monetario", tipo:"Fondo", nombre:"Mutuafondo Dinero FI clase D", isin:"ES0165143019", gestora:"Mutuactivos", myi:true, gest:"Indexado", coste:"0,45 %", costeFuente:"DFI (CNMV) 17/07/2026", trasp:true, minimo:"10 €", nota:"Ejemplo de la lista de monetario de gestora española traspasable. Fondo monetario según la CNMV. No es una recomendación." },
+    { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI Europe Index Fund EUR P Acc", isin:"IE00BYX5MD61", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:"1 € en MyInvestor", nota:"Ejemplo de la lista de indexado de Europa, elegido por coste, registro en la CNMV y acceso desde 1 €. No es una recomendación." },
+    { cat:"monetario", tipo:"Fondo", nombre:"Mutuafondo Dinero FI clase D", isin:"ES0165143019", gestora:"Mutuactivos", myi:true, gest:"Indexado", coste:"0,45 %", costeFuente:"DFI (CNMV) 17/07/2026", trasp:true, minimo:"10 €", nota:"Ejemplo de la lista de monetario de gestora española traspasable. Fondo monetario según la CNMV. No es una recomendación." },
   ];
 
   var qlSiglas = {rv:"RV", rf:"RF", monetario:"M", mixto:"MX", pp:"PP", nicho:"N", roboadvisor:"RA"};
@@ -5914,7 +5912,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function setCenter(prefix, value, label, logo){
     var v=document.getElementById(prefix+'-value');
     var l=document.getElementById(prefix+'-label');
-    if(v) v.textContent=(typeof value==='number' ? value.toFixed(value%1?2:0) : value)+'%';
+    if(v) v.textContent=(typeof value==='number' ? QF_FMT.num(value,value%1?2:0) : value)+'%';
     if(l) l.textContent=label;
     if(prefix==='qc-stocks'){
       var center=document.getElementById('qc-stocks-center');
@@ -5938,9 +5936,9 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       var b=document.createElement('button');
       b.type='button'; b.className='qc-legend-item'+(data.logos?' stock':'');
       if(data.logos){
-        b.innerHTML='<img class="qc-stock-logo" src="'+data.logos[i]+'" alt="Logo '+label+'" onerror="this.style.display=\'none\'"><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+data.values[i].toFixed(data.values[i]%1?2:0)+'%</span>';
+        b.innerHTML='<img class="qc-stock-logo" src="'+data.logos[i]+'" alt="Logo '+label+'" onerror="this.style.display=\'none\'"><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+QF_FMT.num(data.values[i],data.values[i]%1?2:0)+'%</span>';
       } else {
-        b.innerHTML='<span class="qc-legend-dot" style="background:'+data.colors[i]+'"></span><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+data.values[i].toFixed(data.values[i]%1?2:0)+'%</span>';
+        b.innerHTML='<span class="qc-legend-dot" style="background:'+data.colors[i]+'"></span><span class="qc-legend-name">'+label+'</span><span class="qc-legend-value">'+QF_FMT.num(data.values[i],data.values[i]%1?2:0)+'%</span>';
       }
       function activate(){
         root.querySelectorAll('.qc-legend-item').forEach(function(x){x.classList.remove('active');});
@@ -5971,7 +5969,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       options:{
         responsive:true,maintainAspectRatio:false,cutout:'67%',animation:{duration:650},
         interaction:{mode:'nearest',intersect:true},
-        plugins:{legend:{display:false},tooltip:{displayColors:false,backgroundColor:'#0f2035',titleColor:'#ffffff',bodyColor:'#ffffff',padding:10,callbacks:{label:function(c){return c.label+': '+c.raw.toFixed(c.raw%1?2:0)+'%';}}}},
+        plugins:{legend:{display:false},tooltip:{displayColors:false,backgroundColor:'#0f2035',titleColor:'#ffffff',bodyColor:'#ffffff',padding:10,callbacks:{label:function(c){return c.label+': '+QF_FMT.num(c.raw,c.raw%1?2:0)+'%';}}}},
         onHover:function(evt,elements){
           if(elements && elements.length){var i=elements[0].index;setCenter(prefix,d.values[i],d.labels[i],d.logos ? d.logos[i] : null);canvas.style.cursor='pointer';}
           else {resetCenter(prefix,defaultLabel);canvas.style.cursor='default';}
@@ -6050,7 +6048,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     }
   };
 
-  function fmt(n){ return Number(n).toLocaleString('es-ES',{minimumFractionDigits:(Math.abs(n-Math.round(n))>.001?2:0),maximumFractionDigits:2})+'%'; }
+  function fmt(n){ return QF_FMT.num(n,2,(Math.abs(n-Math.round(n))>.001?2:0))+'%'; }
 
   function normalize(items){
     var sum=items.reduce(function(a,x){return a+Number(x.raw||0);},0);
@@ -6179,9 +6177,9 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   function eurCompact(n){
     n=Number(n)||0;
-    if(Math.abs(n)>=1000000) return (n/1000000).toFixed(n>=10000000?1:2).replace('.',',')+' M€';
-    if(Math.abs(n)>=1000) return Math.round(n/1000).toLocaleString('es-ES')+'K €';
-    return Math.round(n).toLocaleString('es-ES')+' €';
+    if(Math.abs(n)>=1000000) return QF_FMT.num(n/1000000,n>=10000000?1:2)+'\u00a0M€';
+    if(Math.abs(n)>=1000) return QF_FMT.num(Math.round(n/1000),0)+'\u00a0K€';
+    return QF_FMT.eur(Math.round(n),0);
   }
   function eurFull(n){return new Intl.NumberFormat('es-ES',{maximumFractionDigits:0,useGrouping:'always'}).format(Math.round(Number(n)||0))+' €';}
   function setText(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
@@ -6242,7 +6240,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     setText('ic-hero-horizonte',n+' años');
     var capPlus=calcCompound(C,A+50,r,n),extra=Math.max(0,capPlus-cap);
     var insight=document.getElementById('ic-hero-insight');
-    if(insight) insight.innerHTML='Con <strong>50 € más al mes</strong>, este mismo escenario terminaría con aproximadamente <strong>'+eurFull(capPlus)+'</strong> ('+eurFull(extra)+' más).';
+    if(insight) insight.innerHTML='Con <strong>50 € más al mes</strong>, este mismo escenario terminaría con aproximadamente <strong>'+eurFull(capPlus)+'</strong> ('+eurFull(extra)+' más).';
   }
   function yearsToFire(actual,aport,r,gastos,infl){
     var fire=gastos*12/0.04,rm=Math.pow(1+r/100,1/12)-1,cap=actual,y=0;infl=Number(infl)||0;
@@ -6265,7 +6263,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     var yPlus=yearsToFire(actual,aport+100,r,gastos,infl),gain=Math.max(0,y-yPlus);
     var insight=document.getElementById('jub-hero-insight');
     if(insight){
-      if(y<80&&gain>0) insight.innerHTML='Con <strong>100 € más al mes</strong>, el mismo escenario alcanzaría el objetivo aproximadamente <strong>'+gain+' '+(gain===1?'año':'años')+' antes</strong>.';
+      if(y<80&&gain>0) insight.innerHTML='Con <strong>100 € más al mes</strong>, el mismo escenario alcanzaría el objetivo aproximadamente <strong>'+gain+' '+(gain===1?'año':'años')+' antes</strong>.';
       else insight.textContent='La estimación depende de mantener aportaciones y rentabilidad constantes. Úsala como escenario, no como promesa.';
     }
   }
@@ -6292,7 +6290,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     setText('t-hero-main',eurFull(final));
     setText('t-hero-aport',eurCompact(aport));
     setText('t-hero-years',years+' años');
-    setText('t-hero-rent',r.toLocaleString('es-ES',{maximumFractionDigits:1})+'%');
+    setText('t-hero-rent',QF_FMT.num(r,1,0)+'%');
     var delayed=projectTimeDelayed(patr,edad,obj,aport,r,5),loss=Math.max(0,final-delayed),pct=final?loss/final*100:0;
     var insight=document.getElementById('t-hero-insight');
     if(insight) insight.innerHTML='Si esperases <strong>5 años</strong> para empezar a aportar, el patrimonio proyectado sería aproximadamente <strong>'+eurFull(loss)+' menor</strong> ('+pct.toFixed(1).replace('.',',')+'%).';
@@ -6309,7 +6307,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if(id==='interes'){
       var A=parseFloat(document.getElementById('ic-aportacion').value)||0,r=parseFloat(document.getElementById('ic-rent').value)||0,n=parseInt(document.getElementById('ic-anos').value)||1,C=parseFloat(document.getElementById('ic-capital').value)||0;
       var cap=calcCompound(C,A,r,n);
-      return '📈 '+eurFull(A)+'/mes durante '+n+' años al '+r.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(cap)+'. El tiempo hace buena parte del trabajo. Calcula tu escenario en QuijoteFinanzas:';
+      return '📈 '+eurFull(A)+'/mes durante '+n+' años al '+QF_FMT.num(r,1,0)+'% → '+eurFull(cap)+'. El tiempo hace buena parte del trabajo. Calcula tu escenario en QuijoteFinanzas:';
     }
     if(id==='jubilacion'){
       var a=parseFloat(document.getElementById('jub-actual').value)||0,ap=parseFloat(document.getElementById('jub-aport').value)||0,rr=parseFloat(document.getElementById('jub-rent').value)||0,g=parseFloat(document.getElementById('jub-gastos').value)||0,e=parseInt(document.getElementById('jub-edad').value)||35;
@@ -6320,7 +6318,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if(id==='tiempo'){
       var p=parseFloat(document.getElementById('t-patrimonio').value)||0,e2=parseInt(document.getElementById('t-edad').value)||30,ap2=parseFloat(document.getElementById('t-aport').value)||0,rr2=parseFloat(document.getElementById('t-rent').value)||0,o=parseInt(document.getElementById('t-objetivo').value)||65;
       var f=projectTime(p,e2,o,ap2,rr2);
-      return '⌛ '+eurFull(ap2)+'/mes desde los '+e2+' hasta los '+o+' años al '+rr2.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(f)+'. El coste de esperar puede ser enorme. Prueba tu escenario:';
+      return '⌛ '+eurFull(ap2)+'/mes desde los '+e2+' hasta los '+o+' años al '+QF_FMT.num(rr2,1,0)+'% → '+eurFull(f)+'. El coste de esperar puede ser enorme. Prueba tu escenario:';
     }
     return 'Prueba esta calculadora en QuijoteFinanzas:';
   }
@@ -6374,45 +6372,45 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['poder adquisitivo real','Poder real'],['inflación acumulada','Inflación']]},
     deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses netos','Intereses netos'],['tae equivalente','TAE']]},
     irpf:{title:'Neto estimado por paga',main:['neto por paga'],metrics:[['salario bruto anual','Bruto anual'],['irpf anual','IRPF anual'],['tipo efectivo irpf','Tipo efectivo']],private:true},
-    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal anual'],metrics:[['aportación anual al plan','Aportación'],['coste real de la aportación','Coste real'],['ahorro por cada 100','Ahorro / 100€']]},
+    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal anual'],metrics:[['aportación anual al plan','Aportación'],['coste real de la aportación','Coste real'],['ahorro por cada 100','Ahorro / 100 €']]},
     amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']]},
     alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]}
   };
 
   var sliderConfig={
-    'au-ingresos':{min:0,max:50000,step:500,minLabel:'0€',maxLabel:'50k€'},'au-gastos':{min:0,max:25000,step:250,minLabel:'0€',maxLabel:'25k€'},
-    'ic-capital':{min:0,max:250000,step:2500,minLabel:'0€',maxLabel:'250k€'},
+    'au-ingresos':{min:0,max:50000,step:500,minLabel:'0 €',maxLabel:'50k€'},'au-gastos':{min:0,max:25000,step:250,minLabel:'0 €',maxLabel:'25k€'},
+    'ic-capital':{min:0,max:250000,step:2500,minLabel:'0 €',maxLabel:'250k€'},
     'sal-neto':{min:12000,max:100000,step:1000,minLabel:'12k€',maxLabel:'100k€'},
-    'hip-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'hip-entrada':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'},'hip-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'hip-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},
+    'hip-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'hip-entrada':{min:0,max:500000,step:5000,minLabel:'0 €',maxLabel:'500k€'},'hip-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'hip-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},
     'ce-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'ce-at':{min:0,max:8,step:.1,minLabel:'0%',maxLabel:'8%'},
     'inf-capital':{min:1000,max:500000,step:5000,minLabel:'1k€',maxLabel:'500k€'},'inf-ipc':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'inf-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'inf-rent':{min:0,max:15,step:.1,minLabel:'0%',maxLabel:'15%'},
-    'jub-actual':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'},
+    'jub-actual':{min:0,max:500000,step:5000,minLabel:'0 €',maxLabel:'500k€'},
     'dep-capital':{min:1000,max:500000,step:5000,minLabel:'1k€',maxLabel:'500k€'},'dep-tin':{min:0,max:8,step:.1,minLabel:'0%',maxLabel:'8%'},'dep-meses':{min:1,max:60,step:1,minLabel:'1m',maxLabel:'60m'},
-    'irpf-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'irpf-pp':{min:0,max:10000,step:250,minLabel:'0€',maxLabel:'10k€'},
-    'pp-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'pp-aport':{min:0,max:5750,step:250,minLabel:'0€',maxLabel:'5.750€'},
-    'avs-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'avs-entrada':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'},'avs-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'avs-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},'avs-alquiler':{min:300,max:5000,step:50,minLabel:'300€',maxLabel:'5k€'},'avs-revalor':{min:-5,max:10,step:.1,minLabel:'-5%',maxLabel:'10%'},'avs-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'avs-gastos-compra':{min:0,max:20,step:.5,minLabel:'0%',maxLabel:'20%'},'avs-gastos-prop':{min:0,max:10000,step:250,minLabel:'0€',maxLabel:'10k€'},'avs-alq-growth':{min:-5,max:10,step:.1,minLabel:'-5%',maxLabel:'10%'},'avs-alt-return':{min:0,max:15,step:.1,minLabel:'0%',maxLabel:'15%'},'avs-sale-cost':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},
-    'am-capital':{min:10000,max:500000,step:5000,minLabel:'10k€',maxLabel:'500k€'},'am-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'am-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'am-extra':{min:0,max:100000,step:1000,minLabel:'0€',maxLabel:'100k€'},
-    'alq-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'alq-gastos':{min:0,max:20,step:.5,minLabel:'0%',maxLabel:'20%'},'alq-renta':{min:300,max:5000,step:50,minLabel:'300€',maxLabel:'5k€'},'alq-gastos-anuales':{min:0,max:20000,step:250,minLabel:'0€',maxLabel:'20k€'},'alq-vacante':{min:0,max:12,step:.5,minLabel:'0m',maxLabel:'12m'},
-    'cmp-a-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'cmp-a-bonus':{min:0,max:50000,step:500,minLabel:'0€',maxLabel:'50k€'},'cmp-b-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'cmp-b-bonus':{min:0,max:50000,step:500,minLabel:'0€',maxLabel:'50k€'},
-    't-patrimonio':{min:0,max:500000,step:5000,minLabel:'0€',maxLabel:'500k€'}
+    'irpf-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'irpf-pp':{min:0,max:10000,step:250,minLabel:'0 €',maxLabel:'10k€'},
+    'pp-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'pp-aport':{min:0,max:5750,step:250,minLabel:'0 €',maxLabel:'5.750 €'},
+    'avs-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'avs-entrada':{min:0,max:500000,step:5000,minLabel:'0 €',maxLabel:'500k€'},'avs-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'avs-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},'avs-alquiler':{min:300,max:5000,step:50,minLabel:'300 €',maxLabel:'5k€'},'avs-revalor':{min:-5,max:10,step:.1,minLabel:'-5%',maxLabel:'10%'},'avs-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'avs-gastos-compra':{min:0,max:20,step:.5,minLabel:'0%',maxLabel:'20%'},'avs-gastos-prop':{min:0,max:10000,step:250,minLabel:'0 €',maxLabel:'10k€'},'avs-alq-growth':{min:-5,max:10,step:.1,minLabel:'-5%',maxLabel:'10%'},'avs-alt-return':{min:0,max:15,step:.1,minLabel:'0%',maxLabel:'15%'},'avs-sale-cost':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},
+    'am-capital':{min:10000,max:500000,step:5000,minLabel:'10k€',maxLabel:'500k€'},'am-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'am-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'am-extra':{min:0,max:100000,step:1000,minLabel:'0 €',maxLabel:'100k€'},
+    'alq-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'alq-gastos':{min:0,max:20,step:.5,minLabel:'0%',maxLabel:'20%'},'alq-renta':{min:300,max:5000,step:50,minLabel:'300 €',maxLabel:'5k€'},'alq-gastos-anuales':{min:0,max:20000,step:250,minLabel:'0 €',maxLabel:'20k€'},'alq-vacante':{min:0,max:12,step:.5,minLabel:'0m',maxLabel:'12m'},
+    'cmp-a-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'cmp-a-bonus':{min:0,max:50000,step:500,minLabel:'0 €',maxLabel:'50k€'},'cmp-b-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'cmp-b-bonus':{min:0,max:50000,step:500,minLabel:'0 €',maxLabel:'50k€'},
+    't-patrimonio':{min:0,max:500000,step:5000,minLabel:'0 €',maxLabel:'500k€'}
   };
 
   var scenarioConfig={
-    interes:[{label:'+50 €/mes',target:'ic-aportacion',delta:50},{label:'+5 años',target:'ic-anos',delta:5}],
-    jubilacion:[{label:'+100 €/mes',target:'jub-aport',delta:100},{label:'−100 € gasto/mes',target:'jub-gastos',delta:-100}],
-    tiempo:[{label:'+50 €/mes',target:'t-aport',delta:50},{label:'Empezar 5 años antes',target:'t-edad',delta:-5}],
-    autonomos:[{label:'+1.000 € ingresos',target:'au-ingresos',delta:1000},{label:'−500 € gastos',target:'au-gastos',delta:-500}],
-    salario:[{label:'+100 € netos/paga',target:'sal-neto',delta:100}],
-    hipoteca:[{label:'−0,5 pp de interés',target:'hip-tipo',delta:-.5},{label:'+10.000 € entrada',target:'hip-entrada',delta:10000}],
-    coste:[{label:'+5.000 € de bruto',target:'ce-bruto',delta:5000}],
+    interes:[{label:'+50 €/mes',target:'ic-aportacion',delta:50},{label:'+5 años',target:'ic-anos',delta:5}],
+    jubilacion:[{label:'+100 €/mes',target:'jub-aport',delta:100},{label:'−100 € gasto/mes',target:'jub-gastos',delta:-100}],
+    tiempo:[{label:'+50 €/mes',target:'t-aport',delta:50},{label:'Empezar 5 años antes',target:'t-edad',delta:-5}],
+    autonomos:[{label:'+1.000 € ingresos',target:'au-ingresos',delta:1000},{label:'−500 € gastos',target:'au-gastos',delta:-500}],
+    salario:[{label:'+100 € netos/paga',target:'sal-neto',delta:100}],
+    hipoteca:[{label:'−0,5 pp de interés',target:'hip-tipo',delta:-.5},{label:'+10.000 € entrada',target:'hip-entrada',delta:10000}],
+    coste:[{label:'+5.000 € de bruto',target:'ce-bruto',delta:5000}],
     inflacion:[{label:'+1 pp rentabilidad',target:'inf-rent',delta:1},{label:'+5 años',target:'inf-anos',delta:5}],
     deposito:[{label:'+0,5 pp TIN',target:'dep-tin',delta:.5},{label:'+6 meses',target:'dep-meses',delta:6}],
-    irpf:[{label:'+500 € al plan',target:'irpf-pp',delta:500},{label:'+5.000 € bruto',target:'irpf-bruto',delta:5000}],
-    pension:[{label:'+500 € aportación',target:'pp-aport',delta:500}],
+    irpf:[{label:'+500 € al plan',target:'irpf-pp',delta:500},{label:'+5.000 € bruto',target:'irpf-bruto',delta:5000}],
+    pension:[{label:'+500 € aportación',target:'pp-aport',delta:500}],
     alquilervs:[{label:'−0,5 pp hipoteca',target:'avs-tipo',delta:-.5},{label:'+5 años comparación',target:'avs-anos',delta:5}],
-    amortizacion:[{label:'+5.000 € amortización',target:'am-extra',delta:5000},{label:'+1 pp de interés',target:'am-tipo',delta:1}],
-    alquiler:[{label:'+50 €/mes renta',target:'alq-renta',delta:50},{label:'−0,5 mes vacante',target:'alq-vacante',delta:-.5}],
-    comparador:[{label:'+2.000 € bruto B',target:'cmp-b-bruto',delta:2000},{label:'+1 día remoto B',target:'cmp-b-tw',delta:1}]
+    amortizacion:[{label:'+5.000 € amortización',target:'am-extra',delta:5000},{label:'+1 pp de interés',target:'am-tipo',delta:1}],
+    alquiler:[{label:'+50 €/mes renta',target:'alq-renta',delta:50},{label:'−0,5 mes vacante',target:'alq-vacante',delta:-.5}],
+    comparador:[{label:'+2.000 € bruto B',target:'cmp-b-bruto',delta:2000},{label:'+1 día remoto B',target:'cmp-b-tw',delta:1}]
   };
 
   function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();}
@@ -6482,15 +6480,15 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function scenariosFor(id){
     if(id==='irpf'){
       var mode=(document.getElementById('irpf-mode')||{}).value||'salary';
-      if(mode==='pension')return [{label:'+100 € por paga',target:'pen-monthly',delta:100}];
-      if(mode==='transition')return [{label:'+100 € pensión/paga',target:'tr-pension-pay',delta:100}];
+      if(mode==='pension')return [{label:'+100 € por paga',target:'pen-monthly',delta:100}];
+      if(mode==='transition')return [{label:'+100 € pensión/paga',target:'tr-pension-pay',delta:100}];
       if(mode==='annual')return [];
     }
     if(id==='salario'){
       var targetType=(document.getElementById('sal-target-type')||{}).value||'bank';
       return targetType==='fiscal'
-        ?[{label:'+1.200 € netos/año',target:'sal-neto',delta:1200}]
-        :[{label:'+100 € netos/paga',target:'sal-neto',delta:100}];
+        ?[{label:'+1.200 € netos/año',target:'sal-neto',delta:1200}]
+        :[{label:'+100 € netos/paga',target:'sal-neto',delta:100}];
     }
     return scenarioConfig[id]||[];
   }
