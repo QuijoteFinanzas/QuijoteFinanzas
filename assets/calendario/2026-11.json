@@ -1,16 +1,6 @@
 [
   {
     "fecha": "2026-11-02",
-    "hora": "17:35",
-    "categoria": "Resultados",
-    "titulo": "Grifols: resultados 3T 2026",
-    "descripcion": "Publicación de resultados del 3T 2026; webcast a las 18:30.",
-    "fuente_url": "https://www.grifols.com/en/quarterly-reports",
-    "verificado": true,
-    "por_que_importa": "Empresa del IBEX 35; afecta a fondos e indexados con exposición a la bolsa española."
-  },
-  {
-    "fecha": "2026-11-02",
     "hora": "",
     "categoria": "Fiscalidad",
     "titulo": "AEAT: último día para domiciliar el 2º plazo de la Renta 2025",
@@ -50,36 +40,6 @@
     "por_que_importa": "Conviene tener el saldo en la cuenta de cargo; no pagar a tiempo conlleva recargos."
   },
   {
-    "fecha": "2026-11-05",
-    "hora": "18:30",
-    "categoria": "Resultados",
-    "titulo": "Cellnex: resultados 3T 2026",
-    "descripcion": "Conferencia de resultados del 3T 2026 a las 18:30 (la web lo marca como CEST; en noviembre la hora de Madrid es CET).",
-    "fuente_url": "https://www.cellnex.com/investor-relations/",
-    "verificado": true,
-    "por_que_importa": "Empresa del IBEX 35."
-  },
-  {
-    "fecha": "2026-11-06",
-    "hora": "09:30",
-    "categoria": "Resultados",
-    "titulo": "IAG: resultados 3T 2026",
-    "descripcion": "Publicación de resultados del periodo cerrado a 30/09; presentación a las 9:30 (hora de Madrid), según la comunicación a la CNMV del 14/10.",
-    "fuente_url": "https://www.iairgroup.com/es/inversores-y-accionistas/calendario-financiero/",
-    "verificado": true,
-    "por_que_importa": "Empresa del IBEX 35."
-  },
-  {
-    "fecha": "2026-11-12",
-    "hora": "10:00",
-    "categoria": "Resultados",
-    "titulo": "Telefónica: resultados enero-septiembre 2026",
-    "descripcion": "Publicación antes de la apertura del mercado; multiconferencia a las 10:00.",
-    "fuente_url": "https://www.telefonica.com/es/accionistas-inversores/calendario/",
-    "verificado": true,
-    "por_que_importa": "Empresa del IBEX 35 seguida por muchos inversores por dividendo."
-  },
-  {
     "fecha": "2026-11-13",
     "hora": "09:00",
     "categoria": "IPC",
@@ -88,36 +48,6 @@
     "fuente_url": "https://www.ine.es/dynt3/Calendario/calenHTML.htm?L=1",
     "verificado": true,
     "por_que_importa": "Confirma la inflación con la que se compara la rentabilidad real de cuentas y depósitos."
-  },
-  {
-    "fecha": "2026-11-17",
-    "hora": "15:00",
-    "categoria": "Resultados",
-    "titulo": "Home Depot: resultados 3T 2026",
-    "descripcion": "Earnings release a las 9:00 ET (15:00 en Madrid). Gran empresa del S&P 500.",
-    "fuente_url": "https://ir.homedepot.com/events-and-presentations",
-    "verificado": true,
-    "por_que_importa": "Termómetro del consumo y del sector de la vivienda en EE. UU.; afecta a los indexados del S&P 500."
-  },
-  {
-    "fecha": "2026-11-17",
-    "hora": "22:20",
-    "categoria": "Resultados",
-    "titulo": "Nvidia: resultados 3T del ejercicio fiscal 2027",
-    "descripcion": "Resultados hacia las 13:20 PT (22:20 en Madrid); conferencia a las 14:00 PT (23:00 en Madrid).",
-    "fuente_url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Third-Quarter-Financial-Results/default.aspx",
-    "verificado": true,
-    "por_que_importa": "Una de las mayores empresas del S&P 500 por capitalización: su resultado mueve los indexados y los ETF globales."
-  },
-  {
-    "fecha": "2026-11-19",
-    "hora": "13:00",
-    "categoria": "Resultados",
-    "titulo": "Walmart: resultados 3T del ejercicio fiscal 2027",
-    "descripcion": "Materiales hacia las 6:00 CT (13:00 en Madrid); conferencia a las 7:00 CT (14:00 en Madrid).",
-    "fuente_url": "https://corporate.walmart.com/news/events/fy2027-q3-earnings-release",
-    "verificado": true,
-    "por_que_importa": "Referencia del consumo en EE. UU.; empresa del S&P 500."
   },
   {
     "fecha": "2026-11-20",

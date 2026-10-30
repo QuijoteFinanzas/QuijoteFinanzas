@@ -1925,7 +1925,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <!-- Calendario financiero: próximas fechas (lee /assets/calendario/AAAA-MM.json) -->
     <a id="cal-teaser" class="cal-teaser" href="/calendario-financiero/">
       <span class="cal-teaser-head"><strong>Próximas fechas</strong><span>Ver calendario →</span></span>
-      <ul id="cal-teaser-list"><li>IPC, BCE, Euríbor, plazos de Hacienda y resultados del mes.</li></ul>
+      <ul id="cal-teaser-list"><li>IPC, BCE, Euríbor y plazos de Hacienda del mes.</li></ul>
     </a>
     <style>
     .cal-teaser{display:block;text-decoration:none;color:var(--navy);background:#fff;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:12px;padding:14px 18px;margin:0 0 22px;transition:box-shadow .16s ease}
@@ -1947,7 +1947,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       var want=[today.slice(0,7),n.getFullYear()+'-'+p2(n.getMonth()+1)],all=[],done=0;
       function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
       function render(){
-        var up=all.filter(function(e){return e.fecha>=today;}).sort(function(a,b){return (a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||''));}).slice(0,3);
+        var up=all.filter(function(e){return e.fecha>=today && e.categoria!=='Resultados';}).sort(function(a,b){return (a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||''));}).slice(0,3);
         if(!up.length) return;
         document.getElementById('cal-teaser-list').innerHTML=up.map(function(e){
           return '<li><b>'+(+e.fecha.slice(8,10))+' '+M[+e.fecha.slice(5,7)-1]+'</b>'+esc(e.titulo)+(e.verificado?'':' (pendiente de confirmar)')+'</li>';
