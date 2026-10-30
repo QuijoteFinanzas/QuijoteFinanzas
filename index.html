@@ -1615,7 +1615,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261030c"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261030d"></script>
 <style>
 /* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
 :root{--focus-ring:#8b6a15}
@@ -3869,7 +3869,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var maxAnual=5101.20*12;
     if(!(bruto>0)) return qfInvalid('ce-results','Indica un salario bruto anual mayor que 0&nbsp;&euro;.','ce-bruto');
     // Base mínima: a jornada completa la base de cotización no puede ser inferior al SMI (tope mínimo, art. 19.2 LGSS,
-    // RDL 8/2015). SMI 2026 usado: 17.094 €/año (1.221 € × 14), cifra de la auditoría de Datos pendiente de su verificación.
+    // RDL 8/2015). SMI 2026 verificado con el BOE: 1.221 €/mes × 14 = 17.094 €.
     // Con jornada parcial la base mínima es proporcional a las horas.
     var SMI_ANUAL_2026=17094;
     var bajoSMI=bruto<SMI_ANUAL_2026;
