@@ -5605,7 +5605,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   bindCuentasTabs && bindCuentasTabs();
 
   // ── Tracking de salidas, referidos y captación ─────────────────────────
-  document.querySelectorAll('#refList .ref-card').forEach(function(card) {
+  document.querySelectorAll('#refList a.ref-card[href]').forEach(function(card) {
     card.addEventListener('click', function() {
       var name = card.querySelector('h3');
       try { qfTrack('referral_click', {provider:name ? name.textContent.trim() : 'unknown', source_component:'referidos'}); } catch(e) {}
