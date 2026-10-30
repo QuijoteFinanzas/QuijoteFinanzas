@@ -233,7 +233,7 @@ window.ppUpdateFields = function(){
   } else {
     brutoLabel.innerHTML = 'Salario bruto anual (&euro;)';
     aportInput.max = 10000;
-    aportHelp.innerHTML = 'Límite individual: 1.500€/año. Hasta 10.000€ si los 8.500€ adicionales proceden de contribuciones de tu empresa o de tus aportaciones al mismo plan de empleo (según el multiplicador del art. 52.1 LIRPF).';
+    aportHelp.innerHTML = 'Límite individual: 1.500 €/año. Hasta 10.000 € si los 8.500 € adicionales proceden de contribuciones de tu empresa o de tus aportaciones al mismo plan de empleo (según el multiplicador del art. 52.1 LIRPF).';
   }
 };
 
