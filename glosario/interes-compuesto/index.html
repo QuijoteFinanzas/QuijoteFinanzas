@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" id="qf-theme-color" content="#ffffff">
+<title>Qué es el interés compuesto: fórmula y ejemplo</title><meta name="description" content="El interés compuesto hace que los intereses generen nuevos intereses. Qué es, su fórmula, la diferencia con el interés simple y un ejemplo con números."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://quijotefinanzas.com/glosario/interes-compuesto/">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Don Quijote de las Finanzas"><meta property="og:locale" content="es_ES"><meta property="og:url" content="https://quijotefinanzas.com/glosario/interes-compuesto/"><meta property="og:title" content="Qué es el interés compuesto: fórmula y ejemplo"><meta property="og:description" content="El interés compuesto hace que los intereses generen nuevos intereses. Qué es, su fórmula, la diferencia con el interés simple y un ejemplo con números."><meta property="og:image" content="https://quijotefinanzas.com/og-image-2026.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@quijotefinanzas"><meta name="twitter:title" content="Qué es el interés compuesto: fórmula y ejemplo"><meta name="twitter:description" content="El interés compuesto hace que los intereses generen nuevos intereses. Qué es, su fórmula, la diferencia con el interés simple y un ejemplo con números."><meta name="twitter:image" content="https://quijotefinanzas.com/og-image-2026.png">
+<link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('qf-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;var tc=document.getElementById('qf-theme-color');if(tc)tc.setAttribute('content',t==='dark'?'#101a26':'#ffffff');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S4VBMV5WPN"></script>
+<script>gtag('js',new Date());gtag('config','G-S4VBMV5WPN',{anonymize_ip:true});</script>
+<link rel="stylesheet" href="/assets/site-shell.css?v=20261030">
+<style>
+main{max-width:860px;margin:0 auto;padding:40px 24px 84px}
+.crumbs{font-size:12px;color:#4f6175;margin-bottom:14px}.crumbs a{color:inherit;text-decoration:none}.crumbs a:hover{color:var(--navy)}
+.section-kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7a5f14;font-weight:700;margin-bottom:8px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(26px,3.4vw,34px);font-weight:600;letter-spacing:-.015em;color:var(--navy);line-height:1.18}
+.lead{font-size:15px;color:#3f5266;margin-top:10px;max-width:680px;line-height:1.65}
+.divider{width:40px;height:2px;background:var(--gold);margin:16px 0 26px;border-radius:1px;opacity:.7}
+h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--navy);margin:30px 0 12px}
+.term ul{padding-left:20px;line-height:1.7;font-size:15px;color:#2d4a6b}.term li{margin-bottom:6px}
+.term p{font-size:15px;line-height:1.7;color:#2d4a6b}
+.example{background:var(--surface-soft);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:10px;padding:4px 18px 14px;margin-top:26px}
+.example h2{margin-top:14px}.example p{margin-bottom:8px}.term .ex-note{font-size:12px;color:#5c6f83}
+.faq{border-top:1px solid var(--border);padding:12px 0}.faq:last-of-type{border-bottom:1px solid var(--border)}
+.faq summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:15px;list-style-position:outside}
+.faq p{margin-top:8px}
+.notice{font-size:12px;color:#5c6f83;line-height:1.6;margin-top:24px}.term .notice{font-size:12px;color:#5c6f83}
+.notice a{color:inherit}
+.cta{margin-top:36px;background:#0f2035;color:#fff;border-radius:14px;padding:22px}
+.cta h2{color:#fff;font-size:20px;margin:0 0 4px}.cta p{font-size:13px;color:#d1dae6}
+.nl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.nl input{flex:1;border:0;border-radius:8px;padding:10px 12px;font:14px 'DM Sans',sans-serif;min-width:200px}
+.nl button{background:var(--gold);color:#0f2035;border:0;font-weight:700;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer}
+.nl-msg{font-size:12px;color:#d1dae6;width:100%}
+.related{display:flex;flex-wrap:wrap;gap:8px;font-size:13px}
+.related a{color:var(--navy2);border:1px solid var(--border);border-radius:999px;padding:8px 12px;text-decoration:none;min-height:24px}
+.related a:hover{border-color:var(--gold)}
+.az{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.az a{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border:1px solid var(--border);border-radius:8px;color:var(--navy);text-decoration:none;font-weight:600;font-size:14px}
+.g-letter{scroll-margin-top:90px}.g-letter ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.g-item{border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.g-item h3{font-size:15px;color:var(--navy);margin-bottom:4px}.g-item h3 a{color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.g-item p{font-size:13px;line-height:1.55;color:#3f5266}.g-item.has-page{border-left:3px solid var(--gold)}
+html[data-theme="dark"] h1,html[data-theme="dark"] h2,html[data-theme="dark"] .faq summary,html[data-theme="dark"] .g-item h3,html[data-theme="dark"] .az a{color:#edf3f8}
+html[data-theme="dark"] .lead,html[data-theme="dark"] .term p,html[data-theme="dark"] .term ul,html[data-theme="dark"] .g-item p,html[data-theme="dark"] .notice,html[data-theme="dark"] .term .notice,html[data-theme="dark"] .term .ex-note{color:#b9c9d8}
+html[data-theme="dark"] .section-kicker{color:#d7b85d}
+html[data-theme="dark"] .crumbs{color:#b9c9d8}
+html[data-theme="dark"] .example,html[data-theme="dark"] .g-item,html[data-theme="dark"] .cta{background:#182638;border-color:#33485e}
+html[data-theme="dark"] .example{border-left-color:var(--gold)}
+html[data-theme="dark"] .faq,html[data-theme="dark"] .az a{border-color:#2d4255}
+html[data-theme="dark"] .related a{color:#cbd8e4;border-color:#33485e}
+@media(max-width:699px){main{padding:26px 14px 70px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "DefinedTerm", "@id": "https://quijotefinanzas.com/glosario/interes-compuesto/#term", "name": "Interés compuesto", "description": "El interés compuesto es el que se calcula sobre el capital inicial y también sobre los intereses que ya se han acumulado. Así, los intereses generan nuevos intereses y el crecimiento se acelera con el tiempo.", "url": "https://quijotefinanzas.com/glosario/interes-compuesto/", "inDefinedTermSet": {"@type": "DefinedTermSet", "@id": "https://quijotefinanzas.com/glosario/#set", "name": "QuijoGlosario", "url": "https://quijotefinanzas.com/glosario/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué diferencia hay entre interés simple y compuesto?", "acceptedAnswer": {"@type": "Answer", "text": "En el simple los intereses se calculan siempre sobre el capital inicial. En el compuesto se suman al capital y generan nuevos intereses."}}, {"@type": "Question", "name": "¿Dónde se aplica el interés compuesto?", "acceptedAnswer": {"@type": "Answer", "text": "En cualquier producto en el que se reinvierten los rendimientos: cuentas y depósitos que suman los intereses, fondos de acumulación o carteras en las que reinviertes dividendos."}}, {"@type": "Question", "name": "¿Qué es la regla del 72?", "acceptedAnswer": {"@type": "Answer", "text": "Una aproximación: divide 72 entre el tipo anual para saber en cuántos años se duplica el capital. Al 6 %, unos 12 años."}}, {"@type": "Question", "name": "¿Los fondos indexados tienen interés compuesto?", "acceptedAnswer": {"@type": "Answer", "text": "No pagan un interés fijo, pero si no retiras las ganancias, estas se reinvierten y el efecto es similar. La rentabilidad no está garantizada."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://quijotefinanzas.com/"}, {"@type": "ListItem", "position": 2, "name": "Glosario", "item": "https://quijotefinanzas.com/glosario/"}, {"@type": "ListItem", "position": 3, "name": "Interés compuesto", "item": "https://quijotefinanzas.com/glosario/interes-compuesto/"}]}]}</script>
+</head>
+<body>
+<div id="top-bar" class="site-nav-shell">
+  <div class="site-nav-inner">
+    <a href="/" class="site-brand" title="Ir al inicio">
+      <span class="site-brand-mark"><img src="/logo.png" alt="" width="34" height="34"></span>
+      <span class="site-brand-name"><span class="brand-long">Don Quijote de las Finanzas</span><span class="brand-short">Quijote Finanzas</span></span>
+    </a>
+    <div class="site-nav-viewport">
+      <nav id="main-nav" class="site-nav-track" aria-label="Navegación principal">
+        <a class="nav-btn" href="/#sobre">Sobre el proyecto</a>
+        <a class="nav-btn" href="/#calculadoras">Calculadoras</a>
+        <a class="nav-btn" href="/#cuentas">QuijoCuentas</a>
+        <a class="nav-btn" href="/#quijolista">QuijoLista</a>
+        <a class="nav-btn" href="/#quijocartera">QuijoCartera</a>
+        <a class="nav-btn" href="/#recursos">Recursos</a>
+        <a class="nav-btn" href="/calendario-financiero/">Calendario</a>
+        <a class="nav-btn" href="/colaboraciones/">Colaboraciones</a>
+        <a class="nav-btn" href="/#teca">QuijoTeca</a>
+        <a class="nav-btn active" href="/glosario/" aria-current="page">QuijoGlosario</a>
+        <a class="nav-btn" href="/#referidos">Referidos</a>
+      </nav>
+    </div>
+    <button id="qf-theme-toggle" class="qf-theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro" aria-pressed="false">
+      <svg class="qf-theme-icon qf-theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6a8.5 8.5 0 1 0 11.6 11.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="qf-theme-icon qf-theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</div>
+<main>
+<nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> › <a href="/glosario/">Glosario</a> › Interés compuesto</nav>
+<div class="section-kicker">QuijoGlosario</div>
+<h1>Qué es el interés compuesto</h1>
+<p class="lead def">El interés compuesto es el que se calcula sobre el capital inicial y también sobre los intereses que ya se han acumulado. Así, los intereses generan nuevos intereses y el crecimiento se acelera con el tiempo.</p>
+<div class="divider"></div>
+<article class="term">
+<h2>Cómo funciona</h2><ul><li>La fórmula básica es: capital final = capital inicial × (1 + tipo)^años.</li><li>Cuanto más tiempo y más frecuente es la capitalización, mayor es el efecto.</li><li>Funciona igual en contra: en una deuda que no se paga, los intereses también se acumulan sobre los intereses.</li></ul>
+<section class="example" aria-labelledby="ej-t"><h2 id="ej-t">Ejemplo ilustrativo</h2><p>Inviertes 10.000 € a un 5 % anual durante 20 años y reinviertes todo. Con interés compuesto acabas con unos 26.533 €.</p><p>Con interés simple, cobrando el 5 % solo sobre los 10.000 € iniciales, tendrías 20.000 €. La diferencia, unos 6.533 €, son intereses sobre intereses.</p><p class="ex-note">Cifras inventadas para explicar el concepto; no son una oferta ni una previsión.</p></section>
+<h2>Calcúlalo con tus números</h2><div class="related"><a href="/calculadora-interes-compuesto/">Calculadora de interés compuesto</a><a href="/calculadora-cagr/">Calculadora de CAGR</a><a href="/calculadora-jubilacion-fire/">Calculadora de jubilación FIRE</a></div>
+<h2>Preguntas frecuentes</h2><details class="faq"><summary>¿Qué diferencia hay entre interés simple y compuesto?</summary><p>En el simple los intereses se calculan siempre sobre el capital inicial. En el compuesto se suman al capital y generan nuevos intereses.</p></details><details class="faq"><summary>¿Dónde se aplica el interés compuesto?</summary><p>En cualquier producto en el que se reinvierten los rendimientos: cuentas y depósitos que suman los intereses, fondos de acumulación o carteras en las que reinviertes dividendos.</p></details><details class="faq"><summary>¿Qué es la regla del 72?</summary><p>Una aproximación: divide 72 entre el tipo anual para saber en cuántos años se duplica el capital. Al 6 %, unos 12 años.</p></details><details class="faq"><summary>¿Los fondos indexados tienen interés compuesto?</summary><p>No pagan un interés fijo, pero si no retiras las ganancias, estas se reinvierten y el efecto es similar. La rentabilidad no está garantizada.</p></details>
+<h2>Términos relacionados</h2><div class="related"><a href="/glosario/tae/">TAE</a><a href="/glosario/fondo-indexado/">Fondo indexado</a><a href="/glosario/inflacion/">Inflación</a><a href="/glosario/etf/">ETF</a><a href="/glosario/">Ver glosario completo</a></div>
+
+<p class="notice">Contenido educativo y general. No es asesoramiento financiero ni fiscal personalizado. Revisado el <time datetime="2026-10-30">30 de octubre de 2026</time>.</p>
+</article>
+<section class="cta" aria-labelledby="cta-t"><h2 id="cta-t">Aprende un concepto nuevo cada semana</h2><p>Suscríbete a la newsletter: explicaciones claras, novedades de cuentas y calculadoras. Sin spam.</p>
+<form class="nl" id="newsletter-form" action="https://app.kit.com/forms/9947108/subscriptions" method="post" target="newsletter-submit-frame"><input type="email" name="email_address" placeholder="tu@email.com" required autocomplete="email" aria-label="Correo electrónico"><button type="submit">Suscribirme</button><span class="nl-msg" id="nl-msg" role="status" aria-live="polite"></span></form>
+<iframe name="newsletter-submit-frame" title="Envío de suscripción" style="display:none"></iframe></section>
+</main>
+<footer class="site-footer">
+  <div class="site-footer-top">
+    <a href="/" class="site-footer-brand"><img src="/logo.png" alt="" width="36" height="36"><span>Don Quijote de las Finanzas</span></a>
+    <div class="site-footer-links">
+      <a href="/#calculadoras">Calculadoras</a><a href="/#cuentas">QuijoCuentas</a><a href="/#quijolista">QuijoLista</a><a href="/#quijocartera">QuijoCartera</a><a href="/#recursos">Recursos</a><a href="/calendario-financiero/">Calendario financiero</a><a href="/colaboraciones/">Colaboraciones</a><a href="/glosario/">Glosario</a><a href="/sobre-el-proyecto.html">Sobre el proyecto</a><a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">@QuijoteFinanzas</a>
+    </div>
+  </div>
+  <div class="site-footer-legal">
+    <span>&copy; 2026 Don Quijote de las Finanzas · Contenido informativo y educativo. No constituye asesoramiento financiero.</span>
+    <div><a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a><a href="mailto:contacto@quijotefinanzas.com">Contacto</a></div>
+  </div>
+</footer>
+
+<div id="cookie-banner" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies de terceros (Google Analytics y Microsoft Clarity) para analizar el uso de la web y mejorar la experiencia. Puedes aceptar todas o solo las esenciales. <a href="/cookies.html">Más información sobre cookies</a>.</p>
+  <div class="cb-actions"><button type="button" class="cb-ess" onclick="cookieEssential()">Solo esenciales</button><button type="button" class="cb-ok" onclick="cookieAccept()">Aceptar</button></div>
+</div>
+<div id="cookie-ball" role="button" tabindex="0" title="Configuración de cookies" aria-label="Configuración de cookies" onclick="document.getElementById('cookie-banner').style.display='flex'">&#127850;</div>
+
+<script>
+(function(){
+ /* Cookies: misma clave y comportamiento que la portada */
+ var KEY='cookie_consent';
+ function clarity(){if(window._clarityLoaded)return;window._clarityLoaded=true;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vxocnf2p5q");}
+ function apply(v){if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});clarity();}}
+ function done(){document.getElementById('cookie-banner').style.display='none';document.getElementById('cookie-ball').style.display='flex';}
+ window.cookieAccept=function(){try{localStorage.setItem(KEY,'accepted')}catch(e){};apply('accepted');done();};
+ window.cookieEssential=function(){try{localStorage.setItem(KEY,'essential')}catch(e){};done();};
+ var saved=null;try{saved=localStorage.getItem(KEY)}catch(e){}
+ if(saved){apply(saved);document.getElementById('cookie-ball').style.display='flex';}else document.getElementById('cookie-banner').style.display='flex';
+
+ /* Tema claro / oscuro */
+ var tb=document.getElementById('qf-theme-toggle');
+ function sync(){var d=document.documentElement.getAttribute('data-theme')==='dark';tb.setAttribute('aria-pressed',d?'true':'false');var l=d?'Activar modo claro':'Activar modo oscuro';tb.setAttribute('aria-label',l);tb.setAttribute('title',l);}
+ tb.addEventListener('click',function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);document.documentElement.style.colorScheme=n;document.getElementById('qf-theme-color').setAttribute('content',n==='dark'?'#101a26':'#ffffff');try{localStorage.setItem('qf-theme',n)}catch(e){};sync();});
+ sync();
+ var form=document.getElementById('newsletter-form');
+ if(form)form.addEventListener('submit',function(){form.querySelector('button').disabled=true;document.getElementById('nl-msg').textContent='Revisa tu correo y pulsa «Confirmar suscripción». Si no lo ves, mira en spam o promociones.';try{gtag('event','newsletter_signup',{source_component:'glosario_interes_compuesto'})}catch(e){}});
+})();
+</script>
+<script defer src="/assets/quijobot.js?v=20261013c"></script>
+</body></html>

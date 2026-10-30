@@ -1,0 +1,42 @@
+<footer class="site-footer">
+  <div class="site-footer-top">
+    <a href="/" class="site-footer-brand"><img src="/logo.png" alt="" width="36" height="36"><span>Don Quijote de las Finanzas</span></a>
+    <div class="site-footer-links">
+      <a href="/#calculadoras">Calculadoras</a><a href="/#cuentas">QuijoCuentas</a><a href="/#quijolista">QuijoLista</a><a href="/#quijocartera">QuijoCartera</a><a href="/#recursos">Recursos</a><a href="/calendario-financiero/">Calendario financiero</a><a href="/colaboraciones/">Colaboraciones</a><a href="/glosario/">Glosario</a><a href="/sobre-el-proyecto.html">Sobre el proyecto</a><a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">@QuijoteFinanzas</a>
+    </div>
+  </div>
+  <div class="site-footer-legal">
+    <span>&copy; 2026 Don Quijote de las Finanzas · Contenido informativo y educativo. No constituye asesoramiento financiero.</span>
+    <div><a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a><a href="mailto:contacto@quijotefinanzas.com">Contacto</a></div>
+  </div>
+</footer>
+
+<div id="cookie-banner" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies de terceros (Google Analytics y Microsoft Clarity) para analizar el uso de la web y mejorar la experiencia. Puedes aceptar todas o solo las esenciales. <a href="/cookies.html">Más información sobre cookies</a>.</p>
+  <div class="cb-actions"><button type="button" class="cb-ess" onclick="cookieEssential()">Solo esenciales</button><button type="button" class="cb-ok" onclick="cookieAccept()">Aceptar</button></div>
+</div>
+<div id="cookie-ball" role="button" tabindex="0" title="Configuración de cookies" aria-label="Configuración de cookies" onclick="document.getElementById('cookie-banner').style.display='flex'">&#127850;</div>
+
+<script>
+(function(){
+ /* Cookies: misma clave y comportamiento que la portada */
+ var KEY='cookie_consent';
+ function clarity(){if(window._clarityLoaded)return;window._clarityLoaded=true;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vxocnf2p5q");}
+ function apply(v){if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});clarity();}}
+ function done(){document.getElementById('cookie-banner').style.display='none';document.getElementById('cookie-ball').style.display='flex';}
+ window.cookieAccept=function(){try{localStorage.setItem(KEY,'accepted')}catch(e){};apply('accepted');done();};
+ window.cookieEssential=function(){try{localStorage.setItem(KEY,'essential')}catch(e){};done();};
+ var saved=null;try{saved=localStorage.getItem(KEY)}catch(e){}
+ if(saved){apply(saved);document.getElementById('cookie-ball').style.display='flex';}else document.getElementById('cookie-banner').style.display='flex';
+
+ /* Tema claro / oscuro */
+ var tb=document.getElementById('qf-theme-toggle');
+ function sync(){var d=document.documentElement.getAttribute('data-theme')==='dark';tb.setAttribute('aria-pressed',d?'true':'false');var l=d?'Activar modo claro':'Activar modo oscuro';tb.setAttribute('aria-label',l);tb.setAttribute('title',l);}
+ tb.addEventListener('click',function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);document.documentElement.style.colorScheme=n;document.getElementById('qf-theme-color').setAttribute('content',n==='dark'?'#101a26':'#ffffff');try{localStorage.setItem('qf-theme',n)}catch(e){};sync();});
+ sync();
+ var form=document.getElementById('newsletter-form');
+ if(form)form.addEventListener('submit',function(){form.querySelector('button').disabled=true;document.getElementById('nl-msg').textContent='Revisa tu correo y pulsa «Confirmar suscripción». Si no lo ves, mira en spam o promociones.';try{gtag('event','newsletter_signup',{source_component:'{{SOURCE}}'})}catch(e){}});
+})();
+</script>
+<script defer src="/assets/quijobot.js?v=20261013c"></script>
+</body></html>
