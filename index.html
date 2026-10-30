@@ -1471,6 +1471,14 @@ function qfTrack(eventName, params) {
 @keyframes qfScenarioFlash{0%{box-shadow:0 0 0 0 rgba(201,168,76,.35)}100%{box-shadow:0 0 0 10px rgba(201,168,76,0)}}
 .qf-generic-hero[data-state="empty"] .qf-hero-main{font-family:'DM Sans',sans-serif;font-size:18px;color:rgba(255,255,255,.70);letter-spacing:0}
 .qf-generic-hero[data-state="empty"] .qf-hero-metrics{opacity:.55}
+/* Revisión oct-2026: sin métricas vacías «—» y mensaje claro cuando faltan datos */
+.qf-hero-metrics[data-count="2"]{grid-template-columns:repeat(2,1fr)}
+.qf-hero-metrics[data-count="1"]{grid-template-columns:1fr}
+.qf-hero-metrics[data-count="0"],.qf-generic-hero[data-state="empty"] .qf-hero-metrics{display:none}
+.qf-hero-metric[hidden]{display:none}
+.qf-result-hero[data-state="invalid"] .qf-hero-main{font-family:'DM Sans',sans-serif;font-size:17px;line-height:1.4;font-weight:600;color:#ffd9a8;letter-spacing:0;margin:8px 0 10px}
+.qf-result-hero[data-state="invalid"] .qf-hero-metrics,.qf-result-hero[data-state="invalid"] .qf-whatif,.qf-result-hero[data-state="invalid"] .qf-hero-actions,.qf-result-hero[data-state="invalid"] .qf-result-share-note,.qf-result-hero[data-state="invalid"] .qf-hero-insight:empty{display:none}
+input[aria-invalid="true"]{border-color:#d9822b !important;box-shadow:0 0 0 2px rgba(217,130,43,.25)}
 .qf-result-share-note{position:relative;z-index:1;text-align:center;font-size:9px;color:rgba(220,232,245,.42);margin-top:6px}
 .qf-renta-share-wrap{margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,32,53,.08);display:flex;justify-content:center}
 .qf-renta-share-wrap .qf-share-result{background:var(--navy);border-color:var(--navy);color:#fff}
@@ -3796,13 +3804,43 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
 
+  // ── Validación en línea (revisión oct-2026) ──────────────────────────────
+  // Un dato obligatorio vacío o fuera de rango ya no se sustituye en silencio por un valor por defecto:
+  // se muestra un mensaje junto al resultado, se marca el campo y no se calcula nada.
+  window.qfNum = function(id){
+    var e=document.getElementById(id); if(!e) return NaN;
+    var t=String(e.value==null?'':e.value).trim(); if(t==='') return NaN;
+    var v=window.QF_FMT?QF_FMT.parse(t):parseFloat(t.replace(/\./g,'').replace(',','.'));
+    return isFinite(v)?v:NaN;
+  };
+  window.qfInvalid = function(resId,msg,fieldId){
+    var r=document.getElementById(resId);
+    if(r) r.innerHTML='<div class="empty-state qf-invalid" role="alert">'+msg+'</div>';
+    var pre=String(resId).replace(/-results$/,'');
+    ['-chart-wrap','-cta'].forEach(function(suf){var x=document.getElementById(pre+suf);if(x)x.style.display='none';});
+    if(fieldId){var f=document.getElementById(fieldId);if(f)f.setAttribute('aria-invalid','true');}
+    return false;
+  };
+  document.addEventListener('input',function(e){if(e.target&&e.target.getAttribute&&e.target.getAttribute('aria-invalid')==='true')e.target.removeAttribute('aria-invalid');},true);
+  // Hero de las calculadoras piloto (interés, FIRE, coste del tiempo) en estado «faltan datos».
+  window.qfPilotHeroInvalid = function(heroId,msg){
+    var h=document.getElementById(heroId); if(!h) return;
+    h.setAttribute('data-state','invalid');
+    var m=h.querySelector('.qf-hero-main'); if(m){m.textContent=msg;}
+    h.querySelectorAll('.qf-hero-metric strong').forEach(function(x){x.textContent='';});
+    var ins=h.querySelector('.qf-hero-insight'); if(ins) ins.textContent='';
+  };
+  window.qfPilotHeroReady = function(heroId){var h=document.getElementById(heroId);if(h)h.setAttribute('data-state','ready');};
+
   window.calcHipoteca = function() {
     var precio=parseFloat(document.getElementById('hip-precio').value)||0;
     var entrada=parseFloat(document.getElementById('hip-entrada').value)||0;
     var tipo=parseFloat(document.getElementById('hip-tipo').value)||0;
-    var plazo=parseInt(document.getElementById('hip-plazo').value)||30;
+    var plazo=qfNum('hip-plazo');
     var capital=precio-entrada;
     if(precio<=0||entrada<0||entrada>precio){document.getElementById('hip-results').innerHTML='<div class="empty-state">Revisa precio y entrada: la entrada no puede superar el precio.</div>';return;}
+    if(!(plazo>=1)) return qfInvalid('hip-results','Indica el plazo de la hipoteca en a&ntilde;os (m&iacute;nimo 1 a&ntilde;o).','hip-plazo');
+    plazo=Math.floor(plazo);
     var rm=tipo/100/12, n=plazo*12;
     var cuota=(rm===0)?capital/n:capital*rm*Math.pow(1+rm,n)/(Math.pow(1+rm,n)-1);
     var totalPagado=cuota*n, totalIntereses=totalPagado-capital;
@@ -3854,7 +3892,9 @@ document.addEventListener('DOMContentLoaded', function(){
   window.calcInflacion = function() {
     var cap=parseFloat(document.getElementById('inf-capital').value)||0;
     var ipc=(parseFloat(document.getElementById('inf-ipc').value)||0)/100;
-    var anos=parseInt(document.getElementById('inf-anos').value)||1;
+    var anos=qfNum('inf-anos');
+    if(!(anos>=1)) return qfInvalid('inf-results','Indica el n&uacute;mero de a&ntilde;os (m&iacute;nimo 1).','inf-anos');
+    anos=Math.floor(anos);
     var rent=(parseFloat(document.getElementById('inf-rent').value)||0)/100;
     var invNom=cap*Math.pow(1+rent,anos);
     var cashReal=cap/Math.pow(1+ipc,anos);
@@ -3890,13 +3930,21 @@ document.addEventListener('DOMContentLoaded', function(){
     if (inflAnual <= 0) return nominal;
     return nominal / Math.pow(1 + inflAnual, anos);
   }
+  // Única lectura de datos para el detalle y el hero de FIRE (antes el detalle usaba gastos||2000 y el hero gastos||0).
+  window.qfFireInputs = function(){
+    var d={actual:parseFloat(document.getElementById('jub-actual').value)||0,
+      aport:parseFloat(document.getElementById('jub-aport').value)||0,
+      rent:parseFloat(document.getElementById('jub-rent').value)||0,
+      gastos:qfNum('jub-gastos'),
+      edad:parseInt(document.getElementById('jub-edad').value)||35,
+      infl:getInfl('jub')};
+    if(!(d.gastos>0)) d.error='Indica tus gastos mensuales en la jubilaci&oacute;n (mayor que 0 &euro;): el capital objetivo se calcula a partir de ellos.';
+    return d;
+  };
   window.calcJubilacion = function() {
-    var actual=parseFloat(document.getElementById('jub-actual').value)||0;
-    var aport=parseFloat(document.getElementById('jub-aport').value)||0;
-    var rent=parseFloat(document.getElementById('jub-rent').value)||0;
-    var gastos=parseFloat(document.getElementById('jub-gastos').value)||2000;
-    var edad=parseInt(document.getElementById('jub-edad').value)||35;
-    var infl=getInfl('jub');
+    var d=qfFireInputs();
+    if(d.error) return qfInvalid('jub-results',d.error,'jub-gastos');
+    var actual=d.actual, aport=d.aport, rent=d.rent, gastos=d.gastos, edad=d.edad, infl=d.infl;
     var fireReal=gastos*12/0.04;
     var rm=Math.pow(1+rent/100,1/12)-1, capital=actual, anos=0;
     var labels=[],dataNom=[],dataReal=[],target=[];
@@ -3923,7 +3971,9 @@ document.addEventListener('DOMContentLoaded', function(){
   window.calcDeposito = function() {
     var cap=parseFloat(document.getElementById('dep-capital').value)||0;
     var tin=(parseFloat(document.getElementById('dep-tin').value)||0)/100;
-    var meses=parseInt(document.getElementById('dep-meses').value)||12;
+    var meses=qfNum('dep-meses');
+    if(!(meses>=1)) return qfInvalid('dep-results','Indica el plazo del dep&oacute;sito en meses (m&iacute;nimo 1 mes).','dep-meses');
+    meses=Math.floor(meses);
     var infl=getInfl('dep'), anos=meses/12;
     var periodYield=tin*anos, intBruto=cap*periodYield, retencion=intBruto*0.19, intNeto=intBruto-retencion, totalNeto=cap+intNeto;
     var taeEq=meses>0?Math.pow(1+periodYield,12/meses)-1:0;
@@ -3938,11 +3988,18 @@ document.addEventListener('DOMContentLoaded', function(){
     window._depChart=new Chart(document.getElementById('dep-chart').getContext('2d'),{type:'doughnut',data:{labels:['Capital','Intereses tras retención','Retención a cuenta'],datasets:[{data:[+cap.toFixed(2),+intNeto.toFixed(2),+retencion.toFixed(2)],backgroundColor:['rgba(125,211,168,.75)','rgba(125,180,255,.75)','rgba(240,160,112,.75)'],borderColor:['#7dd3a8','#7db4ff','#f0a070'],borderWidth:1.5,hoverOffset:6}]},options:doughnutOpts(cap+intBruto)});
   };
 
+  window.qfInteresInputs = function(){
+    var d={C:parseFloat(document.getElementById('ic-capital').value)||0,
+      A:parseFloat(document.getElementById('ic-aportacion').value)||0,
+      r:parseFloat(document.getElementById('ic-rent').value)||0,
+      n:qfNum('ic-anos')};
+    if(!(d.n>=1)) d.error='Indica el n&uacute;mero de a&ntilde;os (m&iacute;nimo 1).'; else d.n=Math.floor(d.n);
+    return d;
+  };
   window.calcInteres = function() {
-    var C=parseFloat(document.getElementById('ic-capital').value)||0;
-    var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
-    var r=parseFloat(document.getElementById('ic-rent').value)||0;
-    var n=parseInt(document.getElementById('ic-anos').value)||1;
+    var d=qfInteresInputs();
+    if(d.error) return qfInvalid('ic-results',d.error,'ic-anos');
+    var C=d.C, A=d.A, r=d.r, n=d.n;
     var infl=getInfl('ic');
     var rm=Math.pow(1+r/100,1/12)-1, capital=C, totalAportado=C, labels=[],dataC=[],dataA=[],dataReal=[];
     for(var y=1;y<=n;y++){for(var m=0;m<12;m++){capital=capital*(1+rm)+A;totalAportado+=A;}labels.push('Año '+y);dataC.push(+capital.toFixed(2));dataA.push(+totalAportado.toFixed(2));dataReal.push(+valorReal(capital,infl,y).toFixed(2));}
@@ -4258,7 +4315,9 @@ document.addEventListener('DOMContentLoaded', function(){
   window.calcAmortizacion = function() {
     var capital=parseFloat(document.getElementById('am-capital').value)||0;
     var tipo=parseFloat(document.getElementById('am-tipo').value)||0;
-    var anos=parseInt(document.getElementById('am-anos').value)||1;
+    var anos=qfNum('am-anos');
+    if(!(anos>=1)) return qfInvalid('am-results','Indica los a&ntilde;os que le quedan a la hipoteca (m&iacute;nimo 1).','am-anos');
+    anos=Math.floor(anos);
     var extra=parseFloat(document.getElementById('am-extra').value)||0;
     var obj=document.getElementById('am-tipo-amort').value;
     var r=tipo/100/12,n=anos*12;
@@ -4276,6 +4335,7 @@ document.addEventListener('DOMContentLoaded', function(){
   };
   window.calcAlquiler = function() {
     var precio=parseFloat(document.getElementById('alq-precio').value)||0,pctG=parseFloat(document.getElementById('alq-gastos').value)||0,renta=parseFloat(document.getElementById('alq-renta').value)||0,gA=parseFloat(document.getElementById('alq-gastos-anuales').value)||0,vac=parseFloat(document.getElementById('alq-vacante').value)||0;
+    if(!(precio>0)) return qfInvalid('alq-results','Indica el precio de compra del inmueble (mayor que 0 &euro;): la rentabilidad se calcula sobre &eacute;l.','alq-precio');
     var inv=precio*(1+pctG/100),ingB=renta*12,ingE=renta*(12-vac),benN=ingE-gA;
     var rB=precio>0?ingB/precio*100:0,rN=inv>0?benN/inv*100:0,ptr=ingB>0?precio/ingB:0;
     document.getElementById('alq-results').innerHTML=rr('Inversión total (precio + gastos)',fmtEUR(inv))+rr('Ingresos brutos anuales',fmtEUR(ingB))+rr('Ingresos efectivos (con vacante)',fmtEUR(ingE),'g')+rr('Gastos anuales',fmtEUR(gA),'o')+rr('Beneficio neto anual',fmtEUR(benN),benN>=0?'g':'o')+rr('Rentabilidad bruta sobre precio',fmtPct(rB))+rr('Rentabilidad neta sobre inversión total',fmtPct(rN),rN>=0?'g':'o')+rr('Price-to-Rent ratio',ptr?Math.round(ptr*10)/10+'x':'—');
@@ -4559,6 +4619,11 @@ document.addEventListener('DOMContentLoaded', function(){
     return years > 0 ? (Math.pow(n, 1/years) - 1) * 100 : 0;
   }
 
+  // Los años con 0 € (o negativo) no pueden entrar en el CAGR: se avisa en lugar de descartarlos en silencio.
+  function cagrSkippedNote(rows){
+    if(!rows.skipped || !rows.skipped.length) return '';
+    return '<div class="qf-invalid-note" role="note" style="font-size:12px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:10px">No se ha usado '+(rows.skipped.length>1?'los a&ntilde;os ':'el a&ntilde;o ')+rows.skipped.join(', ')+': con un valor de 0 &euro; o negativo no se puede calcular una tasa de crecimiento compuesto. El resultado usa solo los a&ntilde;os con valor positivo.</div>';
+  }
   function cagrResultsHTML(rows, unit){
     var sorted=rows.slice().sort(function(a,b){return a.year-b.year;}), completed=sorted.filter(function(r){return !r.ytd;}), base=completed.length>=2?completed:sorted;
     var first=base[0],lastFull=base[base.length-1],lastShown=sorted[sorted.length-1],yearsExact=lastFull.year-first.year;
@@ -4718,6 +4783,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var val  = parseFloat(row.querySelector('.cagr-val').value.replace(',','.'));
       var ytd  = row.querySelector('.cagr-ytd') ? row.querySelector('.cagr-ytd').checked : false;
       if(!isNaN(year) && !isNaN(val) && val > 0) rows.push({year:year, val:val, ytd:ytd});
+      else if(!isNaN(year) && !isNaN(val)) rows.skipped = (rows.skipped||[]).concat(year);
     });
     return rows;
   }
@@ -4802,7 +4868,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var rows = getRows('cags-rows');
     var res = document.getElementById('cags-results');
     if(rows.length < 2){ res.innerHTML = '<div class="empty-state">Necesitas al menos 2 a&ntilde;os con datos</div>'; return; }
-    res.innerHTML = cagrResultsHTML(rows, '€');
+    res.innerHTML = cagrSkippedNote(rows) + cagrResultsHTML(rows, '€');
     document.getElementById('cags-chart-wrap').style.display = 'block';
     document.getElementById('cags-cta').style.display = 'flex';
     setTimeout(function(){ cagrDrawChart('cags-chart', rows, [60,100,200], [100,180,255], '€'); }, 50);
@@ -4812,7 +4878,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var rows = getRows('cagp-rows');
     var res = document.getElementById('cagp-results');
     if(rows.length < 2){ res.innerHTML = '<div class="empty-state">Necesitas al menos 2 a&ntilde;os con datos</div>'; return; }
-    res.innerHTML = cagrResultsHTML(rows, '€');
+    res.innerHTML = cagrSkippedNote(rows) + cagrResultsHTML(rows, '€');
     document.getElementById('cagp-chart-wrap').style.display = 'block';
     document.getElementById('cagp-cta').style.display = 'flex';
     setTimeout(function(){ cagrDrawChart('cagp-chart', rows, [26,90,150], [100,160,240], '€'); }, 50);
@@ -4821,14 +4887,30 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ── EL COSTE DEL TIEMPO ──────────────────────────────────────────────────
 
+  // Única lectura de datos para el detalle y el hero (antes el detalle usaba rent||8 % y el hero aceptaba el 0 %).
+  window.qfTiempoInputs = function(){
+    var d={patrimonio:parseFloat(document.getElementById('t-patrimonio').value)||0,
+      edad:parseInt(document.getElementById('t-edad').value)||30,
+      aport:parseFloat(document.getElementById('t-aport').value)||0,
+      rent:qfNum('t-rent'),
+      objetivo:parseInt(document.getElementById('t-objetivo').value)||65};
+    if(!isFinite(d.rent)||d.rent<=-100){d.error='Indica la rentabilidad anual estimada (puede ser 0 %).';d.field='t-rent';}
+    else if(d.edad>=d.objetivo){d.error='La edad objetivo tiene que ser mayor que tu edad actual.';d.field='t-objetivo';}
+    return d;
+  };
   window.calcTiempo = function() {
-    var patrimonio = parseFloat(document.getElementById('t-patrimonio').value) || 0;
-    var edadActual = parseInt(document.getElementById('t-edad').value) || 30;
-    var aportMes   = parseFloat(document.getElementById('t-aport').value) || 0;
-    var rentAnual  = parseFloat(document.getElementById('t-rent').value) / 100 || 0.08;
-    var objetivo   = parseInt(document.getElementById('t-objetivo').value) || 65;
-
-    if (edadActual >= objetivo) return;
+    var d = qfTiempoInputs();
+    if (d.error) {
+      ['t-multiplicador-wrap','t-parar-wrap'].forEach(function(w){var x=document.getElementById(w);if(x)x.style.display='none';});
+      var f=document.getElementById(d.field); if(f) f.setAttribute('aria-invalid','true');
+      qfPilotHeroInvalid('t-hero', d.error.replace(/&[a-z]+;/g,function(m){var t=document.createElement('textarea');t.innerHTML=m;return t.value;}));
+      return;
+    }
+    var patrimonio = d.patrimonio;
+    var edadActual = d.edad;
+    var aportMes   = d.aport;
+    var rentAnual  = d.rent / 100;
+    var objetivo   = d.objetivo;
 
     var rentMes = Math.pow(1 + rentAnual, 1/12) - 1;
 
@@ -6294,11 +6376,12 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     for(var i=0;i<n*12;i++) cap=cap*(1+rm)+A;
     return cap;
   }
+  function decodeEnt(t){var x=document.createElement('textarea');x.innerHTML=t;return x.value;}
   function updateInterestHero(){
-    var C=parseFloat(document.getElementById('ic-capital').value)||0;
-    var A=parseFloat(document.getElementById('ic-aportacion').value)||0;
-    var r=parseFloat(document.getElementById('ic-rent').value)||0;
-    var n=parseInt(document.getElementById('ic-anos').value)||1;
+    var d=window.qfInteresInputs?window.qfInteresInputs():null;
+    if(!d||d.error){if(window.qfPilotHeroInvalid)qfPilotHeroInvalid('ic-hero',decodeEnt(d?d.error:'Faltan datos'));return;}
+    qfPilotHeroReady('ic-hero');
+    var C=d.C,A=d.A,r=d.r,n=d.n;
     var cap=calcCompound(C,A,r,n),aport=C+A*12*n,interest=cap-aport;
     setText('ic-hero-main',eurFull(cap));
     setText('ic-hero-aportado',eurCompact(aport));
@@ -6316,12 +6399,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     return y;
   }
   function updateFireHero(){
-    var actual=parseFloat(document.getElementById('jub-actual').value)||0;
-    var aport=parseFloat(document.getElementById('jub-aport').value)||0;
-    var r=parseFloat(document.getElementById('jub-rent').value)||0;
-    var gastos=parseFloat(document.getElementById('jub-gastos').value)||0;
-    var edad=parseInt(document.getElementById('jub-edad').value)||35;
-    var infl=(document.getElementById('jub-infl-check')&&document.getElementById('jub-infl-check').checked)?((parseFloat(document.getElementById('jub-infl-val').value)||0)/100):0;var fire=gastos*12/0.04,y=yearsToFire(actual,aport,r,gastos,infl),edadFire=edad+y;
+    var d=window.qfFireInputs?window.qfFireInputs():null;
+    if(!d||d.error){if(window.qfPilotHeroInvalid)qfPilotHeroInvalid('jub-hero',decodeEnt(d?d.error:'Faltan datos'));return;}
+    qfPilotHeroReady('jub-hero');
+    var actual=d.actual,aport=d.aport,r=d.rent,gastos=d.gastos,edad=d.edad,infl=d.infl;var fire=gastos*12/0.04,y=yearsToFire(actual,aport,r,gastos,infl),edadFire=edad+y;
     setText('jub-hero-main',y<80?edadFire+' años':'> '+(edad+80)+' años');
     setText('jub-hero-target',eurCompact(fire));
     setText('jub-hero-years',y<80?y+' años':'>80 años');
@@ -6346,12 +6427,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     return cap;
   }
   function updateTiempoHero(){
-    var patr=parseFloat(document.getElementById('t-patrimonio').value)||0;
-    var edad=parseInt(document.getElementById('t-edad').value)||30;
-    var aport=parseFloat(document.getElementById('t-aport').value)||0;
-    var r=parseFloat(document.getElementById('t-rent').value)||0;
-    var obj=parseInt(document.getElementById('t-objetivo').value)||65;
-    if(edad>=obj){setText('t-hero-main','Revisa edades');return;}
+    var d=window.qfTiempoInputs?window.qfTiempoInputs():null;
+    if(!d||d.error){if(window.qfPilotHeroInvalid)qfPilotHeroInvalid('t-hero',decodeEnt(d?d.error:'Faltan datos'));return;}
+    qfPilotHeroReady('t-hero');
+    var patr=d.patrimonio,edad=d.edad,aport=d.aport,r=d.rent,obj=d.objetivo;
     var final=projectTime(patr,edad,obj,aport,r),years=obj-edad;
     setText('t-hero-main',eurFull(final));
     setText('t-hero-aport',eurCompact(aport));
@@ -6370,6 +6449,13 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   };
 
   function resultShareText(id){
+    // Mismas lecturas de datos que el detalle y el hero; si faltan datos, texto genérico.
+    var src={interes:window.qfInteresInputs,jubilacion:window.qfFireInputs,tiempo:window.qfTiempoInputs}[id];
+    if(src){var chk=src();if(chk.error)return 'Prueba esta calculadora en QuijoteFinanzas:';
+      if(id==='interes'){var C0=chk.C,A0=chk.A,r0=chk.r,n0=chk.n,cap0=calcCompound(C0,A0,r0,n0);return '📈 '+eurFull(A0)+'/mes durante '+n0+' años al '+r0.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(cap0)+'. El tiempo hace buena parte del trabajo. Calcula tu escenario en QuijoteFinanzas:';}
+      if(id==='jubilacion'){var y0=yearsToFire(chk.actual,chk.aport,chk.rent,chk.gastos,chk.infl);if(y0>=80)return 'Con estos supuestos, mi objetivo FIRE queda fuera del horizonte de 80 años. Probar escenarios cambia mucho el resultado. Calcula el tuyo en QuijoteFinanzas:';return 'Con este escenario, mi objetivo FIRE se situaría alrededor de los '+(chk.edad+y0)+' años. Puedes probar el tuyo en QuijoteFinanzas:';}
+      if(id==='tiempo'){var f0=projectTime(chk.patrimonio,chk.edad,chk.objetivo,chk.aport,chk.rent);return '⌛ '+eurFull(chk.aport)+'/mes desde los '+chk.edad+' hasta los '+chk.objetivo+' años al '+chk.rent.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(f0)+'. El coste de esperar puede ser enorme. Prueba tu escenario:';}
+    }
     if(id==='interes'){
       var A=parseFloat(document.getElementById('ic-aportacion').value)||0,r=parseFloat(document.getElementById('ic-rent').value)||0,n=parseInt(document.getElementById('ic-anos').value)||1,C=parseFloat(document.getElementById('ic-capital').value)||0;
       var cap=calcCompound(C,A,r,n);
@@ -6435,10 +6521,10 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     salario:{title:'Bruto anual necesario',main:['salario bruto necesario'],metrics:[['neto objetivo','Neto objetivo'],['irpf estimado','IRPF'],['neto por paga','Neto / paga']],private:true},
     hipoteca:{title:'Cuota mensual estimada',main:['cuota mensual'],metrics:[['capital prestado','Capital'],['total intereses','Intereses'],['plazo','Plazo']]},
     coste:{title:'Coste anual para la empresa',main:['coste total anual'],metrics:[['tu salario bruto','Bruto'],['ss a cargo empresa','SS empresa'],['coste mensual','Coste / mes']],private:true},
-    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['poder adquisitivo real','Poder real'],['inflación acumulada','Inflación']]},
-    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses netos','Intereses netos'],['tae equivalente','TAE']]},
+    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['valor real de la inversion','Valor real (euros de hoy)'],['poder adquisitivo del efectivo','Efectivo sin invertir']]},
+    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses tras retencion','Intereses netos'],['tae equivalente','TAE']]},
     irpf:{title:'Neto estimado por paga',main:['neto por paga'],metrics:[['salario bruto anual','Bruto anual'],['irpf anual','IRPF anual'],['tipo efectivo irpf','Tipo efectivo']],private:true},
-    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal anual'],metrics:[['aportación anual al plan','Aportación'],['coste real de la aportación','Coste real'],['ahorro por cada 100','Ahorro / 100 €']]},
+    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal'],metrics:[['aportacion anual al plan','Aportación'],['coste real estimado de la aportacion','Coste real'],['ahorro por cada 100','Ahorro / 100 €']]},
     amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']]},
     alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]}
   };
@@ -6446,7 +6532,8 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   var sliderConfig={
     'au-ingresos':{min:0,max:50000,step:500,minLabel:'0 €',maxLabel:'50k€'},'au-gastos':{min:0,max:25000,step:250,minLabel:'0 €',maxLabel:'25k€'},
     'ic-capital':{min:0,max:250000,step:2500,minLabel:'0 €',maxLabel:'250k€'},
-    'sal-neto':{min:12000,max:100000,step:1000,minLabel:'12k€',maxLabel:'100k€'},
+    // Rango según «Objetivo»: neto por paga (banco) o neto fiscal anual. Antes era siempre 12k-100k y el slider fijaba 20.000 €/paga.
+    'sal-neto':{min:500,max:8000,step:50,minLabel:'500€',maxLabel:'8k€'},
     'hip-precio':{min:50000,max:1000000,step:10000,minLabel:'50k€',maxLabel:'1M€'},'hip-entrada':{min:0,max:500000,step:5000,minLabel:'0 €',maxLabel:'500k€'},'hip-tipo':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'hip-plazo':{min:5,max:40,step:1,minLabel:'5a',maxLabel:'40a'},
     'ce-bruto':{min:12000,max:150000,step:1000,minLabel:'12k€',maxLabel:'150k€'},'ce-at':{min:0,max:8,step:.1,minLabel:'0%',maxLabel:'8%'},
     'inf-capital':{min:1000,max:500000,step:5000,minLabel:'1k€',maxLabel:'500k€'},'inf-ipc':{min:0,max:10,step:.1,minLabel:'0%',maxLabel:'10%'},'inf-anos':{min:1,max:40,step:1,minLabel:'1a',maxLabel:'40a'},'inf-rent':{min:0,max:15,step:.1,minLabel:'0%',maxLabel:'15%'},
@@ -6519,7 +6606,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }
   function findPair(pairs,needles){
     needles=Array.isArray(needles)?needles:[needles];
-    for(var i=0;i<needles.length;i++){var n=norm(needles[i]);for(var j=0;j<pairs.length;j++){if(norm(pairs[j].label).indexOf(n)!==-1)return pairs[j];}}
+    for(var i=0;i<needles.length;i++){var n=norm(needles[i]);if(!n)continue;for(var j=0;j<pairs.length;j++){if(norm(pairs[j].label).indexOf(n)!==-1)return pairs[j];}}
     return null;
   }
   function parseEuro(s){var t=String(s||'').replace(/[^0-9,.-]/g,'').replace(/\./g,'').replace(',','.');var n=parseFloat(t);return isFinite(n)?n:0;}
@@ -6528,9 +6615,9 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   function genericHeroHTML(id,cfg){
     return '<div class="qf-generic-block" data-qf-block="'+id+'"><div class="qf-live-badge">Resultado en tiempo real</div>'+
       '<div class="qf-result-hero qf-generic-hero" data-qf-hero="'+id+'" data-state="empty">'+
-      '<div class="qf-hero-eyebrow" id="qf-'+id+'-eyebrow">'+cfg.title+'</div><div class="qf-hero-main" id="qf-'+id+'-main">Ajusta los datos</div>'+
-      '<div class="qf-hero-metrics"><div class="qf-hero-metric"><span id="qf-'+id+'-m1l">—</span><strong id="qf-'+id+'-m1">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m2l">—</span><strong id="qf-'+id+'-m2">—</strong></div><div class="qf-hero-metric"><span id="qf-'+id+'-m3l">—</span><strong id="qf-'+id+'-m3">—</strong></div></div>'+
-      '<div class="qf-hero-insight" id="qf-'+id+'-insight">Mueve las barras o cambia los campos para comparar escenarios al instante.</div><div class="qf-whatif" id="qf-'+id+'-whatif"></div>'+
+      '<div class="qf-hero-eyebrow" id="qf-'+id+'-eyebrow">'+cfg.title+'</div><div class="qf-hero-main" id="qf-'+id+'-main">Introduce tus datos para ver el resultado</div>'+
+      '<div class="qf-hero-metrics" data-count="0"><div class="qf-hero-metric" hidden><span id="qf-'+id+'-m1l"></span><strong id="qf-'+id+'-m1"></strong></div><div class="qf-hero-metric" hidden><span id="qf-'+id+'-m2l"></span><strong id="qf-'+id+'-m2"></strong></div><div class="qf-hero-metric" hidden><span id="qf-'+id+'-m3l"></span><strong id="qf-'+id+'-m3"></strong></div></div>'+
+      '<div class="qf-hero-insight" id="qf-'+id+'-insight">El resultado se actualiza al cambiar cualquier dato.</div><div class="qf-whatif" id="qf-'+id+'-whatif"></div>'+
       '<div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share-all="'+id+'">Compartir resultado en X ↗</button></div>'+
       (cfg.private?'<div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>':'')+
       '<div class="qf-card-brand">quijotefinanzas.com</div></div></div>';
@@ -6570,9 +6657,12 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
 
   function setHero(id,eyebrow,main,metrics,insight){
     var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(!hero)return;hero.dataset.state='ready';
-    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=main||'—';mainEl.classList.toggle('long',String(main||'').length>18);}
+    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=main||'';mainEl.classList.toggle('long',String(main||'').length>18);}
     var e=document.getElementById('qf-'+id+'-eyebrow');if(e&&eyebrow)e.textContent=eyebrow;
-    for(var i=0;i<3;i++){var m=metrics&&metrics[i];var l=document.getElementById('qf-'+id+'-m'+(i+1)+'l'),v=document.getElementById('qf-'+id+'-m'+(i+1));if(l)l.textContent=m?m.label:'—';if(v)v.textContent=m?m.value:'—';}
+    // Las métricas sin dato se ocultan (antes se pintaba «—»).
+    var shown=0;
+    for(var i=0;i<3;i++){var m=metrics&&metrics[i];var l=document.getElementById('qf-'+id+'-m'+(i+1)+'l'),v=document.getElementById('qf-'+id+'-m'+(i+1));if(l)l.textContent=m?m.label:'';if(v)v.textContent=m?m.value:'';var box=v&&v.parentNode;if(box){if(m){box.removeAttribute('hidden');shown++;}else box.setAttribute('hidden','');}}
+    var mw=hero.querySelector('.qf-hero-metrics');if(mw)mw.setAttribute('data-count',String(shown));
     var ins=document.getElementById('qf-'+id+'-insight');if(ins&&insight)ins.innerHTML=insight;
   }
 
@@ -6598,7 +6688,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
       metrics=compactMetrics([
         metricFrom(p,['pension bruta anual'],'Bruto anual'),
         metricFrom(p,['cuota anual estimada de irpf'],'IRPF anual'),
-        metricFrom(p,['diferencia estimada'],'Ajuste Renta')
+        metricFrom(p,['diferencia estimada'],'Ajuste Renta')||(function(t){return t?{label:'Tratamiento',value:/^exenta/i.test(t.value)?'Exenta':(/^sujeta/i.test(t.value)?'Sujeta':t.value.split(' (')[0])}:null;})(findPair(p,['tratamiento fiscal']))
       ]);
       insight='La <strong>retención del pagador</strong> y la cuota final de IRPF pueden ser distintas. El ajuste estimado ayuda a ver esa diferencia.';
     }else if(mode==='salary'){
@@ -6635,7 +6725,22 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     ]),'El bruto necesario cambia con retenciones, cotizaciones y situación personal. Ajusta los datos para comparar escenarios.');
   }
 
+  // Mensaje en el hero cuando no hay resultado (dato obligatorio vacío o fuera de rango).
+  function setHeroMessage(id,msg,state){
+    var hero=document.querySelector('[data-qf-hero="'+id+'"]');if(!hero)return;hero.dataset.state=state||'invalid';
+    var mainEl=document.getElementById('qf-'+id+'-main');if(mainEl){mainEl.textContent=msg;mainEl.classList.remove('long');}
+    var mw=hero.querySelector('.qf-hero-metrics');if(mw)mw.setAttribute('data-count','0');
+    hero.querySelectorAll('.qf-hero-metric').forEach(function(b){b.setAttribute('hidden','');});
+    var ins=document.getElementById('qf-'+id+'-insight');if(ins)ins.textContent='';
+  }
+  function heroFromEmptyState(id){
+    var root=document.querySelector(resultSelector[id]);if(!root)return false;
+    if(root.querySelector('.result-row,.res-item,tbody tr'))return false;
+    var es=root.querySelector('.empty-state');if(!es)return false;
+    setHeroMessage(id,es.textContent.trim()||'Revisa los datos introducidos.','invalid');return true;
+  }
   function updateGenericHero(id){
+    if(heroFromEmptyState(id))return;
     if(id==='alquilervs'){updateAlquilerVs();return;}if(id==='comparador'){updateComparador();return;}if(id==='irpf'){updateIrpfHero();return;}if(id==='salario'){updateSalarioHero();return;}
     var cfg=heroConfig[id];if(!cfg)return;var p=pairsFrom(id);if(!p.length)return;var main=findPair(p,cfg.main);if(!main)return;
     var metrics=[];(cfg.metrics||[]).forEach(function(m){if(metrics.length>=3)return;var pair=findPair(p,m[0]);if(pair)metrics.push({label:m[1],value:pair.value});});
@@ -6675,6 +6780,18 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   ['alquilervs','comparador'].forEach(function(id){if(!heroConfig[id]){heroConfig[id]={title:'Resultado comparado',main:[],metrics:[]};insertGenericHero(id,heroConfig[id]);ensureScenarioArea(id);}});
 
   Object.keys(sliderConfig).forEach(function(id){enhanceSlider(document.getElementById(id),sliderConfig[id]);});
+  function syncSalNetoSlider(){
+    var input=document.getElementById('sal-neto'),cfg=sliderConfig['sal-neto'];if(!input||!cfg)return;
+    var fiscal=((document.getElementById('sal-target-type')||{}).value==='fiscal');
+    var next=fiscal?{min:6000,max:150000,step:500,minLabel:'6k€',maxLabel:'150k€'}:{min:500,max:8000,step:50,minLabel:'500€',maxLabel:'8k€'};
+    Object.keys(next).forEach(function(k){cfg[k]=next[k];});
+    var wrap=input.nextElementSibling;if(!wrap||!wrap.classList.contains('qf-inline-range-wrap'))return;
+    var range=wrap.querySelector('.qf-inline-range'),scale=wrap.querySelector('.qf-inline-range-scale'),cur=wrap.querySelector('.qf-inline-range-current');
+    range.min=cfg.min;range.max=cfg.max;range.step=cfg.step;range.value=clamp(parseFloat(input.value)||cfg.min,cfg.min,cfg.max);
+    if(scale)scale.innerHTML='<span>'+cfg.minLabel+'</span><span>'+cfg.maxLabel+'</span>';
+    if(cur)cur.textContent=inlineValue(input.value,cfg);paintRange(range);
+  }
+  syncSalNetoSlider();
   genericIds.forEach(function(id){wrapCalcFunction(id);bindAutoCalc(id);observeResults(id);});
 
   document.addEventListener('click',function(e){
@@ -6685,7 +6802,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   document.addEventListener('change',function(e){
     if(!e.target)return;
     if(e.target.id==='irpf-mode'){setTimeout(function(){ensureScenarioArea('irpf');updateGenericHero('irpf');},0);}
-    if(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'){setTimeout(function(){ensureScenarioArea('salario');updateGenericHero('salario');},0);}
+    if(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'){syncSalNetoSlider();setTimeout(function(){ensureScenarioArea('salario');updateGenericHero('salario');},0);}
   });
 
   // Autocalcular al abrir, salvo CAGR (necesitan datos previos).
