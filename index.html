@@ -2504,6 +2504,13 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <option value="7">7% (nuevos aut&oacute;nomos, primeros 3 a&ntilde;os)</option>
         <option value="0">0% (sin retenci&oacute;n / clientes particulares)</option>
       </select></div>
+      <div class="field"><label for="au-rn-anterior">Rendimiento neto de tu actividad el a&ntilde;o anterior</label><select id="au-rn-anterior">
+        <option value="mas12000" selected>M&aacute;s de 12.000&nbsp;&euro; (sin minoraci&oacute;n)</option>
+        <option value="hasta9000">Hasta 9.000&nbsp;&euro; (&minus;100&nbsp;&euro; en cada Modelo 130)</option>
+        <option value="hasta10000">De 9.000,01 a 10.000&nbsp;&euro; (&minus;75&nbsp;&euro;)</option>
+        <option value="hasta11000">De 10.000,01 a 11.000&nbsp;&euro; (&minus;50&nbsp;&euro;)</option>
+        <option value="hasta12000">De 11.000,01 a 12.000&nbsp;&euro; (&minus;25&nbsp;&euro;)</option>
+      </select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Minoraci&oacute;n del pago fraccionado (art. 110.3.c del Reglamento del IRPF).</span></div>
       <div class="field"><label for="au-ccaa">Comunidad Aut&oacute;noma</label><select id="au-ccaa">
         <option value="andalucia">Andaluc&iacute;a</option>
         <option value="aragon">Arag&oacute;n</option>
@@ -2528,7 +2535,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       </select><p class="field-note" style="font-size:11px;line-height:1.45;margin:6px 0 0;color:var(--muted,#5a6b7d)">Tarifa plana: 80 &euro;/mes + MEI = 88,64 &euro;/mes (Seguridad Social). Solo si no estuviste de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya la disfrutaste) y la pides al darte de alta. El segundo a&ntilde;o exige un rendimiento neto anual inferior al SMI (17.094 &euro;) y pedirla antes de que empiece (LETA, art. 38 ter).</p></div>
     </div>
     <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
-    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se estima con el 20% general sobre el rendimiento neto acumulado; el IRPF real se calcula con las escalas progresivas estatal y auton&oacute;mica sobre tu rendimiento neto anual, como se liquida realmente al presentar la Renta. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
+    <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. <strong>Supuestos (modelo simplificado):</strong> estimaci&oacute;n directa simplificada; el rendimiento neto para IRPF descuenta la cuota RETA (art. 30.2.1.&ordf; LIRPF) y un 5% de gastos de dif&iacute;cil justificaci&oacute;n con un m&aacute;ximo de 2.000&nbsp;&euro;/a&ntilde;o. El Modelo 130 es el 20% del rendimiento neto menos retenciones y, si procede, la minoraci&oacute;n del art. 110.3.c RIRPF; la AEAT lo calcula sobre el acumulado del a&ntilde;o, que con cuatro trimestres iguales da lo mismo que este c&aacute;lculo trimestral. El IRPF anual aplica la reducci&oacute;n del art. 32.2.3.&ordm; LIRPF suponiendo que no tienes otras rentas, y las escalas estatal y auton&oacute;mica con el m&iacute;nimo personal general (sin m&iacute;nimos por edad, descendientes ni deducciones auton&oacute;micas). La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
 
     <div class="results-panel" id="au-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
 
@@ -4395,7 +4402,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var ccaa = document.getElementById('au-ccaa').value;
     var antiguedad = document.getElementById('au-antiguedad').value; // 'normal' | 'ano1' | 'ano2'
 
-    // 1. Rendimiento neto del trimestre (para IRPF): -5% gastos difícil justif., máx 500 €/trimestre (2.000 €/año)
+    // 1. Rendimiento antes de la cuota RETA (solo para el requisito del SMI de la tarifa plana del segundo año).
+    //    El rendimiento neto a efectos de IRPF se calcula más abajo, una vez conocida la cuota RETA (art. 30.2.1ª LIRPF).
     var difJustif = Math.min((ingT - gasT) * 0.05, 500);
     var rendNetoTrim = Math.max(0, ingT - gasT - difJustif);
 
@@ -4408,15 +4416,32 @@ document.addEventListener('DOMContentLoaded', function(){
     var reta = calcCuotaReta(rendNetoMensualReta, tarifaPlanaAplica);
     var retaTrimestral = reta.cuota * 3;
 
-    // 3. Modelo 130 (pago A CUENTA del IRPF) — trimestre independiente, sin acumulado
-    var tipoIrpf = 0.20; // Modelo 130: tipo general; el 7%/15% pertenece a retenciones de facturas, no al pago fraccionado
-    var cuotaIrpfBruta = rendNetoTrim * tipoIrpf;
-    var retencionesSoportadas = ingT * (retencion / 100); // dinero que el cliente retiene y NO llega a tu cuenta
-    var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas);
+    // 2b. Rendimiento neto a efectos de IRPF (estimación directa simplificada):
+    //     ingresos − gastos − cuota RETA (gasto deducible, art. 30.2.1ª LIRPF) − gastos de difícil justificación
+    //     (5% de ese rendimiento, máx. 2.000 €/año, art. 30.2.4ª LIRPF y art. 30 RIRPF; aquí 500 €/trimestre).
+    var rendPrevioIrpf = ingT - gasT - retaTrimestral;
+    var difJustifIrpf = rendPrevioIrpf > 0 ? Math.min(rendPrevioIrpf * 0.05, 500) : 0;
+    var rendNetoTrimIrpf = rendPrevioIrpf - difJustifIrpf;
 
-    // 3b. IRPF REAL estimado (escalas progresivas estatal+autonómica sobre el rendimiento ANUAL) —
-    // estimación anual de IRPF; el Modelo 130 es un pago a cuenta general del 20%.
-    var irpfAnualReal = calcCuotaIRPFBase(rendNetoAnualEstimado, ccaa);
+    // 3. Modelo 130 (pago fraccionado, art. 110 RIRPF). Supuesto: los cuatro trimestres son iguales. Con ese supuesto,
+    //    el 20% del rendimiento acumulado menos los pagos de trimestres anteriores (art. 110.1.a) coincide con el 20%
+    //    del rendimiento del trimestre, y lo mismo pasa con las retenciones acumuladas (art. 110.3.a).
+    var tipoIrpf = 0.20; // Modelo 130: tipo general; el 7%/15% pertenece a retenciones de facturas, no al pago fraccionado
+    var cuotaIrpfBruta = Math.max(0, rendNetoTrimIrpf) * tipoIrpf;
+    var retencionesSoportadas = ingT * (retencion / 100); // dinero que el cliente retiene y NO llega a tu cuenta
+    // Minoración art. 110.3.c RIRPF según el rendimiento neto de actividades del ejercicio ANTERIOR (dato del usuario).
+    var rnAnteriorSel = (document.getElementById('au-rn-anterior') || {}).value || 'mas12000';
+    var minoracion130 = {hasta9000:100, hasta10000:75, hasta11000:50, hasta12000:25}[rnAnteriorSel] || 0;
+    var minoracionAplicada = Math.min(minoracion130, Math.max(0, cuotaIrpfBruta - retencionesSoportadas));
+    var modelo130 = Math.max(0, cuotaIrpfBruta - retencionesSoportadas - minoracion130);
+
+    // 3b. IRPF anual estimado: rendimiento del trimestre ×4, reducción art. 32.2.3º LIRPF (rentas < 12.000 €,
+    //     suponiendo que no hay otras rentas) y escalas estatal + autonómica con el mínimo personal general.
+    var rendNetoAnualIrpf = Math.max(0, rendNetoTrimIrpf * 4);
+    var reduccion32 = rendNetoAnualIrpf <= 8000 ? 1000 : (rendNetoAnualIrpf < 12000 ? 1000 - 0.125 * (rendNetoAnualIrpf - 8000) : 0);
+    reduccion32 = Math.min(reduccion32, rendNetoAnualIrpf);
+    var baseIrpfAnual = rendNetoAnualIrpf - reduccion32;
+    var irpfAnualReal = calcCuotaIRPFBase(baseIrpfAnual, ccaa);
     var yaPagadoEnElAno = (modelo130 + retencionesSoportadas) * 4; // Modelo 130 + retenciones, proyectado a 4 trimestres iguales
     var regularizacion = irpfAnualReal - yaPagadoEnElAno; // positivo = te falta pagar, negativo = te devuelven
     var provisionTrimestral = regularizacion / 4;
@@ -4434,8 +4459,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var netoConProvision = dineroEnCuenta - provisionTrimestral;
 
     var html = rr('Ingresos del trimestre', fmtEUR(ingT)) +
-      rr('Gastos deducibles', fmtEUR(gasT), 'o') +
-      rr('Rendimiento neto (base IRPF)', fmtEUR(rendNetoTrim));
+      rr('Gastos deducibles', fmtEUR(gasT), 'o');
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Cuota RETA (Seguridad Social)</div>';
     if (tarifaPlanaAplica) {
@@ -4452,13 +4476,26 @@ document.addEventListener('DOMContentLoaded', function(){
     html += rr('Cuota RETA del trimestre (3 meses)', fmtEUR(retaTrimestral), 'o');
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130 (pago a cuenta)</div>';
-    html += rr('Tipo aplicado', fmtPct(tipoIrpf*100)) +
+    html += rr('Ingresos &minus; gastos &minus; cuota RETA', fmtEUR(rendPrevioIrpf)) +
+      rr('Gastos de dif&iacute;cil justificaci&oacute;n (5%, m&aacute;x. 500&nbsp;&euro;/trimestre)', fmtEUR(difJustifIrpf), 'o') +
+      rr('Rendimiento neto del trimestre (base IRPF)', fmtEUR(rendNetoTrimIrpf)) +
+      rr('20% del rendimiento neto', fmtEUR(cuotaIrpfBruta)) +
       rr('Retenciones ya soportadas en factura', fmtEUR(retencionesSoportadas)) +
+      (minoracion130 > 0 ? rr('Minoraci&oacute;n art. 110.3.c RIRPF', fmtEUR(minoracionAplicada), 'g') : '') +
       rr('A ingresar en el Modelo 130', fmtEUR(modelo130), 'o');
+    if (rendNetoTrimIrpf < 0) {
+      html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">Rendimiento negativo: el Modelo 130 sale a 0&nbsp;&euro; y esa p&eacute;rdida se compensa con los trimestres positivos del mismo a&ntilde;o, porque el pago fraccionado se calcula sobre el acumulado.</div>';
+    }
+    if (minoracion130 > minoracionAplicada + 0.005) {
+      html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">La parte de la minoraci&oacute;n que no cabe este trimestre (' + fmtEUR(minoracion130 - minoracionAplicada) + ') puede restarse en los siguientes pagos fraccionados del mismo a&ntilde;o.</div>';
+    }
 
     html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF real estimado (al presentar la Renta)</div>';
     html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">El Modelo 130 es solo un pago a cuenta. El IRPF real se calcula con las escalas estatal y auton&oacute;mica sobre tu rendimiento neto anual.</div>';
-    html += rr('IRPF anual real estimado (escalas progresivas)', fmtEUR(irpfAnualReal)) +
+    html += rr('Rendimiento neto anual estimado (trimestre &times;4)', fmtEUR(rendNetoAnualIrpf)) +
+      (reduccion32 > 0 ? rr('Reducci&oacute;n art. 32.2.3&ordm; LIRPF (rentas &lt; 12.000&nbsp;&euro;)', fmtEUR(reduccion32), 'g') : '') +
+      rr('Base liquidable estimada', fmtEUR(baseIrpfAnual)) +
+      rr('IRPF anual real estimado (escalas progresivas)', fmtEUR(irpfAnualReal)) +
       rr('Ya pagado en el a&ntilde;o (Modelo 130 + retenciones, x4)', fmtEUR(yaPagadoEnElAno));
     if (regularizacion > 0) {
       html += rr('Te faltar&aacute; pagar al presentar la Renta', fmtEUR(regularizacion), 'o');
