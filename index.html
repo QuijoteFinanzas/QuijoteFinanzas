@@ -3168,11 +3168,8 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('[data-close]').forEach(function(btn) {
     btn.addEventListener('click', function() { closeCalc(btn.getAttribute('data-close')); });
   });
-  document.querySelectorAll('.calc-overlay').forEach(function(o) {
-    o.addEventListener('click', function(e) {
-      if (e.target === o) closeCalc(o.id.replace('modal-', ''));
-    });
-  });
+  // No cerrar calculadoras al hacer clic en el fondo del overlay.
+  // La salida sigue disponible mediante la X y la tecla Escape, evitando cierres accidentales.
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.calc-overlay.open').forEach(function(o){ closeCalc(o.id.replace('modal-','')); });
