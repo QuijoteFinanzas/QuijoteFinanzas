@@ -42,7 +42,7 @@ function offset(f) {
 function fechaLarga(f) { var d = new Date(f + 'T12:00:00Z'); return DIAS[d.getUTCDay()] + ' ' + d.getUTCDate() + ' de ' + MESES[d.getUTCMonth()]; }
 
 // Categorías: color fijo para las conocidas; las nuevas toman uno de reserva.
-var COLORS = { 'ipc': '#c0392b', 'bce': '#2563a8', 'euribor': '#7c4dbe', 'fiscalidad': '#b7791f', 'resultados': '#2d8a5e' };
+var COLORS = { 'ipc': '#c0392b', 'bce': '#2563a8', 'euribor': '#7c4dbe', 'fiscalidad': '#b7791f' };
 var SPARE = ['#0e7c86', '#a8437a', '#5b6b7c'];
 var cats = []; events.forEach(function (e) { if (cats.indexOf(e.categoria) < 0) cats.push(e.categoria); });
 var colorOf = {}, spare = 0;
@@ -89,7 +89,7 @@ var legend = '<button type="button" class="cf" data-f="all" aria-pressed="true">
 }).join('');
 
 var title = 'Calendario financiero ' + mes + ' ' + y + ': IPC, BCE, Euríbor y fechas fiscales';
-var desc = 'Fechas clave de ' + mes + ' de ' + y + ' en España: IPC, BCE, Euríbor, plazos de Hacienda y resultados de empresas, con hora de Madrid y fuente oficial.';
+var desc = 'Fechas de finanzas personales de ' + mes + ' de ' + y + ': IPC, reuniones del BCE, Euríbor y plazos de Hacienda, con hora de Madrid y fuente oficial.';
 
 var graph = events.filter(function (e) { return e.verificado; }).map(function (e) {
   return { '@type': 'Event', name: e.titulo,
