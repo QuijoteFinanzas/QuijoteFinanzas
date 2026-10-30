@@ -58,3 +58,7 @@ Antes de publicar conviene revisar al menos la portada y alguna calculadora en m
 - Cambios pequeños y revertibles, un commit por tema y mensajes en español.
 - Codificación UTF-8, finales de línea LF (ver `.editorconfig`).
 - Accesibilidad: cada campo de formulario con su `<label for>` o `aria-label`, contraste AA en ambos temas y foco visible.
+
+## Licencia
+
+© 2026 Don Quijote de las Finanzas. Todos los derechos reservados. Consulta [LICENSE](LICENSE). El repositorio es público, pero no se concede permiso para copiar, modificar ni redistribuir su contenido.
