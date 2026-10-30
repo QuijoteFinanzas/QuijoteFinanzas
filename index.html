@@ -1602,7 +1602,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261030a"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261030b"></script>
 </head>
 <body class="show-home-intro">
 
@@ -2044,9 +2044,9 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="cuentas-snapshot-title">Foto rápida de octubre</div>
         <div class="cuentas-snapshot-grid">
           <div class="cuentas-snapshot-item"><strong>Sin condiciones</strong>Trade Republic · 2,50% tipo anual BCE.</div>
-          <div class="cuentas-snapshot-item"><strong>Con condiciones</strong>Revolut · 3,51% TAE · hasta 25.000€ · máximo 120 días.</div>
+          <div class="cuentas-snapshot-item"><strong>Con condiciones</strong>Revolut · 3,51% TAE · hasta 25.000€ · hasta 4 meses.</div>
           <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>Banco Sabadell · hasta 3.120€ en 1 año; el máximo exige 100.000€ de saldo.</div>
-          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>HoistSpar · 3,51% TAE a 12 meses.</div>
+          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>Renault Bank · 3,34% TAE a 36 meses.</div>
           <div class="cuentas-snapshot-item"><strong>Depósitos promocionales</strong>Banco BiG · 4,00% TAE a 1 mes para nuevos clientes.</div>
           <div class="cuentas-snapshot-item"><strong>Promociones bancarias</strong>BBVA PLAN1060 · hasta 1.060€ combinando varias acciones.</div>
         </div>
@@ -3464,7 +3464,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function qcLogoHtml(c){
     if(!c || !c.logoDomain) return '';
-    return '<span class="cuenta-logo" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain='+qcEsc(c.logoDomain)+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="cuenta-logo-fallback">'+qcEsc(qcInitials(c.banco))+'</span></span>';
+    return '<span class="cuenta-logo" aria-hidden="true"><img loading="lazy" src="'+(c.logo?qcEsc(c.logo):'https://www.google.com/s2/favicons?sz=128&domain='+qcEsc(c.logoDomain))+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="cuenta-logo-fallback">'+qcEsc(qcInitials(c.banco))+'</span></span>';
   }
 
   function qcBankHtml(bank,title){
