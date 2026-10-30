@@ -4006,8 +4006,9 @@ document.addEventListener('DOMContentLoaded', function(){
   function annualFamilyMinimumFromRules(rules,birthYear,numDesc,numUnder3,disability,descShare){
     rules=rules||STATE_FAMILY_MIN_2026;
     var age=ageAtTaxYear(birthYear),min=rules.base,share=(+descShare===0.5?0.5:1);
-    // Para la cuota anual, la LIRPF y las normas autonómicas aplican los incrementos si la edad es SUPERIOR a 65/75 años.
-    if(age>65)min+=rules.age65;if(age>75)min+=rules.age75;
+    // Incremento por edad: se aplica si el contribuyente tiene 65/75 años o más (igual o superior) a 31/12, fecha de devengo
+    // (LIRPF art. 57.2 y art. 61.3.ª; criterio del Manual práctico de Renta de la AEAT). La retención usa la misma regla (RIRPF art. 84).
+    if(age>=65)min+=rules.age65;if(age>=75)min+=rules.age75;
     numDesc=Math.max(0,parseInt(numDesc)||0);numUnder3=Math.max(0,Math.min(parseInt(numUnder3)||0,numDesc));
     for(var i=0;i<numDesc;i++)min+=rules.desc[Math.min(i,3)]*share;
     min+=numUnder3*rules.under3*share;
@@ -4033,7 +4034,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function pensionTaxability(type){return (type==='ipa'||type==='gran'||type==='orfandad')?0:1;}
-  // Mínimo usado exclusivamente por el algoritmo de RETENCIONES AEAT 2026: sus variables por año de nacimiento equivalen a >=65 / >=75.
+  // Mínimo del algoritmo de RETENCIONES AEAT 2026 (RIRPF art. 84): mismo criterio de edad que la cuota anual, >=65 / >=75 a 31/12.
   function familyMinimum(birthYear,numDesc,numUnder3,disability,descShare){
     var age=ageAtTaxYear(birthYear), min=5550, share=(+descShare===0.5?0.5:1); if(age>=65)min+=1150;if(age>=75)min+=1400;
     numDesc=Math.max(0,parseInt(numDesc)||0); numUnder3=Math.max(0,Math.min(parseInt(numUnder3)||0,numDesc));
