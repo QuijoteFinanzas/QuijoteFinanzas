@@ -347,6 +347,11 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cta-link:hover{border-color:var(--navy);background:#fff;color:var(--navy)}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 @media(max-width:580px){.calc-grid{grid-template-columns:1fr}}
+/* El texto de la tarifa plana no debe ensanchar la ficha ni el iframe embebido */
+#modal-autonomos .calc-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:580px){#modal-autonomos .calc-grid{grid-template-columns:minmax(0,1fr)}}
+#modal-autonomos .field{min-width:0}
+#modal-autonomos .field select,#modal-autonomos .field input{width:0;min-width:100%;max-width:100%}
 .field-group{display:flex;flex-direction:column;gap:12px}
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);font-weight:600;opacity:.7}
