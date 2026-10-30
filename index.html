@@ -1198,6 +1198,9 @@ function qfTrack(eventName, params) {
 .ref-trust-item strong{display:block;color:var(--navy);font-size:12px;margin-bottom:3px}
 .ref-trust-item div span{display:block;color:var(--muted);font-size:11px;line-height:1.45}
 #referidos #ref-filter{margin-bottom:14px}
+#referidos .ref-card-nolink{cursor:default}
+.ref-contact{margin-top:6px;font-size:.8rem}.ref-contact a,.ref-ask-note a{color:var(--gold,#c9a84c);text-decoration:underline}
+.ref-ask-note{margin:14px 0 10px;font-size:.9rem}
 #referidos .ref-card{background:#fff;border:1px solid rgba(15,32,53,.10);border-radius:12px;padding:17px 18px;box-shadow:0 8px 24px rgba(15,32,53,.035);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
 #referidos .ref-card:hover{background:#fff;border-color:rgba(201,168,76,.55);transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,32,53,.08)}
 /* Logos reales y consistentes · Referidos */
@@ -2130,7 +2133,8 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <div class="referidos-list" id="refList">
       <a class="ref-card" href="https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing?P5=CN&P2=MGMG5YN9BD5QH" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=bankinter.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">B</span></div>
-        <div class="ref-info"><h3>Bankinter</h3><p>Cuenta bancaria de alta remuneraci&oacute;n &middot; c&oacute;digo: MGMG5YN9BD5QH</p><p class="ref-meta">Bono al domiciliar n&oacute;mina</p></div>
+        <div class="ref-info"><h3>Bankinter</h3><p>Cuenta bancaria de alta remuneraci&oacute;n &middot; c&oacute;digo: MGMG5YN9BD5QH</p><p class="ref-meta">Promo &laquo;Bankinter en familia&raquo;: para familiares (padres, hijos, hermanos, abuelos o pareja) de clientes seleccionados &middot; 15.000&euro; en cuenta o inversi&oacute;n en 30 d&iacute;as y mantenerlos 6 meses</p></div>
+        <!-- Fuente: https://www.bankinter.com/banca/nav/promo-bankinter-familia-100-landing (consultado 30/10/2026): 150 EUR para el nuevo cliente; plazas limitadas (5.000 cuentas); fecha fin no indicada en la web. -->
         <span class="ref-bonus">150&euro; bono</span>
       </a>
       <a class="ref-card" href="https://esim.holafly.com/?sref_id=n9w1mer&utm_campaign=referral_program&utm_source=loyalty" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
@@ -2148,6 +2152,11 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="ref-info"><h3>iGraal</h3><p>Cashback en compras online &mdash; ahorra en lo que ya gastas</p><p class="ref-meta">Cashback autom&aacute;tico en cientos de tiendas</p></div>
         <span class="ref-bonus">3&euro; + cashback</span>
       </a>
+<div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=ing.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
+        <div class="ref-info"><h3>ING</h3><p>Escr&iacute;beme y te paso el referido</p><p class="ref-meta">Consulta condiciones vigentes en ING</p><p class="ref-contact">Escr&iacute;beme: <a href="mailto:contacto@quijotefinanzas.com?subject=Referido%20ING">por correo</a> &middot; <a href="https://x.com/QuijoteFinanzas" target="_blank" rel="noopener noreferrer">MD en X @QuijoteFinanzas</a></p></div>
+        <span class="ref-bonus">Sin enlace p&uacute;blico</span>
+      </div>
       <a class="ref-card" href="https://seguro.lineadirecta.com/fidelizacion-amigo?AMIGO00007570" data-cat="seguro" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge seguro">Seguro</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=lineadirecta.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">LD</span></div>
         <div class="ref-info"><h3>L&iacute;nea Directa</h3><p>Seguro de coche y moto &mdash; contrata usando mi enlace de recomendaci&oacute;n</p><p class="ref-meta">Descuento aplicado al contratar &middot; sin permanencia</p></div>
@@ -2158,11 +2167,11 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="ref-info"><h3>MyInvestor</h3><p>Fondos indexados, ETFs y carteras automatizadas &middot; c&oacute;digo: xpKDn</p><p class="ref-meta">Bono al abrir cuenta y depositar</p></div>
         <span class="ref-bonus">25&euro; bono</span>
       </a>
-      <a class="ref-card" href="https://n26.com/es-es/referral/REFERIDO-ELIMINADO" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
+      <div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=n26.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">N</span></div>
-        <div class="ref-info"><h3>N26</h3><p>Banco digital &mdash; cuenta sin comisiones, tarjeta gratuita</p><p class="ref-meta">Bono al activar la tarjeta y hacer primer pago</p></div>
-        <span class="ref-bonus">15&euro; al activar</span>
-      </a>
+        <div class="ref-info"><h3>N26</h3><p>Banco digital &mdash; cuenta sin comisiones, tarjeta gratuita</p><p class="ref-meta">Consulta condiciones vigentes en N26</p><p class="ref-contact">P&iacute;deme el enlace: <a href="mailto:contacto@quijotefinanzas.com?subject=Referido%20N26">por correo</a> &middot; <a href="https://x.com/QuijoteFinanzas" target="_blank" rel="noopener noreferrer">MD en X @QuijoteFinanzas</a></p></div>
+        <span class="ref-bonus">Sin enlace p&uacute;blico</span>
+      </div>
       <a class="ref-card" href="https://octopusenergy.es/referidos?referralCode=mellow-owl-104" data-cat="energia" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge energia">Energía</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=octopusenergy.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">OE</span></div>
         <div class="ref-info"><h3>Octopus Energy</h3><p>Compa&ntilde;&iacute;a de luz 100% renovable</p><p class="ref-meta">Bono aplicado al registrarte &middot; sin permanencia</p></div>
@@ -2178,13 +2187,14 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="ref-info"><h3>Privalia</h3><p>Outlet de moda online con descuentos permanentes</p><p class="ref-meta">Descuento en tu primera compra</p></div>
         <span class="ref-bonus">10&euro; primera cuenta</span>
       </a>
-      <a class="ref-card" href="https://www.revolut.com/es-ES/referral/?referral-code=REFERIDO-ELIMINADO" data-cat="banco" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge banco">Banco</span>
+      <div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=revolut.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">R</span></div>
-        <div class="ref-info"><h3>Revolut</h3><p>Tarjeta multimoneda &mdash; ideal para viajes y d&iacute;a a d&iacute;a</p><p class="ref-meta">Bono al completar el registro y hacer primer pago</p></div>
-        <span class="ref-bonus">50&euro; al unirte</span>
-      </a>
+        <div class="ref-info"><h3>Revolut</h3><p>Tarjeta multimoneda &mdash; ideal para viajes y d&iacute;a a d&iacute;a</p><p class="ref-meta">Consulta condiciones vigentes en Revolut</p><p class="ref-contact">P&iacute;deme el enlace: <a href="mailto:contacto@quijotefinanzas.com?subject=Referido%20Revolut">por correo</a> &middot; <a href="https://x.com/QuijoteFinanzas" target="_blank" rel="noopener noreferrer">MD en X @QuijoteFinanzas</a></p></div>
+        <span class="ref-bonus">Sin enlace p&uacute;blico</span>
+      </div>
     </div>
-    <div class="note"><strong>Transparencia:</strong> Estos enlaces son de afiliado &mdash; si te registras puedo recibir una compensaci&oacute;n. Solo listo productos que uso o he probado personalmente. Los bonos pueden variar seg&uacute;n campa&ntilde;a.</div>
+    <p class="ref-ask-note">&iquest;Buscas un referido que no est&aacute; aqu&iacute;? Escr&iacute;beme a <a href="mailto:contacto@quijotefinanzas.com?subject=Referido">contacto@quijotefinanzas.com</a> o por MD en X (<a href="https://x.com/QuijoteFinanzas" target="_blank" rel="noopener noreferrer">@QuijoteFinanzas</a>) y, si lo tengo, te lo paso.</p>
+    <div class="note"><strong>Transparencia:</strong> Estos enlaces son de referido &mdash; si te registras puedo recibir una compensaci&oacute;n. Solo listo productos que uso o he probado personalmente. Los bonos pueden variar seg&uacute;n campa&ntilde;a.</div>
   <div class="section-flow">
     <div class="section-flow-copy"><div class="section-flow-kicker">Más herramientas</div><h3 class="section-flow-title">Vuelve al contenido útil del proyecto</h3><p class="section-flow-text">Los referidos son secundarios. Las herramientas, comparativas y recursos gratuitos siguen siendo el núcleo de la web.</p></div>
     <div class="section-flow-links"><button class="section-flow-btn primary" onclick="goTo('recursos')">Ver recursos →</button><button class="section-flow-btn secondary" onclick="goTo('calculadoras')">Calculadoras</button></div>
