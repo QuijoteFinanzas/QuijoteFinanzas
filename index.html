@@ -8,7 +8,6 @@
 <!-- ── SEO PRIMARY ──────────────────────────────────────────────────── -->
 <title>Don Quijote de las Finanzas | Herramientas y educación financiera</title>
 <meta name="description" content="Calculadoras, comparativas de cuentas y depósitos, fondos, recursos y educación financiera para tomar mejores decisiones con tu dinero.">
-<meta name="keywords" content="calculadora salario neto bruto España, calculadora IRPF 2026, calculadora hipoteca, interés compuesto, finanzas personales España, inversión indexada, FIRE independencia financiera">
 <meta name="author" content="Don Quijote de las Finanzas">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://quijotefinanzas.com/">
@@ -65,7 +64,7 @@
         "price": "0",
         "priceCurrency": "EUR"
       },
-      "description": "Suite de 16 calculadoras financieras gratuitas para España: salario, IRPF, hipoteca, interés compuesto, FIRE, depósitos, amortización, inflación, autónomos, evolución salarial y patrimonial y más.",
+      "description": "Suite de 17 calculadoras financieras gratuitas para España: salario, IRPF, hipoteca, interés compuesto, FIRE, depósitos, amortización, inflación, autónomos, evolución salarial y patrimonial y más.",
       "featureList": [
         "Calculadora fiscal 2026: salario, pensión, jubilación e IRPF anual",
         "Calculadora salario o pensión neto a bruto 2026",
@@ -611,7 +610,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 /* ── CTA Excel ────────────────────────────────────────────────────── */
 .cta-excel-block{margin:24px auto 0;max-width:520px;text-align:center;padding:20px 24px;background:var(--navy);border:1px solid rgba(201,168,76,.35);border-radius:12px}
 .cta-excel-block .excel-ico{font-size:28px;display:block;margin-bottom:8px}
-.cta-excel-block h3{font-family:'Playfair Display',serif;font-size:17px;color:#e8f0f7;margin-bottom:6px}
+.cta-excel-block h3,.cta-excel-block h2{font-family:'Playfair Display',serif;font-size:17px;color:#e8f0f7;margin-bottom:6px}
 .cta-excel-block p{font-size:13px;color:rgba(184,200,216,.85);margin-bottom:14px;line-height:1.55}
 .cta-excel-btn{display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-size:13px;font-weight:700;padding:10px 22px;border-radius:6px;text-decoration:none;transition:opacity .2s}
 .cta-excel-btn:hover{opacity:.85;color:#0f2035;text-decoration:none}
@@ -869,7 +868,7 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
 .empieza-sub{font-size:12px;color:#6c8197;line-height:1.55}
 .cta-excel-block{max-width:780px;margin-top:18px;padding:18px 20px;background:var(--navy);border-color:rgba(201,168,76,.28);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;text-align:left}
 .cta-excel-block .excel-ico{font-size:24px;margin:0}
-.cta-excel-block h3{margin:0 0 3px;font-size:16px}
+.cta-excel-block h3,.cta-excel-block h2{margin:0 0 3px;font-size:16px}
 .cta-excel-block p{margin:0;font-size:12px;line-height:1.55}
 .cta-excel-block .cta-excel-secondary{display:none}
 .cta-excel-btn{white-space:nowrap;padding:9px 16px;background:var(--gold);color:var(--navy)}
@@ -1587,6 +1586,9 @@ html[data-theme="dark"].qf-embed-root .qf-embed-target .calc-modal{border-color:
     var q=new URLSearchParams(location.search);
     if(q.get('embedCalc')){
       document.documentElement.classList.add('qf-embed-root');
+      // noindex del modo embed: index.html es compartido por la portada y por los iframes /?embedCalc=<id>,
+      // asi que no puede llevar un noindex estatico. GitHub Pages no permite cabeceras X-Robots-Tag;
+      // Google renderiza JS y lee este cambio, y ademas el canonical estatico apunta a la portada.
       var r=document.querySelector('meta[name="robots"]'); if(r) r.setAttribute('content','noindex,follow');
     }
   }catch(e){}
@@ -1800,7 +1802,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
   <div class="cta-excel-block" id="kit-main-cta">
     <span class="excel-ico">📊</span>
     <div>
-      <h3>QuijoExcel — organiza tus finanzas en un solo sitio</h3>
+      <h2>QuijoExcel — organiza tus finanzas en un solo sitio</h2>
       <p>La plantilla que utilizo para controlar gastos, ahorro e inversiones. Gratis y editable.</p>
     </div>
     <button class="cta-excel-btn" onclick="try{qfTrack('quijoexcel_cta_click',{source_component:'hero'});}catch(e){}; openExcelModal('hero')" style="border:none;cursor:pointer;">Acceder gratis →</button>
@@ -1924,8 +1926,8 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
       <p style="font-size:12px;color:var(--muted);margin-bottom:10px">También te puede interesar:</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a href="calculadora-salario-neto-espana.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Calculadora salario neto →</a>
-        <a href="calculadora-interes-compuesto.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Interés compuesto →</a>
+        <a href="/calculadora-salario-neto/" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Calculadora salario neto →</a>
+        <a href="/calculadora-interes-compuesto/" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Interés compuesto →</a>
         <a href="mejores-cuentas-remuneradas.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Cuentas remuneradas →</a>
       </div>
     </div>
@@ -2331,7 +2333,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
   <p style="margin:0;flex:1;min-width:220px;font-size:13px;color:#d1dae6;line-height:1.6;">
     Usamos cookies de terceros (Google Analytics y Microsoft Clarity) para analizar el uso de la web y mejorar la experiencia.
     Puedes aceptar todas o solo las esenciales.
-    <a href="cookies.html" style="color:#c9a84c;text-decoration:underline;">Más información</a>.
+    <a href="cookies.html" style="color:#c9a84c;text-decoration:underline;">Más información sobre cookies</a>.
   </p>
   <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
     <button onclick="cookieEssential()" style="
@@ -2374,7 +2376,7 @@ html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
       <div style="text-align:left;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--silver2);line-height:1.8">
         <strong style="color:var(--cream);font-size:11px;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:8px">Lo que recibes</strong>
         <div>📊 <strong>QuijoExcel</strong> — plantilla de finanzas personales</div>
-        <div>🧮 <strong>16 calculadoras gratuitas</strong> — salario, vivienda, ahorro e inversión</div>
+        <div>🧮 <strong>17 calculadoras gratuitas</strong> — salario, vivienda, ahorro e inversión</div>
         <div>🏦 <strong>QuijoCuentas</strong> — comparativa mensual de cuentas y depósitos</div>
       </div>
       <form id="excel-kit-form" action="https://app.kit.com/forms/9947329/subscriptions" method="post" target="excel-submit-frame">
