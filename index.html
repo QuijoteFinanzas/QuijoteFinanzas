@@ -1599,7 +1599,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261005a"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261030a"></script>
 </head>
 <body class="show-home-intro">
 
@@ -2042,8 +2042,8 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="cuentas-snapshot-grid">
           <div class="cuentas-snapshot-item"><strong>Sin condiciones</strong>Trade Republic · 2,50% tipo anual BCE.</div>
           <div class="cuentas-snapshot-item"><strong>Con condiciones</strong>Revolut · 3,51% TAE · hasta 25.000€ · máximo 120 días.</div>
-          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>Banco Sabadell · hasta 2.580€ en 1 año; el máximo exige 100.000€ de saldo.</div>
-          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>Renault Bank · hasta 3,34% TAE a 36 meses.</div>
+          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>La campaña de Banco Sabadell terminó el 07/10/2026; consulta la pestaña «Nómina» de la tabla.</div>
+          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>Las condiciones de Renault Bank terminaron el 07/10/2026; consulta la pestaña «Depósitos» de la tabla.</div>
           <div class="cuentas-snapshot-item"><strong>Depósitos promocionales</strong>Banco BiG · 4,00% TAE a 1 mes para nuevos clientes.</div>
           <div class="cuentas-snapshot-item"><strong>Promociones bancarias</strong>BBVA PLAN1060 · hasta 1.060€ combinando varias acciones.</div>
         </div>
@@ -3482,7 +3482,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!container) return;
     if (!filtered.length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
 
-    var mes = "octubre 2026";
+    var mes = "datos revisados el " + (window.QF_CUENTAS_UPDATED || "05/10/2026");
     var esNomina = cuentasTab === "nomina";
     var esDeposito = cuentasTab.indexOf('dep-') === 0;
     var esPromo = cuentasTab === 'promo';
