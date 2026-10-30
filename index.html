@@ -8,7 +8,6 @@
 <!-- ── SEO PRIMARY ──────────────────────────────────────────────────── -->
 <title>Don Quijote de las Finanzas | Herramientas y educación financiera</title>
 <meta name="description" content="Calculadoras, comparativas de cuentas y depósitos, fondos, recursos y educación financiera para tomar mejores decisiones con tu dinero.">
-<meta name="keywords" content="calculadora salario neto bruto España, calculadora IRPF 2026, calculadora hipoteca, interés compuesto, finanzas personales España, inversión indexada, FIRE independencia financiera">
 <meta name="author" content="Don Quijote de las Finanzas">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://quijotefinanzas.com/">
@@ -65,7 +64,7 @@
         "price": "0",
         "priceCurrency": "EUR"
       },
-      "description": "Suite de 16 calculadoras financieras gratuitas para España: salario, IRPF, hipoteca, interés compuesto, FIRE, depósitos, amortización, inflación, autónomos, evolución salarial y patrimonial y más.",
+      "description": "Suite de 17 calculadoras financieras gratuitas para España: salario, IRPF, hipoteca, interés compuesto, FIRE, depósitos, amortización, inflación, autónomos, evolución salarial y patrimonial y más.",
       "featureList": [
         "Calculadora fiscal 2026: salario, pensión, jubilación e IRPF anual",
         "Calculadora salario o pensión neto a bruto 2026",
@@ -168,7 +167,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 /* ── FASE 28 · Tema claro / oscuro: bootstrap sin flash ───────────── */
 (function(){
@@ -190,7 +189,7 @@
   /* Textos */
   --cream:#0f2035;--silver2:#2d4a6b;--silver:#2d4a6b;
   /* Acentos */
-  --muted:#6a8aaa;--border:#dde4ed;--tag-bg:#f0f3f8;
+  --muted:#536f8c;--border:#dde4ed;--tag-bg:#f0f3f8;
   /* Marca */
   --gold:#c9a84c;--navy:#0f2035;--navy2:#1a3358;
   /* Extras */
@@ -611,7 +610,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 /* ── CTA Excel ────────────────────────────────────────────────────── */
 .cta-excel-block{margin:24px auto 0;max-width:520px;text-align:center;padding:20px 24px;background:var(--navy);border:1px solid rgba(201,168,76,.35);border-radius:12px}
 .cta-excel-block .excel-ico{font-size:28px;display:block;margin-bottom:8px}
-.cta-excel-block h3{font-family:'Playfair Display',serif;font-size:17px;color:#e8f0f7;margin-bottom:6px}
+.cta-excel-block h3,.cta-excel-block h2{font-family:'Playfair Display',serif;font-size:17px;color:#e8f0f7;margin-bottom:6px}
 .cta-excel-block p{font-size:13px;color:rgba(184,200,216,.85);margin-bottom:14px;line-height:1.55}
 .cta-excel-btn{display:inline-block;background:rgba(201,168,76,.92);color:#0f2035;font-size:13px;font-weight:700;padding:10px 22px;border-radius:6px;text-decoration:none;transition:opacity .2s}
 .cta-excel-btn:hover{opacity:.85;color:#0f2035;text-decoration:none}
@@ -869,7 +868,7 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
 .empieza-sub{font-size:12px;color:#6c8197;line-height:1.55}
 .cta-excel-block{max-width:780px;margin-top:18px;padding:18px 20px;background:var(--navy);border-color:rgba(201,168,76,.28);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;text-align:left}
 .cta-excel-block .excel-ico{font-size:24px;margin:0}
-.cta-excel-block h3{margin:0 0 3px;font-size:16px}
+.cta-excel-block h3,.cta-excel-block h2{margin:0 0 3px;font-size:16px}
 .cta-excel-block p{margin:0;font-size:12px;line-height:1.55}
 .cta-excel-block .cta-excel-secondary{display:none}
 .cta-excel-btn{white-space:nowrap;padding:9px 16px;background:var(--gold);color:var(--navy)}
@@ -1587,6 +1586,9 @@ html[data-theme="dark"].qf-embed-root .qf-embed-target .calc-modal{border-color:
     var q=new URLSearchParams(location.search);
     if(q.get('embedCalc')){
       document.documentElement.classList.add('qf-embed-root');
+      // noindex del modo embed: index.html es compartido por la portada y por los iframes /?embedCalc=<id>,
+      // asi que no puede llevar un noindex estatico. GitHub Pages no permite cabeceras X-Robots-Tag;
+      // Google renderiza JS y lee este cambio, y ademas el canonical estatico apunta a la portada.
       var r=document.querySelector('meta[name="robots"]'); if(r) r.setAttribute('content','noindex,follow');
     }
   }catch(e){}
@@ -1603,15 +1605,59 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
 <script defer src="/assets/quijocuentas-data.js?v=20261030b"></script>
+<style>
+/* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
+:root{--focus-ring:#8b6a15}
+html[data-theme="dark"]{--focus-ring:#c9a84c}
+/* CLS: estilos criticos del boton de tema (duplicados de #qf-theme-styles, que se carga al final) */
+.qf-theme-toggle{flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,32,53,.12);background:#fff;color:#526b84;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.qf-theme-icon{width:18px;height:18px;display:block}
+.qf-theme-sun{display:none}
+html[data-theme="dark"] .qf-theme-moon{display:none}
+html[data-theme="dark"] .qf-theme-sun{display:block}
+@media(max-width:699px){.site-nav-inner{position:relative}.qf-theme-toggle{position:absolute;top:7px;right:12px;width:34px;height:34px;z-index:3}.site-brand{padding-right:58px}}
+@media(min-width:700px){.qf-theme-toggle{margin-left:-12px}}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:10000;background:#0f2035;color:#fff;padding:10px 16px;border-radius:6px;font:600 14px 'DM Sans',sans-serif;text-decoration:none;transition:top .15s}
+.skip-link:focus{top:12px;outline:2px solid #c9a84c;outline-offset:2px}
+main:focus{outline:none}
+.field input:focus-visible,.field select:focus-visible,.suscripcion-row input:focus-visible,.renta-input:focus-visible,#excel-modal input[type=email]:focus-visible,.home-newsletter input:focus-visible,.qf-range-value input:focus-visible,.qc-legend-item:focus-visible,.qf-whatif-btn:focus-visible,.qf-inline-range:focus-visible,.qf-range:focus-visible,.calc-close:focus-visible,.share-btn:focus-visible,.nav-btn:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+html:not([data-theme="dark"]) .empieza-pretitle{color:#56697f}
+html:not([data-theme="dark"]) .empieza-step{color:#7d6118}
+html:not([data-theme="dark"]) .empieza-sub{color:#596b80}
+html:not([data-theme="dark"]) .project-kicker,html:not([data-theme="dark"]) .section-flow-kicker{color:#7d6118}
+html:not([data-theme="dark"]) .ql-list .ql-isin{color:#596b80}
+html:not([data-theme="dark"]) .ql-list .ql-helper-chip{color:#56697f}
+html:not([data-theme="dark"]) .qf-live-badge{color:#596b80}
+html[data-theme="dark"] .qf-live-badge{color:#9fb2c4}
+html[data-theme="dark"] .empty-state{color:#9fb2c4}
+html:not([data-theme="dark"]) .qf-range-scale,html:not([data-theme="dark"]) .qf-inline-range-scale{color:#596b80}
+html:not([data-theme="dark"]) .result-value.o{color:#a8521f}
+.calc-modal .disclaimer{opacity:1}
+html:not([data-theme="dark"]) .calc-seo-link,html:not([data-theme="dark"]) #calculadoras .calc-seo-link{opacity:1;color:#56697f}
+html:not([data-theme="dark"]) .calc-seo-link:hover,html:not([data-theme="dark"]) #calculadoras .calc-seo-link:hover{color:#8b6a15}
+.qf-result-hero :focus-visible{outline-color:#c9a84c}
+html:not([data-theme="dark"]) .cuentas-kicker,html:not([data-theme="dark"]) .ql-section-kicker,html:not([data-theme="dark"]) .qc-kicker,html:not([data-theme="dark"]) .section-kicker,html:not([data-theme="dark"]) .qc-card-eyebrow{color:#7d6118}
+html:not([data-theme="dark"]) .voto-desc,html:not([data-theme="dark"]) .voto-trend,html:not([data-theme="dark"]) .home-newsletter-note{color:#596b80}
+html:not([data-theme="dark"]) #cmp-a-title{color:#7d6118!important}
+html:not([data-theme="dark"]) #cmp-b-title{color:#267a52!important}
+html[data-theme="dark"] .cmp-winner{color:#d9ba62!important}
+html:not([data-theme="dark"]) .cmp-head-a{color:#7d6118!important}
+html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-b{color:#267a52!important}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
 <body class="show-home-intro">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <!-- ── FASE 3 · Navegación / Header premium ───────────────────────── -->
 <div id="top-bar" class="site-nav-shell">
   <div class="site-nav-inner">
-    <a href="/" class="site-brand" title="Inicio" aria-label="Ir al inicio">
+    <a href="/" class="site-brand" title="Inicio">
       <span class="site-brand-mark">
-        <img src="logo.png" alt="" onerror="this.style.display='none'">
+        <img src="logo.png" alt="" width="32" height="32" onerror="this.style.display='none'">
       </span>
       <span class="site-brand-name">
         <span class="brand-long">Don Quijote de las Finanzas</span>
@@ -1710,14 +1756,14 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
 <header>
   <div class="compact-brand" aria-hidden="true">
-    <div class="compact-brand-logo"><img src="logo.png" alt="Logo Don Quijote de las Finanzas"></div>
+    <div class="compact-brand-logo"><img src="logo.png" alt="" width="36" height="36"></div>
     <div class="compact-brand-badge">Finanzas Personales</div>
     <div class="compact-brand-title">Don Quijote<br><span>de las Finanzas</span></div>
     <div class="compact-brand-copy">
       <span>Educación financiera para entender tu dinero, tomar mejores decisiones y empezar a invertir con criterio</span>
     </div>
   </div>
-  <div class="logo-wrap"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
+  <div class="logo-wrap"><img src="logo.png" alt="" width="92" height="92" fetchpriority="high"></div>
   <div class="badge-hero">Finanzas Personales</div>
   <h1>Don Quijote<br><span>de las Finanzas</span></h1>
   <p class="positioning">Educaci&oacute;n financiera para entender tu dinero, tomar mejores decisiones y empezar a invertir con criterio</p>
@@ -1761,7 +1807,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
   <div class="cta-excel-block" id="kit-main-cta">
     <span class="excel-ico">📊</span>
     <div>
-      <h3>QuijoExcel — organiza tus finanzas en un solo sitio</h3>
+      <h2>QuijoExcel — organiza tus finanzas en un solo sitio</h2>
       <p>La plantilla que utilizo para controlar gastos, ahorro e inversiones. Gratis y editable.</p>
     </div>
     <button class="cta-excel-btn" onclick="try{qfTrack('quijoexcel_cta_click',{source_component:'hero'});}catch(e){}; openExcelModal('hero')" style="border:none;cursor:pointer;">Acceder gratis →</button>
@@ -1770,7 +1816,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
 </header>
 
-<main style="background:#fff;min-height:100vh">
+<main id="contenido" tabindex="-1" style="background:#fff;min-height:100vh">
   <section id="sobre" class="section active" >
     <div class="section-header">
       <div class="project-kicker">Sobre el proyecto</div>
@@ -1885,8 +1931,8 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
       <p style="font-size:12px;color:var(--muted);margin-bottom:10px">También te puede interesar:</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a href="calculadora-salario-neto-espana.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Calculadora salario neto →</a>
-        <a href="calculadora-interes-compuesto.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Interés compuesto →</a>
+        <a href="/calculadora-salario-neto/" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Calculadora salario neto →</a>
+        <a href="/calculadora-interes-compuesto/" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Interés compuesto →</a>
         <a href="mejores-cuentas-remuneradas.html" style="font-size:12px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;border-radius:4px;text-decoration:none">Cuentas remuneradas →</a>
       </div>
     </div>
@@ -2256,30 +2302,30 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
   <!-- Top: logo + links -->
   <div style="display:flex;align-items:center;gap:32px;margin-bottom:20px;flex-wrap:wrap">
     <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0">
-      <img src="logo.png" alt="Don Quijote de las Finanzas" style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(201,168,76,.35);object-fit:cover">
+      <img src="logo.png" alt="" width="36" height="36" style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(201,168,76,.35);object-fit:cover">
       <div style="font-family:'DM Sans',sans-serif;line-height:1.2">
         <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#0f2035">Don Quijote de las Finanzas</div>
       </div>
     </a>
     <div style="display:flex;gap:18px;flex-wrap:wrap;margin-left:auto;align-items:center">
-      <a href="#" onclick="goTo('calculadoras');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">Calculadoras</a>
-      <a href="#" onclick="goTo('cuentas');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoCuentas</a>
-      <a href="#" onclick="goTo('quijolista');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoLista</a>
-      <a href="#" onclick="goTo('quijocartera');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">QuijoCartera</a>
-      <a href="#" onclick="goTo('recursos');return false;" style="font-size:12px;color:#6a8aaa;text-decoration:none">Recursos</a>
-      <a href="/calendario-financiero/" style="font-size:12px;color:#6a8aaa;text-decoration:none">Calendario financiero</a>
-      <a href="sobre-el-proyecto.html" style="font-size:12px;color:#6a8aaa;text-decoration:none">Sobre el proyecto</a>
-      <a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#6a8aaa;text-decoration:none">@QuijoteFinanzas</a>
+      <a href="#" onclick="goTo('calculadoras');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">Calculadoras</a>
+      <a href="#" onclick="goTo('cuentas');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">QuijoCuentas</a>
+      <a href="#" onclick="goTo('quijolista');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">QuijoLista</a>
+      <a href="#" onclick="goTo('quijocartera');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">QuijoCartera</a>
+      <a href="#" onclick="goTo('recursos');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">Recursos</a>
+      <a href="/calendario-financiero/" style="font-size:12px;color:var(--muted);text-decoration:none">Calendario financiero</a>
+      <a href="sobre-el-proyecto.html" style="font-size:12px;color:var(--muted);text-decoration:none">Sobre el proyecto</a>
+      <a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer" style="font-size:12px;color:var(--muted);text-decoration:none">@QuijoteFinanzas</a>
     </div>
   </div>
   <!-- Bottom: legal -->
   <div style="border-top:1px solid #dde4ed;padding-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-    <span style="font-size:11px;color:#6a8aaa">&copy; 2026 Don Quijote de las Finanzas &nbsp;·&nbsp; Contenido informativo y educativo. No constituye asesoramiento financiero.</span>
+    <span style="font-size:11px;color:var(--muted)">&copy; 2026 Don Quijote de las Finanzas &nbsp;·&nbsp; Contenido informativo y educativo. No constituye asesoramiento financiero.</span>
     <div style="display:flex;gap:14px">
-      <a href="privacidad.html" style="font-size:11px;color:#6a8aaa;text-decoration:none">Privacidad</a>
-      <a href="aviso-legal.html" style="font-size:11px;color:#6a8aaa;text-decoration:none">Aviso legal</a>
-      <a href="cookies.html" style="font-size:11px;color:#6a8aaa;text-decoration:none">Cookies</a>
-      <a href="mailto:contacto@quijotefinanzas.com" style="font-size:11px;color:#6a8aaa;text-decoration:none">Contacto</a>
+      <a href="privacidad.html" style="font-size:11px;color:var(--muted);text-decoration:none">Privacidad</a>
+      <a href="aviso-legal.html" style="font-size:11px;color:var(--muted);text-decoration:none">Aviso legal</a>
+      <a href="cookies.html" style="font-size:11px;color:var(--muted);text-decoration:none">Cookies</a>
+      <a href="mailto:contacto@quijotefinanzas.com" style="font-size:11px;color:var(--muted);text-decoration:none">Contacto</a>
     </div>
   </div>
 </footer>
@@ -2292,7 +2338,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
   <p style="margin:0;flex:1;min-width:220px;font-size:13px;color:#d1dae6;line-height:1.6;">
     Usamos cookies de terceros (Google Analytics y Microsoft Clarity) para analizar el uso de la web y mejorar la experiencia.
     Puedes aceptar todas o solo las esenciales.
-    <a href="cookies.html" style="color:#c9a84c;text-decoration:underline;">Más información</a>.
+    <a href="cookies.html" style="color:#c9a84c;text-decoration:underline;">Más información sobre cookies</a>.
   </p>
   <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
     <button onclick="cookieEssential()" style="
@@ -2312,14 +2358,14 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
 <!-- TOAST suscripción -->
 <div id="sub-toast">
-  <div class="toast-logo"><img src="logo.png" alt="logo"></div>
+  <div class="toast-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
   <div class="toast-text">
     <p>S&iacute;gueme en X</p>
     <span>Nuevas calculadoras, comparativas y recursos</span>
   </div>
   <div class="toast-btns">
     <a class="toast-cta" href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">Seguir</a>
-    <button class="toast-dismiss" id="toast-dismiss-btn">&#215;</button>
+    <button class="toast-dismiss" id="toast-dismiss-btn" aria-label="Cerrar aviso">&#215;</button>
   </div>
 </div>
 
@@ -2335,11 +2381,11 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
       <div style="text-align:left;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:var(--silver2);line-height:1.8">
         <strong style="color:var(--cream);font-size:11px;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:8px">Lo que recibes</strong>
         <div>📊 <strong>QuijoExcel</strong> — plantilla de finanzas personales</div>
-        <div>🧮 <strong>16 calculadoras gratuitas</strong> — salario, vivienda, ahorro e inversión</div>
+        <div>🧮 <strong>17 calculadoras gratuitas</strong> — salario, vivienda, ahorro e inversión</div>
         <div>🏦 <strong>QuijoCuentas</strong> — comparativa mensual de cuentas y depósitos</div>
       </div>
       <form id="excel-kit-form" action="https://app.kit.com/forms/9947329/subscriptions" method="post" target="excel-submit-frame">
-        <input type="email" id="excel-email-input" name="email_address" placeholder="tu@email.com" autocomplete="email" required>
+        <input type="email" id="excel-email-input" aria-label="Tu email" name="email_address" placeholder="tu@email.com" autocomplete="email" required>
         <div class="em-error" id="excel-email-error" aria-live="polite"></div>
         <button class="em-btn" id="excel-submit-btn" type="submit">Quiero QuijoExcel</button>
       </form>
@@ -2359,7 +2405,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <div class="test-overlay" id="test-overlay">
   <div class="test-modal">
     <div class="test-header">
-      <button class="test-close" onclick="closeTest()">&#215;</button>
+      <button class="test-close" onclick="closeTest()" aria-label="Cerrar test">&#215;</button>
       <h2>&#127919; &iquest;Cu&aacute;l es tu perfil inversor?</h2>
       <p>10 preguntas &middot; ~3 minutos &middot; Sin registro</p>
       <div class="test-progress-bar" style="margin-top:14px;border-radius:2px">
@@ -2376,28 +2422,28 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
   <div class="calc-modal" style="max-width:680px">
     <div class="modal-header">
       <div class="modal-header-left"><h2>&#128188; Simulador para aut&oacute;nomos</h2></div>
-      <div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
-      <button class="calc-close" data-close="autonomos">&#215;</button>
+      <div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
+      <button class="calc-close" data-close="autonomos" aria-label="Cerrar calculadora">&#215;</button>
     </div>
     <button class="share-btn" data-share="autonomos"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
     <span class="share-toast" id="toast-autonomos">&#10003; Enlace copiado</span>
     <p class="subtitle">Cuota RETA, pago fraccionado de IRPF (Modelo 130) e IVA trimestral estimado. Introduce los datos de un trimestre.</p>
 
     <div class="calc-grid">
-      <div class="field"><label>Ingresos del trimestre, sin IVA (&euro;)</label><input type="number" id="au-ingresos" value="9000" min="0" step="100"></div>
-      <div class="field"><label>Gastos deducibles del trimestre, sin IVA (&euro;)</label><input type="number" id="au-gastos" value="1500" min="0" step="100"></div>
-      <div class="field"><label>Tipo de IVA de tu actividad</label><select id="au-iva">
+      <div class="field"><label for="au-ingresos">Ingresos del trimestre, sin IVA (&euro;)</label><input type="number" id="au-ingresos" value="9000" min="0" step="100"></div>
+      <div class="field"><label for="au-gastos">Gastos deducibles del trimestre, sin IVA (&euro;)</label><input type="number" id="au-gastos" value="1500" min="0" step="100"></div>
+      <div class="field"><label for="au-iva">Tipo de IVA de tu actividad</label><select id="au-iva">
         <option value="21">21% (general)</option>
         <option value="10">10% (reducido)</option>
         <option value="4">4% (superreducido)</option>
         <option value="0">Exenta de IVA</option>
       </select></div>
-      <div class="field"><label>Retenci&oacute;n IRPF en tus facturas</label><select id="au-retencion">
+      <div class="field"><label for="au-retencion">Retenci&oacute;n IRPF en tus facturas</label><select id="au-retencion">
         <option value="15">15% (general)</option>
         <option value="7">7% (nuevos aut&oacute;nomos, primeros 3 a&ntilde;os)</option>
         <option value="0">0% (sin retenci&oacute;n / clientes particulares)</option>
       </select></div>
-      <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="au-ccaa">
+      <div class="field"><label for="au-ccaa">Comunidad Aut&oacute;noma</label><select id="au-ccaa">
         <option value="andalucia">Andaluc&iacute;a</option>
         <option value="aragon">Arag&oacute;n</option>
         <option value="asturias">Asturias</option>
@@ -2414,7 +2460,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <option value="rioja">La Rioja</option>
         <option value="valencia">C. Valenciana</option>
       </select></div>
-      <div class="field" style="grid-column:1/-1"><label>Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
+      <div class="field" style="grid-column:1/-1"><label for="au-antiguedad">Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
         <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
         <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 80&euro;/mes, sin condiciones</option>
         <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana 80&euro;/mes solo si tu rendimiento neto anual no supera el SMI (17.094&euro;)</option>
@@ -2444,7 +2490,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODALES -->
 <div class="calc-overlay qf-calc2" id="modal-interes">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128260; Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="interes">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128260; Inter&eacute;s Compuesto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="interes" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="interes"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-interes">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula c&oacute;mo crece tu inversi&oacute;n con el tiempo gracias al inter&eacute;s compuesto.</p>
     <div class="qf-live-badge">Resultado en tiempo real</div>
@@ -2462,15 +2508,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital inicial (&euro;)</label><input type="number" id="ic-capital" value="10000" min="0"></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0€</span><span>2.000€+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual (%)</label><div class="qf-range-value"><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="ic-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>A&ntilde;os de inversi&oacute;n</label><div class="qf-range-value"><input type="number" id="ic-anos" value="20" min="1" max="60" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="ic-anos" min="1" max="50" step="1" value="20"><div class="qf-range-scale"><span>1</span><span>50</span></div></div>
+        <div class="field"><label for="ic-capital">Capital inicial (&euro;)</label><input type="number" id="ic-capital" value="10000" min="0"></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-aportacion">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="ic-aportacion" value="200" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="ic-aportacion" min="0" max="2000" step="25" value="200"><div class="qf-range-scale"><span>0€</span><span>2.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-rent">Rentabilidad anual (%)</label><div class="qf-range-value"><input type="number" id="ic-rent" value="7" step="0.1" min="0" max="50"><span>%</span></div></div><input aria-label="Rentabilidad anual (%)" class="qf-range" type="range" data-sync-to="ic-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="ic-anos">A&ntilde;os de inversi&oacute;n</label><div class="qf-range-value"><input type="number" id="ic-anos" value="20" min="1" max="60" step="1"><span>años</span></div></div><input aria-label="Años de inversión" class="qf-range" type="range" data-sync-to="ic-anos" min="1" max="50" step="1" value="20"><div class="qf-range-scale"><span>1</span><span>50</span></div></div>
   <div class="infl-toggle" id="ic-infl-wrap">
       <input type="checkbox" id="ic-infl-check" onchange="document.getElementById('ic-infl-wrap').classList.toggle('active',this.checked)">
       <label for="ic-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="ic-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="ic-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -2496,25 +2542,25 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
 <div class="calc-overlay" id="modal-salario">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="salario">×</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="salario" aria-label="Cerrar calculadora">×</button></div>
     <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">✓ Enlace copiado</span>
     <p class="subtitle">Calcula qué bruto aproximado necesitas para alcanzar un neto objetivo, diferenciando lo que entra en banco de tu neto fiscal anual.</p>
     <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Tipo de ingreso</label><select id="sal-income-type" onchange="fiscalNetGrossFields()"><option value="salary" selected>Salario por cuenta ajena</option><option value="pension">Pensión ordinaria sujeta a IRPF</option></select></div>
-        <div class="field"><label>Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
-        <div class="field"><label id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
-        <div class="field"><label>Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
-        <div class="field"><label>Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
-        <div class="field"><label>Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
-        <div class="field"><label>Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
-        <div class="field"><label>De ellos, menores de 3 años</label><input type="number" id="sal-desc3" value="0" min="0" max="12"></div>
-        <div class="field"><label>Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="sal-ccaa">
+        <div class="field"><label for="sal-income-type">Tipo de ingreso</label><select id="sal-income-type" onchange="fiscalNetGrossFields()"><option value="salary" selected>Salario por cuenta ajena</option><option value="pension">Pensión ordinaria sujeta a IRPF</option></select></div>
+        <div class="field"><label for="sal-target-type">Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
+        <div class="field"><label for="sal-neto" id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
+        <div class="field"><label for="sal-birth">Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
+        <div class="field"><label for="sal-sit">Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+        <div class="field"><label for="sal-desc">Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
+        <div class="field"><label for="sal-desc-share">Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
+        <div class="field"><label for="sal-desc3">De ellos, menores de 3 años</label><input type="number" id="sal-desc3" value="0" min="0" max="12"></div>
+        <div class="field"><label for="sal-ccaa">Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="sal-ccaa">
           <option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option>
         </select></div>
-        <div class="field"><label>Número de pagas</label><select id="sal-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-        <div class="field sal-salary-only"><label>Tipo de contrato</label><select id="sal-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
+        <div class="field"><label for="sal-pagas">Número de pagas</label><select id="sal-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field sal-salary-only"><label for="sal-contract">Tipo de contrato</label><select id="sal-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
         <button class="calc-btn" data-run="salario">Calcular →</button>
       </div>
       <div class="results-panel" id="sal-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2527,15 +2573,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
 <div class="calc-overlay" id="modal-hipoteca">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127968; Cuota Hipotecaria</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="hipoteca">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127968; Cuota Hipotecaria</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="hipoteca" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="hipoteca"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-hipoteca">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula tu cuota mensual, total pagado e intereses de tu hipoteca.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Precio de la vivienda (&euro;)</label><input type="number" id="hip-precio" value="200000" min="0"></div>
-        <div class="field"><label>Entrada / ahorro (&euro;)</label><input type="number" id="hip-entrada" value="40000" min="0"></div>
-        <div class="field"><label>Tipo de inter&eacute;s anual (%)</label><input type="number" id="hip-tipo" value="3.5" step="0.1" min="0" max="20"></div>
-        <div class="field"><label>Plazo (a&ntilde;os)</label><input type="number" id="hip-plazo" value="30" min="1" max="40"></div>
+        <div class="field"><label for="hip-precio">Precio de la vivienda (&euro;)</label><input type="number" id="hip-precio" value="200000" min="0"></div>
+        <div class="field"><label for="hip-entrada">Entrada / ahorro (&euro;)</label><input type="number" id="hip-entrada" value="40000" min="0"></div>
+        <div class="field"><label for="hip-tipo">Tipo de inter&eacute;s anual (%)</label><input type="number" id="hip-tipo" value="3.5" step="0.1" min="0" max="20"></div>
+        <div class="field"><label for="hip-plazo">Plazo (a&ntilde;os)</label><input type="number" id="hip-plazo" value="30" min="1" max="40"></div>
         <button class="calc-btn" data-run="hipoteca">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="hip-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2557,14 +2603,14 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 
 <div class="calc-overlay" id="modal-coste">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128188; Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="coste">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128188; Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="coste" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="coste"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-coste">&#10003; Enlace copiado</span>
     <p class="subtitle">Estima el coste laboral directo para la empresa: bruto, cotizaciones patronales y solidaridad cuando corresponda.</p><p class="disclaimer">Estimación para contrato indefinido en 2026. La cotización por AT/EP depende de la actividad y puede cambiar el resultado; no incluye beneficios, formación, equipos, absentismo ni otros costes empresariales.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> cotizaciones empresariales y tope de base según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), normas de cotización a la Seguridad Social 2026 (tope máximo 5.101,20&nbsp;&euro;/mes). Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Tu salario bruto anual (&euro;)</label><input type="number" id="ce-bruto" value="30000" min="0"></div>
-        <div class="field"><label>N&uacute;mero de pagas</label><select id="ce-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-        <div class="field"><label>AT/EP estimado de la actividad (%)</label><input type="number" id="ce-at" value="1.5" min="0" max="10" step="0.1"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">La prima por accidentes de trabajo/enfermedad profesional depende de la actividad. 1,5% es solo un supuesto editable.</span></div>
+        <div class="field"><label for="ce-bruto">Tu salario bruto anual (&euro;)</label><input type="number" id="ce-bruto" value="30000" min="0"></div>
+        <div class="field"><label for="ce-pagas">N&uacute;mero de pagas</label><select id="ce-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+        <div class="field"><label for="ce-at">AT/EP estimado de la actividad (%)</label><input type="number" id="ce-at" value="1.5" min="0" max="10" step="0.1"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">La prima por accidentes de trabajo/enfermedad profesional depende de la actividad. 1,5% es solo un supuesto editable.</span></div>
         <button class="calc-btn" data-run="coste">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="ce-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2587,15 +2633,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: INFLACIÓN -->
 <div class="calc-overlay" id="modal-inflacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128201; Inflaci&oacute;n: Valor Futuro</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="inflacion">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128201; Inflaci&oacute;n: Valor Futuro</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="inflacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="inflacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-inflacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Descubre cu&aacute;nto valdr&aacute; tu dinero en el futuro con la inflaci&oacute;n, y cu&aacute;nto necesitas invertir para mantener tu poder adquisitivo.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital actual (&euro;)</label><input type="number" id="inf-capital" value="10000" min="0"></div>
-        <div class="field"><label>Inflaci&oacute;n anual estimada (%)</label><input type="number" id="inf-ipc" value="3" step="0.1" min="0" max="30"></div>
-        <div class="field"><label>A&ntilde;os</label><input type="number" id="inf-anos" value="10" min="1" max="50"></div>
-        <div class="field"><label>Rentabilidad inversi&oacute;n anual (%)</label><input type="number" id="inf-rent" value="7" step="0.1" min="0" max="30"></div>
+        <div class="field"><label for="inf-capital">Capital actual (&euro;)</label><input type="number" id="inf-capital" value="10000" min="0"></div>
+        <div class="field"><label for="inf-ipc">Inflaci&oacute;n anual estimada (%)</label><input type="number" id="inf-ipc" value="3" step="0.1" min="0" max="30"></div>
+        <div class="field"><label for="inf-anos">A&ntilde;os</label><input type="number" id="inf-anos" value="10" min="1" max="50"></div>
+        <div class="field"><label for="inf-rent">Rentabilidad inversi&oacute;n anual (%)</label><input type="number" id="inf-rent" value="7" step="0.1" min="0" max="30"></div>
         <button class="calc-btn" data-run="inflacion">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="inf-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2618,7 +2664,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: JUBILACIÓN / FIRE -->
 <div class="calc-overlay qf-calc2" id="modal-jubilacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="jubilacion">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128293; Ahorro Jubilaci&oacute;n / FIRE</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="jubilacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="jubilacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-jubilacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cu&aacute;nto necesitas ahorrar para jubilarte o alcanzar la independencia financiera (FIRE). Basado en la regla del 4%.</p>
     <div class="qf-live-badge">Resultado en tiempo real</div>
@@ -2636,16 +2682,16 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="jub-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500€</span><span>6.000€+</span></div></div>
-        <div class="qf-range-field"><div class="qf-range-head"><label>Edad actual</label><div class="qf-range-value"><input type="number" id="jub-edad" value="35" min="18" max="70" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="jub-edad" min="18" max="70" step="1" value="35"><div class="qf-range-scale"><span>18</span><span>70</span></div></div>
+        <div class="field"><label for="jub-actual">Ahorros actuales (&euro;)</label><input type="number" id="jub-actual" value="20000" min="0"></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-aport" value="500" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="jub-aport" min="0" max="3000" step="25" value="500"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-rent">Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="jub-rent" value="7" step="0.1" min="0" max="30"><span>%</span></div></div><input aria-label="Rentabilidad anual estimada (%)" class="qf-range" type="range" data-sync-to="jub-rent" min="0" max="15" step="0.1" value="7"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-gastos">Gastos mensuales en la retirada (&euro;)</label><div class="qf-range-value"><input type="number" id="jub-gastos" value="2000" min="0" max="30000" step="50"><span>€</span></div></div><input aria-label="Gastos mensuales en la retirada (€)" class="qf-range" type="range" data-sync-to="jub-gastos" min="500" max="6000" step="50" value="2000"><div class="qf-range-scale"><span>500€</span><span>6.000€+</span></div></div>
+        <div class="qf-range-field"><div class="qf-range-head"><label for="jub-edad">Edad actual</label><div class="qf-range-value"><input type="number" id="jub-edad" value="35" min="18" max="70" step="1"><span>años</span></div></div><input aria-label="Edad actual" class="qf-range" type="range" data-sync-to="jub-edad" min="18" max="70" step="1" value="35"><div class="qf-range-scale"><span>18</span><span>70</span></div></div>
   <div class="infl-toggle" id="jub-infl-wrap">
       <input type="checkbox" id="jub-infl-check" onchange="document.getElementById('jub-infl-wrap').classList.toggle('active',this.checked)">
       <label for="jub-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="jub-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="jub-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -2672,20 +2718,20 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: DEPÓSITO A PLAZO FIJO -->
 <div class="calc-overlay" id="modal-deposito">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="deposito">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="deposito" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="deposito"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-deposito">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula los intereses brutos y el importe tras la retención a cuenta del 19% para un depósito simple.</p><p class="disclaimer">Supone TIN simple y pago de intereses al vencimiento. El 19% es una retención/pago a cuenta: la tributación final del ahorro depende de tu declaración y del conjunto de rendimientos.</p>
     <p class="disclaimer"><strong>Fiscalidad:</strong> el 19% que se aplica en el c&aacute;lculo es solo la retenci&oacute;n a cuenta que practica el banco. Los intereses tributan despu&eacute;s en la declaraci&oacute;n anual de IRPF, en la base del ahorro, con la escala 2026: 19% hasta 6.000&nbsp;&euro;, 21% de 6.000 a 50.000&nbsp;&euro;, 23% de 50.000 a 200.000&nbsp;&euro;, 27% de 200.000 a 300.000&nbsp;&euro; y 30% a partir de 300.000&nbsp;&euro;. Seg&uacute;n tus otros rendimientos del ahorro, el resultado final puede ser una cuota a pagar o a devolver.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
-        <div class="field"><label>TIN anual (%)</label><input type="number" id="dep-tin" value="3" step="0.1" min="0" max="20"></div>
-        <div class="field"><label>Plazo (meses)</label><input type="number" id="dep-meses" value="12" min="1" max="120"></div>
+        <div class="field"><label for="dep-capital">Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
+        <div class="field"><label for="dep-tin">TIN anual (%)</label><input type="number" id="dep-tin" value="3" step="0.1" min="0" max="20"></div>
+        <div class="field"><label for="dep-meses">Plazo (meses)</label><input type="number" id="dep-meses" value="12" min="1" max="120"></div>
   <div class="infl-toggle" id="dep-infl-wrap">
       <input type="checkbox" id="dep-infl-check" onchange="document.getElementById('dep-infl-wrap').classList.toggle('active',this.checked)">
       <label for="dep-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="dep-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="dep-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -2712,58 +2758,58 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: FISCAL 2026 -->
 <div class="calc-overlay" id="modal-irpf">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="irpf">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="irpf" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
     <p class="subtitle">Separa nómina, pensión, retención del pagador y cuota anual estimada de IRPF. Incluye el año de transición trabajo → jubilación.</p>
     <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>¿Qué quieres calcular?</label><select id="irpf-mode" onchange="fiscalModeFields()"><option value="salary">Nómina</option><option value="pension">Pensión</option><option value="transition">Me jubilo este año</option><option value="annual">Declaración anual / varios pagadores</option></select></div>
+        <div class="field"><label for="irpf-mode">¿Qué quieres calcular?</label><select id="irpf-mode" onchange="fiscalModeFields()"><option value="salary">Nómina</option><option value="pension">Pensión</option><option value="transition">Me jubilo este año</option><option value="annual">Declaración anual / varios pagadores</option></select></div>
 
         <div id="fiscal-common">
-          <div class="field"><label>Año de nacimiento</label><input type="number" id="irpf-birth" value="1985" min="1920" max="2010"></div>
-          <div class="field"><label>Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
-          <div class="field"><label>Descendientes fiscalmente computables</label><input type="number" id="irpf-desc" value="0" min="0" max="12"></div>
-          <div class="field"><label>Cómputo del mínimo por descendientes</label><select id="irpf-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Si tienes descendientes con porcentajes distintos, usa el modo como aproximación; la versión avanzada por descendiente se incorporará tras validar el motor.</span></div>
-          <div class="field"><label>De ellos, menores de 3 años</label><input type="number" id="irpf-desc3" value="0" min="0" max="12"></div>
-          <div class="field"><label>Discapacidad del contribuyente</label><select id="irpf-disability"><option value="0">No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
-          <div class="field"><label>Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="irpf-ccaa"><option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option></select></div>
+          <div class="field"><label for="irpf-birth">Año de nacimiento</label><input type="number" id="irpf-birth" value="1985" min="1920" max="2010"></div>
+          <div class="field"><label for="irpf-sit">Situación familiar para retenciones</label><select id="irpf-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
+          <div class="field"><label for="irpf-desc">Descendientes fiscalmente computables</label><input type="number" id="irpf-desc" value="0" min="0" max="12"></div>
+          <div class="field"><label for="irpf-desc-share">Cómputo del mínimo por descendientes</label><select id="irpf-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Si tienes descendientes con porcentajes distintos, usa el modo como aproximación; la versión avanzada por descendiente se incorporará tras validar el motor.</span></div>
+          <div class="field"><label for="irpf-desc3">De ellos, menores de 3 años</label><input type="number" id="irpf-desc3" value="0" min="0" max="12"></div>
+          <div class="field"><label for="irpf-disability">Discapacidad del contribuyente</label><select id="irpf-disability"><option value="0">No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
+          <div class="field"><label for="irpf-ccaa">Comunidad Autónoma <span style="font-weight:400;color:var(--muted)">(cuota anual)</span></label><select id="irpf-ccaa"><option value="andalucia">Andalucía</option><option value="aragon">Aragón</option><option value="asturias">Asturias</option><option value="baleares">Baleares</option><option value="canarias">Canarias</option><option value="cantabria">Cantabria</option><option value="clm" selected>Castilla-La Mancha</option><option value="cyl">Castilla y León</option><option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option><option value="galicia">Galicia</option><option value="madrid">Madrid</option><option value="murcia">Murcia</option><option value="rioja">La Rioja</option><option value="valencia">C. Valenciana</option></select></div>
         </div>
 
         <div id="fiscal-salary-fields">
-          <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
-          <div class="field"><label>Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
-          <div class="field"><label>Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
-          <div class="field"><label>Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
+          <div class="field"><label for="irpf-bruto">Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
+          <div class="field"><label for="irpf-pagas">Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
+          <div class="field"><label for="irpf-contract">Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
+          <div class="field"><label for="irpf-pp">Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
         </div>
 
         <div id="fiscal-pension-fields" style="display:none">
-          <div class="field"><label>Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
-          <div class="field"><label>Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
-          <div class="field"><label>Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
+          <div class="field"><label for="pen-type">Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
+          <div class="field"><label for="pen-monthly">Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
+          <div class="field"><label for="pen-pagas">Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
         </div>
 
         <div id="fiscal-transition-fields" style="display:none">
-          <div class="field"><label>Salario bruto cobrado antes de jubilarte (&euro;)</label><input type="number" id="tr-salary" value="24000" min="0"></div>
-          <div class="field"><label>Retenciones ya soportadas en nómina (&euro;)</label><input type="number" id="tr-salary-withheld" value="3000" min="0"></div>
-          <div class="field"><label>Cotizaciones soportadas trabajando (&euro;)</label><input type="number" id="tr-salary-ss" value="1560" min="0"></div>
-          <div class="field"><label>Pensión bruta por paga desde jubilación (&euro;)</label><input type="number" id="tr-pension-pay" value="1500" min="0"></div>
-          <div class="field"><label>Pagas de pensión que cobrarás este ejercicio <span style="font-weight:400;color:var(--muted)">(incluye extras devengadas)</span></label><input type="number" id="tr-pension-pays" value="4" min="1" max="14" step="1"></div>
-          <div class="field"><label>Retenciones INSS ya practicadas/previstas (&euro;) <span style="font-weight:400;color:var(--muted)">(0 = estimar)</span></label><input type="number" id="tr-pension-withheld" value="0" min="0"></div>
+          <div class="field"><label for="tr-salary">Salario bruto cobrado antes de jubilarte (&euro;)</label><input type="number" id="tr-salary" value="24000" min="0"></div>
+          <div class="field"><label for="tr-salary-withheld">Retenciones ya soportadas en nómina (&euro;)</label><input type="number" id="tr-salary-withheld" value="3000" min="0"></div>
+          <div class="field"><label for="tr-salary-ss">Cotizaciones soportadas trabajando (&euro;)</label><input type="number" id="tr-salary-ss" value="1560" min="0"></div>
+          <div class="field"><label for="tr-pension-pay">Pensión bruta por paga desde jubilación (&euro;)</label><input type="number" id="tr-pension-pay" value="1500" min="0"></div>
+          <div class="field"><label for="tr-pension-pays">Pagas de pensión que cobrarás este ejercicio <span style="font-weight:400;color:var(--muted)">(incluye extras devengadas)</span></label><input type="number" id="tr-pension-pays" value="4" min="1" max="14" step="1"></div>
+          <div class="field"><label for="tr-pension-withheld">Retenciones INSS ya practicadas/previstas (&euro;) <span style="font-weight:400;color:var(--muted)">(0 = estimar)</span></label><input type="number" id="tr-pension-withheld" value="0" min="0"></div>
         </div>
 
         <div id="fiscal-annual-fields" style="display:none">
-          <div class="field"><label>Modalidad de declaración</label><select id="ann-joint"><option value="individual" selected>Individual</option><option value="joint-married">Conjunta · matrimonio (estimación)</option><option value="joint-single">Conjunta · unidad monoparental (estimación)</option></select></div>
-          <div class="field"><label>Ingresos pagador 1 (&euro;)</label><input type="number" id="ann-i1" value="24000" min="0"></div>
-          <div class="field"><label>Retenciones pagador 1 (&euro;)</label><input type="number" id="ann-r1" value="3000" min="0"></div>
-          <div class="field"><label>Cotizaciones deducibles pagador 1 (&euro;)</label><input type="number" id="ann-ss1" value="1500" min="0"></div>
-          <div class="field"><label>Ingresos pagador 2 (&euro;)</label><input type="number" id="ann-i2" value="0" min="0"></div>
-          <div class="field"><label>Retenciones pagador 2 (&euro;)</label><input type="number" id="ann-r2" value="0" min="0"></div>
-          <div class="field"><label>Cotizaciones deducibles pagador 2 (&euro;)</label><input type="number" id="ann-ss2" value="0" min="0"></div>
-          <div class="field"><label>Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
-          <div class="field"><label>Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
-          <div class="field"><label>Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
-          <div class="field"><label>Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
+          <div class="field"><label for="ann-joint">Modalidad de declaración</label><select id="ann-joint"><option value="individual" selected>Individual</option><option value="joint-married">Conjunta · matrimonio (estimación)</option><option value="joint-single">Conjunta · unidad monoparental (estimación)</option></select></div>
+          <div class="field"><label for="ann-i1">Ingresos pagador 1 (&euro;)</label><input type="number" id="ann-i1" value="24000" min="0"></div>
+          <div class="field"><label for="ann-r1">Retenciones pagador 1 (&euro;)</label><input type="number" id="ann-r1" value="3000" min="0"></div>
+          <div class="field"><label for="ann-ss1">Cotizaciones deducibles pagador 1 (&euro;)</label><input type="number" id="ann-ss1" value="1500" min="0"></div>
+          <div class="field"><label for="ann-i2">Ingresos pagador 2 (&euro;)</label><input type="number" id="ann-i2" value="0" min="0"></div>
+          <div class="field"><label for="ann-r2">Retenciones pagador 2 (&euro;)</label><input type="number" id="ann-r2" value="0" min="0"></div>
+          <div class="field"><label for="ann-ss2">Cotizaciones deducibles pagador 2 (&euro;)</label><input type="number" id="ann-ss2" value="0" min="0"></div>
+          <div class="field"><label for="ann-other">Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
+          <div class="field"><label for="ann-service-work">Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
+          <div class="field"><label for="ann-other-ret">Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
+          <div class="field"><label for="ann-reductions">Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
         </div>
 
         <button class="calc-btn" data-run="irpf">Calcular &rarr;</button>
@@ -2779,19 +2825,19 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: PLAN DE PENSIONES -->
 <div class="calc-overlay" id="modal-pension">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="pension">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#127775; Desgravaci&oacute;n Plan de Pensiones</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="pension" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="pension"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-pension">&#10003; Enlace copiado</span>
     <p class="subtitle" id="pp-subtitle">Calcula cu&aacute;nto te ahorra en la declaraci&oacute;n de la renta aportar a un plan de pensiones. Límite general individual: 1.500 €/año. Para autónomos se contempla, de forma separada, la posible ampliación mediante PPES.</p>
     <p class="disclaimer">Estimaci&oacute;n orientativa. El ahorro real depende de tu tipo marginal y CCAA. Consulta con un asesor fiscal.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Eres...</label><select id="pp-tipo" onchange="ppUpdateFields()">
+        <div class="field"><label for="pp-tipo">Eres...</label><select id="pp-tipo" onchange="ppUpdateFields()">
           <option value="empleado">Empleado por cuenta ajena</option>
           <option value="autonomo">Aut&oacute;nomo</option>
         </select></div>
-        <div class="field"><label id="pp-bruto-label">Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
-        <div class="field"><label>Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="5750"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite general de aportación individual: 1.500€/año. Las aportaciones empresariales a planes de empleo tienen límites adicionales y no se modelan en esta calculadora.</span></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="pp-ccaa">
+        <div class="field"><label for="pp-bruto" id="pp-bruto-label">Salario bruto anual (&euro;)</label><input type="number" id="pp-bruto" value="40000" min="0"></div>
+        <div class="field"><label for="pp-aport">Aportaci&oacute;n anual al plan (&euro;)</label><input type="number" id="pp-aport" value="1500" min="0" max="5750"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px" id="pp-aport-help">L&iacute;mite general de aportación individual: 1.500€/año. Las aportaciones empresariales a planes de empleo tienen límites adicionales y no se modelan en esta calculadora.</span></div>
+        <div class="field"><label for="pp-ccaa">Comunidad Aut&oacute;noma</label><select id="pp-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option>
           <option value="aragon">Arag&oacute;n</option>
           <option value="asturias">Asturias</option>
@@ -2830,23 +2876,23 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: ALQUILER VS COMPRA -->
 <div class="calc-overlay" id="modal-alquilervs">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128273; Alquiler vs Compra</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="alquilervs">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128273; Alquiler vs Compra</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquilervs" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="alquilervs"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquilervs">&#10003; Enlace copiado</span>
     <p class="subtitle">Compara el patrimonio final estimado al comprar frente a alquilar, incorporando hipoteca, revalorización, gastos y el coste de oportunidad del capital.</p><p class="disclaimer">Modelo orientativo: supone tipo hipotecario fijo, aportaciones/costes constantes según los campos y reinversión de las diferencias mensuales. No incluye fiscalidad individual, reformas extraordinarias ni incertidumbre de mercado.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Precio del piso (&euro;)</label><input type="number" id="avs-precio" value="250000" min="0"></div>
-        <div class="field"><label>Entrada disponible (&euro;)</label><input type="number" id="avs-entrada" value="50000" min="0"></div>
-        <div class="field"><label>Tipo hipoteca (%)</label><input type="number" id="avs-tipo" value="3.5" step="0.1" min="0" max="15"></div>
-        <div class="field"><label>Plazo hipoteca (a&ntilde;os)</label><input type="number" id="avs-plazo" value="25" min="5" max="40"></div>
-        <div class="field"><label>Alquiler mensual equivalente (&euro;)</label><input type="number" id="avs-alquiler" value="1000" min="0"></div>
-        <div class="field"><label>Revalorizaci&oacute;n anual piso (%)</label><input type="number" id="avs-revalor" value="3" step="0.1" min="-5" max="15"></div>
-        <div class="field"><label>A&ntilde;os de comparaci&oacute;n</label><input type="number" id="avs-anos" value="15" min="1" max="40"></div>
-        <div class="field"><label>Gastos iniciales de compra (%)</label><input type="number" id="avs-gastos-compra" value="10" min="0" max="20" step="0.5"></div>
-        <div class="field"><label>Gastos anuales propietario (&euro;)</label><input type="number" id="avs-gastos-prop" value="2000" min="0" step="100"></div>
-        <div class="field"><label>Subida anual del alquiler (%)</label><input type="number" id="avs-alq-growth" value="3" min="-5" max="10" step="0.1"></div>
-        <div class="field"><label>Rentabilidad alternativa del ahorro (%)</label><input type="number" id="avs-alt-return" value="7" min="0" max="15" step="0.1"></div>
-        <div class="field"><label>Coste de venta estimado (%)</label><input type="number" id="avs-sale-cost" value="3" min="0" max="10" step="0.1"></div>
+        <div class="field"><label for="avs-precio">Precio del piso (&euro;)</label><input type="number" id="avs-precio" value="250000" min="0"></div>
+        <div class="field"><label for="avs-entrada">Entrada disponible (&euro;)</label><input type="number" id="avs-entrada" value="50000" min="0"></div>
+        <div class="field"><label for="avs-tipo">Tipo hipoteca (%)</label><input type="number" id="avs-tipo" value="3.5" step="0.1" min="0" max="15"></div>
+        <div class="field"><label for="avs-plazo">Plazo hipoteca (a&ntilde;os)</label><input type="number" id="avs-plazo" value="25" min="5" max="40"></div>
+        <div class="field"><label for="avs-alquiler">Alquiler mensual equivalente (&euro;)</label><input type="number" id="avs-alquiler" value="1000" min="0"></div>
+        <div class="field"><label for="avs-revalor">Revalorizaci&oacute;n anual piso (%)</label><input type="number" id="avs-revalor" value="3" step="0.1" min="-5" max="15"></div>
+        <div class="field"><label for="avs-anos">A&ntilde;os de comparaci&oacute;n</label><input type="number" id="avs-anos" value="15" min="1" max="40"></div>
+        <div class="field"><label for="avs-gastos-compra">Gastos iniciales de compra (%)</label><input type="number" id="avs-gastos-compra" value="10" min="0" max="20" step="0.5"></div>
+        <div class="field"><label for="avs-gastos-prop">Gastos anuales propietario (&euro;)</label><input type="number" id="avs-gastos-prop" value="2000" min="0" step="100"></div>
+        <div class="field"><label for="avs-alq-growth">Subida anual del alquiler (%)</label><input type="number" id="avs-alq-growth" value="3" min="-5" max="10" step="0.1"></div>
+        <div class="field"><label for="avs-alt-return">Rentabilidad alternativa del ahorro (%)</label><input type="number" id="avs-alt-return" value="7" min="0" max="15" step="0.1"></div>
+        <div class="field"><label for="avs-sale-cost">Coste de venta estimado (%)</label><input type="number" id="avs-sale-cost" value="3" min="0" max="10" step="0.1"></div>
         <button class="calc-btn" data-run="alquilervs">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="avs-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2869,16 +2915,16 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: AMORTIZACIÓN ANTICIPADA -->
 <div class="calc-overlay" id="modal-amortizacion">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#9889; Amortizaci&oacute;n Anticipada</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="amortizacion">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#9889; Amortizaci&oacute;n Anticipada</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="amortizacion" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="amortizacion"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-amortizacion">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula cuánto podrías ahorrar en intereses y tiempo amortizando anticipadamente. Compara reducir cuota vs reducir plazo.</p><p class="disclaimer">Estimación con hipoteca a tipo fijo y sistema francés. No incluye posibles comisiones de amortización, compensaciones contractuales ni efectos fiscales.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Capital pendiente (&euro;)</label><input type="number" id="am-capital" value="150000" min="0"></div>
-        <div class="field"><label>Tipo de inter&eacute;s (%)</label><input type="number" id="am-tipo" value="3.5" step="0.1" min="0" max="15"></div>
-        <div class="field"><label>A&ntilde;os restantes</label><input type="number" id="am-anos" value="20" min="1" max="40"></div>
-        <div class="field"><label>Importe a amortizar (&euro;)</label><input type="number" id="am-extra" value="10000" min="0"></div>
-        <div class="field"><label>Objetivo</label><select id="am-tipo-amort"><option value="plazo">Reducir plazo (misma cuota)</option><option value="cuota">Reducir cuota (mismo plazo)</option></select></div>
+        <div class="field"><label for="am-capital">Capital pendiente (&euro;)</label><input type="number" id="am-capital" value="150000" min="0"></div>
+        <div class="field"><label for="am-tipo">Tipo de inter&eacute;s (%)</label><input type="number" id="am-tipo" value="3.5" step="0.1" min="0" max="15"></div>
+        <div class="field"><label for="am-anos">A&ntilde;os restantes</label><input type="number" id="am-anos" value="20" min="1" max="40"></div>
+        <div class="field"><label for="am-extra">Importe a amortizar (&euro;)</label><input type="number" id="am-extra" value="10000" min="0"></div>
+        <div class="field"><label for="am-tipo-amort">Objetivo</label><select id="am-tipo-amort"><option value="plazo">Reducir plazo (misma cuota)</option><option value="cuota">Reducir cuota (mismo plazo)</option></select></div>
         <button class="calc-btn" data-run="amortizacion">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="am-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2901,16 +2947,16 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: ROI ALQUILER -->
 <div class="calc-overlay" id="modal-alquiler">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128202; ROI / Rentabilidad Alquiler</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="alquiler">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128202; ROI / Rentabilidad Alquiler</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="alquiler" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="alquiler"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-alquiler">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula la rentabilidad bruta sobre el precio y la rentabilidad neta sobre la inversión total, incluyendo gastos anuales y vacante.</p><p class="disclaimer">No incluye financiación, IRPF/IS, derramas, reformas extraordinarias, impagos ni revalorización del inmueble.</p>
     <div class="calc-grid">
       <div class="field-group">
-        <div class="field"><label>Precio de compra (&euro;)</label><input type="number" id="alq-precio" value="200000" min="0"></div>
-        <div class="field"><label>Gastos compra (ITP/IVA+notar&iacute;a, %)</label><input type="number" id="alq-gastos" value="10" step="0.5" min="0" max="20"></div>
-        <div class="field"><label>Renta mensual (&euro;)</label><input type="number" id="alq-renta" value="900" min="0"></div>
-        <div class="field"><label>Gastos anuales (IBI + comunidad + seguro, &euro;)</label><input type="number" id="alq-gastos-anuales" value="1500" min="0"></div>
-        <div class="field"><label>Meses de vacante al a&ntilde;o</label><input type="number" id="alq-vacante" value="1" min="0" max="12" step="0.5"></div>
+        <div class="field"><label for="alq-precio">Precio de compra (&euro;)</label><input type="number" id="alq-precio" value="200000" min="0"></div>
+        <div class="field"><label for="alq-gastos">Gastos compra (ITP/IVA+notar&iacute;a, %)</label><input type="number" id="alq-gastos" value="10" step="0.5" min="0" max="20"></div>
+        <div class="field"><label for="alq-renta">Renta mensual (&euro;)</label><input type="number" id="alq-renta" value="900" min="0"></div>
+        <div class="field"><label for="alq-gastos-anuales">Gastos anuales (IBI + comunidad + seguro, &euro;)</label><input type="number" id="alq-gastos-anuales" value="1500" min="0"></div>
+        <div class="field"><label for="alq-vacante">Meses de vacante al a&ntilde;o</label><input type="number" id="alq-vacante" value="1" min="0" max="12" step="0.5"></div>
         <button class="calc-btn" data-run="alquiler">Calcular &rarr;</button>
       </div>
       <div class="results-panel" id="alq-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
@@ -2932,21 +2978,21 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: COMPARADOR DE OFERTAS -->
 <div class="calc-overlay" id="modal-comparador">
   <div class="calc-modal" style="max-width:820px">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#9878;&#65039; Comparador de ofertas</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="comparador">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#9878;&#65039; Comparador de ofertas</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="comparador" aria-label="Cerrar calculadora">&#215;</button></div>
     <button class="share-btn" data-share="comparador"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-comparador">&#10003; Enlace copiado</span>
     <p class="subtitle">Compara dos ofertas de trabajo de forma objetiva. M&aacute;s all&aacute; del bruto: neto real, teletrabajo, beneficios y coste de desplazamiento.</p>
     <p class="disclaimer">Estimación orientativa con el motor fiscal 2026 de la web. El bonus se valora por el incremento de neto estimado, no aplicando un tipo fijo. Los beneficios en especie y su fiscalidad real pueden variar.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
       <!-- Oferta A -->
-      <div class="field-group" style="border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:16px">
-        <p style="font-family:'Playfair Display',serif;color:#c9a84c;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta A</p>
-        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="cmp-a-bruto" value="40000" min="0"></div>
-        <div class="field"><label>Bonus anual estimado (&euro;)</label><input type="number" id="cmp-a-bonus" value="0" min="0"></div>
-        <div class="field"><label>D&iacute;as teletrabajo / semana</label><select id="cmp-a-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
-        <div class="field"><label>Coste transporte / mes (&euro;)</label><input type="number" id="cmp-a-transp" value="80" min="0"></div>
-        <div class="field"><label>Seguro m&eacute;dico empresa</label><select id="cmp-a-seguro"><option value="0">No incluido</option><option value="600">S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
-        <div class="field"><label>Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-a-ticket" value="0" min="0"></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="cmp-a-ccaa">
+      <div class="field-group" role="group" aria-labelledby="cmp-a-title" style="border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:16px">
+        <p id="cmp-a-title" style="font-family:'Playfair Display',serif;color:#c9a84c;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta A</p>
+        <div class="field"><label for="cmp-a-bruto">Salario bruto anual (&euro;)</label><input type="number" id="cmp-a-bruto" value="40000" min="0"></div>
+        <div class="field"><label for="cmp-a-bonus">Bonus anual estimado (&euro;)</label><input type="number" id="cmp-a-bonus" value="0" min="0"></div>
+        <div class="field"><label for="cmp-a-tw">D&iacute;as teletrabajo / semana</label><select id="cmp-a-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
+        <div class="field"><label for="cmp-a-transp">Coste transporte / mes (&euro;)</label><input type="number" id="cmp-a-transp" value="80" min="0"></div>
+        <div class="field"><label for="cmp-a-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-a-seguro"><option value="0">No incluido</option><option value="600">S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
+        <div class="field"><label for="cmp-a-ticket">Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-a-ticket" value="0" min="0"></div>
+        <div class="field"><label for="cmp-a-ccaa">Comunidad Aut&oacute;noma</label><select id="cmp-a-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option><option value="aragon">Arag&oacute;n</option>
           <option value="asturias">Asturias</option><option value="baleares">Baleares</option>
           <option value="canarias">Canarias</option><option value="cantabria">Cantabria</option>
@@ -2958,15 +3004,15 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         </select></div>
       </div>
       <!-- Oferta B -->
-      <div class="field-group" style="border:1px solid rgba(125,211,168,.25);border-radius:8px;padding:16px">
-        <p style="font-family:'Playfair Display',serif;color:#7dd3a8;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta B</p>
-        <div class="field"><label>Salario bruto anual (&euro;)</label><input type="number" id="cmp-b-bruto" value="36000" min="0"></div>
-        <div class="field"><label>Bonus anual estimado (&euro;)</label><input type="number" id="cmp-b-bonus" value="3000" min="0"></div>
-        <div class="field"><label>D&iacute;as teletrabajo / semana</label><select id="cmp-b-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
-        <div class="field"><label>Coste transporte / mes (&euro;)</label><input type="number" id="cmp-b-transp" value="30" min="0"></div>
-        <div class="field"><label>Seguro m&eacute;dico empresa</label><select id="cmp-b-seguro"><option value="0">No incluido</option><option value="600" selected>S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
-        <div class="field"><label>Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-b-ticket" value="220" min="0"></div>
-        <div class="field"><label>Comunidad Aut&oacute;noma</label><select id="cmp-b-ccaa">
+      <div class="field-group" role="group" aria-labelledby="cmp-b-title" style="border:1px solid rgba(125,211,168,.25);border-radius:8px;padding:16px">
+        <p id="cmp-b-title" style="font-family:'Playfair Display',serif;color:#7dd3a8;margin:0 0 12px;font-size:15px;font-weight:700">&#128452; Oferta B</p>
+        <div class="field"><label for="cmp-b-bruto">Salario bruto anual (&euro;)</label><input type="number" id="cmp-b-bruto" value="36000" min="0"></div>
+        <div class="field"><label for="cmp-b-bonus">Bonus anual estimado (&euro;)</label><input type="number" id="cmp-b-bonus" value="3000" min="0"></div>
+        <div class="field"><label for="cmp-b-tw">D&iacute;as teletrabajo / semana</label><select id="cmp-b-tw"><option value="0">0 — Presencial total</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 — Remoto total</option></select></div>
+        <div class="field"><label for="cmp-b-transp">Coste transporte / mes (&euro;)</label><input type="number" id="cmp-b-transp" value="30" min="0"></div>
+        <div class="field"><label for="cmp-b-seguro">Seguro m&eacute;dico empresa</label><select id="cmp-b-seguro"><option value="0">No incluido</option><option value="600" selected>S&iacute; (valor ~600 &euro;/a&ntilde;o)</option><option value="1200">Premium (~1.200 &euro;/a&ntilde;o)</option></select></div>
+        <div class="field"><label for="cmp-b-ticket">Ticket restaurante / mes (&euro;)</label><input type="number" id="cmp-b-ticket" value="220" min="0"></div>
+        <div class="field"><label for="cmp-b-ccaa">Comunidad Aut&oacute;noma</label><select id="cmp-b-ccaa">
           <option value="andalucia">Andaluc&iacute;a</option><option value="aragon">Arag&oacute;n</option>
           <option value="asturias">Asturias</option><option value="baleares">Baleares</option>
           <option value="canarias">Canarias</option><option value="cantabria">Cantabria</option>
@@ -2998,7 +3044,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <!-- MODAL: EVOLUCIÓN Y CRECIMIENTO CAGR -->
 <div class="calc-overlay qf-calc2" id="modal-cagr">
   <div class="calc-modal">
-    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="cagr">&#215;</button></div>
+    <div class="modal-header"><div class="modal-header-left"><h2>&#128200; Evoluci&oacute;n y crecimiento</h2></div><div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div><button class="calc-close" data-close="cagr" aria-label="Cerrar calculadora">&#215;</button></div>
     <p class="subtitle">Calcula el crecimiento anual compuesto (CAGR) de tu salario o de tu patrimonio a partir de datos reales por a&ntilde;o.</p>
 
     <div class="cagr-mode-switch" role="tablist" aria-label="Tipo de evoluci&oacute;n">
@@ -3061,8 +3107,8 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
   <div class="calc-modal" style="max-width:760px">
     <div class="modal-header">
       <div class="modal-header-left"><h2>&#8987; El coste del tiempo</h2></div>
-      <div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div>
-      <button class="calc-close" data-close="tiempo">&#215;</button>
+      <div class="modal-logo"><img src="logo.png" alt="" width="36" height="36" loading="lazy"></div>
+      <button class="calc-close" data-close="tiempo" aria-label="Cerrar calculadora">&#215;</button>
     </div>
     <button class="share-btn" data-share="tiempo"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button>
     <span class="share-toast" id="toast-tiempo">&#10003; Enlace copiado</span>
@@ -3082,17 +3128,17 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     </div>
 
     <div class="calc-grid">
-      <div class="field"><label>Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Edad actual</label><div class="qf-range-value"><input type="number" id="t-edad" value="30" min="18" max="64" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="t-edad" min="18" max="64" step="1" value="30"><div class="qf-range-scale"><span>18</span><span>64</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="t-rent" value="8" min="0" max="30" step="0.1"><span>%</span></div></div><input class="qf-range" type="range" data-sync-to="t-rent" min="0" max="15" step="0.1" value="8"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
-      <div class="qf-range-field"><div class="qf-range-head"><label>Edad objetivo (retirada)</label><div class="qf-range-value"><input type="number" id="t-objetivo" value="65" min="40" max="80" step="1"><span>años</span></div></div><input class="qf-range" type="range" data-sync-to="t-objetivo" min="40" max="80" step="1" value="65"><div class="qf-range-scale"><span>40</span><span>80</span></div></div>
+      <div class="field"><label for="t-patrimonio">Patrimonio actual (&euro;)</label><input type="number" id="t-patrimonio" value="10000" min="0" step="1000"></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-edad">Edad actual</label><div class="qf-range-value"><input type="number" id="t-edad" value="30" min="18" max="64" step="1"><span>años</span></div></div><input aria-label="Edad actual" class="qf-range" type="range" data-sync-to="t-edad" min="18" max="64" step="1" value="30"><div class="qf-range-scale"><span>18</span><span>64</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-aport">Aportaci&oacute;n mensual (&euro;)</label><div class="qf-range-value"><input type="number" id="t-aport" value="300" min="0" max="10000" step="25"><span>€</span></div></div><input aria-label="Aportación mensual (€)" class="qf-range" type="range" data-sync-to="t-aport" min="0" max="3000" step="25" value="300"><div class="qf-range-scale"><span>0€</span><span>3.000€+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-rent">Rentabilidad anual estimada (%)</label><div class="qf-range-value"><input type="number" id="t-rent" value="8" min="0" max="30" step="0.1"><span>%</span></div></div><input aria-label="Rentabilidad anual estimada (%)" class="qf-range" type="range" data-sync-to="t-rent" min="0" max="15" step="0.1" value="8"><div class="qf-range-scale"><span>0%</span><span>15%+</span></div></div>
+      <div class="qf-range-field"><div class="qf-range-head"><label for="t-objetivo">Edad objetivo (retirada)</label><div class="qf-range-value"><input type="number" id="t-objetivo" value="65" min="40" max="80" step="1"><span>años</span></div></div><input aria-label="Edad objetivo (retirada)" class="qf-range" type="range" data-sync-to="t-objetivo" min="40" max="80" step="1" value="65"><div class="qf-range-scale"><span>40</span><span>80</span></div></div>
     </div>
 <div class="infl-toggle" id="t-infl-wrap">
       <input type="checkbox" id="t-infl-check" onchange="document.getElementById('t-infl-wrap').classList.toggle('active',this.checked)">
       <label for="t-infl-check">&#127777;&#65039; Descontar inflaci&oacute;n</label>
       <div class="infl-input">
-        <input type="number" id="t-infl-val" value="3.0" min="0" max="20" step="0.1">
+        <input type="number" id="t-infl-val" aria-label="Inflaci&oacute;n anual estimada (%)" value="3.0" min="0" max="20" step="0.1">
         <span>% anual estimado</span>
       </div>
     </div>
@@ -3439,9 +3485,9 @@ document.addEventListener('DOMContentLoaded', function(){
       return {bruto:bruto,neto:neto,netoBonus:netoBonus,seguro:seguro,valorTicket:valorTicket,costeTrans:costeTrans,total:total,tw:tw};
     }
     var A=valorOferta('a'),B=valorOferta('b'),winner=A.total>=B.total?'A':'B',diff=Math.abs(A.total-B.total);
-    function row(label,vA,vB,fmt){fmt=fmt||fmtEUR;return '<tr><td style="color:var(--muted);font-size:12px;padding:6px 0">'+label+'</td><td style="text-align:right;color:'+(vA>vB?'#7dd3a8':'var(--silver)')+'">'+fmt(vA)+'</td><td style="text-align:right;color:'+(vB>vA?'#7dd3a8':'var(--silver)')+'">'+fmt(vB)+'</td></tr>';}
-    var html='<div style="margin-bottom:16px;padding:14px 18px;background:rgba(201,168,76,.08);border-radius:8px;border-left:3px solid #c9a84c"><strong style="color:#8a6b16">Oferta '+winner+' ofrece '+fmtEUR(diff)+' más de valor anual estimado</strong> <span style="color:var(--muted);font-size:12px">(neto estimado + beneficios − desplazamiento)</span></div>'
-      +'<table style="width:100%;border-collapse:collapse"><thead><tr><th></th><th style="text-align:right;font-size:12px;color:#c9a84c">Oferta A</th><th style="text-align:right;font-size:12px;color:#7dd3a8">Oferta B</th></tr></thead><tbody>'
+    function row(label,vA,vB,fmt){fmt=fmt||fmtEUR;return '<tr><td style="color:var(--muted);font-size:12px;padding:6px 0">'+label+'</td><td'+(vA>vB?' class="cmp-best"':'')+' style="text-align:right;color:'+(vA>vB?'#7dd3a8':'var(--silver)')+'">'+fmt(vA)+'</td><td'+(vB>vA?' class="cmp-best"':'')+' style="text-align:right;color:'+(vB>vA?'#7dd3a8':'var(--silver)')+'">'+fmt(vB)+'</td></tr>';}
+    var html='<div style="margin-bottom:16px;padding:14px 18px;background:rgba(201,168,76,.08);border-radius:8px;border-left:3px solid #c9a84c"><strong class="cmp-winner" style="color:#8a6b16">Oferta '+winner+' ofrece '+fmtEUR(diff)+' más de valor anual estimado</strong> <span style="color:var(--muted);font-size:12px">(neto estimado + beneficios − desplazamiento)</span></div>'
+      +'<table style="width:100%;border-collapse:collapse"><thead><tr><th></th><th class="cmp-head-a" style="text-align:right;font-size:12px;color:#c9a84c">Oferta A</th><th class="cmp-head-b" style="text-align:right;font-size:12px;color:#7dd3a8">Oferta B</th></tr></thead><tbody>'
       +row('Salario bruto',A.bruto,B.bruto)+row('Neto salarial estimado',A.neto,B.neto)+row('Bonus neto incremental',A.netoBonus,B.netoBonus)+row('Valor seguro médico',A.seguro,B.seguro)+row('Valor tickets restaurante',A.valorTicket,B.valorTicket)+row('(-) Coste transporte real',-A.costeTrans,-B.costeTrans)
       +'<tr style="border-top:1px solid var(--border)"><td style="font-size:13px;font-weight:700;padding-top:8px">Valor total anual estimado</td><td style="text-align:right;font-weight:700;padding-top:8px">'+fmtEUR(A.total)+'</td><td style="text-align:right;font-weight:700;padding-top:8px">'+fmtEUR(B.total)+'</td></tr></tbody></table>';
     document.getElementById('cmp-results').innerHTML=html;document.getElementById('cmp-chart-wrap').style.display='block';document.getElementById('cmp-cta').style.display='flex';
@@ -4767,10 +4813,10 @@ document.addEventListener('DOMContentLoaded', function(){
       card.style.cssText = 'background:var(--navy);border:1px solid rgba(184,200,216,.12);border-radius:8px;padding:12px;text-align:center';
       var finalReal = inflT>0 ? valorReal(final, inflT, objetivo-edadActual) : final;
       card.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:'+color+';margin-bottom:4px">' + label + '</div>'
-        + '<div style="font-size:10px;color:rgba(184,200,216,.5);margin-bottom:8px">' + sub + '</div>'
+        + '<div style="font-size:10px;color:rgba(184,200,216,.75);margin-bottom:8px">' + sub + '</div>'
         + '<div style="font-size:20px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace">' + fmtM(final) + '</div>'
         + (inflT>0 ? '<div style="font-size:10px;color:rgba(201,168,76,.8);margin-top:2px">' + fmtM(finalReal) + ' real</div>' : '')
-        + '<div style="font-size:10px;color:rgba(184,200,216,.5);margin-top:4px">a los ' + objetivo + ' años</div>';
+        + '<div style="font-size:10px;color:rgba(184,200,216,.75);margin-top:4px">a los ' + objetivo + ' años</div>';
       escenariosGrid.appendChild(card);
     });
 
@@ -5268,7 +5314,7 @@ document.addEventListener('DOMContentLoaded', function(){
         div.className = "ref-card";
         div.style.cursor = "pointer";
         var abbr = it.title.substring(0,3).toUpperCase();
-        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:0;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;color:#e8f0f7;">${it.title}</h3><p style="color:rgba(184,200,216,.8);">${it.desc || ""}</p></div><div style="font-size:12px;color:rgba(201,168,76,.7);white-space:nowrap;flex-shrink:0;">Ver imagen →</div>`;
+        div.innerHTML = `<div class="ref-logo" style="font-size:13px;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif;letter-spacing:0;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);">${abbr}</div><div class="ref-info"><h3 style="font-size:14px;font-weight:600;color:#e8f0f7;">${it.title}</h3><p style="color:rgba(184,200,216,.8);">${it.desc || ""}</p></div><div style="font-size:12px;color:rgba(201,168,76,.9);white-space:nowrap;flex-shrink:0;">Ver imagen →</div>`;
       } else {
         div.innerHTML = `<div class="card-kicker">${it.badge || ""}</div><div class="card-title-row"><div class="card-icon">${it.icon || ""}</div><h3 class="card-title">${it.title}</h3></div><p class="card-desc">${it.desc || ""}</p><div class="card-meta">${it.link ? "Abrir recurso" : "Ver detalle"}</div>`;
       }
@@ -6290,6 +6336,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     input.dataset.qfSlider='1';
     var wrap=document.createElement('div');wrap.className='qf-inline-range-wrap';
     var range=document.createElement('input');range.type='range';range.className='qf-inline-range';
+    var rangeName=(input.labels&&input.labels[0])?input.labels[0].textContent.replace(/\s+/g,' ').trim():(input.getAttribute('aria-label')||'');if(rangeName)range.setAttribute('aria-label',rangeName);
     range.min=cfg.min;range.max=cfg.max;range.step=cfg.step;range.value=clamp(parseFloat(input.value)||cfg.min,cfg.min,cfg.max);
     var current=document.createElement('div');current.className='qf-inline-range-current';current.textContent=inlineValue(input.value,cfg);
     var scale=document.createElement('div');scale.className='qf-inline-range-scale';scale.innerHTML='<span>'+cfg.minLabel+'</span><span>'+cfg.maxLabel+'</span>';
