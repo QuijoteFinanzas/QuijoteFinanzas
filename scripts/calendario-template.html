@@ -1,62 +1,216 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" id="qf-theme-color" content="#ffffff">
 <!-- Generado por scripts/build-calendario.js a partir de scripts/calendario-template.html. No editar a mano. -->
 <title>{{TITLE}}</title><meta name="description" content="{{DESC}}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://quijotefinanzas.com/calendario-financiero/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Don Quijote de las Finanzas"><meta property="og:locale" content="es_ES"><meta property="og:url" content="https://quijotefinanzas.com/calendario-financiero/"><meta property="og:title" content="{{TITLE}}"><meta property="og:description" content="{{DESC}}"><meta property="og:image" content="https://quijotefinanzas.com/og-image-2026.png">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@quijotefinanzas"><meta name="twitter:title" content="{{TITLE}}"><meta name="twitter:description" content="{{DESC}}"><meta name="twitter:image" content="https://quijotefinanzas.com/og-image-2026.png">
-<link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-
-:root{--navy:#0f2035;--navy2:#183752;--gold:#c9a84c;--text:#22384e;--muted:#61758a;--bg:#f7f9fb;--card:#fff;--border:#dfe6ee;--soft:#eef3f7}
-html[data-theme="dark"]{--navy:#eef4f8;--navy2:#cbd8e4;--gold:#d7b85d;--text:#dce7ef;--muted:#9fb2c4;--bg:#101a26;--card:#182638;--border:#33485e;--soft:#132030}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65}a{color:inherit}.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.topin{max-width:1120px;margin:auto;padding:10px 22px;display:flex;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:9px;text-decoration:none;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy)}.brand img{width:34px;height:34px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:#fff}.topnav{margin-left:auto;display:flex;gap:12px;align-items:center}.topnav a{font-size:12px;text-decoration:none;color:var(--muted);font-weight:600}.theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--navy);cursor:pointer}.wrap{max-width:1040px;margin:auto;padding:30px 22px 70px}.crumbs{font-size:12px;color:var(--muted);margin-bottom:24px}.crumbs a{text-decoration:none}.hero{padding:20px 0 28px}.kicker{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#927321;margin-bottom:9px}.hero h1{font-family:'Playfair Display',serif;color:var(--navy);font-size:clamp(34px,5vw,54px);line-height:1.08;margin:0 0 14px;letter-spacing:-.02em}.hero p{font-size:18px;color:var(--muted);max-width:780px;margin:0}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.badge{border:1px solid var(--border);background:var(--card);border-radius:999px;padding:6px 10px;font-size:11px;color:var(--muted);font-weight:600}.calcbox{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:10px;box-shadow:0 14px 38px rgba(15,32,53,.07);margin:12px 0 38px}.calcbox iframe{width:100%;min-height:760px;border:0;display:block;background:transparent;border-radius:13px}.grid2{display:grid;grid-template-columns:1.25fr .75fr;gap:24px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}.card h2,.section h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:26px;margin:0 0 12px}.card h3{color:var(--navy);font-size:14px;margin:18px 0 6px}.card p{margin:0 0 12px}.inputs{margin:0;padding-left:20px;color:var(--muted)}.inputs li{margin:6px 0}.section{padding:32px 0;border-top:1px solid var(--border)}.section p{max-width:820px}.faq{display:grid;gap:10px}.faq details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px}.faq summary{cursor:pointer;font-weight:700;color:var(--navy)}.faq p{margin:10px 0 0;color:var(--muted)}.related{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.rel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-decoration:none;transition:.18s}.rel:hover{transform:translateY(-2px);border-color:rgba(201,168,76,.6)}.rel strong{display:block;color:var(--navy);font-size:14px}.rel span{font-size:12px;color:var(--muted)}.notice{background:var(--soft);border-left:3px solid var(--gold);padding:14px 16px;border-radius:8px;font-size:12px;color:var(--muted);margin-top:16px}.cta{background:#0f2035;color:#fff;border-radius:16px;padding:25px 28px;display:flex;gap:22px;align-items:center;justify-content:space-between}.cta h2{color:#fff;margin:0 0 5px;font-size:23px}.cta p{margin:0;color:rgba(255,255,255,.75);font-size:13px}.cta a{background:#fff;color:#0f2035;text-decoration:none;font-weight:700;font-size:12px;padding:10px 15px;border-radius:8px;white-space:nowrap}.foot{border-top:1px solid var(--border);padding:25px 22px;text-align:center;color:var(--muted);font-size:11px}.cookie{display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.16);max-width:680px;margin:auto}.cookie p{font-size:12px;color:var(--muted);margin:0 0 11px}.cookie-actions{display:flex;gap:8px;justify-content:flex-end}.cookie button{border:1px solid var(--border);background:var(--card);color:var(--navy);padding:8px 12px;border-radius:7px;cursor:pointer;font-weight:600}.cookie button.primary{background:#0f2035;color:#fff;border-color:#0f2035}@media(max-width:760px){.grid2{grid-template-columns:1fr}.related{grid-template-columns:1fr}.topnav a:first-child{display:none}.wrap{padding-left:16px;padding-right:16px}.calcbox{padding:5px;margin-left:-5px;margin-right:-5px}.cta{align-items:flex-start;flex-direction:column}.hero p{font-size:16px}}
-
-
-/* Calendario financiero */
-.cal-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}.cal-f{border:1px solid var(--border);background:var(--card);color:var(--navy);border-radius:999px;padding:7px 13px;font:600 12px 'DM Sans',sans-serif;cursor:pointer}.cal-f[aria-pressed="true"]{background:#0f2035;color:#fff;border-color:#0f2035}html[data-theme="dark"] .cal-f[aria-pressed="true"]{background:var(--gold);color:#101a26;border-color:var(--gold)}.cal-f:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.cal-week{padding:22px 0 4px}.cal-week h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:22px;margin:0 0 12px}.cal-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}.cal-ev{display:grid;grid-template-columns:170px 1fr;gap:18px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px}.cal-when time{display:block;font-weight:700;color:var(--navy);text-transform:capitalize}.cal-hour{font-size:12px;color:var(--muted)}.cal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.cal-cat,.cal-pending{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 9px}.cal-cat{background:var(--soft);color:#927321}.cal-pending{background:#fff4d6;color:#7a5a00;border:1px solid #e8cf86}.cal-body h3{margin:0 0 6px;color:var(--navy);font-size:16px;line-height:1.35}.cal-body p{margin:0 0 8px;font-size:14px}.cal-why{color:var(--muted)}.cal-src{font-size:12px;font-weight:600;color:#927321}.cal-ev[hidden],.cal-week[hidden]{display:none}.cal-count{font-size:12px;color:var(--muted);margin:6px 0 0}
-.nl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.nl input{border:0;border-radius:8px;padding:10px 12px;font:14px 'DM Sans',sans-serif;min-width:220px}.nl button{background:#fff;color:#0f2035;border:0;font-weight:700;font-size:12px;padding:10px 15px;border-radius:8px;cursor:pointer}.nl-msg{font-size:12px;color:rgba(255,255,255,.85);width:100%}.cta .cta-copy{max-width:520px}
-html:not([data-theme="dark"]) .kicker,html:not([data-theme="dark"]) .cal-cat,html:not([data-theme="dark"]) .cal-src{color:#6b5413}html:not([data-theme="dark"]) .notice{color:#4f6175}html[data-theme="dark"] .cal-cat,html[data-theme="dark"] .cal-src{color:var(--gold)}
-@media(max-width:760px){.cal-ev{grid-template-columns:1fr;gap:8px}}
-</style><script type="application/ld+json">{{JSONLD}}</script>
+<link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script>
-(function(){try{var t=localStorage.getItem('qf-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+(function(){try{var t=localStorage.getItem('qf-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;var tc=document.getElementById('qf-theme-color');if(tc)tc.setAttribute('content',t==='dark'?'#101a26':'#ffffff');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S4VBMV5WPN"></script>
 <script>gtag('js',new Date());gtag('config','G-S4VBMV5WPN',{anonymize_ip:true});</script>
-<script>
-(function(){
- var KEY='cookie_consent';
- window.qfCookie=function(v){try{localStorage.setItem(KEY,v)}catch(e){};document.getElementById('cookie').style.display='none';if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});}};
- document.addEventListener('DOMContentLoaded',function(){var v=null;try{v=localStorage.getItem(KEY)}catch(e){};if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});}else if(!v)document.getElementById('cookie').style.display='block';});
- window.qfTheme=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('qf-theme',n)}catch(e){}};
-})();
-</script></head>
-<body><div class="top"><div class="topin"><a class="brand" href="/"><img src="/logo.png" alt=""><span>QuijoteFinanzas</span></a><div class="topnav"><a href="/calculadoras/">Calculadoras</a><a href="/#cuentas">QuijoCuentas</a><button class="theme" onclick="qfTheme()" aria-label="Cambiar tema">◐</button></div></div></div>
-<main class="wrap"><nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> · Calendario financiero</nav>
-<section class="hero"><div class="kicker">Calendario financiero del mes</div><h1>Calendario financiero de {{MES}} {{ANIO}}</h1><p>Las fechas de {{MES}} que pueden mover tu hipoteca, tus ahorros o tu declaración: IPC, Euríbor, Banco Central Europeo, plazos de la Agencia Tributaria y resultados de empresas. Cada evento indica la hora de Madrid, por qué importa y la fuente oficial.</p><div class="badges"><span class="badge">{{N}} eventos</span><span class="badge">Hora de Madrid</span><span class="badge">Actualizado el <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></span></div></section>
-<div class="cal-filters" role="group" aria-label="Filtrar por categoría">{{FILTERS}}</div>
-<p class="cal-count" id="cal-count" aria-live="polite"></p>
-{{EVENTS}}
-<p class="notice">Información recopilada de fuentes oficiales (INE, BCE, Banco de España, BOE, Agencia Tributaria y las propias empresas). Las fechas y horas pueden cambiar: consulta siempre la fuente enlazada antes de tomar decisiones. Los eventos marcados como «Pendiente de confirmar» aún no tienen fecha oficial publicada. Contenido educativo; no constituye asesoramiento financiero, fiscal ni legal.</p>
-<section class="section"><div class="cta"><div class="cta-copy"><h2>Recibe el calendario cada mes</h2><p>Te aviso cuando publique el calendario del mes siguiente, una herramienta nueva o una comparativa actualizada. Sin spam.</p>
+<link rel="stylesheet" href="/assets/site-shell.css?v=20261030">
+<style>
+main{max-width:940px;margin:0 auto;padding:40px 24px 84px}
+:root{--meta:#506579}html[data-theme="dark"]{--meta:#a9bccf}
+.crumbs{font-size:12px;color:var(--meta);margin-bottom:14px}.crumbs a{color:inherit;text-decoration:none}.crumbs a:hover{color:var(--navy)}
+.section-kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7a5f14;font-weight:700;margin-bottom:8px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(26px,3.4vw,32px);font-weight:600;letter-spacing:-.015em;color:var(--navy);line-height:1.18}
+.lead{font-size:14px;color:#4f6175;margin-top:8px;max-width:620px;line-height:1.6}
+.divider{width:40px;height:2px;background:var(--gold);margin:14px 0 26px;border-radius:1px;opacity:.7}
+h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--navy);margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.cf{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:#fff;color:var(--navy2);border-radius:999px;padding:6px 12px;font:600 12px 'DM Sans',sans-serif;cursor:pointer;min-height:32px}
+.cf i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.cf[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.cal{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
+.cal-head{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--border)}
+.cal-head h2{margin:0;font-size:20px}.cal-head span{font-size:12px;color:var(--meta)}
+.cg-dow,.cg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cg-dow span{font-size:11px;font-weight:700;color:var(--muted);text-align:center;padding:8px 0;border-bottom:1px solid var(--border);letter-spacing:.06em}
+.cg-cell{min-height:92px;padding:6px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:4px;color:var(--navy);text-decoration:none;min-width:0}
+.cg-cell:nth-child(7n){border-right:0}
+.cg-we{background:var(--surface-soft)}.cg-empty{background:var(--bg3);opacity:.5}
+.cg-num{font-size:12px;font-weight:600;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%}
+.cg-has{cursor:pointer}.cg-has:hover{background:rgba(201,168,76,.08)}
+.cg-has:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.cg-cell.is-today .cg-num{background:var(--gold);color:#0f2035}
+.cg-cell.is-sel{box-shadow:inset 0 0 0 2px var(--navy)}
+.cg-items{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cg-ev{display:block;font-size:11px;line-height:1.3;padding:2px 6px;border-radius:4px;background:color-mix(in srgb,var(--c) 13%,transparent);border-left:3px solid var(--c);color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.cg-ev[hidden]{display:none}
+.day{margin-top:14px;border:1px solid var(--border);border-radius:14px;padding:16px 18px;background:#fff}
+.day[hidden]{display:none}
+.day h3,.cl-day h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.day ul,.cl-day ul{list-style:none;display:grid;gap:10px}
+.cl-ev{border-left:3px solid var(--c);padding:2px 0 2px 12px}
+.cl-ev[hidden],.cl-day[hidden]{display:none}
+.cl-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--meta)}
+.cl-cat{font-weight:700;color:var(--navy2)}
+.cl-pending{font-size:11px;font-weight:700;color:#8a4b00;background:#fff3e0;border:1px solid #f1c48a;border-radius:999px;padding:1px 8px}
+.cl-title{font-size:14px;font-weight:600;color:var(--navy);margin:2px 0}
+.cl-why{font-size:13px;color:#4f6175;line-height:1.55}
+.cl-src{font-size:12px;color:#7a5f14;font-weight:600}
+.list{margin-top:36px}.cl-day{padding:14px 0;border-top:1px solid var(--border);scroll-margin-top:90px}
+.notice{font-size:12px;color:#5c6f83;line-height:1.6;margin-top:24px}
+.cta{margin-top:36px;background:#0f2035;color:#fff;border-radius:14px;padding:22px}
+.cta h2{color:#fff;font-size:20px;margin-bottom:4px}.cta p{font-size:13px;color:#d1dae6}
+.nl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.nl input{flex:1;border:0;border-radius:8px;padding:10px 12px;font:14px 'DM Sans',sans-serif;min-width:200px}
+.nl button{background:var(--gold);color:#0f2035;border:0;font-weight:700;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer}
+.nl-msg{font-size:12px;color:#d1dae6;width:100%}
+.related{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;font-size:13px}.related span{color:var(--meta)}
+.related a{color:var(--navy2);border:1px solid var(--border);border-radius:999px;padding:6px 12px;text-decoration:none}
+html[data-theme="dark"] .cal,html[data-theme="dark"] .day,html[data-theme="dark"] .cf{background:#182638;border-color:#33485e}
+html[data-theme="dark"] .cf{color:#cbd8e4}
+html[data-theme="dark"] .cf[aria-pressed="true"]{background:var(--gold);color:#101a26;border-color:var(--gold)}
+html[data-theme="dark"] .cg-cell,html[data-theme="dark"] .cg-dow span,html[data-theme="dark"] .cal-head,html[data-theme="dark"] .cl-day{border-color:#2d4255}
+html[data-theme="dark"] .cg-we{background:#15222f}html[data-theme="dark"] .cg-empty{background:#101a26}
+html[data-theme="dark"] h1,html[data-theme="dark"] h2,html[data-theme="dark"] .cg-cell,html[data-theme="dark"] .cg-ev,html[data-theme="dark"] .cl-title,html[data-theme="dark"] .day h3,html[data-theme="dark"] .cl-day h3{color:#edf3f8}
+html[data-theme="dark"] .cl-cat,html[data-theme="dark"] .related a{color:#cbd8e4}
+html[data-theme="dark"] .lead,html[data-theme="dark"] .cl-why,html[data-theme="dark"] .notice{color:#b9c9d8}
+html[data-theme="dark"] .cl-src,html[data-theme="dark"] .section-kicker{color:#d7b85d}
+html[data-theme="dark"] .cl-pending{background:#3a2a12;color:#f3c98b;border-color:#6b4a1c}
+html[data-theme="dark"] .cg-cell.is-sel{box-shadow:inset 0 0 0 2px var(--gold)}
+html[data-theme="dark"] .cta{background:#182638;border:1px solid #33485e}
+@media(max-width:699px){
+  main{padding:26px 14px 70px}
+  .cg-cell{min-height:52px;padding:4px 2px;align-items:center}
+  .cg-items{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:3px}
+  .cg-ev{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:var(--c)}
+  .cg-txt{display:none}
+  .cg-dow span{font-size:10px}
+  .day{padding:14px}
+}
+</style><script type="application/ld+json">{{JSONLD}}</script>
+</head>
+<body>
+<div id="top-bar" class="site-nav-shell">
+  <div class="site-nav-inner">
+    <a href="/" class="site-brand" title="Ir al inicio">
+      <span class="site-brand-mark"><img src="/logo.png" alt="" width="34" height="34"></span>
+      <span class="site-brand-name"><span class="brand-long">Don Quijote de las Finanzas</span><span class="brand-short">Quijote Finanzas</span></span>
+    </a>
+    <div class="site-nav-viewport">
+      <nav id="main-nav" class="site-nav-track" aria-label="Navegación principal">
+        <a class="nav-btn" href="/#sobre">Sobre el proyecto</a>
+        <a class="nav-btn" href="/#calculadoras">Calculadoras</a>
+        <a class="nav-btn" href="/#cuentas">QuijoCuentas</a>
+        <a class="nav-btn" href="/#quijolista">QuijoLista</a>
+        <a class="nav-btn" href="/#quijocartera">QuijoCartera</a>
+        <a class="nav-btn" href="/#recursos">Recursos</a>
+        <a class="nav-btn active" href="/calendario-financiero/" aria-current="page">Calendario</a>
+        <a class="nav-btn" href="/#teca">QuijoTeca</a>
+        <a class="nav-btn" href="/#glosario">QuijoGlosario</a>
+        <a class="nav-btn" href="/#referidos">Referidos</a>
+      </nav>
+    </div>
+    <button id="qf-theme-toggle" class="qf-theme-toggle" type="button" aria-label="Activar modo oscuro" title="Activar modo oscuro" aria-pressed="false">
+      <svg class="qf-theme-icon qf-theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6a8.5 8.5 0 1 0 11.6 11.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="qf-theme-icon qf-theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</div>
+
+<main>
+<nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> › Calendario financiero</nav>
+<div class="section-kicker">Calendario financiero</div>
+<h1>Calendario financiero de {{MES}} {{ANIO}}</h1>
+<p class="lead">Las fechas del mes que pueden mover tu dinero: IPC, BCE, Euríbor, plazos de Hacienda y resultados de empresas. Hora de Madrid. Toca un día para ver el detalle.</p>
+<div class="divider"></div>
+
+<div class="legend" role="group" aria-label="Filtrar por categoría">{{LEGEND}}</div>
+
+<div class="cal">
+  <div class="cal-head"><h2>{{MES_CAP}} {{ANIO}}</h2><span>{{N}} fechas · actualizado el <time datetime="{{UPDATED_ISO}}">{{UPDATED}}</time></span></div>
+  <div class="cg-dow" aria-hidden="true"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+  <div class="cg" id="cg" data-ym="{{YM}}">{{GRID}}</div>
+</div>
+<div class="day" id="day" hidden aria-live="polite"></div>
+
+<div class="list">
+<h2>Todas las fechas de {{MES}}</h2>
+{{LIST}}
+</div>
+
+<p class="notice">Fuentes oficiales: INE, BCE, Banco de España, BOE, Agencia Tributaria y las propias empresas. Las fechas pueden cambiar; consulta la fuente antes de decidir. «Pendiente de confirmar» significa que aún no hay fecha oficial. Contenido educativo, no es asesoramiento financiero ni fiscal.</p>
+
+<section class="cta" aria-labelledby="cta-t"><h2 id="cta-t">Recibe el calendario cada mes</h2><p>Te aviso cuando publique el del mes siguiente. Sin spam.</p>
 <form class="nl" id="newsletter-form" action="https://app.kit.com/forms/9947108/subscriptions" method="post" target="newsletter-submit-frame"><input type="email" name="email_address" placeholder="tu@email.com" required autocomplete="email" aria-label="Correo electrónico"><button type="submit">Suscribirme</button><span class="nl-msg" id="nl-msg" role="status" aria-live="polite"></span></form>
-<iframe name="newsletter-submit-frame" title="Envío de suscripción" style="display:none"></iframe></div></div></section>
-<section class="section"><h2>Herramientas relacionadas</h2><div class="related"><a class="rel" href="/calculadora-cuota-hipoteca/"><strong>Calculadora de cuota de hipoteca</strong><span>Ver calculadora →</span></a><a class="rel" href="/calculadora-inflacion/"><strong>Calculadora de inflación</strong><span>Ver calculadora →</span></a><a class="rel" href="/mejores-depositos/"><strong>Mejores depósitos</strong><span>Ver comparativa →</span></a></div></section>
-</main><footer class="foot">QuijoteFinanzas · Herramientas educativas. La información es orientativa y no constituye asesoramiento financiero, fiscal o legal.</footer>
-<div class="cookie" id="cookie"><p>Usamos cookies analíticas solo si las aceptas para entender cómo se usan las herramientas. Puedes continuar solo con las esenciales.</p><div class="cookie-actions"><button onclick="qfCookie('essential')">Solo esenciales</button><button class="primary" onclick="qfCookie('accepted')">Aceptar analíticas</button></div></div>
+<iframe name="newsletter-submit-frame" title="Envío de suscripción" style="display:none"></iframe></section>
+
+<div class="related"><span>Relacionado:</span><a href="/calculadora-cuota-hipoteca/">Cuota de hipoteca</a><a href="/calculadora-inflacion/">Inflación</a><a href="/mejores-depositos/">Mejores depósitos</a></div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-top">
+    <a href="/" class="site-footer-brand"><img src="/logo.png" alt="" width="36" height="36"><span>Don Quijote de las Finanzas</span></a>
+    <div class="site-footer-links">
+      <a href="/#calculadoras">Calculadoras</a><a href="/#cuentas">QuijoCuentas</a><a href="/#quijolista">QuijoLista</a><a href="/#quijocartera">QuijoCartera</a><a href="/#recursos">Recursos</a><a href="/calendario-financiero/">Calendario financiero</a><a href="/sobre-el-proyecto.html">Sobre el proyecto</a><a href="https://x.com/quijotefinanzas" target="_blank" rel="noopener noreferrer">@QuijoteFinanzas</a>
+    </div>
+  </div>
+  <div class="site-footer-legal">
+    <span>&copy; 2026 Don Quijote de las Finanzas · Contenido informativo y educativo. No constituye asesoramiento financiero.</span>
+    <div><a href="/privacidad.html">Privacidad</a><a href="/aviso-legal.html">Aviso legal</a><a href="/cookies.html">Cookies</a><a href="mailto:contacto@quijotefinanzas.com">Contacto</a></div>
+  </div>
+</footer>
+
+<div id="cookie-banner" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies de terceros (Google Analytics y Microsoft Clarity) para analizar el uso de la web y mejorar la experiencia. Puedes aceptar todas o solo las esenciales. <a href="/cookies.html">Más información sobre cookies</a>.</p>
+  <div class="cb-actions"><button type="button" class="cb-ess" onclick="cookieEssential()">Solo esenciales</button><button type="button" class="cb-ok" onclick="cookieAccept()">Aceptar</button></div>
+</div>
+<div id="cookie-ball" role="button" tabindex="0" title="Configuración de cookies" aria-label="Configuración de cookies" onclick="document.getElementById('cookie-banner').style.display='flex'">&#127850;</div>
+
 <script>
 (function(){
- var btns=document.querySelectorAll('.cal-f'),evs=document.querySelectorAll('.cal-ev'),weeks=document.querySelectorAll('.cal-week'),cnt=document.getElementById('cal-count');
- function apply(f){var n=0,i,j;for(i=0;i<btns.length;i++)btns[i].setAttribute('aria-pressed',btns[i].getAttribute('data-f')===f?'true':'false');
-  for(i=0;i<evs.length;i++){var show=f==='all'||evs[i].getAttribute('data-cat')===f;evs[i].hidden=!show;if(show)n++;}
-  for(i=0;i<weeks.length;i++){var any=false,li=weeks[i].querySelectorAll('.cal-ev');for(j=0;j<li.length;j++)if(!li[j].hidden)any=true;weeks[i].hidden=!any;}
-  cnt.textContent=f==='all'?'':'Mostrando '+n+(n===1?' evento':' eventos');}
- for(var i=0;i<btns.length;i++)btns[i].addEventListener('click',function(){apply(this.getAttribute('data-f'))});
+ /* Cookies: misma clave y comportamiento que la portada */
+ var KEY='cookie_consent';
+ function clarity(){if(window._clarityLoaded)return;window._clarityLoaded=true;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vxocnf2p5q");}
+ function apply(v){if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});clarity();}}
+ function done(){document.getElementById('cookie-banner').style.display='none';document.getElementById('cookie-ball').style.display='flex';}
+ window.cookieAccept=function(){try{localStorage.setItem(KEY,'accepted')}catch(e){};apply('accepted');done();};
+ window.cookieEssential=function(){try{localStorage.setItem(KEY,'essential')}catch(e){};done();};
+ var saved=null;try{saved=localStorage.getItem(KEY)}catch(e){}
+ if(saved){apply(saved);document.getElementById('cookie-ball').style.display='flex';}else document.getElementById('cookie-banner').style.display='flex';
+
+ /* Tema claro / oscuro */
+ var tb=document.getElementById('qf-theme-toggle');
+ function sync(){var d=document.documentElement.getAttribute('data-theme')==='dark';tb.setAttribute('aria-pressed',d?'true':'false');var l=d?'Activar modo claro':'Activar modo oscuro';tb.setAttribute('aria-label',l);tb.setAttribute('title',l);}
+ tb.addEventListener('click',function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);document.documentElement.style.colorScheme=n;document.getElementById('qf-theme-color').setAttribute('content',n==='dark'?'#101a26':'#ffffff');try{localStorage.setItem('qf-theme',n)}catch(e){};sync();});
+ sync();
+
+ /* Calendario */
+ var cg=document.getElementById('cg'),day=document.getElementById('day'),filter='all';
+ function p2(n){return (n<10?'0':'')+n;}
+ var now=new Date(),today=now.getFullYear()+'-'+p2(now.getMonth()+1)+'-'+p2(now.getDate());
+ var tc=cg.querySelector('[data-date="'+today+'"]');if(tc){tc.classList.add('is-today');tc.setAttribute('aria-current','date');}
+ function show(date,scroll){
+  var src=document.getElementById('d-'+date);if(!src)return;
+  var cells=cg.querySelectorAll('.is-sel');for(var i=0;i<cells.length;i++)cells[i].classList.remove('is-sel');
+  var c=cg.querySelector('[data-date="'+date+'"]');if(c)c.classList.add('is-sel');
+  day.innerHTML=src.innerHTML;day.hidden=false;
+  var li=day.querySelectorAll('.cl-ev');for(i=0;i<li.length;i++)li[i].hidden=filter!=='all'&&li[i].getAttribute('data-cat')!==filter;
+  if(scroll&&day.getBoundingClientRect().top>window.innerHeight-80)day.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }
+ cg.addEventListener('click',function(e){var a=e.target.closest('.cg-has');if(!a)return;e.preventDefault();show(a.getAttribute('data-date'),true);});
+ /* Día abierto por defecto: hoy si tiene eventos; si no, el siguiente con eventos (o el primero del mes) */
+ var has=cg.querySelectorAll('.cg-has'),def=null;
+ for(var i=0;i<has.length;i++){if(has[i].getAttribute('data-date')>=today){def=has[i];break;}}
+ if(!def&&has.length&&cg.getAttribute('data-ym')>today.slice(0,7))def=has[0];
+ if(def)show(def.getAttribute('data-date'),false);
+ var fb=document.querySelectorAll('.cf');
+ function applyF(f){filter=f;for(var i=0;i<fb.length;i++)fb[i].setAttribute('aria-pressed',fb[i].getAttribute('data-f')===f?'true':'false');
+  function vis(el){return f==='all'||el.getAttribute('data-cat')===f;}
+  var ev=document.querySelectorAll('.cg-ev,.cl-ev');for(i=0;i<ev.length;i++)ev[i].hidden=!vis(ev[i]);
+  var days=document.querySelectorAll('.cl-day');for(i=0;i<days.length;i++)days[i].hidden=!days[i].querySelector('.cl-ev:not([hidden])');
+  var cells=cg.querySelectorAll('.cg-has');for(i=0;i<cells.length;i++)cells[i].style.opacity=cells[i].querySelector('.cg-ev:not([hidden])')?'':'.45';
+ }
+ for(i=0;i<fb.length;i++)fb[i].addEventListener('click',function(){applyF(this.getAttribute('data-f'));});
+
  var form=document.getElementById('newsletter-form');
- if(form)form.addEventListener('submit',function(){var b=form.querySelector('button');b.disabled=true;document.getElementById('nl-msg').textContent='Revisa tu correo y pulsa «Confirmar suscripción». Si no lo ves, mira en spam o promociones.';try{gtag('event','newsletter_signup',{source_component:'calendario_financiero'})}catch(e){}});
+ if(form)form.addEventListener('submit',function(){form.querySelector('button').disabled=true;document.getElementById('nl-msg').textContent='Revisa tu correo y pulsa «Confirmar suscripción». Si no lo ves, mira en spam o promociones.';try{gtag('event','newsletter_signup',{source_component:'calendario_financiero'})}catch(e){}});
 })();
 </script>
 <script defer src="/assets/quijobot.js?v=20261013c"></script>
