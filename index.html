@@ -1599,7 +1599,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261005a"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261030a"></script>
 </head>
 <body class="show-home-intro">
 
@@ -2042,8 +2042,8 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
         <div class="cuentas-snapshot-grid">
           <div class="cuentas-snapshot-item"><strong>Sin condiciones</strong>Trade Republic · 2,50% tipo anual BCE.</div>
           <div class="cuentas-snapshot-item"><strong>Con condiciones</strong>Revolut · 3,51% TAE · hasta 25.000€ · máximo 120 días.</div>
-          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>Banco Sabadell · hasta 2.580€ en 1 año; el máximo exige 100.000€ de saldo.</div>
-          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>Renault Bank · hasta 3,34% TAE a 36 meses.</div>
+          <div class="cuentas-snapshot-item"><strong>Cuentas nómina</strong>Banco Sabadell · hasta 3.120€ en 1 año; el máximo exige 100.000€ de saldo.</div>
+          <div class="cuentas-snapshot-item"><strong>Depósitos sin vinculación</strong>HoistSpar · 3,51% TAE a 12 meses.</div>
           <div class="cuentas-snapshot-item"><strong>Depósitos promocionales</strong>Banco BiG · 4,00% TAE a 1 mes para nuevos clientes.</div>
           <div class="cuentas-snapshot-item"><strong>Promociones bancarias</strong>BBVA PLAN1060 · hasta 1.060€ combinando varias acciones.</div>
         </div>
@@ -2488,7 +2488,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <div class="modal-header"><div class="modal-header-left"><h2>💶 Neto a bruto · salario / pensión</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="salario">×</button></div>
     <button class="share-btn" data-share="salario"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-salario">✓ Enlace copiado</span>
     <p class="subtitle">Calcula qué bruto aproximado necesitas para alcanzar un neto objetivo, diferenciando lo que entra en banco de tu neto fiscal anual.</p>
-    <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p>
+    <p class="disclaimer"><strong>Ejercicio 2026.</strong> Para salario, la retención se estima con el algoritmo AEAT y la cotización con reglas generales del Régimen General. En 14 pagas iguales se distingue paga ordinaria y extraordinaria: la cotización de las extras se prorratea en las 12 bases mensuales y no se descuenta de nuevo en la extra. Para pensión ordinaria sujeta a IRPF no se descuenta cotización del trabajador. La cuota anual es una estimación y no sustituye Renta WEB. Los contratos temporales de duración inferior a un año aplican el mínimo de retención del 2% cuando proceda.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Tipo de ingreso</label><select id="sal-income-type" onchange="fiscalNetGrossFields()"><option value="salary" selected>Salario por cuenta ajena</option><option value="pension">Pensión ordinaria sujeta a IRPF</option></select></div>
@@ -2548,7 +2548,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
   <div class="calc-modal">
     <div class="modal-header"><div class="modal-header-left"><h2>&#128188; Coste para la empresa</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="coste">&#215;</button></div>
     <button class="share-btn" data-share="coste"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-coste">&#10003; Enlace copiado</span>
-    <p class="subtitle">Estima el coste laboral directo para la empresa: bruto, cotizaciones patronales y solidaridad cuando corresponda.</p><p class="disclaimer">Estimación para contrato indefinido en 2026. La cotización por AT/EP depende de la actividad y puede cambiar el resultado; no incluye beneficios, formación, equipos, absentismo ni otros costes empresariales.</p>
+    <p class="subtitle">Estima el coste laboral directo para la empresa: bruto, cotizaciones patronales y solidaridad cuando corresponda.</p><p class="disclaimer">Estimación para contrato indefinido en 2026. La cotización por AT/EP depende de la actividad y puede cambiar el resultado; no incluye beneficios, formación, equipos, absentismo ni otros costes empresariales.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> cotizaciones empresariales y tope de base según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), normas de cotización a la Seguridad Social 2026 (tope máximo 5.101,20&nbsp;&euro;/mes). Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Tu salario bruto anual (&euro;)</label><input type="number" id="ce-bruto" value="30000" min="0"></div>
@@ -2664,7 +2664,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
     <div class="modal-header"><div class="modal-header-left"><h2>&#127987;&#65039; Dep&oacute;sito a Plazo Fijo</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="deposito">&#215;</button></div>
     <button class="share-btn" data-share="deposito"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-deposito">&#10003; Enlace copiado</span>
     <p class="subtitle">Calcula los intereses brutos y el importe tras la retención a cuenta del 19% para un depósito simple.</p><p class="disclaimer">Supone TIN simple y pago de intereses al vencimiento. El 19% es una retención/pago a cuenta: la tributación final del ahorro depende de tu declaración y del conjunto de rendimientos.</p>
-    <p class="disclaimer">La retenci&oacute;n fiscal sobre intereses es del 19% en Espa&ntilde;a (2026). Los intereses tributan en la base del ahorro del IRPF.</p>
+    <p class="disclaimer"><strong>Fiscalidad:</strong> el 19% que se aplica en el c&aacute;lculo es solo la retenci&oacute;n a cuenta que practica el banco. Los intereses tributan despu&eacute;s en la declaraci&oacute;n anual de IRPF, en la base del ahorro, con la escala 2026: 19% hasta 6.000&nbsp;&euro;, 21% de 6.000 a 50.000&nbsp;&euro;, 23% de 50.000 a 200.000&nbsp;&euro;, 27% de 200.000 a 300.000&nbsp;&euro; y 30% a partir de 300.000&nbsp;&euro;. Seg&uacute;n tus otros rendimientos del ahorro, el resultado final puede ser una cuota a pagar o a devolver.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>Capital depositado (&euro;)</label><input type="number" id="dep-capital" value="10000" min="0"></div>
@@ -2702,9 +2702,9 @@ html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 <div class="calc-overlay" id="modal-irpf">
   <div class="calc-modal">
     <div class="modal-header"><div class="modal-header-left"><h2>&#128176; Fiscal 2026 · bruto a neto</h2></div><div class="modal-logo"><img src="logo.png" alt="Don Quijote de las Finanzas"></div><button class="calc-close" data-close="irpf">&#215;</button></div>
-    <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
+    <button class="share-btn" data-share="irpf"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>Compartir</button><span class="share-toast" id="toast-irpf">&#10003; Enlace copiado</span>
     <p class="subtitle">Separa nómina, pensión, retención del pagador y cuota anual estimada de IRPF. Incluye el año de transición trabajo → jubilación.</p>
-    <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p>
+    <p class="disclaimer"><strong>Normativa utilizada: ejercicio 2026 · reglas revisadas 23/09/2026.</strong> Retenciones: algoritmo AEAT 2026 vigente desde 10/09. Cotización: Régimen General 2026. La cuota anual es una estimación general y no sustituye Renta WEB. Las escalas y mínimos autonómicos de las comunidades de régimen común incluidas en la herramienta han sido revisados con normativa vigente a 23/09/2026. País Vasco y Navarra requieren tratamiento foral específico y no están incluidos.</p><p class="disclaimer" style="margin-top:6px"><strong>Fuente y fecha:</strong> retenciones según el algoritmo AEAT 2026 (vigente desde 10/09/2026); cotización según la Orden PJC/297/2026, de 30 de marzo (BOE 31/03/2026), que fija las normas de cotización 2026 y el tope máximo de 5.101,20&nbsp;&euro;/mes. Reglas del simulador revisadas el 23/09/2026.</p>
     <div class="calc-grid">
       <div class="field-group">
         <div class="field"><label>¿Qué quieres calcular?</label><select id="irpf-mode" onchange="fiscalModeFields()"><option value="salary">Nómina</option><option value="pension">Pensión</option><option value="transition">Me jubilo este año</option><option value="annual">Declaración anual / varios pagadores</option></select></div>
@@ -3168,11 +3168,8 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('[data-close]').forEach(function(btn) {
     btn.addEventListener('click', function() { closeCalc(btn.getAttribute('data-close')); });
   });
-  document.querySelectorAll('.calc-overlay').forEach(function(o) {
-    o.addEventListener('click', function(e) {
-      if (e.target === o) closeCalc(o.id.replace('modal-', ''));
-    });
-  });
+  // No cerrar calculadoras al hacer clic en el fondo del overlay.
+  // La salida sigue disponible mediante la X y la tecla Escape, evitando cierres accidentales.
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.calc-overlay.open').forEach(function(o){ closeCalc(o.id.replace('modal-','')); });
@@ -3485,7 +3482,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!container) return;
     if (!filtered.length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
 
-    var mes = "octubre 2026";
+    var mes = (window.QF_CUENTAS_UPDATED || "30/10/2026");
     var esNomina = cuentasTab === "nomina";
     var esDeposito = cuentasTab.indexOf('dep-') === 0;
     var esPromo = cuentasTab === 'promo';
