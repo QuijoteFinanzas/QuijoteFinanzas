@@ -347,6 +347,11 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cta-link:hover{border-color:var(--navy);background:#fff;color:var(--navy)}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 @media(max-width:580px){.calc-grid{grid-template-columns:1fr}}
+/* El texto de la tarifa plana no debe ensanchar la ficha ni el iframe embebido */
+#modal-autonomos .calc-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media(max-width:580px){#modal-autonomos .calc-grid{grid-template-columns:minmax(0,1fr)}}
+#modal-autonomos .field{min-width:0}
+#modal-autonomos .field select,#modal-autonomos .field input{width:0;min-width:100%;max-width:100%}
 .field-group{display:flex;flex-direction:column;gap:12px}
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);font-weight:600;opacity:.7}
@@ -411,7 +416,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuenta-meta-row{display:flex;gap:6px;flex-wrap:wrap}
 .cuenta-chip{font-size:10px;padding:5px 8px;border-radius:999px;background:#f7f9fc;color:var(--navy2);border:1px solid #e1e7ef;white-space:nowrap;font-weight:600}
 .cuenta-detail{font-size:12px;line-height:1.55;color:#4f6985;white-space:normal;word-wrap:break-word;padding-left:2px}
-.cuenta-chip.fgd-es,.cuenta-chip.fgd-fr,.cuenta-chip.fgd-de{background:#f7f9fc;color:var(--navy2);border-color:#e1e7ef}
+.cuenta-chip.fgd-es,.cuenta-chip.fgd-fr,.cuenta-chip.fgd-de,.cuenta-chip.fgd-pt{background:#f7f9fc;color:var(--navy2);border-color:#e1e7ef}
 .cuenta-pros-cons{display:grid;grid-template-columns:1fr;gap:6px;margin-top:2px;padding-top:10px;border-top:1px solid #edf1f5;font-size:11px}
 .cuenta-pro,.cuenta-con{display:flex;align-items:flex-start;gap:7px;line-height:1.45;font-weight:500}
 .cuenta-pro{color:#2c7354}.cuenta-pro::before{content:"✓";font-weight:800;color:#2d8a5e}
@@ -1604,7 +1609,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261030b"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261030c"></script>
 <style>
 /* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
 :root{--focus-ring:#8b6a15}
@@ -2066,8 +2071,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
     <button class="ql-calc-link" type="button" onclick="goTo('calculadoras'); setTimeout(function(){ openCalc('interes'); }, 50);">Interés compuesto →</button>
   </div>
   <div id="ql-context" class="ql-context"><strong>Cómo leer esta lista:</strong> Es una selección editorial para orientarte, no un ranking ni una recomendación personalizada. Usa los filtros para comparar por tipo de producto y comprueba siempre disponibilidad y condiciones en tu plataforma.</div>
+  <p class="ql-review-note">Datos revisados el 30/10/2026 con documentos de la CNMV/KID. Cada ficha muestra el coste del documento oficial y su fecha. Donde pone «Pendiente de verificar», todavía no hay un documento oficial revisado.</p>
   <div class="referidos-list ql-list" id="quijolistaGrid"></div>
-  <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISINs mostrados corresponden a la clase indicada. Los Planes de Pensiones se identifican con código N (DGS) y los Roboadvisors no tienen ISIN. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
+  <p class="note" style="margin-top:20px;">Que un producto aparezca aquí significa solo que me parece interesante seguirlo o estudiarlo, no que sea adecuado para todo el mundo. Los ISIN mostrados corresponden a la clase indicada. Los planes de pensiones se identifican con su código DGS (plan y fondo) y los roboadvisors no tienen ISIN. «Indexado» significa que el producto sigue un índice o un precio de referencia; «Gestión activa», que el gestor elige las inversiones. Los ETF y ETC se compran en bolsa y no admiten traspasos sin tributar. Los fondos que se citan como ejemplo son ejemplos de la lista, no una recomendación. El enlace de MyInvestor aparece solo cuando el producto está marcado como disponible allí. Verifica siempre clase, disponibilidad y condiciones en tu plataforma antes de invertir.</p>
   <div class="section-flow">
     <div class="section-flow-copy"><div class="section-flow-kicker">Antes de elegir</div><h3 class="section-flow-title">Define primero qué encaja contigo</h3><p class="section-flow-text">La lista sirve para estudiar opciones, no para comprarlo todo. Empieza por tu perfil y por entender el horizonte.</p></div>
     <div class="section-flow-links"><button class="section-flow-btn primary" onclick="openTest()">Hacer test de perfil →</button><button class="section-flow-btn secondary" onclick="goTo('quijocartera')">Ver QuijoCartera</button></div>
@@ -2522,9 +2528,9 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       </select></div>
       <div class="field" style="grid-column:1/-1"><label for="au-antiguedad">Antig&uuml;edad de tu actividad</label><select id="au-antiguedad">
         <option value="normal">M&aacute;s de 24 meses (cotizaci&oacute;n normal por tramos)</option>
-        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 80&euro;/mes, sin condiciones</option>
-        <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana 80&euro;/mes solo si tu rendimiento neto anual no supera el SMI (17.094&euro;)</option>
-      </select></div>
+        <option value="ano1">Primer a&ntilde;o (0-12 meses): tarifa plana 88,64&euro;/mes</option>
+        <option value="ano2">Segundo a&ntilde;o (13-24 meses): tarifa plana si rindes menos del SMI</option>
+      </select><p class="field-note" style="font-size:11px;line-height:1.45;margin:6px 0 0;color:var(--muted,#5a6b7d)">Tarifa plana: 80&euro;/mes + MEI = 88,64&euro;/mes (Seguridad Social). Solo si no estuviste de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya la disfrutaste) y la pides al darte de alta. El segundo a&ntilde;o exige un rendimiento neto anual inferior al SMI (17.094&euro;) y pedirla antes de que empiece (LETA, art. 38 ter).</p></div>
     </div>
     <button class="calc-btn" data-run="autonomos">Calcular &rarr;</button>
     <p class="disclaimer">Estimaci&oacute;n orientativa con normativa 2026 (Orden PJC/297/2026 para RETA; instrucciones AEAT del Modelo 130 para pagos fraccionados). La tarifa plana del segundo a&ntilde;o y el IRPF real anual se calculan extrapolando el rendimiento neto de este trimestre a todo el a&ntilde;o (&times;4) &mdash; si tus ingresos var&iacute;an mucho entre trimestres, el resultado real puede diferir. El Modelo 130 se estima con el 20% general sobre el rendimiento neto acumulado; el IRPF real se calcula con las escalas progresivas estatal y auton&oacute;mica sobre tu rendimiento neto anual, como se liquida realmente al presentar la Renta. La cuota RETA se regulariza a a&ntilde;o vencido seg&uacute;n tus rendimientos reales declarados. No sustituye asesoramiento de una gestor&iacute;a.</p>
@@ -4324,7 +4330,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // [rendNetoMensualMax, baseMin, baseMax, label]
     [670,      653.59,  718.94,  'Tramo R1'],
     [900,      718.95,  900.00,  'Tramo R2'],
-    [1166.70,  849.67,  1166.70, 'Tramo R3'],
+    [1166.70,  849.67,  1166.70, 'Tramo R3', true], // R3: rendimiento < 1.166,70 € (estricto); 1.166,70 € ya es Tramo 1
     [1300,     950.98,  1300.00, 'Tramo 1'],
     [1500,     960.78,  1500.00, 'Tramo 2'],
     [1700,     960.78,  1700.00, 'Tramo 3'],
@@ -4342,13 +4348,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function getRetaTramo(rendNetoMensual){
     for (var i = 0; i < RETA_TRAMOS_2026.length; i++){
-      if (rendNetoMensual <= RETA_TRAMOS_2026[i][0]) return RETA_TRAMOS_2026[i];
+      // La Orden usa «≤» como límite superior salvo en R3 («< 1.166,70 €»), marcado con true
+      var t = RETA_TRAMOS_2026[i];
+      if (t[4] ? rendNetoMensual < t[0] : rendNetoMensual <= t[0]) return t;
     }
     return RETA_TRAMOS_2026[RETA_TRAMOS_2026.length - 1];
   }
 
   function calcCuotaReta(rendNetoMensual, tarifaPlana){
-    if (tarifaPlana) return { cuota: 80, tramo: null, base: null };
+    // Tarifa plana: 80 €/mes + MEI = 88,64 €/mes según la Seguridad Social (Import@ss)
+    if (tarifaPlana) return { cuota: 88.64, tramo: null, base: null };
     var t = getRetaTramo(Math.max(0, rendNetoMensual));
     var cuota = t[1] * RETA_TIPO;
     return { cuota: cuota, tramo: t[3], base: t[1] };
@@ -4371,7 +4380,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var SMI_ANUAL = 17094;
     var rendNetoAnualEstimado = rendNetoTrim * 4; // extrapolación simple del trimestre a un año
 
-    var tarifaPlanaAplica = (antiguedad === 'ano1') || (antiguedad === 'ano2' && rendNetoAnualEstimado <= SMI_ANUAL);
+    var tarifaPlanaAplica = (antiguedad === 'ano1') || (antiguedad === 'ano2' && rendNetoAnualEstimado < SMI_ANUAL);
     var reta = calcCuotaReta(rendNetoMensualReta, tarifaPlanaAplica);
     var retaTrimestral = reta.cuota * 3;
 
@@ -4408,9 +4417,10 @@ document.addEventListener('DOMContentLoaded', function(){
     if (tarifaPlanaAplica) {
       var labelTarifa = antiguedad === 'ano1' ? 'Tarifa plana (primer a&ntilde;o)' : 'Tarifa plana (segundo a&ntilde;o, bajo el SMI)';
       html += rr(labelTarifa, fmtEUR(reta.cuota) + '/mes', 'g');
+      html += '<div style="grid-column:1/-1;font-size:11px;color:var(--muted,#5a6b7d);margin-bottom:6px">80&euro;/mes de cuota reducida + MEI = 88,64&euro;/mes (Seguridad Social, Import@ss). Requisitos: no haber estado de alta en el RETA en los 2 a&ntilde;os anteriores (3 si ya disfrutaste la tarifa plana) y solicitarla al darte de alta; el segundo a&ntilde;o exige un rendimiento neto inferior al SMI (LETA, art. 38 ter).</div>';
     } else {
       if (antiguedad === 'ano2') {
-        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado supera el SMI (17.094&euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
+        html += '<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">Tu rendimiento estimado no es inferior al SMI (17.094&euro;/a&ntilde;o) &mdash; no aplica tarifa plana en el segundo a&ntilde;o, se cotiza por tramo real.</div>';
       }
       html += rr('Tu tramo estimado', reta.tramo, 'g') +
         rr('Cuota mensual (base m&iacute;nima del tramo)', fmtEUR(reta.cuota), 'g');
@@ -5582,51 +5592,58 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   }
   // ── QuijoLista ──────────────────────────────────────────────
   var quijolistaItems = [
-    { cat:"rv", tipo:"Fondo", nombre:"Alken Fund - Small Cap Europe Class R", isin:"LU0300834669", gestora:"AFFM S.A.", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Amundi Index MSCI Emerging Markets IE-C", isin:"LU0996175948", gestora:"Amundi", myi:true },
-    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"BNP Paribas Asset Management Europe", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116", gestora:"Azvalor / Dunas Capital Pensiones", myi:false },
-    { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:true },
-    { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219", gestora:"Cobas Pensiones, SGFP", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección C FI", isin:"ES0124037005", gestora:"Cobas AM", myi:false },
-    { cat:"nicho", tipo:"Fondo", nombre:"DWS Invest Gold and Precious Metals Equities LC", isin:"LU0273159177", gestora:"DWS", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Fidelity S&P 500 Index Fund EUR P Acc", isin:"IE00BYX5MX67", gestora:"Fidelity", myi:true },
-    { cat:"nicho", tipo:"Fondo", nombre:"Franklin Natural Resources Fund A(acc) EUR", isin:"LU0300741732", gestora:"Franklin Templeton", myi:true },
-    { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Singular Asset Management", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"HAMCO SICAV Global Value Fund R EUR Acc", isin:"LU3038481936", gestora:"HAMCO", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Heptagon Kopernik Global All-Cap Equity Fund AE EUR Acc", isin:"IE00BH6XSF26", gestora:"Heptagon / Kopernik", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true },
-    { cat:"nicho", tipo:"ETC",  nombre:"Invesco Physical Gold ETC", isin:"IE00B579F325", gestora:"Invesco", myi:false },
-    { cat:"rv", tipo:"ETF",  nombre:"iShares Core MSCI World UCITS ETF USD (Acc)", isin:"IE00B4L5Y983", gestora:"BlackRock / iShares", myi:false },
-    { cat:"rv", tipo:"ETF",  nombre:"iShares Core S&P 500 UCITS ETF USD (Acc)", isin:"IE00B5BMR087", gestora:"BlackRock / iShares", myi:false },
-    { cat:"nicho", tipo:"Fondo", nombre:"iShares Developed Real Estate Index Fund Institutional Acc EUR", isin:"IE00B83YJG36", gestora:"BlackRock / iShares", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"iShares Developed World Index (IE) Acc EUR clase S", isin:"IE000ZYRH0Q7", gestora:"BlackRock / iShares", myi:true },
-    { cat:"nicho", tipo:"ETC",  nombre:"iShares Physical Gold ETC", isin:"IE00B4ND3602", gestora:"BlackRock / iShares", myi:false },
-    { cat:"rv", tipo:"Fondo", nombre:"Janus Henderson Horizon Global Smaller Companies A2 EUR", isin:"LU1984712320", gestora:"Janus Henderson", myi:true },
-    { cat:"nicho", tipo:"Fondo", nombre:"Jupiter Gold & Silver Fund L EUR Acc", isin:"IE00BYVJR916", gestora:"Jupiter AM", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income DB H EUR Capitalisation", isin:"IE000WFG9PJ8", gestora:"Man Group", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396", gestora:"MyInvestor / Merchbanc EGFP", myi:true },
-    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394", gestora:"MyInvestor / Merchbanc EGFP", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Ostrum Credit Ultra Short Plus R/C (EUR)", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:true },
-    { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Robeco QI Emerging Markets Active Equities D EUR", isin:"LU0329355670", gestora:"Robeco", myi:true },
-    { cat:"nicho", tipo:"Fondo", nombre:"Robeco Smart Energy D-EUR Capitalisation", isin:"LU2145461757", gestora:"Robeco", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI · Clase A", isin:"ES0175902008", gestora:"Singular Asset Management", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Storm Fund II - Storm Bond Fund RC EUR", isin:"LU0840158819", gestora:"Storm Capital", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Fund EUR Acc", isin:"IE0031786696", gestora:"Vanguard", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Eurozone Inflation-Linked Bond Index Fund EUR Acc", isin:"IE00B04GQR24", gestora:"Vanguard", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Bond Index Fund EUR Hedged Acc", isin:"IE00BH65QP47", gestora:"Vanguard", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Corporate Bond Index EUR Hedged Acc", isin:"IE00BDFB7290", gestora:"Vanguard", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Small-Cap Index Fund EUR Acc", isin:"IE00B42W4L06", gestora:"Vanguard", myi:true },
-    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Stock Index Fund EUR Acc", isin:"IE00B03HD191", gestora:"Vanguard", myi:true },
-    { cat:"rf", tipo:"Fondo", nombre:"Vontobel Fund Credit Opportunities HI EUR Cap", isin:"LU2416422751", gestora:"Vontobel", myi:true },
-    { cat:"nicho", tipo:"ETC",  nombre:"Xetra-Gold", isin:"DE000A0S9GB0", gestora:"Deutsche Börse", myi:false },
-    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Finizens", gestora:"Finizens SGIIC", myi:false },
-    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Indexa Capital", gestora:"Indexa Capital AV", myi:false },
-    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Carteras automatizadas MyInvestor", gestora:"MyInvestor", myi:true },
+    { cat:"rv", tipo:"Fondo", nombre:"Cobas Selección FI clase D", isin:"ES0124037013", gestora:"Cobas AM", myi:false, gest:"Gestión activa", coste:"Comisión de gestión 1,75 %", costeFuente:"CNMV, clase D", trasp:true, minimo:null, nota:"Clase abierta a nuevos partícipes. Los gastos corrientes de esta clase están pendientes de verificar." },
+    { cat:"rf", tipo:"Fondo", nombre:"B&H Deuda FI", isin:"ES0112618006", gestora:"Buy & Hold", myi:true, gest:"Gestión activa", coste:"0,36 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:"1 participación (folleto)", nota:null },
+    { cat:"mixto", tipo:"Fondo", nombre:"Cartesio X FI", isin:"ES0116567035", gestora:"Cartesio Inversiones", myi:true, gest:"Gestión activa", coste:"0,74 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:"6.000 € (folleto)", nota:null },
+    { cat:"mixto", tipo:"Fondo", nombre:"Gamma Global A FI", isin:"ES0140794001", gestora:"Singular Asset Management", myi:true, gest:"Gestión activa", coste:"0,86 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Horos Value Internacional FI", isin:"ES0146309002", gestora:"Horos AM", myi:true, gest:"Gestión activa", coste:"1,87 %", costeFuente:"DFI de febrero de 2026", trasp:true, minimo:"100 € (folleto)", nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Sigma Internacional FI · Clase A", isin:"ES0175902008", gestora:"Singular Asset Management", myi:true, gest:"Gestión activa", coste:"1,59 %", costeFuente:"DFI (CNMV) 31/12/2025", trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Stock Index Fund EUR Acc", isin:"IE00B03HD191", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,18 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Emerging Markets Stock Index Fund EUR Acc", isin:"IE0031786696", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,23 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Vanguard Global Small-Cap Index Fund EUR Acc", isin:"IE00B42W4L06", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,29 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Eurozone Inflation-Linked Bond Index Fund EUR Acc", isin:"IE00B04GQR24", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,12 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Bond Index Fund EUR Hedged Acc", isin:"IE00BH65QP47", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,15 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Short-Term Corporate Bond Index EUR Hedged Acc", isin:"IE00BDFB7290", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,18 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Global Bond Index Fund EUR Hedged Acc", isin:"IE00B18GC888", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,15 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:"1 € en MyInvestor", nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Vanguard Euro Government Bond Index Fund EUR Acc", isin:"IE0007472990", gestora:"Vanguard", myi:true, gest:"Indexado", coste:"0,12 %", costeFuente:"KIID 17/02/2026", trasp:true, minimo:"1 € en MyInvestor", nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI World Index Fund EUR P Acc", isin:"IE00BYX5NX33", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Fidelity S&P 500 Index Fund EUR P Acc", isin:"IE00BYX5MX67", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:null, nota:null },
+    { cat:"nicho", tipo:"Fondo", nombre:"iShares Developed Real Estate Index Fund Institutional Acc EUR", isin:"IE00B83YJG36", gestora:"BlackRock / iShares", myi:true, gest:"Indexado", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"iShares Developed World Index (IE) Acc EUR clase S", isin:"IE000ZYRH0Q7", gestora:"BlackRock / iShares", myi:true, gest:"Indexado", coste:null, costeFuente:null, trasp:true, minimo:null, nota:"La clase S exige un mínimo oficial de 200 M€; un particular solo accede a ella a través de la cuenta ómnibus de MyInvestor." },
+    { cat:"rv", tipo:"Fondo", nombre:"Alken Fund - Small Cap Europe Class R", isin:"LU0300834669", gestora:"AFFM S.A.", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Amundi Index MSCI Emerging Markets IE-C", isin:"LU0996175948", gestora:"Amundi", myi:true, gest:"Indexado", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"HAMCO SICAV Global Value Fund R EUR Acc", isin:"LU3038481936", gestora:"HAMCO", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Heptagon Kopernik Global All-Cap Equity Fund AE EUR Acc", isin:"IE00BH6XSF26", gestora:"Heptagon / Kopernik", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Janus Henderson Horizon Global Smaller Companies A2 EUR", isin:"LU1984712320", gestora:"Janus Henderson", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"nicho", tipo:"Fondo", nombre:"Jupiter Gold & Silver Fund L EUR Acc", isin:"IE00BYVJR916", gestora:"Jupiter AM", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Man Dynamic Income DB H EUR Capitalisation", isin:"IE000WFG9PJ8", gestora:"Man Group", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Neuberger Berman Short Duration Euro Bond I Acc EUR", isin:"IE00BFZMJT78", gestora:"Neuberger Berman", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Ostrum Credit Ultra Short Plus R/C (EUR)", isin:"FR001400CFA4", gestora:"Natixis / Ostrum AM", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"monetario", tipo:"Fondo", nombre:"Groupama Trésorerie IC", isin:"FR0000989626", gestora:"Groupama AM", myi:true, gest:"Indexado", coste:null, costeFuente:null, trasp:true, minimo:null, nota:"Su folleto permite una comisión de reembolso de hasta el 4 %." },
+    { cat:"monetario", tipo:"Fondo", nombre:"AXA Trésor Court Terme C", isin:"FR0000447823", gestora:"Gestora pendiente de verificar", myi:true, gest:"Indexado", coste:null, costeFuente:null, trasp:true, minimo:null, nota:"La gestora actual está pendiente de verificar." },
+    { cat:"rv", tipo:"Fondo", nombre:"Robeco QI Emerging Markets Active Equities D EUR", isin:"LU0329355670", gestora:"Robeco", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"nicho", tipo:"Fondo", nombre:"Robeco Smart Energy D-EUR Capitalisation", isin:"LU2145461757", gestora:"Robeco", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rf", tipo:"Fondo", nombre:"Storm Fund II - Storm Bond Fund RC EUR", isin:"LU0840158819", gestora:"Storm Capital", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:"Pendiente de verificar su comercialización a través de MyInvestor en la CNMV." },
+    { cat:"rf", tipo:"Fondo", nombre:"Vontobel Fund Credit Opportunities HI EUR Cap", isin:"LU2416422751", gestora:"Vontobel", myi:true, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"rv", tipo:"ETF", nombre:"iShares Core MSCI World UCITS ETF USD (Acc)", isin:"IE00B4L5Y983", gestora:"BlackRock / iShares", myi:false, gest:"Indexado", coste:"0,20 %", costeFuente:"KIID 09/02/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"rv", tipo:"ETF", nombre:"iShares Core S&P 500 UCITS ETF USD (Acc)", isin:"IE00B5BMR087", gestora:"BlackRock / iShares", myi:false, gest:"Indexado", coste:"0,07 %", costeFuente:"KIID 09/02/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"rv", tipo:"ETF", nombre:"iShares MSCI ACWI UCITS ETF USD (Acc)", isin:"IE00B6R52259", gestora:"BlackRock / iShares", myi:false, gest:"Indexado", coste:"0,20 %", costeFuente:"KIID 03/09/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"rv", tipo:"ETF", nombre:"iShares Core MSCI EM IMI UCITS ETF USD (Acc)", isin:"IE00BKM4GZ66", gestora:"BlackRock / iShares", myi:false, gest:"Indexado", coste:"0,18 %", costeFuente:"KIID 09/02/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"rv", tipo:"ETF", nombre:"SPDR MSCI ACWI IMI UCITS ETF", isin:"IE00B3YLTY66", gestora:"State Street / SPDR", myi:false, gest:"Indexado", coste:"0,17 %", costeFuente:"TER en la web de SSGA, 30/09/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"rv", tipo:"ETF", nombre:"SPDR MSCI World Small Cap UCITS ETF", isin:"IE00BCBJG560", gestora:"State Street / SPDR", myi:false, gest:"Indexado", coste:"0,45 %", costeFuente:"TER en la web de SSGA, 30/09/2026", trasp:false, minimo:"1 participación en bolsa", nota:"Cuesta más que el Vanguard Global Small-Cap Index (0,29 %), que además es traspasable." },
+    { cat:"rv", tipo:"ETF", nombre:"Vanguard FTSE All-World UCITS ETF (USD) Acc", isin:"IE00BK5BQT80", gestora:"Vanguard", myi:false, gest:"Indexado", coste:"0,14 %", costeFuente:"KIID 28/07/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"rf", tipo:"ETF", nombre:"Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C", isin:"LU0290358497", gestora:"DWS / Xtrackers", myi:false, gest:"Indexado", coste:"0,10 %", costeFuente:"KID 16/02/2026", trasp:false, minimo:"1 participación en bolsa", nota:"Replica el €STR mediante swap. No es legalmente un fondo monetario." },
+    { cat:"nicho", tipo:"ETC", nombre:"iShares Physical Gold ETC", isin:"IE00B4ND3602", gestora:"BlackRock / iShares", myi:false, gest:"Indexado", coste:"0,13 %", costeFuente:"KID 27/04/2026", trasp:false, minimo:"1 participación en bolsa", nota:null },
+    { cat:"nicho", tipo:"ETC", nombre:"Xetra-Gold", isin:"DE000A0S9GB0", gestora:"Deutsche Börse", myi:false, gest:"Indexado", coste:null, costeFuente:null, trasp:false, minimo:null, nota:null },
+    { cat:"pp", tipo:"PP", nombre:"Azvalor Global Value PP", isin:"N5116 (plan) / F1905 (fondo)", gestora:"Azvalor / Dunas Capital Pensiones", myi:false, gest:"Gestión activa", coste:null, costeFuente:null, trasp:true, minimo:null, nota:null },
+    { cat:"pp", tipo:"PP", nombre:"Cobas Global PP", isin:"N5219 (plan) / F1633 (fondo)", gestora:"Cobas Pensiones, SGFP", myi:true, gest:"Gestión activa", coste:"Gestión 1,00 % + depósito 0,05 %", costeFuente:"web de la gestora, 30/10/2026", trasp:true, minimo:"25 € (gestora)", nota:null },
+    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado Global PP", isin:"N5396 (plan) / F2160 (fondo)", gestora:"MyInvestor / Merchbanc EGFP", myi:true, gest:"Indexado", coste:"Gestión 0,30 % + depósito 0,08 %", costeFuente:"DFP del plan", trasp:true, minimo:null, nota:"Invierte a través de ETF indexados, pero su documento oficial indica que no tiene índice de referencia en su gestión." },
+    { cat:"pp", tipo:"PP", nombre:"MyInvestor Indexado S&P 500 PP", isin:"N5394 (plan) / F2159 (fondo)", gestora:"MyInvestor / Merchbanc EGFP", myi:true, gest:"Indexado", coste:"Gestión 0,30 % + depósito 0,08 %", costeFuente:"DFP del plan", trasp:true, minimo:null, nota:"Invierte a través de ETF indexados, pero su documento oficial indica que no tiene índice de referencia en su gestión." },
+    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Finizens", gestora:"Finizens SGIIC", myi:false, gest:"Gestión automatizada", coste:null, costeFuente:null, minimo:null, nota:null },
+    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Indexa Capital", gestora:"Indexa Capital AV", myi:false, gest:"Gestión automatizada", coste:null, costeFuente:null, minimo:null, nota:null },
+    { cat:"roboadvisor", tipo:"Roboadvisor", nombre:"Carteras automatizadas MyInvestor", gestora:"MyInvestor", myi:true, gest:"Gestión automatizada", coste:null, costeFuente:null, minimo:null, nota:null },
+    { cat:"rv", tipo:"Fondo", nombre:"Fidelity MSCI Europe Index Fund EUR P Acc", isin:"IE00BYX5MD61", gestora:"Fidelity", myi:true, gest:"Indexado", coste:"0,1 %", costeFuente:"KID 30/04/2026", trasp:true, minimo:"1 € en MyInvestor", nota:"Ejemplo de la lista de indexado de Europa, elegido por coste, registro en la CNMV y acceso desde 1 €. No es una recomendación." },
+    { cat:"monetario", tipo:"Fondo", nombre:"Mutuafondo Dinero FI clase D", isin:"ES0165143019", gestora:"Mutuactivos", myi:true, gest:"Indexado", coste:"0,45 %", costeFuente:"DFI (CNMV) 17/07/2026", trasp:true, minimo:"10 €", nota:"Ejemplo de la lista de monetario de gestora española traspasable. Fondo monetario según la CNMV. No es una recomendación." },
   ];
 
   var qlSiglas = {rv:"RV", rf:"RF", monetario:"M", mixto:"MX", pp:"PP", nicho:"N", roboadvisor:"RA"};
@@ -5659,25 +5676,24 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     grid.innerHTML = filtered.map(function(f){
       var sigla = qlSiglas[f.cat] || "";
       var myiHtml = f.myi ? '<a class="ql-myi" href="https://newapp.myinvestor.es/auth/signup/intro?promotionalCode=xpKDn" target="_blank" rel="noopener noreferrer">Disponible en MyInvestor ↗</a>' : '';
-      var helperMap = {
-        monetario: ['Liquidez conservadora'],
-        roboadvisor: ['Gestión automatizada'],
-        nicho: ['Exposición temática o específica'],
-        rv: [f.tipo === 'ETF' ? 'Indexado' : 'Fondo'],
-        rf: ['Diversificación defensiva'],
-        mixto: ['Solución intermedia'],
-        pp: ['Enfoque fiscal']
-      };
-      var helperChips = (helperMap[f.cat] || []).map(function(label){
-        return '<span class="ql-helper-chip">'+label+'</span>';
-      }).join('');
+      var gestCls = f.gest === 'Gestión activa' ? 'ql-gest-activa' : 'ql-gest-index';
+      var helperChips = f.gest ? '<span class="ql-helper-chip '+gestCls+'">'+f.gest+'</span>' : '';
+      var costeLbl = f.tipo === 'PP' ? 'Comisiones' : (f.tipo === 'Roboadvisor' ? 'Coste' : 'Gastos corrientes');
+      var facts = '<dl class="ql-facts">'
+        +'<div><dt>'+costeLbl+'</dt><dd>'+(f.coste ? f.coste+(f.costeFuente ? ' <span class="ql-src">('+f.costeFuente+')</span>' : '') : '<span class="ql-pend">Pendiente de verificar</span>')+'</dd></div>'
+        +(typeof f.trasp === 'boolean' ? '<div><dt>Traspasable</dt><dd>'+(f.trasp ? 'Sí' : 'No')+'</dd></div>' : '')
+        +(f.minimo ? '<div><dt>Mínimo</dt><dd>'+f.minimo+'</dd></div>' : '')
+        +'</dl>';
+      var notaHtml = f.nota ? '<p class="ql-nota">'+f.nota+'</p>' : '';
+      var idLbl = f.tipo === 'PP' ? 'Código DGS: ' : 'ISIN: ';
       return '<div class="ref-card ql-card" data-cat="'+f.cat+'">'
         +'<div class="ref-logo ql-logo">'+sigla+'</div>'
         +'<div class="ref-info">'
           +'<h3>'+f.nombre+'</h3>'
           +'<p>'+f.gestora+'</p>'
-          +(f.cat !== 'roboadvisor' ? '<p class="ref-meta"><span class="ql-isin">ISIN: '+f.isin+'</span></p>' : '')
+          +(f.isin ? '<p class="ref-meta"><span class="ql-isin">'+idLbl+f.isin+'</span></p>' : '')
           +(helperChips ? '<div class="ql-helper-row">'+helperChips+'</div>' : '')
+          +facts+notaHtml
           +myiHtml
         +'</div>'
         +'<div class="ql-tipo-badge">'+f.tipo+'</div>'
@@ -6773,7 +6789,7 @@ html[data-theme="dark"] .voto-leader-badge{color:#d8bc68!important;background:rg
 html[data-theme="dark"] .cuenta-ref{color:#d8bc68!important;background:rgba(201,168,76,.08)!important;border-color:rgba(201,168,76,.30)!important}
 
 html[data-theme="dark"] .cuenta-top,html[data-theme="dark"] .cuenta-pros-cons{border-color:#30465a}
-html[data-theme="dark"] .cuenta-chip,html[data-theme="dark"] .cuenta-chip.fgd-es,html[data-theme="dark"] .cuenta-chip.fgd-fr,html[data-theme="dark"] .cuenta-chip.fgd-de,
+html[data-theme="dark"] .cuenta-chip,html[data-theme="dark"] .cuenta-chip.fgd-es,html[data-theme="dark"] .cuenta-chip.fgd-fr,html[data-theme="dark"] .cuenta-chip.fgd-de,html[data-theme="dark"] .cuenta-chip.fgd-pt,
 html[data-theme="dark"] .cuentas-badge{background:#1c2c40;border-color:#3a5065;color:#b9cad9}
 html[data-theme="dark"] .cuenta-pro{color:#76b999}
 html[data-theme="dark"] .cuenta-con{color:#d29a7a}
@@ -6782,6 +6798,23 @@ html[data-theme="dark"] .cuenta-rank{color:#d9bd6a}
 html[data-theme="dark"] .ql-list .ref-info h3{color:#edf3f8!important}
 html[data-theme="dark"] .ql-list .ref-info>p,html[data-theme="dark"] .ql-list .ql-isin{color:#91a6ba!important}
 html[data-theme="dark"] .ql-list .ql-tipo-badge,html[data-theme="dark"] .ql-list .ql-helper-chip{background:#1c2c40;border-color:#3a5065;color:#b7c8d8}
+.ql-facts{display:flex;flex-wrap:wrap;gap:4px 16px;margin:8px 0 0;font-size:11.5px;line-height:1.45}
+.ql-facts>div{display:flex;gap:5px;min-width:0}
+.ql-facts dt{color:#62758b;font-weight:600}
+.ql-facts dd{margin:0;color:var(--navy2);font-weight:700;overflow-wrap:anywhere}
+.ql-src{font-weight:400;color:#7a8ca0}
+.ql-pend{font-weight:600;color:#8b6a15}
+.ql-nota{margin:6px 0 0;font-size:11.5px;line-height:1.5;color:#5b6d82}
+.ql-list .ql-helper-chip.ql-gest-index{color:#1f6a4a;border-color:#cfe6da;background:#f2faf6}
+.ql-list .ql-helper-chip.ql-gest-activa{color:#7a5a12;border-color:#ecdcb4;background:#fdf8ec}
+.ql-review-note{margin:0 0 14px;font-size:12px;color:var(--muted)}
+.ql-list .ref-info{min-width:0}
+html[data-theme="dark"] .ql-facts dt,html[data-theme="dark"] .ql-src{color:#91a6ba}
+html[data-theme="dark"] .ql-facts dd{color:#e3ecf4}
+html[data-theme="dark"] .ql-pend{color:#e2c070}
+html[data-theme="dark"] .ql-nota,html[data-theme="dark"] .ql-review-note{color:#a9bccd}
+html[data-theme="dark"] .ql-list .ql-helper-chip.ql-gest-index{background:#173328!important;border-color:#2f5a47!important;color:#9fdcbf!important}
+html[data-theme="dark"] .ql-list .ql-helper-chip.ql-gest-activa{background:#33290f!important;border-color:#5e4c1f!important;color:#e8cf8a!important}
 html[data-theme="dark"] .ql-list .ql-myi{background:#17304a;border-color:#35658c;color:#79b6e4}
 html[data-theme="dark"] .ql-context strong{color:#dbe6ef}
 html[data-theme="dark"] .ql-calc-link,html[data-theme="dark"] .project-note a,html[data-theme="dark"] .qc-intro-note strong,
