@@ -25,7 +25,7 @@ def nav(home=False,cur=None):
     o.append('          <li>'+sobre+'</li>')
     o+=['        </ul>','      </nav>','    </div>']
     return '\n'.join(o)
-PAGES={'index.html':(True,None),'calendario-financiero/index.html':(False,'calendario'),'scripts/calendario-template.html':(False,'calendario'),'colaboraciones/index.html':(False,'colaboraciones'),'scripts/glosario-shell-top.html':(False,'glosario')}
+PAGES={'index.html':(True,None),'calendario-financiero/index.html':(False,'calendario'),'scripts/calendario-template.html':(False,'calendario'),'colaboraciones/index.html':(False,'colaboraciones'),'recursos/checklist-primer-fondo-indexado/index.html':(False,None),'scripts/glosario-shell-top.html':(False,'glosario')}
 for d in os.listdir(os.path.join(ROOT,'glosario')):
     if os.path.exists(os.path.join(ROOT,'glosario',d,'index.html')): PAGES[f'glosario/{d}/index.html']=(False,'glosario')
 PAGES['glosario/index.html']=(False,'glosario')
