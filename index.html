@@ -2613,6 +2613,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <div class="field"><label for="sal-target-type">Objetivo</label><select id="sal-target-type" onchange="fiscalNetGrossFields()"><option value="bank" selected>Neto que entra en banco</option><option value="fiscal">Neto fiscal anual tras regularizar IRPF</option></select></div>
         <div class="field"><label for="sal-neto" id="sal-target-label">Neto ordinario deseado por paga (€)</label><input type="number" id="sal-neto" value="1800" min="0"></div>
         <div class="field"><label for="sal-birth">Año de nacimiento</label><input type="number" id="sal-birth" value="1985" min="1920" max="2010"></div>
+        <div class="field"><label for="sal-disability">Discapacidad del perceptor</label><select id="sal-disability"><option value="0" selected>No</option><option value="33">33% a &lt;65%</option><option value="65">65% o más</option></select></div>
         <div class="field"><label for="sal-sit">Situación familiar para retenciones</label><select id="sal-sit"><option value="3" selected>Situación 3 · otras situaciones</option><option value="2">Situación 2 · cónyuge con rentas ≤ 1.500 €</option><option value="1">Situación 1 · monoparental con descendientes</option></select></div>
         <div class="field"><label for="sal-desc">Descendientes fiscalmente computables</label><input type="number" id="sal-desc" value="0" min="0" max="12"></div>
         <div class="field"><label for="sal-desc-share">Cómputo del mínimo por descendientes</label><select id="sal-desc-share"><option value="1" selected>100% · íntegro</option><option value="0.5">50% · prorrateado</option></select></div>
@@ -2841,11 +2842,12 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
           <div class="field"><label for="irpf-bruto">Salario bruto anual (&euro;)</label><input type="number" id="irpf-bruto" value="35000" min="0"></div>
           <div class="field"><label for="irpf-pagas">Número de pagas</label><select id="irpf-pagas"><option value="12">12 pagas</option><option value="14" selected>14 pagas</option></select></div>
           <div class="field"><label for="irpf-contract">Tipo de contrato</label><select id="irpf-contract"><option value="indef" selected>Indefinido / general</option><option value="temp">Temporal · duración ≥ 1 año</option><option value="under1">Temporal · duración &lt; 1 año (mínimo retención 2%)</option></select></div>
-          <div class="field"><label for="irpf-pp">Aportación reducible a previsión social (&euro;)</label><input type="number" id="irpf-pp" value="0" min="0"></div>
+          <div class="field"><label for="irpf-pp">Aportación a planes de pensiones / previsión social (&euro;) <span style="font-weight:400;color:var(--muted)">(se aplica el límite del art. 52 LIRPF)</span></label><input type="number" id="irpf-pp" value="0" min="0"></div>
         </div>
 
         <div id="fiscal-pension-fields" style="display:none">
           <div class="field"><label for="pen-type">Tipo de pensión/prestación</label><select id="pen-type"><option value="jubilacion">Jubilación ordinaria</option><option value="ipt">Incapacidad permanente total</option><option value="ipa">Incapacidad permanente absoluta</option><option value="gran">Gran incapacidad</option><option value="viudedad">Viudedad</option><option value="orfandad">Orfandad</option><option value="clases">Clases Pasivas · jubilación ordinaria</option><option value="otra">Otra pensión/prestación sujeta</option></select></div>
+          <div class="field" id="pen-orf-wrap" style="display:none"><label for="pen-orf-cond">¿El huérfano es menor de 22 años o está incapacitado para todo trabajo?</label><select id="pen-orf-cond"><option value="exenta" selected>Sí · exenta (art. 7.h LIRPF, régimen público)</option><option value="sujeta">No · tributa como rendimiento del trabajo</option></select><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">La orfandad solo está exenta si la pagan la Seguridad Social o Clases Pasivas y el beneficiario es menor de 22 años o está incapacitado para todo trabajo.</span></div>
           <div class="field"><label for="pen-monthly">Bruto por paga (&euro;)</label><input type="number" id="pen-monthly" value="1500" min="0"></div>
           <div class="field"><label for="pen-pagas">Número de pagas del ejercicio</label><select id="pen-pagas"><option value="12">12</option><option value="14" selected>14</option></select></div>
         </div>
@@ -2870,7 +2872,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
           <div class="field"><label for="ann-other">Otros rendimientos del trabajo/pensiones (&euro;)</label><input type="number" id="ann-other" value="0" min="0"></div>
           <div class="field"><label for="ann-service-work">Salario por trabajo efectivo incluido en los ingresos (&euro;)</label><input type="number" id="ann-service-work" value="24000" min="0"><span style="font-size:11px;color:var(--muted);display:block;margin-top:3px">Solo para la deducción estatal 2026 por rendimientos derivados de una relación laboral/estatutaria. No incluyas pensiones.</span></div>
           <div class="field"><label for="ann-other-ret">Otras retenciones (&euro;)</label><input type="number" id="ann-other-ret" value="0" min="0"></div>
-          <div class="field"><label for="ann-reductions">Reducciones adicionales de base (&euro;) <span style="font-weight:400;color:var(--muted)">(p. ej., previsión social dentro de límites)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
+          <div class="field"><label for="ann-reductions">Aportaciones a planes de pensiones / previsión social (&euro;) <span style="font-weight:400;color:var(--muted)">(se aplica el límite del art. 52 LIRPF: 1.500 € o el 30% de tus rendimientos netos, el menor)</span></label><input type="number" id="ann-reductions" value="0" min="0"></div>
         </div>
 
         <button class="calc-btn" data-run="irpf">Calcular &rarr;</button>
@@ -4033,7 +4035,10 @@ document.addEventListener('DOMContentLoaded', function(){
     total+=t1*.0019+t2*.0021+t3*.0024; return round2(total);
   }
 
-  function pensionTaxability(type){return (type==='ipa'||type==='gran'||type==='orfandad')?0:1;}
+  // Exenciones (LIRPF art. 7): f) incapacidad permanente absoluta y gran invalidez de la Seguridad Social;
+  // h) orfandad de regímenes públicos solo si el beneficiario es menor de 22 años o está incapacitado para todo trabajo.
+  function pensionTaxability(type,orfCond){if(type==='ipa'||type==='gran')return 0;if(type==='orfandad')return orfCond==='sujeta'?1:0;return 1;}
+  function pensionExemptReason(type){return type==='orfandad'?'Exenta (art. 7.h LIRPF: orfandad, menor de 22 años o incapacitado)':'Exenta (art. 7.f LIRPF: incapacidad absoluta o gran invalidez)';}
   // Mínimo del algoritmo de RETENCIONES AEAT 2026 (RIRPF art. 84): mismo criterio de edad que la cuota anual, >=65 / >=75 a 31/12.
   function familyMinimum(birthYear,numDesc,numUnder3,disability,descShare){
     var age=ageAtTaxYear(birthYear), min=5550, share=(+descShare===0.5?0.5:1); if(age>=65)min+=1150;if(age>=75)min+=1400;
@@ -4043,10 +4048,13 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function withholdingThreshold(sit,numDesc,pensionAdj){var t={1:[0,17644,18694],2:[17197,18130,19262],3:[15876,16342,16867]};var a=t[sit]||t[3];var idx=numDesc<=0?0:(numDesc===1?1:2);return (a[idx]||0)+pensionAdj;}
   function withholding43Base(sit,numDesc,pensionAdj){return withholdingThreshold(sit,numDesc,pensionAdj);}
+  function disabilityWorkExpense(d){d=+d||0;return d>=65?7750:(d>=33?3500:0);}
   function calcWithholding2026(o){
     var retrib=Math.max(0,+o.retrib||0), cot=Math.max(0,+o.contributions||0), isP=o.kind==='pension', nDesc=Math.max(0,parseInt(o.numDesc)||0), under3=Math.max(0,parseInt(o.under3)||0), sit=parseInt(o.situation)||3;
     if(o.taxable===false||retrib<=0)return {rate:0,annual:0,base:0,quota:0,gastos:0,red20:0,minFamily:familyMinimum(o.birthYear,nDesc,under3,o.disability,o.descShare)};
-    var gastos=Math.min(2000,Math.max(0,retrib-cot)); var rnt=Math.max(0,retrib-cot); var red20=round2(calcRendTrabajoReduction(rnt)); var rntRed=Math.max(0,rnt-gastos-red20);
+    // Otros gastos deducibles (LIRPF art. 19.2.f): 2.000 € + incremento para trabajadores activos con discapacidad
+    // (3.500 € si 33% a <65%; 7.750 € si >=65% o movilidad reducida); variable INCREGASDISTRA del algoritmo AEAT de retenciones.
+    var gastos=Math.min(2000+(isP?0:disabilityWorkExpense(o.disability)),Math.max(0,retrib-cot)); var rnt=Math.max(0,retrib-cot); var red20=round2(calcRendTrabajoReduction(rnt)); var rntRed=Math.max(0,rnt-gastos-red20);
     var pensionAdj=isP?600:0, hijos=nDesc>2?600:0, base=Math.max(0,rntRed-pensionAdj-hijos-Math.max(0,+o.pensionComp||0));
     var minFam=familyMinimum(o.birthYear,nDesc,under3,o.disability,o.descShare);
     var threshold=withholdingThreshold(sit,nDesc,pensionAdj); if(retrib<=threshold){var minRate=(o.kind==='salary'&&o.contract==='under1')?2:0;return {rate:minRate,annual:round2(retrib*minRate/100),base:base,quota:0,gastos:gastos,red20:red20,minFamily:minFam,pensionAdj:pensionAdj,threshold:threshold};}
@@ -4064,8 +4072,14 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function calcAnnualIRPF2026(o){
-    var bruto=Math.max(0,+o.gross||0), cot=Math.max(0,+o.contributions||0), reductions=Math.max(0,+o.reductions||0), ccaa=o.ccaa||'clm';
-    var gastos=Math.min(2000,Math.max(0,bruto-cot)), rnt=Math.max(0,bruto-cot), red20=Math.min(rnt,calcRendTrabajoReduction(rnt));
+    var bruto=Math.max(0,+o.gross||0), cot=Math.max(0,+o.contributions||0), reductionsAsked=Math.max(0,+o.reductions||0), ccaa=o.ccaa||'clm';
+    // Gasto adicional por discapacidad (LIRPF art. 19.2.f): solo si hay rendimientos de trabajo en activo (no pensiones).
+    var disabilityExtra=(Math.max(0,+o.serviceWorkGross||0)>0)?disabilityWorkExpense(o.disability):0;
+    var gastos=Math.min(2000+disabilityExtra,Math.max(0,bruto-cot)), rnt=Math.max(0,bruto-cot), red20=Math.min(rnt,calcRendTrabajoReduction(rnt));
+    // Límite de reducción por aportaciones a previsión social (LIRPF art. 52.1): el menor de 1.500 € y el 30% de los
+    // rendimientos netos del trabajo y de actividades económicas. No se modelan las contribuciones empresariales ni los PPES.
+    var ppLimit=round2(Math.max(0,Math.min(1500,0.30*(Math.max(0,rnt-gastos)+Math.max(0,+o.activityNet||0)))));
+    var reductions=Math.min(reductionsAsked,ppLimit);
     var base=Math.max(0,rnt-gastos-red20-reductions); if(o.joint==='joint-married')base=Math.max(0,base-3400); if(o.joint==='joint-single')base=Math.max(0,base-2150);
     var minState=annualStateFamilyMinimum(o.birthYear,o.numDesc,o.under3,o.disability,o.descShare), minAuto=annualAutonomicFamilyMinimum(ccaa,o.birthYear,o.numDesc,o.under3,o.disability,o.descShare);
     var state=Math.max(0,progressiveTax(base,TAX_RULES_2026.stateScale)-progressiveTax(Math.min(base,minState),TAX_RULES_2026.stateScale));
@@ -4075,7 +4089,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var workDeductionRaw=calcWorkIncomeDeduction2026(serviceGross,otherNonService), workDeductionLimit=grossQuota;
     if(serviceGross>0&&serviceGross<bruto&&bruto>0)workDeductionLimit=grossQuota*(serviceGross/bruto);
     var workDeduction=round2(Math.min(workDeductionRaw,Math.max(0,workDeductionLimit)));
-    var irpf=round2(Math.max(0,grossQuota-workDeduction)); return {gross:bruto,contributions:cot,gastos:gastos,red20:red20,base:base,minState:minState,minAuto:minAuto,state:state,autonomic:auto,grossQuota:round2(grossQuota),workDeduction:workDeduction,irpf:irpf,effective:bruto?irpf/bruto*100:0,net:bruto-cot-irpf};
+    var irpf=round2(Math.max(0,grossQuota-workDeduction)); return {gross:bruto,contributions:cot,gastos:gastos,disabilityExtra:disabilityExtra,reductionsAsked:reductionsAsked,reductions:reductions,ppLimit:ppLimit,red20:red20,base:base,minState:minState,minAuto:minAuto,state:state,autonomic:auto,grossQuota:round2(grossQuota),workDeduction:workDeduction,irpf:irpf,effective:bruto?irpf/bruto*100:0,net:bruto-cot-irpf};
   }
   // Compatibilidad con otras calculadoras existentes.
   function calcSalaryTax2026(bruto,ccaa,minExtra,pp){var a=calcAnnualIRPF2026({gross:bruto,contributions:calcEmployeeSS2026(bruto,'indef'),reductions:pp||0,ccaa:ccaa,birthYear:1985,numDesc:0,under3:0,descShare:1,disability:0,serviceWorkGross:bruto,otherNonServiceIncome:0});return {bruto:bruto,ss:a.contributions,gastoGeneral:a.gastos,rendimientoNetoTrabajo:Math.max(0,bruto-a.contributions-a.gastos),reduccionTrabajo:a.red20,minimoPersonalFamiliar:a.minState,minimoAutonomico:a.minAuto,deduccionSMI:0,baseLiquidableGeneral:a.base,irpf:a.irpf,neto:a.net,tipoEfectivo:a.effective};}
@@ -4085,11 +4099,20 @@ document.addEventListener('DOMContentLoaded', function(){
     var m=fiscalVal('irpf-mode');['salary','pension','transition','annual'].forEach(function(x){var e=document.getElementById('fiscal-'+x+'-fields');if(e)e.style.display=(m===x?'block':'none');});
   };
   window.fiscalNetGrossFields=function(){var p=fiscalVal('sal-income-type')==='pension';document.querySelectorAll('.sal-salary-only').forEach(function(e){e.style.display=p?'none':'block';});var t=fiscalVal('sal-target-type'),lab=document.getElementById('sal-target-label');if(lab)lab.textContent=t==='bank'?(p?'Neto deseado por paga (€)':'Neto ordinario deseado por paga (€)'):'Neto fiscal deseado al año (€)';};
-  document.addEventListener('change',function(e){if(e.target&&(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'))fiscalNetGrossFields();});
+  document.addEventListener('change',function(e){if(e.target&&(e.target.id==='sal-target-type'||e.target.id==='sal-income-type'))fiscalNetGrossFields();if(e.target&&e.target.id==='pen-type'){var w=document.getElementById('pen-orf-wrap');if(w)w.style.display=(e.target.value==='orfandad'?'block':'none');}});
 
   function commonFiscalInput(prefix){return {birthYear:fiscalNum(prefix+'birth'),situation:parseInt(fiscalVal(prefix+'sit'))||3,numDesc:fiscalNum(prefix+'desc'),under3:fiscalNum(prefix+'desc3'),descShare:parseFloat(fiscalVal(prefix+'desc-share'))||1,disability:fiscalNum(prefix+'disability'),ccaa:fiscalVal(prefix+'ccaa')||'clm'};}
 
 
+    function irpfAnnualExtraRows(ann){
+    var h='';
+    if(ann.disabilityExtra>0)h+=rr('Gasto adicional por discapacidad (art. 19.2.f LIRPF)',fmtEUR(ann.disabilityExtra),'g');
+    if(ann.reductionsAsked>0){
+      h+=rr('Reducción por previsión social aplicada',fmtEUR(ann.reductions),'g');
+      if(ann.reductionsAsked>ann.reductions+0.005)h+='<div class="qf-calc-note" style="font-size:12px;color:var(--muted);margin:4px 0 8px">Has indicado '+fmtEUR(ann.reductionsAsked)+', pero el art. 52 LIRPF limita la reducción al menor de 1.500 € y el 30% de tus rendimientos netos del trabajo y actividades ('+fmtEUR(ann.ppLimit)+'). El exceso no reduce la base este año. La parte que no cabe por el límite del 30% (no la que supera 1.500 €) puede reducirse en los cinco ejercicios siguientes (art. 52.2 LIRPF).</div>';
+    }
+    return h;
+  }
   function fiscalCcaaValidationNote(ccaa){return '<div class="disclaimer" style="margin-top:14px"><strong>Estimación fiscal 2026:</strong> escala general y mínimo personal/familiar estatal y autonómico revisados con normativa vigente a 23/09/2026. No incluye todas las deducciones autonómicas, base del ahorro, ganancias patrimoniales, inmuebles ni otros supuestos especiales. No sustituye Renta WEB ni asesoramiento fiscal.</div>'; }
   window.calcIrpf=function(){
     var mode=fiscalVal('irpf-mode'), c=commonFiscalInput('irpf-'), html='', chart=[];
@@ -4099,11 +4122,11 @@ document.addEventListener('DOMContentLoaded', function(){
       var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('irpf-pp'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:gross,otherNonServiceIncome:0});
       var bankAnnual=gross-ss-wh.annual,grossPay=gross/pays,whPay=wh.annual/pays,ordinaryNet=pays===14?grossPay-whPay-ss/12:bankAnnual/pays,extraNet=pays===14?grossPay-whPay:null;
       html='<div style="font-weight:700;margin-bottom:8px">A. COBRO / RETENCIÓN DEL PAGADOR</div>'+rr('Salario bruto anual',fmtEUR(gross))+rr('Cotización trabajador estimada',fmtEUR(ss),'o')+rr('Tipo de retención AEAT estimado',fmtPct(wh.rate),'o')+rr('IRPF retenido anual',fmtEUR(wh.annual),'o')+rr(pays===14?'Neto estimado paga ordinaria':'Neto estimado por paga',fmtEUR(ordinaryNet),'g')+(pays===14?rr('Neto estimado paga extraordinaria',fmtEUR(extraNet),'g'):'')+
-        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL ESTIMADO</div>'+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final sobre bruto',fmtPct(ann.effective),'o')+rr('Neto fiscal anual',fmtEUR(ann.net),'g')+rr('Neto fiscal medio / '+pays+' pagas',fmtEUR(ann.net/pays))+
+        '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL ESTIMADO</div>'+irpfAnnualExtraRows(ann)+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final sobre bruto',fmtPct(ann.effective),'o')+rr('Neto fiscal anual',fmtEUR(ann.net),'g')+rr('Neto fiscal medio / '+pays+' pagas',fmtEUR(ann.net/pays))+
         '<div style="font-weight:700;margin:16px 0 8px">C. AJUSTE RENTA</div>'+rr('Retenciones previstas',fmtEUR(wh.annual))+rr('Diferencia estimada',fmtEUR(ann.irpf-wh.annual),(ann.irpf-wh.annual)>0?'o':'g')+rr('Resultado',Math.abs(ann.irpf-wh.annual)<1?'Aprox. neutro':((ann.irpf-wh.annual)>0?'A ingresar':'A devolver'),(ann.irpf-wh.annual)>0?'o':'g'); html+=fiscalCcaaValidationNote(c.ccaa); chart=[ann.net,ann.irpf,ss];
     } else if(mode==='pension'){
-      var typ=fiscalVal('pen-type'),pay=fiscalNum('pen-monthly'),pays=parseInt(fiscalVal('pen-pagas'))||14,gross=pay*pays,taxable=pensionTaxability(typ)>0;
-      if(!taxable){html=rr('Pensión bruta anual',fmtEUR(gross))+rr('Tratamiento configurado','Exenta de IRPF en este simulador','g')+rr('Cotización del pensionista',fmtEUR(0))+rr('Neto estimado por paga',fmtEUR(pay),'g')+'<div class="disclaimer" style="margin-top:14px">Comprueba que tu prestación concreta cumple los requisitos de exención; puede haber excepciones.</div>';chart=[gross,0,0];}
+      var typ=fiscalVal('pen-type'),pay=fiscalNum('pen-monthly'),pays=parseInt(fiscalVal('pen-pagas'))||14,gross=pay*pays,taxable=pensionTaxability(typ,fiscalVal('pen-orf-cond'))>0;
+      if(!taxable){html=rr('Pensión bruta anual',fmtEUR(gross))+rr('Tratamiento fiscal',pensionExemptReason(typ),'g')+rr('Cuota anual estimada de IRPF',fmtEUR(0),'g')+rr('Cotización del pensionista',fmtEUR(0))+rr('Neto estimado por paga',fmtEUR(pay),'g')+'<div class="disclaimer" style="margin-top:14px">'+(typ==='orfandad'?'Si el beneficiario tiene 22 años o más y no está incapacitado para todo trabajo, o la pensión no procede de un régimen público, la orfandad tributa: elige «No» en la pregunta anterior.':'La exención exige que la incapacidad la reconozca la Seguridad Social (o mutualidad alternativa, con límite). La incapacidad permanente total tributa.')+'</div>';chart=[gross,0,0];}
       else {var wh=calcWithholding2026({kind:'pension',retrib:gross,contributions:0,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,taxable:true});var ann=calcAnnualIRPF2026({gross:gross,contributions:0,ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,serviceWorkGross:0,otherNonServiceIncome:gross});var bankAnnual=gross-wh.annual;
         html='<div style="font-weight:700;margin-bottom:8px">A. COBRO</div>'+rr('Pensión bruta anual',fmtEUR(gross))+rr('Cotización del pensionista',fmtEUR(0))+rr('Gasto general de rendimientos del trabajo',fmtEUR(wh.gastos))+rr('Reducción pensionista (solo retenciones)',fmtEUR(wh.pensionAdj))+rr('Base para retención',fmtEUR(wh.base))+rr('Tipo de retención estimado',fmtPct(wh.rate),'o')+rr('Retención anual estimada',fmtEUR(wh.annual),'o')+rr('NETO ESTIMADO COBRADO POR PAGA',fmtEUR(bankAnnual/pays),'g')+
         '<div style="font-weight:700;margin:16px 0 8px">B. IRPF ANUAL</div>'+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Tipo efectivo final',fmtPct(ann.effective),'o')+rr('Neto económico anual después de IRPF',fmtEUR(ann.net),'g')+rr('NETO FISCAL MEDIO DESPUÉS DE REGULARIZAR IRPF',fmtEUR(ann.net/pays))+
@@ -4114,7 +4137,7 @@ document.addEventListener('DOMContentLoaded', function(){
       html=rr('Salario cobrado',fmtEUR(sal))+rr('Pensión realmente devengada este año',fmtEUR(pGross))+rr('Total ingresos del trabajo/pensión',fmtEUR(totalGross),'g')+rr('Retenciones nómina',fmtEUR(salRet))+rr('Retenciones INSS estimadas/indicadas',fmtEUR(pRet))+rr('Total retenciones',fmtEUR(totalRet))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada',fmtEUR(ann.irpf),'o')+rr('Resultado estimado declaración',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Una retención baja de la pensión en el primer año no implica un IRPF final bajo: la declaración suma salario + pensión + demás rentas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,totalGross-salSS-ann.irpf),ann.irpf,salSS];
     } else {
       var gross=fiscalNum('ann-i1')+fiscalNum('ann-i2')+fiscalNum('ann-other'),withheld=fiscalNum('ann-r1')+fiscalNum('ann-r2')+fiscalNum('ann-other-ret'),ss=fiscalNum('ann-ss1')+fiscalNum('ann-ss2'),joint=fiscalVal('ann-joint'),serviceWork=Math.min(gross,fiscalNum('ann-service-work'));var ann=calcAnnualIRPF2026({gross:gross,contributions:ss,reductions:fiscalNum('ann-reductions'),ccaa:c.ccaa,birthYear:c.birthYear,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,joint:joint,serviceWorkGross:serviceWork,otherNonServiceIncome:Math.max(0,gross-serviceWork)});var diff=ann.irpf-withheld;
-      html=rr('Total ingresos',fmtEUR(gross),'g')+rr('Total cotizaciones deducibles',fmtEUR(ss))+rr('Gasto general aplicado',fmtEUR(ann.gastos))+rr('Reducción art. 20 estimada',fmtEUR(ann.red20))+rr('Base general aproximada',fmtEUR(ann.base))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Total retenciones',fmtEUR(withheld))+rr('Resultado estimado',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Tener dos pagadores no aumenta por sí mismo el impuesto. La diferencia suele venir de que cada pagador retiene con información parcial. Este módulo no incluye rendimientos de capital, ganancias patrimoniales ni todas las deducciones autonómicas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,gross-ss-ann.irpf),ann.irpf,ss];
+      html=rr('Total ingresos',fmtEUR(gross),'g')+rr('Total cotizaciones deducibles',fmtEUR(ss))+rr('Gasto general aplicado',fmtEUR(ann.gastos))+rr('Reducción art. 20 estimada',fmtEUR(ann.red20))+irpfAnnualExtraRows(ann)+rr('Base general aproximada',fmtEUR(ann.base))+(ann.workDeduction>0?rr('Deducción 2026 por rendimientos del trabajo',fmtEUR(ann.workDeduction),'g'):'')+rr('Cuota anual estimada de IRPF',fmtEUR(ann.irpf),'o')+rr('Total retenciones',fmtEUR(withheld))+rr('Resultado estimado',Math.abs(diff)<1?'Aprox. neutro':(diff>0?fmtEUR(diff)+' a ingresar':fmtEUR(Math.abs(diff))+' a devolver'),diff>0?'o':'g')+'<div class="disclaimer" style="margin-top:14px">Tener dos pagadores no aumenta por sí mismo el impuesto. La diferencia suele venir de que cada pagador retiene con información parcial. Este módulo no incluye rendimientos de capital, ganancias patrimoniales ni todas las deducciones autonómicas.</div>';html+=fiscalCcaaValidationNote(c.ccaa); chart=[Math.max(0,gross-ss-ann.irpf),ann.irpf,ss];
     }
     document.getElementById('irpf-results').innerHTML=html;document.getElementById('irpf-chart-wrap').style.display='block';document.getElementById('irpf-cta').style.display='flex';if(window._irpfChart)window._irpfChart.destroy();window._irpfChart=new Chart(document.getElementById('irpf-chart').getContext('2d'),{type:'doughnut',data:{labels:['Neto fiscal','IRPF anual','Cotizaciones'],datasets:[{data:chart,backgroundColor:['rgba(125,211,168,.75)','rgba(240,160,112,.75)','rgba(184,200,216,.35)'],borderWidth:1}]},options:doughnutOpts(chart.reduce(function(a,b){return a+b;},0)||1)});
   };
@@ -4146,8 +4169,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
   window.calcSalario=function(){
     var kind=fiscalVal('sal-income-type')||'salary',targetType=fiscalVal('sal-target-type')||'bank',target=fiscalNum('sal-neto'),pays=parseInt(fiscalVal('sal-pagas'))||14,contract=fiscalVal('sal-contract')||'indef';
-    var c={birthYear:fiscalNum('sal-birth')||1985,situation:parseInt(fiscalVal('sal-sit'))||3,numDesc:fiscalNum('sal-desc'),under3:fiscalNum('sal-desc3'),descShare:parseFloat(fiscalVal('sal-desc-share'))||1,disability:0,ccaa:fiscalVal('sal-ccaa')||'clm'};
-    var r=solveGrossForNet2026({kind:kind,targetType:targetType,target:target,pays:pays,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:0,ccaa:c.ccaa,taxable:true}),diff=r.ann.irpf-r.wh.annual;
+    var c={birthYear:fiscalNum('sal-birth')||1985,situation:parseInt(fiscalVal('sal-sit'))||3,numDesc:fiscalNum('sal-desc'),under3:fiscalNum('sal-desc3'),descShare:parseFloat(fiscalVal('sal-desc-share'))||1,disability:fiscalNum('sal-disability'),ccaa:fiscalVal('sal-ccaa')||'clm'};
+    var r=solveGrossForNet2026({kind:kind,targetType:targetType,target:target,pays:pays,contract:contract,birthYear:c.birthYear,situation:c.situation,numDesc:c.numDesc,under3:c.under3,descShare:c.descShare,disability:c.disability,ccaa:c.ccaa,taxable:true}),diff=r.ann.irpf-r.wh.annual;
     var html=rr(targetType==='bank'?(kind==='salary'?'Neto ordinario objetivo por paga':'Neto objetivo por paga'):'Neto fiscal objetivo anual',fmtEUR(target))+
       rr(kind==='salary'?'Salario bruto anual necesario':'Pensión bruta anual necesaria',fmtEUR(r.gross),'g')+rr('Bruto por paga',fmtEUR(r.grossPay))+rr('Cotizaciones reales estimadas',fmtEUR(r.ss),'o')+rr('Tipo retención estimado',fmtPct(r.wh.rate),'o')+rr('Retención anual estimada',fmtEUR(r.wh.annual))+
       rr(kind==='salary'&&pays===14?'Neto estimado paga ordinaria':'Neto cobrado estimado por paga',fmtEUR(r.bank),'g')+(r.bankExtra!==null?rr('Neto estimado paga extraordinaria',fmtEUR(r.bankExtra),'g'):'')+
@@ -4187,9 +4210,14 @@ document.addEventListener('DOMContentLoaded', function(){
     if(tipo==='autonomo'){
       limite=Math.min(5750,bruto*0.30); aport=Math.min(aportInput,limite); var q0=calcCuotaIRPFBase(bruto,ccaa),q1=calcCuotaIRPFBase(Math.max(0,bruto-aport),ccaa); ahorro=q0-q1; ns=bruto-q0; nc=ns+ahorro; coste=aport-ahorro;
       if(aportInput>limite)warning='La aportación usada se limita a '+fmtEUR(limite)+' por los topes introducidos en el modelo.';
+      // Supuesto simplificado: el rendimiento neto introducido se trata como base liquidable (sin reducción art. 32.2.3º ni otras rentas).
+      // El tope de 5.750 € (1.500 + 4.250) exige aportar 4.250 € a un plan de pensiones de empleo simplificado (PPES) de autónomos (LIRPF art. 52.1).
+      warning+=(warning?' ':'')+'Supuesto simplificado: el rendimiento neto se trata como base liquidable, sin otras rentas ni reducciones. Por encima de 1.500 € solo cuenta lo aportado a un plan de empleo simplificado (PPES) de autónomos.';
     }else{
-      limite=Math.min(1500,bruto*0.30); aport=Math.min(aportInput,limite); var cn=function(b,p){return calcSalaryTax2026(b,ccaa,0,p).neto;}; ns=cn(bruto,0);nc=cn(bruto,aport);ahorro=nc-ns;coste=aport-ahorro;
-      if(aportInput>limite)warning='La aportación individual usada se limita a '+fmtEUR(limite)+' (máximo general 1.500 € y límite porcentual aproximado).';
+      // Límite art. 52.1 LIRPF: el menor de 1.500 € y el 30% de los rendimientos netos del trabajo (bruto − cotizaciones − gastos art. 19.2.f), no del bruto.
+      var ppSS=calcEmployeeSS2026(bruto,'indef'),ppRendNeto=Math.max(0,bruto-ppSS-Math.min(2000,Math.max(0,bruto-ppSS)));
+      limite=round2(Math.min(1500,ppRendNeto*0.30)); aport=Math.min(aportInput,limite); var cn=function(b,p){return calcSalaryTax2026(b,ccaa,0,p).neto;}; ns=cn(bruto,0);nc=cn(bruto,aport);ahorro=nc-ns;coste=aport-ahorro;
+      if(aportInput>limite)warning='La aportación individual usada se limita a '+fmtEUR(limite)+': el menor de 1.500 € y el 30% de tus rendimientos netos del trabajo ('+fmtEUR(ppRendNeto)+'), art. 52 LIRPF.';
     }
     var html=rr('Aportación anual al plan',fmtEUR(aport)); if(warning)html+='<div style="grid-column:1/-1;font-size:11px;color:#a35d00;background:rgba(240,160,112,.12);border-radius:6px;padding:6px 10px;margin-bottom:6px">⚠️ '+warning+'</div>';
     html+=rr('Neto estimado sin aportación',fmtEUR(ns))+rr('Neto estimado con aportación',fmtEUR(nc),'g')+rr('Ahorro fiscal estimado',fmtEUR(ahorro),'g')+rr('Coste real estimado de la aportación',fmtEUR(coste),'g')+rr('Ahorro por cada 100 € aportados',fmtEUR(ahorro/Math.max(aport,1)*100),'g');
