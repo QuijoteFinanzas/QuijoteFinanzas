@@ -7,7 +7,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 from glosario_data import TERMS
 BASE = 'https://quijotefinanzas.com'
-UPDATED = '2026-10-30'
+UPDATED = '2026-11-02'
 E = lambda t: html.escape(t, quote=True)
 BY = {t['slug']: t for t in TERMS}
 H1 = {'tae':'la TAE (Tasa Anual Equivalente)','tin':'el TIN (Tipo de Interés Nominal)','euribor':'el Euríbor','interes-compuesto':'el interés compuesto','fondo-indexado':'un fondo indexado','etf':'un ETF (fondo cotizado)','irpf':'el IRPF','inflacion':'la inflación','fondo-garantia-depositos':'el Fondo de Garantía de Depósitos (FGD)','deposito-plazo-fijo':'un depósito a plazo fijo'}
@@ -55,7 +55,7 @@ def term_page(t):
 <h2>Preguntas frecuentes</h2>{faq}
 <h2>Términos relacionados</h2><div class="related">{rel}<a href="/glosario/">Ver glosario completo</a></div>
 {src}
-<p class="notice">Contenido educativo y general. No es asesoramiento financiero ni fiscal personalizado. Revisado el <time datetime="{UPDATED}">30 de octubre de 2026</time>.</p>
+<p class="notice">Contenido educativo y general. No es asesoramiento financiero ni fiscal personalizado. Revisado el <time datetime="{UPDATED}">2 de noviembre de 2026</time>.</p>
 </article>
 {CTA}'''
     ld = {"@context":"https://schema.org","@graph":[

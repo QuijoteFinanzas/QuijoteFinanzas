@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Genera el menú principal (una sola fuente) y lo inserta en todas las páginas.
-Uso: python3 scripts/build-nav.py   (ejecutar también tras build-glosario.py / build-calendario.js)"""
+Uso: python3 scripts/build-nav.py   (ejecutar también tras build-glosario.py)"""
 import os,re
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # (clave, texto, sección de la home o None, url fuera de la home)
 GROUPS=[
  ('herramientas','Herramientas',[('calculadoras','Calculadoras','calculadoras','/#calculadoras'),('quijocartera','QuijoCartera','quijocartera','/#quijocartera'),('quijoexcel','QuijoExcel',None,'/?qfopen=quijoexcel&amp;src=menu#recursos')]),
  ('comparativas','Comparativas',[('cuentas','QuijoCuentas','cuentas','/#cuentas'),('quijolista','QuijoLista','quijolista','/#quijolista')]),
- ('aprende','Aprende',[('glosario','QuijoGlosario',None,'/glosario/'),('teca','QuijoTeca','teca','/#teca'),('calendario','Calendario financiero',None,'/calendario-financiero/')]),
+ ('aprende','Aprende',[('glosario','QuijoGlosario',None,'/glosario/'),('teca','QuijoTeca','teca','/#teca')]),
  ('recursos','Recursos',[('recursos','Recursos y descargas','recursos','/#recursos'),('colaboraciones','Colaboraciones',None,'/colaboraciones/'),('referidos','Referidos','referidos','/#referidos')]),
 ]
 def item(k,t,sec,url,home,cur):
@@ -25,7 +25,7 @@ def nav(home=False,cur=None):
     o.append('          <li>'+sobre+'</li>')
     o+=['        </ul>','      </nav>','    </div>']
     return '\n'.join(o)
-PAGES={'index.html':(True,None),'calendario-financiero/index.html':(False,'calendario'),'scripts/calendario-template.html':(False,'calendario'),'colaboraciones/index.html':(False,'colaboraciones'),'recursos/checklist-primer-fondo-indexado/index.html':(False,None),'scripts/glosario-shell-top.html':(False,'glosario')}
+PAGES={'index.html':(True,None),'colaboraciones/index.html':(False,'colaboraciones'),'recursos/checklist-primer-fondo-indexado/index.html':(False,None),'scripts/glosario-shell-top.html':(False,'glosario')}
 for d in os.listdir(os.path.join(ROOT,'glosario')):
     if os.path.exists(os.path.join(ROOT,'glosario',d,'index.html')): PAGES[f'glosario/{d}/index.html']=(False,'glosario')
 PAGES['glosario/index.html']=(False,'glosario')

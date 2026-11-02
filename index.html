@@ -1615,7 +1615,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:9px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261030d"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261102a"></script>
 <style>
 /* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
 :root{--focus-ring:#8b6a15}
@@ -1686,7 +1686,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
           <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-comparativas">Comparativas</button>
             <ul class="qf-menu-sub" id="qf-sub-comparativas" role="menu"><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="cuentas">QuijoCuentas</button></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="quijolista">QuijoLista</button></li></ul></li>
           <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-aprende">Aprende</button>
-            <ul class="qf-menu-sub" id="qf-sub-aprende" role="menu"><li><a class="nav-btn qf-menu-link" role="menuitem" href="/glosario/">QuijoGlosario</a></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="teca">QuijoTeca</button></li><li><a class="nav-btn qf-menu-link" role="menuitem" href="/calendario-financiero/">Calendario financiero</a></li></ul></li>
+            <ul class="qf-menu-sub" id="qf-sub-aprende" role="menu"><li><a class="nav-btn qf-menu-link" role="menuitem" href="/glosario/">QuijoGlosario</a></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="teca">QuijoTeca</button></li></ul></li>
           <li class="qf-menu-group"><button class="nav-btn qf-menu-top" type="button" aria-expanded="false" aria-controls="qf-sub-recursos">Recursos</button>
             <ul class="qf-menu-sub" id="qf-sub-recursos" role="menu"><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="recursos">Recursos y descargas</button></li><li><a class="nav-btn qf-menu-link" role="menuitem" href="/colaboraciones/">Colaboraciones</a></li><li><button class="nav-btn qf-menu-link" type="button" role="menuitem" data-section="referidos">Referidos</button></li></ul></li>
           <li><button class="nav-btn qf-menu-top active" type="button" data-section="sobre">Sobre el proyecto</button></li>
@@ -1923,47 +1923,6 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
   <section id="recursos" class="section" >
     <div class="section-header"><div class="section-kicker">Herramientas y recursos</div><h2>Recursos</h2><p>Herramientas que uso yo mismo y comparto contigo.</p><div class="divider"></div></div>
-    <!-- Calendario financiero: próximas fechas (lee /assets/calendario/AAAA-MM.json) -->
-    <a id="cal-teaser" class="cal-teaser" href="/calendario-financiero/">
-      <span class="cal-teaser-head"><strong>Próximas fechas</strong><span>Ver calendario →</span></span>
-      <ul id="cal-teaser-list"><li>IPC, BCE, Euríbor y plazos de Hacienda del mes.</li></ul>
-    </a>
-    <style>
-    .cal-teaser{display:block;text-decoration:none;color:var(--navy);background:#fff;border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:12px;padding:14px 18px;margin:0 0 22px;transition:box-shadow .16s ease}
-    .cal-teaser:hover{box-shadow:var(--shadow-soft)}
-    .cal-teaser-head{display:flex;justify-content:space-between;gap:10px;font-size:13px;margin-bottom:6px}
-    .cal-teaser-head strong{font-weight:700}.cal-teaser-head span{color:#7a5f14;font-weight:600}
-    .cal-teaser ul{list-style:none;margin:0;padding:0;font-size:13px;color:#4f6175;display:grid;gap:4px}
-    .cal-teaser li b{display:inline-block;min-width:58px;color:var(--navy);font-weight:700}
-    html[data-theme="dark"] .cal-teaser{background:#182638;border-color:#33485e;border-left-color:var(--gold)}
-    html[data-theme="dark"] .cal-teaser,html[data-theme="dark"] .cal-teaser li b{color:#edf3f8}
-    html[data-theme="dark"] .cal-teaser ul{color:#b9c9d8}html[data-theme="dark"] .cal-teaser-head span{color:#d7b85d}
-    </style>
-    <script>
-    (function(){
-      var M=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-      function p2(n){return (n<10?'0':'')+n;}
-      var d=new Date(),today=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
-      var n=new Date(d.getFullYear(),d.getMonth()+1,1);
-      var want=[today.slice(0,7),n.getFullYear()+'-'+p2(n.getMonth()+1)],all=[],done=0;
-      function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-      function render(){
-        var up=all.filter(function(e){return e.fecha>=today && e.categoria!=='Resultados';}).sort(function(a,b){return (a.fecha+(a.hora||'')).localeCompare(b.fecha+(b.hora||''));}).slice(0,3);
-        if(!up.length) return;
-        document.getElementById('cal-teaser-list').innerHTML=up.map(function(e){
-          return '<li><b>'+(+e.fecha.slice(8,10))+' '+M[+e.fecha.slice(5,7)-1]+'</b>'+esc(e.titulo)+(e.verificado?'':' (pendiente de confirmar)')+'</li>';
-        }).join('');
-      }
-      if(!window.fetch) return;
-      fetch('/assets/calendario/meses.json').then(function(r){return r.ok?r.json():[];}).then(function(av){
-        var months=want.filter(function(m){return av.indexOf(m)>=0;});
-        months.forEach(function(m){
-          fetch('/assets/calendario/'+m+'.json').then(function(r){return r.ok?r.json():[];})
-            .then(function(a){all=all.concat(a||[]);if(++done===months.length)render();});
-        });
-      }).catch(function(){});
-    })();
-    </script>
     <div class="recursos-grid">
       <div class="recurso-card featured" onclick="openExcelModal('recursos')" style="cursor:pointer;">
         <span class="recurso-icon">&#128202;</span>
@@ -2151,22 +2110,22 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 
   <details class="cuentas-changelog">
     <summary>
-      <span class="cuentas-changelog-title"><span>Qué ha cambiado en octubre</span></span>
+      <span class="cuentas-changelog-title"><span>Qué ha cambiado en noviembre</span></span>
       <span class="cuentas-changelog-action"><span>Ver cambios</span></span>
     </summary>
     <div class="cuentas-changelog-body">
       <ul>
-        <li><strong>Nueva sección de Promociones bancarias:</strong> separamos los incentivos por nómina, Bizum, recibos o apertura de cuenta de la remuneración tradicional.</li>
-        <li><strong>Revisión completa de cuentas y cuentas nómina</strong> tras el cierre o cambio de varias campañas de septiembre.</li>
-        <li><strong>Depósitos actualizados y reordenados</strong> para reflejar los tipos, plazos y condiciones publicados para octubre.</li>
-        <li><strong>Ofertas caducadas fuera:</strong> mantenemos solo promociones que hemos podido confirmar como vigentes y enlazamos siempre a la fuente oficial.</li>
+        <li><strong>Nuevas alternativas en cuentas:</strong> incorporamos Monzo, Bankinter Digital y Unicaja en el bloque sin vinculación recurrente, y bunq en el bloque condicionado por su sistema de umbral.</li>
+        <li><strong>Cuentas nómina:</strong> añadimos la Cuenta Nómina Vamos de Ibercaja y la promoción de hasta 570 € de Unicaja.</li>
+        <li><strong>Depósitos:</strong> corregimos el Gran Depósito de Banco BiG a 3 meses y 4,00% TAE; la última vigencia oficial del Depósito Premium de MyInvestor terminó el 31/10 y deja de mostrarse hasta confirmar una prórroga.</li>
+        <li><strong>Caducidades más robustas:</strong> al desaparecer una oferta por fecha, el ranking se renumera automáticamente para evitar huecos.</li>
       </ul>
       <div class="cuentas-snapshot" aria-label="Resumen de QuijoCuentas generado a partir de los datos actuales">
         <div class="cuentas-snapshot-title">Foto rápida</div>
         <div class="cuentas-snapshot-grid" id="qc-snapshot"></div>
         <p class="cuentas-snapshot-note">Resumen orientativo del primer resultado o incentivo de cada bloque. Las categorías no son equivalentes: revisa saldo, plazo, requisitos y fuente oficial antes de comparar.</p>
       </div>
-      <p class="cuentas-changelog-date">Última revisión completa: <span id="qc-review-date">30/10/2026</span>. Si detectas una condición distinta, escríbenos y la revisamos.</p>
+      <p class="cuentas-changelog-date">Última revisión completa: <span id="qc-review-date">02/11/2026</span>. Si detectas una condición distinta, escríbenos y la revisamos.</p>
     </div>
   </details>
 
@@ -2261,10 +2220,15 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
         <div class="ref-info"><h3>HSN</h3><p>Suplementaci&oacute;n deportiva y nutrici&oacute;n de calidad</p><p class="ref-meta">Descuento en tu primer pedido</p></div>
         <span class="ref-bonus">5 &euro; descuento</span>
       </a>
-      <a class="ref-card" href="https://es.igraal.com/padrinazgo?padrino=AG_67a5df416b087" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+      <a class="ref-card" href="https://es.igraal.com/padrinazgo?padrino=1PXWWPcQ&amp;utm_medium=inf&amp;utm_source=premium" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=igraal.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
-        <div class="ref-info"><h3>iGraal</h3><p>Cashback en compras online &mdash; ahorra en lo que ya gastas</p><p class="ref-meta">Cashback autom&aacute;tico en cientos de tiendas</p></div>
-        <span class="ref-bonus">3 &euro; + cashback</span>
+        <div class="ref-info"><h3>iGraal</h3><p>Cashback en compras online &mdash; ahorra en lo que ya gastas</p><p class="ref-meta">10&nbsp;&euro; de bienvenida al unirte con mi enlace + cashback en tiendas adheridas</p></div>
+        <span class="ref-bonus">10&nbsp;&euro; + cashback</span>
+      </a>
+      <a class="ref-card" href="https://naiss.com/app/invite?code=D6UGJ3" data-cat="otros" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge otros">Otros</span>
+        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=naiss.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">N</span></div>
+        <div class="ref-info"><h3>Naiss</h3><p>Comparte coche con tu gente, reparte gastos y registra tus trayectos</p><p class="ref-meta">Los viajes compartidos elegibles pueden generar sparkies que despu&eacute;s se convierten en euros &middot; sujeto a las condiciones de Naiss</p></div>
+        <span class="ref-bonus">20 sparkies de regalo</span>
       </a>
 <div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=ing.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
@@ -2381,7 +2345,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
       <a href="#" onclick="goTo('quijolista');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">QuijoLista</a>
       <a href="#" onclick="goTo('quijocartera');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">QuijoCartera</a>
       <a href="#" onclick="goTo('recursos');return false;" style="font-size:12px;color:var(--muted);text-decoration:none">Recursos</a>
-      <a href="/calendario-financiero/" style="font-size:12px;color:var(--muted);text-decoration:none">Calendario financiero</a>
+      
       <a href="/colaboraciones/" style="font-size:12px;color:var(--muted);text-decoration:none">Colaboraciones</a>
       <a href="/glosario/" style="font-size:12px;color:var(--muted);text-decoration:none">Glosario</a>
       <a href="sobre-el-proyecto.html" style="font-size:12px;color:var(--muted);text-decoration:none">Sobre el proyecto</a>
@@ -3573,7 +3537,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(window._cmpChart)window._cmpChart.destroy();window._cmpChart=new Chart(document.getElementById('cmp-chart').getContext('2d'),{type:'bar',data:{labels:['Oferta A','Oferta B'],datasets:[{label:'Valor total estimado',data:[+A.total.toFixed(2),+B.total.toFixed(2)],backgroundColor:['rgba(201,168,76,.65)','rgba(125,211,168,.65)'],borderColor:['#c9a84c','#7dd3a8'],borderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmtEUR(c.raw);}}}},scales:{x:{ticks:{color:'rgba(184,200,216,.7)'},grid:{display:false}},y:{ticks:{color:'rgba(184,200,216,.7)',callback:function(v){return fmtEUR(v);}},grid:{color:'rgba(255,255,255,.07)'}}}}});
   };
 
-  // ── QuijoCuentas · actualización octubre 2026 ──────────────────────────────
+  // ── QuijoCuentas · actualización noviembre 2026 ──────────────────────────────
   // Fuente única: /assets/quijocuentas-data.js. Promociones en efectivo se
   // muestran separadas y NO constituyen un ranking ni posiciones patrocinadas.
   var cuentasData = window.QF_CUENTAS_DATA || [];
@@ -3646,7 +3610,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!container) return;
     if (!filtered.length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
 
-    var mes = (window.QF_CUENTAS_UPDATED || "30/10/2026");
+    var mes = (window.QF_CUENTAS_UPDATED || "02/11/2026");
     var esNomina = cuentasTab === "nomina";
     var esDeposito = cuentasTab.indexOf('dep-') === 0;
     var esPromo = cuentasTab === 'promo';

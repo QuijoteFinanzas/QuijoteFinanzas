@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Comprueba que el menú principal tiene el mismo orden en todas las páginas."""
 import re,sys,glob
-ORDER=['Herramientas','Calculadoras','QuijoCartera','QuijoExcel','Comparativas','QuijoCuentas','QuijoLista','Aprende','QuijoGlosario','QuijoTeca','Calendario financiero','Recursos','Recursos y descargas','Colaboraciones','Referidos','Sobre el proyecto']
+ORDER=['Herramientas','Calculadoras','QuijoCartera','QuijoExcel','Comparativas','QuijoCuentas','QuijoLista','Aprende','QuijoGlosario','QuijoTeca','Recursos','Recursos y descargas','Colaboraciones','Referidos','Sobre el proyecto']
 bad=0
 for f in sorted(set(glob.glob('**/*.html',recursive=True)+glob.glob('scripts/*.html'))):
     s=open(f,encoding='utf8').read()
