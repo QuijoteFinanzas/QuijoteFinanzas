@@ -1,0 +1,35 @@
+name: Validacion del sitio
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Estructura, datos y enlaces
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validar sitio
+        run: python scripts/validate-site.py
+
+      - name: Validar navegacion
+        run: python scripts/check-nav.py
