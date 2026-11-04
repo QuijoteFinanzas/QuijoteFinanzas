@@ -1,0 +1,38 @@
+name: Revision visual Impeccable
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: impeccable-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  design-review:
+    name: Diseno y anti-patrones
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Revisar home con Impeccable
+        continue-on-error: true
+        run: npx --yes impeccable@3.5.0 detect --github index.html
+
+      - name: Nota sobre el resultado
+        if: always()
+        run: echo "La revision de Impeccable es informativa. PRODUCT.md y DESIGN.md definen las decisiones deliberadas de QuijoteFinanzas."
