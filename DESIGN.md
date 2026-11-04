@@ -145,7 +145,7 @@ Mobile:
 ## Borders, Radius and Shadow
 - Borders: light, low-contrast structural separators.
 - Radius: moderate (roughly 6-14px depending on component), not pill-shaped by default.
-- Shadows: reserved for floating/overlapping product captures and overlays; avoid shadow on every card.
+- Shadows: reserved for floating/overlapping product captures and overlays; use neutral black/gray elevation rather than navy or gold glows, and avoid shadow on every card.
 
 ## Copy Style in UI
 Use concrete, factual Spanish.
