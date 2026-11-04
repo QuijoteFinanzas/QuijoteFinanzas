@@ -30,7 +30,8 @@ Use Playfair Display for major editorial headings and section titles.
 ### Body / UI
 Use DM Sans for paragraphs, navigation, controls, labels and data UI.
 - Body text should normally be 14-17px depending on context.
-- Avoid auxiliary text below 11px.
+- Functional UI text must be at least 11px; prefer 12px or more whenever space allows.
+- Body and explanatory text should normally be at least 12-14px; primary body copy remains 14-17px.
 - Important explanatory text should normally be at least 12-13px.
 - Do not use tiny text to make dense layouts fit; simplify or reflow instead.
 
@@ -183,6 +184,7 @@ Dark mode is supported and should retain the same hierarchy rather than becoming
 
 ## Accessibility
 - WCAG 2.1 AA target.
+- Body-size text on light surfaces must reach at least 4.5:1 contrast; use darker gold/blue-gray text variants while keeping brand gold for borders, fills and decoration.
 - Visible keyboard focus on every interactive control.
 - Semantic buttons for actions and anchors for navigation where practical.
 - Images have useful alt text when informative; decorative images use empty alt.
