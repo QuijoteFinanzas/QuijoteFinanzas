@@ -221,3 +221,11 @@ Before shipping a visual change:
 8. Are financial data, dates and assumptions accurate?
 9. Does QuijoCartera remain percentage-only publicly?
 10. Would this still look intentional if the Impeccable/anti-slop score did not exist?
+
+
+## Required four-view verification
+Every visual change must be checked at desktop (1280 × 844) and mobile (390 × 844), each in light and dark mode. Check the rendered page with its shared styles, not only source warnings. Inspect screenshots before and after publication. Deliver a before/after image using the same viewport, theme and crop. Wait for visible images and fonts before capturing.
+
+The automated render report records pages without theme support as unsupported, not as a passing dark view. Legacy legal/about pages currently need separate theme work; do not silently redesign them to satisfy the detector. Keep portfolio amounts private, existing Kit flows and financial data unchanged.
+
+Impeccable findings are diagnostic, not instructions to replace brand typography, gold/navy, editorial hierarchy or deliberate product screenshot composition. Review functional text and actual contrast first.
