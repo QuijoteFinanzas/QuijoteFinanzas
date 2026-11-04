@@ -1,0 +1,3 @@
+/* Shared small-label contrast. No layout, data or calculator logic changes. */
+html[data-theme="dark"] body .kicker,
+html[data-theme="dark"] body .qf-assumptions .qf-assumptions-kicker{color:#d7b85d}
