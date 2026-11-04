@@ -29,9 +29,29 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Revisar home con Impeccable
+      - name: Revisar todas las fuentes con Impeccable
         continue-on-error: true
-        run: npx --yes impeccable@3.5.0 detect --github index.html
+        run: npx --yes impeccable@3.5.0 detect --github .
+
+      - name: Preparar comprobacion renderizada
+        run: |
+          npm install --prefix /tmp/qf-design --ignore-scripts --no-audit --no-fund playwright@1.64.1 impeccable@3.5.0
+          /tmp/qf-design/node_modules/.bin/playwright install --with-deps chromium
+
+      - name: PC y movil en claro y oscuro
+        env:
+          PLAYWRIGHT_MODULE: /tmp/qf-design/node_modules/playwright
+          IMPECCABLE_BROWSER_SCRIPT: /tmp/qf-design/node_modules/impeccable/cli/engine/detect-antipatterns-browser.js
+          DESIGN_REPORT_DIR: /tmp/qf-design-report
+        run: node scripts/design-render-check.cjs
+
+      - name: Guardar capturas y cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-four-views
+          path: /tmp/qf-design-report
+          retention-days: 7
 
       - name: Nota sobre el resultado
         if: always()
