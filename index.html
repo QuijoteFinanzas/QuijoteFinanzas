@@ -3440,6 +3440,8 @@ document.addEventListener('DOMContentLoaded', function(){
       else if (id==='tiempo') calcTiempo();
       else if (id==='autonomos') calcAutonomos();
 
+      // Las calculadoras 2.0 actualizan tambien su panel de resultado; qfRunCalc2 no actua sobre el resto.
+      if (typeof window.qfRunCalc2==='function') window.qfRunCalc2(id);
       // Evento canónico: resultado solicitado/actualizado por el usuario.
       try {
         var calcLabel = (typeof calcNames !== 'undefined' && calcNames[id]) || id;
@@ -6331,6 +6333,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
     if(id==='jubilacion'&&typeof window.calcJubilacion==='function'){window.calcJubilacion();updateFireHero();}
     if(id==='tiempo'&&typeof window.calcTiempo==='function'){window.calcTiempo();updateTiempoHero();}
   }
+  window.qfRunCalc2=runCalc2; // expone el recalculo para embed y para el boton Actualizar
   function scheduleCalc2(id){clearTimeout(calc2Timer);calc2Timer=setTimeout(function(){runCalc2(id);},120);}
 
   document.querySelectorAll('.qf-range').forEach(function(r){
@@ -7113,6 +7116,8 @@ html[data-theme="dark"] #cookie-ball{background:#182638!important;border-color:#
     modal.classList.add('qf-embed-target','open');
     document.body.style.overflow='auto';
     setTimeout(function(){applyPreset();sendHeight();},180);
+    // El embed abre el modal sin openCalc (calculo inicial); sin esto el panel cargaba vacio.
+    setTimeout(function(){if(typeof window.qfRunCalc2==='function')window.qfRunCalc2(calcId);},120);
     if(window.ResizeObserver){var ro=new ResizeObserver(function(){sendHeight();});ro.observe(modal);}
     else setInterval(sendHeight,700);
     document.addEventListener('click',function(e){
