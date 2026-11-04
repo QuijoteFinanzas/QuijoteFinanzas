@@ -144,3 +144,10 @@ html[data-theme="dark"] body .home-v3-path-num,
 html[data-theme="dark"] body .kicker{color:#d7b85d}
 html[data-theme="dark"] body .home-newsletter-note,
 html[data-theme="dark"] body .home-v3-contact-list small{color:#b9c9d8}
+
+/* Inline legacy footer colours must not override its existing dark theme. */
+html[data-theme="dark"] body>footer{background:#101a26!important;border-top-color:#2d4255!important}
+html[data-theme="dark"] body>footer a{color:#b9c9d8!important}
+html[data-theme="dark"] body>footer>a,
+html[data-theme="dark"] body>footer a div[style*="Playfair"]{color:#edf3f8!important}
+html[data-theme="dark"] body>footer>div:last-child{border-top-color:#2d4255!important;color:#b9c9d8!important}
