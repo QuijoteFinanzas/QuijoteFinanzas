@@ -137,3 +137,10 @@ html[data-theme="dark"] body #calculadoras .coming{background:#1c2c40;border-col
 body .calc-cta{flex-wrap:wrap}
 body .calc-cta-links{flex-shrink:1;min-width:0;max-width:100%}
 body .calc-cta-links>div{min-width:0;max-width:100%;flex-wrap:wrap}
+
+/* Readable small labels and supporting copy on dark home surfaces. */
+html[data-theme="dark"] body .home-v3-eyebrow,
+html[data-theme="dark"] body .home-v3-path-num,
+html[data-theme="dark"] body .kicker{color:#d7b85d}
+html[data-theme="dark"] body .home-newsletter-note,
+html[data-theme="dark"] body .home-v3-contact-list small{color:#b9c9d8}
