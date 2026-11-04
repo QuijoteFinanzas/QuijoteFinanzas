@@ -25,3 +25,39 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
+
+/* Keyboard access for calculator cards and modal focus. Embedded calculators stay unchanged. */
+(function(){
+  function initCalculatorAccess(){
+    if(document.documentElement.classList.contains('qf-embed-root'))return;
+    var returnTo=new WeakMap();
+    document.querySelectorAll('.calc-item.clickable[data-calc]').forEach(function(card){
+      var label=card.querySelector('.live');if(!label||label.tagName==='BUTTON')return;
+      var button=document.createElement('button');button.type='button';button.className=label.className;
+      button.innerHTML=label.innerHTML;button.setAttribute('aria-label','Abrir '+(card.querySelector('.calc-name')||card).textContent.trim());
+      button.style.cssText='border:0;background:none;font-family:inherit;cursor:pointer;padding:0';
+      label.replaceWith(button);button.addEventListener('click',function(e){e.stopPropagation();var modal=document.getElementById('modal-'+card.dataset.calc);if(modal)returnTo.set(modal,button);window.openCalc(card.dataset.calc)});
+      card.addEventListener('click',function(e){if(e.target.closest('a'))return;var modal=document.getElementById('modal-'+card.dataset.calc);if(modal)returnTo.set(modal,button)},true);
+    });
+    document.querySelectorAll('.calc-overlay').forEach(function(overlay){
+      var dialog=overlay.querySelector('.calc-modal'),title=overlay.querySelector('h2');if(!dialog)return;
+      dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');dialog.tabIndex=-1;
+      if(title){if(!title.id)title.id=overlay.id+'-title';dialog.setAttribute('aria-labelledby',title.id)}
+      var opened=false;
+      new MutationObserver(function(){
+        var now=overlay.classList.contains('open');if(now===opened)return;opened=now;
+        if(now){if(!returnTo.has(overlay)&&document.activeElement!==document.body)returnTo.set(overlay,document.activeElement);var close=dialog.querySelector('.calc-close');(close||dialog).focus({preventScroll:true})}
+        else{var back=returnTo.get(overlay);if(back&&back.isConnected)back.focus({preventScroll:true});returnTo.delete(overlay)}
+      }).observe(overlay,{attributes:true,attributeFilter:['class']});
+      overlay.addEventListener('keydown',function(e){
+        if(e.key!=='Tab'||!overlay.classList.contains('open'))return;
+        var nested=document.activeElement.closest('[role="dialog"]');if(nested&&nested!==dialog)return;
+        var items=[].slice.call(dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]')).filter(function(x){return x.getClientRects().length&&getComputedStyle(x).visibility!=='hidden'});
+        var first=items[0],last=items[items.length-1];if(!first){e.preventDefault();dialog.focus();return}
+        if(e.shiftKey&&(document.activeElement===first||document.activeElement===dialog)){e.preventDefault();last.focus()}
+        else if(!e.shiftKey&&(document.activeElement===last||document.activeElement===dialog)){e.preventDefault();first.focus()}
+      });
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initCalculatorAccess);else initCalculatorAccess();
+})();
