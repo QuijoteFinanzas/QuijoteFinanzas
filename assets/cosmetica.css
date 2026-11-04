@@ -116,3 +116,19 @@ html[data-theme="dark"] .lead a{color:#d7b85d}
     transition:none;
   }
 }
+
+/* Readability: scoped home spacing and status labels, without layout redesign. */
+body #calculadoras .coming{color:#526a80}
+html[data-theme="dark"] body .home-v3-brandnote,
+html[data-theme="dark"] body .home-v3-proof,
+html[data-theme="dark"] body .home-v3-value span,
+html[data-theme="dark"] body .home-v3-principle span,
+html[data-theme="dark"] body .home-v3-shot-caption strong{color:#b9c9d8}
+html[data-theme="dark"] body .cuentas-changelog summary{color:#edf3f8}
+html[data-theme="dark"] body #calculadoras .coming{background:#1c2c40;border-color:#3a5065;color:#b9c9d8}
+@media(max-width:980px){
+  body.show-home-intro header.home-v3-hero{padding-left:24px;padding-right:24px}
+}
+@media(max-width:720px){
+  body.show-home-intro header.home-v3-hero{padding-left:18px;padding-right:18px}
+}
