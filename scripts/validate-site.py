@@ -236,7 +236,7 @@ def check_quijolista() -> None:
         if tipo in {"Fondo", "ETF", "ETC"} and isin_m and re.fullmatch(r"[A-Z]{2}[A-Z0-9]{10}", isin_m.group(1)):
             if 'coste:null' in obj or 'costeFuente:null' in obj:
                 missing_cost.append(f"{name} [{isin_m.group(1)}]")
-        if "Pendiente de verificar" in obj or "pendiente de verificar" in obj:
+        if re.search(r"pendientes? de verificar", obj, re.I):
             warn(f"QuijoLista contiene un pendiente explícito: {name}")
     dup = [x for x, n in Counter(isins).items() if n > 1]
     for isin in dup:
