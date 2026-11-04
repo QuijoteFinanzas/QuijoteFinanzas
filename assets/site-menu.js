@@ -61,3 +61,28 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initCalculatorAccess);else initCalculatorAccess();
 })();
+
+/* The Excel dialog is the top layer when opened from a calculator. */
+(function(){
+  function initExcelDialogAccess(){
+    if(document.documentElement.classList.contains('qf-embed-root'))return;
+    var overlay=document.getElementById('excel-modal-overlay'),dialog=document.getElementById('excel-modal');if(!overlay||!dialog)return;
+    overlay.style.zIndex='1400';
+    var opened=false,opener=null;
+    new MutationObserver(function(){
+      var now=overlay.classList.contains('open');if(now===opened)return;opened=now;
+      if(now){opener=document.activeElement;var input=dialog.querySelector('input');if(input)input.focus({preventScroll:true})}
+      else{if(document.querySelector('.calc-overlay.open'))document.body.style.overflow='hidden';if(opener&&opener.isConnected)opener.focus({preventScroll:true});opener=null}
+    }).observe(overlay,{attributes:true,attributeFilter:['class']});
+    document.addEventListener('keydown',function(e){
+      if(!overlay.classList.contains('open'))return;
+      if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();window.closeExcelModal();return}
+      if(e.key!=='Tab')return;
+      var items=[].slice.call(dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex="0"]')).filter(function(x){return x.getClientRects().length&&getComputedStyle(x).visibility!=='hidden'});
+      var first=items[0],last=items[items.length-1];if(!first)return;
+      if(!dialog.contains(document.activeElement)||(e.shiftKey&&document.activeElement===first)){e.preventDefault();(e.shiftKey?last:first).focus()}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+    },true);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initExcelDialogAccess);else initExcelDialogAccess();
+})();
