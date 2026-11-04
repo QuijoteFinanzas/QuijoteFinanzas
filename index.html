@@ -2003,7 +2003,11 @@ html[data-theme="dark"] #recursos .tag{background:#111d2b;border-color:#304154;c
 .home-v3-hero{background:#fff;border-bottom:1px solid var(--border);padding:72px 32px 26px;overflow:hidden}
 .home-v3-hero-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.88fr) minmax(520px,1.12fr);gap:58px;align-items:center}
 .home-v3-copy{padding:24px 0 42px}
-.home-v3-eyebrow{font-size:11px;line-height:1.2;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:#946d12;margin-bottom:18px}
+.home-v3-brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.home-v3-brandlogo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,.38);box-shadow:0 10px 24px rgba(15,32,53,.10);background:#fff;flex-shrink:0}
+.home-v3-brandtext{display:flex;flex-direction:column;gap:4px}
+.home-v3-eyebrow{font-size:11px;line-height:1.2;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:#946d12;margin:0}
+.home-v3-brandnote{font-size:12px;line-height:1.35;color:#6b8198;font-weight:600}
 .home-v3-title{font-family:'Playfair Display',serif;font-size:clamp(52px,5.8vw,82px);line-height:.94;letter-spacing:-.045em;color:var(--navy);margin:0 0 24px;max-width:620px}
 .home-v3-title span{display:block;position:relative;width:max-content;max-width:100%}
 .home-v3-title span::after{content:'';position:absolute;left:-2px;right:-8px;bottom:4px;height:10px;background:rgba(201,168,76,.30);z-index:0}
@@ -2042,14 +2046,14 @@ html[data-theme="dark"] #recursos .tag{background:#111d2b;border-color:#304154;c
 .home-v3-sectionhead .kicker,.home-v3-about .kicker,.home-v3-connect .kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#946d12;font-weight:800;margin-bottom:8px}
 .home-v3-sectionhead h2,.home-v3-about h2,.home-v3-newsletter h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:clamp(30px,3vw,42px);line-height:1.08;margin:0}
 .home-v3-sectionhead p{margin:0;max-width:460px;font-size:13px;line-height:1.65;color:#667e96;text-align:right}
-.home-v3-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:68px}
-.home-v3-path{padding:28px 34px 30px 0;border-bottom:1px solid var(--border)}
+.home-v3-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:68px;align-items:stretch}
+.home-v3-path{padding:28px 34px 30px 0;border-bottom:1px solid var(--border);display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;height:100%}
 .home-v3-path+.home-v3-path{padding-left:34px;border-left:1px solid var(--border)}
 .home-v3-path-num{font-size:10px;color:#a47b18;letter-spacing:.14em;font-weight:800;margin-bottom:22px}
 .home-v3-path h3{font-family:'Playfair Display',serif;font-size:25px;line-height:1.15;margin:0 0 9px;color:var(--navy)}
 .home-v3-path p{font-size:12px;line-height:1.6;color:#6b8198;margin:0 0 18px;min-height:58px}
-.home-v3-pathlinks{border-top:1px solid #e7ecf1}
-.home-v3-link{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border:0;border-bottom:1px solid #e7ecf1;background:transparent;color:var(--navy);font:700 12px 'DM Sans',sans-serif;text-decoration:none;cursor:pointer;text-align:left}
+.home-v3-pathlinks{border-top:1px solid #e7ecf1;display:grid;grid-template-rows:repeat(3,minmax(56px,auto));align-content:start}
+.home-v3-link{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;min-height:56px;border:0;border-bottom:1px solid #e7ecf1;background:transparent;color:var(--navy);font:700 12px 'DM Sans',sans-serif;text-decoration:none;cursor:pointer;text-align:left}
 .home-v3-link span:last-child{color:#a47b18;font-size:15px;font-weight:500}
 .home-v3-link:hover{color:#946d12}
 
@@ -2087,7 +2091,7 @@ html[data-theme="dark"] #recursos .tag{background:#111d2b;border-color:#304154;c
   .home-v3-about{grid-template-columns:1fr;gap:35px}.home-v3-connect{grid-template-columns:1fr}.home-v3-contact{border-left:0;border-top:1px solid var(--border)}
 }
 @media(max-width:720px){
-  .home-v3-hero{padding:42px 18px 20px}.home-v3-title{font-size:52px}.home-v3-lead{font-size:15px}.home-v3-proof{gap:8px 0}.home-v3-proof span{width:100%;padding:3px 0;border:0}
+  .home-v3-hero{padding:42px 18px 20px}.home-v3-brand{gap:12px;margin-bottom:18px}.home-v3-brandlogo{width:48px;height:48px}.home-v3-brandnote{font-size:11px}.home-v3-title{font-size:52px}.home-v3-lead{font-size:15px}.home-v3-proof{gap:8px 0}.home-v3-proof span{width:100%;padding:3px 0;border:0}
   .home-v3-visual{min-height:470px}.home-v3-shot.accounts{width:94%;right:3%}.home-v3-shot.portfolio{width:78%;right:0;bottom:0}.home-v3-shot.portfolio img{max-height:340px}
   .home-v3-value{grid-template-columns:1fr;margin-top:16px}.home-v3-value>div,.home-v3-value>div:first-child{padding:13px 0;border-left:0;border-bottom:1px solid var(--border)}
   #sobre.home-v3-section{padding:48px 18px 28px}.home-v3-sectionhead{align-items:flex-start;flex-direction:column;gap:10px}.home-v3-sectionhead p{text-align:left}
@@ -2112,7 +2116,13 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
 <header class="home-v3-hero">
   <div class="home-v3-hero-inner">
     <div class="home-v3-copy">
-      <div class="home-v3-eyebrow">Don Quijote de las Finanzas</div>
+      <div class="home-v3-brand">
+        <img class="home-v3-brandlogo" src="logo.png" alt="Logo de Don Quijote de las Finanzas" width="56" height="56" loading="eager">
+        <div class="home-v3-brandtext">
+          <div class="home-v3-eyebrow">Don Quijote de las Finanzas</div>
+          <div class="home-v3-brandnote">Proyecto editorial y herramientas propias</div>
+        </div>
+      </div>
       <h1 class="home-v3-title">Menos ruido.<span><em>Más criterio.</em></span></h1>
       <p class="home-v3-lead">Herramientas, comparativas y recursos para entender mejor tus finanzas y tomar decisiones con los datos, supuestos y condiciones a la vista.</p>
       <div class="home-v3-actions">
