@@ -132,3 +132,8 @@ html[data-theme="dark"] body #calculadoras .coming{background:#1c2c40;border-col
 @media(max-width:720px){
   body.show-home-intro header.home-v3-hero{padding-left:18px;padding-right:18px}
 }
+
+/* Keep calculator actions inside narrow modals instead of clipping links. */
+body .calc-cta{flex-wrap:wrap}
+body .calc-cta-links{flex-shrink:1;min-width:0;max-width:100%}
+body .calc-cta-links>div{min-width:0;max-width:100%;flex-wrap:wrap}
