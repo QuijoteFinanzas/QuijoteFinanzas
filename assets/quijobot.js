@@ -87,7 +87,7 @@ html[data-theme="dark"] .qjb-nudge-close:hover{background:#223449;color:#fff}
   .qjb-launch,.qjb-launch img{width:56px;height:56px}
   .qjb-status{width:12px;height:12px;right:1px;bottom:2px}
   .qjb-tooltip{display:none}
-  .qjb-nudge{right:64px;bottom:0;width:min(220px,calc(100vw - 96px));font-size:11px}
+  .qjb-nudge{right:0;bottom:66px;width:min(240px,calc(100vw - 108px));font-size:11px}
   .qjb-panel{position:fixed;right:10px;left:10px;bottom:78px;width:auto;height:min(560px,calc(100vh - 98px));border-radius:15px}
 }
 @media(prefers-reduced-motion:reduce){.qjb-launch,.qjb-link,.qjb-tooltip,.qjb-nudge{transition:none}.qjb-feed{scroll-behavior:auto}.qjb-dot{animation:none}}
