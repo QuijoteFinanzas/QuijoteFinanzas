@@ -2063,7 +2063,7 @@ html[data-theme="dark"] #recursos .tag{background:#111d2b;border-color:#304154;c
 .home-v3-sectionhead h2,.home-v3-about h2,.home-v3-newsletter h2{font-family:'Playfair Display',serif;color:var(--navy);font-size:clamp(30px,3vw,42px);line-height:1.08;margin:0}
 .home-v3-sectionhead p{margin:0;max-width:460px;font-size:14px;line-height:1.65;color:#5d7690;text-align:right}
 .home-v3-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:68px;align-items:stretch}
-.home-v3-path{padding:28px 34px 30px 0;border-bottom:1px solid var(--border);display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;height:100%}
+.home-v3-path{padding:28px 34px 30px 0;border-bottom:1px solid var(--border);display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}
 .home-v3-path+.home-v3-path{padding-left:34px;border-left:1px solid var(--border)}
 .home-v3-path-num{font-size:11px;color:#946d12;letter-spacing:.13em;font-weight:800;margin-bottom:22px}
 .home-v3-path h3{font-family:'Playfair Display',serif;font-size:25px;line-height:1.15;margin:0 0 9px;color:var(--navy)}
@@ -2076,6 +2076,7 @@ html[data-theme="dark"] #recursos .tag{background:#111d2b;border-color:#304154;c
 .home-v3-about{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;padding:58px 0;border-top:1px solid var(--border)}
 .home-v3-about-copy p{font-size:15px;line-height:1.78;color:#48637f;margin:18px 0 0;max-width:610px}
 .home-v3-about-link{display:inline-flex;align-items:center;gap:9px;margin-top:22px;color:var(--navy);font-size:12px;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.7);padding-bottom:3px}
+html[data-theme="dark"] .home-v3-about-link{color:#e5edf5;border-bottom-color:rgba(201,168,76,.85)}
 .home-v3-principles{border-top:1px solid var(--border)}
 .home-v3-principle{padding:17px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:150px 1fr;gap:20px}
 .home-v3-principle strong{font-size:12px;color:var(--navy)}
@@ -2177,13 +2178,12 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
   
 <section id="sobre" class="section active home-v3-section">
   <div class="home-v3-sectionhead">
-    <div><div class="kicker">Explora el proyecto</div><h2>Empieza por lo que quieras resolver</h2></div>
+    <div><h2>Empieza por lo que quieras resolver</h2></div>
     <p>No necesitas seguir un recorrido fijo. Compara productos, haz números o entra directamente en el contenido de inversión.</p>
   </div>
 
   <div class="home-v3-paths">
     <article class="home-v3-path">
-      <div class="home-v3-path-num">01 · COMPARA</div>
       <h3>Cuentas y productos</h3>
       <p>Revisa alternativas con sus condiciones reales antes de quedarte solo con el dato más llamativo.</p>
       <div class="home-v3-pathlinks">
@@ -2193,7 +2193,6 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
     </article>
     <article class="home-v3-path">
-      <div class="home-v3-path-num">02 · CALCULA</div>
       <h3>Pon números a la decisión</h3>
       <p>Simula salario, vivienda, inflación, inversión y ahorro con los supuestos visibles.</p>
       <div class="home-v3-pathlinks">
@@ -2203,7 +2202,6 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
     </article>
     <article class="home-v3-path">
-      <div class="home-v3-path-num">03 · APRENDE</div>
       <h3>Inversión con contexto</h3>
       <p>Consulta una cartera real, conceptos y recursos para entender mejor lo que estás comparando.</p>
       <div class="home-v3-pathlinks">
@@ -2216,7 +2214,6 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
 
   <div class="home-v3-about">
     <div class="home-v3-about-copy">
-      <div class="kicker">Sobre el proyecto</div>
       <h2>Finanzas personales explicadas con datos y contexto</h2>
       <p>Don Quijote de las Finanzas reúne las herramientas que echo en falta cuando quiero entender una decisión: números, condiciones, costes y límites. El objetivo no es decirte qué comprar, sino ayudarte a comparar mejor y saber qué estás asumiendo.</p>
       <p>El proyecto parte de más de 8 años de experiencia en el sector financiero y se actualiza cuando cambian los datos que afectan a las herramientas o comparativas.</p>
