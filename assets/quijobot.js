@@ -168,6 +168,7 @@ html[data-theme="dark"] .qjb-nudge-close:hover{background:#223449;color:#fff}
       var seen=false;
       try{seen=localStorage.getItem('qjb_nudge_seen_v1')==='1';}catch(e){}
       if(seen) return;
+      if(window.matchMedia('(max-width: 640px)').matches) return;
       nudgeTimer=setTimeout(function(){
         if(!panel.classList.contains('is-open')){
           nudge.classList.add('is-visible');
