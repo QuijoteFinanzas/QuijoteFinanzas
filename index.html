@@ -200,8 +200,8 @@
   /* Design system */
   --surface:#ffffff;--surface-soft:#f8f9fb;--surface-navy:#0f2035;
   --radius-sm:6px;--radius-md:10px;--radius-lg:14px;
-  --shadow-soft:0 8px 28px rgba(15,32,53,.08);
-  --shadow-hover:0 10px 30px rgba(15,32,53,.14);
+  --shadow-soft:0 8px 28px rgba(0,0,0,.08);
+  --shadow-hover:0 10px 30px rgba(0,0,0,.14);
   --space-section:48px;
   --transition-fast:160ms ease;
 }
@@ -210,7 +210,7 @@ html,body{background:#ffffff}
 body{color:var(--navy);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;background:#ffffff}
 header{border-bottom:1px solid var(--border);padding:40px 0 28px;text-align:center;position:relative;overflow:hidden;background:var(--sec-a)}
 header::before{display:none}
-.logo-wrap{margin:0 auto 16px;width:88px;height:88px;border-radius:50%;border:2px solid rgba(184,200,216,.35);overflow:hidden;box-shadow:0 0 40px rgba(13,26,46,.9)}
+.logo-wrap{margin:0 auto 16px;width:88px;height:88px;border-radius:50%;border:2px solid rgba(184,200,216,.35);overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.28)}
 .logo-wrap img{width:100%;height:100%;object-fit:cover}
 .badge-hero{display:inline-block;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:#9a7830;border:1px solid rgba(201,168,76,.32);background:rgba(201,168,76,.07);padding:6px 16px;border-radius:999px;margin-bottom:14px;font-weight:600}
 h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);font-weight:700;color:var(--cream);line-height:1.1}
@@ -229,7 +229,7 @@ body:not(.show-home-intro) header::before{display:none}
 body:not(.show-home-intro) header > :not(#main-nav):not(.compact-brand){display:none !important}
 body:not(.show-home-intro) header{padding:30px 0 18px}
 .compact-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;max-width:760px;margin:0 auto;padding:0 24px 10px;text-align:center}
-.compact-brand-logo{width:82px;height:82px;border-radius:50%;overflow:hidden;border:2px solid rgba(184,200,216,.35);box-shadow:0 0 40px rgba(13,26,46,.9)}
+.compact-brand-logo{width:82px;height:82px;border-radius:50%;overflow:hidden;border:2px solid rgba(184,200,216,.35);box-shadow:0 6px 20px rgba(0,0,0,.28)}
 .compact-brand-logo img{width:100%;height:100%;object-fit:cover}
 .compact-brand-badge{display:inline-block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.9);border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);padding:5px 16px;border-radius:999px;font-weight:500}
 .compact-brand-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,44px);font-weight:700;color:var(--navy);line-height:1.06;margin:0}
@@ -366,7 +366,7 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .result-value.g{color:#1a7a4a}.result-value.o{color:#c06030}
 .empty-state{color:#4a6a8a;font-size:13px;text-align:center;padding:16px 0;line-height:1.8}
 .chart-wrap{margin-top:22px;background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:18px}
-.chart-wrap h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(184,200,216,.7);margin-bottom:14px}
+.chart-wrap h3,.chart-wrap h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(184,200,216,.7);margin-bottom:14px}
 .chart-container{position:relative;height:190px}
 .referidos-list{display:flex;flex-direction:column;gap:10px}
 .ref-card{background:var(--navy);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .2s,transform .15s;text-decoration:none;position:relative}
@@ -435,12 +435,12 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .cuentas-changelog-body li{position:relative;padding-left:16px;font-size:12px;line-height:1.55;color:#4f6985}
 .cuentas-changelog-body li::before{content:'\2022';position:absolute;left:2px;top:0;color:var(--gold);font-weight:800}
 .cuentas-changelog-body strong{color:var(--navy2)}
-.cuentas-changelog-date{font-size:11px;line-height:1.5;color:var(--muted);margin:9px 0 0}
+.cuentas-changelog-date{font-size:12px;line-height:1.5;color:var(--muted);margin:9px 0 0}
 .cuentas-snapshot{margin:12px 0 4px;padding:11px 12px;border:1px solid #e5eaf0;border-radius:10px;background:#fff}
 .cuentas-snapshot-title{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#806114;margin-bottom:8px}
 .cuentas-snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px}
 .cuentas-snapshot-item{font-size:12px;line-height:1.45;color:#5c7288}
-.cuentas-snapshot-item strong{display:block;font-size:11px;color:var(--navy2);margin-bottom:1px}
+.cuentas-snapshot-item strong{display:block;font-size:12px;color:var(--navy2);margin-bottom:1px}
 .cuentas-snapshot-note{font-size:12px;line-height:1.45;color:var(--muted);margin:8px 0 0}
 html[data-theme="dark"] .cuentas-snapshot{background:#132030;border-color:#30465a}
 html[data-theme="dark"] .cuentas-changelog{background:#182638;border-color:#33485e}
@@ -459,7 +459,7 @@ html[data-theme="dark"] .cuentas-changelog-body strong{color:#edf3f8}
 .ref-info{flex:1;min-width:0}
 .ref-info h3{font-size:14px;font-weight:700;color:#ffffff!important;margin-bottom:3px;display:flex;align-items:center;gap:8px}
 .ref-info p{font-size:12px;color:rgba(184,200,216,.85)!important;line-height:1.4}
-.ref-meta{font-size:11px;color:rgba(184,200,216,.65);margin-top:3px}
+.ref-meta{font-size:12px;color:rgba(184,200,216,.65);margin-top:3px}
 .ref-bonus{font-size:12px;color:var(--navy);background:var(--gold);border:1px solid var(--gold);padding:5px 14px;border-radius:4px;white-space:nowrap;flex-shrink:0;font-weight:700}
 footer{border-top:1px solid var(--border);padding:28px 24px}
 .footer-inner{max-width:900px;margin:0 auto}
@@ -468,7 +468,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .footer-links{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 .footer-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s;white-space:nowrap}
 .footer-links a:hover{color:var(--silver)}
-.footer-disclaimer{font-size:11px;color:var(--muted);opacity:.6;line-height:1.6;border-top:1px solid var(--border);padding-top:16px}
+.footer-disclaimer{font-size:12px;color:var(--muted);opacity:.6;line-height:1.6;border-top:1px solid var(--border);padding-top:16px}
 /* TOAST suscripcion */
 #sub-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);border:1px solid rgba(184,200,216,.25);border-radius:10px;padding:16px 22px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 40px rgba(0,0,0,.6);z-index:200;opacity:0;transition:opacity .4s,transform .4s;pointer-events:none;max-width:420px;width:calc(100% - 48px)}
 #sub-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
@@ -476,7 +476,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 #sub-toast .toast-logo img{width:100%;height:100%;object-fit:cover}
 #sub-toast .toast-text{flex:1;min-width:0}
 #sub-toast .toast-text p{font-size:13px;color:var(--cream);font-weight:500;margin-bottom:3px}
-#sub-toast .toast-text span{font-size:11px;color:var(--muted)}
+#sub-toast .toast-text span{font-size:12px;color:var(--muted)}
 #sub-toast .toast-btns{display:flex;gap:8px;flex-shrink:0}
 #sub-toast .toast-cta{background:rgba(184,200,216,.12);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:6px 14px;border-radius:5px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .2s}
 #sub-toast .toast-cta:hover{background:rgba(184,200,216,.22)}
@@ -495,7 +495,7 @@ footer{border-top:1px solid var(--border);padding:28px 24px}
 .suscripcion-row input::placeholder{color:var(--muted)}
 .suscripcion-row button{background:rgba(184,200,216,.1);border:1px solid rgba(184,200,216,.3);color:var(--silver2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 18px;border-radius:6px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .suscripcion-row button:hover{background:rgba(184,200,216,.18)}
-.suscripcion-box .legal{font-size:11px;color:var(--muted);margin-top:8px;opacity:.7;margin-bottom:0}
+.suscripcion-box .legal{font-size:12px;color:var(--muted);margin-top:8px;opacity:.7;margin-bottom:0}
 
 /* Newsletter (Kit CTA) */
 .newsletter-section{margin-top:40px}
@@ -948,8 +948,8 @@ header .social-btn:hover{border-color:rgba(201,168,76,.55);color:var(--navy);bac
 #calculadoras .calc-item.clickable:hover .ci{background:rgba(201,168,76,.09);border-color:rgba(201,168,76,.25)}
 #calculadoras .calc-name{font-size:13px;font-weight:650;color:var(--navy);line-height:1.35;min-width:0}
 #calculadoras .live{margin-left:auto;background:transparent!important;border:0!important;color:#8b6a15!important;padding:4px 2px!important;border-radius:0!important;font-size:11px!important;font-weight:700!important;letter-spacing:.02em!important;text-transform:none!important;white-space:nowrap}
-#calculadoras .coming{margin-left:auto;background:#f4f6f8;border:1px solid #e0e6ec;color:#8a98a7;padding:4px 8px;border-radius:999px;font-size:11px;letter-spacing:.03em;text-transform:none;font-weight:700}
-#calculadoras .calc-item:not(.clickable){background:#f8fafb;border-style:dashed;color:#8a98a7;box-shadow:none}
+#calculadoras .coming{margin-left:auto;background:#f4f6f8;border:1px solid #e0e6ec;color:#5b6f84;padding:4px 8px;border-radius:999px;font-size:11px;letter-spacing:.03em;text-transform:none;font-weight:700}
+#calculadoras .calc-item:not(.clickable){background:#f8fafb;border-style:dashed;color:#5b6f84;box-shadow:none}
 #calculadoras .calc-item:not(.clickable) .ci{opacity:.7}
 #calculadoras .calc-item:not(.clickable) .calc-name{color:#7d8b99;font-weight:600}
 #calculadoras .calc-item.renta-featured{border-color:rgba(201,168,76,.55);box-shadow:inset 0 0 0 1px rgba(201,168,76,.12)}
@@ -1191,7 +1191,7 @@ function qfTrack(eventName, params) {
 /* ── FASE 12 · Referidos premium ───────────────────────────────────── */
 .ref-section-head{max-width:720px;margin-bottom:22px}
 .ref-section-kicker,.qc-kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#806114;margin-bottom:8px}
-#quijocartera .qc-kicker{font-size:12px;letter-spacing:.06em;text-transform:none}
+#quijocartera .qc-kicker{font-size:12px;letter-spacing:.04em;text-transform:none}
 .ref-section-head h2,.qc-section-head h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,38px);line-height:1.08;color:var(--navy);margin:0 0 10px}
 .ref-section-lead,.qc-lead{font-size:15px;line-height:1.7;color:var(--navy2);margin:0 0 7px}
 .ref-section-note{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
@@ -1405,7 +1405,7 @@ html[data-theme="dark"] #referidos .ref-code.copied{color:#7fd6a8;border-color:r
 .qf-live-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#2d8a5e;box-shadow:0 0 0 3px rgba(45,138,94,.10)}
 .qf-range-field{display:flex;flex-direction:column;gap:8px}
 .qf-range-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.qf-range-head>label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);font-weight:700;opacity:.72}
+.qf-range-head>label{font-size:12px;letter-spacing:.2px;text-transform:none;color:var(--navy);font-weight:700;opacity:.72}
 .qf-range-value{display:flex;align-items:center;gap:5px;background:#fff;border:1px solid #dfe6ee;border-radius:8px;padding:4px 8px;min-width:94px;justify-content:flex-end;transition:border-color .15s,box-shadow .15s}
 .qf-range-value:focus-within{border-color:rgba(201,168,76,.75);box-shadow:0 0 0 3px rgba(201,168,76,.10)}
 .qf-range-value input{border:0!important;background:transparent!important;padding:0!important;min-width:0;width:68px;text-align:right;font-family:'DM Mono',monospace;font-size:13px;color:var(--navy);outline:none!important;box-shadow:none!important}
@@ -1421,10 +1421,10 @@ html[data-theme="dark"] #referidos .ref-code.copied{color:#7fd6a8;border-color:r
 .qf-range::-moz-range-track{height:5px;background:#dfe6ee;border-radius:999px}
 .qf-range::-moz-range-progress{height:5px;background:var(--gold);border-radius:999px}
 .qf-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.18)}
-.qf-range-scale{display:flex;justify-content:space-between;margin-top:-6px;font-size:11px;color:#93a1af}
+.qf-range-scale{display:flex;justify-content:space-between;margin-top:-6px;font-size:12px;color:#93a1af}
 .qf-result-hero{position:relative;overflow:hidden;margin:4px 0 22px;padding:22px 24px 17px;border-radius:16px;background:linear-gradient(135deg,#0f2035 0%,#173658 100%);border:1px solid rgba(201,168,76,.30);box-shadow:0 14px 38px rgba(0,0,0,.16);color:#fff}
 .qf-result-hero::after{content:'';position:absolute;width:210px;height:210px;border-radius:50%;right:-80px;top:-115px;background:radial-gradient(circle,rgba(201,168,76,.18),rgba(201,168,76,0) 68%);pointer-events:none}
-.qf-hero-eyebrow{position:relative;z-index:1;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(220,232,245,.65);font-weight:700;text-align:center}
+.qf-hero-eyebrow{position:relative;z-index:1;font-size:12px;letter-spacing:.04em;text-transform:none;color:rgba(220,232,245,.75);font-weight:700;text-align:center}
 .qf-hero-main{position:relative;z-index:1;font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,58px);font-weight:700;line-height:1.02;text-align:center;color:#fff;margin:5px 0 19px;letter-spacing:-.02em}
 .qf-hero-main .qf-main-unit{font-family:'DM Sans',sans-serif;font-size:.38em;font-weight:600;color:rgba(220,232,245,.75);margin-left:4px;letter-spacing:0}
 .qf-hero-metrics{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
@@ -1432,7 +1432,7 @@ html[data-theme="dark"] #referidos .ref-code.copied{color:#7fd6a8;border-color:r
 .qf-hero-metric:last-child{border-right:0}
 .qf-hero-metric span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:rgba(220,232,245,.58);margin-bottom:3px}
 .qf-hero-metric strong{display:block;font-family:'DM Mono',monospace;font-size:14px;color:#fff}
-.qf-hero-insight{position:relative;z-index:1;margin:4px auto 12px;max-width:620px;text-align:center;font-size:11px;line-height:1.55;color:rgba(220,232,245,.73)}
+.qf-hero-insight{position:relative;z-index:1;margin:4px auto 12px;max-width:620px;text-align:center;font-size:12px;line-height:1.55;color:rgba(220,232,245,.73)}
 .qf-hero-insight strong{color:#e7c86f}
 .qf-hero-actions{position:relative;z-index:1;display:flex;justify-content:center;margin-top:9px}
 .qf-share-result{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:8px 13px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
@@ -1444,7 +1444,7 @@ html[data-theme="dark"] #referidos .ref-code.copied{color:#7fd6a8;border-color:r
 .qf-calc2 .calc-btn{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:700}
 .qf-calc2 .calc-btn:hover{background:var(--navy2);border-color:var(--navy2)}
 .qf-calc2 .chart-wrap{border-radius:16px;border-color:rgba(201,168,76,.26);padding:20px 20px 18px;background:linear-gradient(145deg,#0f2035,#173658);box-shadow:0 14px 34px rgba(0,0,0,.14)}
-.qf-calc2 .chart-wrap h4{margin:0 0 16px;color:rgba(232,240,247,.78);font-size:11px;letter-spacing:.12em}
+.qf-calc2 .chart-wrap h3,.qf-calc2 .chart-wrap h4{margin:0 0 16px;color:rgba(232,240,247,.78);font-size:11px;letter-spacing:.12em}
 .qf-calc2 .chart-container{height:240px}
 .qf-calc2 .results-panel{gap:7px}
 .qf-calc2 .result-row{padding:10px 13px;background:#f8fafc}
@@ -2044,11 +2044,11 @@ html[data-theme="dark"] #recursos .tag{background:#111d2b;border-color:#304154;c
 .home-v3-shot.portfolio{width:68%;right:5%;bottom:2px;z-index:2;transform:translateX(-5px)}
 .home-v3-shot.portfolio:hover{transform:translateX(-5px) translateY(-2px)}
 .home-v3-shot.accounts:hover{transform:translateY(-2px)}
-.home-v3-shotbar{min-height:40px;border-bottom:1px solid #e4e9ef;background:#fbfcfd;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:11px;color:#6d849b;letter-spacing:.03em}
+.home-v3-shotbar{min-height:40px;border-bottom:1px solid #e4e9ef;background:#fbfcfd;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:12px;color:#566b80;letter-spacing:.03em}
 .home-v3-dots{display:flex;gap:5px}.home-v3-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#d6dee7}
 .home-v3-shot img{display:block;width:100%;height:auto;background:#fff}
 .home-v3-shot.portfolio img{max-height:440px;object-fit:cover;object-position:top}
-.home-v3-shot-caption{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-top:1px solid #edf1f5;color:#425d78;font-size:11px;background:#fff}
+.home-v3-shot-caption{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-top:1px solid #edf1f5;color:#425d78;font-size:12px;background:#fff}
 .home-v3-shot-caption strong{color:var(--navy);font-size:12px}
 
 .home-v3-value{max-width:1180px;margin:28px auto 0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
@@ -2080,7 +2080,7 @@ html[data-theme="dark"] .home-v3-about-link{color:#e5edf5;border-bottom-color:rg
 .home-v3-principles{border-top:1px solid var(--border)}
 .home-v3-principle{padding:17px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:150px 1fr;gap:20px}
 .home-v3-principle strong{font-size:12px;color:var(--navy)}
-.home-v3-principle span{font-size:12px;line-height:1.55;color:#6a8198}
+.home-v3-principle span{font-size:12px;line-height:1.55;color:#566b80}
 
 .home-v3-connect{margin-top:8px;display:grid;grid-template-columns:1.35fr .65fr;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#f8fafc}
 .home-v3-newsletter{padding:34px 38px 32px}
@@ -2109,7 +2109,7 @@ html[data-theme="dark"] .home-v3-about-link{color:#e5edf5;border-bottom-color:rg
   .home-v3-about{grid-template-columns:1fr;gap:35px}.home-v3-connect{grid-template-columns:1fr}.home-v3-contact{border-left:0;border-top:1px solid var(--border)}
 }
 @media(max-width:720px){
-  .home-v3-hero{padding:42px 18px 20px}.home-v3-brand{gap:12px;margin-bottom:18px}.home-v3-brandlogo{width:48px;height:48px}.home-v3-brandnote{font-size:11px}.home-v3-title{font-size:52px}.home-v3-lead{font-size:15px}.home-v3-proof{gap:8px 0}.home-v3-proof span{width:100%;padding:3px 0;border:0}
+  .home-v3-hero{padding:42px 18px 20px}.home-v3-brand{gap:12px;margin-bottom:18px}.home-v3-brandlogo{width:48px;height:48px}.home-v3-brandnote{font-size:12px}.home-v3-title{font-size:52px}.home-v3-lead{font-size:15px}.home-v3-proof{gap:8px 0}.home-v3-proof span{width:100%;padding:3px 0;border:0}
   .home-v3-visual{min-height:470px}.home-v3-shot.accounts{width:94%;right:3%}.home-v3-shot.portfolio{width:78%;right:0;bottom:0}.home-v3-shot.portfolio img{max-height:340px}
   .home-v3-value{grid-template-columns:1fr;margin-top:16px}.home-v3-value>div,.home-v3-value>div:first-child{padding:13px 0;border-left:0;border-bottom:1px solid var(--border)}
   #sobre.home-v3-section{padding:48px 18px 28px}.home-v3-sectionhead{align-items:flex-start;flex-direction:column;gap:10px}.home-v3-sectionhead p{text-align:left}
@@ -2129,6 +2129,8 @@ html[data-theme="dark"] .home-v3-value,html[data-theme="dark"] .home-v3-path,htm
 html[data-theme="dark"] .home-v3-link,html[data-theme="dark"] .home-v3-principle strong,html[data-theme="dark"] .home-v3-value strong,html[data-theme="dark"] .home-v3-contact-list a{color:#e5edf5}
 html[data-theme="dark"] .home-v3-connect{background:#111e2d}
 html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
+html[data-theme="dark"] .home-v3-link span:last-child,html[data-theme="dark"] .home-v3-contact-list a>span:last-child,html[data-theme="dark"] .home-v3-contact-list a>svg.c-net{color:#c9a84c}
+html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-color:#c9a84c;color:#0f2035}
 </style>
 
 <header class="home-v3-hero">
@@ -2846,7 +2848,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
 
     <div class="results-panel" id="au-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
 
-    <div class="chart-wrap" id="au-chart-wrap" style="display:none"><h4>D&oacute;nde va tu facturaci&oacute;n del trimestre</h4><div class="chart-container"><canvas id="au-chart"></canvas></div></div>
+    <div class="chart-wrap" id="au-chart-wrap" style="display:none"><h3>D&oacute;nde va tu facturaci&oacute;n del trimestre</h3><div class="chart-container"><canvas id="au-chart"></canvas></div></div>
 
     <div class="calc-cta" id="au-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Sabes si tu tramo de cotizaci&oacute;n es el correcto?</strong> Comparto gesti&oacute;n fiscal para aut&oacute;nomos en X.</p></div>
@@ -2900,7 +2902,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="ic-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="ic-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del capital a&ntilde;o a a&ntilde;o</h4><div class="chart-container"><canvas id="ic-chart"></canvas></div></div>
+    <div class="chart-wrap" id="ic-chart-wrap" style="display:none"><h3>Evoluci&oacute;n del capital a&ntilde;o a a&ntilde;o</h3><div class="chart-container"><canvas id="ic-chart"></canvas></div></div>
     <div class="calc-cta" id="ic-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Quieres mejorar este n&uacute;mero?</strong>Comparto ideas, herramientas y análisis de inversión en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -2941,7 +2943,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="sal-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="sal-chart-wrap" style="display:none"><h4>Desglose fiscal estimado</h4><div class="chart-container"><canvas id="sal-chart"></canvas></div></div>
+    <div class="chart-wrap" id="sal-chart-wrap" style="display:none"><h3>Desglose fiscal estimado</h3><div class="chart-container"><canvas id="sal-chart"></canvas></div></div>
     <div class="calc-cta" id="sal-cta" style="display:none"><div><p><strong>Bruto, retención y cuota final no son lo mismo.</strong> Si tienes 14 pagas, la paga extraordinaria puede ser mayor que una paga ordinaria porque la cotización se soporta a través de las bases mensuales ordinarias.</p></div></div>
     <div class="qf-brand-signature">quijotefinanzas.com</div>
   </div>
@@ -2962,7 +2964,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="hip-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="hip-chart-wrap" style="display:none"><h4>Distribuci&oacute;n del total pagado</h4><div class="chart-container"><canvas id="hip-chart"></canvas></div></div>
+    <div class="chart-wrap" id="hip-chart-wrap" style="display:none"><h3>Distribuci&oacute;n del total pagado</h3><div class="chart-container"><canvas id="hip-chart"></canvas></div></div>
     <div class="calc-cta" id="hip-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Te compensa comprar vs alquilar?</strong>Analizo este tipo de decisiones con datos reales en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -2991,7 +2993,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="ce-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="ce-chart-wrap" style="display:none"><h4>Desglose del coste total para la empresa</h4><div class="chart-container"><canvas id="ce-chart"></canvas></div></div>
+    <div class="chart-wrap" id="ce-chart-wrap" style="display:none"><h3>Desglose del coste total para la empresa</h3><div class="chart-container"><canvas id="ce-chart"></canvas></div></div>
     <div class="calc-cta" id="ce-cta" style="display:none">
       <div><p><strong>&#128161; Negocia con datos, no con intuici&oacute;n.</strong>Consejos sobre c&oacute;mo mejorar tu situaci&oacute;n laboral y financiera en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3022,7 +3024,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="inf-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="inf-chart-wrap" style="display:none"><h4>Poder adquisitivo vs inversi&oacute;n</h4><div class="chart-container"><canvas id="inf-chart"></canvas></div></div>
+    <div class="chart-wrap" id="inf-chart-wrap" style="display:none"><h3>Poder adquisitivo vs inversi&oacute;n</h3><div class="chart-container"><canvas id="inf-chart"></canvas></div></div>
     <div class="calc-cta" id="inf-cta" style="display:none">
       <div><p><strong>&#128161; La inflaci&oacute;n es el impuesto silencioso.</strong>Te explico c&oacute;mo proteger tu dinero en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3076,7 +3078,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="jub-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="jub-chart-wrap" style="display:none"><h4>Evoluci&oacute;n hacia la independencia financiera</h4><div class="chart-container"><canvas id="jub-chart"></canvas></div></div>
+    <div class="chart-wrap" id="jub-chart-wrap" style="display:none"><h3>Evoluci&oacute;n hacia la independencia financiera</h3><div class="chart-container"><canvas id="jub-chart"></canvas></div></div>
     <div class="calc-cta" id="jub-cta" style="display:none">
       <div><p><strong>&#128161; La independencia financiera es un proceso, no un destino.</strong>Comparto ideas y herramientas sobre ahorro e inversión en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3116,7 +3118,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="dep-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="dep-chart-wrap" style="display:none"><h4>Desglose de tu dep&oacute;sito</h4><div class="chart-container"><canvas id="dep-chart"></canvas></div></div>
+    <div class="chart-wrap" id="dep-chart-wrap" style="display:none"><h3>Desglose de tu dep&oacute;sito</h3><div class="chart-container"><canvas id="dep-chart"></canvas></div></div>
     <div class="calc-cta" id="dep-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Hay alternativas mejores al dep&oacute;sito?</strong>Analizo productos de ahorro en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3193,7 +3195,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="irpf-results"><div class="empty-state">Selecciona el módulo, rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="irpf-chart-wrap" style="display:none"><h4>Desglose fiscal estimado</h4><div class="chart-container"><canvas id="irpf-chart"></canvas></div></div>
+    <div class="chart-wrap" id="irpf-chart-wrap" style="display:none"><h3>Desglose fiscal estimado</h3><div class="chart-container"><canvas id="irpf-chart"></canvas></div></div>
     <div class="calc-cta" id="irpf-cta" style="display:none"><div><p><strong>&#128161; Retención ≠ impuesto final.</strong> La retención es un pago a cuenta; la declaración anual regulariza el resultado.</p></div></div>
     <div class="qf-brand-signature">quijotefinanzas.com</div>
   </div>
@@ -3235,7 +3237,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="pp-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="pp-chart-wrap" style="display:none"><h4>Comparativa: con y sin plan de pensiones</h4><div class="chart-container"><canvas id="pp-chart"></canvas></div></div>
+    <div class="chart-wrap" id="pp-chart-wrap" style="display:none"><h3>Comparativa: con y sin plan de pensiones</h3><div class="chart-container"><canvas id="pp-chart"></canvas></div></div>
     <div class="calc-cta" id="pp-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Vale la pena un plan de pensiones?</strong>Analizo pros, contras y alternativas en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3274,7 +3276,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="avs-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="avs-chart-wrap" style="display:none"><h4>Patrimonio neto estimado: comprar vs alquilar</h4><div class="chart-container"><canvas id="avs-chart"></canvas></div></div>
+    <div class="chart-wrap" id="avs-chart-wrap" style="display:none"><h3>Patrimonio neto estimado: comprar vs alquilar</h3><div class="chart-container"><canvas id="avs-chart"></canvas></div></div>
     <div class="calc-cta" id="avs-cta" style="display:none">
       <div><p><strong>&#128161; &iquest;Comprar o alquilar? No hay respuesta &uacute;nica.</strong>Te ayudo a analizarlo en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3306,7 +3308,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="am-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="am-chart-wrap" style="display:none"><h4>Intereses totales: con vs sin amortizaci&oacute;n</h4><div class="chart-container"><canvas id="am-chart"></canvas></div></div>
+    <div class="chart-wrap" id="am-chart-wrap" style="display:none"><h3>Intereses totales: con vs sin amortizaci&oacute;n</h3><div class="chart-container"><canvas id="am-chart"></canvas></div></div>
     <div class="calc-cta" id="am-cta" style="display:none">
       <div><p><strong>&#128161; Amortizar o invertir: el gran debate.</strong>Mi an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3338,7 +3340,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
       </div>
       <div class="results-panel" id="alq-results"><div class="empty-state">Rellena los datos y pulsa calcular</div></div>
     </div>
-    <div class="chart-wrap" id="alq-chart-wrap" style="display:none"><h4>Ingresos vs gastos anuales</h4><div class="chart-container"><canvas id="alq-chart"></canvas></div></div>
+    <div class="chart-wrap" id="alq-chart-wrap" style="display:none"><h3>Ingresos vs gastos anuales</h3><div class="chart-container"><canvas id="alq-chart"></canvas></div></div>
     <div class="calc-cta" id="alq-cta" style="display:none">
       <div><p><strong>&#128161; El ladrillo no siempre es la mejor inversi&oacute;n.</strong>Comparo alternativas en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3403,7 +3405,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
     </div>
     <button class="calc-btn" data-run="comparador" style="margin-top:16px">Comparar ofertas &rarr;</button>
     <div id="cmp-results" style="margin-top:20px"></div>
-    <div class="chart-wrap" id="cmp-chart-wrap" style="display:none"><h4>Valor total anual (neto + beneficios &minus; costes)</h4><div class="chart-container"><canvas id="cmp-chart"></canvas></div></div>
+    <div class="chart-wrap" id="cmp-chart-wrap" style="display:none"><h3>Valor total anual (neto + beneficios &minus; costes)</h3><div class="chart-container"><canvas id="cmp-chart"></canvas></div></div>
     <div class="calc-cta" id="cmp-cta" style="display:none">
       <div><p><strong>&#128161; El sueldo bruto es solo la mitad de la ecuaci&oacute;n.</strong>M&aacute;s an&aacute;lisis en X.</p></div>
       <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3440,7 +3442,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
         </div>
         <div class="results-panel" id="cags-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
       </div>
-      <div class="chart-wrap" id="cags-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del salario bruto anual</h4><div class="chart-container" style="height:260px"><canvas id="cags-chart"></canvas></div></div>
+      <div class="chart-wrap" id="cags-chart-wrap" style="display:none"><h3>Evoluci&oacute;n del salario bruto anual</h3><div class="chart-container" style="height:260px"><canvas id="cags-chart"></canvas></div></div>
       <div class="calc-cta" id="cags-cta" style="display:none">
         <div><p><strong>&#128161; &iquest;Tu salario crece como deber&iacute;a?</strong> Comparto an&aacute;lisis de mercado y estrategias de negociaci&oacute;n en X.</p></div>
         <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3463,7 +3465,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
         </div>
         <div class="results-panel" id="cagp-results"><div class="empty-state">A&ntilde;ade al menos 2 a&ntilde;os y pulsa calcular</div></div>
       </div>
-      <div class="chart-wrap" id="cagp-chart-wrap" style="display:none"><h4>Evoluci&oacute;n del patrimonio neto</h4><div class="chart-container" style="height:260px"><canvas id="cagp-chart"></canvas></div></div>
+      <div class="chart-wrap" id="cagp-chart-wrap" style="display:none"><h3>Evoluci&oacute;n del patrimonio neto</h3><div class="chart-container" style="height:260px"><canvas id="cagp-chart"></canvas></div></div>
       <div class="calc-cta" id="cagp-cta" style="display:none">
         <div><p><strong>&#128161; El patrimonio crece con tiempo y disciplina.</strong> Comparto ideas de ahorro e inversi&oacute;n en X.</p></div>
         <div class="calc-cta-links"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
@@ -3525,7 +3527,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
 
     <!-- BLOQUE 1: Coste del tiempo -->
     <div id="t-multiplicador-wrap" style="display:none">
-      <h4 style="margin:20px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">Cu&aacute;nto vale 1 &euro; seg&uacute;n cu&aacute;ndo empezaste</h4>
+      <h3 style="margin:20px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">Cu&aacute;nto vale 1 &euro; seg&uacute;n cu&aacute;ndo empezaste</h3>
       <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Con aportaci&oacute;n de <span id="t-aport-label">300</span>&euro;/mes hasta los <span id="t-objetivo-label">65</span> a&ntilde;os al <span id="t-rent-label">8</span>% anual</p>
       <div id="t-mult-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px"></div>
     </div>
@@ -3534,7 +3536,7 @@ html[data-theme="dark"] .home-v3-contact{border-color:#2a3a4e}
     <div id="t-parar-wrap" style="display:none">
       <h4 style="margin:22px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2)">&iquest;Qu&eacute; pasa si paras de aportar?</h4>
       <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Patrimonio proyectado a los <span id="t-obj2-label">65</span> seg&uacute;n cu&aacute;ndo dejas de aportar</p>
-      <div class="chart-wrap" id="t-chart-wrap"><h4>Evoluci&oacute;n del patrimonio por escenario</h4><div class="chart-container" style="height:260px"><canvas id="t-chart"></canvas></div></div>
+      <div class="chart-wrap" id="t-chart-wrap"><h3>Evoluci&oacute;n del patrimonio por escenario</h3><div class="chart-container" style="height:260px"><canvas id="t-chart"></canvas></div></div>
       <div id="t-escenarios-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:14px"></div>
     </div>
 
@@ -4829,7 +4831,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var html = rr('Ingresos del trimestre', fmtEUR(ingT)) +
       rr('Gastos deducibles', fmtEUR(gasT), 'o');
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Cuota RETA (Seguridad Social)</div>';
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy2)">Cuota RETA (Seguridad Social)</div>';
     if (tarifaPlanaAplica) {
       var labelTarifa = antiguedad === 'ano1' ? 'Tarifa plana (primer a&ntilde;o)' : 'Tarifa plana (segundo a&ntilde;o, bajo el SMI)';
       html += rr(labelTarifa, fmtEUR(reta.cuota) + '/mes', 'g');
@@ -4843,7 +4845,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     html += rr('Cuota RETA del trimestre (3 meses)', fmtEUR(retaTrimestral), 'o');
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130 (pago a cuenta)</div>';
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy2)">IRPF &mdash; Modelo 130 (pago a cuenta)</div>';
     html += rr('Ingresos &minus; gastos &minus; cuota RETA', fmtEUR(rendPrevioIrpf)) +
       rr('Gastos de dif&iacute;cil justificaci&oacute;n (5%, m&aacute;x. 500&nbsp;&euro;/trimestre)', fmtEUR(difJustifIrpf), 'o') +
       rr('Rendimiento neto del trimestre (base IRPF)', fmtEUR(rendNetoTrimIrpf)) +
@@ -4858,7 +4860,7 @@ document.addEventListener('DOMContentLoaded', function(){
       html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">La parte de la minoraci&oacute;n que no cabe este trimestre (' + fmtEUR(minoracion130 - minoracionAplicada) + ') puede restarse en los siguientes pagos fraccionados del mismo a&ntilde;o.</div>';
     }
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IRPF real estimado (al presentar la Renta)</div>';
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy2)">IRPF real estimado (al presentar la Renta)</div>';
     html += '<div style="grid-column:1/-1;font-size:11px;color:#4a6a8a;margin-bottom:4px">El Modelo 130 es solo un pago a cuenta. El IRPF real se calcula con las escalas estatal y auton&oacute;mica sobre tu rendimiento neto anual.</div>';
     html += rr('Rendimiento neto anual estimado (trimestre &times;4)', fmtEUR(rendNetoAnualIrpf)) +
       (reduccion32 > 0 ? rr('Reducci&oacute;n art. 32.2.3&ordm; LIRPF (rentas &lt; 12.000&nbsp;&euro;)', fmtEUR(reduccion32), 'g') : '') +
@@ -4871,7 +4873,7 @@ document.addEventListener('DOMContentLoaded', function(){
       html += rr('Hacienda te devolver&aacute; al presentar la Renta', fmtEUR(Math.abs(regularizacion)), 'g');
     }
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">IVA &mdash; Modelo 303 (informativo)</div>';
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy2)">IVA &mdash; Modelo 303 (informativo)</div>';
     if (tipoIva === 0) {
       html += rr('Actividad exenta de IVA', '&mdash;');
     } else {
@@ -4880,7 +4882,7 @@ document.addEventListener('DOMContentLoaded', function(){
         rr('A ingresar en el Modelo 303', fmtEUR(ivaAIngresar), 'o');
     }
 
-    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy2)">Resumen: tu dinero, paso a paso</div>';
+    html += '<div style="grid-column:1/-1;margin:6px 0 2px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy2)">Resumen: tu dinero, paso a paso</div>';
     html += rr('Dinero que entra en tu cuenta este trimestre', fmtEUR(dineroEnCuenta), 'g') +
       '<div style="grid-column:1/-1;font-size:10px;color:#7a8a9a;margin:-4px 0 4px">ya descontados: gastos, retenci&oacute;n en factura, RETA y Modelo 130</div>';
     if (regularizacion > 0) {
@@ -5361,7 +5363,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var card = document.createElement('div');
       card.style.cssText = 'background:var(--navy);border:1px solid rgba(184,200,216,.12);border-radius:8px;padding:12px;text-align:center';
       var finalReal = inflT>0 ? valorReal(final, inflT, objetivo-edadActual) : final;
-      card.innerHTML = '<div style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:'+color+';margin-bottom:4px">' + label + '</div>'
+      card.innerHTML = '<div style="font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:'+color+';margin-bottom:4px">' + label + '</div>'
         + '<div style="font-size:10px;color:rgba(184,200,216,.75);margin-bottom:8px">' + sub + '</div>'
         + '<div style="font-size:20px;font-weight:700;color:'+color+';font-family:\'DM Mono\',monospace">' + fmtM(final) + '</div>'
         + (inflT>0 ? '<div style="font-size:10px;color:rgba(201,168,76,.8);margin-top:2px">' + fmtM(finalReal) + ' real</div>' : '')
