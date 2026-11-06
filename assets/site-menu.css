@@ -10,7 +10,7 @@
 #top-bar .qf-menu-top:hover,#top-bar .qf-menu-top[aria-expanded="true"]{color:var(--navy,#0f2035)}
 #top-bar .qf-menu-top.active{color:var(--navy,#0f2035);font-weight:700}
 #top-bar .qf-menu-top.active::after{transform:scaleX(1)}
-.qf-menu-sub{display:none;list-style:none;margin:0;padding:6px;position:absolute;top:calc(100% - 6px);left:0;min-width:210px;background:#fff;border:1px solid rgba(15,32,53,.10);border-radius:10px;box-shadow:0 14px 34px rgba(15,32,53,.14);z-index:1000}
+.qf-menu-sub{display:none;list-style:none;margin:0;padding:6px;position:absolute;top:calc(100% - 6px);left:0;min-width:210px;background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.14);z-index:1000}
 .qf-menu-top[aria-expanded="true"]+.qf-menu-sub{display:block}
 #top-bar .qf-menu-link{display:block;width:100%;text-align:left;background:transparent;border:0;border-radius:6px;color:#33465b;font:500 13.5px 'DM Sans',sans-serif;padding:9px 12px;text-decoration:none;cursor:pointer;white-space:nowrap;box-shadow:none}
 #top-bar .qf-menu-link:hover,#top-bar .qf-menu-link:focus-visible{background:rgba(201,168,76,.13);color:var(--navy,#0f2035)}

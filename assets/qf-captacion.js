@@ -57,11 +57,11 @@
   + '.qf-cap-alerts form{display:flex;gap:8px;flex-wrap:wrap}.qf-cap-alerts label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}'
   + '.qf-cap-alerts input[type=email]{flex:1 1 220px;padding:10px 12px;border:1px solid var(--border,#dfe6ee);border-radius:8px;font:inherit;font-size:14px}'
   + '.qf-cap-note{font-size:11.5px!important;margin:8px 0 0!important;opacity:.7}'
-  + '.qf-nudge{position:fixed;z-index:9000;right:20px;bottom:100px;width:320px;max-width:calc(100vw - 40px);padding:16px 18px;border:1px solid var(--border,#dfe6ee);border-radius:12px;background:var(--card,#fff);color:var(--text,#22384e);box-shadow:0 10px 30px rgba(15,32,53,.18);font-size:13.5px;line-height:1.5;transform:translateY(16px);opacity:0;transition:transform .25s ease,opacity .25s ease}'
+  + '.qf-nudge{position:fixed;z-index:9000;right:20px;bottom:100px;width:320px;max-width:calc(100vw - 40px);padding:16px 18px;border:1px solid var(--border,#dfe6ee);border-radius:12px;background:var(--card,#fff);color:var(--text,#22384e);box-shadow:0 10px 30px rgba(0,0,0,.18);font-size:13.5px;line-height:1.5;transform:translateY(16px);opacity:0;transition:transform .25s ease,opacity .25s ease}'
   + '/* Deja libre el botón de QuijoBot (abajo a la derecha). */'
   + '.qf-nudge.show{transform:none;opacity:1}.qf-nudge h2{margin:0 26px 4px 0;font-size:15px}.qf-nudge p{margin:0 0 12px}'
   + '.qf-cap-x{position:absolute;top:6px;right:6px;width:32px;height:32px;border:0;background:transparent;color:inherit;font-size:20px;line-height:1;cursor:pointer;border-radius:6px}'
-  + '.qf-nudge.bar{left:10px;right:94px;bottom:14px;width:auto;max-width:none;border-radius:10px;padding:8px 40px 8px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 -4px 14px rgba(15,32,53,.12)}'
+  + '.qf-nudge.bar{left:10px;right:94px;bottom:14px;width:auto;max-width:none;border-radius:10px;padding:8px 40px 8px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 -4px 14px rgba(0,0,0,.12)}'
   + '.qf-nudge.bar h2{display:none}.qf-nudge.bar p{margin:0;flex:1;font-size:13px}.qf-nudge.bar .qf-cap-btn{padding:8px 12px}.qf-nudge.bar .qf-cap-x{top:50%;margin-top:-16px}'
   + '@media (prefers-reduced-motion:reduce){.qf-nudge{transition:none;transform:none}}'
   + '@media print{.qf-nudge,.qf-cap-cta{display:none!important}}';
