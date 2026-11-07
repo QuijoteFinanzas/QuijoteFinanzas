@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -1679,7 +1679,7 @@ html:not([data-theme="dark"]) .cmp-best,html:not([data-theme="dark"]) .cmp-head-
 <link rel="stylesheet" href="/assets/cosmetica.css?v=20261030">
 
 <style id="home-refresh-20261104">
-/* ── Home refresh · 04/11/2026 ─────────────────────────────────────── */
+/* ── Home refresh · 07/11/2026 ─────────────────────────────────────── */
 body.show-home-intro header{
   padding:0;
   background:#fff;
@@ -2156,7 +2156,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
 
     <div class="home-v3-visual" aria-label="Capturas reales de QuijoteFinanzas">
       <button class="home-v3-shot accounts" type="button" onclick="goTo('cuentas')" aria-label="Abrir QuijoCuentas">
-        <div class="home-v3-shotbar"><span class="home-v3-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>QuijoCuentas · 04/11/2026</span></div>
+        <div class="home-v3-shotbar"><span class="home-v3-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>QuijoCuentas · 07/11/2026</span></div>
         <img src="/assets/home/hero-quijocuentas.webp" alt="Captura real de QuijoCuentas con logos de entidad y las primeras cuentas de la comparativa" width="894" height="379" loading="eager">
         <div class="home-v3-shot-caption"><strong>Comparativa real</strong><span>TAE, límites, plazo y condiciones</span></div>
       </button>
@@ -2450,7 +2450,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
     </summary>
     <div class="cuentas-changelog-body">
       <ul>
-        <li><strong>Cuentas sin vinculación recurrente:</strong> añadimos la Cuenta Bienvenida de Raisin al 3,30% TAE durante 3 meses, entre Monzo y Bankinter por TAE máxima.</li>
+        <li><strong>Cuentas sin vinculación recurrente:</strong> Monzo lidera con 4,00% TAE (hasta 5.000 €); la Cuenta Bienvenida de Raisin se retira del ranking hasta confirmar su tipo vigente en fuente oficial.</li>
         <li><strong>Promociones:</strong> ING400 vuelve a mostrarse tras ampliarse la contratación hasta el 20/11; Openbank añade hasta 200 € por traer al menos 2 recibos.</li>
         <li><strong>Unicaja:</strong> corregimos la condición de la bonificación de nómina: no exige permanencia; el incentivo se abona mes a mes mientras se cumplen los requisitos.</li>
         <li><strong>Caducidades:</strong> las promociones vencidas siguen ocultándose automáticamente y el ranking se renumera para no dejar huecos.</li>
@@ -2460,7 +2460,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
         <div class="cuentas-snapshot-grid" id="qc-snapshot"></div>
         <p class="cuentas-snapshot-note">Resumen orientativo del primer resultado o incentivo de cada bloque. Las categorías no son equivalentes: revisa saldo, plazo, requisitos y fuente oficial antes de comparar.</p>
       </div>
-      <p class="cuentas-changelog-date">Última revisión completa: <span id="qc-review-date">04/11/2026</span>. Si detectas una condición distinta, escríbenos y la revisamos.</p>
+      <p class="cuentas-changelog-date">Última revisión completa: <span id="qc-review-date">07/11/2026</span>. Si detectas una condición distinta, escríbenos y la revisamos.</p>
     </div>
   </details>
 
@@ -3950,7 +3950,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if (!container) return;
     if (!filtered.length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
 
-    var mes = (window.QF_CUENTAS_UPDATED || "04/11/2026");
+    var mes = (window.QF_CUENTAS_UPDATED || "07/11/2026");
     var esNomina = cuentasTab === "nomina";
     var esDeposito = cuentasTab.indexOf('dep-') === 0;
     var esPromo = cuentasTab === 'promo';
