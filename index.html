@@ -402,14 +402,15 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 
 .cuenta-bank-name{font-size:16px;font-weight:700;font-family:'Playfair Display',serif;line-height:1.18}
 .cuenta-bank-product{font-size:12px;font-weight:650;font-family:'DM Sans',sans-serif;color:var(--muted);line-height:1.3}
-.cuenta-metric{text-align:right;min-width:126px;flex:0 0 auto}
+.cuenta-metric{text-align:right;min-width:0;flex:0 1 auto;max-width:62%}
 .cuenta-tae{font-size:27px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;line-height:1;letter-spacing:-.4px}
 .cuenta-tae span{display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px;margin-top:5px;text-transform:uppercase}
-.cuenta-rich-metric{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:138px}
+.cuenta-rich-metric{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0;max-width:100%;text-align:right}
 .cuenta-rich-prefix{font-size:11px;line-height:1;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .cuenta-rich-value{font-family:'DM Mono',monospace;font-size:25px;line-height:1.02;font-weight:700;color:var(--navy);letter-spacing:-.5px;white-space:nowrap}
-.cuenta-rich-period{font-size:11px;line-height:1.25;font-weight:700;color:var(--navy2);white-space:nowrap}
-.cuenta-rich-secondary{font-size:11px;line-height:1.25;font-weight:600;color:var(--muted);white-space:nowrap}
+.cuenta-rich-value.is-long{font-size:19px}
+.cuenta-rich-period{font-size:11px;line-height:1.25;font-weight:700;color:var(--navy2)}
+.cuenta-rich-secondary{font-size:11px;line-height:1.25;font-weight:600;color:var(--muted);max-width:235px;text-align:right}
 .cuenta-rich-label{font-size:11px;line-height:1.15;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
 .cuenta-meta-row{display:flex;gap:6px;flex-wrap:wrap}
 .cuenta-chip{font-size:11px;padding:5px 8px;border-radius:999px;background:#f7f9fc;color:var(--navy2);border:1px solid #e1e7ef;white-space:nowrap;font-weight:600}
@@ -447,6 +448,9 @@ html[data-theme="dark"] .cuentas-changelog{background:#182638;border-color:#3348
 html[data-theme="dark"] .cuentas-changelog-body{border-color:#30465a}
 html[data-theme="dark"] .cuentas-changelog-body li{color:#b9c9d8}
 html[data-theme="dark"] .cuentas-changelog-body strong{color:#edf3f8}
+.cuentas-tin-block{margin-top:16px}
+.cuentas-tin-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:0 0 12px;padding-top:16px;border-top:1px dashed #dfe6ee}
+html[data-theme="dark"] .cuentas-tin-label{color:#b9c9d8!important;border-color:#30465a}
 @media(max-width:520px){.cuentas-snapshot-grid{grid-template-columns:1fr}.cuentas-changelog{margin-top:-4px}.cuentas-changelog summary{padding:11px 12px}.cuentas-changelog-body{padding-left:12px;padding-right:12px}.cuentas-changelog-title span:last-child{white-space:normal}.cuentas-changelog-action span{display:none}}
 @media(max-width:760px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:1fr}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-rich-value{font-size:23px}.cuenta-metric{min-width:116px}.cuenta-card{padding:16px}}
 .ref-cat-badge{position:absolute;top:10px;right:10px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;opacity:1}
@@ -1631,7 +1635,7 @@ html[data-theme="dark"] #calculadoras .calc-seo-link{color:#9fb2c4}
 html[data-theme="dark"] #calculadoras .calc-seo-link:hover{color:#d7b457}
 @media(max-width:520px){#calculadoras .calc-seo-link{font-size:11px;padding-left:1px;padding-right:1px}}
 </style>
-<script defer src="/assets/quijocuentas-data.js?v=20261107f"></script>
+<script defer src="/assets/quijocuentas-data.js?v=20261107i"></script>
 <style>
 /* Accesibilidad (tanda 1): contraste AA en tema claro, foco visible, enlace de salto y movimiento reducido */
 :root{--focus-ring:#8b6a15}
@@ -2450,9 +2454,12 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
     </summary>
     <div class="cuentas-changelog-body">
       <ul>
-        <li><strong>Cuentas sin vinculación recurrente:</strong> Monzo lidera con 4,00% TAE (hasta 5.000 €); la Cuenta Bienvenida de Raisin se retira del ranking hasta confirmar su tipo vigente en fuente oficial.</li>
-        <li><strong>Promociones:</strong> ING400 vuelve a mostrarse tras ampliarse la contratación hasta el 20/11; Openbank añade hasta 200 € por traer al menos 2 recibos.</li>
-        <li><strong>Unicaja:</strong> corregimos la condición de la bonificación de nómina: no exige permanencia; el incentivo se abona mes a mes mientras se cumplen los requisitos.</li>
+        <li><strong>Cuentas sin vinculación recurrente:</strong> Monzo lidera con 4,00% TAE (hasta 5.000 €); retiramos Bank Norwegian de la comparativa y Raisin sigue fuera hasta confirmar su tipo vigente en fuente oficial.</li>
+        <li><strong>Novedades y correcciones:</strong> Cajamar Cuenta Online se añade en "con condiciones" (2,27% TAE con Bizum activo); Ibercaja confirma en su web la contratación hasta el 31/12/2026; Bankinter garantiza el TIN de la Cuenta Digital durante 6 meses (hasta el 11/05/2027), según su nota oficial.</li>
+        <li><strong>Promociones:</strong> ING400 sigue visible tras ampliarse la contratación hasta el 20/11; retiramos el incentivo de 200 € de Openbank por recibos hasta confirmar sus fechas, y se mantiene la Cuenta Remunerada al 3,25% TAE.</li>
+        <li><strong>Unicaja:</strong> la bonificación de nómina no exige permanencia; el incentivo se abona mes a mes mientras se cumplen los requisitos.</li>
+        <li><strong>Cuentas sin condiciones, reconstruidas:</strong> la categoría solo incluye cuentas que pagan el tipo indicado sin requisitos (Wizink 2,30%, Pibank 2,02%, Cajamar Wefferent 2,01%, BiG 2,00%, Indexa 2,00% variable, Pichincha 1,51%, Revolut Estándar 1,15%, Self Bank 1,00% en tramos). Las ofertas que exigen ser nuevo cliente pasan a "con condiciones".</li>
+        <li><strong>Importes exactos y pendientes:</strong> el incentivo de Sabadell por nómina y Bizum se muestra con su cifra oficial (400,08 € brutos, 33,34 € × 12 meses); los depósitos de Cetelem y Pibank quedan marcados como «pendientes de confirmar» hasta que su fuente oficial reproduzca la cifra vigente.</li>
         <li><strong>Caducidades:</strong> las promociones vencidas siguen ocultándose automáticamente y el ranking se renumera para no dejar huecos.</li>
       </ul>
       <div class="cuentas-snapshot" aria-label="Resumen de QuijoCuentas generado a partir de los datos actuales">
@@ -3909,7 +3916,7 @@ document.addEventListener('DOMContentLoaded', function(){
   function qcRichMetric(c,label){
     var h='<div class="cuenta-rich-metric">';
     if(c.metricPrefix) h+='<span class="cuenta-rich-prefix">'+qcEsc(c.metricPrefix)+'</span>';
-    h+='<strong class="cuenta-rich-value">'+qcEsc(c.metricValue||'—')+'</strong>';
+    h+='<strong class="cuenta-rich-value'+(String(c.metricValue||'').length>=9?' is-long':'')+'">'+qcEsc(c.metricValue||'—')+'</strong>';
     if(c.metricPeriod) h+='<span class="cuenta-rich-period">'+qcEsc(c.metricPeriod)+'</span>';
     if(c.metricSecondary) h+='<span class="cuenta-rich-secondary">'+qcEsc(c.metricSecondary)+'</span>';
     if(label) h+='<span class="cuenta-rich-label">'+qcEsc(label)+'</span>';
@@ -3945,7 +3952,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
   window.renderCuentas = function() {
     qcRenderSnapshot();
-    var filtered = qcByTab(cuentasTab);
+    var filteredAll = qcByTab(cuentasTab);
+    var tinRows = filteredAll.filter(function(c){return c.tinBlock;});
+    var filtered = filteredAll.filter(function(c){return !c.tinBlock;});
     var container = document.getElementById('cuentas-content');
     if (!container) return;
     if (!filtered.length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
@@ -3960,8 +3969,8 @@ document.addEventListener('DOMContentLoaded', function(){
         ? 'Orden orientativo por potencial máximo anunciado; los plazos, saldos y requisitos no son equivalentes.'
         : (esDeposito ? 'Ordenadas por la TAE máxima mostrada; compara siempre el plazo y la cancelación.' : 'Ordenadas por la rentabilidad anual anunciada para el supuesto indicado; indicamos si es TAE o tipo anual.'));
     var html='<div class="cuentas-header"><p class="cuentas-sort">'+sortText+'</p><span class="cuentas-badge">Actualizado · '+mes+'</span></div>';
-    html+='<div class="cuentas-grid">'+filtered.map(function(c){
-      var isTop=!esPromo && Number(c.rank)<=2;
+    var qcCard=function(c,suppressRank){
+      var isTop=!suppressRank && !esPromo && Number(c.rank)<=2;
       var principal;
       if(esNomina && c.metricValue){
         principal=qcRichMetric(c,'potencial anunciado');
@@ -3999,7 +4008,11 @@ document.addEventListener('DOMContentLoaded', function(){
         +(esNomina&&c.tae!=null?'<div class="cuenta-tae-ref">TAE de referencia: '+Number(c.tae).toFixed(2).replace('.',',')+'%</div>':'')
         +((c.pro||c.con)?'<div class="cuenta-pros-cons">'+(c.pro?'<span class="cuenta-pro">'+qcEsc(c.pro)+'</span>':'')+(c.con?'<span class="cuenta-con">'+qcEsc(c.con)+'</span>':'')+'</div>':'')
         +(actions?'<div class="cuenta-actions">'+actions+'</div>':'')+'</div>';
-    }).join('')+'</div>';
+    };
+    html+='<div class="cuentas-grid">'+filtered.map(function(c){return qcCard(c,false);}).join('')+'</div>';
+    if(tinRows.length){
+      html+='<div class="cuentas-tin-block"><p class="cuentas-tin-label">Tipo TIN promocional · no comparable con la TAE del ranking anterior</p><div class="cuentas-grid">'+tinRows.map(function(c){return qcCard(c,true);}).join('')+'</div></div>';
+    }
     html+='<p class="cuentas-disclaimer">⚠️ Revisión realizada el '+qcEsc(mes)+' con las condiciones publicadas por las entidades. Las promociones pueden cambiar o cerrarse antes de la siguiente actualización: verifica siempre la fuente oficial antes de contratar. No se muestran invitaciones ni referidos sin haber comprobado antes su compatibilidad y privacidad. La cobertura indicada depende del sistema de garantía y de la entidad que custodie el dinero.</p>';
     container.innerHTML=html;
   };
@@ -7207,6 +7220,8 @@ html[data-theme="dark"] .project-note h4,html[data-theme="dark"] .project-princi
 html[data-theme="dark"] .project-contact-copy strong,html[data-theme="dark"] .cuenta-banco,
 html[data-theme="dark"] .cuenta-tae,html[data-theme="dark"] .voto-nombre,
 html[data-theme="dark"] .qc-detail-title-row h3,html[data-theme="dark"] .qc-detail-center strong{color:#edf3f8!important}
+html[data-theme="dark"] .cuenta-rich-value,html[data-theme="dark"] .cuenta-rich-period{color:#edf3f8!important}
+html[data-theme="dark"] .cuenta-rich-prefix,html[data-theme="dark"] .cuenta-rich-secondary,html[data-theme="dark"] .cuenta-rich-label{color:#b9c9d8!important}
 html[data-theme="dark"] .ql-section-lead,html[data-theme="dark"] .ref-section-lead,html[data-theme="dark"] .qc-lead,
 html[data-theme="dark"] .project-story p,html[data-theme="dark"] .cuenta-detail,
 html[data-theme="dark"] .qc-legend-name,html[data-theme="dark"] .qc-summary-card strong{color:#b9c9d8!important}
