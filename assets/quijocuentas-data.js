@@ -76,7 +76,7 @@ window.QF_CUENTAS_DATA = [
     "logoDomain": "traderepublic.com",
     "tae": 3.04,
     "limite": "3,04% TAE hasta 50.000 € · nuevos clientes",
-    "duracion": "Cálculo diario y pago mensual de intereses · por encima de 50.000 € aplica el tipo base estándar del BCE (2,53% TAE a 09/11/2026)",
+    "duracion": "Cálculo diario y pago mensual de intereses. Tipo promocional variable sin duración anunciada; tipo aplicable al exceso de 50.000 € y al resto de clientes pendiente de fuente oficial.",
     "fgd": "Según asignación",
     "fgdClass": "fgd-de",
     "pro": "Liquidez total, IBAN español y sin nómina ni permanencia",
@@ -159,7 +159,7 @@ window.QF_CUENTAS_DATA = [
     "productId": "renault-bank-cuenta-contigo",
     "id": "con-renault-bank-cuenta-contigo",
     "sourceUrl": "https://renaultbank.es/productos/",
-    "rankingEligible": true
+    "rankingEligible": false
   },
   {
     "tab": "con",
@@ -489,7 +489,7 @@ window.QF_CUENTAS_DATA = [
     "fgd": "España",
     "fgdClass": "fgd-es",
     "pro": "3,25% TAE (3,20% TIN) durante un año con liquidez",
-    "con": "Bono de recibos separado; no se afirma acumulabilidad con otras campañas",
+    "con": "El código OPEN325 no es compatible con un código de invitación de amigo (FAQ oficial). Bono de recibos separado; no se afirma acumulabilidad con otras campañas",
     "extra": "Nuevos clientes que traen Bizum; código OPEN325. Fecha de cierre de contratación del tipo no publicada. Después pasa a Cuenta de Ahorro Open al tipo vigente, sin cifra garantizada.",
     "url": "https://www.openbank.es/cuenta-remunerada",
     "status": "confirmado",
@@ -573,7 +573,7 @@ window.QF_CUENTAS_DATA = [
     "rank": 1,
     "banco": "Banco Sabadell · Cuenta Online",
     "logoDomain": "bancsabadell.com",
-    "total": "400,08 € brutos en12meses",
+    "total": "400,08 € brutos en 12 meses",
     "metricPrefix": "",
     "metricValue": "400,08 €",
     "metricPeriod": "12 meses",
@@ -1217,7 +1217,8 @@ window.QF_CUENTAS_DATA = [
     "productId": "banco-sabadell",
     "id": "sabadell-400",
     "sourceUrl": "https://assets.bancsabadell.com/is/content/grupbancsabadell/Condiciones_CS_Promo_Nomina_Bizum_10_2026_CAS_v01pdf",
-    "rankingEligible": false
+    "rankingEligible": false,
+    "relatedProductId": "banco-sabadell-cuenta-online"
   },
   {
     "tab": "promo",
