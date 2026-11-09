@@ -284,7 +284,7 @@ window.QF_CUENTAS_DATA = [
     "fgd": "España",
     "fgdClass": "fgd-es",
     "pro": "Sin comisiones ni obligación de contratar otros productos",
-    "con": "Mínimo 10.000 €. Tipo variable: facilidad de depósito BCE menos 0,50 puntos; disponibilidad el siguiente día hábil.",
+    "con": "Mínimo 10.000 €. No disponible para clientes de A&G, residentes fuera de España, nacionalidad estadounidense, PRP o riesgo alto de prevención de blanqueo según A&G. Tipo variable; disponibilidad el siguiente día hábil.",
     "extra": "Cuenta A&G comercializada por Indexa. Residentes en España de 18 a 85 años, un titular. Revalidada el 09/11/2026; sin fecha fin publicada.",
     "url": "https://indexacapital.com/es/esp/yield",
     "status": "confirmado",
