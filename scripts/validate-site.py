@@ -255,29 +255,43 @@ def check_quijocuentas() -> None:
     if not m:
         err("No se encuentra QF_CUENTAS_DATA")
         return
-    block = m.group(1)
-    objects = re.findall(r"\{[^\n]*\}", block)
-    ids: list[str] = []
-    for obj in objects:
-        label_m = re.search(r'banco:"([^"]+)"', obj)
-        label = label_m.group(1) if label_m else "oferta"
-        id_m = re.search(r'promoId:"([^"]+)"', obj)
-        if id_m:
-            ids.append(id_m.group(1))
-        exp_m = re.search(r'expiresOn:"([^"]+)"', obj)
-        if exp_m:
-            exp = exp_m.group(1)
-            try:
-                date.fromisoformat(exp)
-            except ValueError:
-                err(f"expiresOn inválido en QuijoCuentas: {label}: {exp}")
-        else:
-            # Solo avisa cuando el texto parece indicar de forma clara un fin de contratación.
-            if re.search(r"(?:hasta|fin de oferta|altas?)[^\"}]{0,60}\b\d{1,2}/\d{1,2}/20\d{2}\b", obj, re.I):
-                warn(f"QuijoCuentas parece tener fecha fin pero no expiresOn: {label}")
-    for pid, n in Counter(ids).items():
-        if n > 1:
-            err(f"promoId duplicado en QuijoCuentas: {pid}")
+    # The data array is JSON. Parse all rows, not only compact one-line objects.
+    try:
+        rows = json.loads('[' + m.group(1) + ']')
+    except (ValueError, TypeError) as exc:
+        err(f"QuijoCuentas: JSON inválido: {exc}")
+        return
+    seen = set()
+    for row in rows:
+        label = row.get('banco', 'oferta')
+        for field in ('id', 'productId', 'tab', 'status', 'verifiedAt', 'sourceUrl'):
+            if not row.get(field):
+                err(f"QuijoCuentas: falta {field}: {label}")
+        if row.get('id') in seen:
+            err(f"QuijoCuentas: id duplicado: {row.get('id')}")
+        seen.add(row.get('id'))
+        if row.get('status') not in ('confirmado', 'pendiente'):
+            err(f"QuijoCuentas: estado inválido: {label}")
+        if row.get('status') == 'pendiente' and (row.get('rankingEligible') or not row.get('pendingReason')):
+            err(f"QuijoCuentas: pendiente elegible o sin motivo: {label}")
+        for field in ('verifiedAt', 'startsOn', 'expiresOn'):
+            if row.get(field):
+                try:
+                    date.fromisoformat(row[field])
+                except ValueError:
+                    err(f"QuijoCuentas: fecha {field} inválida: {label}")
+        if row.get('startsOn') and row.get('expiresOn') and row['startsOn'] > row['expiresOn']:
+            err(f"QuijoCuentas: fechas invertidas: {label}")
+        if not row.get('sourceUrl', '').startswith('https://'):
+            err(f"QuijoCuentas: fuente no HTTPS: {label}")
+    for page in ('index.html','mejores-cuentas-remuneradas.html','mejores-depositos/index.html'):
+        if 'QF_CUENTAS_SELECT' not in (ROOT/page).read_text(encoding='utf-8'):
+            err(f"QuijoCuentas: selección de vigencia no compartida en {page}")
+    # The referral section is out of scope for this editorial change.
+    import hashlib
+    referral = re.search('<section[^>]*id="referidos"[\\s\\S]*?</section>', (ROOT/'index.html').read_text(encoding='utf-8'))
+    if not referral or hashlib.sha256(referral[0].encode()).hexdigest() != '979dfecbbac1b8d448f6267050a325ae2ec5778484e1d801abfccb51fe13f759':
+        err("QuijoCuentas: la sección de referidos ha cambiado; requiere revisión explícita")
 
 
 def check_calendar_removed() -> None:
