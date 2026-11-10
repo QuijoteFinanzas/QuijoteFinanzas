@@ -1,9 +1,10 @@
+const ACTIVE_BALLOT = 'tools-2026-09-2';
 const ALLOWED_OPTIONS = new Set([
-  'prestamo',
-  'tae-tin',
-  'liquidar-deuda',
-  'objetivo-ahorro',
-  'subida-neta'
+  'impacto-comisiones',
+  'fondo-emergencia',
+  'amortizar-vs-invertir',
+  'entrada-vivienda',
+  'estrategia-deudas'
 ]);
 
 const CORS = {
@@ -45,9 +46,10 @@ async function getCounts(env) {
       option_id,
       COUNT(*) AS total,
       SUM(CASE WHEN datetime(created_at) >= datetime('now', '-7 days') THEN 1 ELSE 0 END) AS recent7
-    FROM votes
+    FROM votes_rounds
+    WHERE ballot_id = ?
     GROUP BY option_id
-  `).all();
+  `).bind(ACTIVE_BALLOT).all();
 
   const counts = {};
   for (const id of ALLOWED_OPTIONS) counts[id] = { total: 0, recent7: 0 };
@@ -59,7 +61,7 @@ async function getCounts(env) {
     };
   }
   const totalVotes = Object.values(counts).reduce((sum, item) => sum + item.total, 0);
-  return { counts, totalVotes, updatedAt: new Date().toISOString() };
+  return { ballotId: ACTIVE_BALLOT, counts, totalVotes, updatedAt: new Date().toISOString() };
 }
 
 export default {
@@ -69,10 +71,7 @@ export default {
     try {
       if (!env.DB) return json({ error: 'D1 binding DB not configured' }, 500);
 
-      if (request.method === 'GET') {
-        return json(await getCounts(env));
-      }
-
+      if (request.method === 'GET') return json(await getCounts(env));
       if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
 
       let body;
@@ -81,24 +80,27 @@ export default {
 
       const optionId = String(body?.id || '');
       const voterId = String(body?.voterId || '').trim();
-      const cfToken = String(body?.cfToken || '');
 
       if (!ALLOWED_OPTIONS.has(optionId)) return json({ error: 'Invalid option' }, 400);
       if (voterId.length < 8 || voterId.length > 160) return json({ error: 'Invalid voterId' }, 400);
-      if (cfToken.length < 10 || cfToken.length > 4096 || !(await verifyTurnstile(cfToken, env, request))) {
+
+      if (!(await verifyTurnstile(body?.cfToken, env, request))) {
         return json({ error: 'Bot check failed' }, 403);
       }
 
-      const result = await env.DB.prepare(
-        'INSERT OR IGNORE INTO votes (option_id, voter_id) VALUES (?, ?)'
-      ).bind(optionId, voterId).run();
+      const result = await env.DB.prepare(`
+        INSERT OR IGNORE INTO votes_rounds (ballot_id, option_id, voter_id)
+        VALUES (?, ?, ?)
+      `).bind(ACTIVE_BALLOT, optionId, voterId).run();
 
       const counts = await getCounts(env);
 
       if (!result.meta || Number(result.meta.changes || 0) === 0) {
-        const existing = await env.DB.prepare(
-          'SELECT option_id FROM votes WHERE voter_id = ? LIMIT 1'
-        ).bind(voterId).first();
+        const existing = await env.DB.prepare(`
+          SELECT option_id FROM votes_rounds
+          WHERE ballot_id = ? AND voter_id = ?
+          LIMIT 1
+        `).bind(ACTIVE_BALLOT, voterId).first();
         return json({ ...counts, alreadyVoted: existing?.option_id || null }, 409);
       }
 
