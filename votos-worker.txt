@@ -13,6 +13,25 @@ const CORS = {
   'Cache-Control': 'no-store'
 };
 
+async function verifyTurnstile(token, env, request) {
+  if (!env.TURNSTILE_SECRET) return false;
+  try {
+    const form = new URLSearchParams();
+    form.append('secret', env.TURNSTILE_SECRET);
+    form.append('response', String(token || ''));
+    const ip = request.headers.get('CF-Connecting-IP');
+    if (ip) form.append('remoteip', ip);
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: form
+    });
+    const data = await res.json().catch(() => null);
+    return !!(data && data.success === true);
+  } catch (_) {
+    return false;
+  }
+}
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -62,9 +81,13 @@ export default {
 
       const optionId = String(body?.id || '');
       const voterId = String(body?.voterId || '').trim();
+      const cfToken = String(body?.cfToken || '');
 
       if (!ALLOWED_OPTIONS.has(optionId)) return json({ error: 'Invalid option' }, 400);
       if (voterId.length < 8 || voterId.length > 160) return json({ error: 'Invalid voterId' }, 400);
+      if (cfToken.length < 10 || cfToken.length > 4096 || !(await verifyTurnstile(cfToken, env, request))) {
+        return json({ error: 'Bot check failed' }, 403);
+      }
 
       const result = await env.DB.prepare(
         'INSERT OR IGNORE INTO votes (option_id, voter_id) VALUES (?, ?)'

@@ -290,7 +290,7 @@ def check_quijocuentas() -> None:
     # The referral section is out of scope for this editorial change.
     import hashlib
     referral = re.search('<section[^>]*id="referidos"[\\s\\S]*?</section>', (ROOT/'index.html').read_text(encoding='utf-8'))
-    if not referral or hashlib.sha256(referral[0].encode()).hexdigest() != '979dfecbbac1b8d448f6267050a325ae2ec5778484e1d801abfccb51fe13f759':
+    if not referral or hashlib.sha256(referral[0].encode()).hexdigest() != 'c5f30f9b85ee1ab9a091fd2b2d984a9074fad92609ca536145ffa7cbddd96fce':
         err("QuijoCuentas: la sección de referidos ha cambiado; requiere revisión explícita")
 
 

@@ -203,8 +203,18 @@ html[data-theme="dark"] .qjb-nudge-close:hover{background:#223449;color:#fff}
     function scrollBottom(){ feed.scrollTop=feed.scrollHeight; }
     function addMessage(kind,text){ var m=el('div','qjb-msg '+kind,text); feed.appendChild(m); scrollBottom(); return m; }
     function addThinking(){ var m=el('div','qjb-msg bot qjb-thinking'); for(var i=0;i<3;i++) m.appendChild(el('span','qjb-dot')); feed.appendChild(m); scrollBottom(); return m; }
+    function isOwnQjbLink(url){
+      try{
+        var u=new URL(url,window.location.origin);
+        if(u.protocol!=='https:'&&u.protocol!=='http:') return false;
+        var h=u.hostname.toLowerCase();
+        return h===window.location.hostname.toLowerCase()||h==='quijotefinanzas.com'||h==='www.quijotefinanzas.com';
+      }catch(e){return false;}
+    }
     function addLinks(links){
       if(!Array.isArray(links)||!links.length) return;
+      links=links.filter(function(item){return item&&typeof item.url==='string'&&isOwnQjbLink(item.url);});
+      if(!links.length) return;
       var wrap=el('div','qjb-links');
       var sectionIds=['sobre','calculadoras','cuentas','quijolista','quijocartera','recursos','teca','glosario','referidos'];
       links.slice(0,3).forEach(function(item){

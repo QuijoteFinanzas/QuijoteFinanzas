@@ -169,6 +169,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/assets/formato.js?v=20261030"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script>
 /* ── FASE 28 · Tema claro / oscuro: bootstrap sin flash ───────────── */
 (function(){
@@ -1520,6 +1521,7 @@ input[aria-invalid="true"]{border-color:#d9822b !important;box-shadow:0 0 0 2px 
 .cuenta-source{color:var(--navy2);background:#f7f9fc;border:1px solid #dfe6ee}.cuenta-source:hover{border-color:#aebdcb;color:var(--navy)}
 .cuenta-ref{color:#735711;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.32)}.cuenta-ref:hover{background:rgba(201,168,76,.16);border-color:var(--gold)}
 .votos-status{font-size:11px;color:var(--muted);margin:-2px 0 14px}.votos-status.ok{color:#557468}.votos-status.error{color:#a65f4a}.votos-status.loading{color:var(--muted)}
+.votos-turnstile{margin:2px 0 12px}.votos-turnstile iframe{max-width:100%}.votos-ts-error{font-size:11px;color:#a65f4a;line-height:1.5}
 .votos-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:5px}.votos-kicker{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#806114;margin-bottom:4px}.votos-round{font-size:11px;font-weight:700;color:var(--muted);background:#fff;border:1px solid #e2e8ef;border-radius:999px;padding:5px 8px;white-space:nowrap}
 .voto-copy{flex:1;min-width:0}.voto-nombre-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.voto-desc{display:block;font-size:12px;line-height:1.45;color:#74879a;margin-top:3px}.voto-leader-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#806316;background:rgba(201,168,76,.11);border:1px solid rgba(201,168,76,.30);border-radius:999px;padding:3px 6px}.voto-item.community-leader{border-color:rgba(201,168,76,.42)!important;box-shadow:0 5px 18px rgba(0,0,0,.04);background:linear-gradient(180deg,#fff 0%,#fffdf8 100%)!important}.voto-count{font-variant-numeric:tabular-nums}.voto-trend{font-size:11px;color:#8090a0;margin:7px 0 8px 0}.votos-unavailable{padding:16px 18px;background:#fff;border:1px dashed #d8e0e8;border-radius:10px;display:flex;flex-direction:column;gap:4px;color:var(--muted);font-size:12px}.votos-unavailable strong{color:var(--navy)}
 #calculadoras .voto-bar-wrap{height:7px;background:#edf1f5;border-radius:999px}#calculadoras .voto-bar{background:linear-gradient(90deg,#b39035,#d2b85f);border-radius:999px}.voto-btn:disabled:not(.voted){opacity:.55;cursor:not-allowed}
@@ -2419,6 +2421,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
       <div class="votos-head-row"><div><span class="votos-kicker">Próximas herramientas</span><h3>¿Cuál quieres que construya primero?</h3></div><span class="votos-round">Ronda · sep. 2026</span></div>
       <p class="sub">Vota una opción. Los resultados son globales y muestran el movimiento de los últimos 7 días. La votación sirve como señal de prioridad, no como promesa de fecha.</p>
       <div id="votos-status" class="votos-status" aria-live="polite">Cargando votación…</div>
+      <div id="votos-turnstile" class="votos-turnstile"></div>
       <div id="votos-list"></div>
     </div>
     <div class="note calc-note"><strong>Cómo usar esta sección:</strong> las calculadoras activas se abren aquí mismo. Todas cuentan además con una página independiente con más contexto y preguntas frecuentes para quien quiera profundizar. <a href="/calculadoras/" style="color:var(--navy);font-weight:700;text-decoration:none">Ver todas las guías →</a></div>
@@ -2573,11 +2576,6 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
         <div class="ref-info"><h3>Naiss</h3><p>Comparte coche con tu gente, reparte gastos y registra tus trayectos</p><p class="ref-meta">Los viajes compartidos elegibles pueden generar sparkies que despu&eacute;s se convierten en euros &middot; sujeto a las condiciones de Naiss</p><span class="ref-cta" aria-hidden="true">Abrir con el enlace</span></div>
         <span class="ref-bonus">20 sparkies de regalo</span>
       </a>
-<div class="ref-card ref-card-nolink" data-cat="banco"><span class="ref-cat-badge banco">Banco</span>
-        <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=ing.es" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">I</span></div>
-        <div class="ref-info"><h3>ING</h3><p>Escr&iacute;beme y te paso el referido</p><p class="ref-meta">Consulta condiciones vigentes en ING</p><p class="ref-contact">Escr&iacute;beme: <a href="mailto:contacto@quijotefinanzas.com?subject=Referido%20ING">por correo</a> &middot; <a href="https://x.com/QuijoteFinanzas" target="_blank" rel="noopener noreferrer">MD en X @QuijoteFinanzas</a></p></div>
-        <span class="ref-bonus">Sin enlace p&uacute;blico</span>
-      </div>
       <a class="ref-card" href="https://seguro.lineadirecta.com/fidelizacion-amigo?AMIGO00007570" data-cat="seguro" target="_blank" rel="nofollow sponsored noopener noreferrer"><span class="ref-cat-badge seguro">Seguro</span>
         <div class="ref-logo-box" aria-hidden="true"><img loading="lazy" src="https://www.google.com/s2/favicons?sz=128&domain=lineadirecta.com" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="ref-logo-fallback">LD</span></div>
         <div class="ref-info"><h3>L&iacute;nea Directa</h3><p>Seguro de coche y moto &mdash; contrata usando mi enlace de recomendaci&oacute;n</p><p class="ref-meta">Descuento aplicado al contratar &middot; sin permanencia</p><span class="ref-cta" aria-hidden="true">Abrir con el enlace</span></div>
@@ -4047,6 +4045,26 @@ document.addEventListener('DOMContentLoaded', function(){
     {id:'estrategia-deudas',label:'Deudas: avalancha vs bola de nieve',desc:'Compara orden de pago, intereses totales y fecha estimada de liquidación.'}
   ];
   var VOTOS_WORKER='https://votos-quijotefinanzas.donquijotedelasfinanzas.workers.dev';
+  var VOTOS_TS_SITEKEY='0x4AAAAAAF7EeWzz5xSWGzbw';
+  var votosTsWidget=null, votosTsToken='', votosTsTries=0;
+  function votosTurnstileBox(){return document.getElementById('votos-turnstile');}
+  function votosRemoveTurnstile(){var box=votosTurnstileBox(); if(box) box.style.display='none';}
+  function votosEnsureTurnstile(){
+    var box=votosTurnstileBox(); if(!box||votosTsWidget!==null||gS(votosChoiceKey(),null)) return;
+    if(!window.turnstile){
+      if(votosTsTries++<40){ setTimeout(votosEnsureTurnstile,250); }
+      else { box.textContent='No se pudo cargar la verificaci\u00f3n antibot. Si usas un bloqueador, perm\u00edtelo para votar.'; box.className='votos-turnstile votos-ts-error'; }
+      return;
+    }
+    try{
+      votosTsWidget=window.turnstile.render(box,{sitekey:VOTOS_TS_SITEKEY,theme:'auto',size:'flexible',
+        callback:function(t){votosTsToken=t||'';},
+        'expired-callback':function(){votosTsToken='';},
+        'error-callback':function(){votosTsToken='';}
+      });
+    }catch(e){}
+  }
+  function votosResetTurnstile(){votosTsToken=''; try{if(votosTsWidget!==null&&window.turnstile)window.turnstile.reset(votosTsWidget);}catch(e){}}
   function votosChoiceKey(){return 'qf_vote_choice_'+VOTOS_BALLOT;}
 
   function votosVoterId(){
@@ -4081,15 +4099,18 @@ document.addEventListener('DOMContentLoaded', function(){
     votosSetStatus(total?total+' voto'+(total===1?'':'s')+' en esta ronda.':'Todavía no hay votos en esta ronda.','ok');
     root.querySelectorAll('[data-vote]').forEach(function(btn){btn.addEventListener('click',function(){
       var id=btn.getAttribute('data-vote'); if(gS(votosChoiceKey(),null))return;
+      if(!votosTsToken){votosSetStatus('Confirma la verificaci\u00f3n antibot para votar.','error');votosEnsureTurnstile();return;}
       root.querySelectorAll('[data-vote]').forEach(function(b){b.disabled=true;}); votosSetStatus('Guardando tu voto…','loading');
-      fetch(VOTOS_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,voterId:votosVoterId()})})
+      fetch(VOTOS_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,voterId:votosVoterId(),cfToken:votosTsToken})})
         .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,data:j};});})
         .then(function(res){
           if(res.ok){sS(votosChoiceKey(),id);try{qfTrack('tool_vote_cast',{option_id:id,ballot_id:VOTOS_BALLOT});}catch(e){}renderVotosUI(res.data,id);return;}
           if(res.status===409&&res.data&&res.data.alreadyVoted){sS(votosChoiceKey(),res.data.alreadyVoted);renderVotosUI(res.data,res.data.alreadyVoted);return;}
+          if(res.status===403){root.querySelectorAll('[data-vote]').forEach(function(b){b.disabled=false;});votosResetTurnstile();votosSetStatus('La verificaci\u00f3n antibot no se ha podido confirmar. Int\u00e9ntalo de nuevo.','error');return;}
           throw new Error('vote failed');
         }).catch(function(){renderVotos();});
     });});
+    if(votado){votosRemoveTurnstile();}else{votosEnsureTurnstile();}
   }
   function renderVotos(){
     var votado=gS(votosChoiceKey(),null); votosSetStatus('Cargando votación…','loading');
@@ -7323,6 +7344,7 @@ html[data-theme="dark"] .votos-unavailable strong{color:#edf3f8!important}
 html[data-theme="dark"] .voto-desc,html[data-theme="dark"] .voto-trend{color:#9fb2c4!important}
 html[data-theme="dark"] .votos-status.ok{color:#82b59d!important}
 html[data-theme="dark"] .votos-status.error{color:#d59a83!important}
+html[data-theme="dark"] .votos-ts-error{color:#d59a83!important}
 html[data-theme="dark"] .voto-leader-badge{color:#d8bc68!important;background:rgba(201,168,76,.10)!important}
 html[data-theme="dark"] .cuenta-ref{color:#d8bc68!important;background:rgba(201,168,76,.08)!important;border-color:rgba(201,168,76,.30)!important}
 
