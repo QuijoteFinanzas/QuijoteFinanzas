@@ -1067,7 +1067,7 @@ window.QF_CUENTAS_DATA = [
     "fgd": "España",
     "fgdClass": "fgd-es",
     "pro": "Puedes cumplir solo las acciones que te interesen",
-    "con": "El máximo exige combinar todas las acciones y mantener 10.000 €",
+    "con": "El máximo exige combinar todas las acciones y mantener >10.000 €",
     "url": "https://www.bbva.es/content/dam/public-web/bbvaes/documents/personas/productos/cuentas/bases-legales/promo-1060/boletin-adhesion-promo-1060.pdf",
     "referralType": "none",
     "referralAllowedPublic": false,
