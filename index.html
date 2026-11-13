@@ -382,6 +382,16 @@ main{max-width:900px;margin:0 auto;padding:48px 24px 80px}
 .home-v3-cta-note{margin:14px 0 4px;font-size:12.5px;line-height:1.4;opacity:.85}
 .qf-menu-desc{display:block;font-size:12px;font-weight:400;opacity:.65;margin:-6px 0 2px;padding:0 12px 4px;text-align:left;line-height:1.35}
 @media(max-width:699px){.qf-menu-desc{padding:0 10px 4px}}
+.qf-sancho{margin:0 auto;max-width:1120px;padding:0 20px}
+body:not(.show-home-intro) .qf-sancho{display:none}
+.qf-sancho-card{display:flex;align-items:center;gap:22px;background:#0d1b2a;border:1px solid rgba(201,168,76,.35);border-radius:16px;padding:22px 26px;color:#e8f0f7;font-family:'DM Sans',sans-serif}
+.qf-sancho-card img{width:86px;height:152px;object-fit:cover;border-radius:10px;border:1px solid rgba(201,168,76,.5);flex-shrink:0}
+.qf-sancho-txt{flex:1;min-width:0}
+.qf-sancho-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;color:#c9a84c;text-transform:uppercase;margin:0 0 6px}
+.qf-sancho-title{font-family:'Playfair Display',serif;font-size:24px;line-height:1.2;margin:0 0 8px;color:#e8f0f7}
+.qf-sancho-sub{font-size:14px;line-height:1.55;color:rgba(232,240,247,.75);margin:0}
+.qf-sancho-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:1px solid rgba(201,168,76,.6);background:rgba(201,168,76,.14);color:#c9a84c;font-weight:700;font-size:14px;text-decoration:none;font-family:'DM Sans',sans-serif;white-space:nowrap}
+@media(max-width:699px){.qf-sancho-card{flex-wrap:wrap;gap:14px;padding:16px}.qf-sancho-card img{width:64px;height:114px}.qf-sancho-txt{flex:1 1 calc(100% - 78px);min-width:0}.qf-sancho-title{font-size:19px;line-height:1.25}.qf-sancho-sub{font-size:13px}.qf-sancho-btn{width:100%;justify-content:center}}
 .cuentas-intro-copy .divider,.ql-section-head .divider,.qc-section-head .divider,.ref-section-head .divider{margin-top:14px}
 #cuentas-filter{gap:7px;margin-bottom:22px;padding-bottom:2px}
 #cuentas-filter .cat-btn{border-radius:999px;padding:7px 13px;background:#fff;border:1px solid #dbe3ed;color:var(--navy2);font-size:11px;font-weight:600}
@@ -2185,6 +2195,18 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
   </div>
 </header>
 
+<!-- Franja serie Sancho (aprobada 13 nov) -->
+<div class="qf-sancho">
+  <div class="qf-sancho-card">
+    <img src="assets/2-sancho-cap0.jpg" alt="La vida financiera de Sancho Panza, capítulo 0" loading="lazy">
+    <div class="qf-sancho-txt">
+      <p class="qf-sancho-eyebrow">Serie nueva · cada semana</p>
+      <h2 class="qf-sancho-title">La vida financiera de Sancho Panza</h2>
+      <p class="qf-sancho-sub">El fiel escudero se enfrenta a su nómina, sus gastos y sus decisiones de bolsillo.</p>
+    </div>
+    <a class="qf-sancho-btn" href="https://www.youtube.com/playlist?list=PLftu8lpLi0Bk" target="_blank" rel="noopener">Ver los capítulos →</a>
+  </div>
+</div>
 
 <main id="contenido" tabindex="-1" style="background:#fff;min-height:100vh">
   
