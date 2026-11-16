@@ -936,7 +936,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "dep-con",
-    "rank": 5,
+    "rank": 6,
     "banco": "Laboral Kutxa · Depósito Bienvenida",
     "logoDomain": "laboralkutxa.com",
     "tae": 3.5,
@@ -958,7 +958,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "dep-con",
-    "rank": 6,
+    "rank": 5,
     "banco": "Deutsche Bank · Depósito Confianza Más DB",
     "logoDomain": "deutsche-bank.es",
     "tae": 3.5,
