@@ -4,7 +4,30 @@
 window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
-    "rank": 2,
+    "rank": 1,
+    "banco": "Ibercaja · Cuenta Vamos",
+    "logoDomain": "ibercaja.es",
+    "tae": 5.1,
+    "limite": "Hasta 20.000 €",
+    "duracion": "5,10% TAE el primer año · 2,02% TAE el segundo año manteniendo la vinculación",
+    "fgd": "España",
+    "fgdClass": "fgd-es",
+    "pro": "Apertura 100 % online",
+    "con": "Exige ingresos recurrentes de al menos 600 €/mes, 6 recibos domiciliados y 6 usos de tarjeta por semestre",
+    "extra": "Altas hasta el 31/12/2026 · para quien lleve al menos 6 meses sin ser titular en Ibercaja · verificado el 19/11/2026 en la web oficial",
+    "expiresOn": "2026-12-31",
+    "url": "https://www.ibercaja.es/particulares/cuentas-tarjetas/cuentas/cuenta-vamos/",
+    "status": "confirmado",
+    "verifiedAt": "2026-11-19",
+    "reviewedAt": "2026-11-19",
+    "productId": "ibercaja-cuenta-vamos",
+    "id": "con-ibercaja-cuenta-vamos",
+    "sourceUrl": "https://www.ibercaja.es/particulares/cuentas-tarjetas/cuentas/cuenta-vamos/",
+    "rankingEligible": true
+  },
+  {
+    "tab": "con",
+    "rank": 3,
     "banco": "Monzo · Hucha remunerada potenciada",
     "logoDomain": "monzo.com",
     "tae": 4,
@@ -26,7 +49,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 6,
+    "rank": 7,
     "banco": "bunq · Cuenta de Ahorro",
     "logoDomain": "bunq.com",
     "tae": 3.16,
@@ -48,7 +71,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 7,
+    "rank": 8,
     "banco": "Kutxabank · Cuenta Remunerada",
     "logo": "/assets/logos/kutxabank.png",
     "logoDomain": "kutxabank.es",
@@ -59,19 +82,20 @@ window.QF_CUENTAS_DATA = [
     "fgdClass": "fgd-es",
     "pro": "Sin comisiones ni condiciones recurrentes: la nómina solo da un extra opcional, no es requisito",
     "con": "Solo nuevos clientes digitales sin relación previa con Kutxabank",
-    "extra": "Altas por app del 05/10 al 22/11/2026 · verificado el 09/11/2026 en la web oficial",
-    "expiresOn": "2026-11-22",
+    "extra": "Altas por app del 05/10/2026 al 17/01/2027 · verificado el 19/11/2026 en la web oficial",
+    "expiresOn": "2027-01-17",
     "url": "https://portal.kutxabank.es/cs/Satellite/kb/es/particulares/cuenta-remunerada/pys",
     "status": "confirmado",
-    "verifiedAt": "2026-11-09",
+    "verifiedAt": "2026-11-19",
     "productId": "kutxabank-cuenta-remunerada",
     "id": "con-kutxabank-cuenta-remunerada",
     "sourceUrl": "https://portal.kutxabank.es/cs/Satellite/kb/es/particulares/cuenta-remunerada/pys",
-    "rankingEligible": true
+    "rankingEligible": true,
+    "reviewedAt": "2026-11-19"
   },
   {
     "tab": "con",
-    "rank": 8,
+    "rank": 9,
     "banco": "Trade Republic · Cuenta",
     "logoDomain": "traderepublic.com",
     "tae": 3.04,
@@ -92,7 +116,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 9,
+    "rank": 10,
     "banco": "Bankinter · Cuenta Digital",
     "logoDomain": "bankinter.com",
     "tae": 3,
@@ -114,30 +138,31 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 10,
+    "rank": 11,
     "banco": "Banco Sabadell · Cuenta Online",
     "logoDomain": "bancsabadell.com",
     "tae": 2.75,
     "limite": "2,75% TAE hasta 100.000 €",
-    "duracion": "2,75% TAE durante el primer año · después, la remuneración vigente en cada momento",
+    "duracion": "2,75% TAE durante 12 meses sobre el saldo conjunto de Cuenta Online y Cuenta Ahorro · después, la remuneración vigente en cada momento",
     "fgd": "España",
     "fgdClass": "fgd-es",
     "pro": "La remuneración del saldo no exige nómina: los 400,08 € brutos por nómina y Bizum son un incentivo adicional",
     "con": "Tipo posterior al primer año no publicado; incentivo nómina + Bizum separado, sin sumarlo a la TAE",
-    "extra": "Altas 08/10–12/11/2026, nuevos clientes. Remuneración 2,75% TAE hasta 100.000 € según página oficial; no se convierte en una cifra de intereses garantizados.",
-    "expiresOn": "2026-11-12",
-    "url": "https://www.bancsabadell.com/bsnacional/es/particulares/cuentas-bancarias/cuenta-online-sabadell/",
+    "extra": "Altas del 13/11 al 02/12/2026, nuevos clientes. Remuneración 2,75% TAE sobre el saldo conjunto de ambas cuentas, hasta 100.000 €, según las condiciones oficiales; no se convierte en una cifra de intereses garantizados.",
+    "expiresOn": "2026-12-02",
+    "url": "https://assets.bancsabadell.com/is/content/grupbancsabadell/Condiciones_COS_Promo_Nuevos_Clientes_12_meses_11_2026_CASpdf",
     "status": "confirmado",
-    "verifiedAt": "2026-11-09",
-    "startsOn": "2026-10-08",
+    "verifiedAt": "2026-11-19",
+    "startsOn": "2026-11-13",
     "productId": "banco-sabadell-cuenta-online",
     "id": "con-banco-sabadell-cuenta-online",
-    "sourceUrl": "https://www.bancsabadell.com/bsnacional/es/particulares/cuentas-bancarias/cuenta-online-sabadell/",
-    "rankingEligible": true
+    "sourceUrl": "https://assets.bancsabadell.com/is/content/grupbancsabadell/Condiciones_COS_Promo_Nuevos_Clientes_12_meses_11_2026_CASpdf",
+    "rankingEligible": true,
+    "reviewedAt": "2026-11-19"
   },
   {
     "tab": "con",
-    "rank": 16,
+    "rank": 17,
     "tinBlock": true,
     "banco": "Renault Bank · Cuenta Contigo",
     "logo": "/assets/logos/renault-bank.png",
@@ -146,24 +171,25 @@ window.QF_CUENTAS_DATA = [
     "displayRate": "3,00%",
     "rateLabel": "TIN promocional hasta 31/03/2027",
     "limite": "Sin límite anunciado",
-    "duracion": "3,00% TIN hasta 31/03/2027 (altas nuevas entre 21/10 y 18/11/2026) · después, el TIN que comercialice Renault Bank en 04/2027 · intereses mensuales",
+    "duracion": "3,00% TIN hasta 31/03/2027 (altas nuevas entre 21/10 y 02/12/2026) · después, el TIN que comercialice Renault Bank en 04/2027 · intereses mensuales",
     "fgd": "Francia",
     "fgdClass": "fgd-fr",
     "pro": "Liquidez total y sin nómina ni recibos",
     "con": "No permite operativa bancaria completa con recibos o tarjetas",
     "extra": "Clientes anteriores al 21/10/2026: 2,25% TIN / 2,27% TAE · la TAE 2,61% del titular es la del ejemplo oficial: supone 2,25% TIN desde 04/2027 solo como hipótesis (no garantizada; será el tipo que comercialice Renault Bank entonces)",
-    "expiresOn": "2026-11-18",
+    "expiresOn": "2026-12-02",
     "url": "https://renaultbank.es/productos/",
     "status": "confirmado",
-    "verifiedAt": "2026-11-09",
+    "verifiedAt": "2026-11-19",
     "productId": "renault-bank-cuenta-contigo",
     "id": "con-renault-bank-cuenta-contigo",
     "sourceUrl": "https://renaultbank.es/productos/",
-    "rankingEligible": false
+    "rankingEligible": false,
+    "reviewedAt": "2026-11-19"
   },
   {
     "tab": "con",
-    "rank": 12,
+    "rank": 13,
     "banco": "Unicaja · Cuenta Online",
     "logoDomain": "unicajabanco.es",
     "tae": 2.55,
@@ -186,7 +212,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 13,
+    "rank": 14,
     "banco": "MyInvestor · Cuenta Corriente",
     "logoDomain": "myinvestor.es",
     "tae": 2.5,
@@ -210,7 +236,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 15,
+    "rank": 16,
     "banco": "Cetelem · Cuenta Ahorro",
     "logo": "/assets/logos/cetelem.png",
     "logoDomain": "cetelem.es",
@@ -275,7 +301,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 18,
+    "rank": 19,
     "banco": "Indexa Capital / A&G",
     "logoDomain": "indexacapital.com",
     "tae": 2,
@@ -440,7 +466,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 25,
+    "rank": 26,
     "banco": "Raisin · Cuenta Bienvenida",
     "logoDomain": "raisin.com",
     "limite": "1 € – 60.000 €",
@@ -463,7 +489,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 3,
+    "rank": 4,
     "banco": "Revolut · Cuenta Remunerada",
     "logoDomain": "revolut.com",
     "tae": 3.51,
@@ -487,7 +513,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 4,
+    "rank": 5,
     "banco": "Openbank · Cuenta Remunerada",
     "logoDomain": "openbank.es",
     "tae": 3.25,
@@ -509,7 +535,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 5,
+    "rank": 6,
     "banco": "B100 · Cuenta Health",
     "logoDomain": "b100.es",
     "tae": 3.15,
@@ -531,7 +557,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 17,
+    "rank": 18,
     "banco": "Cajamar · Cuenta Online",
     "logo": "/assets/logos/cajamar.png",
     "logoDomain": "cajamar.es",
@@ -554,7 +580,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "con",
-    "rank": 23,
+    "rank": 24,
     "banco": "EBN Banco · Cuenta Remunerada",
     "logoDomain": "ebnbanco.com",
     "tae": 1,
@@ -759,7 +785,7 @@ window.QF_CUENTAS_DATA = [
     "fgdClass": "fgd-pt",
     "pro": "4,00% TAE a 3 meses sin necesidad de contratar otros productos",
     "con": "Solo nuevos clientes (cuenta de hasta 3 meses) con dinero de otras entidades; cancelar antes pierde el 100% de los intereses",
-    "extra": "Verificado el 09/11/2026 en la web oficial de BiG · producto distinto del Gran Depósito Combinado 4,00% TAE a 6 meses, que sí exige destinar un 30% a fondos",
+    "extra": "Verificado el 16/11/2026 en la web oficial de BiG · producto distinto del Gran Depósito Combinado 4,00% TAE a 6 meses, que sí exige destinar un 30% a fondos",
     "url": "https://www.bancobig.es/campana/gran-deposito-3-meses/",
     "status": "confirmado",
     "verifiedAt": "2026-11-16",
@@ -773,7 +799,7 @@ window.QF_CUENTAS_DATA = [
     "tab": "dep-sin",
     "rank": 1,
     "banco": "Renault Bank · Depósitos Tú+",
-    "expiresOn": "2026-11-18",
+    "expiresOn": "2026-12-02",
     "logo": "/assets/logos/renault-bank.png",
     "logoDomain": "renaultbank.es",
     "tae": 3.55,
@@ -783,15 +809,15 @@ window.QF_CUENTAS_DATA = [
     "fgdClass": "fgd-fr",
     "pro": "Rentabilidad creciente por plazo e intereses trimestrales",
     "con": "No permite cancelación anticipada de cada imposición.",
-    "extra": "12m: 3,20% TIN / 3,24% TAE; 24m: 3,40% TIN / 3,44% TAE; 36m: 3,50% TIN / 3,55% TAE. Intereses trimestrales, 500–1.000.000 €. Condiciones hasta 18/11/2026.",
+    "extra": "12m: 3,20% TIN / 3,24% TAE; 24m: 3,40% TIN / 3,44% TAE; 36m: 3,50% TIN / 3,55% TAE. Intereses trimestrales, 500–1.000.000 €. Condiciones hasta 02/12/2026.",
     "url": "https://renaultbank.es/productos/",
     "status": "confirmado",
-    "verifiedAt": "2026-11-09",
+    "verifiedAt": "2026-11-19",
     "productId": "renault-bank-dep-sitos-t",
     "id": "dep-sin-renault-bank-dep-sitos-t",
     "sourceUrl": "https://renaultbank.es/productos/",
     "rankingEligible": true,
-    "reviewedAt": "2026-11-09",
+    "reviewedAt": "2026-11-19",
     "sourceUrls": [
       "https://renaultbank.es/productos/",
       "https://renaultbank.es/wp-content/uploads/2025/06/Deposito-Tu-V4.pdf"
@@ -925,7 +951,7 @@ window.QF_CUENTAS_DATA = [
     "fgdClass": "fgd-pt",
     "pro": "4,00% TAE sobre la parte en depósito a 6 meses",
     "con": "Exige destinar el 30% a fondos de una preselección y mantenerlos hasta el vencimiento; si se reembolsan antes, el depósito no devenga intereses",
-    "extra": "Exclusivo para primera contratación · el fondo tiene su propio riesgo y puede perder valor · verificado el 09/11/2026 en la web oficial de BiG",
+    "extra": "Exclusivo para primera contratación · el fondo tiene su propio riesgo y puede perder valor · verificado el 16/11/2026 en la web oficial de BiG",
     "url": "https://www.bancobig.es/ahorrar/depositos-combinados/",
     "status": "confirmado",
     "verifiedAt": "2026-11-16",
@@ -936,7 +962,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "dep-con",
-    "rank": 3,
+    "rank": 6,
     "banco": "Laboral Kutxa · Depósito Bienvenida",
     "logoDomain": "laboralkutxa.com",
     "tae": 3.5,
@@ -981,7 +1007,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "dep-con",
-    "rank": 6,
+    "rank": 4,
     "banco": "Banco BiG · Gran Depósito Combinado Megatendencias",
     "logoDomain": "bancobig.es",
     "tae": 3.5,
@@ -1002,7 +1028,7 @@ window.QF_CUENTAS_DATA = [
   },
   {
     "tab": "dep-con",
-    "rank": 4,
+    "rank": 3,
     "banco": "MyInvestor · Depósito Premium",
     "logoDomain": "myinvestor.es",
     "tae": 3.5,
@@ -1103,7 +1129,7 @@ window.QF_CUENTAS_DATA = [
     "fgdClass": "fgd-de",
     "pro": "Sin comisiones; intereses al vencimiento",
     "con": "Cancelación parcial o total: el importe retirado recibe 0,87% TAE por los días mantenidos",
-    "extra": "Oferta consultada el 11/11/2026. Un solo Depósito Bienvenida, sin aportaciones posteriores. La página oficial anuncia contratación «hasta el 31/12».",
+    "extra": "Oferta consultada el 16/11/2026. Un solo Depósito Bienvenida, sin aportaciones posteriores. La página oficial anuncia contratación «hasta el 31/12».",
     "url": "https://www.ing.es/depositos-naranja",
     "status": "confirmado",
     "verifiedAt": "2026-11-16",
@@ -1543,7 +1569,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "Bankinter · Cuenta No-Nómina",
-    "rank": 1,
+    "rank": 2,
     "tae": 5,
     "pro": "Sin comisión; nuevos o sin cuenta remunerada Bankinter en los últimos 12 meses",
     "con": "Fecha de fin no publicada; límite de 40.000 cuentas. Ejemplo oficial: 487,24 € brutos año 1 con 10.000 € (base 180/365).",
@@ -1564,7 +1590,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "B100 · Cuenta Save",
-    "rank": 11,
+    "rank": 12,
     "tae": 2.75,
     "pro": "",
     "con": "Tipo posterior al 31/12/2026 no publicado; no se promete un año completo al tipo promocional",
@@ -1586,7 +1612,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "Bankinter · Cuenta Inteligente Digital",
-    "rank": 19,
+    "rank": 20,
     "tae": 2,
     "pro": "",
     "con": "Fecha fin de contratación y FGD no visibles en la página consultada",
@@ -1607,7 +1633,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "Globalcaja · Cuenta Online",
-    "rank": 20,
+    "rank": 21,
     "tae": 2,
     "pro": "",
     "con": "Tipo posterior al primer año no publicado",
@@ -1628,7 +1654,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "ABANCA · Cuenta Remunerada",
-    "rank": 21,
+    "rank": 22,
     "tae": 2,
     "pro": "",
     "con": "No acumulable a otras promociones; tipo posterior al primer año no publicado",
@@ -1648,7 +1674,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "EBN · Cuenta Remunerada con inversión",
-    "rank": 14,
+    "rank": 15,
     "tae": 2.5,
     "pro": "",
     "con": "Disponibilidad del dinero pendiente en la documentación consultada",
@@ -1669,7 +1695,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "N26 · Cuenta de Ahorro Metal",
-    "rank": 26,
+    "rank": 27,
     "tae": null,
     "pro": "",
     "con": "Prepago de 6/12 meses con descuento no cuantificado: tarifa contractual anual pendiente; no usar 162,20 €/año.",
@@ -1693,7 +1719,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "ING · Cuenta NARANJA con ingresos",
-    "rank": 24,
+    "rank": 25,
     "tae": 1,
     "pro": "Sin comisiones",
     "con": "",
@@ -1714,7 +1740,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "con",
     "banco": "Volkswagen Bank · Cuenta Alta Remuneración",
-    "rank": 22,
+    "rank": 23,
     "tae": 1.61,
     "pro": "",
     "con": "Costes y comisiones no publicados en la página consultada: comprobar antes de contratar.",
@@ -1961,7 +1987,7 @@ window.QF_CUENTAS_DATA = [
     "sourceUrl": "https://www.deutsche-bank.es/dam/spain/es/pbc/docs/Cuenta-Mas_bases-legales.pdf"
   }
 ];
-window.QF_CUENTAS_UPDATED = "09/11/2026";
+window.QF_CUENTAS_UPDATED = "19/11/2026";
 window.QF_CUENTAS_TODAY=function(){return new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Madrid',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());};
 window.QF_CUENTAS_SELECT=function(tab,mode){
  var today=window.QF_CUENTAS_TODAY(),r=(window.QF_CUENTAS_DATA||[]).filter(function(c){return c.tab===tab&&(!c.startsOn||c.startsOn<=today)&&(!c.expiresOn||c.expiresOn>=today);}).sort(function(a,b){return (a.rank||99)-(b.rank||99);});
@@ -1976,4 +2002,3 @@ window.QF_CUENTAS_PENDING_HTML=function(tab){
  var esc=function(v){return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
  return '<details class="qc-pending" style="margin-top:24px;padding:16px;border:1px solid #aa894d;border-radius:12px"><summary>Pendientes de confirmar · fuera del ranking ('+rows.length+')</summary><p>Estas fichas se conservan por transparencia. No son ofertas vigentes confirmadas ni recomendaciones; consulta la fuente antes de usarlas.</p>'+rows.map(function(c){return '<div style="padding:12px 0;border-top:1px solid #aa894d"><strong>'+esc(c.banco)+'</strong><p>'+esc(c.pendingReason)+'</p>'+(c.partialFacts?'<p>'+esc(c.partialFacts)+'</p>':'')+'<a href="'+esc(c.url)+'" target="_blank" rel="noopener noreferrer">Consultar fuente ↗</a></div>';}).join('')+'</details>';
 };
-
