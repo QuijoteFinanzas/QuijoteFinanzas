@@ -10,7 +10,7 @@ window.comisionesFuture=future;
 const chartColors=['var(--chart-0)','var(--chart-1)','var(--chart-2)','var(--chart-3)','var(--chart-4)'];
 function renderEvolution(initial,monthly,years,gross,fee,fees){
 const root=$('evolution-chart'),legend=$('evolution-legend'),range=$('evolution-year');
-const series=fees.map((f,i)=>({fee:f,color:f===fee?'var(--chart-selected)':chartColors[i%chartColors.length],values:Array.from({length:years+1},(_,y)=>future(initial,monthly,y,gross-f))}));
+const series=fees.map((f,i)=>({fee:f,color:f===fee?'var(--chart-selected)':chartColors[[0,.2,.5,1,2].indexOf(f)],values:Array.from({length:years+1},(_,y)=>future(initial,monthly,y,gross-f))}));
 const W=window.matchMedia('(max-width:760px)').matches?420:720,H=340,L=62,R=18,T=25,B=40,maxValue=Math.max(1,...series.flatMap(s=>s.values)),unit=Math.pow(10,Math.floor(Math.log10(maxValue))),top=Math.ceil(maxValue/unit*2)/2*unit;
 const x=y=>L+y/years*(W-L-R),y=v=>H-B-v/top*(H-T-B);
 const node=(tag,attrs,text)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs||{}).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n;};
@@ -41,7 +41,7 @@ $('contributed').textContent='Total aportado: '+euro(initial+monthly*years*12)+'
 const fees=[...new Set([0,.2,.5,1,2,fee])].sort((a,b)=>a-b);
 $('bars').replaceChildren();$('table').replaceChildren();
 fees.forEach((f,index)=>{const v=future(initial,monthly,years,gross-f);const row=document.createElement('div');row.className='bar-row'+(f===fee?' selected':'');
-const label=document.createElement('span');label.textContent=pct(f);const track=document.createElement('div');track.className='track';const fill=document.createElement('div');fill.className='fill';fill.style.background=f===fee?'var(--chart-selected)':chartColors[index%chartColors.length];fill.style.width=(without>0?v/without*100:0)+'%';track.append(fill);const value=document.createElement('b');value.textContent=euro(v);row.append(label,track,value);$('bars').append(row);
+const label=document.createElement('span');label.textContent=pct(f);const track=document.createElement('div');track.className='track';const fill=document.createElement('div');fill.className='fill';fill.style.background=f===fee?'var(--chart-selected)':chartColors[[0,.2,.5,1,2].indexOf(f)];fill.style.width=(without>0?v/without*100:0)+'%';track.append(fill);const value=document.createElement('b');value.textContent=euro(v);row.append(label,track,value);$('bars').append(row);
 const tr=document.createElement('tr');[pct(f)+(f===fee?' · elegida':''),euro(v),euro(without-v)].forEach(t=>{let td=document.createElement('td');td.textContent=t;tr.append(td)});$('table').append(tr);
 });
 renderEvolution(initial,monthly,years,gross,fee,fees);
