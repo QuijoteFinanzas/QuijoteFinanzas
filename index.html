@@ -2437,7 +2437,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
       <div class="calc-item clickable" data-cat="trabajo inversion" data-calc="cagr"><span class="ci">&#128200;</span><span class="calc-name">Evoluci&oacute;n y crecimiento (CAGR)</span><a class="calc-seo-link" href="/calculadora-cagr/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><a class="calc-seo-link" href="/calculadora-coste-tiempo/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="trabajo" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><a class="calc-seo-link" href="/calculadora-autonomos/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
-      <div class="calc-item" data-cat="inversion"><span class="ci">&#128200;</span><span class="calc-name">Impacto de las comisiones</span><span class="coming">En votación</span></div>
+      <a class="calc-item" data-cat="inversion" href="/calculadora-comisiones/" style="text-decoration:none;color:inherit"><span class="ci">&#128200;</span><span class="calc-name">Impacto de las comisiones</span><span class="live">Abrir <span aria-hidden="true">→</span></span></a>
       <div class="calc-item" data-cat="inversion"><span class="ci">&#128737;&#65039;</span><span class="calc-name">Fondo de emergencia</span><span class="coming">En votación</span></div>
       <div class="calc-item" data-cat="vivienda"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca vs invertir</span><span class="coming">En votación</span></div>
       <div class="calc-item" data-cat="vivienda"><span class="ci">&#128273;</span><span class="calc-name">Entrada para comprar vivienda</span><span class="coming">En votación</span></div>
@@ -4065,7 +4065,6 @@ document.addEventListener('DOMContentLoaded', function(){
   // ── VOTOS 2.0 · rondas + persistencia global vía Cloudflare Worker + D1 ────
   var VOTOS_BALLOT='tools-2026-09-2';
   var VOTOS_OPT = [
-    {id:'impacto-comisiones',label:'Impacto de las comisiones',desc:'Cuánto te resta pagar 0,20%, 0,50%, 1% o más durante 10, 20 o 30 años.'},
     {id:'fondo-emergencia',label:'Fondo de emergencia',desc:'Calcula tu colchón objetivo y cuánto tardarías en construirlo con tu ahorro mensual.'},
     {id:'amortizar-vs-invertir',label:'Amortizar hipoteca vs invertir',desc:'Compara el ahorro de intereses con una rentabilidad alternativa configurable.'},
     {id:'entrada-vivienda',label:'Entrada para comprar vivienda',desc:'Entrada, gastos y ahorro mensual necesario para llegar a una fecha objetivo.'},

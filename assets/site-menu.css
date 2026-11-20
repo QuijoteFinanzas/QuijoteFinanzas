@@ -36,3 +36,9 @@ html[data-theme="dark"] .qf-menu-sub,html[data-theme="dark"] .qf-menu-burger{bac
 html[data-theme="dark"] #top-bar .qf-menu-link{color:#c4d2df}
 html[data-theme="dark"] #top-bar .qf-menu-top{color:#8fa5ba}
 html[data-theme="dark"] #top-bar .qf-menu-top.active,html[data-theme="dark"] #top-bar .qf-menu-top[aria-expanded="true"],html[data-theme="dark"] #top-bar .qf-menu-link:hover,html[data-theme="dark"] #top-bar .qf-menu-link[aria-current="page"]{color:#f2f6fa}
+/* Tarjeta de acceso directo a la calculadora de comisiones. */
+#calculadoras a.calc-item[href="/calculadora-comisiones/"]{background:#fff;border-style:solid;color:var(--navy);cursor:pointer;transition:border-color .2s,box-shadow .2s}
+#calculadoras a.calc-item[href="/calculadora-comisiones/"] .calc-name{color:inherit;font-weight:700}
+#calculadoras a.calc-item[href="/calculadora-comisiones/"] .ci{opacity:1}
+#calculadoras a.calc-item[href="/calculadora-comisiones/"]:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(0,0,0,.08)}
+html[data-theme="dark"] #calculadoras a.calc-item[href="/calculadora-comisiones/"]{background:#142233;color:#e6eef6}
