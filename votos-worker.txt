@@ -1,9 +1,8 @@
-const ACTIVE_BALLOT = 'tools-2026-09-2';
+const ACTIVE_BALLOT = 'tools-2026-11-1';
 const ALLOWED_OPTIONS = new Set([
-  'impacto-comisiones',
   'fondo-emergencia',
   'amortizar-vs-invertir',
-  'entrada-vivienda',
+  'ahorro-objetivo',
   'estrategia-deudas'
 ]);
 
@@ -77,6 +76,8 @@ export default {
       let body;
       try { body = await request.json(); }
       catch (_) { return json({ error: 'Invalid JSON' }, 400); }
+
+      if (body?.ballotId !== ACTIVE_BALLOT) return json({ error: 'Ballot changed', ballotId: ACTIVE_BALLOT }, 409);
 
       const optionId = String(body?.id || '');
       const voterId = String(body?.voterId || '').trim();

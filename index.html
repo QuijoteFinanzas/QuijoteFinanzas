@@ -2438,13 +2438,13 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
       <div class="calc-item clickable" data-cat="inversion" data-calc="tiempo"><span class="ci">&#8987;</span><span class="calc-name">El coste del tiempo</span><a class="calc-seo-link" href="/calculadora-coste-tiempo/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <div class="calc-item clickable" data-cat="trabajo" data-calc="autonomos"><span class="ci">&#128188;</span><span class="calc-name">Simulador para aut&oacute;nomos</span><a class="calc-seo-link" href="/calculadora-autonomos/" onclick="event.stopPropagation()" aria-label="Guía y calculadora">Guía →</a><span class="live">Abrir <span aria-hidden="true">→</span></span></div>
       <a class="calc-item" data-cat="inversion" href="/calculadora-comisiones/" style="text-decoration:none;color:inherit"><span class="ci">&#128200;</span><span class="calc-name">Impacto de las comisiones</span><span class="live">Abrir <span aria-hidden="true">→</span></span></a>
-      <div class="calc-item" data-cat="inversion"><span class="ci">&#128737;&#65039;</span><span class="calc-name">Fondo de emergencia</span><span class="coming">En votación</span></div>
-      <div class="calc-item" data-cat="vivienda"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca vs invertir</span><span class="coming">En votación</span></div>
-      <div class="calc-item" data-cat="vivienda"><span class="ci">&#128273;</span><span class="calc-name">Entrada para comprar vivienda</span><span class="coming">En votación</span></div>
-      <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Deudas: avalancha vs bola de nieve</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="inversion"><span class="ci">&#128737;&#65039;</span><span class="calc-name">Colchón de emergencia</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="inversion"><span class="ci">&#128273;</span><span class="calc-name">Ahorrar para un objetivo</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="vivienda"><span class="ci">&#9878;&#65039;</span><span class="calc-name">Amortizar hipoteca o invertir</span><span class="coming">En votación</span></div>
+      <div class="calc-item" data-cat="deuda"><span class="ci">&#128179;</span><span class="calc-name">Salir de deudas</span><span class="coming">En votación</span></div>
     </div>
     <div class="votos-section">
-      <div class="votos-head-row"><div><span class="votos-kicker">Próximas herramientas</span><h3>¿Cuál quieres que construya primero?</h3></div><span class="votos-round">Ronda · sep. 2026</span></div>
+      <div class="votos-head-row"><div><span class="votos-kicker">Próximas herramientas</span><h3>¿Cuál quieres que construya primero?</h3></div><span class="votos-round">Ronda · nov. 2026</span></div>
       <p class="sub">Vota una opción. Los resultados son globales y muestran el movimiento de los últimos 7 días. La votación sirve como señal de prioridad, no como promesa de fecha.</p>
       <div id="votos-status" class="votos-status" aria-live="polite">Cargando votación…</div>
       <div id="votos-turnstile" class="votos-turnstile"></div>
@@ -4063,12 +4063,12 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   // ── VOTOS 2.0 · rondas + persistencia global vía Cloudflare Worker + D1 ────
-  var VOTOS_BALLOT='tools-2026-09-2';
+  var VOTOS_BALLOT='tools-2026-11-1';
   var VOTOS_OPT = [
-    {id:'fondo-emergencia',label:'Fondo de emergencia',desc:'Calcula tu colchón objetivo y cuánto tardarías en construirlo con tu ahorro mensual.'},
-    {id:'amortizar-vs-invertir',label:'Amortizar hipoteca vs invertir',desc:'Compara el ahorro de intereses con una rentabilidad alternativa configurable.'},
-    {id:'entrada-vivienda',label:'Entrada para comprar vivienda',desc:'Entrada, gastos y ahorro mensual necesario para llegar a una fecha objetivo.'},
-    {id:'estrategia-deudas',label:'Deudas: avalancha vs bola de nieve',desc:'Compara orden de pago, intereses totales y fecha estimada de liquidación.'}
+    {id:'fondo-emergencia',label:'Colchón de emergencia',desc:'Cuánto necesitas y cuánto tardarías en reunirlo.'},
+    {id:'ahorro-objetivo',label:'Ahorrar para un objetivo',desc:'Cuánto apartar al mes para llegar a una cantidad en una fecha.'},
+    {id:'amortizar-vs-invertir',label:'Amortizar hipoteca o invertir',desc:'Compara amortizar la hipoteca con invertir ese dinero.'},
+    {id:'estrategia-deudas',label:'Salir de deudas',desc:'Compara empezar por la deuda más cara o por la más pequeña y cuánto tardarías en liquidarlas.'}
   ];
   var VOTOS_WORKER='https://votos-quijotefinanzas.donquijotedelasfinanzas.workers.dev';
   var VOTOS_TS_SITEKEY='0x4AAAAAAF7EeWzz5xSWGzbw';
@@ -4127,7 +4127,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var id=btn.getAttribute('data-vote'); if(gS(votosChoiceKey(),null))return;
       if(!votosTsToken){votosSetStatus('Confirma la verificaci\u00f3n antibot para votar.','error');votosEnsureTurnstile();return;}
       root.querySelectorAll('[data-vote]').forEach(function(b){b.disabled=true;}); votosSetStatus('Guardando tu voto…','loading');
-      fetch(VOTOS_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,voterId:votosVoterId(),cfToken:votosTsToken})})
+      fetch(VOTOS_WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ballotId:VOTOS_BALLOT,id:id,voterId:votosVoterId(),cfToken:votosTsToken})})
         .then(function(r){return r.json().then(function(j){return {ok:r.ok,status:r.status,data:j};});})
         .then(function(res){
           if(res.ok){sS(votosChoiceKey(),id);try{qfTrack('tool_vote_cast',{option_id:id,ballot_id:VOTOS_BALLOT});}catch(e){}renderVotosUI(res.data,id);return;}
