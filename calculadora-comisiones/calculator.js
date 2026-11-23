@@ -49,6 +49,7 @@ const tr=document.createElement('tr');[pct(f)+(f===fee?' · elegida':''),euro(v)
 });
 renderEvolution(initial,monthly,years,gross,fee,fees,inf);
 const note=$('infl-note');if(inf>0){note.hidden=false;note.replaceChildren();note.append('Importes en euros de hoy, con inflación constante del '+pct(inf*100)+' anual.');const b=document.createElement('span');b.className='infl-real-badge';b.textContent='Euros de hoy';note.append(b,' En euros futuros (nominal): sin comisiones '+euro(withoutN)+'; con tu comisión '+euro(withFeeN)+'; efecto acumulado de la inflación sobre el escenario sin comisiones '+euro(withoutN-without)+'.');}else{note.hidden=true;note.replaceChildren();}
+if($('real-badge'))$('real-badge').hidden=!(inf>0);
 $('unit-note').textContent=inf>0?'Importes en euros de hoy, con inflación constante del '+pct(inf*100)+' anual.':'Importes en euros futuros.';
 }
 let chartResizeTimer;window.addEventListener('resize',()=>{clearTimeout(chartResizeTimer);chartResizeTimer=setTimeout(update,120)});
