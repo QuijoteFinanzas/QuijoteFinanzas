@@ -49,6 +49,7 @@ gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user
 
 <section class="section"><h2>Preguntas frecuentes</h2><div class="faq">
 <details><summary>¿Por qué falta un dato concreto?</summary><p>Dos motivos posibles: no entra en la selección (lo excluimos por poco relevante para tu bolsillo) o el organismo aún no ha publicado la fecha. Las fechas de cada mes se completan en la revisión mensual.</p></details>
+<details><summary>¿Qué significa «—» en la hora?</summary><p>Que el organismo ha publicado el día pero no la hora en su calendario oficial: Eurostat y el INE anuncian la fecha y no la hora. No es un dato perdido; es lo único confirmado por la fuente.</p></details>
 <details><summary>¿Las horas son exactas?</summary><p>Son las oficiales cuando el organismo las publica, en hora de Madrid. En los bancos centrales usamos la hora habitual de sus comunicados; si un día cambia, el aviso oficial manda.</p></details>
 <details><summary>¿Los bancos centrales pueden cambiar una fecha?</summary><p>Rara vez, pero puede pasar. Por eso cada mes revisamos también las fechas que ya estaban publicadas.</p></details>
 </div></section>
@@ -89,7 +90,7 @@ gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user
    months.forEach(function(m,i){var b=document.createElement('button');var p=m.split('-');b.textContent=MESES[+p[1]-1]+' '+p[0];b.setAttribute('role','tab');if(i===0)b.className='active';b.addEventListener('click',function(){Array.prototype.forEach.call(nav.children,function(c){c.className='';});b.className='active';render(m);});nav.appendChild(b);});
    if(months.length)render(months[0]);
    var meta=document.getElementById('calmeta');
-   if(meta&&window.QF_CAL_META)meta.textContent='Última revisión: '+window.QF_CAL_META.reviewed+' · Próxima revisión: '+window.QF_CAL_META.nextReview+' · Todas las horas son hora de Madrid.';
+   if(meta&&window.QF_CAL_META)meta.textContent='Última revisión: '+window.QF_CAL_META.reviewed+' · Próxima revisión: '+window.QF_CAL_META.nextReview+' · Todas las horas son hora de Madrid. El guion «—» significa fecha oficial publicada sin hora.';
  });
 })();
 </script></body></html>
