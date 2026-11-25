@@ -2916,6 +2916,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
       </div>
       <div class="qf-hero-insight" id="ic-hero-insight"></div>
       <div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share="interes">Compartir resultado en X ↗</button></div>
+      <div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>
       <div class="qf-card-brand">quijotefinanzas.com</div>
     </div>
     <div class="calc-grid">
@@ -3091,6 +3092,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
       </div>
       <div class="qf-hero-insight" id="jub-hero-insight"></div>
       <div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share="jubilacion">Compartir resultado en X ↗</button></div>
+      <div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>
       <div class="qf-card-brand">quijotefinanzas.com</div>
     </div>
     <div class="calc-grid">
@@ -3538,6 +3540,7 @@ html[data-theme="dark"] .home-v3-newsletter button{background:#c9a84c;border-col
       </div>
       <div class="qf-hero-insight" id="t-hero-insight"></div>
       <div class="qf-hero-actions"><button type="button" class="qf-share-result" data-result-share="tiempo">Compartir resultado en X ↗</button></div>
+      <div class="qf-result-share-note">Por privacidad, el texto compartido no incluirá tus importes.</div>
       <div class="qf-card-brand">quijotefinanzas.com</div>
     </div>
 
@@ -6854,7 +6857,11 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   };
 
   function resultShareText(id){
-    // Mismas lecturas de datos que el detalle y el hero; si faltan datos, texto genérico.
+    // Por privacidad, el texto compartido no incluye importes ni datos personales.
+    if(id==='interes'||id==='jubilacion'||id==='tiempo'){
+      var sm=document.getElementById('modal-'+id),sh=sm&&sm.querySelector('h2'),st=sh?sh.textContent.trim().replace(/^[^A-Za-zÁÉÍÓÚÜÑ¿]+/,''):'esta calculadora';
+      return 'He probado la calculadora de '+st+' en QuijoteFinanzas. Puedes calcular tu propio escenario aquí:';
+    }
     var src={interes:window.qfInteresInputs,jubilacion:window.qfFireInputs,tiempo:window.qfTiempoInputs}[id];
     if(src){var chk=src();if(chk.error)return 'Prueba esta calculadora en QuijoteFinanzas:';
       if(id==='interes'){var C0=chk.C,A0=chk.A,r0=chk.r,n0=chk.n,cap0=calcCompound(C0,A0,r0,n0);return '📈 '+eurFull(A0)+'/mes durante '+n0+' años al '+r0.toLocaleString('es-ES',{maximumFractionDigits:1})+'% → '+eurFull(cap0)+'. El tiempo hace buena parte del trabajo. Calcula tu escenario en QuijoteFinanzas:';}
@@ -6924,14 +6931,14 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   var heroConfig={
     autonomos:{title:'Dinero neto estimado',main:['dinero que entra en tu cuenta este trimestre'],metrics:[['ingresos del trimestre','Ingresos'],['gastos deducibles','Gastos'],['cuota reta del trimestre','RETA']] ,private:true},
     salario:{title:'Bruto anual necesario',main:['salario bruto necesario'],metrics:[['neto objetivo','Neto objetivo'],['irpf estimado','IRPF'],['neto por paga','Neto / paga']],private:true},
-    hipoteca:{title:'Cuota mensual estimada',main:['cuota mensual'],metrics:[['capital prestado','Capital'],['total intereses','Intereses'],['plazo','Plazo']]},
+    hipoteca:{title:'Cuota mensual estimada',main:['cuota mensual'],metrics:[['capital prestado','Capital'],['total intereses','Intereses'],['plazo','Plazo']],private:true},
     coste:{title:'Coste anual para la empresa',main:['coste total anual'],metrics:[['tu salario bruto','Bruto'],['ss a cargo empresa','SS empresa'],['coste mensual','Coste / mes']],private:true},
-    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['valor real de la inversion','Valor real (euros de hoy)'],['poder adquisitivo del efectivo','Efectivo sin invertir']]},
-    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses tras retencion','Intereses netos'],['tae equivalente','TAE']]},
+    inflacion:{title:'Valor futuro estimado',main:['valor futuro'],metrics:[['capital inicial','Capital inicial'],['valor real de la inversion','Valor real (euros de hoy)'],['poder adquisitivo del efectivo','Efectivo sin invertir']],private:true},
+    deposito:{title:'Capital al vencimiento',main:['capital total al vencimiento'],metrics:[['capital depositado','Capital'],['intereses tras retencion','Intereses netos'],['tae equivalente','TAE']],private:true},
     irpf:{title:'Neto estimado por paga',main:['neto por paga'],metrics:[['salario bruto anual','Bruto anual'],['irpf anual','IRPF anual'],['tipo efectivo irpf','Tipo efectivo']],private:true},
-    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal'],metrics:[['aportacion anual al plan','Aportación'],['coste real estimado de la aportacion','Coste real'],['ahorro por cada 100','Ahorro / 100 €']]},
-    amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']]},
-    alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']]}
+    pension:{title:'Ahorro fiscal estimado',main:['ahorro fiscal'],metrics:[['aportacion anual al plan','Aportación'],['coste real estimado de la aportacion','Coste real'],['ahorro por cada 100','Ahorro / 100 €']],private:true},
+    amortizacion:{title:'Ahorro estimado en intereses',main:['ahorro en intereses'],metrics:[['importe amortizado','Amortizado'],['capital pendiente','Capital'],['tiempo ahorrado','Tiempo'],['nueva cuota mensual','Nueva cuota']],private:true},
+    alquiler:{title:'Rentabilidad neta estimada',main:['rentabilidad neta'],metrics:[['beneficio neto anual','Beneficio neto'],['inversión total','Inversión'],['rentabilidad bruta','Rent. bruta']],private:true}
   };
 
   var sliderConfig={
@@ -7182,7 +7189,7 @@ glosarioItems.sort(function(a,b){return a.title.localeCompare(b.title,"es");});
   // Casos con hero personalizado.
   pilotIds.forEach(function(id){ensureScenarioArea(id);});
   Object.keys(heroConfig).forEach(function(id){ensureScenarioArea(id);});
-  ['alquilervs','comparador'].forEach(function(id){if(!heroConfig[id]){heroConfig[id]={title:'Resultado comparado',main:[],metrics:[]};insertGenericHero(id,heroConfig[id]);ensureScenarioArea(id);}});
+  ['alquilervs','comparador'].forEach(function(id){if(!heroConfig[id]){heroConfig[id]={title:'Resultado comparado',main:[],metrics:[],private:true};insertGenericHero(id,heroConfig[id]);ensureScenarioArea(id);}});
 
   Object.keys(sliderConfig).forEach(function(id){enhanceSlider(document.getElementById(id),sliderConfig[id]);});
   function syncSalNetoSlider(){
