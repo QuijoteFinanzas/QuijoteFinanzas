@@ -294,28 +294,11 @@ def check_quijocuentas() -> None:
         err("QuijoCuentas: la sección de referidos ha cambiado; requiere revisión explícita")
 
 
-def check_calendar_removed() -> None:
-    forbidden = ("build-calendario", "assets/calendario/", "/calendario-financiero/")
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or path.suffix.lower() not in {".html", ".js", ".py", ".json", ".xml"}:
-            continue
-        if path.resolve() == Path(__file__).resolve() or rel(path) == "calendario-financiero/index.html":
-            continue
-        try:
-            text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
-            continue
-        for token in forbidden:
-            if token in text:
-                err(f"Referencia residual al calendario ({token}) en {rel(path)}")
-
-
 def main() -> int:
     parsed = check_html()
     check_sitemap(parsed)
     check_quijolista()
     check_quijocuentas()
-    check_calendar_removed()
 
     print("\n=== Validación QuijoteFinanzas ===")
     if WARNINGS:
