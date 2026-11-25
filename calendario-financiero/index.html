@@ -20,6 +20,10 @@ html[data-theme="dark"] .calnav button.active{background:#d7b85d;border-color:#d
 .calitem .t a:hover{border-bottom-style:solid}
 .calitem .src{font-size:11px;color:var(--muted)}
 .calchip{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(201,168,76,.5);color:#927321;border-radius:999px;padding:4px 9px;white-space:nowrap}
+.calchip.done{background:rgba(201,168,76,.14);color:var(--navy);border-color:rgba(201,168,76,.65)}
+.calitem .res{font-size:12px;font-weight:600;color:var(--navy);margin-top:3px}
+.calitem .resmark{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(201,168,76,.6);color:#927321;border-radius:999px;padding:2px 8px;margin-right:2px;vertical-align:1px}
+html:not([data-theme="dark"]) .calitem .resmark{color:#7d6118}
 html:not([data-theme="dark"]) .calchip{color:#7d6118}
 .zone{display:inline-block;font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:1px 7px;margin-right:6px;background:var(--bg)}
 .calmeta{font-size:12px;color:var(--muted);margin:16px 0 0}
@@ -78,7 +82,7 @@ gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user
      if(e.date!==last){last=e.date;var h=document.createElement('div');h.className='calday';h.textContent=fmtDay(e.date);list.appendChild(h);}
      var it=document.createElement('div');it.className='calitem';
      var time=e.time?e.time:'—';var note=e.timeNote?'<small>'+e.timeNote+'</small>':'';
-     it.innerHTML='<div class="h">'+time+note+'</div><div class="t"><span class="zone">'+e.zone+'</span>'+(e.url?'<a href="'+e.url+'" target="_blank" rel="noopener">'+e.title+'</a>':'<strong>'+e.title+'</strong>')+(e.what?'<div class="src">'+e.what+'</div>':'')+'</div><span class="calchip">'+e.cat+'</span>';
+     it.innerHTML='<div class="h">'+time+note+'</div><div class="t"><span class="zone">'+e.zone+'</span>'+(e.url?'<a href="'+e.url+'" target="_blank" rel="noopener">'+e.title+'</a>':'<strong>'+e.title+'</strong>')+(e.what?'<div class="src">'+e.what+'</div>':'')+(e.result?'<div class="res"><span class="resmark">✓ Publicado</span> · '+e.result+'</div>':'')+'</div><span class="calchip">'+e.cat+'</span>';
      list.appendChild(it);
    });
  }
@@ -90,7 +94,7 @@ gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user
    months.forEach(function(m,i){var b=document.createElement('button');var p=m.split('-');b.textContent=MESES[+p[1]-1]+' '+p[0];b.setAttribute('role','tab');if(i===0)b.className='active';b.addEventListener('click',function(){Array.prototype.forEach.call(nav.children,function(c){c.className='';});b.className='active';render(m);});nav.appendChild(b);});
    if(months.length)render(months[0]);
    var meta=document.getElementById('calmeta');
-   if(meta&&window.QF_CAL_META)meta.textContent='Última revisión: '+window.QF_CAL_META.reviewed+' · Próxima revisión: '+window.QF_CAL_META.nextReview+' · Todas las horas son hora de Madrid. El guion «—» significa fecha oficial publicada sin hora.';
+   if(meta&&window.QF_CAL_META)meta.textContent='Última revisión: '+window.QF_CAL_META.reviewed+' · Próxima revisión: '+window.QF_CAL_META.nextReview+' · Todas las horas son hora de Madrid. El guion «—» significa fecha oficial publicada sin hora. La marca «✓ Publicado» identifica los datos ya difundidos, con su resultado oficial.';
  });
 })();
 </script></body></html>
