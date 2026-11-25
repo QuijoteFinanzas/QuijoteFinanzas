@@ -1824,6 +1824,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "dep-sin",
     "banco": "Cajamar · Depósito Hola",
+    "logo": "/assets/logos/cajamar.png",
     "rank": 11,
     "tae": 2.78,
     "pro": "",
@@ -1887,6 +1888,7 @@ window.QF_CUENTAS_DATA = [
   {
     "tab": "dep-con",
     "banco": "Cajamar · Depósito Nueva Pensión",
+    "logo": "/assets/logos/cajamar.png",
     "rank": 10,
     "tae": 3.03,
     "pro": "",
