@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
+<title>QuijoCuentas: compara cuentas y depósitos en España | QuijoteFinanzas</title>
+<meta name="description" content="Comparativa mensual interactiva de cuentas remuneradas, cuentas nómina, depósitos y promociones bancarias en España: TAE, condiciones, límites y FGD con fuentes oficiales."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://quijotefinanzas.com/cuentas/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Don Quijote de las Finanzas"><meta property="og:locale" content="es_ES"><meta property="og:url" content="https://quijotefinanzas.com/cuentas/"><meta property="og:title" content="QuijoCuentas: compara cuentas y depósitos en España | QuijoteFinanzas"><meta property="og:description" content="Comparativa mensual interactiva con TAE, condiciones, límites y FGD. Sin publicidad ni posiciones patrocinadas."><meta property="og:image" content="https://quijotefinanzas.com/og-image-2026.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@quijotefinanzas"><meta name="twitter:title" content="QuijoCuentas: compara cuentas y depósitos en España"><meta name="twitter:description" content="Comparativa mensual interactiva con fuentes oficiales y condiciones visibles."><meta name="twitter:image" content="https://quijotefinanzas.com/og-image-2026.png">
+<link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2035;--navy2:#183752;--gold:#c9a84c;--text:#22384e;--muted:#536f8c;--bg:#f7f9fb;--card:#fff;--border:#dfe6ee;--soft:#eef3f7;--green:#2d8a5e;--orange:#b86138}html[data-theme="dark"]{--navy:#eef4f8;--navy2:#cbd8e4;--gold:#d7b85d;--text:#dce7ef;--muted:#9fb2c4;--bg:#101a26;--card:#182638;--border:#33485e;--soft:#132030;--green:#77c59e;--orange:#e6a17b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.65}a{color:inherit}.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.topin{max-width:1120px;margin:auto;padding:10px 22px;display:flex;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:9px;text-decoration:none;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy)}.brand img{width:34px;height:34px;border-radius:50%;border:1px solid rgba(201,168,76,.35);background:#fff}.topnav{margin-left:auto;display:flex;gap:12px;align-items:center}.topnav a{font-size:12px;text-decoration:none;color:var(--muted);font-weight:600}.theme{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--navy);cursor:pointer}.wrap{max-width:1080px;margin:auto;padding:30px 22px 70px}.crumbs{font-size:12px;color:var(--muted);margin-bottom:24px}.crumbs a{text-decoration:none}.hero{padding:20px 0 24px}.kicker{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#927321;margin-bottom:9px}html[data-theme="dark"] .kicker{color:#d7b85d}.hero h1{font-family:'Playfair Display',serif;color:var(--navy);font-size:clamp(34px,5vw,52px);line-height:1.08;margin:0 0 14px;letter-spacing:-.02em}.hero p{font-size:18px;color:var(--muted);max-width:820px;margin:0}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.badge{border:1px solid var(--border);background:var(--card);border-radius:999px;padding:6px 10px;font-size:11px;color:var(--muted);font-weight:600}.badge-link{text-decoration:none;color:var(--navy2)}.badge-link:hover{border-color:rgba(201,168,76,.65);color:#8b6a15}.section{padding:30px 0;border-top:1px solid var(--border)}.foot{border-top:1px solid var(--border);padding:25px 22px;text-align:center;color:var(--muted);font-size:11px}.cookie{display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.16);max-width:680px;margin:auto}.cookie p{font-size:12px;color:var(--muted);margin:0 0 11px}.cookie-actions{display:flex;gap:8px;justify-content:flex-end}.cookie button{border:1px solid var(--border);background:var(--card);color:var(--navy);padding:8px 12px;border-radius:7px;cursor:pointer;font-weight:600}.cookie button.primary{background:#0f2035;color:#fff;border-color:#0f2035}@media(max-width:760px){.topnav a:first-child{display:none}.wrap{padding-left:16px;padding-right:16px}.hero p{font-size:16px}}
+.cat-btn{background:#fff;border:1.5px solid var(--navy);color:var(--navy);font-size:12px;padding:5px 14px;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;font-weight:500}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.cuentas-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.cuentas-kicker{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#806114;font-weight:700;margin-bottom:7px}
+.cuentas-intro-copy{max-width:660px}
+.cuentas-intro-copy h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,36px);color:var(--navy);margin:0 0 8px;line-height:1.08}
+.cuentas-intro-copy p{font-size:14px;color:var(--muted);line-height:1.65;margin:0}
+.cuentas-seo-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.cuentas-seo-links a{font-size:11px;font-weight:700;text-decoration:none;color:var(--navy2);border:1px solid #dfe6ee;background:#fff;border-radius:999px;padding:6px 10px}.cuentas-seo-links a:hover{border-color:rgba(201,168,76,.65);color:#8b6a15}html[data-theme="dark"] .cuentas-seo-links a{background:#182638;border-color:#33485e;color:#cbd8e4}
+.cuentas-intro-copy .divider,.ql-section-head .divider,.qc-section-head .divider,.ref-section-head .divider{margin-top:14px}
+#cuentas-filter{gap:7px;margin-bottom:22px;padding-bottom:2px}
+#cuentas-filter .cat-btn{border-radius:999px;padding:7px 13px;background:#fff;border:1px solid #dbe3ed;color:var(--navy2);font-size:11px;font-weight:600}
+#cuentas-filter .cat-btn:hover{border-color:rgba(15,32,53,.4);background:#f8fafc}
+#cuentas-filter .cat-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.cuentas-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:0 0 12px;padding:0 2px}
+.cuentas-sort{font-size:12px;color:var(--muted);margin:0}
+.cuentas-badge{font-size:11px;color:var(--navy2);background:#f6f8fb;border:1px solid #dfe6ee;padding:5px 9px;border-radius:999px;font-family:'DM Mono',monospace;white-space:nowrap}
+.cuentas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:0}
+.cuenta-card{min-width:0;overflow-wrap:anywhere;background:#fff;border:1px solid #e1e7ef;border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.cuenta-card:hover{border-color:#c9d3df;transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.08)}
+.cuenta-card.top{border-color:rgba(201,168,76,.6);box-shadow:inset 0 0 0 1px rgba(201,168,76,.16),0 2px 8px rgba(0,0,0,.04)}
+.cuenta-rank{display:inline-flex;align-items:center;gap:5px;font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:#7a6020;background:rgba(201,168,76,.10);border:1px solid rgba(201,168,76,.28);padding:4px 8px;border-radius:999px;margin-bottom:7px;font-weight:800}
+.cuenta-top>div:first-child{min-width:0}.cuenta-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid #edf1f5}
+.cuenta-banco{color:var(--navy);line-height:1.2;min-width:0;display:flex;flex-direction:column;gap:3px}
+/* Logos de entidad · QuijoCuentas */
+.cuenta-identity{display:flex;align-items:center;gap:10px;min-width:0}
+.cuenta-logo{width:42px;height:42px;flex:0 0 42px;border-radius:10px;background:#fff;border:1px solid #e1e7ef;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 7px rgba(0,0,0,.06)}
+.cuenta-logo img{display:block;width:30px;height:30px;object-fit:contain}
+.cuenta-logo-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font:800 10px 'DM Sans',sans-serif;color:var(--navy2);letter-spacing:.02em;background:#fff}
+.cuenta-bank-name{font-size:16px;font-weight:700;font-family:'Playfair Display',serif;line-height:1.18}
+.cuenta-bank-product{font-size:12px;font-weight:650;font-family:'DM Sans',sans-serif;color:var(--muted);line-height:1.3}
+.cuenta-metric{text-align:right;min-width:0;flex:0 1 auto;max-width:62%}
+.cuenta-tae{font-size:27px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;line-height:1;letter-spacing:-.4px}
+.cuenta-tae span{display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px;margin-top:5px;text-transform:uppercase}
+.cuenta-rich-metric{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0;max-width:100%;text-align:right}
+.cuenta-rich-prefix{font-size:11px;line-height:1;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.cuenta-rich-value{font-family:'DM Mono',monospace;font-size:25px;line-height:1.02;font-weight:700;color:var(--navy);letter-spacing:-.5px;white-space:nowrap}
+.cuenta-rich-value.is-long{font-size:19px}
+.cuenta-rich-period{font-size:11px;line-height:1.25;font-weight:700;color:var(--navy2)}
+.cuenta-rich-secondary{font-size:11px;line-height:1.25;font-weight:600;color:var(--muted);max-width:235px;text-align:right}
+.cuenta-rich-label{font-size:11px;line-height:1.15;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.cuenta-meta-row{display:flex;gap:6px;flex-wrap:wrap}
+.cuenta-chip{max-width:100%;overflow-wrap:anywhere;font-size:11px;padding:5px 8px;border-radius:999px;background:#f7f9fc;color:var(--navy2);border:1px solid #e1e7ef;white-space:normal;font-weight:600}
+.cuenta-detail{font-size:12px;line-height:1.55;color:#4f6985;white-space:normal;word-wrap:break-word;padding-left:2px}
+.cuenta-chip.fgd-es,.cuenta-chip.fgd-fr,.cuenta-chip.fgd-de,.cuenta-chip.fgd-pt{background:#f7f9fc;color:var(--navy2);border-color:#e1e7ef}
+.cuenta-pros-cons{display:grid;grid-template-columns:1fr;gap:6px;margin-top:2px;padding-top:10px;border-top:1px solid #edf1f5;font-size:12px}
+.cuenta-pro,.cuenta-con{display:flex;align-items:flex-start;gap:7px;line-height:1.45;font-weight:500}
+.cuenta-pro{color:#2c7354}.cuenta-pro::before{content:"✓";font-weight:800;color:#2d8a5e}
+.cuenta-con{color:#8a5b42}.cuenta-con::before{content:"△";font-weight:800;color:#c06030}
+.cuenta-tae-ref{font-size:11px;color:var(--muted);margin-top:-2px}
+.cuentas-disclaimer{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.65;padding:12px 14px;background:#f8fafc;border:1px solid #e5eaf0;border-radius:10px}
+.cuentas-pronto{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;border:1px dashed var(--border);border-radius:10px;margin-top:16px;background:#fafbfd}
+.cuentas-changelog{margin:-6px 0 18px;border:1px solid #e1e7ef;border-radius:12px;background:#fbfcfe;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.025)}
+.cuentas-changelog summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;cursor:pointer;color:var(--navy);font-size:12px;font-weight:700;user-select:none}
+.cuentas-changelog summary::-webkit-details-marker{display:none}
+.cuentas-changelog-title{display:flex;align-items:center;gap:8px;min-width:0}
+.cuentas-changelog-title span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cuentas-changelog-action{font-size:11px;color:var(--muted);font-weight:650;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.cuentas-changelog-action::after{content:'\2193';font-size:12px;transition:transform .18s ease}
+.cuentas-changelog[open] .cuentas-changelog-action::after{transform:rotate(180deg)}
+.cuentas-changelog-body{padding:0 14px 13px;border-top:1px solid #edf1f5}
+.cuentas-changelog-body ul{margin:11px 0 8px;padding:0;list-style:none;display:grid;gap:8px}
+.cuentas-changelog-body li{position:relative;padding-left:16px;font-size:12px;line-height:1.55;color:#4f6985}
+.cuentas-changelog-body li::before{content:'\2022';position:absolute;left:2px;top:0;color:var(--gold);font-weight:800}
+.cuentas-changelog-body strong{color:var(--navy2)}
+.cuentas-changelog-date{font-size:12px;line-height:1.5;color:var(--muted);margin:9px 0 0}
+.cuentas-snapshot{margin:12px 0 4px;padding:11px 12px;border:1px solid #e5eaf0;border-radius:10px;background:#fff}
+.cuentas-snapshot-title{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#806114;margin-bottom:8px}
+.cuentas-snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px}
+.cuentas-snapshot-item{font-size:12px;line-height:1.45;color:#5c7288}
+.cuentas-snapshot-item strong{display:block;font-size:12px;color:var(--navy2);margin-bottom:1px}
+.cuentas-snapshot-note{font-size:12px;line-height:1.45;color:var(--muted);margin:8px 0 0}
+html[data-theme="dark"] .cuentas-snapshot{background:#132030;border-color:#30465a}
+html[data-theme="dark"] .cuentas-changelog{background:#182638;border-color:#33485e}
+html[data-theme="dark"] .cuentas-changelog-body{border-color:#30465a}
+html[data-theme="dark"] .cuentas-changelog-body li{color:#b9c9d8}
+html[data-theme="dark"] .cuentas-changelog-body strong{color:#edf3f8}
+.cuentas-tin-block{margin-top:16px}
+.cuentas-tin-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:0 0 12px;padding-top:16px;border-top:1px dashed #dfe6ee}
+html[data-theme="dark"] .cuentas-tin-label{color:#b9c9d8!important;border-color:#30465a}
+@media(max-width:520px){.cuentas-snapshot-grid{grid-template-columns:1fr}.cuentas-changelog{margin-top:-4px}.cuentas-changelog summary{padding:11px 12px}.cuentas-changelog-body{padding-left:12px;padding-right:12px}.cuentas-changelog-title span:last-child{white-space:normal}.cuentas-changelog-action span{display:none}}
+@media(max-width:760px){.cuentas-intro{align-items:flex-start}.cuentas-grid{grid-template-columns:minmax(0,1fr)}.cuenta-top{gap:12px}.cuenta-tae{font-size:24px}.cuenta-rich-value{font-size:23px}.cuenta-metric{min-width:116px}.cuenta-card{padding:16px}}
+.cuenta-actions{display:flex;gap:7px;flex-wrap:wrap;padding-top:10px;border-top:1px solid #edf1f5;margin-top:2px}
+.cuenta-source,.cuenta-ref{display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;text-decoration:none;border-radius:999px;padding:6px 9px;transition:all .15s ease}
+.cuenta-source{color:var(--navy2);background:#f7f9fc;border:1px solid #dfe6ee}.cuenta-source:hover{border-color:#aebdcb;color:var(--navy)}
+.cuenta-ref{color:#735711;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.32)}.cuenta-ref:hover{background:rgba(201,168,76,.16);border-color:var(--gold)}
+.cuenta-hist{font-size:12px;line-height:1.45;color:var(--muted);padding-left:2px}
+.cuenta-hist .up{color:var(--green);font-weight:700}.cuenta-hist .down{color:var(--orange);font-weight:700}.cuenta-hist .flat{color:var(--muted);font-weight:700}
+/* Tema oscuro: las tarjetas QuijoCuentas usan fondos claros fijos en la home; aqui se adaptan */
+html[data-theme="dark"] .cuenta-card{background:#182638;border-color:#33485e;box-shadow:none}
+html[data-theme="dark"] .cuenta-card:hover{border-color:#4a627c}
+html[data-theme="dark"] .cuenta-top{border-color:#30465a}
+html[data-theme="dark"] .cuenta-pros-cons,html[data-theme="dark"] .cuenta-actions{border-color:#30465a}
+html[data-theme="dark"] .cuenta-chip,html[data-theme="dark"] .cuenta-chip.fgd-es,html[data-theme="dark"] .cuenta-chip.fgd-fr,html[data-theme="dark"] .cuenta-chip.fgd-de,html[data-theme="dark"] .cuenta-chip.fgd-pt{background:#132030;border-color:#33485e}
+html[data-theme="dark"] .cuentas-badge{background:#132030;border-color:#33485e}
+html[data-theme="dark"] .cuentas-disclaimer{background:#132030;border-color:#30465a}
+html[data-theme="dark"] .cuentas-pronto{background:#132030}
+html[data-theme="dark"] .cuenta-source{background:#132030;border-color:#33485e}
+html[data-theme="dark"] .cuenta-source:hover{border-color:#4a627c}
+html[data-theme="dark"] .cuenta-detail{color:#9fb2c4}
+html[data-theme="dark"] .cuentas-kicker,html[data-theme="dark"] .cuentas-snapshot-title{color:#d7b85d}
+html[data-theme="dark"] .cuenta-rank{color:#d7b85d}
+html[data-theme="dark"] .cuentas-snapshot-item{color:#9fb2c4}
+html[data-theme="dark"] .cuenta-pro{color:#77c59e}html[data-theme="dark"] .cuenta-pro::before{color:#77c59e}
+html[data-theme="dark"] .cuenta-con{color:#e6a17b}html[data-theme="dark"] .cuenta-con::before{color:#e6a17b}
+html[data-theme="dark"] .cat-btn{background:#182638;border-color:#4a627c;color:#cbd8e4}
+html[data-theme="dark"] .cat-btn:hover{background:#132030;color:#eef4f8}
+html[data-theme="dark"] .cat-btn.active{background:#eef4f8;border-color:#eef4f8;color:#101a26}
+html[data-theme="dark"] #cuentas-filter .cat-btn{background:#182638;border-color:#33485e;color:#cbd8e4}
+html[data-theme="dark"] #cuentas-filter .cat-btn:hover{background:#132030;border-color:#4a627c}
+html[data-theme="dark"] #cuentas-filter .cat-btn.active{background:#eef4f8;border-color:#eef4f8;color:#101a26}
+html[data-theme="dark"] .cuenta-ref{color:#d7b85d}
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"QuijoCuentas: compara cuentas y depósitos en España","url":"https://quijotefinanzas.com/cuentas/","description":"Comparativa mensual interactiva de cuentas remuneradas, cuentas nómina, depósitos y promociones bancarias con fuentes oficiales.","inLanguage":"es-ES","dateModified":"2026-11-26","isPartOf":{"@type":"WebSite","name":"Don Quijote de las Finanzas","url":"https://quijotefinanzas.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://quijotefinanzas.com/"},{"@type":"ListItem","position":2,"name":"QuijoCuentas","item":"https://quijotefinanzas.com/cuentas/"}]}]}</script>
+<script>(function(){try{var t=localStorage.getItem('qf-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-S4VBMV5WPN"></script><script>gtag('js',new Date());gtag('config','G-S4VBMV5WPN',{anonymize_ip:true});</script>
+<script src="/assets/quijocuentas-data.js?v=20261111auditoria"></script>
+<script src="/assets/quijocuentas-historico.js?v=20261126"></script>
+</head>
+<body><div class="top"><div class="topin"><a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34"><span>QuijoteFinanzas</span></a><div class="topnav"><a href="/mejores-cuentas-remuneradas.html">Cuentas remuneradas</a><a href="/mejores-depositos/">Depósitos</a><a href="/calculadoras/">Calculadoras</a><button class="theme" onclick="qfTheme()" aria-label="Cambiar tema">◐</button></div></div></div>
+<main class="wrap"><div class="crumbs"><a href="/">Inicio</a> · QuijoCuentas</div><section class="hero"><div class="kicker">QuijoCuentas · comparativa mensual</div><h1>Compara cuentas y depósitos en España</h1><p>Rentabilidad, condiciones, límites y Fondo de Garantía con las fuentes oficiales a la vista. Sin publicidad ni posiciones patrocinadas: solo datos para que puedas comparar con más criterio.</p><div class="badges"><span class="badge" id="qc-updated">Actualizado</span><span class="badge" id="qc-mes"></span><span class="badge">Fuentes oficiales</span><span class="badge">Sin posiciones patrocinadas</span></div>
+<div class="cuentas-seo-links"><a href="/mejores-cuentas-remuneradas.html">Guía de cuentas remuneradas →</a><a href="/mejores-depositos/">Guía de depósitos →</a><a href="/calculadora-deposito-plazo-fijo/">Calculadora de depósito →</a><a href="/#quijolista">¿Buscas inversión a largo plazo? QuijoLista: fondos, ETFs y planes →</a></div></section>
+
+<div class="filter-row" id="cuentas-filter">
+    <button type="button" class="cat-btn active" data-tab="sin" onclick="setCuentasTab('sin');return false;">Cuentas sin condiciones</button>
+    <button type="button" class="cat-btn" data-tab="con" onclick="setCuentasTab('con');return false;">Cuentas con condiciones</button>
+    <button type="button" class="cat-btn" data-tab="nomina" onclick="setCuentasTab('nomina');return false;">Cuentas nómina</button>
+    <button type="button" class="cat-btn" data-tab="dep-sin" onclick="setCuentasTab('dep-sin');return false;">Depósitos sin condiciones</button>
+    <button type="button" class="cat-btn" data-tab="dep-con" onclick="setCuentasTab('dep-con');return false;">Depósitos con condiciones</button>
+    <button type="button" class="cat-btn" data-tab="promo" onclick="setCuentasTab('promo');return false;">Promociones bancarias</button>
+  </div>
+
+<details class="cuentas-changelog">
+    <summary>
+      <span class="cuentas-changelog-title"><span>Qué ha cambiado en noviembre</span></span>
+      <span class="cuentas-changelog-action"><span>Ver cambios</span></span>
+    </summary>
+    <div class="cuentas-changelog-body">
+      <ul>
+<li><strong>Criterio vigente:</strong> SIN admite saldo mínimo y dinero nuevo como requisitos de acceso, siempre que cualquier cliente pueda optar. Ser solo nuevo cliente, nómina, Bizum, recibos, compras o inversión adicional se clasifica CON.</li>
+<li><strong>Cuentas CON:</strong> TOP 5 editorial aprobado: Bankinter No-Nómina, Monzo, Revolut, Openbank y B100 Health. bunq queda fuera del TOP y su tipo depende del umbral semestral.</li>
+<li><strong>Tipos y condiciones:</strong> Cajamar Wefferent mantiene2,01% TAE según la web oficial consultada el11/11/2026; la referencia a1,76% no coincide con la fuente oficial actual. Cetelem depósitos anuncia hasta3,25% TAE (24 meses; fuente consultada el10/11/2026). Monzo abierto a contratación; Revolut exige3compras de al menos5€ cada30días. Las cuotas N26 se separan del tipo bruto.</li>
+<li><strong>Depósitos:</strong> BiG3m pasa aCON por ser solo para nuevos clientes; MyInvestor12m y Self3m de dinero nuevo pasan aSIN. Openbank tiene fichas separadas con y sin ingresos. BiGCombinado paga4% solo sobre el70% en depósito; el30% en fondos tiene riesgo.</li>
+<li><strong>Nómina y promociones:</strong> BBVA revisa el saldo medio cada mes; Cajamar muestra300/500/750€ según bases; ING400 hasta20/11 y Sabadell400,08€ con condiciones delPDF. Se retira el100€ de apertura deCaixaBank sin fuente.</li>
+<li><strong>Pendientes:</strong> TradeRepublic base no tiene fuente oficial confirmada; Hoist se conserva fuera delTOP. Los productos con contradicciones o condiciones críticas pendientes se separan del ranking y no alimentan la Foto rápida.</li>
+<li><strong>Correcciones del11/11:</strong> BBVA prorroga PLAN1060: adhesión antes del11/01/2027 según las bases vigentes (último día válido 10/01/2027; la web muestra hasta el11/1/2027). Se incorpora la promoción TARJETA150 (hasta150€ de devolución con Aqua Débito; adhesión antes del01/12/2026; no acumulable a otras promociones de BBVA). ING Depósito Bienvenida anuncia contratación hasta31/12/2026. Bankinter Nómina publica fin de promoción: 31/03/2027 o40.000cuentas. Sabadell enlaza las bases COS correctas de su Cuenta Online. Se reordena SIN condiciones: Cajamar Wefferent (2,01% TAE) por encima de Banco BiG (2,00% TAE), conforme al criterio declarado de rentabilidad anunciada. La ficha de PLAN1060 precisa elegibilidad (solo nuevos clientes con alta online, sin baja en 180 días, titular único, mayores de 18) y el umbral de saldo medio (>10.000 €).</li>
+<li><strong>Caducidades:</strong> último día inclusivo, calendario deMadrid y renumeración sin huecos al cargar o cambiar de día. Los referidos no alteran el orden.</li>
+</ul>
+
+      <div class="cuentas-snapshot" aria-label="Resumen de QuijoCuentas generado a partir de los datos actuales">
+        <div class="cuentas-snapshot-title">Foto rápida</div>
+        <div class="cuentas-snapshot-grid" id="qc-snapshot"></div>
+        <p class="cuentas-snapshot-note">Resumen orientativo del primer resultado o incentivo de cada bloque. Las categorías no son equivalentes: revisa saldo, plazo, requisitos y fuente oficial antes de comparar.</p>
+      </div>
+      <p class="cuentas-changelog-date">Última revisión documental: <span id="qc-review-date">09/11/2026</span>. Si detectas una condición distinta, escríbenos y la revisamos.</p>
+    </div>
+  </details>
+
+<div id="cuentas-content">
+  <!-- rendered by JS -->
+</div>
+<noscript><p>Esta comparativa necesita JavaScript para mostrar las fichas. Las guías estáticas están en <a href="/mejores-cuentas-remuneradas.html">mejores cuentas remuneradas</a> y <a href="/mejores-depositos/">mejores depósitos</a>.</p></noscript>
+</main><footer class="foot">QuijoteFinanzas · Herramientas educativas y gratuitas.</footer><div class="cookie" id="cookie"><p>Usamos cookies analíticas solo si las aceptas para entender cómo se usan las herramientas.</p><div class="cookie-actions"><button onclick="qfCookie('essential')">Solo esenciales</button><button class="primary" onclick="qfCookie('accepted')">Aceptar analíticas</button></div></div>
+<script>
+window.qfTrack=function(n,p){try{gtag('event',n,p||{})}catch(e){}};
+window.qfTheme=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('qf-theme',n)}catch(e){}};
+window.qfCookie=function(v){try{localStorage.setItem('cookie_consent',v)}catch(e){};document.getElementById('cookie').style.display='none';if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});gtag('event','quijocuentas_tool_view',{source_component:'tool_page'});}};
+var QC_MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function qcMesAno(){var d=window.QF_CUENTAS_UPDATED||'';var m=d.match(/(\d{2})\/(\d{2})\/(\d{4})/);if(!m)return'';return QC_MESES[parseInt(m[2],10)-1]+' '+m[3];}
+function qcMesCorto(clave){var p=String(clave||'').split('-');if(p.length!==2)return clave;return QC_MESES[parseInt(p[1],10)-1].slice(0,3)+' '+p[0];}
+function qcHistHtml(c){
+  try{
+    var h=window.QF_CUENTAS_HISTORICO;if(!h||!h.meses||!c.productId)return '';
+    var entradas=h.meses.filter(function(m){return m.productos&&m.productos[c.productId];});
+    if(!entradas.length)return '';
+    if(entradas.length===1)return '<div class="cuenta-hist">Primera foto mensual: '+qcMesCorto(entradas[0].mes)+'. La evolución aparece cuando haya dos meses.</div>';
+    var conTae=entradas.filter(function(m){return m.productos[c.productId].tae!=null;});
+    if(conTae.length<2)return '<div class="cuenta-hist">Foto mensual desde '+qcMesCorto(entradas[0].mes)+'.</div>';
+    var prev=conTae[conTae.length-2],last=conTae[conTae.length-1];
+    var a=prev.productos[c.productId].tae,b=last.productos[c.productId].tae;
+    var fmt=function(v){return Number(v).toFixed(2).replace('.',',')+'%';};
+    var cls=b>a?'up':(b<a?'down':'flat'),flecha=b>a?'↑':(b<a?'↓':'=');
+    return '<div class="cuenta-hist">Evolución TAE: '+fmt(a)+' ('+qcMesCorto(prev.mes)+') <span class="'+cls+'">'+flecha+'</span> '+fmt(b)+' ('+qcMesCorto(last.mes)+')</div>';
+  }catch(e){return '';}
+}
+  var cuentasData = window.QF_CUENTAS_DATA || [];
+  var cuentasTab = "sin";
+
+  function qcEsc(v){
+    return String(v==null?'':v).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});
+  }
+
+  function qcInitials(bank){
+    var base=String(bank||'').split(' · ')[0].replace(/\s*\/.*$/,'').trim();
+    var words=base.split(/\s+/).filter(Boolean);
+    return words.slice(0,2).map(function(w){return w.charAt(0).toUpperCase();}).join('')||'QF';
+  }
+  function qcLogoHtml(c){
+    if(!c || !c.logoDomain) return '';
+    return '<span class="cuenta-logo" aria-hidden="true"><img loading="lazy" src="'+(c.logo?qcEsc(c.logo):'https://www.google.com/s2/favicons?sz=128&domain='+qcEsc(c.logoDomain))+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="cuenta-logo-fallback">'+qcEsc(qcInitials(c.banco))+'</span></span>';
+  }
+
+  function qcBankHtml(bank,title){
+    var raw=String(bank==null?'':bank);
+    var parts=raw.split(' · ');
+    var name=parts.shift()||raw;
+    var product=parts.join(' · ');
+    if(title) product+=(product?' · ':'')+String(title);
+    return '<span class="cuenta-bank-name">'+qcEsc(name)+'</span>'+(product?'<span class="cuenta-bank-product">'+qcEsc(product)+'</span>':'');
+  }
+
+  function qcRichMetric(c,label){
+    var h='<div class="cuenta-rich-metric">';
+    if(c.metricPrefix) h+='<span class="cuenta-rich-prefix">'+qcEsc(c.metricPrefix)+'</span>';
+    h+='<strong class="cuenta-rich-value'+(String(c.metricValue||'').length>=9?' is-long':'')+'">'+qcEsc(c.metricValue||'—')+'</strong>';
+    if(c.metricPeriod) h+='<span class="cuenta-rich-period">'+qcEsc(c.metricPeriod)+'</span>';
+    if(c.metricSecondary) h+='<span class="cuenta-rich-secondary">'+qcEsc(c.metricSecondary)+'</span>';
+    if(label) h+='<span class="cuenta-rich-label">'+qcEsc(label)+'</span>';
+    return h+'</div>';
+  }
+
+  function qcByTab(tab){
+    return window.QF_CUENTAS_SELECT(tab);
+  }
+  function qcRenderSnapshot(){
+    var box=document.getElementById('qc-snapshot');
+    var dateEl=document.getElementById('qc-review-date');
+    if(dateEl && window.QF_CUENTAS_UPDATED) dateEl.textContent=window.QF_CUENTAS_UPDATED;
+    if(!box) return;
+    var blocks=[['sin','Sin condiciones'],['con','Con condiciones'],['nomina','Cuentas nómina'],['dep-sin','Depósitos SIN (dinero nuevo permitido)'],['dep-con','Depósitos CON'],['promo','Promociones bancarias']];
+    var html='';
+    blocks.forEach(function(bl){
+      var c=(window.QF_CUENTAS_SELECT(bl[0],'ranked')[0]||qcByTab(bl[0])[0]); if(!c) return;
+      var txt;
+      if(bl[0]==='promo'){
+        txt=c.banco+(c.title?' '+c.title:'')+' · '+(c.metricValue||c.cashMax||'—');
+      }else if(bl[0]==='nomina' && c.metricValue){
+        txt=c.banco.split(' · ')[0]+' · '+[c.metricPrefix,c.metricValue].join(' ').trim()+(c.metricPeriod?' en '+c.metricPeriod:'');
+      }else if(c.displayRate){
+        txt=c.banco.split(' · ')[0]+' · '+c.displayRate+' · '+(c.rateLabel||'tipo anunciado');
+      }else if(c.tae!=null){
+        txt=c.banco.split(' · ')[0]+' · '+Number(c.tae).toFixed(2).replace('.',',')+'% TAE';
+      }else{ return; }
+      html+='<div class="cuentas-snapshot-item"><strong>'+qcEsc(bl[1])+'</strong>'+qcEsc(txt)+'</div>';
+    });
+    box.innerHTML=html; box.setAttribute('data-ready','1');
+  }
+
+  window.renderCuentas = function() {
+    qcRenderSnapshot();
+    var filteredAll = qcByTab(cuentasTab);
+    var tinRows = filteredAll.filter(function(c){return c.tinBlock;});
+    var filtered = filteredAll.filter(function(c){return !c.tinBlock;});
+    var container = document.getElementById('cuentas-content');
+    if (!container) return;
+    if (!filtered.length && !window.QF_CUENTAS_SELECT(cuentasTab,'pending').length) { container.innerHTML='<div class="cuentas-pronto">Categoría en preparación.</div>'; return; }
+
+    var mes = (window.QF_CUENTAS_UPDATED || "07/11/2026");
+    var esNomina = cuentasTab === "nomina";
+    var esDeposito = cuentasTab.indexOf('dep-') === 0;
+    var esPromo = cuentasTab === 'promo';
+    var sortText = cuentasTab==='con' ? 'TOP 5 editorial: Bankinter No-Nómina, Monzo, Revolut, Openbank y B100 Health. No es un orden numérico por TAE; el resto de fichas se compara aparte.' : esPromo
+      ? 'Promociones en efectivo verificadas y separadas de la rentabilidad de cuentas y depósitos. No se ordenan como recomendación.'
+      : (esNomina
+        ? 'Orden orientativo por potencial máximo anunciado; los plazos, saldos y requisitos no son equivalentes.'
+        : (esDeposito ? 'Ordenadas por la TAE máxima mostrada; compara siempre el plazo y la cancelación.' : 'Ordenadas por la rentabilidad anual anunciada para el supuesto indicado; indicamos si es TAE o tipo anual.'));
+    var html='<div class="cuentas-header"><p class="cuentas-sort">'+sortText+'</p><span class="cuentas-badge">Actualizado · '+mes+'</span></div>';
+    var qcCard=function(c,suppressRank){
+      var isTop=!suppressRank && !esPromo && c.rank!=null && Number(c.rank)<=(cuentasTab==='con'?5:2);
+      var principal;
+      if(esNomina && c.metricValue){
+        principal=qcRichMetric(c,'potencial anunciado');
+      }else if(esPromo && c.metricValue){
+        principal=qcRichMetric(c,'bonificación máxima');
+      }else if(esPromo){
+        principal='<div class="cuenta-tae">'+qcEsc(c.cashMax||'—')+'<span>bonificación máxima</span></div>';
+      }else if(c.displayRate){
+        principal='<div class="cuenta-tae">'+qcEsc(c.displayRate)+'<span>'+qcEsc(c.rateLabel||'rentabilidad anual')+'</span></div>';
+      }else{
+        principal='<div class="cuenta-tae">'+(c.tae!=null?Number(c.tae).toFixed(2).replace('.',',')+'<span>% TAE</span>':'—')+'</div>';
+      }
+      var rankLabel=cuentasTab==='con'?(c.rank+'º en selección editorial') : esNomina?(c.rank+'º por potencial anunciado'):(c.rank+'º por rentabilidad mostrada');
+      var actions='';
+      if(c.url) actions+='<a class="cuenta-source" data-qc-source="1"'+(esPromo?' data-promo-id="'+qcEsc(c.promoId||'')+'"':'')+' href="'+qcEsc(c.url)+'" target="_blank" rel="noopener noreferrer">Fuente oficial ↗</a>';
+      if(c.referral) actions+='<a class="cuenta-ref" data-qc-referral="1" href="'+qcEsc(c.referral)+'" target="_blank" rel="nofollow sponsored noopener noreferrer" title="'+qcEsc(c.referralNote||'Enlace de referido')+'">Invitación identificada ↗</a>';
+      var meta='';
+      if(!esPromo && c.limite&&c.limite!=='—') meta+='<span class="cuenta-chip">💰 '+qcEsc(c.limite)+'</span>';
+      if(c.fgd) meta+='<span class="cuenta-chip '+qcEsc(c.fgdClass||'')+'">🔐 FGD '+qcEsc(c.fgd)+'</span>';
+      var details='<div class="cuenta-detail">Fuente contrastada: '+qcEsc(c.verifiedAt)+' · campos no publicados declarados en ficha</div>';
+      if(!esPromo){var _hist=qcHistHtml(c);if(_hist)details+=_hist;}
+      if(esPromo){
+        if(c.requirements) details+='<div class="cuenta-detail">🎯 '+qcEsc(c.requirements)+'</div>';
+        if(c.eligibility) details+='<div class="cuenta-detail">👤 '+qcEsc(c.eligibility)+'</div>';
+        if(c.permanence) details+='<div class="cuenta-detail">⏳ '+qcEsc(c.permanence)+'</div>';
+        if(c.validUntil) details+='<div class="cuenta-detail">📅 '+qcEsc(c.validUntil)+'</div>';
+        if(c.taxNote) details+='<div class="cuenta-detail">🧾 '+qcEsc(c.taxNote)+'</div>';
+      } else {
+        if(c.duracion) details+='<div class="cuenta-detail">⏱ '+qcEsc(c.duracion)+'</div>';
+        if(c.extra) details+='<div class="cuenta-detail">📌 '+qcEsc(c.extra)+'</div>';
+      }
+      return '<div class="cuenta-card'+(isTop?' top':'')+'"'+(esPromo?' data-promo-card="'+qcEsc(c.promoId||'')+'"':'')+'>'
+        +'<div class="cuenta-top"><div>'+(isTop?'<div class="cuenta-rank">'+rankLabel+'</div>':'')+'<div class="cuenta-identity">'+qcLogoHtml(c)+'<div class="cuenta-banco">'+qcBankHtml(c.banco,esPromo?c.title:'')+'</div></div></div>'
+        +'<div class="cuenta-metric">'+principal+'</div></div>'
+        +(meta?'<div class="cuenta-meta-row">'+meta+'</div>':'')+details
+        +(esNomina&&c.tae!=null?'<div class="cuenta-tae-ref">TAE de referencia: '+Number(c.tae).toFixed(2).replace('.',',')+'%</div>':'')
+        +((c.pro||c.con)?'<div class="cuenta-pros-cons">'+(c.pro?'<span class="cuenta-pro">'+qcEsc(c.pro)+'</span>':'')+(c.con?'<span class="cuenta-con">'+qcEsc(c.con)+'</span>':'')+'</div>':'')
+        +(actions?'<div class="cuenta-actions">'+actions+'</div>':'')+'</div>';
+    };
+    html+='<div class="cuentas-grid">'+filtered.map(function(c){return qcCard(c,false);}).join('')+'</div>';
+    if(tinRows.length){
+      html+='<div class="cuentas-tin-block"><p class="cuentas-tin-label">Tipo TIN promocional · no comparable con la TAE del ranking anterior</p><div class="cuentas-grid">'+tinRows.map(function(c){return qcCard(c,true);}).join('')+'</div></div>';
+    }
+    html+='<p class="cuentas-disclaimer">⚠️ Revisión realizada el '+qcEsc(mes)+' con las condiciones publicadas por las entidades. Las promociones pueden cambiar o cerrarse antes de la siguiente actualización: verifica siempre la fuente oficial antes de contratar. No se muestran invitaciones ni referidos sin haber comprobado antes su compatibilidad y privacidad. La cobertura indicada depende del sistema de garantía y de la entidad que custodie el dinero.</p>';
+    html+=window.QF_CUENTAS_PENDING_HTML(cuentasTab);
+    container.innerHTML=html;
+  };
+
+  window.setCuentasTab = function(tab) {
+    var row=document.getElementById('cuentas-filter');
+    var changed = cuentasTab !== tab;
+    cuentasTab=tab;
+    if(row) row.querySelectorAll('.cat-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===tab);});
+    if(window.renderCuentas) window.renderCuentas();
+    if(changed){
+      try{ qfTrack('quijocuentas_tab_select',{tab_name:tab}); }catch(e){}
+      if(tab==='promo'){
+        try{qfTrack('bank_promo_view',{source_component:'quijocuentas_home',promo_count:window.QF_CUENTAS_SELECT('promo').length});}catch(e){}
+      }
+    }
+  };
+  window.bindCuentasTabs = function() {
+    var row=document.getElementById('cuentas-filter'); if(!row||row.dataset.bound==='1') return; row.dataset.bound='1';
+    row.querySelectorAll('.cat-btn').forEach(function(btn){btn.addEventListener('click',function(ev){ev.preventDefault();setCuentasTab(btn.getAttribute('data-tab'));});});
+  }
+
+document.addEventListener('DOMContentLoaded',function(){
+  var d=window.QF_CUENTAS_UPDATED;if(d){var e=document.getElementById('qc-updated');if(e)e.textContent='Actualizado el '+d;}
+  var mesAno=qcMesAno();var b=document.getElementById('qc-mes');if(b&&mesAno)b.textContent='Comparativa de '+mesAno;
+  if(mesAno&&!/ \u00b7 /.test(document.title))document.title=document.title.replace(' | QuijoteFinanzas',' \u00b7 '+mesAno+' | QuijoteFinanzas');
+  if(window.bindCuentasTabs)bindCuentasTabs();if(window.renderCuentas)window.renderCuentas();
+  var v=null;try{v=localStorage.getItem('cookie_consent')}catch(e){}
+  if(v==='accepted'){gtag('consent','update',{analytics_storage:'granted'});gtag('event','quijocuentas_tool_view',{source_component:'tool_page'});}
+  else if(!v)document.getElementById('cookie').style.display='block';
+});
+</script>
+<script defer src="/assets/quijobot.js?v=20261013c"></script>
+</body></html>
