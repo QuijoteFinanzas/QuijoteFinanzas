@@ -90,10 +90,47 @@ def index_page():
 <h1>Glosario de finanzas personales</h1>
 <p class="lead">{len(items)} términos de ahorro, inversión, hipotecas e impuestos explicados de forma sencilla. Los términos con enlace tienen página propia con ejemplo y preguntas frecuentes.</p>
 <div class="divider"></div>
+<style>
+.g-search{{margin:0 0 20px}}
+.g-search label{{display:block;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#7a5f14;margin-bottom:6px}}
+.g-search input{{width:100%;max-width:460px;box-sizing:border-box;border:1px solid var(--border);border-radius:10px;padding:11px 14px;font:15px 'DM Sans',sans-serif;background:var(--surface);color:var(--navy)}}
+.g-search input:focus{{outline:2px solid var(--gold);outline-offset:1px}}
+.g-search-help{{font-size:12px;color:#5c6f83;margin-top:6px}}
+.g-empty{{margin:0 0 18px;font-size:14px;color:#3f5266;background:var(--surface-soft);border:1px solid var(--border);border-radius:10px;padding:12px 14px}}
+.g-item[hidden],.g-letter[hidden],.az[hidden]{{display:none}}
+html[data-theme="dark"] .g-search label{{color:#d7b85d}}
+html[data-theme="dark"] .g-search input{{background:#182638;border-color:#33485e;color:#edf3f8}}
+html[data-theme="dark"] .g-search-help,html[data-theme="dark"] .g-empty{{color:#b9c9d8}}
+html[data-theme="dark"] .g-empty{{background:#182638;border-color:#33485e}}
+</style>
+<div class="g-search" role="search">
+<label for="g-q">Buscar en el glosario</label>
+<input id="g-q" type="search" placeholder="Escribe una palabra, p. ej. Euríbor" autocomplete="off" aria-describedby="g-q-help">
+<p class="g-search-help" id="g-q-help">Filtra al instante por nombre o por el texto de la descripción.</p>
+</div>
+<p class="g-empty" id="g-empty" hidden>Sin resultados para «<span id="g-empty-q"></span>». Prueba con otra palabra o usa el índice alfabético.</p>
 <nav class="az" aria-label="Índice alfabético">{nav}</nav>
 {blocks}
 <p class="notice">Contenido educativo y general. No es asesoramiento financiero ni fiscal personalizado.</p>
-{CTA}'''
+{CTA}
+<script>
+(function(){{
+  var q=document.getElementById('g-q');if(!q)return;
+  var items=[].slice.call(document.querySelectorAll('.g-item'));
+  var letters=[].slice.call(document.querySelectorAll('.g-letter'));
+  var az=document.querySelector('.az');
+  var empty=document.getElementById('g-empty'),emptyQ=document.getElementById('g-empty-q');
+  function norm(s){{return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}}
+  items.forEach(function(it){{it.dataset.q=norm(it.textContent)}});
+  q.addEventListener('input',function(){{
+    var v=norm(q.value.trim()),shown=0;
+    items.forEach(function(it){{var ok=!v||it.dataset.q.indexOf(v)>-1;it.hidden=!ok;if(ok)shown++}});
+    letters.forEach(function(l){{l.hidden=!!v&&![].some.call(l.querySelectorAll('.g-item'),function(it){{return !it.hidden}})}});
+    if(az)az.hidden=!!v;
+    if(empty){{empty.hidden=!(v&&shown===0);if(v)emptyQ.textContent=q.value.trim()}}
+  }});
+}})();
+</script>'''
     ld = {"@context":"https://schema.org","@graph":[
         {"@type":"DefinedTermSet","@id":url+'#set',"name":"QuijoGlosario","url":url,"description":"Glosario de finanzas personales de Don Quijote de las Finanzas.",
          "hasDefinedTerm":[{"@type":"DefinedTerm","name":n,"description":d,**({"url":BASE+u} if u else {})} for n,d,u in items]},
