@@ -1,6 +1,6 @@
 // Calendario económico QuijoteFinanzas · fuentes oficiales verificadas
 // Horas: hora de Madrid (CET, invierno). Revisar DST en la revisión de primavera.
-window.QF_CAL_META = { reviewed: '25 nov 2026', nextReview: 'semana del 28 dic 2026' };
+window.QF_CAL_META = { reviewed: '27 nov 2026', nextReview: 'semana del 28 dic 2026' };
 window.QF_CAL = [
   // ── Noviembre 2026 ─────────────────────────────────────────────
   { date: '2026-11-02', time: '16:00', zone: 'EE. UU.', cat: 'Actividad', title: 'ISM manufacturero (octubre)', what: 'Fuente: ISM.', url: 'https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/october/', result: '55,5 puntos (54,5 en septiembre): 10 meses seguidos en expansión.' },
@@ -13,7 +13,7 @@ window.QF_CAL = [
   { date: '2026-11-23', time: '09:30', timeNote: 'ZE a las 10:00', zone: 'ZE', cat: 'Actividad', title: 'PMI adelantados de Alemania y zona euro (noviembre)', what: 'Lectura adelantada de actividad. Fuente: S&P Global.', url: 'https://www.pmi.spglobal.com/Public/Home/PressRelease/2c032f309b2e4b41bc77568f1b97b540', result: 'Compuesto 51,7 puntos, igual que en octubre.' },
   { date: '2026-11-25', time: '14:30', zone: 'EE. UU.', cat: 'Inflación', title: 'PCE e ingresos personales (octubre)', what: 'El indicador de inflación que vigila la Fed. Fuente: BEA.', url: 'https://www.bea.gov/news/2026/personal-income-and-outlays-october-2026', result: 'PCE +0,3% mensual; renta personal +0,7%.' },
   { date: '2026-11-25', time: '14:30', zone: 'EE. UU.', cat: 'Actividad', title: 'PIB de EE. UU., segunda estimación (3T)', what: 'Fuente: BEA.', url: 'https://www.bea.gov/news/2026/gdp-second-estimate-and-corporate-profits-3rd-quarter-2026', result: '+4,3% anualizado, revisado al alza desde el 3,4%.' },
-  { date: '2026-11-27', time: '—', zone: 'ES', cat: 'Inflación', title: 'IPC avance de España (noviembre)', what: 'Primera lectura del IPC del mes. Fuente: INE.', url: 'https://www.ine.es/dynt3/Calendario/es/calenHTML.htm' },
+  { date: '2026-11-27', time: '—', zone: 'ES', cat: 'Inflación', title: 'IPC avance de España (noviembre)', what: 'Primera lectura del IPC del mes. Fuente: INE.', url: 'https://www.ine.es/dyngs/Prensa/es/adIPC1126.htm', result: 'Avance: 4,1% anual (4,9% en octubre); subyacente 2,6%. Mensual -0,6%.' },
   // ── Diciembre 2026 ─────────────────────────────────────────────
   { date: '2026-12-01', time: '—', zone: 'ZE', cat: 'Inflación', title: 'IPC adelantado de la zona euro (noviembre)', what: 'Primera lectura de la inflación del euro. Fuente: Eurostat.', url: 'https://ec.europa.eu/eurostat/news/release-calendar' },
   { date: '2026-12-01', time: '10:00', zone: 'ZE', cat: 'Actividad', title: 'PMI manufacturero zona euro, dato final (noviembre)', what: 'Fuente: S&P Global.', url: 'https://www.pmi.spglobal.com/Public/Home/PressRelease' },
